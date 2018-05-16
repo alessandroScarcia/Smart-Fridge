@@ -1,13 +1,6 @@
 /*
- ============================================================================
- Name        : Smart.c
- Author      : Alessandro Scarcia
- Version     :
- Copyright   : 
- Description : Hello World in C, Ansi-style
- ============================================================================
+ * Caso di studio: Smart Fridge.
  */
-
 #include <stdio.h>
 #include <stdlib.h>
 
