@@ -13,5 +13,6 @@
 
 int main(void) {
 	puts("Hello World."); /* prints  */
+	puts("");
 	return EXIT_SUCCESS;
 }
