@@ -2,10 +2,6 @@
  * Caso di studio: Smart Fridge.
  */
 
-
-
-
-
 #include "menu.h"
 
 
