@@ -1,11 +1,18 @@
 /*
  * Caso di studio: Smart Fridge.
  */
-#include <stdio.h>
-#include <stdlib.h>
 
-int main(void) {
-	puts("Hello World."); /* prints  */
-	puts("Test");
-	return EXIT_SUCCESS;
+
+
+
+
+#include "menu.h"
+
+
+int main(){
+
+		menu_alimenti();//richiamo il menu degli alimenti
+
+		return 0;
+
 }
