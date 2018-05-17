@@ -6,6 +6,6 @@
 
 int main(void) {
 	puts("Hello World."); /* prints  */
-	puts("");
+	puts("Test");
 	return EXIT_SUCCESS;
 }
