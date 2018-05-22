@@ -196,24 +196,26 @@ int generaData(data* dataGenerata, data d1, data d2){
 
 /*
  * Procedura dataOdierna:
- * Parametri in ingresso:
- *  - puntatore alla variabile che conterra la data odierna
- * Assegna alla variabilepuntata dal puntatore ricevuto i valori della
- * data odierna ricavandola grazie alle sunzione time e localtime. La funzione time
- * restituisce il tempo del calendario di sistema nel formato aritmentico time_t,
- * ed è convertito nella struttura struct tm, presente nella libreria time.h, così
- * da poter ricavare i valori della data dai membri della struttura identificati come
- * tm_mday, tm_mon e tm_year.
+ * Ricava il valore della data odierna e la restituisce in ritorno, attraverso
+ * le funzioni time() e localtime(). La funzione time() restituisce il tempo del calendario
+ * di sistema nel formato aritmentico time_t, ed è convertito nella struttura struct tm,
+ * presente nella libreria time.h attraverso la funzione localtime().
+ * Da questa struttura è poi possibile estrarre il valore di giorno, mese e anno dai membri
+ * identificati da tm_mday, tm_mon e tm_year. Per avere dati significativi, vengono sommati
+ * i corrispondenti offeset alvalore del mese e dell'anno.
  */
-void dataOdierna(data* dataCorrente){
+data dataOdierna(){
+	data dataOdierna;
 	//estrazione della data odierna
 	time_t tmp = time(NULL);
 	struct tm* tmp2 = localtime(&tmp);
 
 	//assegnazione dei valori estratti nella variabile ricevuta
-	(*dataCorrente).giorno = (*tmp2).tm_mday;
-	(*dataCorrente).mese = (*tmp2).tm_mon + BASE_MESE_CORRENTE;
-	(*dataCorrente).anno = (*tmp2).tm_year + BASE_ANNO_CORRENTE;
+	dataOdierna.giorno = (*tmp2).tm_mday;
+	dataOdierna.mese = (*tmp2).tm_mon + BASE_MESE_CORRENTE;
+	dataOdierna.anno = (*tmp2).tm_year + BASE_ANNO_CORRENTE;
+
+	return dataOdierna;
 }
 
 /*
@@ -269,4 +271,84 @@ double giornoGiuliano(data d1){
  */
 int diffDate(data d1, data d2){
 	return (int)(fabs(giornoGiuliano(d1) - giornoGiuliano(d2)));
+}
+
+
+
+/*
+ * Funzione dataGregoriana:
+ * La funzione riceve in ingresso una data nel formato di giorno giuliano,
+ * su di essa applica un algoritmo e restituisce il valore ad essa corrispondente
+ * in formato di tipo data.
+ *
+ * L'algoritmo applicato è stato preso dal seguente link Wikipedia:
+ * 		https://it.wikipedia.org/wiki/Giorno_giuliano#Conversione_da_data_giuliana_a_data_normale
+ */
+data dataGregoriana(double dataGiuliana){
+	data dataGregoriana;
+	double tmp, i, f, a, b, c, d, e, h, giorno, mese, anno;
+
+	dataGiuliana += 2415020.50;
+
+
+	f = modf(dataGiuliana + 0.5, &i);
+
+	if(i <= 2299160){
+		b = i;
+	}else{
+		modf((i - 1867216.25) / 36524.25, &a);
+		modf(a / 4 , &tmp);
+		b = i + 1 + a - tmp;
+	}
+
+	c = b + 1524;
+	modf((c - 122.1) / 365.25, &d);
+	modf(365.25 * d, &e);
+	modf((c - e) / 30.6001, &h);
+
+	modf(30.6001 * h, &tmp);
+	giorno = c - e + f - tmp;
+
+	if(h < 14){
+		mese = h - 1;
+	}else{
+		mese = h - 13;
+	}
+
+	if(mese < 3){
+		anno = d - 4715;
+	}else{
+		anno = d - 4716;
+	}
+
+	modf(giorno, &tmp);
+	dataGregoriana.giorno = (char) tmp;
+	modf(mese, &tmp);
+	dataGregoriana.mese = (char) tmp;
+	modf(anno, &tmp);
+	dataGregoriana.anno = (unsigned short) tmp;
+
+	return dataGregoriana;
+}
+
+/*
+ * Funzione shiftDataOdierna:
+ * La funzione genera una data partendo dalla data odierna e shiftandola del valore
+ * ricevuto in ingresso attraverso il parametro valoreShift.
+ * In partiolare la data è generata trasformando prima la data odierna in
+ * giorno giuliano. Al valore ottenuto viene sommato algebricamente valoreShift,
+ * ottenendo il giorno giuliano della data da generare. Questa è convertita nel tipo di dato
+ * data attraverso la funzione giornoGregoriano(). La data generata è restituita come valore di ritorno.
+ */
+data shiftDataOdierna(short valoreShift){
+	// calcolo della data odierna in giorno giuliano
+	double dataOdiernaGiuliana = giornoGiuliano(dataOdierna());
+
+	// calcolo della data shiftata in giorno giuliano
+	double dataGenerataGiuliana = dataOdiernaGiuliana + valoreShift;
+
+	// conversione in data gregoriana della data generata
+	data dataGenerataGregoriana = dataGregoriana(dataGenerataGiuliana);
+
+	return dataGenerataGregoriana;
 }
