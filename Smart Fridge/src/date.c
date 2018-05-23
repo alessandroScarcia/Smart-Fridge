@@ -322,9 +322,9 @@ data dataGregoriana(double dataGiuliana){
 	}
 
 	modf(giorno, &tmp);
-	dataGregoriana.giorno = (char) tmp;
+	dataGregoriana.giorno = (unsigned short) tmp;
 	modf(mese, &tmp);
-	dataGregoriana.mese = (char) tmp;
+	dataGregoriana.mese = (unsigned short) tmp;
 	modf(anno, &tmp);
 	dataGregoriana.anno = (unsigned short) tmp;
 

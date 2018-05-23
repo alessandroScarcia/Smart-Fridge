@@ -40,8 +40,8 @@
 
 //tipo di dato DATA
 typedef struct{
-	char giorno;
-	char mese;
+	unsigned short giorno;
+	unsigned short mese;
 	unsigned short anno;
 }data;
 
