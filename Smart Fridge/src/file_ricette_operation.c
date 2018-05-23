@@ -46,7 +46,7 @@ int lettura_ricette(){
 		char filename[LUNG_NOME_FILE];//dichiaro quanto deve essere grande il nome del file
 		strcpy(filename, "../nuove_ricette.csv");//inizializzo la variabile di tipo stringa al nome del file la path dove si trova il file
 
-		int num_tuple=conta_righe_file(filename);//creo una variabile che ospiterá il numero di righe del file da cui si vogliono recuperare gli alimenti
+		int num_tuple=0;//creo una variabile che ospiterá il numero di righe del file da cui si vogliono recuperare gli alimenti
 		//DEBUG: printf("%d\n",num_tuple);
 
 
