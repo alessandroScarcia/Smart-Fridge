@@ -11,8 +11,6 @@
 * @warning Riga:160 . Variabile non usata in istruzioni di rilevanza ma utilizzata solo come appoggio
 */
 #include "file_alimenti_operation.h"
-#define ALIMENTI_STRUCT
-#define ALIMENTI_LIBRARY
 
 /*CONTROLLI DA APPLICARE(le righe ti danno un idea orientativa di dove applicare il controllo e dove trovare la funzione ovviamente ti puoi gestire al meglio
  * Dai un'occhiata se trovi commenti in riga con ALE. Nel caso mi sono SCIRRATO controlli :-) )
@@ -40,87 +38,186 @@
  * 18. Controllo operazione di riduzione (riduci_q_alimenti RIGA 460)
 */
 
+void pulisci_stdin(){
+	char c;
+	while((c = getchar()) != '\n' && c != EOF);
+}
+
+int controlla_unita_misura(char* unita_misura){
+	if(strcmp(unita_misura, UNITA_KG) == 0
+		|| strcmp(unita_misura, UNITA_G) == 0
+		|| strcmp(unita_misura, UNITA_L) == 0
+		|| strcmp(unita_misura, UNITA_ML) == 0
+		|| strcmp(unita_misura, UNITA_PZ) == 0){
+		return 1;
+	}else{
+		return 0;
+	}
+}
 
 
+int controlla_quantita(float quantita, char* unita_misura){
+	int sup_quantita;// Estremo superiore relativo all'unità di misura ricevuta
 
-
-
-
-/**
- * FUNZIONI CONTROLLI
- * @param nome_file
- * @return bool type
- */
-bool controllo_esist_file(const char * nome_file){
-
-	FILE* stream = fopen(nome_file, "r");
-	if (stream)///se il file si apre in lettura allora restituisci true altrimenti di default restituisci false
-	{
-		return true;
+	// Identificazione del valore corretto per l'estremo superiore
+	if(strcmp(unita_misura, UNITA_G) == 0){
+		sup_quantita = MAX_QUANTITA_G;
+	}else if(strcmp(unita_misura, UNITA_ML) == 0){
+		sup_quantita = MAX_QUANTITA_ML;
+	}else if(strcmp(unita_misura, UNITA_PZ) == 0){
+		sup_quantita = MAX_QUANTITA_PZ;
+	}else{
+		return -1;
 	}
 
-	return false;
+	if(quantita < MIN_QUANTITA || quantita > sup_quantita){
+		return 0;
+	}else{
+		return 1;
+	}
+}
+
+
+int controlla_data_scadenza(data scadenza){
+	if(confronta_date(scadenza, data_odierna()) == DATE_NON_VALIDE){
+		return -1;
+	}else if(confronta_date(scadenza, data_odierna()) == SECONDA_DATA_ANTECEDENTE){
+		return 1;
+	}else{
+		return 0;
+	}
+}
+
+
+int converti_quantita(float *quantita, char *unita_misura){
+	if(strcmp(unita_misura, UNITA_KG) == 0){
+		strcpy(unita_misura, UNITA_G);
+		*quantita *= KG_TO_G;
+
+		return 1;
+	}else if(strcmp(unita_misura, UNITA_L) == 0){
+		strcpy(unita_misura, UNITA_ML);
+		*quantita *= L_TO_ML;
+
+		return 1;
+	}
+
+	return 0;
+}
+
+
+void abbassa_maiuscole(char *s){
+	int i = 0;
+
+	while(s[i]){
+		s[i] = tolower(s[i]);
+		i++;
+	}
+}
+
+
+alimento_frigo input_alimento_frigo(){
+	int esito_input;
+	alimento_frigo alimento;
+
+	// Ciclo per la ripetizione dell'inserimento fino a riceverlo nel formato corretto
+	do{
+		puts("Inserisci l'alimento: ");
+		esito_input = scanf("%[a-zA-Z] %f %[a-zA-Z] %hu/%hu/%hu",
+				alimento.nome, &alimento.quantita, alimento.unita_misura,
+				&alimento.scadenza.giorno, &alimento.scadenza.mese, &alimento.scadenza.anno);
+		pulisci_stdin();
+
+		if(esito_input != NUM_CAMPI_ALIMENTO_FRIGO){
+			puts("Inserimento non valido. Ripeterlo.\n");
+		}
+	}while(esito_input != NUM_CAMPI_ALIMENTO_FRIGO);
+
+	return alimento;
+}
+
+
+void input_unita_misura(char *unita_misura){
+	int esito_input;
+
+	// Ciclo per la ripetizione dell'inserimento fino a riceverlo significativo
+	do{
+		puts("Inserisci l'unità di misura: ");
+		esito_input = scanf("%[a-zA-Z]", unita_misura);
+		pulisci_stdin();
+
+		if(controlla_unita_misura(unita_misura) == 0 || esito_input != 1){
+			puts("Inserimento non valido. Ripeterlo.\n");
+		}
+	}while(controlla_unita_misura(unita_misura) == 0 || esito_input != 1);
+}
+
+
+float input_quantita(char *unita_misura){
+	int esito_input;
+	float quantita = 0;
+
+	do{
+		puts("Inserisci la quantita:");
+		esito_input = scanf("%f", &quantita);
+		pulisci_stdin();
+
+		if(controlla_quantita(quantita, unita_misura) == 0 || esito_input != 1){
+			puts("Inserimento non valido. Ripeterlo.");
+		}
+	}while(controlla_quantita(quantita, unita_misura) == 0 || esito_input != 1);
+
+	return quantita;
+}
+
+
+data input_data_scadenza(){
+	data data_inserita;
+
+	do{
+		data_inserita = input_data();
+
+		if(controlla_data_scadenza(data_inserita) != 1){
+			puts("Inserimento non valido. Ripeterlo.");
+		}
+	}while(controlla_data_scadenza(data_inserita) != 1);
+
+	return data_inserita;
 }
 
 
 
+int input_kcal(char *nome_alimento, int campione_kcal, char *unita_misura){
+	float kcal;
+	int esito_input;
+	do{
+		printf("Inserisci le kcal per %d%s dell'alimento %s", campione_kcal, unita_misura, nome_alimento);
+		esito_input = scanf("%f", &kcal);
 
-
-
-
-/**FUNZIONI FILE
- *
- * @param nome_file
- * @return righe
- */
-int conta_righe_file_sq(char nome_file[LUNG_NOME_FILE]){
-
-		FILE *stream= fopen(nome_file,"r"); ///apri il file in modalitá "lettura"
-		int righe=0;				   ///variabile che conta le righe del file
-		char  buffer[LUNG_BUFFER];		   ///stringa che accoglie la riga in lettura dal file
-
-		while (fgets(buffer, sizeof (buffer), stream)) ///fino a quando riesci a leggere righe dal file
-		    righe++;							   ///incremento il contatore del numero di righe
-
-		fclose(stream); 				  ///chiudi il file
-		return righe; 				  ///restituisci il numero di righe del file
-
-}
-
-
-
-
-/**
- *
- * @param nome_alimento
- * @return kcal
- */
-int input_kcal(char nome_alimento[LUNG_NOME]){
-	int kcal;
-	printf("Inserisci le kcal per %s", nome_alimento );
-
-	scanf("%d", &kcal );///controllo_input() di ALE
+		if(esito_input != 1){
+			puts("Inserimento non valido. Ripeterlo.");
+		}
+	}while(esito_input != 1);
 	return kcal;
 }
 
 
+int calcola_campione_kcal(char *unita_misura){
+	// Analisi dell'unità di misura ricevuta e restituzione del valore di campione corrispondente
+	if(strcmp(unita_misura, UNITA_G) == 0){
+		return CAMPIONE_G;
 
-/**
- *
- * @param unita_misura
- * @return campione di riferimento per le kcal o 0 in caso di errore
- */
-int set_q_camp(char unita_misura[LUNG_U_MISURA]){
-	if(strcmp(unita_misura, "g")==0 || strcmp(unita_misura, "kg")==0){/// se l'unitá di misura dell'alimento e il g allora
-		return grammi;///restituisci 100 come campione
-	}else if(strcmp(unita_misura, "ml")==0 || strcmp(unita_misura, "lt")==0){/// se l'unitá di misura dell'alimento e il ml o lt allora
-		return millilitri;///restituisci 100 come campione
-	}else{/// se l'unitá di misura dell'alimento e il pz allora
-		return pz;///restituisci 1 come campione
+	}else if(strcmp(unita_misura, UNITA_ML) == 0){
+		return CAMPIONE_ML;
+
+	}else if(strcmp(unita_misura, UNITA_PZ) == 0){
+		return CAMPIONE_PZ;
+
 	}
-	return 0; ///restituisci 0 se qualcosa é andata storta
-}
 
+	// Se l'unità di misura non è valida, ritorna 0
+	return 0;
+}
 
 
 /**
@@ -129,142 +226,84 @@ int set_q_camp(char unita_misura[LUNG_U_MISURA]){
  * @param unita_misura
  * @return quantita_minima
  */
-float set_soglia_spesa(float quantita, char unita_misura[LUNG_U_MISURA]){
-	float quantita_minima;///variabile che ospiterá il risultato ottenuto per calcolare la soglia
+float input_soglia_spesa(char *nome_alimento, char* unita_misura){
+	float soglia;
+	int esito_input;
 
-	///ALE: effettua gli opportuni controlli qui sotto per arrontondare la quantitá in caso siano pz e soprattutto controlla
-	///che il valore restituito in percentuale sia valido
+	do{
+		printf("Inserisci la soglia per l'inserimento nella spesa dell'alimento <%s>: ", nome_alimento);
+		esito_input = scanf("%f", &soglia);
+		pulisci_stdin();
 
+		if(controlla_quantita(soglia, unita_misura) != 1 || esito_input != 1){
+			puts("Inserimento non valido. Ripeterlo.");
+		}
+	}while(controlla_quantita(soglia, unita_misura) != 1 || esito_input != 1);
 
-	///se le unitá di misura sono tipizzate allora:
-	if(strcmp(unita_misura, "g")==0 || strcmp(unita_misura, "ml")==0 || strcmp(unita_misura, "lt")==0){
-		quantita_minima=(SOGLIA_PERC*quantita)/(float)100;///calcola x% della prima quantitá che si memorizza nel frigo
+	return soglia;
+}
 
-	}else{///altrimenti se la quantitá é in pz QUESTO NON VA BENE PERTANTO VA QUA IL TUO CONTROLLO
-		quantita_minima=(SOGLIA_PERC*quantita)/(float)100;
+int aggiorna_database(alimento_frigo alimento){
+	FILE *stream = NULL;								// Puntatore al file database_alimenti
+	alimento_database alimento_database;				// Variabile per comunicare con il database
+	char flag_presenza = 0;								// Flag per memorizzare la presenza nel database dell'alimento in analisi
 
+	// Tentativo di apertura del FILE_DATABASE
+	if((stream = fopen(FILE_DATABASE, "rb+")) == NULL){
+		// Se non esiste nessun FILE_DATABASE deve essere creato
+		if((stream = fopen(FILE_DATABASE, "wb+")) == NULL){
+			// Se non può essere creato il file, viene ritornato 0
+			return 0;
+		}
 	}
-	return quantita_minima;///restituisci la quantitá minima da aveere nel frigo
-}
 
+	// Se si superano i controlli sull'apertura del file, possiamo effettuare l'aggiornamento del database
 
-/**
- *
- * @param quant_u_misura
- * @return parte_stringa
- */
-char* ottieni_u_misura(char quant_u_misura[LUNG_STR_LAVORO]){
+	fseek(stream, 0, SEEK_SET);
 
-	char *parte_stringa; ///variabile "puntatore" che verrá sfruttato per individuare la parte non numerica della stringa
+	// Analisi di tutte le righe del database per determinare se si conosce l'alimento
+	while(flag_presenza == 0){
 
-	int parte_intera;///variabile che accoglierá il numero presente nella stringa
+		fread(&alimento_database, sizeof(alimento_database), 1, stream);
 
-	///la funzione strtol restituisce un long presente in una stringa qualora sia presente nel nostro caso il valore nuemrico della quantitá
-	parte_intera = strtol(quant_u_misura, &parte_stringa, 10);
-
-
-	return parte_stringa;///restituisci l'unitá di misura dell'alimento che deve essere memorizzato
-}
-
-
-
-/**
- *
- * @param quant_u_misura
- * @return parte_intera
- */
-float ottieni_quantita(char quant_u_misura[LUNG_STR_LAVORO]){
-	char *parte_stringa; ///variabile "puntatore" che verrá sfruttato per individuare la parte non numerica della stringa
-	int parte_intera;///variabile che accoglierá il numero presente nella stringa
-
-	///la funzione strtol restituisce un long presente in una stringa qualora sia presente nel nostro caso il valore nuemrico della quantitá
-	parte_intera = strtol(quant_u_misura, &parte_stringa, 10);
-
-
-	return parte_intera; ///restituisci la quantitá dell'alimento che deve essere memorizzato nel frigo
-}
-
-
-/**
- *
- * @param line
- * @param num
- * @return token o stringa di riferimento
- */
-const char* leggi_campo(char* line, int num){///passo il puntatore alla linea da cui voglio estrarre il campo e il numero del campo che voglio analizzare
-
-    char* token; ///dichiariamo un token ossia un puntatore alla parte di stringa che di volta in volta viene spezzata
-    token = strtok(line, ";");///inizializzazione della strtok con la stringa da tagliare e il/i carattere/i delimitatori. In questo caso basta il ; per come abbiamo strutturato il csv
-
-    while (token!=NULL) ///smetti di tagliare la stringa nel momento in cui il token non punta ad alcuna sotto-stringa ottenuta dal carattere delimitatore ;
-    {
-
-    	num--; /// riduciamo di un campo la tupla presa in considerazione
-        if (num==0){///ridotta al minimo la tupla iniziale, otterró la stringa che mi interessa ossia il valore del campo che ho deciso di passare alla funzione
-            if(*token=='\n'){///controllo necessario per quegli aliementi che non possiedono una data di scadenza
-            	return "vuoto";///in tal caso si restituisce una stringa si riferimento
-            }else{
-            	///DEBUG: printf("%s", tok);
-            	return token;///restituisco il valore puntato dal token ossia la stringa interessata
-            }
+		// Se si raggiunge la fine del file è necessario uscire dal ciclo
+		if(feof(stream) != 0){
+			break;
 		}
 
-        token = strtok(NULL, ";"); ///Praticamente la strtok mette degli '\0' nella stringa passata al posto del/i carattere/i "delimitatori",ricordiamoci che i caratteri delimitatori possono variare in questa dichiarazione
+		// Confronto fra l'alimento letto dal database e quello ipoteticamente sconosciuto
+		if(strcmp(alimento_database.nome, alimento.nome) == 0){
+			// Se l'alimento è conosciuto, va modificato il valore di flag_presenza
+			flag_presenza = 1;
+		}
+	}
 
-    }
+	// Se flag_presenza è uguale a zero, l'alimento è sconosciuto e bisogna aggiungerlo
+	if(flag_presenza == 0){
+		printf("L'alimento identificato come <%s> è sconosciuto.\n", alimento.nome);
 
-    return token; ///restituisci NULL se abbiamo finito di analizzare il file
-}
+		// Creazione della riga da inserire nel database
+		// Nome dell'alimento
+		strcpy(alimento_database.nome, alimento.nome);
+		// Unità di misura
+		strcpy(alimento_database.unita_misura, alimento.unita_misura);
+		// Campione per il calcolo delle kcal
+		alimento_database.campione_kcal = calcola_campione_kcal(alimento_database.unita_misura);
+		// Kcal per campione di alimento
+		alimento_database.kcal = input_kcal(alimento_database.nome, alimento_database.campione_kcal, alimento_database.unita_misura);
+		// Soglia per la creazione della lista della spesa
+		alimento_database.soglia_spesa = input_soglia_spesa(alimento_database.nome, alimento_database.unita_misura);
 
+		fseek(stream, 0, SEEK_END);
 
-/**
- *
- * @param cat_alimenti_spesa
- * @param num_alim_spesa
- * @return
- */
-void aggiorna_database(alim_spesa* cat_alimenti_spesa, int num_alim_spesa){
-	char nome_file[LUNG_NOME_FILE];///
-	strcpy(nome_file,"");
-	strcat(nome_file, "../database_alimenti.csv");
-	FILE* stream_database = fopen(nome_file, "rb+");///apre uno stream di lettura e scrittura in coda sul file del database
+		fwrite(&alimento_database, sizeof(alimento_database), 1, stream);
 
-    int flag_presente=0;///questo flag viene attivato se un nuovo alimento che si vuole caricare nel frigo é giá stato memorizzato in passato
-    int id=0;///l'id non é un dato memorizzato all'interno del file ma serve all'utente visivamente per velocizzare la sua interazione con il programma
-
-	alimenti alimenti_database;///genero una struct di rifermiento per scorrere all'interno del file
-
-
-  	for(int j=0;j<num_alim_spesa;j++){///ripeti per il numero di alimenti che sono stati caricati nel frigo
-    	if(controllo_esist_file(nome_file)){///se il file del database ha almeno una riga
-
-            while(fread(&alimenti_database,sizeof(alimenti_database),1,stream_database)>0){/// ripeti fino a quando é possibile prelevare una riga
-
-            		///se l'elemento x della lista degli alimenti comprati e uguale ad un alimento presente nel database
-					if(strcmp(cat_alimenti_spesa[j].nome_alimento, alimenti_database.nome_alimento)==0)
-						flag_presente=1;///attiva il flag della presenza
-
-				}
-    	}
-
-    	if(flag_presente==0){///se l'alimento non é presente nel database
-
-    		printf("\n%s assente nel database\n", cat_alimenti_spesa[j].nome_alimento );///avviso l'utente su quale alimento manca
-    		id++;///l'id viene incrementato alla "prossima riga" che al momento é vuota
-    		alimenti_database.id=id;///viene memorizzato l'id nella struct
-    		strcpy(alimenti_database.nome_alimento,cat_alimenti_spesa[j].nome_alimento);///viene memorizzato il nome del nuovo alimento nella struct
-    		alimenti_database.quant_campione=set_q_camp(cat_alimenti_spesa[j].unita_misura);/// viene memorizzata la quantitá del campione che é stata calcolata tramite la funzione set_q_camp
-    		strcpy(alimenti_database.unita_misura,cat_alimenti_spesa[j].unita_misura);
-    		alimenti_database.soglia_spesa=set_soglia_spesa(cat_alimenti_spesa[j].quantita, cat_alimenti_spesa[j].unita_misura);/// viene memorizzata la quantitá minima da avere in frigo che é stata calcolata tramite la funzione set_soglia_spesa
-    		alimenti_database.kcal=input_kcal(cat_alimenti_spesa[j].nome_alimento);///vengono memorizzate le kcal dell'alimento tramite la funzione input kcal
-            fwrite(&alimenti_database,sizeof(alimenti_database),1,stream_database);///viene memorizzata la struct(il nuovo alimento) nel file
-
-    	}
-
-    	flag_presente=0;///viene reinizializzato il flag di presenza per l'alimento successivo
-    	rewind(stream_database);///si riporta il puntatore del file all'inizio
-    }
-
+		fclose(stream);
+		return 1;
+	}else{
+		fclose(stream);
+		return 0;
+	}
 }
 
 
@@ -275,43 +314,77 @@ void aggiorna_database(alim_spesa* cat_alimenti_spesa, int num_alim_spesa){
  * @param num_alimenti
  * @return
  */
-void aggiorna_frigo(alim_spesa* alimenti_comprati, int num_alimenti){
+int aggiorna_frigo(alimento_frigo alimento){
+	FILE *stream = NULL;							// puntatore al file contenente gli alimenti del frigo
+	alimento_frigo alimento_frigo;					// variabile per estrarre singolarmente gli alimenti del frigo
+	fpos_t *riga_libera = NULL;						// puntatore alla posizione nel file della prima riga sovrascrivibile
+	fpos_t *riga_letta = NULL;						// puntatore alla posizione nel file della riga letta
+	char flag_posizionamento = 0;					// flag per determinare se il nuovo alimento da aggiungere è stato posizionato
 
-	char nome_file[LUNG_NOME_FILE];
-	strcpy(nome_file, "../alimenti_frigo.csv");
-	FILE *fp; ///creo un puntatore di tipo file
-
-	if(controllo_esist_file(nome_file)){/// se il file degli alimenti presenti nel frigo esiste
-
-		fp=fopen(nome_file,"rb+"); ///apri il file in modalitá "lettura binaria"
-		alim_spesa struct_riferimento;///viene creata una struct di riferimento pre scorrere all'interno del file
-
-		for(int i=0;i<num_alimenti;i++){///ripeti per il numero di alimenti che si devono memorizzare
-
-			while(fread(&struct_riferimento,sizeof(struct_riferimento),1,fp)>0){///ripeti fino a quando é possibile leggere una riga dal file
-
-				if(strcmp(struct_riferimento.nome_alimento, "")==0){/// se la riga é inizializzata ossia non ci sono dati relativi ad alimenti
-
-						int currPos = ftell(fp);///viene memorizzata la locazione attuale di inizio riga
-						fseek(fp,currPos-sizeof(struct_riferimento),SEEK_SET);///viene posizionato il puntatore del file ad inizio riga cosí da poter effettuare l'opzione di modifica
-						fwrite(&alimenti_comprati[i],sizeof(alimenti_comprati[i]),1,fp);///viene memorizzato l'alimento x all'interno del file
-						rewind(fp);///viene riportato il puntatore all'inizio del file
-						i++;/// si passa all'alimento successivo da memorizzare
-
-				}
-
-			}
-
-			fwrite(&alimenti_comprati[i],sizeof(alimenti_comprati[i]),1,fp);///se non sono state trovate righe da recuerare scrivi in coda al file
-			rewind(fp);///riporta all'inizio il puntatore del file
+	// tentativo di apertura del file frigo in lettura e scrittura
+	if((stream = fopen(FILE_FRIGO, "rb+")) == NULL){
+		// se il file non viene aperto, si decide di crearne uno nuovo
+		if((stream = fopen(FILE_FRIGO, "wb+")) == NULL){
+			// se non può essere creato il file in modalità aggiornamento, viene ritornato 0
+			return 0;
 		}
-
-		fclose(fp);///una volta finita la scrittura chiudi il file
-
 	}
 
-	aggiorna_database(alimenti_comprati,num_alimenti);///richiama la funzione per aggiornare il database
+	// Se vengono superati i precedenti controlli sul puntatore al file, vuol dire che è stato impostato correttamente
+	// ed è possibile l'aggiornamento del frigo
 
+	fseek(stream, 0, SEEK_SET);
+
+	// Memorizzazione della posizione del puntatore ad inizio riga da leggere, così da effettuare facilemnte la scrittura se necessaria
+	fgetpos(stream, riga_letta);
+
+	// Lettura delle righe del file e controlli sulla riga letta fino a quando non viene posizionato l'alimento
+	while(flag_posizionamento == 0){
+
+		fread(&alimento_frigo, sizeof(alimento_frigo), 1, stream);
+
+		// Se si arriva alla fine del file, è necessario uscire dal ciclo
+		if(feof(stream)){
+			break;
+		}
+		// Se la riga letta è sovrascrivibile e il puntatore alla prima riga letta non è stato
+		// impostato, viene salvata la posizione di tale riga
+		if(strcmp(alimento_frigo.nome, "") == 0 && riga_libera == NULL){
+			riga_libera = riga_letta;
+		}
+		// Altrimenti se la riga letta presenta stesso nome e stessa scadenza dell'alimento da inserire
+		// viene incrementata la quantita nella riga letta, riposizionandoci con fsetpos ad inizio riga
+		else if(strcmp(alimento_frigo.nome, alimento.nome) == 0
+				&& confronta_date(alimento_frigo.scadenza, alimento.scadenza) == 0){
+			alimento_frigo.quantita += alimento.quantita;
+			fsetpos(stream, riga_letta);
+			fwrite(&alimento_frigo, sizeof(alimento_frigo), 1, stream);
+			flag_posizionamento = 1;
+		}
+		// Se il posizionamento non è avvenuto, viene memorizzata la posizione della prossima riga che verrà letta
+		// per l'eventuale futura scrittura
+		if(flag_posizionamento == 0){
+			fgetpos(stream, riga_letta);
+		}
+	}
+
+	// Se non vengono individuati alimenti con stesso nome e scadenza dell'alimento da inserire
+	// l'alimento è inserito nella prima riga letta o in coda al file
+	if(flag_posizionamento == 0){
+		if(riga_libera != NULL){
+			fsetpos(stream, riga_libera);
+			fwrite(&alimento, sizeof(alimento_frigo), 1, stream);
+		}else{
+			fwrite(&alimento, sizeof(alimento_frigo), 1, stream);
+		}
+		fclose(stream);
+		return 2;
+	}
+
+	fclose(stream);
+
+	// se l'aggiunta nel frigo avviene, può essere ritornato il valore 1
+	return 1;
 }
 
 
@@ -322,18 +395,24 @@ void aggiorna_frigo(alim_spesa* alimenti_comprati, int num_alimenti){
  * @return 1 in caso di successo
  */
 int visualizza_database_alimenti(){
-	char nome_file[LUNG_NOME_FILE];
-	strcpy(nome_file,"../database_alimenti.csv");
+	FILE *stream = NULL;					// Puntatore al FILE_DATABASE
+	alimento_database alimento; 			// Variabile per contenere gli alimenti letti dal database
 
-	FILE* stream_database = fopen(nome_file, "rb+");
-	alimenti lista_alimenti;///creo una struct di tipo alimenti ome riferimento per scorrere all'interno del file
-	printf("***************************************VISUALIZZA DATABASE****************************************\n");
-	printf("  ID   | NOME ALIMENTO |   CAMPIONE    |   QUANTITA SOGLIA  |   UNITA DI MISURA  |      KCAL     |\n");
-	///fino a quando puoi prelevare righe stampa il contenuto della struct ossia gli elementi di ogni riga
-    while(fread(&lista_alimenti,sizeof(lista_alimenti),1,stream_database)>0){
-        printf("\n  %5d|%15s|%15d|%20.1f|%20s|%15d|",lista_alimenti.id, lista_alimenti.nome_alimento,lista_alimenti.quant_campione,lista_alimenti.soglia_spesa, lista_alimenti.unita_misura, lista_alimenti.kcal);
-    }
+	if((stream = fopen(FILE_DATABASE, "rb")) == NULL){
+		return 0;
+	}else{
+		printf("DATABASE ALIMENTI\n\n");
+		printf("%-20s | %8s | %15s | %15s | %4s\n", "NOME ALIMENTO", "CAMPIONE", "QUANTITA SOGLIA", "UNITA DI MISURA", "KCAL");
 
+		// Visualizzazione delle righe del database
+		while(fread(&alimento, sizeof(alimento_database), 1, stream) == 1){
+			if(feof(stream) != 0){
+				break;
+			}
+
+			printf("%20s | %8d | %15.1f | %15s | %4hu\n", alimento.nome, alimento.campione_kcal, alimento.soglia_spesa, alimento.unita_misura, alimento.kcal);
+		}
+	}
     return 1;
 }
 
@@ -343,22 +422,32 @@ int visualizza_database_alimenti(){
  * @return 1 in caso di successo
  */
 int visualizza_frigo(){
-	FILE *fp; ///creo un puntatore di tipo file
-	fp=fopen("../alimenti_frigo.csv","rb+"); ///apri il file in modalitá "scrittura in coda"
-	int id_alimento=0;///l'id non é un dato memorizzato all'interno del file ma serve all'utente visivamente per velocizzare la sua interazione con il programma
+	FILE *stream = NULL;				// Puntatore a FILE_FRIGO
+	unsigned short num_alimento = 0;		// Variabile per memorizzare il numero dell'alimento visualizzato
+	alimento_frigo alimento;			// Variabile per memorizzare l'alimento letto da FILE_FRIGO
 
-	alim_spesa alimenti_frigo;///creo una struttura di riferimento per scorrere all'interno del file
-	printf("***************************************VISUALIZZA FRIGO*******************************************\n");
-	printf("  ID  |    NOME_ALIMENTO    |      QUANTITA'      |    UNITA' MISURA    |      DATA SCADENZA     |");
-    while(fread(&alimenti_frigo,sizeof(alimenti_frigo),1,fp)>0){///ripeti fino a quando é possibile leggere righe con le dimensioni dllla struct
-    	if(strcmp(alimenti_frigo.nome_alimento, "")!=0){///stampa solo le righe non inizializzate
-    		id_alimento++;///incrementa l'id solo per quegli alimenti che sono effettivamente nel frigo
-    		printf("\n_________________________________________________________________________________________________\n");
-    		///stampa il contenuto del file alimenti_frigo
-    		printf("\n %5d| %20s| %20.1f| %20s| \t%10hu/%hu/%hu|",id_alimento, alimenti_frigo.nome_alimento,alimenti_frigo.quantita,alimenti_frigo.unita_misura,alimenti_frigo.scadenza.giorno,alimenti_frigo.scadenza.mese,alimenti_frigo.scadenza.anno);
+	if((stream = fopen(FILE_FRIGO, "rb")) == NULL){
+		return 0;
+	}else{
+		printf("CONTENUTO DEL FRIGO\n\n");
+		printf("%4s | %-20s | %-14s | %16s", "ID", "NOME ALIMENTO", "QUANTITA", "DATA DI SCADENZA");
 
-    	}
-    }
+		while(fread(&alimento, sizeof(alimento_frigo), 1, stream) == 1){
+
+			if(feof(stream) != 0){
+				break;
+			}
+
+			if(strcmp(alimento.nome, "") != 0){
+				num_alimento++;
+				printf("\n_____________________________________________________________________\n");
+
+				printf("\n%4d | %20s | %8.1f %-5s |      %hu/%hu/%hu",
+						num_alimento, alimento.nome, alimento.quantita, alimento.unita_misura, alimento.scadenza.giorno, alimento.scadenza.mese, alimento.scadenza.anno);
+
+			}
+		}
+	}
 
     return 1;///se la funzione é andata a buon fine restituisci 1
 }
@@ -369,16 +458,16 @@ int visualizza_frigo(){
  * @param lista_frigo
  * @return 1 in caso di successo
  */
-int leggi_frigo(alim_spesa* lista_frigo){
+int leggi_frigo(alimento_frigo* lista_frigo){
 	FILE *fp; ///creo un puntatore di tipo file
 	fp=fopen("../alimenti_frigo.csv","rb+"); ///apri il file in modalitá "scrittura in coda
 
-	alim_spesa catalogo;///creo una struttura di riferimento per scorrere all'interno del file
+	alimento_frigo catalogo;///creo una struttura di riferimento per scorrere all'interno del file
 
 	int indice_alimento=0;
     while(fread(&catalogo,sizeof(catalogo),1,fp)>0){///ripeti fino a quando é possibile leggere righe con le dimensioni dllla struct
-    	if(strcmp(catalogo.nome_alimento, "")!=0){///stampa solo le righe non inizializzate
-    		strcpy(lista_frigo[indice_alimento].nome_alimento,catalogo.nome_alimento);
+    	if(strcmp(catalogo.nome, "")!=0){///stampa solo le righe non inizializzate
+    		strcpy(lista_frigo[indice_alimento].nome,catalogo.nome);
     		lista_frigo[indice_alimento].quantita=catalogo.quantita;
     		strcpy(lista_frigo[indice_alimento].unita_misura,catalogo.unita_misura);
     		lista_frigo[indice_alimento].scadenza.giorno=catalogo.scadenza.giorno;
@@ -395,29 +484,185 @@ int leggi_frigo(alim_spesa* lista_frigo){
  *
  * @return 1 in caso di successo
  */
-int lettura_spesa(){
-		char str_lavoro[LUNG_STR_LAVORO];///stringa che ospiterá la stringa avente quantitá e relativa unitá di misura. Questa stringa verrá poi opportunamente divisa
+int caricamento_spesa(){
+	FILE *stream = NULL;						// Puntatore al file contenente la spesa
+	char s[LUNG_RIGA_FGETS];					// Stringa che ospita ogni riga del file per la lettura degli alimenti
+	int num_alimenti_caricati = 0;				// Numero di alimenti letti dal file
+	alimento_frigo alimento_letto;				// Variabile contente i dati di ogni alimento letto dal file
+	int esito_lettura;							// Variabile per contenere l'esito delle letture degli alimenti
+	int esito_input;							// Variabile per memorizzare l'esito degli inserimenti dell'utente
+	int flag_inserimento;						// Flag per memorizzare la corretteza dell'alimento letto
 
-		char nome_file[LUNG_NOME_FILE];///dichiaro quanto deve essere grande il nome del file
-		strcpy(nome_file, "../spesa_effettuata.csv");///inizializzo la variabile di tipo stringa al nome del file la path dove si trova il file
+	// tentativo di apertura della spesa in lettura
+	if((stream = fopen(FILE_SPESA, "r")) == NULL){
+		return -1; // se il file non può essere aperto viene ritornato il valore -1
+	}else{
+		// estrazione di ogni riga del file (riga == 1 alimento)
+		while(fgets(s, LUNG_RIGA_FGETS, stream) != NULL){
+			// modifica dei valori di flagInserimento e num_alimenti_caricati supponendo che l'alimento letto verrà inserito
+			flag_inserimento = 1;
+			num_alimenti_caricati++;
 
-		int num_tuple=conta_righe_file_sq(nome_file);///creo una variabile che ospiterá il numero di righe del file da cui si vogliono recuperare gli alimenti
+			// estrazione dei campi della riga letta dal file
+			esito_lettura = sscanf(s, "%[a-zA-Z] %f %[a-zA-Z] %hu/%hu/%hu",
+					alimento_letto.nome, &alimento_letto.quantita, alimento_letto.unita_misura,
+					&alimento_letto.scadenza.giorno, &alimento_letto.scadenza.mese, &alimento_letto.scadenza.anno);
 
-		alim_spesa lista_spesa[num_tuple]; ///dichiaro un'array di struct che ospiterá i valori dei singoli alimenti comprati
-	    FILE* stream = fopen(nome_file, "r");///apro il file in lettura
-	   	for(int indice_alimento=0;indice_alimento<num_tuple;indice_alimento++){/// ripeti fino a quando é possibile prelevare una riga
+			// Controlli sull'esito dell'estrazione, per verificare errori nel formato della riga:
+			// se sono presenti errori di questo tipo viene richiesto di scegliere se correggere l'alimento manualmente
+			// o saltarlo.
+			if(esito_lettura != NUM_CAMPI_ALIMENTO_FRIGO){
+				printf("Errore nella lettura dell'alimento numero %d.\n", num_alimenti_caricati);
+				// Richiesta di correzione manuale dell'alimento letto
+				do{
+					puts("Inserire 1 per correggerlo manualmente, 0 per saltarlo: ");
+					esito_input = scanf("%d", &flag_inserimento);
+					pulisci_stdin();
 
-	   			fscanf(stream,"%s %s %hu/%hu/%hu", lista_spesa[indice_alimento].nome_alimento, str_lavoro, &lista_spesa[indice_alimento].scadenza.giorno, &lista_spesa[indice_alimento].scadenza.mese, &lista_spesa[indice_alimento].scadenza.anno);
-				strcpy(lista_spesa[indice_alimento].unita_misura, ottieni_u_misura(str_lavoro));///memorizzo ció che é rimasto come stringa ossia l'unitá di misura della quantitá
-				lista_spesa[indice_alimento].quantita=ottieni_quantita(str_lavoro);///memorizzo la quantitá numerica opportunamente nella struct
+					if((flag_inserimento != 0 && flag_inserimento != 1) || esito_input != 1){
+						puts("Inserimento non valido. Ripeterlo.\n");
+					}
+				}while((flag_inserimento != 0 && flag_inserimento != 1) || esito_input != 1);
 
-		    }
 
-		///una volta caricato l'array di struct passiamo all'aggiornamento effettivo del frigo e alla memorizzazione degli alimenti
-		aggiorna_frigo(lista_spesa,num_tuple);
+				// Correzione dell'alimento, se scelto dall'utente
+				if(flag_inserimento == 1){
 
-		return 1;
+					puts("Correzione manuale dell'alimento.\n");
+					alimento_letto = input_alimento_frigo();
+
+				}else{
+					// Se si sceglie di saltare l'alimento, deve essere decrementato il numero di alimenti caricati
+					num_alimenti_caricati--;
+				}
+			}
+
+			// Controlli sul significato dei campi dell'alimento estratto:
+			// Unità di misura
+			if(flag_inserimento == 1){
+
+				abbassa_maiuscole(alimento_letto.unita_misura);
+
+				if(controlla_unita_misura(alimento_letto.unita_misura) == 0){
+
+					printf("Unità di misura dell'alimento <%s> non valida.\n", alimento_letto.nome);
+
+					// Richiesta all'utente ella correzione manuale
+					do{
+						printf("Inserire 1 per correggere l'unità di misura, 0 per saltare l'alimento: ");
+						esito_input = scanf("%d", &flag_inserimento);
+						pulisci_stdin();
+
+						if((flag_inserimento != 0 && flag_inserimento != 1) || esito_input != 1){
+							puts("Inserimento non valido.\n");
+						}
+					}while((flag_inserimento != 0 && flag_inserimento != 1) || esito_input != 1);
+
+					// Correzione dell'unità di misura se deciso dall'utente
+					if(flag_inserimento == 1){
+
+						puts("Correzione manuale dell'unità di misura.");
+						input_unita_misura(alimento_letto.unita_misura);
+
+					}else{
+						// Se si sceglie di saltare l'alimento, deve essere decrementato il numero di alimenti caricati
+						num_alimenti_caricati--;
+					}
+				}
+			}
+
+			// Quantità
+			if(flag_inserimento == 1){
+				// Conversione dell'unità di misura inserita in quella utilizzata nel frigo
+				if(converti_quantita(&alimento_letto.quantita, alimento_letto.unita_misura) == 1){
+					printf("Quantita dell'alimento <%s> convertita per adattarla al contenuto del frigo.\n", alimento_letto.nome);
+				}
+
+				if(controlla_quantita(alimento_letto.quantita, alimento_letto.unita_misura) == 0){
+					printf("Quantita dell'alimento <%s> non valida.\n", alimento_letto.nome);
+
+					// Richiesta all'utente della correzione manuale
+					do{
+						printf("Inserire 1 per correggere la quantità, 0 per saltare l'alimento: ");
+						esito_input = scanf("%d", &flag_inserimento);
+						pulisci_stdin();
+
+						if((flag_inserimento != 0 && flag_inserimento != 1) || esito_input != 1){
+							puts("Inserimento non valido.\n");
+						}
+					}while((flag_inserimento != 0 && flag_inserimento != 1) || esito_input != 1);
+
+					// Correzione della quantità se deciso dall'utente
+					if(flag_inserimento == 1){
+
+						puts("Correzione manuale della quantità.");
+						alimento_letto.quantita = input_quantita(alimento_letto.unita_misura);
+
+					}else{
+						// Se si sceglie di saltare l'alimento, deve essere decrementato il numero di alimenti caricati
+						num_alimenti_caricati--;
+					}
+				}
+			}
+
+			// Data di scadenza
+			if(flag_inserimento == 1 && controlla_data_scadenza(alimento_letto.scadenza) != 1){
+				if(controlla_data_scadenza(alimento_letto.scadenza) == -1){
+					printf("Data di scadenza per l'alimento <%s> non valida.\n", alimento_letto.nome);
+				}else if(controlla_data_scadenza(alimento_letto.scadenza) == 0){
+					printf("L'alimento <%s> è scaduto.\n", alimento_letto.nome);
+				}
+
+				// Richiesta all'utente ella correzione manuale
+				do{
+					printf("Inserire 1 per correggere la data di scadenza, 0 per saltare l'alimento: ");
+					esito_input = scanf("%d", &flag_inserimento);
+					pulisci_stdin();
+
+					if((flag_inserimento != 0 && flag_inserimento != 1) || esito_input != 1){
+						puts("Inserimento non valido.\n");
+					}
+				}while((flag_inserimento != 0 && flag_inserimento != 1) || esito_input != 1);
+
+				// Correzione della data di scadenza se deciso dall'utente
+				if(flag_inserimento == 1){
+
+					puts("Correzione manuale della data di scadenza.");
+					alimento_letto.scadenza = input_data_scadenza();
+
+				}else{
+					// Se si sceglie di saltare l'alimento, deve essere decrementato il numero di alimenti caricati
+					num_alimenti_caricati--;
+				}
+			}
+
+			// In questo punto del codice, se flag_inserimento è uguale a 1, alimento_letto può essere aggiunto al frigo
+			if(flag_inserimento == 1){
+				int esito_aggiornamento;
+				// se l'alimento deve essere aggiunto, è necessario rendere minuscole tutte le lettere del nome
+				abbassa_maiuscole(alimento_letto.nome);
+
+				// aggiunta dell'alimento e propagazione dell'eventuale errore ricevuto
+				esito_aggiornamento = aggiorna_frigo(alimento_letto);
+
+				if(esito_aggiornamento == 2){
+					esito_aggiornamento = aggiorna_database(alimento_letto);
+					 if(esito_aggiornamento == 0){
+						 return -3;
+					 }
+				}else if(esito_aggiornamento == -1){
+					return -2;
+				}
+
+			}
+
+		}
 	}
+
+	fclose(stream);
+
+	return num_alimenti_caricati;
+}
 
 
 /**
@@ -440,11 +685,11 @@ int riduci_q_alimenti(){
 	///CONTROLLO SU ID VALIDO ALE sfrutta la funzione conta righe binary se necessario
 	scanf("%d", &id_alimento);
 
-	alim_spesa alimenti_frigo;///struct di riferimento per scorrere il file
+	alimento_frigo alimenti_frigo;///struct di riferimento per scorrere il file
 
     while(fread(&alimenti_frigo,sizeof(alimenti_frigo),1,fp)>0){///leggi fino a quando é presente una riga
 
-    	if(strcmp(alimenti_frigo.nome_alimento, "")!=0)///se la linea non é vuota e possiede un alimento
+    	if(strcmp(alimenti_frigo.nome, "")!=0)///se la linea non é vuota e possiede un alimento
     		++linea;///incrementa il numero di linee effettivamente piene del file del frigo
 
     	if(id_alimento==linea){///se l'id dell'alimento che si é preso come riferimento é uguale alla linea su cui ci troviamo abbiamo trovato l'aliemnto a cui apportarele modifiche
@@ -460,8 +705,8 @@ int riduci_q_alimenti(){
     		alimenti_frigo.quantita=alimenti_frigo.quantita-q_riduzione;///riduco la quantitá dell'alimento
 
       		if(alimenti_frigo.quantita==0){///se l'alimento si é esaurito notifica l'utente e inizializza la riga
-      			printf("Attento: hai finito %s\n", alimenti_frigo.nome_alimento);
-				strcpy(alimenti_frigo.nome_alimento,"");
+      			printf("Attento: hai finito %s\n", alimenti_frigo.nome);
+				strcpy(alimenti_frigo.nome,"");
 				strcpy(alimenti_frigo.unita_misura,"");
 				alimenti_frigo.scadenza.giorno=0;
 				alimenti_frigo.quantita=0;
