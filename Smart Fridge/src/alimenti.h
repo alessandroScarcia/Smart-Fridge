@@ -23,6 +23,8 @@
 
 #include "date.h"
 
+#include "pulizia_flussi.h"
+
 #ifndef ALIMENTI_LIB
 #define ALIMENTI_LIB
 
@@ -33,7 +35,7 @@
 #define LUNG_CAMPIONE 10 				///	Lunghezza della stringa che ospiterá il campione di riferimento per un alimento. Indica la quantitá che ha un determinato rapporto calorico
 #define LUNG_SOGLIA 10 					/// Lunghezza della stringa che ospiterá la soglia minima degli alimenti(la quantitá minima da avere in frigo)
 #define LUNG_NOME_FILE 100 				///	Lunghezza da riservare al nome del file
-#define LUNG_UNITA_MISURA 5					/// Lunghezza della stringa che ospiterá l'unitá di misura
+#define LUNG_UNITA_MISURA 5				/// Lunghezza della stringa che ospiterá l'unitá di misura
 #define LUNG_TUPLA 100					/// Lunghezza della tupla ossia una riga quanto deve essere grande
 #define LUNG_RIGA_FGETS 100 			/// Lunghezza massima in caratteri delle righe estratte con fgets() dai file
 
@@ -42,9 +44,9 @@
 #define NUM_CAMPI_ALIMENTO_FRIGO 6 		///numero di colonne che possiede il file contenente i dati degli alimenti comprati
 
 /// Nomi dei file utilizzati:
-#define FILE_SPESA "spesa_effettuata.csv"
-#define FILE_FRIGO "alimenti_frigo.dat"
-#define FILE_DATABASE "database_alimenti.dat"
+#define FILE_SPESA "../spesa_effettuata.csv"
+#define FILE_FRIGO "../alimenti_frigo.dat"
+#define FILE_DATABASE "../database_alimenti.dat"
 
 /// Unità di misura significative:
 #define UNITA_KG "kg"					/// Unità di misura dei chilogrammi
@@ -65,6 +67,7 @@
 /// Limiti/soglie per determinati valori
 #define OPZIONE_MINIMA 0 				///ALE: utilizza questa per controllare la scelta minima del menu
 #define OPZIONE_MASSIMA 2 				///ALE: utilizza questa per controllare la scelta massima del menu
+#define MIN_ID_ALIMENTO 1				/// Valore minimo per l'id degli alimenti
 #define SOGLIA_PERC 20 					///la percentuale di riferimento al di sotto della quale un alimento sta finendo
 #define	MIN_QUANTITA 1					/// Limiti per le quantità degli alimenti inseriti in relazione all'unità di misura
 #define MAX_QUANTITA_G 10000			/// Limite superiore grammi
@@ -91,9 +94,7 @@ typedef struct{
 	data scadenza;
 }alimento_frigo;
 
-
-
-void pulisci_stdin();
+alimento_frigo alimento;
 
 
 /**
@@ -184,6 +185,29 @@ float input_quantita(char *unita_misura);
 data input_data_scadenza();
 
 
+/**
+ * La funzione input_id_alimento() permette di richiedere l'inserimento all'utente di un numero n,
+ * corrispondente all'n-esimo alimento presente nel frigo, fino ad ottenere un valore valido.
+ *
+ * @param num_alimenti_frigo Numero di alimenti presenti nel frigo
+ * @return	id inserito dall'utente
+ */
+int input_id_alimento(int num_alimenti_frigo);
+
+
+/**
+ * La funzione ricerca_database() permette di ricercare nel database la presenza di un alimento
+ * attraverso il suo nome e di estrarne le caratteristiche se viene individuato.
+ *
+ * @param nome_alimento Nome dell'alimento da ricercare
+ * @param alimento_estratto Puntatore alla variabile che deve memorizzare l'alimento trovato
+ * @return 1 se l'alimento viene trovato
+ * @return 0 se l'alimento non viene trovato
+ * @return -1 se il file_database non può essere aperto
+ */
+int ricerca_database(char *nome_alimento, alimento_database *alimento_estratto);
+
+
 /**La funzione aggiorna_database permette al programma(o al frigo se vogliamo avere una visione piú realistica del prodotto)
  * di "imparare" gli alimenti che l'utente consuma. Una volta memorizzati i dati dell'alimento quali kcal e campione di riferimento
  * sará piú semplice ed efficace gestire le abitudini dell'utente riguardo il consumo di kcal e la generazione di ricette con
@@ -218,13 +242,13 @@ int visualizza_frigo();
 * progettuale si é previsto che la riga contenente l'alimento ormai consumato non deve essere cancellata del tutto ma solo inizializzata. Questo
 * perché attraverso un confronto dei nomi si puó risalire alla riga "vuota" per recuperarla inserendo cosí un nuovo alimento senza dover ogni volta
 * effettuare un algoritmo di compattamento dei record del file*/
-int riduci_q_alimenti();
+int riduci_alimento();
 
 
 /**La procedura lettura file si occupa principalmente di prelevare i dati da un file che chiameremo spesa_effettuata.csv
  * per poi inserirli di volta in volta all'interno di una struct realizzata su misura. Ovviamente i dati verranno inseriti
  * per ogni alimento(riga se vogliamo definirlo piú banalmente) che verrá estratto dal file. */
-int caricamento_spesa();
+int carica_spesa();
 
 
 /**
@@ -261,5 +285,26 @@ float input_soglia_spesa(char *nome_alimento, char *unita_misura);
 
 //in via di sviluppo per ricette
 int leggi_frigo(alimento_frigo* lista_frigo);
+
+/**
+ * La funzione modifica_soglia_spesa() permette all'utente di modificare la quantità di un alimento
+ * al di sotto della quale, l'alimento deve essere inserito nella generazione della spesa.
+ *
+ * @return 1 se la modifica avviene in modo corretto
+ * @return 0 se il file database non presenta alimenti
+ * @return -1 se il file database non può essere aperto
+ */
+int modifica_soglia_spesa();
+
+
+/**
+ * La  funzione modifica_kcal() permette all'utente di modificare il valore di kcal per campione
+ * di un determinato alimento.
+ *
+ * @return 1 se la modifica avviene in modo corretto
+ * @return 0 se il file database non presenta alimenti
+ * @return -1 se ilfile database non può essere aperto
+ */
+int modifica_kcal();
 
 #endif
