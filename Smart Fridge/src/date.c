@@ -1,16 +1,24 @@
-// Implementazione delle fuznioni della libreria date.h
+// Implementazione delle funzioni della libreria date.h
 
 #include "date.h"
 
 /**
+ * Funzione controlla_data(data d):
+ *
  * La funzione ha il compito di verificare se la data d è significativa.
+ *
  * A tal scopo esegue determinati controlli sui valori che la compongono.
  * In primo luogo viene verificato se l'anno è bisestile oppure no, l'esito
  * è memorizzato in un apposito flag.
+ *
  * Successivamente viene verificato che il mese abbia un valore entro l'intervallo
  * [1, 12], dato che altri valori non sarebbero significativi.
- * L'ultima verifica avviene sul valore del giorno. Viene accertato che sia presente
- * nell'intervallo di giorni corretto in base al valore del mese e dell'anno.
+ *
+ * L'ultima verifica avviene sul valore del giorno. Viene accertato che sia nei limiti
+ * dell'intervallo corretto, in base al valore del mese e dell'anno.
+ *
+ * @pre Non vi sono specifiche pre-condizioni per la funzione
+ * @post Il valore restituito deve essere controllato per verificare l'esito del controllo sulla data.
  *
  */
 int controlla_data(data d){
@@ -59,178 +67,29 @@ int controlla_data(data d){
 }
 
 
-/*
- * Funzione confronta_date:
- * utilizzata per determinare se due date sono uguali o se una è antecede l'altra.
- * Parametri in ingresso:
- *  - le due date da confrontare.
- * Valori in uscita:
- *  - DATE_NON_VALIDE se le una delle due date non è significativa;
- *  - DATE_UGUALI se le due date hanno lo stesso valore;
- *  - PRIMA_DATA_ANTECEDENTE se la prima data precede la seconda;
- *  - SECONDA_DATA_ANTECEDENTE se la seconda data precede la prima.
- *  Analizza le due date verificando per prima cosa che siano entrambe significative, utilizzando
- *  la funzione controlla_data. Se le due date hanno dei valori corretti, le confronta attraverso una serie
- *  costrutti di selezione.
- */
-int confronta_date(data d1, data d2){
-	// verifica della validità delle date
-	if (!controlla_data(d1) || !controlla_data(d2))
-		return DATE_NON_VALIDE;
-
-	// verifica per l'uguaglianza fra le date
-	if(d1.anno == d2.anno && d1.mese == d2.mese && d1.giorno == d2.giorno)
-		return DATE_UGUALI;
-
-	// determinazione della data precedente all'altra
-	if(d1.anno <= d2.anno && d1.mese <= d2.mese && d1.giorno <= d2.giorno)
-		return PRIMA_DATA_ANTECEDENTE;
-	else
-		return SECONDA_DATA_ANTECEDENTE;
-}
-
-/*
- * Funzione genera_data:
- * utilizzata per generare una data dato un intervallo.
- * Parametri in ingresso:
- * 	- puntatore alla variabile in cui memorizzare il valore della data generata
- *  - due date che determinano l'intervallo da utilizzare per la generazione della data.
- * Valori in uscita:
- *  - "0" se le date che costituiscono l'intervallo non sono significative o sono uguali
- *  - "1" se la generazione della data va a buon fine
- *  Analizza le due date, verificando per prima cosa se siano valide e non uguali. Nel caso in cui
- *  si verificasse uno di questi due eventi, la funzione restituisce 0 che equivale ad errore. Altrimenti
- *  verifica se le date sono ordinate correttamente, cioè che d1 sia antecedente a d2. Se ciò non
- *  è vero la funzione ritorna il valore restituito dalla chiamata della funzione stessa ma
- *  con valori di d1 e d2 invertiti (riga 115). Se i parametri sono corretti, vengono generati
- *  i valori dellanuova data e memorizzati all'interno della variabile puntata dal puntatore passato in
- *  ingresso. Vengono perciò gestiti i casi limite della generazione, analizzano i dati di volta in volta
- *  generati e determinando corretti estremi per la generazione. I casi limite si verificano
- *  nel momento in cui la generazione di anno e mese, crea un valore uguale a quelli presenti
- *  in uno dei due estremi.
- *  Al termine della generazione, la funzione ritorna un valore pari a 1.
- */
-int genera_data(data* data_generata, data d1, data d2){
-	int rnd; // numero casuale per la generazione dei valori della data
-	char flag_bisestile = 0;
-	unsigned short min, max; // variabili per contenere gli estremi per la generazione casuale dei valori della data
-
-	// verifica della validità delle date che compongono l'intervallo
-	int ris_confronto = confronta_date(d1, d2);
-	if(ris_confronto == DATE_NON_VALIDE || ris_confronto == DATE_UGUALI)
-		return 0;
-	// ordinamento delle date, nel caso in cui d2 sia precedente a d1
-	else if(ris_confronto == SECONDA_DATA_ANTECEDENTE)
-		return genera_data(data_generata, d2, d1);
-
-	// generazione di rnd
-	rnd = rand();
-
-	// generazione dell'anno
-	(*data_generata).anno = rnd % (d2.anno - d1.anno + 1) + d1.anno;
-
-	// verifica per anno bisestile
-	if(((*data_generata).anno % CONTROLLO_BISESTILE_1 == 0 && (*data_generata).anno % CONTROLLO_BISESTILE_2 != 0) || (*data_generata).anno % CONTROLLO_BISESTILE_3 == 0)
-		flag_bisestile++;
-
-	// generazione del mese
-	if((*data_generata).anno == d1.anno){
-		min = (*data_generata).mese;
-		max = MAX_MESE;
-	}else if((*data_generata).anno == d2.anno){
-		min = MIN_MESE;
-		max = d2.mese;
-	}else{
-		min = MIN_MESE;
-		max = MAX_MESE;
-	}
-	(*data_generata).mese = rnd % (max - min +1) + min;
-
-	// generazione del giorno
-	switch((*data_generata).mese){
-	case 4:
-	case 6:
-	case 9:
-	case 11:
-		if((*data_generata).mese == d1.mese){
-			min = d1.giorno;
-			max = MAX_GIORNO_30;
-		}else if((*data_generata).mese == d2.mese){
-			min = MIN_GIORNO;
-			max = d2.giorno;
-		}else{
-			min = MIN_GIORNO;
-			max = MAX_GIORNO_30;
-		}
-		(*data_generata).giorno = rnd % (max - min +1) + min;
-		break;
-	case 2:
-		if((*data_generata).mese == d1.mese){
-			min = d1.giorno;
-			max = (flag_bisestile)? MAX_FEBBRAIO_BIS : MAX_FEBBRAIO;
-		}else if((*data_generata).mese == d2.mese){
-			min = MIN_GIORNO;
-			max = d2.giorno;
-		}else{
-			min = MIN_GIORNO;
-			max = (flag_bisestile)? MAX_FEBBRAIO_BIS : MAX_FEBBRAIO;;
-		}
-		(*data_generata).giorno = rnd % (max - min +1) + min;
-		break;
-	default:
-		if((*data_generata).mese == d1.mese){
-			min = d1.giorno;
-			max = MAX_GIORNO_31;
-		}else if((*data_generata).mese == d2.mese){
-			min = MIN_GIORNO;
-			max = d2.giorno;
-		}else{
-			min = MIN_GIORNO;
-			max = MAX_GIORNO_31;
-		}
-		(*data_generata).giorno = rnd % (max - min +1) + min;
-		break;
-	}
-	return 1;
-}
-
-/*
- * Procedura data_odierna:
- * Ricava il valore della data odierna e la restituisce in ritorno, attraverso
- * le funzioni time() e localtime(). La funzione time() restituisce il tempo del calendario
- * di sistema nel formato aritmentico time_t, ed è convertito nella struttura struct tm,
- * presente nella libreria time.h attraverso la funzione localtime().
- * Da questa struttura è poi possibile estrarre il valore di giorno, mese e anno dai membri
- * identificati da tm_mday, tm_mon e tm_year. Per avere dati significativi, vengono sommati
- * i corrispondenti offeset alvalore del mese e dell'anno.
- */
-data data_odierna(){
-	data data_odierna;
-	//estrazione della data odierna
-	time_t tmp = time(NULL);
-	struct tm* tmp2 = localtime(&tmp);
-
-	//assegnazione dei valori estratti nella variabile ricevuta
-	data_odierna.giorno = (*tmp2).tm_mday;
-	data_odierna.mese = (*tmp2).tm_mon + BASE_MESE_CORRENTE;
-	data_odierna.anno = (*tmp2).tm_year + BASE_ANNO_CORRENTE;
-
-	return data_odierna;
-}
-
-/*
- * Funzione giorno_giuliano:
+/**
+ * Funzione giorno_giuliano(data d1):
+ *
  * La funzione riceve in ingresso una variabile di tipo data e restituisce
- * un valore di tipo double corrispondente al giorno giuliano corrispondente
- * alla data in ingresso, riferito alla mezzanotte di quel giorno.
+ * un valore di tipo double equivalente al giorno giuliano corrispondente
+ * alla data in ingresso.
  *
  * L'algoritmo utilizzato è stato preso dalla seguente pagina WikiPedia:
  * 		https://it.wikipedia.org/wiki/Giorno_giuliano#Conversione_da_data_normale_a_data_giuliana
  *
  * La funzione modf() della libreria math.h è utilizzata per estrarre la parte intera del primo
  * che le viene passato.
+ *
+ * @pre La data passata alla funzione deve avere un valore significativo.
+ *
+ * @post Il valore restituito deve essere diverso da DATA_NON_VALIDA
+ *
  */
 double giorno_giuliano(data d1){
+	// Se la data inserita non è valida, viene restituiro DATA_NON_VALIDA
+	if(controlla_data(d1) == 0){
+		return DATA_NON_VALIDA;
+	}
 	// definizione delle variabili utilizzate nell'algoritmo
 	double julian, a, b, c, d;
 	data d2 = {15, 10, 1582};
@@ -320,58 +179,260 @@ data data_gregoriana(double data_giuliana){
 }
 
 
-/*
- * Funzione diff_date:
- * La funzione riceve in ingresso le due date di cui calcolare la differenza.
- * Trasforma entrambe in giorno giuliano, utilizzando la funzione giorno_giuliano().
- * Di questi due valori ottenuti, ne calcola la differenza e ritorna il valore assoluto
- * di questa.
+/**
+ * Funzione diff_date(data d1, data d2):
+ *
+ * La funzione memorizza nella variabile puntata dal puntatore differenza,
+ * la differenza in giorni fra le due date ricevute. La differenza
+ * è calcolata utilizzando il corrispettivo valore giuliano delle due date.
+ *
+ * Se le date non sono valide, la funzione restituisce 0.
+ * Altrimenti restituisce 1 se il calcolo della differenza avviene correttamente.
+ *
+ * @pre Le due date devono essere significative per un calcolo corretto della differenza.
+ * @post Deve essere controllato il valore di ritornodella funzione per determinarne l'esito.
  */
-int diff_date(data d1, data d2){
-	return (int)(fabs(giorno_giuliano(d1) - giorno_giuliano(d2)));
+int diff_date(int* differenza, data d1, data d2){
+	// Controlllo sul significato delle due date
+	if(controlla_data(d1) == 0 || controlla_data(d2) == 0){
+		return DATA_NON_VALIDA;
+	}
+
+	// Calcolo della differenza fra le due date
+	*differenza = (int)(giorno_giuliano(d1) - giorno_giuliano(d2));
+	return 1;
 }
 
 
-/*
+/**
+ * Funzione confronta_date(data d1, data d2):
+ *
+ * La funzione determina l'ugualianza o la disugualianza fra le due date ricevute,
+ * analizzandone la differenza.
+ *
+ * Il valore che assume la differenza può essere di tre tipi:
+ *  - Uguale a zero -> Le date sono uguali
+ *
+ *  - Maggiore di zero -> La seconda data antecede la prima
+ *
+ *  - Minore di zero -> La prima data antecede la seconda.
+ *
+ * Dopo aver verificato il significato delle date, se sono valide viene calcolata
+ * la differenza e si determina in quale tipo precedentemente elencato rientra e viene
+ * ritornato il corrispondente valore.
+ *
+ * Se una delle date o entrambe non sono significative, viene ritornato DATA_NON_VALIDA.
+ *
+ * @pre Le date utilizzate per richiamare la funzione devono essere significative.
+ * @post Il valore di ritorno della funzione deve essere controllato per determinarne l'esito.
+ *
+ */
+int confronta_date(data d1, data d2){
+	int differenza_date; // Variabile per memorizzare la differenza di giorni fra le due date
+
+	// Verifica della validità delle date
+	if (controlla_data(d1) == 0 || controlla_data(d2) == 0)
+		return DATA_NON_VALIDA;
+
+	// Calcolo dei giprni di differenza fra le due date
+	diff_date(&differenza_date, d1, d2);
+	// verifica per l'uguaglianza fra le date
+	if(differenza_date == 0)
+		return DATE_UGUALI;
+
+	// Determinazione della data precedente all'altra
+	else if(differenza_date < 0)
+		return PRIMA_DATA_ANTECEDENTE;
+	else
+		return SECONDA_DATA_ANTECEDENTE;
+}
+
+/**
+ * Funzione genera_data(data* data_generata, data d1, data d2):
+ *
+ * La funzione permette di generare una data all'interno in un intervallo
+ * fra due date. La data generata è memorizzata nella variabile puntata da data_generata.
+ *
+ * Per prima cosa la funzione si accerta che le date siano significative, non uguliali e che d1
+ * sia antecedente a d2. Nei primi due vengono ritornati rispettivamente i valori DATA_NON VALIDA
+ * o DATE_UGUALI. Nel terzo caso viene ritornato il valore ottenuto richiamando la funzione
+ * ma con le date scambiate.
+ *
+ * Se la generazione va a buon fine, la funzione restituisce 1.
+ *
+ * N.B. Prima di calcolare un valore della data, vengono generati gli estremi per la generazione. Questo
+ * serve ad evitare di generare date fuori dall'intervallo, a seguito di generazioni di valori di anno e mese
+ * uguali ai valori degli estremi della data da generare.
+ *
+ * @pre Le date inserite devono essere significative e d1 deve precedere d2.
+ * @post Il valore di ritorno della funzione deve essere controllato per determinare l'esito della generazione.
+ */
+int genera_data(data* data_generata, data d1, data d2){
+	int rnd; // Numero casuale per la generazione dei valori della data
+	char flag_bisestile = 0;
+	unsigned short min, max; // Variabili per contenere gli estremi per la generazione casuale dei valori della data
+	int esito_confronto;
+
+	// Verifica della validità delle date che compongono l'intervallo
+	esito_confronto = confronta_date(d1, d2);
+	if(esito_confronto == DATA_NON_VALIDA || esito_confronto == DATE_UGUALI)
+		return esito_confronto;
+	// Ordinamento delle date, nel caso in cui d2 sia precedente a d1
+	else if(esito_confronto == SECONDA_DATA_ANTECEDENTE)
+		return genera_data(data_generata, d2, d1);
+
+	// Generazione di rnd
+	rnd = rand();
+
+	// Generazione dell'anno
+	(*data_generata).anno = rnd % (d2.anno - d1.anno + 1) + d1.anno;
+
+	// Verifica per anno bisestile
+	if(((*data_generata).anno % CONTROLLO_BISESTILE_1 == 0 && (*data_generata).anno % CONTROLLO_BISESTILE_2 != 0) || (*data_generata).anno % CONTROLLO_BISESTILE_3 == 0)
+		flag_bisestile = 1;
+
+	// Calcolo degli estremi corretti per la generazione del mese
+	if((*data_generata).anno == d1.anno){
+		min = (*data_generata).mese;
+		max = MAX_MESE;
+	}else if((*data_generata).anno == d2.anno){
+		min = MIN_MESE;
+		max = d2.mese;
+	}else{
+		min = MIN_MESE;
+		max = MAX_MESE;
+	}
+
+	// Generazione del mese
+	(*data_generata).mese = rnd % (max - min +1) + min;
+
+	// Calcolo degli estremi corretti per la generazione del mese
+	switch((*data_generata).mese){
+	case 4:
+	case 6:
+	case 9:
+	case 11:
+		if((*data_generata).mese == d1.mese && (*data_generata).anno == d1.anno){
+			min = d1.giorno;
+			max = MAX_GIORNO_30;
+		}else if((*data_generata).mese == d2.mese && (*data_generata).anno == d2.anno){
+			min = MIN_GIORNO;
+			max = d2.giorno;
+		}else{
+			min = MIN_GIORNO;
+			max = MAX_GIORNO_30;
+		}
+		break;
+	case 2:
+		if((*data_generata).mese == d1.mese && (*data_generata).anno == d1.anno){
+			min = d1.giorno;
+			max = (flag_bisestile)? MAX_FEBBRAIO_BIS : MAX_FEBBRAIO;
+		}else if((*data_generata).mese == d2.mese && (*data_generata).anno == d2.anno){
+			min = MIN_GIORNO;
+			max = d2.giorno;
+		}else{
+			min = MIN_GIORNO;
+			max = (flag_bisestile)? MAX_FEBBRAIO_BIS : MAX_FEBBRAIO;;
+		}
+		break;
+	default:
+		if((*data_generata).mese == d1.mese && (*data_generata).anno == d1.anno){
+			min = d1.giorno;
+			max = MAX_GIORNO_31;
+		}else if((*data_generata).mese == d2.mese && (*data_generata).anno == d2.anno){
+			min = MIN_GIORNO;
+			max = d2.giorno;
+		}else{
+			min = MIN_GIORNO;
+			max = MAX_GIORNO_31;
+		}
+		break;
+	}
+	// Generazione del giorno
+	(*data_generata).giorno = rnd % (max - min +1) + min;
+	return 1;
+}
+
+/**
+ * Funzione data_odierna():
+ *
+ * La funzione permette di determinare la data odierna utilizzando le funzioni della libreria <time.h>.
+ * Estrapola la data almomento dell'esecuzione attraverso la funzione time(), ottenendo un valore di tipo time_t.
+ * Questo valore viene poi convertito, con la funzione localtime(), nella struct tm., in cui i campi tm_mday,
+ * tm_mon e tm_year contengono rispettivamente il giorno, il mese e l'anno della data odierna.
+ *
+ * @post Il valore restituito dalla funzione deve essere memorizzato in una variabile di tipo data.
+ */
+data data_odierna(){
+	data data_odierna; // Variabile di tipo data che conterrà la data al momento d'esecuzione
+
+	// Estrazione della data al momento di esecuzione
+	time_t tmp = time(NULL);
+	struct tm* tmp2 = localtime(&tmp);
+
+	// Assegnazione dei valori estratti nella variabile ricevuta
+	data_odierna.giorno = (*tmp2).tm_mday;
+	data_odierna.mese = (*tmp2).tm_mon + BASE_MESE_CORRENTE;
+	data_odierna.anno = (*tmp2).tm_year + BASE_ANNO_CORRENTE;
+
+	return data_odierna;
+}
+
+
+/**
  * Funzione shiftdata_odierna:
+ *
  * La funzione genera una data partendo dalla data odierna e shiftandola del valore
  * ricevuto in ingresso attraverso il parametro valoreShift.
+ *
  * In partiolare la data è generata trasformando prima la data odierna in
  * giorno giuliano. Al valore ottenuto viene sommato algebricamente valoreShift,
  * ottenendo il giorno giuliano della data da generare. Questa è convertita nel tipo di dato
- * data attraverso la funzione giornoGregoriano(). La data generata è restituita come valore di ritorno.
+ * "data" attraverso la funzione giornoGregoriano().
+ *
+ * La data generata è restituita come valore di ritorno.
+ *
+ * @post La data generata restituita deve essere memorizzata in una variabile di tipo data.
  */
 data shift_data_odierna(short valore_shift){
-	// calcolo della data odierna in giorno giuliano
+	// Calcolo della data odierna in giorno giuliano
 	double data_odierna_giuliana = giorno_giuliano(data_odierna());
 
-	// calcolo della data shiftata in giorno giuliano
+	// Calcolo della data shiftata in giorno giuliano
 	double data_generata_giuliana = data_odierna_giuliana + valore_shift;
 
-	// conversione in data gregoriana della data generata
+	// Conversione in data gregoriana della data generata
 	data data_generata_gregoriana = data_gregoriana(data_generata_giuliana);
 
 	return data_generata_gregoriana;
 }
 
-
+/**
+ * Funzione input_data():
+ *
+ * La funzione permette la richiesta all'utente di una data. Quest'ultima viene controllata
+ * e se non è significativa la richiesta di input viene ripetuta mostrando un messaggio di errore
+ * generico. Il primo input valido viene restituito dalla funzione.
+ *
+ * @post La data restituita dalla funzione deve essere memorizzata in una variabile di tipo data.
+ */
 data input_data(){
-	data data_inserita;		// variabile per contenere l'input dell'utente
-	int esito_input;		// variabile per verificare l'esito dell'input
+	data data_inserita;		// Variabile per contenere l'input dell'utente
+	int esito_input;		// Variabile per verificare l'esito dell'input
 
-	// ciclo per ripetere la richiesta dell'input fino a ricevere una data valida
+	// Ciclo per ripetere la richiesta dell'input fino a ricevere una data valida
 	do{
 		printf("Inserire la data <gg/mm/aaaa>: ");
 		esito_input = scanf("%hu/%hu/%hu", &data_inserita.giorno, &data_inserita.mese, &data_inserita.anno);
-		fflush(stdin);
+		pulisci_stdin();  // Rimozione di ipotetico input non consumato dal flusso stdin
 
-		// controllo sull'input ricevuto
+		// Controllo sull'input ricevuto
 		if(esito_input < NUM_CAMPI_DATA || controlla_data(data_inserita) == 0){
-			puts("\nInserimento non valido. Ripeterlo.");
+			puts("\nData inserita non significativa. Ripetere l'inserimento.");
 		}
 	}while(esito_input < NUM_CAMPI_DATA || controlla_data(data_inserita) == 0);
 
-	puts("Inserimento valido.");
+	puts("Data inserita significativa.");
 
 	return data_inserita;
 }
