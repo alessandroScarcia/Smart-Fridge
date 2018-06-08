@@ -1,42 +1,5 @@
 
-/**
-* @file file_operation.c
-*
-* @version 0.1
-*
-* @date 26 apr 2018
-*
-* @authors Michela Salvemini, Alessandro Scarcia, Davide Quatela
-*
-* @bug Nessun bug di rilevanza individuato
-*/
 #include "alimenti.h"
-
-/*CONTROLLI DA APPLICARE(le righe ti danno un idea orientativa di dove applicare il controllo e dove trovare la funzione ovviamente ti puoi gestire al meglio
- * Dai un'occhiata se trovi commenti in riga con ALE. Nel caso mi sono SCIRRATO controlli :-) )
- *
- *
- * 1.Controllo se vengono inseriti alimenti nel file spesa effettuata con maiuscole e minuscole(FUNZ lettura_spesa  RIGA:410)
- * 2.Controllare se é stata inserita o meno la data di scadenza e in caso di mancata assegnazione generare data valida shiftata di 3 giorni(FUNZ lettura_spesa  RIGA:410)
- * 3. Controllare se file é effettivamente aperto e se esiste(FUNZ lettura_spesa  RIGA:400)
- * 4. Migliorare controllo  in caso di errore (funz aggiorna_frigo RIGA 284)
- * 4.1 Controllo per alimenti con stessa scadenza accorparli e aumentare quantitá (funz aggiorna_frigo RIGA 290)
- * 5. Controllo esistenza file ed effettiva apertura(funz aggiorna database RIGA:245)
- * 6. controllo apertura stream (conta_righe_file_sq RIGA: 80)
- * 7. Controllo input intero in un range definito da te. Ricordati di aggiungere le constanti a file_alimenti_operation.h ( input_kcal  RIGA 102)
- * 8. Funzione set_q_camp RIGA: 114. Controlla se sono state inserite quantitá sproporzionate oppure <=0 e dalle un'occhiata di sfuggita per vedere se é tutto ok
- * 9. Controlla i valori float generati sia per le quantitá espresse in grammi, millilitri e controlla soprattutto la genera
- * 	  zione di un valore intero per gli alimenti che hanno unitá di misura pz. (set_soglia_spesa RIGA: 140 per ogni if)
- * 10.Controlla se é avvenuta con successo l'operazione confrontando  unitá di misura valide(ottieni_u_misura RIGA: 161)
- * 11.IGNORA:(leggi_campo RIGA 194)
- * 12. Controlla se il file si é aperto correttamente e se esiste. visualizza_database_alimenti() RIGA 324
- * 13. Controlla se il file si é aperto correttamente e se esiste. visualizza_frigo() RIGA 345
- * 14. IGNORA( ancora in via di sviluppo per ricette) leggi_frigo RIGA: 372
- * 15. Controlla apertura corretta del file(riduci_q_alimenti RIGA 435)
- * 16. Controllo inserimento valido id per la cancellazione (riduci_q_alimenti RIGA 439)
- * 17. Controllo inserimento valida quantitá da ridurre (riduci_q_alimenti RIGA 457)
- * 18. Controllo operazione di riduzione (riduci_q_alimenti RIGA 460)
-*/
 
 int controlla_unita_misura(char* unita_misura){
 	if(strcmp(unita_misura, UNITA_KG) == 0
@@ -118,7 +81,7 @@ alimento_frigo input_alimento_frigo(){
 	// Ciclo per la ripetizione dell'inserimento fino a riceverlo nel formato corretto
 	do{
 		puts("Inserisci l'alimento <nome> <quantità> <unità di misura> <gg/mm/aaaa>: ");
-		esito_input = scanf("%[a-zA-Z] %f %[a-zA-Z] %hu/%hu/%hu",
+		esito_input = scanf("%20[a-zA-Z] %f %5[a-zA-Z] %hu/%hu/%hu",
 				alimento.nome, &alimento.quantita, alimento.unita_misura,
 				&alimento.scadenza.giorno, &alimento.scadenza.mese, &alimento.scadenza.anno);
 		pulisci_stdin();
@@ -139,7 +102,7 @@ void input_unita_misura(char *unita_misura){
 	// Ciclo per la ripetizione dell'inserimento fino a riceverlo significativo
 	do{
 		puts("Inserisci l'unità di misura: ");
-		esito_input = scanf("%[a-zA-Z]", unita_misura);
+		esito_input = scanf("%5[a-zA-Z]", unita_misura);
 		pulisci_stdin();
 
 		esito_controllo = controlla_unita_misura(unita_misura);
@@ -195,7 +158,7 @@ int input_kcal(char *nome_alimento, int campione_kcal, char *unita_misura){
 	int esito_input;
 
 	do{
-		printf("Inserisci le kcal per %d %s dell'alimento %s: ", campione_kcal, unita_misura, nome_alimento);
+		printf("Inserisci le kcal per <%d %s> dell'alimento <%s> : ", campione_kcal, unita_misura, nome_alimento);
 		esito_input = scanf("%f", &kcal);
 		pulisci_stdin();
 
@@ -259,16 +222,25 @@ int calcola_campione_kcal(char *unita_misura){
 float input_soglia_spesa(char *nome_alimento, char* unita_misura){
 	float soglia;
 	int esito_input;
+	int esito_controllo;
 
 	do{
 		printf("Inserisci la soglia per l'inserimento nella generazione\ndella spesa dell'alimento <%s> [0 per escluderlo]: ", nome_alimento);
 		esito_input = scanf("%f", &soglia);
 		pulisci_stdin();
 
-		if(controlla_quantita(soglia, unita_misura) != 1 || esito_input != 1){
+		if(esito_input == 1){
+			if(soglia == 0){
+				esito_controllo = 1;
+			}else{
+				esito_controllo = controlla_quantita(soglia, unita_misura);
+			}
+		}
+
+		if(esito_controllo != 1 || esito_input != 1){
 			puts("Inserimento non valido. Ripeterlo.");
 		}
-	}while(controlla_quantita(soglia, unita_misura) != 1 || esito_input != 1);
+	}while(esito_controllo != 1 || esito_input != 1);
 
 	return soglia;
 }
@@ -553,13 +525,15 @@ int carica_spesa(){
 	}else{
 		// estrazione di ogni riga del file (riga == 1 alimento)
 		while(fgets(s, LUNG_RIGA_FGETS, stream) != NULL){
-			pulisci_riga_flusso(stream);
+			if(s[strlen(s) - 1] != '\n'){
+				pulisci_riga_flusso(stream);
+			}
 			// modifica dei valori di flagInserimento e num_alimenti_caricati supponendo che l'alimento letto verrà inserito
 			flag_inserimento = 1;
 			num_alimenti_letti++;
 
 			// estrazione dei campi della riga letta dal file
-			esito_lettura = sscanf(s, "%[a-zA-Z] %f %[a-zA-Z] %hu/%hu/%hu",
+			esito_lettura = sscanf(s, "%20[a-zA-Z] %f %5[a-zA-Z] %hu/%hu/%hu",
 					alimento_letto.nome, &alimento_letto.quantita, alimento_letto.unita_misura,
 					&alimento_letto.scadenza.giorno, &alimento_letto.scadenza.mese, &alimento_letto.scadenza.anno);
 

@@ -1,12 +1,22 @@
 /**
- * file_operation.h
+ * @file alimenti.h
  *
- *  Created on: 26 apr 2018
- *      Author: david
+ * @brief Libreria per la gestione degli alimenti.
+ *
+ * La libreria alimenti.h è stata implementare per permettere la gestione degli alimenti,
+ * quindi le operazioni necessarie ai controlli, la manipolazione, il caricamento e il salvataggio
+ * di informazioni legate agli alimenti.
+ * La gestione degli alimenti in generale avviene tramite tre file: "spesa_effettuata.csv", "alimenti_frigo.dat"
+ * e "database_alimenti.dat". Rispettivamente sono utilizzati per: caricare nuovi alimenti per aggiungerli al
+ * contenuto del frigo, memorizzare gli alimenti contenuti nel frigo con relativa quantità e data di scadenza,
+ * memorizzare informazioni relative agli alimenti conosciuti dal frigocome kcal per campione di alimento, unità
+ * di misura per la quantità dell'alimento e soglia al di sotto del quale l'alimento deve essere inserito nella
+ * generazione della lista della spesa.
+ *
+ * @authors Davide Quatela, Alessandro Scarcia, Michela Salvemini
  */
 
-
-	///***********************************LIBRERIE INCLUSE***********************************
+/// Inclusione delle librerie standard
 #ifndef STD_LIB
 #define STD_LIB
 	#include <stdbool.h>
@@ -15,28 +25,29 @@
 	#include <time.h>
 #endif
 
+/// Inclusione delle librerie per la manipolazione di stringhe e caratteri
 #ifndef STRING_LIB
 #define STRING_LIB
 	#include <string.h>
 	#include <ctype.h>
 #endif
 
+/// Inclusione della libreria per la gestione delle date
 #include "date.h"
 
+/// Inclusione della libreria per la pulizia dei flussi di input
 #include "pulizia_flussi.h"
 
 #ifndef ALIMENTI_LIB
 #define ALIMENTI_LIB
 
-///DEFINIZIONE DELLE COSTANTI SIMBOLICHE
+/// DEFINIZIONE DELLE COSTANTI SIMBOLICHE.
 
 /// Lunghezze delle stringhe:
 #define LUNG_NOME 20 					///	Lunghezza massima per il nome degli alimenti
 #define LUNG_CAMPIONE 10 				///	Lunghezza della stringa che ospiterá il campione di riferimento per un alimento. Indica la quantitá che ha un determinato rapporto calorico
 #define LUNG_SOGLIA 10 					/// Lunghezza della stringa che ospiterá la soglia minima degli alimenti(la quantitá minima da avere in frigo)
-#define LUNG_NOME_FILE 100 				///	Lunghezza da riservare al nome del file
 #define LUNG_UNITA_MISURA 5				/// Lunghezza della stringa che ospiterá l'unitá di misura
-#define LUNG_TUPLA 100					/// Lunghezza della tupla ossia una riga quanto deve essere grande
 #define LUNG_RIGA_FGETS 100 			/// Lunghezza massima in caratteri delle righe estratte con fgets() dai file
 
 /// Numero di membri che compongono determinati elementi:
@@ -44,9 +55,9 @@
 #define NUM_CAMPI_ALIMENTO_FRIGO 6 		///numero di colonne che possiede il file contenente i dati degli alimenti comprati
 
 /// Nomi dei file utilizzati:
-#define FILE_SPESA "../spesa_effettuata.csv"
-#define FILE_FRIGO "../alimenti_frigo.dat"
-#define FILE_DATABASE "../database_alimenti.dat"
+#define FILE_SPESA "spesa_effettuata.csv"
+#define FILE_FRIGO "alimenti_frigo.dat"
+#define FILE_DATABASE "database_alimenti.dat"
 
 /// Unità di misura significative:
 #define UNITA_KG "kg"					/// Unità di misura dei chilogrammi

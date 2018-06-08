@@ -1,7 +1,7 @@
 /**
  * @file date.h
  *
- * Libreria per la gestione delle date.
+ * @brief Libreria per la gestione delle date.
  *
  * La libreria date.h è stata implementata per facilitare la manipolazione
  * delle date all'interno del caso di studio. A questo scopo è definito un nuovo
@@ -26,12 +26,13 @@
 	#include <math.h>
 #endif
 
+// Inclusione della libreria per la pulizia dei flussi di input
 #include "pulizia_flussi.h"
 
 #ifndef DATE_LIB
 #define DATE_LIB
 
-/// Definizione delle costanti simboliche.
+/// DEFINIZIONE DELLE COSTANTI SIMBOLICHE.
 
 /// Numero di elementi di determinati oggetti:
 #define NUM_CAMPI_DATA 3				/// Numero di campi che compongono la data.
