@@ -52,7 +52,7 @@ int ordina_alimenti_scadenza(alimento_frigo* alimenti_frigo, int  num_alimenti){
  * Funzione che si occupa di contare le effettive righe presenti nel database escludendo quelle vuote
  */
 int conta_alimenti_database(){
-	FILE *fp= fopen(FILE_DATABASE,"rb"); //apri il file in modalitá "lettura binaria"
+	FILE *fp= fopen(FILE_DATABASE_ALIMENTI,"rb"); //apri il file in modalitá "lettura binaria"
 	alimento_database info_alimento;			//genero una struct di riferimento che mi permette di scorrere all'interno del file di tipo binario
 	int righe=0;
 
@@ -119,7 +119,7 @@ int conta_alimenti_scaduti(){
  */
 int leggi_database_alimenti(alimento_database* lista_alimenti){
 	FILE *fp; //creo un puntatore di tipo file
-	fp=fopen(FILE_DATABASE,"rb+"); //apri il file in modalitá "scrittura in coda
+	fp=fopen(FILE_DATABASE_ALIMENTI,"rb+"); //apri il file in modalitá "scrittura in coda
 
 	alimento_database info_alimento;//creo una struttura di riferimento per scorrere all'interno del file
 
@@ -460,7 +460,7 @@ int ricerca_database(char *nome_alimento, alimento_database *alimento_estratto){
 	alimento_database alimento;
 	FILE *stream = NULL;
 
-	if((stream = fopen(FILE_DATABASE, "rb")) == NULL){
+	if((stream = fopen(FILE_DATABASE_ALIMENTI, "rb")) == NULL){
 		return -1;
 	}else{
 		while(feof(stream) == 0){
@@ -483,9 +483,9 @@ int aggiorna_database(alimento_frigo alimento){
 	char flag_presenza = 0;								// Flag per memorizzare la presenza nel database dell'alimento in analisi
 
 	// Tentativo di apertura del FILE_DATABASE
-	if((stream = fopen(FILE_DATABASE, "rb+")) == NULL){
+	if((stream = fopen(FILE_DATABASE_ALIMENTI, "rb+")) == NULL){
 		// Se non esiste nessun FILE_DATABASE deve essere creato
-		if((stream = fopen(FILE_DATABASE, "wb+")) == NULL){
+		if((stream = fopen(FILE_DATABASE_ALIMENTI, "wb+")) == NULL){
 			// Se non può essere creato il file, viene ritornato 0
 			return -1;
 		}
@@ -631,7 +631,7 @@ int visualizza_database_alimenti(){
 	alimento_database alimento; 			// Variabile per contenere gli alimenti letti dal database
 	int num_alimenti_database = 0;				// Variabile per contenere il  numero di alimenti presenti nel database
 
-	if((stream = fopen(FILE_DATABASE, "rb")) == NULL){
+	if((stream = fopen(FILE_DATABASE_ALIMENTI, "rb")) == NULL){
 		return -1;
 	}else{
 		printf("DATABASE ALIMENTI\n\n");
@@ -1031,7 +1031,7 @@ int modifica_soglia_spesa(){
 
 	int soglia_spesa;
 
-	if((stream = fopen(FILE_DATABASE, "rb+")) == NULL){
+	if((stream = fopen(FILE_DATABASE_ALIMENTI, "rb+")) == NULL){
 		return 0;
 	}else{
 		num_alimenti_database = visualizza_database_alimenti();
@@ -1087,7 +1087,7 @@ int modifica_kcal(){
 
 	int kcal;
 
-	if((stream = fopen(FILE_DATABASE, "rb+")) == NULL){
+	if((stream = fopen(FILE_DATABASE_ALIMENTI, "rb+")) == NULL){
 		return 0;
 	}else{
 		num_alimenti_database = visualizza_database_alimenti();
@@ -1127,6 +1127,37 @@ int modifica_kcal(){
 		fwrite(&alimento, sizeof(alimento_database), 1, stream);
 
 		fclose(stream);
+		return 1;
+	}
+}
+
+int alimento_casuale(char* nome_alimento){
+	FILE* stream = NULL;			// Puntatore a FILE_DATABASE
+	alimento_database alimento;		// Alimento estratto random
+	long dim_database;				// Dimensione di FILE_DATBASE
+
+	// Tentativo di apertura di FILE_BINARIO in lettura binaria
+	if((stream = fopen(FILE_DATABASE_ALIMENTI, "rb")) == NULL){
+		return -1;	// Se non può essere aperto, ritorna -1
+	}else{
+		// Se il file può essere aperto ma è vuoto, ritorna 0
+		if(feof(stream) != 0){
+			return 0;
+		}
+
+		// Altrimenti calcola la dimensione del file e leggi un alimento random
+		fseek(stream, 0, SEEK_END);
+		dim_database = ftell(stream) / sizeof(alimento_database);
+		rewind(stream);
+
+		// Spostamento del puntatore del file in una posizione random
+		fseek(stream, (rand() % dim_database) * sizeof(alimento_database), SEEK_SET);
+
+		fread(&alimento, sizeof(alimento_database), 1, stream);
+
+		strcpy(nome_alimento, alimento.nome);
+
+		// Se l'estrazione avviene correttamente, ritorna 1
 		return 1;
 	}
 }

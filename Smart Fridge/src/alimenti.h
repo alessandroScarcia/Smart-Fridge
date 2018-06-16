@@ -44,7 +44,7 @@
 /// DEFINIZIONE DELLE COSTANTI SIMBOLICHE.
 
 /// Lunghezze delle stringhe:
-#define LUNG_NOME 20 					///	Lunghezza massima per il nome degli alimenti
+#define LUNG_NOME_ALIMENTO 20 					///	Lunghezza massima per il nome degli alimenti
 #define LUNG_CAMPIONE 10 				///	Lunghezza della stringa che ospiterá il campione di riferimento per un alimento. Indica la quantitá che ha un determinato rapporto calorico
 #define LUNG_SOGLIA 10 					/// Lunghezza della stringa che ospiterá la soglia minima degli alimenti(la quantitá minima da avere in frigo)
 #define LUNG_UNITA_MISURA 5				/// Lunghezza della stringa che ospiterá l'unitá di misura
@@ -57,7 +57,7 @@
 /// Nomi dei file utilizzati:
 #define FILE_SPESA "spesa_effettuata.csv"
 #define FILE_FRIGO "alimenti_frigo.dat"
-#define FILE_DATABASE "database_alimenti.dat"
+#define FILE_DATABASE_ALIMENTI "database_alimenti.dat"
 
 /// Unità di misura significative:
 #define UNITA_KG "kg"					/// Unità di misura dei chilogrammi
@@ -92,7 +92,7 @@
 
 ///Questa struttura é utilizzata per i file binari per a memorizzazione dei dati relativi ad un alimento
 typedef struct {
-	char nome[LUNG_NOME];
+	char nome[LUNG_NOME_ALIMENTO];
 	int campione_kcal;
 	float soglia_spesa;
 	char unita_misura[LUNG_UNITA_MISURA];
@@ -101,7 +101,7 @@ typedef struct {
 
 ///Questa struttura é utilizzata per il file ad accesso sequenziale degli alimenti comprati
 typedef struct{
-	char nome[LUNG_NOME];
+	char nome[LUNG_NOME_ALIMENTO];
 	float quantita;
 	char unita_misura[LUNG_UNITA_MISURA];
 	data scadenza;
@@ -344,5 +344,14 @@ int modifica_soglia_spesa();
  * @return -1 se ilfile database non può essere aperto
  */
 int modifica_kcal();
+
+
+/**
+ * La funzione alimento_casuale() estrae casualmente il nome di un alimento dal database
+ * e ne restituisce la stringa corrispondete.
+ *
+ * @return Nome di un alimento estratto casualmente dal database.
+ */
+int alimento_casuale(char* nome_alimento);
 
 #endif
