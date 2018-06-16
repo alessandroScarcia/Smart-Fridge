@@ -1,6 +1,216 @@
 
 #include "alimenti.h"
 
+
+
+
+
+//NUOVE FUNZIONI ALIMENTI
+
+/**
+ * La funzione, avendo in ingresso gli alimenti del frigo con il relativo numero, si occupa di riordinare tali alimenti, o meglio l'array di struct che li contiene, in base
+ * alla data di scadenza. L'ordinamento é effettuato attraverso l'algoritmo shell sort in quanto risultava quello piú semplice ed efficace da implementare dato il quantitativo
+ * di dati(non é eccessivo considerato che il frigo avrá al massimo un centinaio al massimo di alimenti). Inoltre in questa versione di shell sort si é optato di non creare a parte un
+ * array contenente i gap (distanza per gli scambi), ma di sfruttare il numero di alimenti inizialmente e poi dividere per 2 di volta in volta la lunghezza.
+ * @param alimenti_frigo
+ * @param num_alimenti
+ * @return 1
+ */
+int ordina_alimenti_scadenza(alimento_frigo* alimenti_frigo, int  num_alimenti){
+
+	alimento_frigo tmp;
+	int* differenza=NULL;
+	for (int gap = num_alimenti/2; gap > 0; gap /= 2)
+		    {
+
+		        for (int i = gap; i < num_alimenti; i++)
+		        {
+					// salva il corrente elemento puntato da i in tmp
+		        	tmp = alimenti_frigo[i];
+
+		            //sposta i precedenti elementi fino alla corretta locazione di alimenti_frigo[i] é 	trovata
+		        	int j;
+		            for (j = i; j >= gap && diff_date(differenza,alimenti_frigo[j - gap].scadenza, data_odierna()) > diff_date(differenza,tmp.scadenza,data_odierna()); j -= gap)
+		            	alimenti_frigo[j] = alimenti_frigo[j - gap];
+
+		            //  inserisci tmp (l'originale alimenti_frigo[i]) nella sua corretta locazione
+		            alimenti_frigo[j] = tmp;
+		        }
+		    }
+
+		/* DEBUG: for (int i=0; i < num_alimenti; i++){
+				printf("%s %d/%d/%d\n", alimenti_frigo[i].nome_alimento, alimenti_frigo[i].scadenza.giorno,alimenti_frigo[i].scadenza.mese,alimenti_frigo[i].scadenza.anno);
+		 }*/
+	printf("Ordinamento per scadenza effettuato con successo...ora puoi preparare una ricetta ottimizzata\n");
+	return 1;
+
+
+}
+
+
+/**
+ * Funzione che si occupa di contare le effettive righe presenti nel database escludendo quelle vuote
+ */
+int conta_alimenti_database(){
+	FILE *fp= fopen(FILE_DATABASE,"rb"); //apri il file in modalitá "lettura binaria"
+	alimento_database info_alimento;			//genero una struct di riferimento che mi permette di scorrere all'interno del file di tipo binario
+	int righe=0;
+
+    while(fread(&info_alimento,sizeof(info_alimento),1,fp)>0){//fino a quando riesci a leggere righe dal file
+    	if(strcmp(info_alimento.nome,"")!=0)
+    		righe++;									//incremento il contatore del numero di righe
+	  }
+
+	fclose(fp); //chiudi il file
+	return righe;
+}
+
+
+/**
+ * Funzione che conta gli alimenti presenti nel frigo e ne restituisce il valore. Il conteggio viene effettuato escludendo le righe vuote nel database
+ */
+int conta_alimenti(){
+
+		FILE *fp= fopen(FILE_FRIGO,"rb"); //apri il file in modalitá "lettura binaria"
+		alimento_frigo info_alimento;			//genero una struct di riferimento che mi permette di scorrere all'interno del file di tipo binario
+		int righe=0;
+
+        while(fread(&info_alimento,sizeof(info_alimento),1,fp)>0){//fino a quando riesci a leggere righe dal file
+        	if(strcmp(info_alimento.nome,"")!=0)
+        		righe++;									//incremento il contatore del numero di righe
+
+        }
+		//DEBUG:printf("%d\n", lines);
+
+		fclose(fp); //chiudi il file
+		return righe;
+
+}
+
+
+/**
+ * Dopo aver popolato un array di struct di tipo alimento frigo la funzione si occupa di confrontare la data di scadenza con la data odierna. Qualora la differenza tra date
+ * produca un valore negativo vuol, dire che l'alimento é scaduto e pertanto occorre incrementare il contatore. Questa funzione serve principalmente nel menu principale per
+ * conteggiare il numero di notifiche che devono eesre viste dall'utente
+ * @return
+ */
+int conta_alimenti_scaduti(){
+	int num_alimenti=conta_alimenti(FILE_FRIGO);
+	alimento_frigo alimenti_frigo[num_alimenti];
+	leggi_frigo(alimenti_frigo);
+
+	int contatore_alim_scad=0;
+	int* differenza=NULL;
+    for(int i=0;i<num_alimenti;i++){
+    	if(diff_date(differenza, alimenti_frigo[i].scadenza, data_odierna()) <0){//se la differenza tra data odierna e data di scadenza produce un valore negativo allora l'alimento é scaduto
+    		contatore_alim_scad++;
+
+    	}
+    }
+	return contatore_alim_scad;
+}
+
+
+/**
+ * Funzione che avendo ricevuto in ingresso l'array di struct vuoto che conterrá gli alimenti del database, si occuperá di riempire tale array con i dati salvati all'interno del file
+ * e di restituire al termine il numero di tali alimenti salvati. Come per ogni altra funzione che conta gli elementi del file anche in questo caso si saltano le righe vuote
+ * @param lista_alimenti
+ * @return
+ */
+int leggi_database_alimenti(alimento_database* lista_alimenti){
+	FILE *fp; //creo un puntatore di tipo file
+	fp=fopen(FILE_DATABASE,"rb+"); //apri il file in modalitá "scrittura in coda
+
+	alimento_database info_alimento;//creo una struttura di riferimento per scorrere all'interno del file
+
+	int indice_alimento=0;
+    while(fread(&info_alimento,sizeof(info_alimento),1,fp)>0){//ripeti fino a quando é possibile leggere righe con le dimensioni della struct
+    	if(strcmp(info_alimento.nome, "")!=0){//stampa solo le righe non inizializzate
+    		strcpy(lista_alimenti[indice_alimento].nome,info_alimento.nome);
+    		lista_alimenti[indice_alimento].campione_kcal=info_alimento.campione_kcal;
+    		lista_alimenti[indice_alimento].soglia_spesa=info_alimento.soglia_spesa;
+    		lista_alimenti[indice_alimento].kcal=info_alimento.kcal;
+    		strcpy(lista_alimenti[indice_alimento].unita_misura,info_alimento.unita_misura);
+			indice_alimento++;
+    	}
+    }
+    fclose(fp);
+    return indice_alimento;//se la funzione é andata a buon fine restituisci 1
+}
+
+
+
+/**
+ * Funzione che viene richiamata direttamente dal menu e dal gestore delle notifiche. Essa si occupa  di scovare tutti gli alimenti scaduti(se la differenza tra data odierna e data di scadenza
+ * produce un valore negativo allora l'alimento é scaduto) e di inizializzare la riga in maniera tale da poterla recuperare in una prossima scrittura. Ovviamente nella ricerca vengono
+ * sempre scartate le righe vuote
+ * @return
+ */
+int eliminazione_alimenti_scaduti(){
+	alimento_frigo alimenti_frigo;
+	FILE* fp = fopen(FILE_FRIGO, "rb+");
+	int* differenza=NULL;
+	while(fread(&alimenti_frigo,sizeof(alimenti_frigo),1,fp)>0){//ripeti fino a quando é possibile leggere una riga dal file
+		if(diff_date(differenza,alimenti_frigo.scadenza, data_odierna())<0 && strcmp(alimenti_frigo.nome,"")!=0){//esegue il blocco solo le righe non sono inizializzate e se l'alimento é scaduto
+
+			//inizializzo la riga per eliminare il contenuto
+			strcpy(alimenti_frigo.nome,"");
+			strcpy(alimenti_frigo.unita_misura,"");
+			alimenti_frigo.scadenza.giorno=0;
+			alimenti_frigo.quantita=0;
+			alimenti_frigo.scadenza.mese=0;
+			alimenti_frigo.scadenza.anno=0;
+
+
+			int currPos = ftell(fp);//scopro la locazione di memoria su cui mi trovo al momento
+			fseek(fp,currPos-sizeof(alimenti_frigo),SEEK_SET);//posiziona il puntatore sulla locazione di memoria da cui iniziare a scrivere
+			fwrite(&alimenti_frigo,sizeof(alimenti_frigo),1,fp);//scrivi il contenuto della struct aggiornata
+			rewind(fp);
+		}
+	}
+	fclose(fp);
+	return 1;
+}
+
+
+
+
+
+
+/**
+ *Funzione che viene richiamata direttamente dal gestore delle notifiche e si occupa di visualizzare gli alimenti scaduti presenti nel frigo e di mostrare la relativa data di scadenza.
+ * @return
+ */
+int visualizza_alimenti_scaduti(){
+	int num_alimenti=conta_alimenti();
+	alimento_frigo alimenti_frigo[num_alimenti];
+	leggi_frigo(alimenti_frigo);
+	int* differenza=NULL;
+    for(int i=0;i<num_alimenti;i++){
+    	if(diff_date(differenza, alimenti_frigo[i].scadenza, data_odierna()) <0)//se la differenza tra data odierna e data di scadenza produce un valore negativo allora l'alimento é scaduto
+    		printf("Alimento scaduto: %s data di scadenza: %hu/%hu/%hu\n", alimenti_frigo[i].nome, alimenti_frigo[i].scadenza.giorno,
+    				alimenti_frigo[i].scadenza.mese, alimenti_frigo[i].scadenza.anno);
+    }
+	return 1;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 int controlla_unita_misura(char* unita_misura){
 	if(strcmp(unita_misura, UNITA_KG) == 0
 		|| strcmp(unita_misura, UNITA_G) == 0

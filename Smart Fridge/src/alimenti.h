@@ -84,6 +84,8 @@
 #define MAX_QUANTITA_G 10000			/// Limite superiore grammi
 #define MAX_QUANTITA_ML 10000			/// limite superiore millilitri
 #define MAX_QUANTITA_PZ 100				/// Limite superiore pezzi
+#define MAX_ALIM_SUGG 5					/// Limite degli alimenti che possono essere inseriti manualmente dall'utente per la ricerca di una ricetta
+#define FLAG_ALIMENTO 0					/// valore che ci permette di capire se il prodotto consumato é un alimento
 
 
 ///**********************************DEFINIZIONI DI STRUCT***********************************
@@ -106,6 +108,34 @@ typedef struct{
 }alimento_frigo;
 
 alimento_frigo alimento;
+
+
+
+
+/// funzione che ordina gli alimenti del frigo in base alla scadenza.
+int ordina_alimenti_scadenza(alimento_frigo* alimenti_frigo, int  num_alimenti);
+
+///funzione che conta gli alimenti presenti nel database
+int conta_alimenti_database();
+
+///funione che si occupa di popolare un array di struct inizializzato con gli alimenti e i dati presenti nel database
+int leggi_database_alimenti(alimento_database* lista_alimenti);
+
+/// funzione che si occupa di eliminare gli alimenti scaduti presenti nel frigo e di inizializzare tali righe
+int eliminazione_alimenti_scaduti();
+
+///funzione che si occupa di contare gli alimenti presenti nel frigo e di restituire tale numero
+int conta_alimenti();
+
+///funzione che si occupa di visualizzare gli alimenti presenti nel frigo che sono scaduti (si controlla la data di scadenza rispetto quella odienrna)
+int visualizza_alimenti_scaduti();
+
+///funzione che si occupa di contare gli alimenti scaduti nel frigo e di restiuire tale numero.
+int conta_alimenti_scaduti();
+
+
+
+
 
 
 /**
@@ -293,9 +323,6 @@ int calcola_campione_kcal(char *unita_misura);
  */
 float input_soglia_spesa(char *nome_alimento, char *unita_misura);
 
-
-//in via di sviluppo per ricette
-int leggi_frigo(alimento_frigo* lista_frigo);
 
 /**
  * La funzione modifica_soglia_spesa() permette all'utente di modificare la quantità di un alimento
