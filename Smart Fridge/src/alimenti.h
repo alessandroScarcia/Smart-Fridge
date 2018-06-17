@@ -112,25 +112,67 @@ alimento_frigo alimento;
 
 
 
-/// funzione che ordina gli alimenti del frigo in base alla scadenza.
+/** funzione che ordina gli alimenti del frigo in base alla scadenza.
+ *
+ * @param alimenti_frigo
+ * @param num_alimenti
+ * @return 1
+ */
 int ordina_alimenti_scadenza(alimento_frigo* alimenti_frigo, int  num_alimenti);
 
-///funzione che conta gli alimenti presenti nel database
+
+
+
+/**funzione che conta gli alimenti presenti nel database
+ *
+ * @return righe ossia numero di alimenti presenti nel database
+ */
 int conta_alimenti_database();
 
-///funione che si occupa di popolare un array di struct inizializzato con gli alimenti e i dati presenti nel database
+
+
+
+/**funione che si occupa di popolare un array di struct inizializzato con gli alimenti e i dati presenti nel database
+ *
+ * @param lista_alimenti	array di struct che deve essere popolato
+ * @return indice_alimento	elementi effettivamente caricati
+ */
 int leggi_database_alimenti(alimento_database* lista_alimenti);
 
-/// funzione che si occupa di eliminare gli alimenti scaduti presenti nel frigo e di inizializzare tali righe
+
+
+
+/** funzione che si occupa di eliminare gli alimenti scaduti presenti nel frigo e di inizializzare tali righe
+ *
+ * @return 1 in caso di successo
+ */
 int eliminazione_alimenti_scaduti();
 
-///funzione che si occupa di contare gli alimenti presenti nel frigo e di restituire tale numero
+
+
+
+/**funzione che si occupa di contare gli alimenti presenti nel frigo e di restituire tale numero
+ *
+ * @return righe numero di alimenti presenti nel frigo
+ */
 int conta_alimenti();
 
-///funzione che si occupa di visualizzare gli alimenti presenti nel frigo che sono scaduti (si controlla la data di scadenza rispetto quella odienrna)
+
+
+
+/**funzione che si occupa di visualizzare gli alimenti presenti nel frigo che sono scaduti (si controlla la data di scadenza rispetto quella odierna)
+ *
+ * @return 1 in caso di successo
+ */
 int visualizza_alimenti_scaduti();
 
-///funzione che si occupa di contare gli alimenti scaduti nel frigo e di restiuire tale numero.
+
+
+
+/**funzione che si occupa di contare gli alimenti scaduti nel frigo e di restiuire tale numero.
+ *
+ * @return contatore_alim_scad  numero degli alimenti scaduti
+ */
 int conta_alimenti_scaduti();
 
 

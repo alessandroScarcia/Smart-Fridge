@@ -122,10 +122,8 @@ int prepara_ricetta(int num_ricette, ricetta* ricette_database){
  *allora necessariamente il numero di campi sará uguale al numero di delimitatori+1. La prima parte pertanto fa un check da indice del campo e
  *caratteri delimitatori. Qualora il campo passato sia maggiore del numero di - allora abbiamo finito con l'estrazione e viene restituito NULL.
  *
- * @param linea
- * @param num_campo
- * @param flag_campo
- * @return
+ * @pre  che la stringa su cui effettuare lo split sia piena, che ci sia un numero di campo >0  e che il flag un valore uguale a 0 o 1
+ * @post Il valore restituito deve essere una stringa oppure un puntatore null
  */
 const char* leggi_campo_ricetta(char* linea, int num_campo, short flag_campo){
 
@@ -176,7 +174,8 @@ const char* leggi_campo_ricetta(char* linea, int num_campo, short flag_campo){
 
 /**
  * Funzione che dopo aver allocato una stringa di una determinata lunghezza, si occupa di ricevere in input il nome della ricetta
- * @return nome_ricetta
+ * @pre		Nessuna pre condizione particolare
+ * @post	Deve essere restituita una stringa con almeno un carattere
  */
 char* input_nome_ricetta(){
 	char* nome_ricetta=(char *)malloc(sizeof(LUNG_NOME_RIC));
@@ -188,7 +187,8 @@ char* input_nome_ricetta(){
 
 /**
  * Funzione che dopo aver allocato una stringa di una determinata lunghezza, si occupa di ricevere in input il tempo di preparazione della ricetta
- * @return tempo_preparazione
+ * @pre		Nessuna pre condizione particolare
+ * @post	Deve essere restituita una stringa con almeno un carattere
  */
 char* input_tempo_prep_ricetta(){
 	char* tempo_preparazione=(char *)malloc(sizeof(LUNG_TEMP_PREP));
@@ -200,7 +200,8 @@ char* input_tempo_prep_ricetta(){
 
 /**
  * Funzione che dopo aver allocato una stringa di una determinata lunghezza, si occupa di ricevere in input la complessitá della ricetta
- * @return complessita
+ * @pre		Nessuna pre condizione particolare
+ * @post	Deve essere restituita una stringa con almeno un carattere
  */
 char* input_complessita_ricetta(){
 	char* complessita=(char *)malloc(sizeof(LUNG_COMPLESSITA));
@@ -211,7 +212,8 @@ char* input_complessita_ricetta(){
 
 /**
  * Funzione che dopo aver allocato una stringa di una determinata lunghezza, si occupa di ricevere in input la preparazione della ricetta
- * @return preparazione
+ * @pre		Nessuna pre condizione particolare
+ * @post	Deve essere restituita una stringa con almeno un carattere
  */
 char* input_preparazione_ricetta(){
 	char* preparazione=(char *)malloc(sizeof(LUNG_PREPARAZIONE));
@@ -223,7 +225,8 @@ char* input_preparazione_ricetta(){
 /**
  * Funzione che dopo aver allocato una stringa di una determinata lunghezza, si occupa di ricevere in input l'ingrediente x della ricetta. Ovviamente in questo caso sono ammessi
  * gli spazi in quanto sappiamo che il formato dell'ingrediente é :  quantitá  unitá_di_misura nome_ingrediente
- * @return ingrediente
+ * @pre		Nessuna pre condizione particolare
+ * @post	Deve essere restituita una stringa con almeno un carattere
  */
 char* input_ingredienti_ricetta(){
 	char* ingrediente=(char *)malloc(sizeof(LUNG_STR_LAVORO_RIC));
@@ -234,7 +237,8 @@ char* input_ingredienti_ricetta(){
 
 /**
  ** Funzione che  si occupa di ricevere in input il numero di porzioni della ricetta
- * @return porzione
+ * @pre		Nessuna pre condizione particolare
+ * @post	Deve essere restituita una stringa con almeno un carattere
  */
 int input_porzione_ricetta(){
 	int porzione;
@@ -254,7 +258,8 @@ int input_porzione_ricetta(){
  * da modificare. Tramite uno switch viene individuato il campo e viene richiamata la corrispettiva funzione di input. Per quanto riguarda gli ingredienti una volta ricevuto in ingresso
  * la stringa da parte dell'utente viene effettuato uno split dei valori per popolare opportunatamente la struct di tipo ingrediente. Al termine delle modifiche viene salvato il tutto
  * su file.
- * @return 1
+ * @pre		Nessuna pre condizione particolare
+ * @post	Deve essere stato effettuata e salvata la modifica su file
  */
 int modifica_ricetta(){
 	int id_ricetta;//l'id ci servirá per capire quale ricetta é stata selezionata dall'utente e quindi a scorrere le varie ricette
@@ -367,7 +372,8 @@ int modifica_ricetta(){
  *La funzione elimina_ricetta apre il database delle ricette, ne mostra il contenuto, e chiede quale delle ricette mostrate occorre cancellare.
  *L'individuazione della ricetta avviene tramite l'inserimento dell'ID. In questa maniera si risale alla riga dove é memorizzata la ricetta
  *inizializzandone il contenuto e salvando poi le modifiche. Al termine la funzione restituisce 1.
- * @return 1
+ * @pre		Nessuna pre condizione particolare
+ * @post	Deve essere stato effettuata e salvata l'eliminazione su file
  */
 int elimina_ricetta(){
 	int id_ricetta;//l'id ci servirá per capire quale ricetta é stata selezionata dall'utente e quindi a scorrere le varie ricette
@@ -423,23 +429,23 @@ int elimina_ricetta(){
  * (considerato che dal punto di vista progettuale si considerano le fasi come un unico testo) nella fase di visualizzazione le singole fasi,
  * che sono separate nel testo con il carattere delimitatore (-),  vengono opportunatamente divise tramite la funzione leggi_campo_ricetta.
  * Una volta ricavata ogni fase essa viene stampata con il suo id di riferimento.
- * @param lista_ricette
- * @return 1
+ * @pre		Nessuna pre condizione particolare
+ * @post	Deve essere stato mostrato il contenuto della ricetta
  */
-int visualizza_ricetta(ricetta lista_ricette, int vista_ricetta){
+int visualizza_ricetta(ricetta dati_ricette, int vista_ricetta){
 	int indice_ingrediente=0; //indice che ci serve per scorrere tra gli ingredienti
 	int indice_preparazione=0; //indice che ci serve per scorrere tra le fasi della preparazione
 
 
-	printf("%14s%8s%14s%10d%10d\n", lista_ricette.nome_ricetta,lista_ricette.tempo_prep, lista_ricette.complessita,lista_ricette.kcal_ricetta, lista_ricette.porzione);
+	printf("%14s%8s%14s%10d%10d\n", dati_ricette.nome_ricetta,dati_ricette.tempo_prep, dati_ricette.complessita,dati_ricette.kcal_ricetta, dati_ricette.porzione);
 
 	if(vista_ricetta==VISTA_TOTALE){
 		printf("\n INGREDIENTI:\n\n");
 		printf(" -------------------------------------------------------------\n");
 		printf("|ID| NOME INGREDIENTE| QUANTITA' NECESSARIA | UNITA DI MISURA |\n");
 		printf(" -------------------------------------------------------------\n");
-		while(strcmp(lista_ricette.ingredienti[indice_ingrediente].nome_ingredienti,"")!=0){
-			printf("%2d|%18s|%22.1f|%17s|\n", indice_ingrediente+1, lista_ricette.ingredienti[indice_ingrediente].nome_ingredienti, lista_ricette.ingredienti[indice_ingrediente].quantita_necessarie,lista_ricette.ingredienti[indice_ingrediente].unita_misura);
+		while(strcmp(dati_ricette.ingredienti[indice_ingrediente].nome_ingredienti,"")!=0){
+			printf("%2d|%18s|%22.1f|%17s|\n", indice_ingrediente+1, dati_ricette.ingredienti[indice_ingrediente].nome_ingredienti, dati_ricette.ingredienti[indice_ingrediente].quantita_necessarie,dati_ricette.ingredienti[indice_ingrediente].unita_misura);
 			printf(" -------------------------------------------------------------\n");
 			indice_ingrediente++;
 		}
@@ -447,11 +453,11 @@ int visualizza_ricetta(ricetta lista_ricette, int vista_ricetta){
 		printf("\n\n PREPARAZIONE:\n");
 		while(indice_preparazione<MAX_NUM_FASI){
 
-			char *copia_riga=strdup(lista_ricette.preparazione); //le modifiche(i "tagli" per trovare la fase) vengono fatte sulla copia
+			char *copia_riga=strdup(dati_ricette.preparazione); //le modifiche(i "tagli" per trovare la fase) vengono fatte sulla copia
 			if(leggi_campo_ricetta(copia_riga,indice_preparazione+1,CAMPO_MULTIPLO)==NULL){ //se la prossima fase non esiste esci.
 				break;
 			}else{
-				copia_riga=strdup(lista_ricette.preparazione);
+				copia_riga=strdup(dati_ricette.preparazione);
 				printf(" %d. %s\n", indice_preparazione+1, leggi_campo_ricetta(copia_riga,indice_preparazione+1,CAMPO_MULTIPLO));//stampa la fase con l'indice
 				indice_preparazione++;
 			}
@@ -475,9 +481,8 @@ int visualizza_ricetta(ricetta lista_ricette, int vista_ricetta){
  * Inoltre il parametro in ingresso id_ricetta permette di mostrare a schermo un id che magari é calcolato esternamente alla funzione(si faccia
  * riferimento alla funzione suggerimento_ricetta_automatico o suggerimento_ricetta_manuale per capire in quale contesto la si utilizza). Qualora
  * invece non sia nessun interesse o nel caso in cui debba essere mostrato l'intero database verrá passato come id personalizzato 0.
- * @param nome_ricetta
- * @param id_ricetta_pers
- * @return
+ * @pre		Deve essere passata una stringa o vuota o piena, l'id deve essere un numero >=1 e la vista deve essere un valore pari a 0 o 1
+ * @post	Deve essere stata effettuata la visualizzazione opportuna
  */
 int visualizza_database_ricette(char nome_ricetta[LUNG_NOME_RIC], int id_ricette, int vista){
 
@@ -536,8 +541,8 @@ int visualizza_database_ricette(char nome_ricetta[LUNG_NOME_RIC], int id_ricette
  * memorizzate all'interno del database. Ovviamente vengono memorizzate solo le righe che non sono inizializzate ossia quelle che non vuote.
  * Per far ció si confronta il nome. Qualora il nome della ricetta sia una stringa vuota vuol dire che siamo in presenza di una riga vuota
  * e pertanto essa va ignorata.
- * @param ricette_database
- * @return 1
+ * @pre		L'array di struct che passiamo deve essere vuoto
+ * @post	Deve essere stato caricato correttamente l'array di struct inizialmente passato
  */
 int lettura_database_ricette(ricetta* ricette_database){
 		int id_ricette=0;
@@ -578,7 +583,8 @@ int lettura_database_ricette(ricetta* ricette_database){
 /**
  * La funzione apre il file del database delle ricette in modalitá lettura, estrae tutte le righe che possiede e conta solo le righe effettivamente
  * piene ignorando quelle inizializzate. Il risultato viene poi restiuito
- * @return righe
+ * @pre		Nessuna pre condizione particolare
+ * @post	Deve essere passato un numero di righe con un valore significativo(>=0)
  */
 int conta_righe_database_ricette(){
 		FILE *fp= fopen(FILE_DATABASE_RICETTE,"rb"); //apri il file in modalitá "lettura binaria"
@@ -601,9 +607,8 @@ int conta_righe_database_ricette(){
  * Funzione che ha in ingresso un array di puntatori di tipo stringa che rappresentano i nomi delle ricette preparabili e il numero di ricette
  * presenti nel database. Questo perché nella migliore delle ipotesi tutte le ricette del database possono essere preparabili. La funzione inizializza
  * tutto l'array di puntatori a NULL
- * @param num_ricette
- * @param ricette_preparabili
- * @return 1
+ * @pre		Il numero di ricette deve essere un valore maggiore di 0
+ * @post	Deve essere stata effettuata correttamente l'inizializzazione
  */
 int inizializza_ricette_preparabili(int num_ricette, char* ricette_preparabili[num_ricette]){
 
@@ -621,9 +626,8 @@ int inizializza_ricette_preparabili(int num_ricette, char* ricette_preparabili[n
  * sfrutta un array formato dai vari gap ossia dalle varie distanze con cui confrontare e scambiare gli elementi, qui si é preferito sfruttare
  * inizialmente il num di ricette diviso 2 come gap di partenza e successivamente dividere il gap fino a quando non risultasse minore di 0.
  * Ovviamente lo scambio viene fatto in base al campo delle kcal. Al termine viene stampato l'ordinamento effettuato
- * @param ricette_database
- * @param num_ricette
- * @return
+ * @pre		l'array di struct con le ricette deve possedere almeno 1 ricetta e il numero di ricette deve essere un valore significativo(>0)
+ * @post	Deve essere stato effettuato correttamente l'ordinamento
  */
 int ordina_ric_kcal(ricetta* ricette_database, int num_ricette){
 
@@ -657,9 +661,8 @@ int ordina_ric_kcal(ricetta* ricette_database, int num_ricette){
  *un all'interno del file dei consumi per vedere se il prodotto é giá stato consumato in passato e qualora lo sia, basta solo incrementare la sua
  *un frequenza. Nel caso in cui sia la prima volta che lo si consuma viene creata una nuova riga in cui memorizzare nome, la categoria di appartenenza
  *e la frequenza iniziale
- * @param nome_prodotto
- * @param flag_prodotto
- * @return
+ * @pre		Il nome del prodotto deve essere una stringa con lunghezza maggiore di 0 e il flag deve avere un valore significativo (0 o 1)
+ * @post	Deve essere stato effettuata e salvata la modifica su file
  */
 int registra_consumi(char nome_prodotto[LUNG_PRODOTTO], short flag_prodotto){
 	int flag_trovato=0; //flag che ci aiuta a scorrere il file dei consumi e a trovare, qualora ci fosse, un prodotto giá salvato in passato
@@ -693,7 +696,7 @@ int registra_consumi(char nome_prodotto[LUNG_PRODOTTO], short flag_prodotto){
 	 }
 
 	fclose(fp);
-	return 0;
+	return 1;
 }
 
 
@@ -704,8 +707,8 @@ int registra_consumi(char nome_prodotto[LUNG_PRODOTTO], short flag_prodotto){
  * puó avere  1 in caso di ricette e 0 in caso di alimenti. Tramite un ciclo che analizza tutto il file dei consumi viene rintracciato la ricetta o
  * l'alimento con la frequenza maggiore. In caso questi non sia presente e la stringa del prodotto maggiormente consumato rimanga vuota verrá
  * stampato un mess di avviso
- * @param flag_prodotto
- * @return
+ * @pre		Il flag deve avere un valore significativo (0 o 1)
+ * @post	Deve essere stato mostrato un messaggio in base all'esito e la ricerca deve essere terminata con successo
  */
 int ricerca_prod_magg_cons(short flag_prodotto){
 	FILE *fp= fopen(FILE_CONSUMI,"rb+"); //apri il file in modalitá "lettura binaria"
@@ -748,14 +751,13 @@ int ricerca_prod_magg_cons(short flag_prodotto){
 /**
  * In questa funzione viene passata la lista degli alimenti attualmente nel frigo con il relativo numero e una matrice che rappresenta
  * il nome degli alimenti che stanno per scadere. Una volta chiamata la funzione che si occupa del riordinamento degli alimenti in base alla scadenza
- * vengono memorizzati i primi 2 alimenti che stanno per scadere. In seguito viene fatto un richiamo alla funzione che suggerisce le ricette
+ * vengono memorizzati i primi 2 alimenti che stanno per scadere all'interno di una matrice di tipo char. In seguito viene fatto un richiamo alla funzione che suggerisce le ricette
  * in base agli alimenti che gli si passano. In questa maniera avremo la lista delle ricette che possiamo preparare con gli alimenti in scadenza
- * @param alimenti_frigo
- * @param num_alimenti
- * @param nome_alimenti
- * @return 1
+ * @pre		La listadegli alimenti deve possedere almeno un alimento e il numero  di alimenti deve essere un valore significativo
+ * @post	Deve essere terminata con successo la ricerca
  */
-int ricette_alimenti_in_scadenza(alimento_frigo* alimenti_frigo,int num_alimenti,char alimenti_in_scadenza[MAX_ALIM_SUGG][LUNG_NOME_ALIMENTO]){
+int ricette_alimenti_in_scadenza(alimento_frigo* alimenti_frigo,int num_alimenti){
+	char alimenti_in_scadenza[MAX_ALIM_SUGG][LUNG_NOME_ALIMENTO];
 	ordina_alimenti_scadenza(alimenti_frigo, num_alimenti);
 	printf("Gli alimenti che stanno per scadere sono: %s e %s\n",alimenti_frigo[0].nome,alimenti_frigo[1].nome);
 	for(int i=0;i<NUM_ALIM_SUGG_SCAD;i++){
@@ -770,8 +772,8 @@ int ricette_alimenti_in_scadenza(alimento_frigo* alimenti_frigo,int num_alimenti
  *La funzione riceve in ingresso una matrice vuota che rappresenta i nomi degli ingredienti su cui svolgere la ricerca. Dopo aver
  *pulito il buffer di input si passa all'inserimento degli alimenti chiave da parte dell'utente. Qualora sia stata inserita la sequenza
  *pulito di escape si termina con l'inserimento altrimenti si continua fino al numero massimo di ingredienti consentito.
- * @param nome_alimenti
- * @return num_alimenti_inseriti++
+ * @pre		Deve essere passata una matrice vuota
+ * @post	Deve essere stato inserito almeno un alimento
  */
 int inserimento_manuale_ingredienti(char nome_ingredienti[MAX_ALIM_SUGG][LUNG_NOME_ALIMENTO]){
 	int num_alimenti_inseriti=0;
@@ -814,10 +816,8 @@ int inserimento_manuale_ingredienti(char nome_ingredienti[MAX_ALIM_SUGG][LUNG_NO
  *passati come parametro alla funzione con quelli che possiede ogni ricetta. Nel caso in cui una ricetta abbia gli ingredienti che abbiamo
  *passato essa va memorizzata come ricetta preparabile. Al termine del controllo sulle ricette vengono stampate a schermo quelle preparabili
  *passato qualora ce ne fossero o un messaggio di avvertenza che segnala che non esistono ricette con la combinazione di ingredienti fornita in input
- * @param alimenti_frigo
- * @param num_alimenti
- * @param nome_alimenti
- * @return 1
+ * @pre		Deve essere passato almeno un alimento e quindi il numero di alimenti deve essere anch'esso un valore significativo
+ * @post	Deve essere stato mostrato un messaggio in base all'esito della ricerca
  */
 int suggerimento_ricetta_manuale(int num_alimenti_sugg, char nome_ingredienti[MAX_ALIM_SUGG][LUNG_NOME_ALIMENTO]){
 	int num_ricette=conta_righe_database_ricette();
@@ -889,9 +889,8 @@ int suggerimento_ricetta_manuale(int num_alimenti_sugg, char nome_ingredienti[MA
  *ho 4 uova a disposizione complessivamente.
  *Al termine del controllo sulle ricette vengono stampate a schermo quelle preparabili
  *passato qualora ce ne fossero o un messaggio di avvertenza che segnala che non esistono ricette con la combinazione di ingredienti fornita in input
- * @param alimenti_frigo
- * @param num_alimenti
- * @return
+ * @pre		Deve essere passato almeno un alimento e quindi il numero di alimenti deve essere anch'esso un valore significativo
+ * @post	Deve essere stato mostrato un messaggio in base all'esito della ricerca
  */
 int suggerimento_ricetta_automatico(alimento_frigo* alimenti_frigo,int num_alimenti){
 
@@ -969,9 +968,8 @@ int suggerimento_ricetta_automatico(alimento_frigo* alimenti_frigo,int num_alime
  * che vogliamo salvare non sia giá presente nel database. Per far ció leggiamo sequenzialmente il file e se troviamo una ricetta con lo stesso nome aggiorniamo il flag di presenza.
  * Nel caso in cui la ricetta abbia superato il controllo e pertanto non sia presente nel database, essa viene salvata alla prima riga vuota presente nel file(ricordiamo che
  * il progetto in generale si basa sul recupero delle righe all'interno di un file).
- *
- * @param nuove_ricette
- * @return 1
+ * @pre		Deve essere passata una struct contenente valori significativi
+ * @post	Devono essere stati scritti su file i dati relativi alla ricetta
  */
 int aggiorna_database_ricette(ricetta nuove_ricette){
 	int id_ricette=1;
@@ -1033,7 +1031,8 @@ int aggiorna_database_ricette(ricetta nuove_ricette){
  * se si vuole modificare la ricetta oppure no. Qualora l'estrazione da file abbia avuto successo viene effettuato lo split degli ingredienti per memorizzare opportunamente i valori all'interno
  * dell'array di struct. Infine vengono calcolate le calorie prodotte dalla ricetta e viene richiamata la funzione che si occupa della memorizzazione dei dati raccolti. L'operazione viene
  * ripetuta fino a quando é possibile estrarre una riga dal file ossia fino a quando é presente una ricetta nel file
- * @return
+ * @pre		Nessuna particolare pre-condizione
+ * @post	Deve essere stato effettuato con successo almeno un'estrazione di una ricetta o in caso contrario deve essere mostrato un messaggio di errore
  */
 int lettura_nuove_ricette(){
 		int indice_ingredienti=0;
@@ -1147,8 +1146,8 @@ int lettura_nuove_ricette(){
  * le informazioni degli alimenti presenti nel database. In questa maniera siamo in grado di trovare una corrispondenza tra ingredienti e alimenti
  * presenti nel database, estraendo cosí il corrispettivo fabbisogno calorico per poi sommarlo a quello complessivo della ricetta. L'operazione
  * viene fatta per ogni ingrediente e al termine vengono fornite in output le kcal di quell'alimento.
- * @param nuove_ricette
- * @return kcal_ricetta
+ * @pre		Deve essere passata un'array di struct contenente valori significativi, come lo deve essere il numero di tali ingredienti
+ * @post	Deve essere generato un valore significativo(intero maggiore o uguale di 0)
  */
 int conta_kcal_ricetta(ingrediente ingredienti[MAX_NUM_INGR], int num_ingredienti){
 	int kcal_ricetta=0;

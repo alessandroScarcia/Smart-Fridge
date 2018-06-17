@@ -18,9 +18,8 @@
  * La funzione input scelta si occupa di ricevere in input il comando per accedere ad una determinata voce dei menu. Si é pensato che la scelta essendo un numero
  * avrá anche esso un range. Se la scelta é compresa nel range vuol dire che é accettabile altrimenti verrá scartata e verrá richiesto di reinserire il valore. Con la funzione  strtol
  * siamo in grado di capire inoltre se viene inserito anche un carattere all'interno della scelta e pertanto siamo in grado di prevenire un errore di tipo per l'input
- * @param valore_minimo
- * @param valore_massimo
- * @return (int)parte_intera (la stringa viene convertita in un int qualora fosse accettabile)
+ * @pre  Che vengano passati dei valori significativi di massimo e minimo
+ * @post Il valore restituito deve essere un intero
  */
 int input_scelta(int valore_minimo, int valore_massimo) {
 	char num_input[LUNG_SCELTA]; //dichiaro una stringa composta da 10 caratteri che ospiterá l'input( la stringa ricordati che é un array di caratteri)
@@ -45,8 +44,8 @@ int input_scelta(int valore_minimo, int valore_massimo) {
 
 /**
  * La funzione visualizza_voci_menu allggerisce il codice delle funzioni dei menu e si occupa di mostrare opportunatamente le voci appertenenti ad un determinato menu
- * @param voce
- * @return 1
+ * @pre  Che la variabile voce sia un valore significativo
+ * @post Che siano state visualizzate le opzioni corrette per ogni menu
  */
 int visualizza_voci_menu(int voce){
 	system("cls");
@@ -114,9 +113,12 @@ int visualizza_voci_menu(int voce){
 }
 
 
-/**
- *
- * @return
+/**Funzione che si occupa di mostare le operazioni urgenti che l'utente ddeve effettuare. Nel caso in cui il valore delle notifiche sia maggiore
+ * di 1 e quindi il contatore degli alimenti scaduti segnala che  un alimento o piú sono scaduti occorre chiedere se l'utente intende eliminare tali
+ * alimenti o tenerli. Nel caso in cui l'utente accettasse occorre richiamare la funzione che si occupa dell'eliminazione degli alimenti scaduti.
+ * In caso non ci siano notifiche da segnalare viene mostrato un messaggio.
+ * @pre  Nessuna pre condizione particolare
+ * @post Che venga effettuato con successo l'eliminazione degli alimenti scaduti in caso di accettazione da parte dell'utente
  */
 int visualizza_notifiche(){
 	int flag_elimina_alimenti;
@@ -140,8 +142,11 @@ int visualizza_notifiche(){
 }
 
 
-
-
+/**
+ * Funzione che serve a contare tutte le tipologie di notifiche che vanno mostrate nel menú principale
+ * @pre  Nessuna pre condizione particolare
+ * @post Il valore restituito deve essere un intero significativo (>=0)
+ *  */
 int conta_notifiche (){
 	int avvisi=0;
 	avvisi=avvisi+conta_alimenti_scaduti();
@@ -149,7 +154,13 @@ int conta_notifiche (){
 }
 
 
-int menu_ricette_ord(){
+/**
+ * Funzione che si occupa di passare gli alimenti presenti nel frigo e le ricette salvate nel database e di effettuare ricerche e ordinamenti su
+ * tali dati estratti.
+ * @pre  Nessuna pre condizione particolare
+ * @post Che sia stato mostrato il giusto risultato in ase alla richiesta dell'utente
+ */
+int menu_ricette_ricerca(){
 	int scelta;
 	char nome_alimenti[MAX_ALIM_SUGG][LUNG_NOME_ALIMENTO];
 	visualizza_voci_menu(SOTT_MENU_RICETTE);
@@ -185,7 +196,7 @@ int menu_ricette_ord(){
 						ordina_ric_kcal(ricette_database,num_ricette);
 						break;
 					case 4:
-						ricette_alimenti_in_scadenza(alimenti_frigo,num_alimenti, nome_alimenti);
+						ricette_alimenti_in_scadenza(alimenti_frigo,num_alimenti);
 						break;
 
 					default:
@@ -204,6 +215,11 @@ int menu_ricette_ord(){
 }
 
 
+/**Funzione che si occupa di far selezionare all'utente le operazioni possibili da effettuare sui dati di tipo ricetta. La scelta dell'opzione
+ * viene fatta attraverso una switch
+ * @pre  Nessuna pre condizione particolare
+ * @post Il risultato deve essere quello che l'opzione scelta si occupa
+ */
 int menu_ricette(){
 			int scelta; //memorizza la scelta effettuata dall'utente
 
@@ -264,7 +280,11 @@ int menu_ricette(){
 }
 
 
-
+/**Funzione che si occupa di far selezionare all'utente le operazioni possibili da effettuare sui dati di tipo alimenti. La scelta dell'opzione
+ * viene fatta attraverso una switch
+ * @pre  Nessuna pre condizione particolare
+ * @post Il risultato deve essere quello che l'opzione scelta si occupa
+ */
 int menu_alimenti(){
 	  	int scelta; //memorizza la scelta effettuata dall'utente
 
@@ -318,7 +338,11 @@ int menu_alimenti(){
 
 }
 
-
+/**Funzione che si occupa di far selezionare all'utente le operazioni possibili da effettuare sul menu principale. La scelta dell'opzione
+ * viene fatta attraverso una switch
+ * @pre  Nessuna pre condizione particolare
+ * @post Il risultato deve essere quello che l'opzione scelta si occupa
+ */
 int menu_principale(){
   	int scelta; //memorizza la scelta effettuata dall'utente
 
@@ -372,9 +396,9 @@ int menu_principale(){
 
 
 
-/**
- * Funzione che funge da Ester Egg. Mostra i credits
- * @return 1 in caso di successo
+/**Funzione che mostra i creatori del programma
+ * @pre  Nessuna pre condizione particolare
+ * @post Il valore restituito deve essere una stringa oppure un puntatore null
  */
 int visualizza_crediti(){
 	printf("Software a cura di : \n"

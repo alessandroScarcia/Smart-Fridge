@@ -101,68 +101,250 @@ typedef struct{
 
 //*********************************DEFINIZIONI DEI PROTOTIPI***********************************
 
-///serve ad effettuare una tokenizzazione della stringa che gli passiamo
-const char* leggi_campo_ricetta(char* line, int num, short flag_campo);
+/**Serve ad effettuare una tokenizzazione della stringa che gli passiamo
+ *
+ * @param linea				stringa che dovrá essere divisa in token
+ * @param num				numero del campo da estrarre dalla stringa
+ * @param flag_campo		tipologia di estrazione da effettuare. Qualora sia 1 bisogna effettuare il conteggio dei campi presenti all'interno
+ * 							della stringa
+ *
+ * @return NULL				se abbiamo terminato di analizzare la riga
+ * @return "vuoto"			se il campo stringa da estrarre é assente
+ * @return tok				se l'estrazione ha avuto successo(il token sarebbe il valore)
+ */
+const char* leggi_campo_ricetta(char* linea, int num, short flag_campo);
 
-///serve a leggere da file .csv le ricette nuove
+
+
+
+/**Serve a leggere da file .csv le ricette nuove
+ *
+ * @return 1				in caso di successo di estrazione dati da file
+ */
 int lettura_nuove_ricette();
 
-///permette la visualizzazione del database o di una singola ricetta in base all'id che passiamo. Inoltre possiamo decidere in che modalitá vedere i dati(0-->totale, 1-->minimizzata)
+
+
+
+/**Funzione che serve a visualizzare i dati relativi ad una singola ricetta
+ *
+ * @param dati_ricette		struct che contiene i dati della ricetta
+ * @param vista_ricetta		flag che in base ad un controllo permette di visualizzare tutti i dati della ricetta o solo quelli principali
+ *
+ * @return 1				in caso di successo nella visualizzazione
+ */
+int visualizza_ricetta(ricetta dati_ricetta, int vista_ricetta);
+
+
+
+
+/**permette la visualizzazione del database o di una singola ricetta in base all'id che passiamo.
+ * Inoltre possiamo decidere in che modalitá vedere i dati(0-->totale, 1-->minimizzata)
+ *
+ * @param nome_ricetta		nome della ricetta da visualizzare in caso possieda un valore. In caso sia una stringa vuota viene mostrato l'intero database
+ * @param id_ricetta_pers	id che viene mostrato a schermo a seguito di una ricerca o altre operazioni
+ * @param vista				flag che in base ad un controllo permette di visualizzare tutti i dati della ricetta o solo quelli principali
+ * @return 1				in caso di successo nella visualizzazione
+ */
 int visualizza_database_ricette(char nome_ricetta[LUNG_NOME_RIC], int id_ricetta_pers, int vista);
 
-///serve a memorizzare la ricetta che passiamo all'interno di un file con accesso binario che fungerá da database
+
+
+
+/**Serve a memorizzare la ricetta che passiamo all'interno di un file con accesso binario che fungerá da database
+ *
+ * @param nuove_ricette		struct che possiede i dati della ricetta da aggiungere al database
+ * @return 1				in caso di successo nell'aggiornamento del database
+ */
 int aggiorna_database_ricette(ricetta nuove_ricette);
 
-///si occupa di eliminare una ricetta in base all'id inserito dall'utente. La riga che conteneva la ricetta viene inizializzata
+
+
+
+/**Si occupa di eliminare una ricetta in base all'id inserito dall'utente. La riga che conteneva la ricetta viene inizializzata
+ *
+ * @return 1				in caso di successo nell'eliminazione
+ */
 int elimina_ricetta();
 
-/// La funzione suggerirá le ricette che si possono effettuare con gli ingredienti a disposizione nel frigo
+
+
+
+/** La funzione suggerirá le ricette che si possono effettuare con gli ingredienti a disposizione nel frigo
+ *
+ * @param alimenti_frigo	Elenco degli alimenti del frigo su cui effettuare la ricerca della ricetta
+ * @param num_alimenti		numero degli alimenti presenti nel frigo
+ * @return 1				in caso di successo nella visualizzazione di un suggerimento
+ */
 int suggerimento_ricetta_automatico(alimento_frigo* alimenti_frigo,int num_alimenti);
 
-///Suggerisce le ricette che si possono fare con gli alimenti inseriti manualmente dall'utente
+
+
+
+/**Suggerisce le ricette che si possono fare con gli alimenti inseriti manualmente dall'utente
+ *
+ * @param num_alimenti		numero di ingredienti su cui effettuare la ricerca
+ * @param nome_alimenti		nome degli alimenti su cui effettuare a ricerca della ricetta
+ * @return 1				in caso di successo nella visualizzazione di un suggerimento
+ */
 int suggerimento_ricetta_manuale(int num_alimenti, char nome_alimenti[MAX_ALIM_SUGG][LUNG_NOME_ALIMENTO]);
 
-///Ordina le ricette presenti nel database in base alle kcal che producono. L'ordinamento viene effettuato tramite shell sort
+
+
+
+/**Ordina le ricette presenti nel database in base alle kcal che producono. L'ordinamento viene effettuato tramite shell sort
+ *
+ * @param ricette_database	array di struct che possiede tutte le ricette presenti nel database su cui effettuare l'ordinamento
+ * @param num_ricette		numero delle ricette su cui effettuare l'ordinamento
+ * @return 1				in caso di successo nell'ordinamento
+ */
 int ordina_ric_kcal(ricetta* ricette_database, int num_ricette);
 
-///conta le righe(le ricette) presenti nel database delle ricette escludendo le righe inizializzate(vuote)
+
+
+
+/**Funzione che si occupa di inizializzare l'array di puntatori che conterrá il nome delle ricette preparabili con valori NULLI
+ *
+* @param num_ricette		 numero delle ricette che si devono inizializzare
+* @param ricette_preparabili array di stringhe che devono essere inizializzate
+* @return 1					 in caso di successo nell'inizializzazione
+*/
+int inizializza_ricette_preparabili(int num_ricette, char* ricette_preparabili[num_ricette]);
+
+
+
+
+/**conta le righe(le ricette) presenti nel database delle ricette escludendo le righe inizializzate(vuote)
+ *
+ * @return righe numero di righe presenti nel database
+ */
 int conta_righe_database_ricette();
 
-///popola un array di struct con le ricette presenti nel database. Questa funzione serve a non effettuare ogni volta la lettura del file all'interno di altre funzioni
+
+
+
+/**popola un array di struct con le ricette presenti nel database.
+ * Questa funzione serve a non effettuare ogni volta la lettura del file all'interno di altre funzioni
+ *
+ * @param ricette_database	array di struct che verrá riempito con le ricette del database
+ * @return 1				in caso di successo nella lettura dei valori
+ */
 int lettura_database_ricette(ricetta* ricette_database);
 
-///DA SPOSTARE funzione che si occupa di memorizzare il prodotto consumato(0-->alimento,  1---->ricetta) all'interno di file che memorizza i vari consumi degli utenti
+
+
+
+/**DA SPOSTARE funzione che si occupa di memorizzare il prodotto consumato(0-->alimento,  1---->ricetta)
+ * all'interno di file che memorizza i vari consumi degli utenti
+ *
+ * @param nome_prodotto		nome della ricetta/alimento da registrare
+ * @param flag_prodotto		tipologia di prodotto da registrare (alimento/ricetta)
+ * @return 1				in caso di avvenuto successo nella registrazione del consumo
+ */
 int registra_consumi(char nome_prodotto[LUNG_PRODOTTO], short flag_prodotto);
 
-///funzione che ricerca il prodotto maggiormente consumato in base al valore del flag che viene passato(0-->alimento, 1--->ricetta) e lo stampa
+
+
+
+/**funzione che ricerca il prodotto maggiormente consumato in base al valore del flag che viene passato(0-->alimento, 1--->ricetta) e lo stampa
+ *
+ * @param flag_prodotto		tipologia di prodotto(ricetta/alimento)	su cui deve essere effettuata la ricerca
+ * @return 1				in caso di successo della ricerca
+ */
 int ricerca_prod_magg_cons(short flag_prodotto);
 
-///funzione che calcola le calorie prodotte per una ricetta in base al numero e nome degli ingredienti che possiede
+
+
+
+/**funzione che calcola le calorie prodotte per una ricetta in base al numero e nome degli ingredienti che possiede
+ *
+ * @param ingredienti		array di struct che memorizza i dati relativi agli ingredienti di una data ricetta
+ * @param num_ingredienti	numero di ingredienti effettivi della ricetta
+ * @return kcal_ricetta		numero di kcal che la ricetta produce
+ */
 int conta_kcal_ricetta(ingrediente ingredienti[MAX_NUM_INGR], int num_ingredienti);
 
-///funzione di ricerca ricette, ottimizzata per gli alimenti che stanno per scadere all'interno del frigo
-int ricette_alimenti_in_scadenza(alimento_frigo* alimenti_frigo,int num_alimenti,char nome_alimenti[MAX_ALIM_SUGG][LUNG_NOME_ALIMENTO]);
 
-///funzione che serve ad inserire manualmente gli ingredienti da usare come paroli chiave per la ricerca di ricette che possiedono tali ingredienti
+
+
+/**funzione di ricerca ricette, ottimizzata per gli alimenti che stanno per scadere all'interno del frigo
+ *
+ * @param alimenti_frigo	elenco degli alimenti del frigo(ordinati per scadenza) su cui effettuare la ricerca della ricetta
+ * @param num_alimenti		numero di alimenti presenti nel frigo
+ * @return 1				in caso di successo
+ */
+int ricette_alimenti_in_scadenza(alimento_frigo* alimenti_frigo,int num_alimenti);
+
+
+
+
+/**funzione che serve ad inserire manualmente gli ingredienti da usare come paroli chiave per la ricerca di ricette che possiedono tali ingredienti
+ *
+ * @param nome_alimenti				matrice che conterrá i nomi degli ingredienti su cui effettuare la ricerca della ricetta
+ * @return num_alimenti_inseriti++	indice incrementato che corrisponde al numero effettivo di ingredienti inseriti dall'utente
+ */
 int inserimento_manuale_ingredienti(char nome_alimenti[MAX_ALIM_SUGG][LUNG_NOME_ALIMENTO]);
 
-///funzione che si occupa di modificare un campo di una determinata ricetta inseriti dall'utente, con un nuovo valore anch'esso inserito manualmente
+
+
+
+/**funzione che si occupa di modificare un campo di una determinata ricetta inseriti dall'utente, con un nuovo valore anch'esso inserito
+ * manualmente
+ *
+ * @return 1 			in caso di sucesso della funzione
+ */
 int modifica_ricetta();
 
-///funzione che si occupa dell'inserimento di un nuovo valore per il campo porzione
+
+
+
+/**funzione che si occupa dell'inserimento di un nuovo valore per il campo porzione
+ *
+ * @return porzione				nuova porzione inserita dall'utente
+ */
 int input_porzione_ricetta();
 
-///funzione che si occupa dell'inserimento di un nuovo ingrediente per una data ricetta
+
+
+
+/**funzione che si occupa dell'inserimento di un nuovo ingrediente per una data ricetta
+ *
+ * @return ingrediente 			nuovo ingrediente inserito dall'utente
+ */
 char* input_ingredienti_ricetta();
 
-///funzione che si occupa dell'inserimento di un nuovo valore per il campo preparazione
+
+
+
+/**funzione che si occupa dell'inserimento di un nuovo valore per il campo preparazione
+ *
+ * @return preparazione 		nuova preparazione inserita dall'utente
+ */
 char* input_preparazione_ricetta();
 
-///funzione che si occupa dell'inserimento di un nuovo valore per il campo complessitá
+
+
+
+/**funzione che si occupa dell'inserimento di un nuovo valore per il campo complessitá
+ *
+ * @return complessita 			nuova complessita inserita dall'utente
+ */
 char* input_complessita_ricetta();
 
-///funzione che si occupa dell'inserimento di un nuovo valore per il campo tempo di preparazione
+
+
+
+/**funzione che si occupa dell'inserimento di un nuovo valore per il campo tempo di preparazione
+ *
+ * @return tempo_preparazione 	nuovo tempo di preparazione inserito dall'utente
+ */
 char* input_tempo_prep_ricetta();
 
-///funzione che si occupa dell'inserimento di un nuovo valore per il campo nome ricetta
+
+
+
+/**funzione che si occupa dell'inserimento di un nuovo valore per il campo nome ricetta
+ *
+ * @return nome_ricetta		    nuovo nome della ricetta inserito dall'utente
+ */
 char* input_nome_ricetta();

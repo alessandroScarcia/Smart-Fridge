@@ -12,9 +12,9 @@
  * alla data di scadenza. L'ordinamento é effettuato attraverso l'algoritmo shell sort in quanto risultava quello piú semplice ed efficace da implementare dato il quantitativo
  * di dati(non é eccessivo considerato che il frigo avrá al massimo un centinaio al massimo di alimenti). Inoltre in questa versione di shell sort si é optato di non creare a parte un
  * array contenente i gap (distanza per gli scambi), ma di sfruttare il numero di alimenti inizialmente e poi dividere per 2 di volta in volta la lunghezza.
- * @param alimenti_frigo
- * @param num_alimenti
- * @return 1
+ * @pre  l'array di struct deve possedere almeno un alimento da ordinare e pertanto il numero di alimenti deve essere idoneo
+ * @post L'ordinamento deve essere stato effettuato con successo
+ *
  */
 int ordina_alimenti_scadenza(alimento_frigo* alimenti_frigo, int  num_alimenti){
 
@@ -50,6 +50,8 @@ int ordina_alimenti_scadenza(alimento_frigo* alimenti_frigo, int  num_alimenti){
 
 /**
  * Funzione che si occupa di contare le effettive righe presenti nel database escludendo quelle vuote
+ * @pre  Nessuna pre condizione particolare
+ * @post Il valore restituito deve essere un intero significativo (>=0)
  */
 int conta_alimenti_database(){
 	FILE *fp= fopen(FILE_DATABASE_ALIMENTI,"rb"); //apri il file in modalitá "lettura binaria"
@@ -68,6 +70,8 @@ int conta_alimenti_database(){
 
 /**
  * Funzione che conta gli alimenti presenti nel frigo e ne restituisce il valore. Il conteggio viene effettuato escludendo le righe vuote nel database
+ * @pre  Nessuna pre condizione particolare
+ * @post Il valore restituito deve essere un intero significativo (>=0)
  */
 int conta_alimenti(){
 
@@ -92,7 +96,8 @@ int conta_alimenti(){
  * Dopo aver popolato un array di struct di tipo alimento frigo la funzione si occupa di confrontare la data di scadenza con la data odierna. Qualora la differenza tra date
  * produca un valore negativo vuol, dire che l'alimento é scaduto e pertanto occorre incrementare il contatore. Questa funzione serve principalmente nel menu principale per
  * conteggiare il numero di notifiche che devono eesre viste dall'utente
- * @return
+ * @pre  Nessuna pre condizione particolare
+ * @post Il valore restituito deve essere un intero significativo (>=0)
  */
 int conta_alimenti_scaduti(){
 	int num_alimenti=conta_alimenti(FILE_FRIGO);
@@ -114,8 +119,8 @@ int conta_alimenti_scaduti(){
 /**
  * Funzione che avendo ricevuto in ingresso l'array di struct vuoto che conterrá gli alimenti del database, si occuperá di riempire tale array con i dati salvati all'interno del file
  * e di restituire al termine il numero di tali alimenti salvati. Come per ogni altra funzione che conta gli elementi del file anche in questo caso si saltano le righe vuote
- * @param lista_alimenti
- * @return
+ * @pre  Deve essere passato un array di struct della giusta dimensione
+ * @post Il valore restituito deve essere un intero significativo (>=0)
  */
 int leggi_database_alimenti(alimento_database* lista_alimenti){
 	FILE *fp; //creo un puntatore di tipo file
@@ -135,7 +140,7 @@ int leggi_database_alimenti(alimento_database* lista_alimenti){
     	}
     }
     fclose(fp);
-    return indice_alimento;//se la funzione é andata a buon fine restituisci 1
+    return indice_alimento;//se la funzione é andata a buon fine restituisci il numero di elementi caricati
 }
 
 
@@ -144,7 +149,8 @@ int leggi_database_alimenti(alimento_database* lista_alimenti){
  * Funzione che viene richiamata direttamente dal menu e dal gestore delle notifiche. Essa si occupa  di scovare tutti gli alimenti scaduti(se la differenza tra data odierna e data di scadenza
  * produce un valore negativo allora l'alimento é scaduto) e di inizializzare la riga in maniera tale da poterla recuperare in una prossima scrittura. Ovviamente nella ricerca vengono
  * sempre scartate le righe vuote
- * @return
+ * @pre  Nessuna pre condizione particolare
+ * @post Deve essere stata effettuata con successo la scrittura su file
  */
 int eliminazione_alimenti_scaduti(){
 	alimento_frigo alimenti_frigo;
@@ -179,7 +185,8 @@ int eliminazione_alimenti_scaduti(){
 
 /**
  *Funzione che viene richiamata direttamente dal gestore delle notifiche e si occupa di visualizzare gli alimenti scaduti presenti nel frigo e di mostrare la relativa data di scadenza.
- * @return
+ * @pre  Nessuna pre condizione particolare
+ * @post Deve essere termianta con successo la visualizzazione
  */
 int visualizza_alimenti_scaduti(){
 	int num_alimenti=conta_alimenti();
