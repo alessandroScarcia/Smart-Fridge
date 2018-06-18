@@ -159,7 +159,7 @@ void generatore_password(char* password_utente){
 	int esito_input;
 	short esito_controllo;
 
-	puts("Selezionare la modalità di generazione.");
+	puts("\nSelezionare la modalità di generazione della password.");
 
 	do{
 		printf("Inserire:\n 1 - Generazione automatica.\n 2 - Inserimento manuale.\n>");
