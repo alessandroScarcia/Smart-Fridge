@@ -12,27 +12,28 @@
  * alla data di scadenza. L'ordinamento é effettuato attraverso l'algoritmo shell sort in quanto risultava quello piú semplice ed efficace da implementare dato il quantitativo
  * di dati(non é eccessivo considerato che il frigo avrá al massimo un centinaio al massimo di alimenti). Inoltre in questa versione di shell sort si é optato di non creare a parte un
  * array contenente i gap (distanza per gli scambi), ma di sfruttare il numero di alimenti inizialmente e poi dividere per 2 di volta in volta la lunghezza.
- * @pre  l'array di struct deve possedere almeno un alimento da ordinare e pertanto il numero di alimenti deve essere idoneo
- * @post L'ordinamento deve essere stato effettuato con successo
+ *
+ * @pre  l'array di struct deve possedere almeno un alimento da ordinare e pertanto il numero di alimenti deve essere idoneo.
+ * @post L'ordinamento deve essere stato effettuato con successo.
  *
  */
 int ordina_alimenti_scadenza(alimento_frigo* alimenti_frigo, int  num_alimenti){
 
-	alimento_frigo tmp;
-	int* differenza=NULL;
-	for (int gap = num_alimenti/2; gap > 0; gap /= 2)
-		    {
+	alimento_frigo tmp; // Variabile si sostegno per effettuare gli scambi fra alimenti
 
-		        for (int i = gap; i < num_alimenti; i++)
-		        {
+	for (int gap = num_alimenti/2; gap > 0; gap /= 2){
+
+		        for (int i = gap; i < num_alimenti; i++){
+
 					// salva il corrente elemento puntato da i in tmp
 		        	tmp = alimenti_frigo[i];
 
 		            //sposta i precedenti elementi fino alla corretta locazione di alimenti_frigo[i] é 	trovata
 		        	int j;
-		            for (j = i; j >= gap && diff_date(differenza,alimenti_frigo[j - gap].scadenza, data_odierna()) > diff_date(differenza,tmp.scadenza,data_odierna()); j -= gap)
+		        	// diff_date(differenza,alimenti_frigo[j - gap].scadenza, data_odierna()) > diff_date(differenza,tmp.scadenza,data_odierna())
+		            for (j = i; j >= gap && confronta_date(alimenti_frigo[j - gap].scadenza, tmp.scadenza) == SECONDA_DATA_ANTECEDENTE; j -= gap){
 		            	alimenti_frigo[j] = alimenti_frigo[j - gap];
-
+		            }
 		            //  inserisci tmp (l'originale alimenti_frigo[i]) nella sua corretta locazione
 		            alimenti_frigo[j] = tmp;
 		        }
@@ -50,21 +51,27 @@ int ordina_alimenti_scadenza(alimento_frigo* alimenti_frigo, int  num_alimenti){
 
 /**
  * Funzione che si occupa di contare le effettive righe presenti nel database escludendo quelle vuote
+ *
  * @pre  Nessuna pre condizione particolare
  * @post Il valore restituito deve essere un intero significativo (>=0)
  */
 int conta_alimenti_database(){
-	FILE *fp= fopen(FILE_DATABASE_ALIMENTI,"rb"); //apri il file in modalitá "lettura binaria"
-	alimento_database info_alimento;			//genero una struct di riferimento che mi permette di scorrere all'interno del file di tipo binario
-	int righe=0;
+	FILE* stream = NULL;						// Puntatore a FILE_DATABASE_ALIMENTI
+	int num_alimenti = 0;
 
-    while(fread(&info_alimento,sizeof(info_alimento),1,fp)>0){//fino a quando riesci a leggere righe dal file
-    	if(strcmp(info_alimento.nome,"")!=0)
-    		righe++;									//incremento il contatore del numero di righe
-	  }
+	// Apertura del file in modalità lettura binaria
+	if((stream = fopen(FILE_DATABASE_ALIMENTI, "rb")) == NULL){
+		return num_alimenti;
+	}else{
+		// Calcolo del numero alimenti del database, posizionando il puntatore alla fine del file
+		// e dividendo la sua posizione per la grandezza di un signolo elemento
+		fseek(stream, 0, SEEK_END);
+		num_alimenti = ftell(stream) / sizeof(alimento_database);
 
-	fclose(fp); //chiudi il file
-	return righe;
+	}
+
+	fclose(stream); //chiudi il file
+	return num_alimenti;
 }
 
 
@@ -74,21 +81,25 @@ int conta_alimenti_database(){
  * @post Il valore restituito deve essere un intero significativo (>=0)
  */
 int conta_alimenti(){
+		FILE* stream = NULL;					// Puntatore a FILE_FRIGO
+		alimento_frigo info_alimento;			// genero una struct di riferimento che mi permette di scorrere all'interno del file di tipo binario
 
-		FILE *fp= fopen(FILE_FRIGO,"rb"); //apri il file in modalitá "lettura binaria"
-		alimento_frigo info_alimento;			//genero una struct di riferimento che mi permette di scorrere all'interno del file di tipo binario
-		int righe=0;
+		int num_alimenti = 0;	// Numero di alimenti presenti nel frigo
 
-        while(fread(&info_alimento,sizeof(info_alimento),1,fp)>0){//fino a quando riesci a leggere righe dal file
-        	if(strcmp(info_alimento.nome,"")!=0)
-        		righe++;									//incremento il contatore del numero di righe
+		// Apertura di FILE_FRIGO
+		if((stream = fopen(FILE_FRIGO, "rb")) == NULL){
+			return num_alimenti; // Se il file non può essere aperto, viene ritornato 0
+		}else{
+			// Viene attraversato il contenuto del frigo, aumentando il numero di alimenti quando l'alimento letto ha nome diverso da stringa vuota
+			while(fread(&info_alimento, sizeof(info_alimento), 1, stream) > 0){
+				if(strcmp(info_alimento.nome, "") != 0)
+					num_alimenti++; // Incremento il contatore del numero di alimenti
 
-        }
-		//DEBUG:printf("%d\n", lines);
+			}
+		}
 
-		fclose(fp); //chiudi il file
-		return righe;
-
+		fclose(stream);
+		return num_alimenti;
 }
 
 
@@ -100,19 +111,29 @@ int conta_alimenti(){
  * @post Il valore restituito deve essere un intero significativo (>=0)
  */
 int conta_alimenti_scaduti(){
-	int num_alimenti=conta_alimenti(FILE_FRIGO);
-	alimento_frigo alimenti_frigo[num_alimenti];
-	leggi_frigo(alimenti_frigo);
+	int num_alimenti_scaduti = 0; // Numero di alimenti scaduti rilevati
+	int num_alimenti = conta_alimenti(FILE_FRIGO); // Numero di alimenti contenuti nel frigo
+	data data_esecuzione; // Data al momento di esecuzione
 
-	int contatore_alim_scad=0;
-	int* differenza=NULL;
-    for(int i=0;i<num_alimenti;i++){
-    	if(diff_date(differenza, alimenti_frigo[i].scadenza, data_odierna()) <0){//se la differenza tra data odierna e data di scadenza produce un valore negativo allora l'alimento é scaduto
-    		contatore_alim_scad++;
+	// Se è presente almeno un alimento nel frigo, è necessario iniziare i controlli
+	if(num_alimenti > 0){
+		// Dichiarazione e caricamento degli alimenti nel frigo all'interno di un array
+		alimento_frigo alimenti_frigo[num_alimenti];
+		leggi_frigo(alimenti_frigo);
 
-    	}
-    }
-	return contatore_alim_scad;
+		// Determinazione della data al momento di esecuzione
+		data_esecuzione = data_odierna();
+
+		// Per ogni alimento del frigo, se la loro data è antecedente a data_esecuzione, va incrementato num_alimenti_scaduti
+		for(int i = 0; i < num_alimenti; i++){
+			//se la differenza tra data odierna e data di scadenza produce un valore negativo allora l'alimento é scaduto
+			if(confronta_date(alimenti_frigo[i].scadenza, data_esecuzione) == PRIMA_DATA_ANTECEDENTE){
+				num_alimenti_scaduti++;
+			}
+		}
+	}
+
+	return num_alimenti_scaduti;
 }
 
 
@@ -123,24 +144,31 @@ int conta_alimenti_scaduti(){
  * @post Il valore restituito deve essere un intero significativo (>=0)
  */
 int leggi_database_alimenti(alimento_database* lista_alimenti){
-	FILE *fp; //creo un puntatore di tipo file
-	fp=fopen(FILE_DATABASE_ALIMENTI,"rb+"); //apri il file in modalitá "scrittura in coda
-
+	FILE* stream = NULL; // Puntatore a FILE_DATABASE_ALIEMNTI
 	alimento_database info_alimento;//creo una struttura di riferimento per scorrere all'interno del file
+	int indice_alimento = 0; // Indice dell'alimento letto dal database
 
-	int indice_alimento=0;
-    while(fread(&info_alimento,sizeof(info_alimento),1,fp)>0){//ripeti fino a quando é possibile leggere righe con le dimensioni della struct
-    	if(strcmp(info_alimento.nome, "")!=0){//stampa solo le righe non inizializzate
-    		strcpy(lista_alimenti[indice_alimento].nome,info_alimento.nome);
-    		lista_alimenti[indice_alimento].campione_kcal=info_alimento.campione_kcal;
-    		lista_alimenti[indice_alimento].soglia_spesa=info_alimento.soglia_spesa;
-    		lista_alimenti[indice_alimento].kcal=info_alimento.kcal;
-    		strcpy(lista_alimenti[indice_alimento].unita_misura,info_alimento.unita_misura);
-			indice_alimento++;
-    	}
-    }
-    fclose(fp);
-    return indice_alimento;//se la funzione é andata a buon fine restituisci il numero di elementi caricati
+	if((stream = fopen(FILE_DATABASE_ALIMENTI, "rb+")) == NULL){ // Apertura del file in modalità lettura binaria e aggiornamento
+		return indice_alimento; // Se il file non può essere aperto è ritronato 0
+	}else{
+		// Viene attraversato il file copiando ogni elemento nel'array ricevuto in lista_alimenti
+		while(fread(&info_alimento, sizeof(alimento_database), 1, stream) > 0){
+				strcpy(lista_alimenti[indice_alimento].nome,info_alimento.nome);
+
+				lista_alimenti[indice_alimento].campione_kcal=info_alimento.campione_kcal;
+
+				lista_alimenti[indice_alimento].soglia_spesa=info_alimento.soglia_spesa;
+
+				lista_alimenti[indice_alimento].kcal=info_alimento.kcal;
+
+				strcpy(lista_alimenti[indice_alimento].unita_misura,info_alimento.unita_misura);
+
+				indice_alimento++;
+		}
+
+		fclose(stream);
+		return indice_alimento;//se la funzione é andata a buon fine restituisci il numero di elementi caricati
+	}
 }
 
 
@@ -153,28 +181,34 @@ int leggi_database_alimenti(alimento_database* lista_alimenti){
  * @post Deve essere stata effettuata con successo la scrittura su file
  */
 int eliminazione_alimenti_scaduti(){
-	alimento_frigo alimenti_frigo;
-	FILE* fp = fopen(FILE_FRIGO, "rb+");
-	int* differenza=NULL;
-	while(fread(&alimenti_frigo,sizeof(alimenti_frigo),1,fp)>0){//ripeti fino a quando é possibile leggere una riga dal file
-		if(diff_date(differenza,alimenti_frigo.scadenza, data_odierna())<0 && strcmp(alimenti_frigo.nome,"")!=0){//esegue il blocco solo le righe non sono inizializzate e se l'alimento é scaduto
+	FILE* stream = NULL;
+	alimento_frigo alimento_letto;
+	data data_esecuzione;
 
-			//inizializzo la riga per eliminare il contenuto
-			strcpy(alimenti_frigo.nome,"");
-			strcpy(alimenti_frigo.unita_misura,"");
-			alimenti_frigo.scadenza.giorno=0;
-			alimenti_frigo.quantita=0;
-			alimenti_frigo.scadenza.mese=0;
-			alimenti_frigo.scadenza.anno=0;
+	// Apertura del file in lettura e aggiornamento binario
+	if((stream = fopen(FILE_FRIGO, "rb+")) == NULL){
+		return 0; // Se non può essere apertoil file viene ritornato 0
+	}else{
+		data_esecuzione = data_odierna(); // Estrazione della data al momento di esecuzione
 
+		// Viene attraversato il contenuto del frigo eliminando gli alimenti rilevati scaduti
+		while(fread(&alimento_letto, sizeof(alimento_frigo), 1, stream)>0){
+			// Se la riga letta contiene un alimento
+			if(strcmp(alimento_letto.nome,"") != 0){
+				// Se l'alimento è scaduto, va modificato il nome in stringa vuota così da considerarlo eliminato
+				if(confronta_date(alimento_letto.scadenza, data_esecuzione) == PRIMA_DATA_ANTECEDENTE){
+					//inizializzo la riga per eliminare il contenuto
+					strcpy(alimento_letto.nome,"");
 
-			int currPos = ftell(fp);//scopro la locazione di memoria su cui mi trovo al momento
-			fseek(fp,currPos-sizeof(alimenti_frigo),SEEK_SET);//posiziona il puntatore sulla locazione di memoria da cui iniziare a scrivere
-			fwrite(&alimenti_frigo,sizeof(alimenti_frigo),1,fp);//scrivi il contenuto della struct aggiornata
-			rewind(fp);
+					// Scrittura nel file dell'eliminazione, riposizionando il puntatore all'inizio dell'alimento appena letto
+					fseek(stream, -sizeof(alimento_frigo), SEEK_CUR);
+					fwrite(&alimento_letto,sizeof(alimento_frigo), 1, stream);
+				}
+			}
 		}
 	}
-	fclose(fp);
+
+	fclose(stream);
 	return 1;
 }
 
@@ -189,16 +223,25 @@ int eliminazione_alimenti_scaduti(){
  * @post Deve essere termianta con successo la visualizzazione
  */
 int visualizza_alimenti_scaduti(){
-	int num_alimenti=conta_alimenti();
+	int num_alimenti_scaduti = 0;
+	int num_alimenti = conta_alimenti();
+
+	if(num_alimenti == 0){
+		puts("Non ci sono alimenti nel frigo.");
+		return num_alimenti_scaduti;
+	}
+
 	alimento_frigo alimenti_frigo[num_alimenti];
 	leggi_frigo(alimenti_frigo);
-	int* differenza=NULL;
-    for(int i=0;i<num_alimenti;i++){
-    	if(diff_date(differenza, alimenti_frigo[i].scadenza, data_odierna()) <0)//se la differenza tra data odierna e data di scadenza produce un valore negativo allora l'alimento é scaduto
+
+    for(int i = 0; i < num_alimenti; i++){
+    	if(confronta_date(alimenti_frigo[i].scadenza, data_odierna()) == PRIMA_DATA_ANTECEDENTE){
+    		num_alimenti_scaduti++;
     		printf("Alimento scaduto: %s data di scadenza: %hu/%hu/%hu\n", alimenti_frigo[i].nome, alimenti_frigo[i].scadenza.giorno,
     				alimenti_frigo[i].scadenza.mese, alimenti_frigo[i].scadenza.anno);
+    	}
     }
-	return 1;
+	return num_alimenti_scaduti;
 }
 
 
@@ -677,7 +720,7 @@ int visualizza_database_alimenti(){
  */
 int visualizza_frigo(){
 	FILE *stream = NULL;				// Puntatore a FILE_FRIGO
-	unsigned short num_alimento = 0;	// Variabile per memorizzare il numero dell'alimento visualizzato
+	unsigned short num_alimenti = 0;	// Variabile per memorizzare il numero degli alimenti visualizzato
 	alimento_frigo alimento;			// Variabile per memorizzare l'alimento letto da FILE_FRIGO
 
 	if((stream = fopen(FILE_FRIGO, "rb")) == NULL){
@@ -693,17 +736,21 @@ int visualizza_frigo(){
 			}
 
 			if(strcmp(alimento.nome, "") != 0){
-				num_alimento++;
+				num_alimenti++;
 				printf("_________________________________________________________________\n");
 
 				printf("\n%4d | %20s | %8.1f %-5s |      %hu/%hu/%hu\n",
-						num_alimento, alimento.nome, alimento.quantita, alimento.unita_misura, alimento.scadenza.giorno, alimento.scadenza.mese, alimento.scadenza.anno);
+						num_alimenti, alimento.nome, alimento.quantita, alimento.unita_misura, alimento.scadenza.giorno, alimento.scadenza.mese, alimento.scadenza.anno);
 
 			}
 		}
+
+		if(num_alimenti == 0){
+			puts("Non ci sono alimenti nel frigo.");
+		}
 	}
 
-    return num_alimento;///se la funzione é andata a buon fine restituisci 1
+    return num_alimenti;///se la funzione é andata a buon fine restituisci 1
 }
 
 
@@ -713,24 +760,32 @@ int visualizza_frigo(){
  * @return 1 in caso di successo
  */
 int leggi_frigo(alimento_frigo* lista_frigo){
-	FILE *fp; ///creo un puntatore di tipo file
-	fp=fopen("../alimenti_frigo.csv","rb+"); ///apri il file in modalitá "scrittura in coda
+	int indice_alimento = 0;
+	alimento_frigo alimento_letto; // Variabile utilizzata per leggere gli elementi di FILE_FRIGO
+	FILE* stream = NULL; // Puntatore a FILE_FRIGO
 
-	alimento_frigo catalogo;///creo una struttura di riferimento per scorrere all'interno del file
+	// Apertura del file in modalità lettura e aggiornamento binario
+	if((stream = fopen(FILE_FRIGO, "rb+")) == NULL){
+		return 0; // Viene ritornato 0 se il file non può essere aperto
+	}else{
+		// Attraversa il contenuto del frigo estraendo gli alimenti in esso presenti
+		while(fread(&alimento_letto, sizeof(alimento_frigo), 1, stream) > 0){
+			// Se l'elemento estratto ha nome diverso da stringavuota, è un alimento significativo
+			if(strcmp(alimento_letto.nome, "") != 0){
 
-	int indice_alimento=0;
-    while(fread(&catalogo,sizeof(catalogo),1,fp)>0){///ripeti fino a quando é possibile leggere righe con le dimensioni dllla struct
-    	if(strcmp(catalogo.nome, "")!=0){///stampa solo le righe non inizializzate
-    		strcpy(lista_frigo[indice_alimento].nome,catalogo.nome);
-    		lista_frigo[indice_alimento].quantita=catalogo.quantita;
-    		strcpy(lista_frigo[indice_alimento].unita_misura,catalogo.unita_misura);
-    		lista_frigo[indice_alimento].scadenza.giorno=catalogo.scadenza.giorno;
-			lista_frigo[indice_alimento].scadenza.mese=catalogo.scadenza.mese;
-			lista_frigo[indice_alimento].scadenza.anno=catalogo.scadenza.anno;
-			indice_alimento++;
-    	}
-    }
+				strcpy(lista_frigo[indice_alimento].nome, alimento_letto.nome);
 
+				lista_frigo[indice_alimento].quantita = alimento_letto.quantita;
+
+				strcpy(lista_frigo[indice_alimento].unita_misura, alimento_letto.unita_misura);
+
+				lista_frigo[indice_alimento].scadenza = alimento_letto.scadenza;
+
+				indice_alimento++;
+
+			}
+		}
+	}
     return 1;///se la funzione é andata a buon fine restituisci 1
 }
 
@@ -977,76 +1032,141 @@ int carica_spesa(){
 }
 
 
+float quantita_alimento(const char* nome_alimento){
+	FILE* stream = NULL;
+	float quantita_alimento = 0;
+	alimento_frigo alimento_letto;
+
+	if((stream = fopen(FILE_FRIGO, "rb")) == NULL){
+		return quantita_alimento;
+	}else{
+		while(fread(&alimento_letto, sizeof(alimento), 1, stream) > 0){
+			if(strcmp(alimento_letto.nome, nome_alimento) == 0){
+				quantita_alimento += alimento_letto.quantita;
+			}
+		}
+
+		fclose(stream);
+		return quantita_alimento;
+	}
+}
+
+
 /**
  *
  * @return 1 in caso di successo
  */
-int riduci_alimento(){
-	FILE *stream = NULL;
+int riduci_alimento(const char* nome_alimento, float riduzione){
+	FILE* stream;
+	alimento_frigo alimento_letto;
+	float q_alimento_riduzione = quantita_alimento(nome_alimento);
 
-	alimento_frigo alimento;
-	unsigned short flag_alimento = 0;
-	unsigned short id_alimento;
-
-	int num_alimenti_frigo;
-	unsigned short num_alimenti_letti = 0;
-
-	int quantita_riduzione;
-
-	if((stream = fopen(FILE_FRIGO, "rb+")) == NULL){
+	if(q_alimento_riduzione == 0){
+		return -1;
+	}else if(q_alimento_riduzione < riduzione || riduzione == 0){
 		return 0;
 	}else{
-		// visualizzazione del frigo all'utente
-		num_alimenti_frigo = visualizza_frigo();
+		if((stream = fopen(FILE_FRIGO, "rb+")) == NULL){
+			return -1;
+		}else{
+			while(riduzione > 0){
 
-		if(num_alimenti_frigo > 0){
-			// Inseriemnto id alimento da ridurre
-			id_alimento = input_id_alimento(num_alimenti_frigo);
+				fread(&alimento_letto, sizeof(alimento_frigo), 1, stream);
 
-			// Ricerca alimento
-			while(flag_alimento == 0){
 				if(feof(stream) != 0){
 					break;
 				}
 
-				// Lettura di un alimento dal frigo
-				fread(&alimento, sizeof(alimento_frigo), 1, stream);
+				if(strcmp(alimento_letto.nome, nome_alimento) == 0){
+					alimento_letto.quantita -= riduzione;
 
-				if(strcmp(alimento.nome, "") != 0){
-					num_alimenti_letti++;
-
-					if(num_alimenti_letti == id_alimento){
-						fseek(stream, -sizeof(alimento_frigo), SEEK_CUR);
-						flag_alimento++;
+					if(alimento_letto.quantita <= 0){
+						riduzione = abs(alimento_letto.quantita);
+						strcpy(alimento_letto.nome, "");
 					}
+
+					fseek(stream, -sizeof(alimento_frigo), SEEK_CUR);
+					fwrite(&alimento_letto, sizeof(alimento_frigo), 1, stream);
 				}
 			}
-		}else{
+
 			fclose(stream);
-			return num_alimenti_frigo;
+			return 1;
 		}
-
-		// Input quantità della riduzione
-		do{
-			quantita_riduzione = input_quantita(alimento.unita_misura);
-
-			if(quantita_riduzione > alimento.quantita){
-				puts("La quantità inserita supera quella disponibile. Ripetere l'inserimento.");
-			}
-
-		}while(quantita_riduzione > alimento.quantita);
-
-		alimento.quantita -= quantita_riduzione;
-		if(alimento.quantita == 0){
-			strcpy(alimento.nome, "");
-		}
-
-		fwrite(&alimento, sizeof(alimento_frigo), 1, stream);
-
-		fclose(stream);
-		return 1;
 	}
 }
+
+
+void gestore_riduzione_alimenti(){
+	int esito_input;
+	int esito_controllo = 0;
+	int esito_riduzione;
+	int scelta = 0;
+	char nome_alimento[LUNG_NOME_ALIMENTO];
+	float q_riduzione;
+
+	puts("Riduzione di un alimento.\n");
+
+	do {
+		visualizza_frigo();
+
+		do{
+			printf("\nInserire il nome dell'alimento da ridurre [max 20 lettere]:\n>");
+			esito_input = scanf("%20[a-zA-Z]", nome_alimento);
+			if(pulisci_stdin() == 1){
+				esito_input = 0;
+			}
+
+			if(esito_input != 1){
+				puts("Inserimento non valido. Ripeterlo.");
+			}
+
+		}while(esito_input != 1);
+
+		do{
+			printf("\nInserire la quantita della riduzione dell'alimento:\n>");
+			esito_input = scanf("%f", &q_riduzione);
+			if(pulisci_stdin() == 1){
+				esito_input = 0;
+			}
+
+			if(esito_input != 1){
+				puts("Inserimento non valido. Ripeterlo.");
+			}
+
+		}while(esito_input != 1);
+
+		esito_riduzione = riduci_alimento(nome_alimento, q_riduzione);
+
+		if(esito_riduzione == -1){
+			puts("Alimento non presente nel frigo.");
+		}else if(esito_riduzione == 0){
+			puts("Quantità della riduzione non valida.");
+		}else{
+			puts("Riduzione effettuata con successo.");
+		}
+
+		do {
+			printf("\nInserire [1] per ripetere la riduzione, [0] per annullare:\n>");
+			esito_input = scanf("%d", &scelta);
+			if(pulisci_stdin() == 1){
+				esito_input = 0;
+			}
+
+			if(scelta != 1 && scelta != 0){
+				esito_controllo = 0;
+			}else{
+				esito_controllo = 1;
+			}
+
+			if(esito_input != 1 || esito_controllo != 1){
+				puts("Inserimento non valido. Ripeterlo");
+			}
+		} while (esito_input != 1 || esito_controllo != 1);
+	} while (scelta != 0);
+}
+
+
 
 int modifica_soglia_spesa(){
 	FILE* stream = NULL;

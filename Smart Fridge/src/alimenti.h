@@ -25,6 +25,12 @@
 	#include <time.h>
 #endif
 
+///Inclusione della libreria matematica
+#ifndef MATH_LIB
+#define MATH_LIB
+	#include <math.h>
+#endif
+
 /// Inclusione delle librerie per la manipolazione di stringhe e caratteri
 #ifndef STRING_LIB
 #define STRING_LIB
@@ -44,10 +50,10 @@
 /// DEFINIZIONE DELLE COSTANTI SIMBOLICHE.
 
 /// Lunghezze delle stringhe:
-#define LUNG_NOME_ALIMENTO 20 					///	Lunghezza massima per il nome degli alimenti
-#define LUNG_CAMPIONE 10 				///	Lunghezza della stringa che ospiterá il campione di riferimento per un alimento. Indica la quantitá che ha un determinato rapporto calorico
-#define LUNG_SOGLIA 10 					/// Lunghezza della stringa che ospiterá la soglia minima degli alimenti(la quantitá minima da avere in frigo)
-#define LUNG_UNITA_MISURA 5				/// Lunghezza della stringa che ospiterá l'unitá di misura
+#define LUNG_NOME_ALIMENTO 21 			///	Lunghezza massima per il nome degli alimenti
+#define LUNG_CAMPIONE 11 				///	Lunghezza della stringa che ospiterá il campione di riferimento per un alimento. Indica la quantitá che ha un determinato rapporto calorico
+#define LUNG_SOGLIA 11 					/// Lunghezza della stringa che ospiterá la soglia minima degli alimenti(la quantitá minima da avere in frigo)
+#define LUNG_UNITA_MISURA 6				/// Lunghezza della stringa che ospiterá l'unitá di misura
 #define LUNG_RIGA_FGETS 100 			/// Lunghezza massima in caratteri delle righe estratte con fgets() dai file
 
 /// Numero di membri che compongono determinati elementi:
@@ -142,6 +148,11 @@ int leggi_database_alimenti(alimento_database* lista_alimenti);
 
 
 
+int leggi_frigo(alimento_frigo* lista_frigo);
+
+
+
+
 /** funzione che si occupa di eliminare gli alimenti scaduti presenti nel frigo e di inizializzare tali righe
  *
  * @return 1 in caso di successo
@@ -162,7 +173,7 @@ int conta_alimenti();
 
 /**funzione che si occupa di visualizzare gli alimenti presenti nel frigo che sono scaduti (si controlla la data di scadenza rispetto quella odierna)
  *
- * @return 1 in caso di successo
+ * @return Il numero di alimenti scaduti visualizzati.
  */
 int visualizza_alimenti_scaduti();
 
@@ -318,14 +329,13 @@ int  visualizza_database_alimenti();
 int visualizza_frigo();
 
 
-/**La funzione riduci_q_alimenti é la funzione che permette all'utente di gestire la quantitá degli alimenti che vengono consumati.
- * Se l'utente ha comprato 6 uova e ne ha consumate 4 il file che contiene i dati relative alle quantitá deve essere aggiornato opportunamente
- * permettendo cosí in un secondo momento di mostrare la quantitá rimanente(nell'esempio ne verranno poi mostrate 2). Se siamo nel caso in cui invece
- * l'utente esaurisce un determinato alimento esso deve essere "cancellato" dalla lista degli alimenti presenti nel frigo. Dal punto di vista
-* progettuale si é previsto che la riga contenente l'alimento ormai consumato non deve essere cancellata del tutto ma solo inizializzata. Questo
-* perché attraverso un confronto dei nomi si puó risalire alla riga "vuota" per recuperarla inserendo cosí un nuovo alimento senza dover ogni volta
-* effettuare un algoritmo di compattamento dei record del file*/
-int riduci_alimento();
+float quantita_alimento(const char* nome_alimento);
+
+
+int riduci_alimento(const char* nome_alimento, float riduzione);
+
+
+void gestore_riduzione_alimenti();
 
 
 /**La procedura lettura file si occupa principalmente di prelevare i dati da un file che chiameremo spesa_effettuata.csv
