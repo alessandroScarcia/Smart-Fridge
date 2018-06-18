@@ -9,12 +9,18 @@
 
 
 /**
- * La procedura pulisci_stdin() utilizza la funzione getchar() per consumare
+ * La funzione pulisci_stdin() utilizza la funzione getchar() per consumare
  * tutti i caratteri presenti nel flusso stdin, fino al raggiungimento di EOF.
+ *
+ * @post Il valore di ritorno deve essere controllato per verificare se è stata necessaria la pulizia.
  */
-void pulisci_stdin(){
+int pulisci_stdin(){
+	int esito = 0;
 	char c;
-	while((c = getchar()) != '\n' && c != EOF);
+	while((c = getchar()) != '\n' && c != EOF){
+		esito = 1;
+	}
+	return esito;
 }
 
 

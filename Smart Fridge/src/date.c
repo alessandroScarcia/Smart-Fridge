@@ -122,7 +122,7 @@ double giorno_giuliano(data d1){
 }
 
 
-/*
+/**
  * Funzione data_gregoriana:
  * La funzione riceve in ingresso una data nel formato di giorno giuliano,
  * su di essa applica un algoritmo e restituisce il valore ad essa corrispondente
@@ -130,6 +130,8 @@ double giorno_giuliano(data d1){
  *
  * L'algoritmo applicato è stato preso dal seguente link Wikipedia:
  * 		https://it.wikipedia.org/wiki/Giorno_giuliano#Conversione_da_data_giuliana_a_data_normale
+ *
+ * @pre La data passata alla funzione deve avere un valore significativo.
  */
 data data_gregoriana(double data_giuliana){
 	data data_gregoriana;
@@ -424,7 +426,10 @@ data input_data(){
 	do{
 		printf("Inserire la data <gg/mm/aaaa>: ");
 		esito_input = scanf("%hu/%hu/%hu", &data_inserita.giorno, &data_inserita.mese, &data_inserita.anno);
-		pulisci_stdin();  // Rimozione di ipotetico input non consumato dal flusso stdin
+		if(pulisci_stdin() == 1){ // Pulizia dell'input non consumato e intercettazione dell'errore
+			esito_input = 0;
+		}
+
 
 		// Controllo sull'input ricevuto
 		if(esito_input < NUM_CAMPI_DATA || controlla_data(data_inserita) == 0){

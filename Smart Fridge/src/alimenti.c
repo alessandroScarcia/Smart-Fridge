@@ -301,7 +301,9 @@ alimento_frigo input_alimento_frigo(){
 		esito_input = scanf("%20[a-zA-Z] %f %5[a-zA-Z] %hu/%hu/%hu",
 				alimento.nome, &alimento.quantita, alimento.unita_misura,
 				&alimento.scadenza.giorno, &alimento.scadenza.mese, &alimento.scadenza.anno);
-		pulisci_stdin();
+		if(pulisci_stdin() == 1){
+			esito_input = 0;
+		}
 
 		if(esito_input != NUM_CAMPI_ALIMENTO_FRIGO){
 			puts("Inserimento non valido. Ripeterlo.\n");
@@ -320,7 +322,9 @@ void input_unita_misura(char *unita_misura){
 	do{
 		puts("Inserisci l'unità di misura: ");
 		esito_input = scanf("%5[a-zA-Z]", unita_misura);
-		pulisci_stdin();
+		if(pulisci_stdin() == 1){
+			esito_input = 0;
+		}
 
 		esito_controllo = controlla_unita_misura(unita_misura);
 
@@ -339,7 +343,9 @@ float input_quantita(char *unita_misura){
 	do{
 		puts("Inserisci la quantita: ");
 		esito_input = scanf("%f", &quantita);
-		pulisci_stdin();
+		if(pulisci_stdin() == 1){
+			esito_input = 0;
+		}
 
 		esito_controllo = controlla_quantita(quantita, unita_misura);
 
@@ -377,7 +383,9 @@ int input_kcal(char *nome_alimento, int campione_kcal, char *unita_misura){
 	do{
 		printf("Inserisci le kcal per <%d %s> dell'alimento <%s> : ", campione_kcal, unita_misura, nome_alimento);
 		esito_input = scanf("%f", &kcal);
-		pulisci_stdin();
+		if(pulisci_stdin() == 1){
+			esito_input = 0;
+		}
 
 		if(esito_input != 1){
 			puts("Inserimento non valido. Ripeterlo.");
@@ -396,7 +404,9 @@ int input_id_alimento(int num_alimenti_frigo){
 	do{
 		printf("Inserisci l'id di un alimento: ");
 		esito_input = scanf("%d", &id_alimento);
-		pulisci_stdin();
+		if(pulisci_stdin() == 1){
+			esito_input = 0;
+		}
 
 		if(id_alimento < MIN_ID_ALIMENTO || id_alimento > num_alimenti_frigo){
 			esito_controllo = 0;
@@ -444,7 +454,9 @@ float input_soglia_spesa(char *nome_alimento, char* unita_misura){
 	do{
 		printf("Inserisci la soglia per l'inserimento nella generazione\ndella spesa dell'alimento <%s> [0 per escluderlo]: ", nome_alimento);
 		esito_input = scanf("%f", &soglia);
-		pulisci_stdin();
+		if(pulisci_stdin() == 1){
+			esito_input = 0;
+		}
 
 		if(esito_input == 1){
 			if(soglia == 0){
@@ -763,7 +775,9 @@ int carica_spesa(){
 				do{
 					puts("Inserire 1 per correggerlo manualmente, 0 per saltarlo: ");
 					esito_input = scanf("%d", &flag_inserimento);
-					pulisci_stdin();
+					if(pulisci_stdin() == 1){
+						esito_input = 0;
+					}
 
 					if((flag_inserimento != 0 && flag_inserimento != 1) || esito_input != 1){
 						puts("Inserimento non valido. Ripeterlo.\n");
@@ -799,7 +813,9 @@ int carica_spesa(){
 				do{
 					printf("Inserire 1 per correggere l'unità di misura, 0 per saltare l'alimento: ");
 					esito_input = scanf("%d", &flag_inserimento);
-					pulisci_stdin();
+					if(pulisci_stdin() == 1){
+						esito_input = 0;
+					}
 
 					if((flag_inserimento != 0 && flag_inserimento != 1) || esito_input != 1){
 						puts("Inserimento non valido.\n");
@@ -842,7 +858,9 @@ int carica_spesa(){
 						do{
 							printf("Inserire 1 per correggere l'unità di misura con quella conosciuta, 0 per saltare l'alimento: ");
 							esito_input = scanf("%d", &flag_inserimento);
-							pulisci_stdin();
+							if(pulisci_stdin() == 1){
+								esito_input = 0;
+							}
 
 							if((flag_inserimento != 0 && flag_inserimento != 1) || esito_input != 1){
 								puts("Inserimento non valido.\n");
@@ -873,7 +891,9 @@ int carica_spesa(){
 					do{
 						printf("Inserire 1 per correggere la quantità, 0 per saltare l'alimento: ");
 						esito_input = scanf("%d", &flag_inserimento);
-						pulisci_stdin();
+						if(pulisci_stdin() == 1){
+							esito_input = 0;
+						}
 
 						if((flag_inserimento != 0 && flag_inserimento != 1) || esito_input != 1){
 							puts("Inserimento non valido.\n");
@@ -908,7 +928,9 @@ int carica_spesa(){
 					do{
 						printf("Inserire 1 per correggere la data di scadenza, 0 per saltare l'alimento: ");
 						esito_input = scanf("%d", &flag_inserimento);
-						pulisci_stdin();
+						if(pulisci_stdin() == 1){
+							esito_input = 0;
+						}
 
 						if((flag_inserimento != 0 && flag_inserimento != 1) || esito_input != 1){
 							puts("Inserimento non valido.\n");

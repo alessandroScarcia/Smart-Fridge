@@ -21,10 +21,13 @@
 #define PULIZIA_FLUSSI_LIB
 
 /**
- * La procedura pulizia_stdin() permette di consumare l'input rimasto non consumato
+ * La funzione pulizia_stdin() permette di consumare l'input rimasto non consumato
  * all'interno del flusso stdin.
+ *
+ * @return 0 se non è stata necessaria la pulizia.
+ * @return 1 se è stata necessaria la pulizia.
  */
-void pulisci_stdin();
+int pulisci_stdin();
 
 /**
  * La procedura pulizia_riga_flusso() permette di consumare l'input rimasto non

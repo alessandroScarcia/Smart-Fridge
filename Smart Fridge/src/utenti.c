@@ -39,7 +39,9 @@ char* input_nuovo_nickname(){
 
 		printf("Inserisci un nickname [max. 15 lettere, min. 5 lettere]:\n>");
 		esito_input = scanf("%15[a-zA-Z]", nickname);
-		pulisci_stdin();
+		if(pulisci_stdin() == 1){
+			esito_input = 0;
+		}
 
 		esito_controllo = esiste_nickname(nickname);
 
@@ -58,18 +60,19 @@ char* input_nuovo_nickname(){
 char* input_nickname(){
 	char* nickname = (char*) calloc(MAX_LUNG_NICKNAME, sizeof(char));
 	int esito_input;
-	int esito_controllo;
 
 	do{
 		printf("Inserisci il nickname [max. 15 lettere, min. 5 lettere]:\n>");
 		esito_input = scanf("%15[a-zA-Z]", nickname);
-		pulisci_stdin();
+		if(pulisci_stdin() == 1){
+			esito_input = 0;
+		}
 
 		if(esito_input != 1){
 			puts("Inserimento non valido. Ripeterlo.\n");
 		}
 
-	}while(esito_input != 1 || esito_controllo == 1);
+	}while(esito_input != 1);
 
 	return nickname;
 }
@@ -98,7 +101,9 @@ char* input_password(){
 	do{
 		printf("Inserire la password [max. 8 caratteri]:\n>");
 		esito_input = scanf("%8s", password);
-		pulisci_stdin();
+		if(pulisci_stdin() == 1){
+			esito_input = 0;
+		}
 
 		if(esito_input != 1){
 			puts("Inserimento non valido. Ripeterlo.\n");
@@ -159,7 +164,9 @@ void generatore_password(char* password_utente){
 	do{
 		printf("Inserire:\n 1 - Generazione automatica.\n 2 - Inserimento manuale.\n>");
 		esito_input = scanf("%d", &modalita_generazione);
-		pulisci_stdin();
+		if(pulisci_stdin() == 1){
+			esito_input = 0;
+		}
 
 		if(modalita_generazione != GEN_AUTOMATICA && modalita_generazione != GEN_MANUALE){
 			esito_controllo = 0;
@@ -192,7 +199,9 @@ int input_preferenza(char* preferenza){
 	do{
 		printf("Inserire il valore della preferenza (\"null\" per terminare l'inserimento) [max. 20 lettere minuscole]:\n>");
 		esito_input = scanf("%20[a-z]", preferenza);
-		pulisci_stdin();
+		if(pulisci_stdin() == 1){
+			esito_input = 0;
+		}
 
 		if(esito_input != 1){
 			puts("Inserimento non valido. Ripeterlo.");
@@ -368,7 +377,9 @@ int crea_utenti(){
 
 		printf("Selezionare la modalità di creazione di utente/i:\n1 - Automatica\n2 - Manuale\n>");
 		esito_input = scanf("%d", &scelta);
-		pulisci_stdin();
+		if(pulisci_stdin() == 1){
+			esito_input = 0;
+		}
 
 		if(scelta != 1 && scelta != 2){
 			esito_controllo = 0;
@@ -387,7 +398,9 @@ int crea_utenti(){
 
 			printf("Inserire il numero di utenti da generare [max. %hu]:\n>", n_utenti_creabili);
 			esito_input = scanf("%hu", &n_utenti);
-			pulisci_stdin();
+			if(pulisci_stdin() == 1){
+				esito_input = 0;
+			}
 
 			if(n_utenti > n_utenti_creabili){
 				esito_controllo = 0;
@@ -432,7 +445,9 @@ void modifica_preferenze(utente* u){
 		do{
 			printf("Inserire [1] per modificare una preferenza esistente, [2] per aggiungerne una nuova:\n>");
 			esito_input = scanf("%d", &scelta);
-			pulisci_stdin();
+			if(pulisci_stdin() == 1){
+				esito_input = 0;
+			}
 
 			if(scelta != 1 && scelta != 2){
 				esito_controllo = 0;
@@ -457,7 +472,9 @@ void modifica_preferenze(utente* u){
 		do{
 			printf("Inserire il numero della preferenza da modificare:\n>");
 			esito_input = scanf("%d", &scelta);
-			pulisci_stdin();
+			if(pulisci_stdin() == 1){
+				esito_input = 0;
+			}
 
 			if(scelta < 1 || scelta > num_preferenze_utente){
 				esito_controllo = 0;
@@ -509,7 +526,9 @@ int gestore_modifiche(){
 				puts("\nSelezionare il campo da modificare:");
 				printf("1 - Nickname\n2 - Password\n3 - Preferenze\n0 - Esci\n\n>");
 				esito_input = scanf("%d", &scelta);
-				pulisci_stdin();
+				if(pulisci_stdin() == 1){
+					esito_input = 0;
+				}
 
 				if(scelta != CAMPO_NICKNAME && scelta != CAMPO_PASSWORD && scelta != CAMPO_PREFERENZE && scelta != 0){
 					esito_controllo = 0;
@@ -625,7 +644,9 @@ int autenticazione(utente* u){
 				do{
 					printf("Inserire [1] per ripetere l'accesso, [0] per annullare:\n>");
 					esito_input = scanf("%d", &scelta);
-					pulisci_stdin();
+					if(pulisci_stdin() == 1){
+						esito_input = 0;
+					}
 
 					if(esito_input == 1){
 						if(scelta != 1 && scelta != 0){
@@ -798,7 +819,9 @@ int elimina_utente(){
 			do{
 				printf("Inserire [1] per confermare l'eliminazione, [0] per annullarla:\n>");
 				esito_input = scanf("%d", &scelta);
-				pulisci_stdin();
+				if(pulisci_stdin() == 1){
+					esito_input = 0;
+				}
 
 				if(scelta != 1 && scelta != 0){
 					esito_controllo = 0;
