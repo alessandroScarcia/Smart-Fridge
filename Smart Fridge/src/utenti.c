@@ -5,648 +5,696 @@
  *      Author: Michela
  */
 
-#include"utenti.h"
-#include "file_alimenti_operation.h"
+#include "utenti.h"
+
+
+int esiste_nickname(char* nickname){
+	FILE* stream = NULL;
+	utente u;
+
+	if((stream = fopen(FILE_DATABASE_UTENTI, "rb")) == NULL){
+		return 0;
+	}else{
+		while(feof(stream) == 0){
+			fread(&u, sizeof(utente), 1, stream);
+
+			if(strcmp(u.nickname, nickname) == 0){
+				fclose(stream);
+				return 1;
+			}
+		}
+	}
+
+	fclose(stream);
+	return 0;
+}
+
+
+char* input_nuovo_nickname(){
+	char* nickname = (char*) calloc(MAX_LUNG_NICKNAME, sizeof(char));
+	int esito_input;
+	int esito_controllo;
+
+	do{
+
+		printf("Inserisci un nickname [max. 15 lettere, min. 5 lettere]:\n>");
+		esito_input = scanf("%15[a-zA-Z]", nickname);
+		pulisci_stdin();
+
+		esito_controllo = esiste_nickname(nickname);
+
+		if(esito_input != 1){
+			puts("Inserimento non valido. Ripeterlo.\n");
+		}else if(esito_controllo == 1){
+			puts("Il nickname inserito non è disponibile. Sceglierne un altro.");
+		}
+
+	}while(esito_input != 1 || esito_controllo == 1);
+
+	return nickname;
+}
+
+
+char* input_nickname(){
+	char* nickname = (char*) calloc(MAX_LUNG_NICKNAME, sizeof(char));
+	int esito_input;
+	int esito_controllo;
+
+	do{
+		printf("Inserisci il nickname [max. 15 lettere, min. 5 lettere]:\n>");
+		esito_input = scanf("%15[a-zA-Z]", nickname);
+		pulisci_stdin();
+
+		if(esito_input != 1){
+			puts("Inserimento non valido. Ripeterlo.\n");
+		}
+
+	}while(esito_input != 1 || esito_controllo == 1);
+
+	return nickname;
+}
+
+
+char* genera_nickname(){
+	int dim_nickname = rand() % (MAX_LUNG_NICKNAME - MIN_LUNG_NICKNAME + 1) + MIN_LUNG_NICKNAME;
+	char* nickname = (char*) calloc(dim_nickname, sizeof(char));
+
+	nickname[dim_nickname - 1] = '\0';
+
+	do{
+		for(int i = 0; i < dim_nickname - 1; i++){
+			nickname[i] = rand() % (MAX_ASCII_MINUSCOLA - MIN_ASCII_MINUSCOLA + 1) + MIN_ASCII_MINUSCOLA;
+		}
+	}while(esiste_nickname(nickname) == 1);
+
+	return nickname;
+}
+
+
+char* input_password(){
+	char* password = (char*) calloc(LUNG_PASSWORD, sizeof(char));
+	int esito_input;
+
+	do{
+		printf("Inserire la password [max. 8 caratteri]:\n>");
+		esito_input = scanf("%8s", password);
+		pulisci_stdin();
+
+		if(esito_input != 1){
+			puts("Inserimento non valido. Ripeterlo.\n");
+		}
+	}while(esito_input != 1);
+	return password;
+}
+
+
+char* genera_password(){
+	char* password = (char*) calloc(LUNG_PASSWORD, sizeof(char));
+	char tipo_char;
+	char generazione_char;
+
+	for(int i = 0; i < LUNG_PASSWORD - 1; i++){
+		tipo_char = rand() % NUM_TIPI_CHAR + 1;
+
+		switch(tipo_char){
+
+		case CHAR_SIMBOLO:
+			generazione_char = rand() % (MAX_ASCII_SIMBOLO - MIN_ASCII_SIMBOLO + 1) + MIN_ASCII_SIMBOLO;
+			break;
+
+		case CHAR_CIFRA:
+			generazione_char = rand() % (MAX_ASCII_CIFRA - MIN_ASCII_CIFRA + 1) + MIN_ASCII_CIFRA;
+			break;
+
+		case CHAR_MAIUSCOLA:
+			generazione_char = rand() % (MAX_ASCII_MAIUSCOLA - MIN_ASCII_MAIUSCOLA + 1) + MIN_ASCII_MAIUSCOLA;
+			break;
+
+		case CHAR_MINUSCOLA:
+			generazione_char = rand() % (MAX_ASCII_MINUSCOLA - MIN_ASCII_MINUSCOLA + 1) + MIN_ASCII_MINUSCOLA;
+			break;
+		}
+
+		password[i] = generazione_char;
+	}
+
+	password[LUNG_PASSWORD - 1] = '\0';
+
+	return password;
+}
+
+
+/*Sommario: Funzione base per la creazione della password, con la possibilità di scelta tra la generazione casuale
+            e l'inserimento manuale da parte dell'utente esterno, il tutto attraverso la chiamata di fuzioni oppurtune.
+Parametri: puntatore di tipo utente, dove sono memorizzati gli offset dell'utente, quest'ultimo verrà passato alle funzioni chiamate.
+ */
+void generatore_password(char* password_utente){
+	char* password_generata;
+	int modalita_generazione = 0;
+	int esito_input;
+	short esito_controllo;
+
+	puts("Selezionare la modalità di generazione.");
+
+	do{
+		printf("Inserire:\n 1 - Generazione automatica.\n 2 - Inserimento manuale.\n>");
+		esito_input = scanf("%d", &modalita_generazione);
+		pulisci_stdin();
+
+		if(modalita_generazione != GEN_AUTOMATICA && modalita_generazione != GEN_MANUALE){
+			esito_controllo = 0;
+		}else{
+			esito_controllo = 1;
+		}
+
+		if(esito_input != 1 || esito_controllo != 1){
+			puts("Inserimento non valido. Ripeterlo.\n");
+		}
+
+	}while(esito_input != 1 || esito_controllo != 1);
+
+	switch(modalita_generazione){
+	case GEN_AUTOMATICA:
+		password_generata = genera_password();
+		break;
+
+	case GEN_MANUALE:
+		password_generata = input_password();
+	}
+
+	strcpy(password_utente, password_generata);
+}
+
+
+int input_preferenza(char* preferenza){
+	int esito_input;
+
+	do{
+		printf("Inserire il valore della preferenza (\"null\" per terminare l'inserimento) [max. 20 lettere minuscole]:\n>");
+		esito_input = scanf("%20[a-z]", preferenza);
+		pulisci_stdin();
+
+		if(esito_input != 1){
+			puts("Inserimento non valido. Ripeterlo.");
+		}else if(strcmp(preferenza, "null") == 0){
+			return 0;
+		}
+	}while(esito_input != 1);
+
+	return 1;
+}
 
 
 /*
 Sommario: Creazione di una variabile di tipo utente, che verrà riempita attraverso input da tastiera.
           La funzione chiamerà a sua volta un'altra funzione, che eseguirà altre specifiche spiegate in seguito
 Parametri: i rappresenta n-esimo utente registrato, quindi l'ultimo indice assegnato.
-*/
-void Salvataggio_utenti(int i){
+ */
+utente input_utente(){
+	utente nuovo_utente;
 
-		utente persona;
+	puts("DATI DEL NUOVO UTENTE:");
 
+	strcpy(nuovo_utente.nickname, input_nuovo_nickname());
 
-		persona.indice=i+1;   //Essendo i l'ultimo indice assegnato, verrà incrementato di uno per far in modo che ogni utente abbia un indice univoco
+	generatore_password(nuovo_utente.password);
 
-		printf("\nInserisci il nome utente: ");
-		scanf("%s",persona.nome);
+	for(int i = 0; i < NUM_PREFERENZE; i++){
+		int esito_input = input_preferenza(nuovo_utente.preferenze[i]);
 
-		printf("\nInserisci cognome: ");
-		scanf("%s",persona.cognome);
-
-		printf("\nInserisci la tua prima preferenza: ");
-		scanf("%s", persona.preferenze[0]);
-
-
-		printf("\nInserisci la tua seconda preferenza: ");
-		scanf("%s", persona.preferenze[1]);
-
-		printf("\nInserisci la tua terza preferenza: ");
-		scanf("%s", persona.preferenze[2]);
-        //controllo sulla prefenza
-
-
-        strcpy(persona.password , Generatore_Password());
-		Aggiorna_databaseutenti(&persona);
-		visualizza_database_utenti();
-		//Stampa_utente(persona.indice);
-
-
-}
-
-/*Sommario: Funzione base per la creazione della password, con la possibilità di scelta tra la generazione casuale
-            e l'inserimento manuale da parte dell'utente esterno, il tutto attraverso la chiamata di fuzioni oppurtune.
-Parametri: puntatore di tipo utente, dove sono memorizzati gli offset dell'utente, quest'ultimo verrà passato alle funzioni chiamate.
-*/
-char* Generatore_Password(){
-
-
-	char risposta;  //variabile per la memorizzazione della risposta inserita dall'utente
-	char *password=(char*) calloc(LUNGHEZZA_PASSWORD, sizeof(char));
-
-	printf("\nPreferisci la generazione automantica della password? (inserire y per il si, n per il no): ");
-			risposta=getchar();
-			fflush(stdin); //Pulisco il buffer
-    while(risposta=='\n'){ //Ignoro l'invio nell'acquisizione del carattere
-    	risposta=getchar();
-    }
-
-	/*function_response()
-	 *
-	//Un while utile nel caso l'utente decidesse di inserire una risposta diversa da quelle accettate
-	while (response!= 'y' && response!='n' && response!='Y' &&  response!='N' ){
-		   printf("Risposta non valida!\nInserire 'y' per la generazione di una password, 'n' per crearla:");
-		   response=getchar();
-		   fflush(stdin);
-	}*/
-
-
-	//Controllo sulla risposta, che nel caso sia affermativa una funzione genererà una password automaticamente
-	if (risposta=='y'||risposta=='Y'){
-	  password= AutoGeneratore_Password();
-	}
-	else {
-	//In caso contrario, verrà chiamata una funzione per oppurtini controlli sulla password inserita dall'utente
-		password=Inserimento_password_manuale(LUNGHEZZA_PASSWORD);
-	}
-
-    return password;
-}
-
-/*Sommario: Funzione per la generazione casuale della password. Possibilità di scelta tra diversi livelli di sicurezza
-            Livello 1 = tre caratteri totali tra numeri e caratteri speciali;
-            Livello 2 = la somma tra caratteri speciali e numeri deve essere compresa tra 3 e 5;
-            Livello 3= la somma tra caratteri sepciali e numeri deve essere pari a 5;
-            La generazione della password verrà fatta sfruttando la dabella ASCII, utilizzando una funzione che genererà
-            un numero compreso tra 33 e 122, corrispondente ad un numero, una lettere o un carattere speciale nella tabella ASCII.
-            Una funzione chiamata alla fine svolgerà il compito di scrittura nel file.
-Parametri: puntatore di tipo utente, dove sono memorizzati gli offset dell'utente, quest'ultimo verrà passato alle funzione chiamata per
-           la scrittura nel file .cvs.
-*/
-char* AutoGeneratore_Password(){
-
-	char *password=(char*) calloc(LUNGHEZZA_PASSWORD, sizeof(char));
-	int livello_sicurezza=0;
-	int numeri_caratteri_speciali=0; //inizializza il numero di caratteri speciali
-	int numeri_caratteri_cifre=0; //inizializza il numero di cifre
-
-
-
-	printf("Livelli di sicurezza:\n- Livello 1(Basso)\n- Livello 2(medio)\n- Livello 3(alto).\n");
-    scanf("%d", &livello_sicurezza); //assegnazione del valore ottenuto dalla scanf
-  /*   while (livello_sicurezza!=1 && livello_sicurezza!=2 && livello_sicurezza!=3){
-    	 printf("\Valore inserito non valido.\nValori accettati:\n- Livello 1(Basso)\n- Livello 2(medio)\n- Livello 3(alto).\n");
-    	     scanf("%d", &livello_sicurezza);
-     } */
-
-
-
-    if(livello_sicurezza==SICUREZZA_MINIMA){
-
-
-				do{ //ripeti fino a quando non é stato inserito almeno un numero e un carattere speciale e la loro quantitá é minore di 3
-
-					numeri_caratteri_speciali=0; //inizializza il num di caratteri speciali
-					numeri_caratteri_cifre=0; //inizializza il num di cifre
-
-					for(int j=0; j<LUNGHEZZA_PASSWORD; j++){ //ripeti per la lunghezza della password
-
-						*(password+j)= '!'+(rand() % CARATTERI_ASCII_RISERVATI); //genera un carattere comreso tra 33 e 122 della tabella del codice ASCII
-
-						if(!isalnum(*(password+j))){
-							numeri_caratteri_speciali++;
-						}
-
-						if(isdigit(*(password+j))){
-							numeri_caratteri_cifre++;
-						}
-
-						if(j==LUNGHEZZA_PASSWORD-1){ //all'ultima posizione inserisci il carattere terminatore
-							*(password+j)= '\0';
-						}
-
-
-					}
-
-				}while(numeri_caratteri_speciali<NUM_CARATTERI_RICHIESTI || numeri_caratteri_cifre<NUM_CARATTERI_RICHIESTI || numeri_caratteri_speciali+numeri_caratteri_cifre>=SOMMA_CARATTERI_RICHIESTI_MIN);
-		}else if(livello_sicurezza==SICUREZZA_MEDIA){
-
-		  do{ //ripeti fino a quando non é stato inserito almeno un numero e un carattere speciale e la loro quantitá é tra 3 e 5
-
-					numeri_caratteri_speciali=0;
-					numeri_caratteri_cifre=0;
-
-					for(int j=0; j<LUNGHEZZA_PASSWORD; j++){
-
-						*(password+j)= '!'+(rand() % CARATTERI_ASCII_RISERVATI);
-
-						if(!isalnum(*(password+j))){
-							numeri_caratteri_speciali++;
-						}
-
-						if(isdigit(*(password+j))){
-							numeri_caratteri_cifre++;
-						}
-
-						if(j==LUNGHEZZA_PASSWORD-1){
-							*(password+j)= '\0';
-						}
-
-					}
-
-				}while(numeri_caratteri_speciali<NUM_CARATTERI_RICHIESTI || numeri_caratteri_cifre<NUM_CARATTERI_RICHIESTI || numeri_caratteri_speciali+numeri_caratteri_cifre<SOMMA_CARATTERI_RICHIESTI_MIN || numeri_caratteri_speciali+numeri_caratteri_cifre>SOMMA_CARATTERI_RICHIESTI_MAX  );
-		}else{
-
-			do{//ripeti fino a quando non é stato inserito almeno un numero e un carattere speciale e la loro quantitá é tra 3 e 5
-
-					numeri_caratteri_speciali=0;
-					numeri_caratteri_cifre=0;
-
-					for(int j=0; j<LUNGHEZZA_PASSWORD; j++){
-
-						*(password+j)= '!'+(rand() % CARATTERI_ASCII_RISERVATI);
-
-						if(!isalnum(*(password+j))){
-							numeri_caratteri_speciali++;
-						}
-
-						if(isdigit(*(password+j))){
-							numeri_caratteri_cifre++;
-						}
-
-						if(j==LUNGHEZZA_PASSWORD-1){
-							*(password+j)= '\0'; //inserimento carattere terminatore all'ultima posizione della stringa
-						}
-
-					}
-
-				}while(numeri_caratteri_speciali<NUM_CARATTERI_RICHIESTI || numeri_caratteri_cifre<NUM_CARATTERI_RICHIESTI || numeri_caratteri_speciali+numeri_caratteri_cifre<=SOMMA_CARATTERI_RICHIESTI_MAX  );
-
-
-		}
-		printf("Password: %s\n\n", password);
-
-		return password;
-}
-
-
-
-/*Sommario: Funzione per i controlli opportuni della password. La password deve essere di otto elementi, di cui almeno una lettera maiuscola e un numero.
-            Inoltre calcolerà il livello di sicurezza, nel caso di corretta dell'input, e la stampo su schermo.
-            Livello 1 = quattro lettere, di cui una maiuscola, e quattro numeri prelevati da un vettore contenenti i numeri da 1 a 9 (zero non utilizzato
-                        per evitare il riscio che l'utente possa confonderlo con la lettera O);
-            Livello 2 = un carattere speciale più i requisiti standard;
-            Livello 3= più di un carattere speciale e almeno due lettere maiuscole;
-            Una funzione chiamata alla fine svolgerà il compito di scrittura nel file.
-Parametri: puntatore di tipo utente, dove sono memorizzati gli offset dell'utente, quest'ultimo verrà passato alle funzione chiamata per
-           la scrittura nel file .cvs;
-           LENGTH per decidere la lunghezza minima della password.
-*/
-char* Inserimento_password_manuale (int length){
-
-	char *ptrpassword=(char*) calloc(length, sizeof(char));
-	int livello=0, digit=0, carattere=0, special=0, j;
-	char password[LUNGHEZZA_PASSWORD]="";
-	//livello serve per il calcolo del livello di sicurezza della password inserita dall'utente, nel caso sia idonea;
-	//digit contatore dei numeri; carattere contatore dei caratteri; special contatore dei caratteri sppeciali;
-	// j contatore di un ciclo.
-
-
-	printf("Inserisci un password di %d caratteri (almeno una lettera maiuscola ed un numero): ", length-1);
-	scanf("%s", password);  //Acquisizione password da tastira
-
-		//Controllo sul nemero di caratteri inseriti, stampa un messaggio di errore nel caso sia superiore ad 8 caratteri
-		while (strlen(password)!=length-1){
-			printf("Password di dimensione non corretta.Inserisci un password di esattamente 8 caratteri (almeno una lettera maiuscola ed un numero): ");
-		    scanf("%s", password);
-		}
-
-		 while (livello==0){
-	         //Attraberso un for mi muovo nell'array di caratteri per capire di cosa c'è in ciasciuna posizione (numero,carattere,ecc..)
-			 for (j=0;j<length-1;j++) {
-
-			    if(isdigit(password[j])) {
-					   digit++;                                                //Aumento il contatore dei numeri
-
-				 } else if (isupper(password[j])) {
-
-					carattere++;                                               //Aumento il contatore delle maiuscole
-
-				 } else if(isalpha(password[j])==0) {
-
-						special++;                                             //Nel caso non sia ne un numero, ne una lettera (Maiuscola o minuscola) automaticamente lo associa ad un carattere speciale
-
-				 }
-
-			 }
-
-			 if(digit>0 && carattere>0) {
-
-					livello++;
-
-			 }
-		 }
-
-		livello=1;                                                               //Parto con il presupposto che la password sia di livello 1
-
-		//Nel caso ci sia più di un carattere speciale e più lettere maiuscole, la password la considero di livello 3
-		if (carattere>1 && special>=2) {
-
-		   livello=3;
-
-		} else if (special>0) {  //Nel caso ci sia solo un carattere speciale più i requisiti standard la considere di livello 2
-
-			livello=2;
-
-		}
-
-		//Stampa della password
-		printf("\nLa password e'  ");
-		printf("%s",password);
-
-		printf("\n");
-		//fine stampa
-
-		printf("La tua password e' di livello %d\n\n", livello);
-
-        ptrpassword=&password[0];
-		return ptrpassword;
-
-	}
-
-
-/*Sommario: Funzione per la modifica del nome appartenente allo stream con l'id corrispondente a quello inserito dall'utente esterno.
-            Verrà aperto il file .cvs contenente gli stream, attraverso un while il puntatore verrà spostato e lo stream puntato letto
-            fino a quanto persona.indice non corrisponderà all'id inserito dall'utente.
-            Trovato lo stream corrispondente, verrà stampato il nome e verrà chiesto l'inserimento del nuove nome.
-            Le modifiche verranno applicate solo se la funzione Identificazione restituirà un valore di verità (TRUE).
-            Il nuovo stream verrà scrutto nel file .cvs;
-No Parametri.
-
-*/
-int Modifica_nome(){
-
-	FILE *f;
-    char filename[LUNG_NOME_FILE];
-    strcpy(filename,"");
-    strcat(filename,"../database-utenti.csv");
-
-	utente persona;
-	char nuovo_nome[NOME_COGNOME_LENGTH];
-    int id;    //variabile per la memorizzazione dell'indice utente inserito da tastiera
-
-    printf("Inserisci il tuo id identificativo:");
-    scanf("%d", &id); //acquisizione indice utente sul quale effutare la modifica
-
-    f=fopen(filename, "rb+");
-
-    /*
-	   if ((f=fopen("C:\Users\Michela\git-utenti\01-Utenti\01fileutenti.cvs","rb+"))==NULL)
-	   {
-	     printf ("Err\n");
-	     return;
-	   } */
-
-       //Scorrimento del puntatore sugli stream, lettura degli stessi, ricerca dello stream con id corrispondente
-	   while((fread(&persona,sizeof(persona),1,f)) > 0)
-	   {
-
-	    if(persona.indice==id) //stream trovato
-	    {
-	       break; //esco dal while
-	    }
-	  }
-
-	   printf("Il tuo nome attuale e' %s\n", persona.nome); //stampa del nome prima che venga effettuata la modifica
-
-	  	      printf("Inserire il nuovo nome: ");
-	  	      scanf("%s", nuovo_nome); //acquisizione del nuovo nome
-
-	  	      strcpy(persona.nome,nuovo_nome);
-
-	  	      //Se identificazione vera, la struct con il nuovo nome verrà scritta sul file
-	  	      if (Identificazione (persona.password, LUNGHEZZA_PASSWORD )== TRUE){
-	  			  fseek(f, ftell(f)-sizeof(persona), SEEK_SET);
-	  			  fwrite(&persona,sizeof(persona),1,f);
-	  	      } else { //In caso di identificazione fallita, avviso ad utente esterno, la nuova struct non verrà memorizzata su file
-
-	  	    	  printf("\nIdentificazione fallita, non e' stato possibile effetturare le modifiche richieste.\n");
-
-	  	      }
-	  	    return fclose (f);
-}
-
-/*Sommario: Funzione per la modifica del cognome appartenente allo stream con l'id corrispondente a quello inserito dall'utente esterno.
-            Verrà aperto il file .csv contenente gli stream, attraverso un while il puntatore verrà spostato e lo stream puntato letto
-            fino a quanto persona.indice non corrisponderà all'id inserito dall'utente.
-            Trovato lo stream corrispondente, verrà stampato il nome e verrà chiesto l'inserimento del nuove nome.
-            Le modifiche verranno applicate solo se la funzione Identificazione restituirà un valore di verità (TRUE).
-            Il nuovo stream verrà scrutto nel file .cvs;
-No Parametri.
-*/
-int Modifica_cognome(){
-	FILE *f;
-    char filename[LUNG_NOME_FILE];
-    strcpy(filename,"");
-    strcat(filename,"../database-utenti.csv");
-
-	char nuovo_cognome[NOME_COGNOME_LENGTH];
-	utente persona;
-	int id;
-
-
-	printf("Inserisci il tuo id identificativo:");
-	scanf("%d", &id); //acquisizione indice dell'utente da modificare
-
-	f=fopen(filename, "rb+");
-
-	printf("Inserire il nuovo cognome: ");
-	scanf("%s", nuovo_cognome); //acquisizione nuovo cognome
-
-	//Scorrimento del puntatore sugli stream, lettura degli stessi, ricerca dello stream con id corrispondente
-    while((fread(&persona,sizeof(persona),1,f)) > 0) { //assegno la lettura ad una variabile di tipo intero, se la lettura restituisce valori idonei read sarà maggiore di 0
-		if(persona.indice==id) {
-
-        break; //stream trovato, esco dal while
-
-	    }
-   }
-
-	  strcpy(persona.cognome,nuovo_cognome);
-
-      //Come per la funzione modifica_nome, la scrittura su file avverà solo se Identificazione restituirà TRUE
-	  if (Identificazione (persona.password, LUNGHEZZA_PASSWORD )==TRUE){
-		  printf("Identificazione avvenuta con successo, modifica effettuata.\n");
-		  fseek(f, ftell(f)-sizeof(utente), SEEK_SET);
-		  fwrite(&persona,sizeof(persona),1,f);
-	  } else {
-		  printf("\nIdentificazione fallita, non e' stato possibile effetturare le modifiche richieste.\n");
-	  }
-
-	  return fclose (f);
-}
-
-/*Sommario: Funzione per la modifica delle preferenze appartenente allo stream con l'id corrispondente a quello inserito dall'utente esterno.
-            Verrà aperto il file .csv contenente gli stream, attraverso un while il puntatore verrà spostato e lo stream puntato letto
-            fino a quanto persona.indice non corrisponderà all'id inserito dall'utente.
-            Trovato lo stream corrispondente, verranno stampate le preferenze, verrà chiesto l'inserimento del numero corrispondente alla preferenza da modificare e
-            verrà richiesta con quale sostituirla.
-            Le modifiche verranno applicate solo se la funzione Identificazione restituirà un valore di verità (TRUE).
-            Il nuovo stream verrà scrutto nel file .cvs;
-No Parametri.
-
-*/
-int Modifica_preferenza(){
-
-	FILE *f;
-	char filename[LUNG_NOME_FILE];
-	strcpy(filename,"");
-	strcat(filename,"../database-utenti.csv");
-
-	int id;
-	utente persona;
-	int nuova_preferenza;
-
-    printf("Inserisci il tuo id identificativo:");
-	scanf("%d", &id); //acquisizione indice dell'utente da modificare
-
-	f=fopen(filename, "rb+");
-	while((fread(&persona,sizeof(persona),1,f)) > 0) {
-
-		  if(persona.indice==id) {
-			 break; //stream trovato, uscita dal while
-		  }
-	 }
-
-	printf("Le tue preferenze attuali sono:\n1.%s\n2.%s\n3.%s", persona.preferenze[0], persona.preferenze[1],persona.preferenze[2]);
-
-	 do {
-
-		 printf("Quale desideri modificare? (Inserisci 1, 2 o 3)");
-		 scanf("%d", &nuova_preferenza); //acquisizione della preferenza da modificare
-
-		 //controlli da togliere e sostituire con quelli fatti da Alessandro (?)
-		 if (nuova_preferenza!=1 && nuova_preferenza!=2 && nuova_preferenza!=3){ //Nel caso di valori non ammessi
-			printf("Valore non valido.\n");
-	     }
-
-	 }while (nuova_preferenza!=1 && nuova_preferenza!=2 && nuova_preferenza!=3 ); //while per ripetere l'operazione fino a quando i valori inseriti non saranno idonei
-
-	 //switch per il controllo di quale preferenza si è scelta
-	switch (nuova_preferenza){
-	case 1:
-		printf("Hai scelto di modificare %s\nInserire nuova preferenza: ", persona.preferenze[0]);
-		scanf("%s", persona.preferenze[0]); //modifica della prima preferenza
-		break;
-
-	case 2:
-		printf("Hai scelto di modificare %s\nInserire nuova preferenza: ", persona.preferenze[1]);
-		scanf("%s", persona.preferenze[1]); //modifica della prima preferenza
-		break;
-
-	case 3:
-		printf("Hai scelto di modificare %s\nInserire nuova preferenza: ", persona.preferenze[2]);
-		scanf("%s", persona.preferenze[2]); //modifica della prima preferenza
-		break;
-
-	 } //fine switch (Implementare default per correttezza ?)
-	/*Nel main implementare:
-	do{
-	printf("Desideri modificare altre preferenze? (Inserire y per il si, n per il no)")
-	response=getchar();
-			fflush(stdin); //Pulisco il buffer (questa funzione non funziona su repl)
-
-			         //Un while utile nel caso l'utente decidesse di inserire una risposta diversa da quelle accettate
-			while (response!= 'y' && response!='n' && response!='Y' &&  response!='N'){
-		           printf("Risposta non valida, inserire 'y' per la generazione di una password, 'n' per crearla:");
-				   response=getchar();
+		if(esito_input == 0){
+			for(int j = i; j < NUM_PREFERENZE; j++){
+				strcpy(nuovo_utente.preferenze[j], "null");
 			}
-	*/
+			break;
+		}
+	}
 
-	 //Come per le funzioni modifica_nome e modifica_cognome, la scrittura su file avverà solo se Identificazione restituirà TRUE
-	if (Identificazione (persona.password, LUNGHEZZA_PASSWORD )==TRUE) {
-		printf("Identificazione avvenuta con successo, modifica effettuata.\n");
-		fseek(f, ftell(f)-sizeof(persona), SEEK_SET);
-		fwrite(&persona,sizeof(persona),1, f);
-
-	} else {
-		printf("\nIdentificazione fallita, non e' stato possibile effetturare le modifiche richieste.\n");
-    }
-
-
-	 return fclose (f);
-}
-
-/*Sommario: Funzione per la modifica della password appartenente allo stream con l'id corrispondente a quello inserito dall'utente esterno.
-            Verrà aperto il file .csv contenente gli stream, attraverso un while il puntatore verrà spostato e lo stream puntato letto
-            fino a quanto persona.indice non corrisponderà all'id inserito dall'utente.
-            Trovato lo stream corrispondente, in questo caso l'identificazione verrà effettuata prima della richiesta di modifica.
-            Le modifiche verranno applicate solo se la funzione Identificazione restituirà un valore di verità (TRUE).
-            Verranno richiamate le funzioni chamate in Salvataggio_utenti per la generazione della password.
-            Il nuovo stream verrà scrutto nel file .cvs;
-No Parametri.
-
-*/
-int Modifica_password(){
-	FILE *f;
-	char filename[LUNG_NOME_FILE];
-	strcpy(filename,"");
-	strcat(filename,"../database-utenti.csv");
-
-	utente persona;
-	int id;  //variabile per la memorizzazione dell'indice univo dell'utente su cui effetturale le modifiche
-
-
-	printf("Inserisci il tuo id identificativo:");
-	scanf("%d", &id); //acquisizione indice dell'utente da modificare
-
-	f=fopen(filename, "rb+");
-
-    while((fread(&persona,sizeof(persona),1,f)) > 0) {
-		if(persona.indice==id) {
-			break; }
-
-    }
-    if (Identificazione (persona.password, LUNGHEZZA_PASSWORD )==TRUE){
-    	printf("Identificazione avvenuta con successo, modifica effettuata.\n");
-  		  Generatore_Password(&persona); //richiamo una funzione di generazione della password
-  		  fseek(f, ftell(f)-sizeof(persona), SEEK_SET);
-  		  fwrite(&persona,sizeof(persona),1, f);
-  		  } else {
-  			  printf("\nIdentificazione fallita, non e' stato possibile effetturare le modifiche richieste.\n");
-  		  }
-
-    return fclose (f);
+	return nuovo_utente;
 }
 
 
-/*Sommario: Lettura del file .csv.
-Parametri: puntatore di tipo utente
+utente genera_utente(){
+	utente utente_generato; // Variabile che conterrà l'utente generato
 
-*/
+	// Generazione del nickname
+	strcpy(utente_generato.nickname, genera_nickname());
+
+	// Generazione della password
+	strcpy(utente_generato.password, genera_password());
+
+	// Generazione delle preferenze dell'utente
+	for(int i = 0; i < NUM_PREFERENZE; i++){
+		int esito_estrazione;							// Variabile per memorizzare l'esito dell'estrazione
+		int esito_controllo;							// Variabile per memorizzare gli esiti dei controlli
+		char preferenza_casuale[LUNG_NOME_ALIMENTO];	// Stringa per contenere il nome estratto dal database
+
+		// Estrazione casuale di un nome di un alimento
+		esito_estrazione = alimento_casuale(preferenza_casuale);
+
+		// Se non può essere estratto nessun nome, imposta tutte le preferenze alla stringa "null"
+		if(esito_estrazione < 1){
+			for(int j = i; i < NUM_PREFERENZE; j++){
+				strcpy(utente_generato.preferenze[j], "");
+			}
+			break;
+		}else{
+			// Se possono essere letti gli alimenti, controlla che quello estratto
+			// non sia già presente nelle preferenze precedenti dell'utente
+			esito_controllo = 1;
+			for(int j = 0; j < i; j++){
+				if(strcmp(preferenza_casuale, utente_generato.preferenze[j]) == 0){
+					esito_controllo = 0;
+				}
+			}
+
+			// Se il nome estratto è già presente nelle preferenze, scrivi nella nuova preferenza "null"
+			if(esito_controllo == 0){
+				strcpy(utente_generato.preferenze[i], "null");
+			}else{
+				// Se il nome estratto non è già presente nelle preferenze dell'utente
+				// controlla se una preferenza precedente a quella da inserire è uguale a "null"
+				esito_controllo = -1;
+				for(int j = 0; j < i; j++){
+					if(strcmp(utente_generato.preferenze[j], "null") == 0){
+						esito_controllo = j;
+					}
+				}
+
+				// Se nessuna preferenza precedente è uguale a "null", scrivi la nuova preferenza
+				if(esito_controllo == -1){
+					strcpy(utente_generato.preferenze[i], preferenza_casuale);
+				}else{
+					// Altrimenti nella posizione del nuovo inseriemnto scrivi "null"
+					// E nella posizione che contiene "null" scrivi la nuova preferenza
+					strcpy(utente_generato.preferenze[i], "null");
+					strcpy(utente_generato.preferenze[esito_controllo], preferenza_casuale);
+				}
+			}
+		}
+	}
+
+	return utente_generato;
+}
+
+
+utente* genera_n_utenti(int n){
+	utente* utenti_generati = (utente*) calloc(n, sizeof(utente));
+
+	for(int i = 0; i < n; i++){
+		utenti_generati[i] = genera_utente();
+	}
+
+	return utenti_generati;
+}
+
+
+int salva_n_utenti(utente* utenti, int n){
+	FILE* stream;
+	utente utente_letto;
+	int flag_posizionamento;
+
+	if((stream = fopen(FILE_DATABASE_UTENTI, "rb+")) == NULL){
+		if((stream = fopen(FILE_DATABASE_UTENTI, "wb+")) == NULL){
+			return 0;
+		}
+	}
+
+	for(int i = 0; i < n; i++){
+		flag_posizionamento = 0;
+		fseek(stream, 0, SEEK_SET);
+
+		while(feof(stream) == 0){
+			fread(&utente_letto, sizeof(utente), 1, stream);
+
+			if(strcmp(utente_letto.nickname, "") == 0){
+				fseek(stream, -sizeof(utente), SEEK_CUR);
+				fwrite(&utenti[i], sizeof(utente), 1, stream);
+
+				flag_posizionamento = 1;
+
+				break;
+			}
+		}
+
+		if(flag_posizionamento == 0){
+			fseek(stream, 0, SEEK_END);
+			fwrite(&utenti[i], sizeof(utente), 1, stream);
+		}
+	}
+
+	fclose(stream);
+	return 1;
+}
+
+
+int crea_utenti(){
+	int esito_input;
+	int esito_controllo;
+	int scelta;
+	int n_utenti_creabili;
+	unsigned short n_utenti = 0;
+	utente u;
+
+	n_utenti_creabili = MAX_UTENTI - conta_utenti();
+
+	if(n_utenti_creabili <= 0){
+		puts("Non è possibile creare ulteriori utenti. Numero massimo di utenti raggiunto.");
+		return 0;
+	}
+
+	do{
+		esito_controllo = 1;
+
+		printf("Selezionare la modalità di creazione di utente/i:\n1 - Automatica\n2 - Manuale\n>");
+		esito_input = scanf("%d", &scelta);
+		pulisci_stdin();
+
+		if(scelta != 1 && scelta != 2){
+			esito_controllo = 0;
+		}
+
+		if(esito_input != 1 || esito_controllo != 1){
+			puts("Inserimento non valido. Ripeterlo");
+		}
+
+	}while(esito_input != 1 || esito_controllo != 1);
+
+	switch(scelta){
+	case GEN_AUTOMATICA:
+		do{
+			esito_controllo = 1;
+
+			printf("Inserire il numero di utenti da generare [max. %hu]:\n>", n_utenti_creabili);
+			esito_input = scanf("%hu", &n_utenti);
+			pulisci_stdin();
+
+			if(n_utenti > n_utenti_creabili){
+				esito_controllo = 0;
+			}
+
+			if(esito_input != 1 || esito_controllo != 1){
+				puts("Inserimento non valido. Ripeterlo.");
+			}
+
+		}while(esito_input != 1 || esito_controllo != 1);
+
+		if(salva_n_utenti(genera_n_utenti(n_utenti), n_utenti) == 0){
+			return -1;
+		}
+
+		break;
+
+	case GEN_MANUALE:
+		u = input_utente();
+
+		if(salva_n_utenti(&u, 1) == 0){
+			return -1;
+		}
+
+		break;
+	}
+
+	return 1;
+}
+
+
+void modifica_preferenze(utente* u){
+	int num_preferenze_utente;
+	int scelta;
+	int esito_input;
+	int esito_controllo;
+
+	puts("");
+	num_preferenze_utente = output_preferenze(*u);
+
+	if(num_preferenze_utente > 0 && num_preferenze_utente < NUM_PREFERENZE){
+		do{
+			printf("Inserire [1] per modificare una preferenza esistente, [2] per aggiungerne una nuova:\n>");
+			esito_input = scanf("%d", &scelta);
+			pulisci_stdin();
+
+			if(scelta != 1 && scelta != 2){
+				esito_controllo = 0;
+			}else{
+				esito_controllo = 1;
+			}
+
+			if(esito_input != 1 || esito_controllo != 1){
+				puts("Inserimento non valido. Ripeterlo.\n");
+			}
+		}while(esito_input != 1 || esito_controllo != 1);
+	}else if(num_preferenze_utente == NUM_PREFERENZE){
+		scelta = 1;
+	}else{
+		scelta = 2;
+	}
+
+	if(scelta == 2){
+		puts("Aggiunta di una nuova preferenza:");
+		input_preferenza((*u).preferenze[num_preferenze_utente]);
+	}else{
+		do{
+			printf("Inserire il numero della preferenza da modificare:\n>");
+			esito_input = scanf("%d", &scelta);
+			pulisci_stdin();
+
+			if(scelta < 1 || scelta > num_preferenze_utente){
+				esito_controllo = 0;
+			}else{
+				esito_controllo = 1;
+			}
+
+			if(esito_input != 1 || esito_controllo != 1){
+				puts("Inserimento non valido. Ripeterlo");
+			}
+		}while(esito_input != 1 || esito_controllo != 1);
+
+		input_preferenza((*u).preferenze[scelta-1]);
+	}
+}
+
+
+int gestore_modifiche(){
+	FILE* stream = NULL;
+	utente utente_letto;
+	utente utente_modificato;
+	int esito_input;
+	int esito_controllo;
+	int scelta;
+
+	if((stream = fopen(FILE_DATABASE_UTENTI, "rb+")) == NULL){
+		return 0;
+	}else{
+		printf("Effettuare l'accesso ad un utente per modificarlo:\n");
+		esito_controllo = autenticazione(&utente_modificato);
+
+		if(esito_controllo != 1){
+			puts("Annullamento modifica.");
+
+			fclose(stream);
+			return 0;
+		}
+
+		do{
+			fread(&utente_letto, sizeof(utente), 1, stream);
+		}while(strcmp(utente_letto.nickname, utente_modificato.nickname) != 0);
+
+		do{
+			output_utente(utente_modificato);
+
+			fseek(stream, -sizeof(utente), SEEK_CUR);
+
+			do{
+				puts("\nSelezionare il campo da modificare:");
+				printf("1 - Nickname\n2 - Password\n3 - Preferenze\n0 - Esci\n\n>");
+				esito_input = scanf("%d", &scelta);
+				pulisci_stdin();
+
+				if(scelta != CAMPO_NICKNAME && scelta != CAMPO_PASSWORD && scelta != CAMPO_PREFERENZE && scelta != 0){
+					esito_controllo = 0;
+				}else{
+					esito_controllo = 1;
+				}
+
+				if(esito_input != 1 || esito_controllo != 1){
+					puts("Inserimento non valido. Ripeterlo.");
+				}
+			}while(esito_input != 1);
+
+			switch(scelta){
+			case CAMPO_NICKNAME:
+				strcpy(utente_modificato.nickname, input_nuovo_nickname());
+				break;
+			case CAMPO_PASSWORD:
+				strcpy(utente_modificato.password, input_password());
+				break;
+			case CAMPO_PREFERENZE:
+				modifica_preferenze(&utente_modificato);
+				break;
+			default:
+				break;
+			}
+
+			fwrite(&utente_modificato, sizeof(utente), 1, stream);
+
+		}while(scelta != 0);
+
+		fclose(stream);
+		return 1;
+	}
+}
+
 
 int visualizza_database_utenti(){
-	char filename[LUNG_NOME_FILE];
-	strcpy(filename,"");
-	strcat(filename, "../database-utenti.csv");
+	FILE* stream;
+	utente u;
 
-	FILE* stream_database = fopen(filename, "rb+");
-	utente persona;//creo una struct di tipo alimenti ome riferimento per scorrere all'interno del file
+	if((stream = fopen(FILE_DATABASE_UTENTI, "rb")) == NULL){
+		return 0;
+	}else{
+		puts("DATABASE UTENTI:");
+		if(conta_utenti() > 0){
+			while(fread(&u, sizeof(utente), 1, stream)){
+				if(feof(stream) != 0){
+					break;
+				}
 
-	//fino a quando puoi prelevare righe stampa il contenuto della struct ossia gli elementi di ogni riga
-    while(fread(&persona, sizeof(utente),1,stream_database)>0){
-    	 printf("\nID = %d\nNOME = %s\nCOGNOME = %s\nPASSWORD = %s\nPREFERENZE =\n- %s\n- %s\n- %s\n",persona.indice, persona.nome,persona.cognome, persona.password, persona.preferenze[0], persona.preferenze[1], persona.preferenze[2] );
-    }
+				if(strcmp(u.nickname, "") != 0){
+					output_utente(u);
+				}
+			}
+		}else{
+			puts("Non esistono utenti.");
+		}
+	}
 
-    return fclose (stream_database);
+	fclose(stream);
+	return 1;
 }
 
 
-
-/*Sommario: Scrittura di ciò a cui punta il puntatore di tipo utente passato alla funzione sul file.
-Parametri: puntatore di tipo utente
-
-*/
-int Aggiorna_databaseutenti(utente* persona){
-
-	FILE *f;
-    char filename[LUNG_NOME_FILE];
-    strcpy(filename,"");
-    strcat(filename,"../database-utenti.csv");
-
-    f=fopen(filename, "wb+");
-
-
-	fwrite(persona,sizeof(utente),1, f); //scrittura su file
-
-
-    return fclose (f);
-}
-
-
-/*Sommario: Funzione per confronto della password passata alla funzione e quella inserita dall'utente esterno.
+/**
  *
-Parametri: stringa di caratteri, lunghezza della stringa.
+ * @pre
+ *
+ * @post
+ */
+int autenticazione(utente* u){
+	FILE* stream = NULL;				// Variabile puntatore a FILE_DATABASE_UTENTI
+	utente utente_letto;				// Variabile utilizzata per memorizzare l'utente letto dal file
+	int esito_input;					// Variabile utilizzata per memorizzare l'esito di un input
+	int esito_controllo;				// Variabile utilizzata per memorizzare l'esito di un controllo su di un input
+	int scelta;							// Variabile per memorizzare la scelta inserita dall'utente
+	char nickname[MAX_LUNG_NICKNAME];	// Stringa corrispondente al nickname inserito per effettuare l'accesso
+	char password[LUNG_PASSWORD];		// Stringa corrispondete alla password inserita per effettuare l'accesso
 
-Return: valore di verità se la striga passata alla funzione e quella inserita dall'utente fossero uguali.
-*/
-int Identificazione (char* password, int length){
-	char identificator[length];
+	// Apertura di FILE_DATABASE_UTENTI in lettura binaria
+	if((stream = fopen(FILE_DATABASE_UTENTI, "rb")) == NULL){
+		return -1; // Se il file non può essere aperto viene ritornato -1
+	}else{
+		// Richiesta dei dati di accesso
+		do{
+			// Richiesta input nickname
+			strcpy(nickname, input_nickname());
+			// Controllo sull'esistenza nel database di un utente con il nickname inserito
+			esito_controllo = esiste_nickname(nickname);
 
-	printf("Per confermare le modifiche, inserire password utente: ");
-	scanf("%s", identificator);
+			// Richiesta input password
+			strcpy(password, input_password());
 
-	if(strcmp(password,identificator)==0){
-	return TRUE; }
-	else {
-	return FALSE;
+			// Messaggio di errore nel caso in cui il nickname non sia valido
+			if(esito_controllo != 1){
+				puts("Il nickname inserieto non appartiene a nessun utente.");
+			}else{
+				// Se il nickname è valido, va cercato l'utente identificato dallo stesso
+				do{
+					fread(&utente_letto, sizeof(utente), 1, stream);
+				}while(strcmp(utente_letto.nickname, nickname) != 0);
+
+				// Confronto fra la password inserita per accedere e quella dell'account memorizzato
+				if(strcmp(utente_letto.password, password) != 0){
+					// Se non coincidono viene mostrato l'errore
+					puts("La password inserita non è corretta.");
+					esito_controllo = 0;
+				}
+			}
+
+			// Se i dati dell'accesso non sono validi, viene richiesto se ripetere l'accesso o annullarlo
+			if(esito_controllo != 1){
+				do{
+					printf("Inserire [1] per ripetere l'accesso, [0] per annullare:\n>");
+					esito_input = scanf("%d", &scelta);
+					pulisci_stdin();
+
+					if(esito_input == 1){
+						if(scelta != 1 && scelta != 0){
+							puts("Inserimento non valido. Ripeterlo.");
+							esito_input = 0;
+						}
+					}else{
+						puts("Inserimento non valido. Ripeterlo.");
+					}
+				}while(esito_input != 1);
+			}else{
+				// Se l'accesso avviene correttamente, impostiamo scelta a zero così da uscire dal while
+				scelta = 0;
+			}
+
+		}while(scelta != 0);
+
+		// Se l'accesso è avvenuto, esito_controllo deve essere pari a 1
+		if(esito_controllo == 1){
+			// Memorizzazione dei dati dell'utente autenticato
+			(*u) = utente_letto;
+
+			fclose(stream);
+			return 1;
+		}else{
+			fclose(stream);
+			return 0;
+		}
 	}
 }
 
-/*Sommario: Funzione per la stampa dello stream con l'id corrispondente a quello passato alla funzione.
-            Verrà aperto il file .csv contenente gli stream, attraverso un while il puntatore verrà spostato e lo stream puntato letto
-            fino a quanto persona.indice non corrisponderà all'id inserito dall'utente.
-            Trovato lo stream corrispondente, verrà stampato su schermo.
 
-Parametri: Indice utente usato per la ricerca dello stream da stampare
-*/
-int Stampa_utente(){
+int output_preferenze(const utente u){
+	int num_preferenze = 0;
 
-	FILE *f;
-    char filename[LUNG_NOME_FILE];
-    strcpy(filename,"");
-    strcat(filename,"../database-utenti.csv");
+	puts("Preferenze:");
 
-    utente persona;
-    int read;
-    int id; //variabile per la memorizzazione dell'indice univoco dell'utente scritto su file
+	for(int i = 0; i < NUM_PREFERENZE; i++){
+		if(strcmp(u.preferenze[i], "null") != 0){
+			num_preferenze++;
+			printf("%d - %s\n", num_preferenze, u.preferenze[i]);
+		}
+	}
 
-    printf("Inserire id del profilo da visualizzare: ");
-    scanf("%d", &id); //acquisizione indice univoco
+	if(num_preferenze == 0){
+		puts("Non ci sono preferenze alimentari.");
+	}
 
-    f=fopen(filename, "rb+");
-    do{
-    	read = (fread(&persona,sizeof(persona),1,f));
-    	//Se persona.indice corrisponde all'id inserito da tastiera, si esce dal while attraverso un break
- 		  if(persona.indice==id) {
-
-  			/* fscanf(f, "%d%s%s%s",&persona.indice, persona.nome,persona.cognome, persona.password);
-  		      for(int i=0;i<RIGHE;i++) {
-  		          for(int j=0;j<COLONNE;j++) {
-  		             fscanf(f, "%c\n", &persona.preferenza[i][j]);
-  		          }
-  		      }*/
-  			 break;
-          }
-    }while(read > 0) ;
+	return num_preferenze;
+}
 
 
-	 fclose (f);
-	 //Stampa dell'utente
+/**
+ *
+ *
+ */
+void output_utente(const utente u){
+	printf("Nickname: %s\nPassword: %s\n",
+			u.nickname, u.password);
 
-	 printf("\nID = %d\nNOME = %s\nCOGNOME = %s\nPASSWORD = %s\nPREFERENZE = \n%s\n%s\n%s",persona.indice, persona.nome,persona.cognome, persona.password,persona.preferenze[0],persona.preferenze[1],persona.preferenze[2]);
-	 return 0;
+	output_preferenze(u);
 }
 
 
 /*Sommario: Funzione che stampa le varie operazione che si possono effettuare, leggerà la risposa inserita da tastiera ed in base al
  * numero inserito, verrà chiamata una funzione opportuna;
 paramentri: i è un indice da passare che servirà per il salvataggio dell'utente, corrisponde all'ultimo indice assegnato ad un utente
-*/
-int Menu_databaseutenti (int i){
+ */
+int menu_database_utenti (int i){
 
 	int response;
 
@@ -661,34 +709,34 @@ int Menu_databaseutenti (int i){
 		printf("\n- Inserire [0] per terminare programma.\n");
 
 
-	scanf("%d", &response);
+		scanf("%d", &response);
 
-	switch(response) {
+		switch(response) {
 
 		case 1:
-			Salvataggio_utenti(i);
+			input_utente(i);
 			i++;
 			break;
 		case 2:
-			Modifica_nome();
+			//modifica_nome();
 			break;
 		case 3:
-			Modifica_cognome();
+			//modifica_cognome();
 			break;
 		case 4:
-			Modifica_preferenza();
+			//modifica_preferenza();
 			break;
 		case 5:
-			Modifica_password();
+			//modifica_password();
 			break;
 		case 6:
-			Stampa_utente();
+			//output_utente();
 			break;
 		case 7:
 			visualizza_database_utenti();
 			break;
 
-	}
+		}
 
 	} while (response!=0);
 
@@ -696,33 +744,85 @@ int Menu_databaseutenti (int i){
 }
 
 
-/*Sommario: Conteggio del numero degli utenti scritti su file.
-  No parametri.
+int conta_utenti(){
+	utente u;
+	int num_utenti = 0;
+	FILE* stream = NULL;
 
-*/
-int Conteggio_utenti (){
+	if((stream = fopen(FILE_DATABASE_UTENTI, "rb")) == NULL){
+		return num_utenti;
+	}else{
+		while(fread(&u, sizeof(utente), 1, stream)){
+			if(feof(stream) != 0){
+				break;
+			}
 
-	FILE *f;
-	char filename[LUNG_NOME_FILE];
-	strcpy(filename,"");
-	strcat(filename,"../database-utenti.csv");
-
-	int counter=0;
-	utente persona;
-
-	f=fopen(filename,"rb");
-
-	while (fread(&persona,sizeof(persona),1,f)>0) {
-		counter++;
+			if(strcmp(u.nickname, "") != 0){
+				num_utenti++;
+			}
+		}
 	}
 
-	fclose(f);
-	if (counter>0){
-		return counter;
+	fclose(stream);
+	return num_utenti;
 
-	}	else {
-		printf("File vuoto\n");
-		return 0;
+}
+
+int elimina_utente(){
+	FILE* stream = NULL;
+	utente utente_eliminare;
+	utente utente_letto;
+	int scelta;
+	int esito_input;
+	int esito_controllo;
+
+	if((stream = fopen(FILE_DATABASE_UTENTI,"rb+")) == NULL || conta_utenti() == 0){
+		puts("Non esistono utenti eliminabili.");
+		return -1;
+	}else{
+		puts("Effettuare l'accesso all'utente da eliminare:");
+		esito_controllo = autenticazione(&utente_eliminare);
+
+		if(esito_controllo == 0){
+			puts("Annullamento eliminazione utente.");
+
+			fclose(stream);
+			return 0;
+		}else{
+			do{
+				fread(&utente_letto, sizeof(utente), 1, stream);
+			}while(strcmp(utente_letto.nickname, utente_eliminare.nickname) != 0);
+
+			fseek(stream, -sizeof(utente), SEEK_CUR);
+
+			do{
+				printf("Inserire [1] per confermare l'eliminazione, [0] per annullarla:\n>");
+				esito_input = scanf("%d", &scelta);
+				pulisci_stdin();
+
+				if(scelta != 1 && scelta != 0){
+					esito_controllo = 0;
+				}else{
+					esito_controllo =  1;
+				}
+
+				if(esito_input != 1 || esito_controllo != 1){
+					puts("Inserimento non valido. Ripeterlo.");
+				}
+			}while(esito_input != 1 || esito_controllo != 1);
+
+			if(scelta == 1){
+				strcpy(utente_eliminare.nickname, "");
+				fwrite(&utente_eliminare, sizeof(utente), 1, stream);
+
+				puts("Eliminazione utente effettuata.");
+				fclose(stream);
+				return 1;
+			}else{
+				puts("Annullamento eliminazione utente");
+				fclose(stream);
+				return 0;
+			}
+		}
 	}
-
 }
