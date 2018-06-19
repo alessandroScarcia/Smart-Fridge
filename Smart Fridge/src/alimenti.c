@@ -50,7 +50,7 @@ int ordina_alimenti_scadenza(alimento_frigo* alimenti_frigo, int  num_alimenti){
 
 
 /**
- * Funzione che si occupa di contare le effettive righe presenti nel database escludendo quelle vuote
+ * Funzione che si occupa di contare gli alimenti presenti nel database.
  *
  * @pre  Nessuna pre condizione particolare
  * @post Il valore restituito deve essere un intero significativo (>=0)
@@ -145,29 +145,21 @@ int conta_alimenti_scaduti(){
  */
 int leggi_database_alimenti(alimento_database* lista_alimenti){
 	FILE* stream = NULL; // Puntatore a FILE_DATABASE_ALIEMNTI
-	alimento_database info_alimento;//creo una struttura di riferimento per scorrere all'interno del file
-	int indice_alimento = 0; // Indice dell'alimento letto dal database
+	alimento_database alimento_letto;//creo una struttura di riferimento per scorrere all'interno del file
+	int num_alimenti_letti = 0; // Indice dell'alimento letto dal database
 
 	if((stream = fopen(FILE_DATABASE_ALIMENTI, "rb+")) == NULL){ // Apertura del file in modalità lettura binaria e aggiornamento
-		return indice_alimento; // Se il file non può essere aperto è ritronato 0
+		return num_alimenti_letti; // Se il file non può essere aperto è ritronato 0
 	}else{
-		// Viene attraversato il file copiando ogni elemento nel'array ricevuto in lista_alimenti
-		while(fread(&info_alimento, sizeof(alimento_database), 1, stream) > 0){
-				strcpy(lista_alimenti[indice_alimento].nome,info_alimento.nome);
+		// Viene attraversato il file copiando ogni elemento nell'array ricevuto in lista_alimenti
+		while(fread(&alimento_letto, sizeof(alimento_database), 1, stream) > 0){
+			lista_alimenti[num_alimenti_letti] = alimento_letto;
 
-				lista_alimenti[indice_alimento].campione_kcal=info_alimento.campione_kcal;
-
-				lista_alimenti[indice_alimento].soglia_spesa=info_alimento.soglia_spesa;
-
-				lista_alimenti[indice_alimento].kcal=info_alimento.kcal;
-
-				strcpy(lista_alimenti[indice_alimento].unita_misura,info_alimento.unita_misura);
-
-				indice_alimento++;
+			num_alimenti_letti++;
 		}
 
 		fclose(stream);
-		return indice_alimento;//se la funzione é andata a buon fine restituisci il numero di elementi caricati
+		return num_alimenti_letti;//se la funzione é andata a buon fine restituisci il numero di elementi caricati
 	}
 }
 
@@ -243,21 +235,6 @@ int visualizza_alimenti_scaduti(){
     }
 	return num_alimenti_scaduti;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -760,33 +737,27 @@ int visualizza_frigo(){
  * @return 1 in caso di successo
  */
 int leggi_frigo(alimento_frigo* lista_frigo){
-	int indice_alimento = 0;
+	int num_alimenti_letti = 0;
 	alimento_frigo alimento_letto; // Variabile utilizzata per leggere gli elementi di FILE_FRIGO
 	FILE* stream = NULL; // Puntatore a FILE_FRIGO
 
 	// Apertura del file in modalità lettura e aggiornamento binario
 	if((stream = fopen(FILE_FRIGO, "rb+")) == NULL){
-		return 0; // Viene ritornato 0 se il file non può essere aperto
+		return num_alimenti_letti; // Viene ritornato 0 se il file non può essere aperto
 	}else{
 		// Attraversa il contenuto del frigo estraendo gli alimenti in esso presenti
 		while(fread(&alimento_letto, sizeof(alimento_frigo), 1, stream) > 0){
 			// Se l'elemento estratto ha nome diverso da stringavuota, è un alimento significativo
 			if(strcmp(alimento_letto.nome, "") != 0){
 
-				strcpy(lista_frigo[indice_alimento].nome, alimento_letto.nome);
+				lista_frigo[num_alimenti_letti] = alimento_letto;
 
-				lista_frigo[indice_alimento].quantita = alimento_letto.quantita;
-
-				strcpy(lista_frigo[indice_alimento].unita_misura, alimento_letto.unita_misura);
-
-				lista_frigo[indice_alimento].scadenza = alimento_letto.scadenza;
-
-				indice_alimento++;
+				num_alimenti_letti++;
 
 			}
 		}
 	}
-    return 1;///se la funzione é andata a buon fine restituisci 1
+    return num_alimenti_letti;///se la funzione é andata a buon fine restituisci 1
 }
 
 /**
@@ -1283,7 +1254,7 @@ int modifica_kcal(){
 int alimento_casuale(char* nome_alimento){
 	FILE* stream = NULL;			// Puntatore a FILE_DATABASE
 	alimento_database alimento;		// Alimento estratto random
-	long dim_database;				// Dimensione di FILE_DATBASE
+	int dim_database;				// Dimensione di FILE_DATBASE
 
 	// Tentativo di apertura di FILE_BINARIO in lettura binaria
 	if((stream = fopen(FILE_DATABASE_ALIMENTI, "rb")) == NULL){
@@ -1296,7 +1267,7 @@ int alimento_casuale(char* nome_alimento){
 
 		// Altrimenti calcola la dimensione del file e leggi un alimento random
 		fseek(stream, 0, SEEK_END);
-		dim_database = ftell(stream) / sizeof(alimento_database);
+		dim_database = conta_alimenti_database();
 		rewind(stream);
 
 		// Spostamento del puntatore del file in una posizione random
