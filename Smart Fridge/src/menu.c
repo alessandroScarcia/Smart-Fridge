@@ -240,7 +240,7 @@ int menu_ricette(){
 					break;
 
 				case 2:
-					visualizza_database_ricette(MOSTRA_DATABASE,1,VISTA_TOTALE);//visualizza gli alimenti che abbiamo memorizzato nel frigo
+					visualizza_database_ricette(VISTA_TOTALE);//visualizza gli alimenti che abbiamo memorizzato nel frigo
 					break;
 
 				case 3:
@@ -252,7 +252,7 @@ int menu_ricette(){
 					break;
 
 				case 5:
-					menu_ricette_ord();
+					menu_ricette_ricerca();
 					break;
 
 				case 6:
@@ -303,7 +303,7 @@ int menu_alimenti(){
 				break;
 
 			case 2:
-				riduci_alimento();//elimina alimenti dal frigo
+				//riduci_alimento();//elimina alimenti dal frigo
 				break;
 
 			case 3:
@@ -396,7 +396,7 @@ int menu_principale(){
 
 
 
-/**Funzione che mostra i creatori del programma
+/**
  * @pre  Nessuna pre condizione particolare
  * @post Il valore restituito deve essere una stringa oppure un puntatore null
  */

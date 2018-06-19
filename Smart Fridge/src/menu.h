@@ -5,17 +5,17 @@
  *      Author: david
  */
 
-#define LUNG_SCELTA 2/**lunghezza della stringa che accoglierá la scelta inserita dall'utente
+#define LUNG_SCELTA 2//lunghezza della stringa che accoglierá la scelta inserita dall'utente
 
 
-/**COSTANTI PER LA VISUALIZZAZIONE DELLE VOCI DEL MENU
+//COSTANTI PER LA VISUALIZZAZIONE DELLE VOCI DEL MENU
 #define MENU_PRINCIPALE 1
 #define MENU_ALIMENTI 2
 #define MENU_RICETTE 3
 #define SOTT_MENU_RICETTE 4
 
 
-/**COSTANTI PER DETERMINARE IL RANGE DEI VALORI DI SCELTA NEL MENU
+//COSTANTI PER DETERMINARE IL RANGE DEI VALORI DI SCELTA NEL MENU
 #define MIN_SCELTA_PRINCIPALE 0
 #define MAX_SCELTA_PRINCIPALE 99
 

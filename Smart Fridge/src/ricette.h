@@ -101,6 +101,11 @@ typedef struct{
 
 //*********************************DEFINIZIONI DEI PROTOTIPI***********************************
 
+
+int conta_ricette_preparabili();
+
+
+
 /**Serve ad effettuare una tokenizzazione della stringa che gli passiamo
  *
  * @param linea				stringa che dovrá essere divisa in token

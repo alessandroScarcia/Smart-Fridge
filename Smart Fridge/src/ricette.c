@@ -36,6 +36,73 @@
  *
  */
 
+//NUOVA FUNZIONE
+int conta_ricette_preparabili(){
+
+	int num_alimenti=conta_alimenti();
+	alimento_frigo alimenti_frigo[num_alimenti];
+	leggi_frigo(alimenti_frigo);
+
+	int num_ricette=conta_righe_database_ricette();
+	int presenza_alimento=0;
+	int indice_ingrediente=0;
+	int indice_ric_prep=0;
+	float quantita_disponibile=0;
+
+	ricetta ricette_database[num_ricette];
+	lettura_database_ricette(ricette_database);
+
+	for(int i=0;i<num_ricette;i++){
+
+		while(strcmp(ricette_database[i].ingredienti[indice_ingrediente].nome_ingredienti,"")!=0){//per ogni ingrediente
+
+			for(int j=0;j<num_alimenti;j++){//ripeti il confronto con gli alimenti del frigo
+
+					if(strcmp(ricette_database[i].ingredienti[indice_ingrediente].nome_ingredienti, alimenti_frigo[j].nome)==0){
+						quantita_disponibile=quantita_disponibile+alimenti_frigo[j].quantita;//incrementa la quantitá disponibile
+						if(quantita_disponibile>=ricette_database[i].ingredienti[indice_ingrediente].quantita_necessarie){//se la quantitá disponibile é maggiore di quella necessaria
+							presenza_alimento=1;//puoi segnalare che l'ingrediente é presente
+							break;
+						}
+
+					}
+			}
+
+			if(presenza_alimento==0){
+				break;
+			}else{
+				indice_ingrediente++;
+				quantita_disponibile=0;
+				if(strcmp(ricette_database[i].ingredienti[indice_ingrediente].nome_ingredienti,"")==0)//ho finito la ricetta
+					break;
+				presenza_alimento=0;
+			}
+		}
+
+
+		if(presenza_alimento==1){
+			indice_ric_prep++;
+		}
+
+		indice_ingrediente=0;
+		presenza_alimento=0;
+		quantita_disponibile=0;
+	}
+	if(indice_ric_prep==0){
+			return -1;
+	}else{
+			return indice_ric_prep;
+	}
+
+	return 0;
+}
+
+
+
+
+
+
+
 //MODIFICA IN BASE A RIDUCI QUANTITÄ
 int prepara_ricetta(int num_ricette, ricetta* ricette_database){
 	int i_info_ricetta=0;
@@ -98,6 +165,20 @@ int prepara_ricetta(int num_ricette, ricetta* ricette_database){
 	registra_consumi(ricette_database[i_info_ricetta].nome_ricetta,FLAG_RICETTA);
 	return 0;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -272,7 +353,7 @@ int modifica_ricetta(){
 
 	FILE *fp= fopen(FILE_DATABASE_RICETTE,"rb+");
 
-	visualizza_database_ricette(MOSTRA_DATABASE,1,VISTA_MINIMIZZATA); //viene stampato il contenuto attuale del database delle ricette
+	visualizza_database_ricette(VISTA_MINIMIZZATA); //viene stampato il contenuto attuale del database delle ricette
 
 	//CONTROLLO SU ID VALIDO ALE sfrutta la funzione conta righe binary se necessario
 	printf("\nInserisci id ricetta da modificare: ");
@@ -286,7 +367,7 @@ int modifica_ricetta(){
     	if(id_ricetta==linea){//se l'id della ricetta che si é preso come riferimento é uguale alla linea su cui ci troviamo abbiamo trovato la ricetta  a cui apportare le modifiche
 
 			int currPos = ftell(fp);//scopro la locazione di memoria su cui mi trovo al momento e inizializzo la riga con strighe vuote e valori nulli
-			visualizza_database_ricette(catalogo_ricetta.nome_ricetta,1,VISTA_TOTALE);
+			visualizza_ricetta(catalogo_ricetta,VISTA_TOTALE);
 
 			printf("Scegli quale campo modificare:\n"
 					"[1]Nome\n"
@@ -382,7 +463,7 @@ int elimina_ricetta(){
 
 	FILE *fp= fopen(FILE_DATABASE_RICETTE,"rb+");
 
-	visualizza_database_ricette(MOSTRA_DATABASE,1,VISTA_MINIMIZZATA); //viene stampato il contenuto attuale del database delle ricette
+	visualizza_database_ricette(VISTA_MINIMIZZATA); //viene stampato il contenuto attuale del database delle ricette
 
 	//CONTROLLO SU ID VALIDO ALE sfrutta la funzione conta righe binary se necessario
 	printf("\nInserisci id ricetta da eliminare: ");
@@ -484,10 +565,10 @@ int visualizza_ricetta(ricetta dati_ricette, int vista_ricetta){
  * @pre		Deve essere passata una stringa o vuota o piena, l'id deve essere un numero >=1 e la vista deve essere un valore pari a 0 o 1
  * @post	Deve essere stata effettuata la visualizzazione opportuna
  */
-int visualizza_database_ricette(char nome_ricetta[LUNG_NOME_RIC], int id_ricette, int vista){
+int visualizza_database_ricette(int vista){
 
 	int flag_mostra_int=0;
-
+	int id_ricette;
 	FILE* stream_database = fopen(FILE_DATABASE_RICETTE, "rb+");
 	ricetta lista_ricette;//creo una struct di tipo alimenti ome riferimento per scorrere all'interno del file
 
@@ -495,9 +576,7 @@ int visualizza_database_ricette(char nome_ricetta[LUNG_NOME_RIC], int id_ricette
     while(fread(&lista_ricette,sizeof(lista_ricette),1,stream_database)>0){
 
 
-    	if(strcmp(nome_ricetta, MOSTRA_DATABASE)==0){// se il nome passato corrisponde alla stringa vuota allora stampero'...
-
-    		if(strcmp(lista_ricette.nome_ricetta, "")){//...solo le righe non vuote
+    	if(strcmp(lista_ricette.nome_ricetta, "")!=0){// se il nome passato corrisponde alla stringa vuota allora stampero'...
 
     			 if(flag_mostra_int==0 || id_ricette==1){
     		    	printf(" ____________________________________________________________\n");
@@ -508,22 +587,8 @@ int visualizza_database_ricette(char nome_ricetta[LUNG_NOME_RIC], int id_ricette
  		    	printf("%3d",id_ricette);
     			visualizza_ricetta(lista_ricette,vista);
     		}
-			id_ricette++; //passo alla ricetta successiva
+		id_ricette++; //passo alla ricetta successiva
 
-    	}else{//altrimenti se il nome passato come parametro non é vuoto...
-
-    		if(strcmp(lista_ricette.nome_ricetta, nome_ricetta)==0){//...stampero' la ricetta corrispondente a quel nome
-    		    if(flag_mostra_int==0 || id_ricette==1){
-    		    	printf(" ____________________________________________________________\n");
-    		    	printf("|ID| NOME RICETTA | DURATA |  COMPLESSITA' | KCAL | PORZIONI |\n");
-    		    	printf(" ____________________________________________________________\n");
-    			}
-    		    printf("%3d",id_ricette);
-    			visualizza_ricetta(lista_ricette,vista);
-    		   	break;
-    		}
-
-    	}
 
 		 if(vista==VISTA_MINIMIZZATA)
 			 flag_mostra_int=1;
@@ -816,6 +881,7 @@ int inserimento_manuale_ingredienti(char nome_ingredienti[MAX_ALIM_SUGG][LUNG_NO
  *passati come parametro alla funzione con quelli che possiede ogni ricetta. Nel caso in cui una ricetta abbia gli ingredienti che abbiamo
  *passato essa va memorizzata come ricetta preparabile. Al termine del controllo sulle ricette vengono stampate a schermo quelle preparabili
  *passato qualora ce ne fossero o un messaggio di avvertenza che segnala che non esistono ricette con la combinazione di ingredienti fornita in input
+ *
  * @pre		Deve essere passato almeno un alimento e quindi il numero di alimenti deve essere anch'esso un valore significativo
  * @post	Deve essere stato mostrato un messaggio in base all'esito della ricerca
  */
@@ -823,14 +889,14 @@ int suggerimento_ricetta_manuale(int num_alimenti_sugg, char nome_ingredienti[MA
 	int num_ricette=conta_righe_database_ricette();
 	int presenza_alimento=0; // serve a capire se un ingrediente é presente o meno nella ricetta
 	int indice_ingrediente=0; // serve a scandire i vari ingredienti della ricetta
-	char* ricette_preparabili[num_ricette]; //serve a memorizzare i nomi delle ricette che si possono preparare. Nel migliore dei casi esso avrá lunghezza pari al numero di ricette presente nel database
+	ricetta ricette_preparabili[num_ricette]; //serve a memorizzare i nomi delle ricette che si possono preparare. Nel migliore dei casi esso avrá lunghezza pari al numero di ricette presente nel database
 	int indice_ric_prep=0; //serve a contare e a spostarsi nell'array delle ricette preparabili
 
 	ricetta ricette_database[num_ricette];// array di struct che memorizza le varie ricette
 	lettura_database_ricette(ricette_database); //popolamento delle ricette presenti nel database
 
 	printf("RICETTE CHE SI POSSONO FARE:\n");
-	inizializza_ricette_preparabili(num_ricette, ricette_preparabili);//occorre inizializzare l'array di puntatori per effetuare controlli futuri
+	//inizializza_ricette_preparabili(num_ricette, ricette_preparabili);//occorre inizializzare l'array di puntatori per effetuare controlli futuri
 
 	for(int i=0;i<num_ricette;i++){
 
@@ -856,7 +922,7 @@ int suggerimento_ricetta_manuale(int num_alimenti_sugg, char nome_ingredienti[MA
 		}
 
 		if(presenza_alimento==1){//se l'ultimo flag di presenza é 1 vuol dire che la ricetta che ho analizzato é valida pertanto la salvo
-			ricette_preparabili[indice_ric_prep]=ricette_database[i].nome_ricetta;
+			ricette_preparabili[indice_ric_prep]=ricette_database[i];
 			indice_ric_prep++;
 		}
 
@@ -869,7 +935,7 @@ int suggerimento_ricetta_manuale(int num_alimenti_sugg, char nome_ingredienti[MA
 			printf("Non c'e' alcuna ricetta che puoi preparare con la combinazione di ingredienti da te inserita\n");
 	}else{
 		for(int i=0;i<indice_ric_prep;i++)
-			visualizza_database_ricette(ricette_preparabili[i],i+1,VISTA_MINIMIZZATA);
+			visualizza_ricetta(ricette_preparabili[i],VISTA_MINIMIZZATA);
 	}
 
 	return 1;
@@ -897,7 +963,7 @@ int suggerimento_ricetta_automatico(alimento_frigo* alimenti_frigo,int num_alime
 	int num_ricette=conta_righe_database_ricette();
 	int presenza_alimento=0;
 	int indice_ingrediente=0;
-	char* ricette_preparabili[num_ricette];
+	ricetta ricette_preparabili[num_ricette]; //serve a memorizzare i nomi delle ricette che si possono preparare. Nel migliore dei casi esso avrá lunghezza pari al numero di ricette presente nel database
 	int indice_ric_prep=0;
 	float quantita_disponibile=0;
 
@@ -907,7 +973,6 @@ int suggerimento_ricetta_automatico(alimento_frigo* alimenti_frigo,int num_alime
 
 	printf("RICETTE CHE SI POSSONO FARE:\n");
 
-	inizializza_ricette_preparabili(num_ricette, ricette_preparabili);
 
 	for(int i=0;i<num_ricette;i++){
 
@@ -940,7 +1005,7 @@ int suggerimento_ricetta_automatico(alimento_frigo* alimenti_frigo,int num_alime
 
 
 		if(presenza_alimento==1){
-			ricette_preparabili[indice_ric_prep]=ricette_database[i].nome_ricetta;
+			ricette_preparabili[indice_ric_prep]=ricette_database[i];
 			indice_ric_prep++;
 		}
 
@@ -952,8 +1017,8 @@ int suggerimento_ricetta_automatico(alimento_frigo* alimenti_frigo,int num_alime
 			printf("Non c'e' alcuna ricetta che puoi preparare con gli alimenti attuali. Fai la spesa\n");
 	}else{
 		for(int i=0;i<indice_ric_prep;i++)
-			visualizza_database_ricette(ricette_preparabili[i],i+1,VISTA_TOTALE);
-		//prepara_ricetta(indice_ric_prep,ricette_preparabili,ricette_database);
+			visualizza_ricetta(ricette_preparabili[i],VISTA_MINIMIZZATA);
+			//prepara_ricetta(indice_ric_prep,ricette_preparabili,ricette_database);
 	}
 
 	return 1;
