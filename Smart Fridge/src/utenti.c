@@ -363,7 +363,7 @@ int crea_utenti(){
 	int scelta;
 	int n_utenti_creabili;
 	unsigned short n_utenti = 0;
-	utente u;
+	utente* utenti_creati;
 
 	n_utenti_creabili = MAX_UTENTI - conta_utenti();
 
@@ -412,20 +412,24 @@ int crea_utenti(){
 
 		}while(esito_input != 1 || esito_controllo != 1);
 
-		if(salva_n_utenti(genera_n_utenti(n_utenti), n_utenti) == 0){
-			return -1;
-		}
+		utenti_creati = (utente*) calloc(n_utenti, sizeof(utente));
+
+		utenti_creati = genera_n_utenti(n_utenti);
 
 		break;
 
 	case GEN_MANUALE:
-		u = input_utente();
+		n_utenti = 1;
 
-		if(salva_n_utenti(&u, 1) == 0){
-			return -1;
-		}
+		utenti_creati = (utente*) calloc(n_utenti, sizeof(utente));
+
+		*utenti_creati = input_utente();
 
 		break;
+	}
+
+	if(salva_n_utenti(utenti_creati, n_utenti) == 0){
+		return -1;
 	}
 
 	return 1;
