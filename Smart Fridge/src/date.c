@@ -382,6 +382,24 @@ data data_odierna(){
 
 
 /**
+ * La funzione giorno_odierno() restituisce un numero, corrispondente al giorno della settimana,
+ * nell'intervallo [0 - 6]. L'estrazione del giorno odierno della settimana avviene ricavando
+ * la data odierna attraverso la funzione time(), convertendola in struct tm attraverso la funzione
+ * localtime() ed estrapolandolo leggendo il valore del membro tm_wday.
+ *
+ * @post Il valore ritornato va interpretato come 0 Lunedì, 6 Domenica.
+ */
+int giorno_odierno(){
+	// Estrazione dei dati della data odierna
+	time_t tmp = time(NULL);
+	struct tm* tmp2 = localtime(&tmp);
+
+	// Va ritornato il numero corridponente al giorno odierno della settimana
+	return (*tmp2).tm_wday;
+}
+
+
+/**
  * Funzione shiftdata_odierna:
  *
  * La funzione genera una data partendo dalla data odierna e shiftandola del valore

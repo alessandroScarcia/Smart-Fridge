@@ -11,7 +11,7 @@
  * @authors Alessandro Scarcia, Davide Quatela, Michela Salvemini
  */
 
-//Inclusione delle librerie standard
+/// Inclusione delle librerie standard
 #ifndef STD_LIB
 #define STD_LIB
 	#include <stdbool.h>
@@ -20,13 +20,13 @@
 	#include <time.h>
 #endif
 
-//Inclusione della libreria matematica
+/// Inclusione della libreria matematica
 #ifndef MATH_LIB
 #define MATH_LIB
 	#include <math.h>
 #endif
 
-// Inclusione della libreria per la pulizia dei flussi di input
+/// Inclusione della libreria per la pulizia dei flussi di input
 #include "pulizia_flussi.h"
 
 #ifndef DATE_LIB
@@ -145,11 +145,20 @@ int genera_data(data* data_generata, data d1, data d2);
 
 /**
  * La funzione data_odierna() è utilizzata per determinare
- * la data almomento dell'esecuzione.
+ * la data al momento dell'esecuzione.
  *
  * @return Un avariabile di tipo data il cui valore è la data al momento di esecuzione
  */
 data data_odierna();
+
+
+/**
+ * La funzione giorno_odierno() è utilizzata per determinare il giorno
+ * della settimana al momento dell'esecuzione, da 0 a 6.
+ *
+ * @return Numero corrispondente al giorno della settimana al momento dell'esecuzione.
+ */
+int giorno_odierno();
 
 
 /**
