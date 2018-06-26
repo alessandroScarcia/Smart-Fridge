@@ -1,9 +1,6 @@
-
+#ifndef ALIMENTI_LIB
 #include "alimenti.h"
-
-
-
-
+#endif
 
 //NUOVE FUNZIONI ALIMENTI
 
@@ -80,7 +77,7 @@ int conta_alimenti_database(){
  * @pre  Nessuna pre condizione particolare
  * @post Il valore restituito deve essere un intero significativo (>=0)
  */
-int conta_alimenti(){
+int conta_alimenti_frigo(){
 		FILE* stream = NULL;					// Puntatore a FILE_FRIGO
 		alimento_frigo info_alimento;			// genero una struct di riferimento che mi permette di scorrere all'interno del file di tipo binario
 
@@ -112,7 +109,7 @@ int conta_alimenti(){
  */
 int conta_alimenti_scaduti(){
 	int num_alimenti_scaduti = 0; // Numero di alimenti scaduti rilevati
-	int num_alimenti = conta_alimenti(FILE_FRIGO); // Numero di alimenti contenuti nel frigo
+	int num_alimenti = conta_alimenti_frigo(FILE_FRIGO); // Numero di alimenti contenuti nel frigo
 	data data_esecuzione; // Data al momento di esecuzione
 
 	// Se è presente almeno un alimento nel frigo, è necessario iniziare i controlli
@@ -216,7 +213,7 @@ int eliminazione_alimenti_scaduti(){
  */
 int visualizza_alimenti_scaduti(){
 	int num_alimenti_scaduti = 0;
-	int num_alimenti = conta_alimenti();
+	int num_alimenti = conta_alimenti_frigo();
 
 	if(num_alimenti == 0){
 		puts("Non ci sono alimenti nel frigo.");
@@ -495,7 +492,7 @@ float input_soglia_spesa(char *nome_alimento, char* unita_misura){
 }
 
 
-int ricerca_database(char *nome_alimento, alimento_database *alimento_estratto){
+int ricerca_alimento_database(char *nome_alimento, alimento_database *alimento_estratto){
 	alimento_database alimento;
 	FILE *stream = NULL;
 
@@ -516,7 +513,7 @@ int ricerca_database(char *nome_alimento, alimento_database *alimento_estratto){
 }
 
 
-int aggiorna_database(alimento_frigo alimento){
+int aggiorna_database(char* nome_alimento, char* unita_misura){
 	FILE *stream = NULL;								// Puntatore al file database_alimenti
 	alimento_database alimento_database;				// Variabile per comunicare con il database
 	char flag_presenza = 0;								// Flag per memorizzare la presenza nel database dell'alimento in analisi
@@ -545,7 +542,7 @@ int aggiorna_database(alimento_frigo alimento){
 		}
 
 		// Confronto fra l'alimento letto dal database e quello ipoteticamente sconosciuto
-		if(strcmp(alimento_database.nome, alimento.nome) == 0){
+		if(strcmp(alimento_database.nome, nome_alimento) == 0){
 			// Se l'alimento è conosciuto, va modificato il valore di flag_presenza
 			flag_presenza = 1;
 		}
@@ -553,13 +550,13 @@ int aggiorna_database(alimento_frigo alimento){
 
 	// Se flag_presenza è uguale a zero, l'alimento è sconosciuto e bisogna aggiungerlo
 	if(flag_presenza == 0){
-		printf("L'alimento identificato come <%s> è sconosciuto.\n", alimento.nome);
+		printf("L'alimento identificato come <%s> è sconosciuto.\n", nome_alimento);
 
 		// Creazione della riga da inserire nel database
 		// Nome dell'alimento
-		strcpy(alimento_database.nome, alimento.nome);
+		strcpy(alimento_database.nome, nome_alimento);
 		// Unità di misura
-		strcpy(alimento_database.unita_misura, alimento.unita_misura);
+		strcpy(alimento_database.unita_misura, unita_misura);
 		// Campione per il calcolo delle kcal
 		alimento_database.campione_kcal = calcola_campione_kcal(alimento_database.unita_misura);
 		// Kcal per campione di alimento
@@ -869,11 +866,11 @@ int carica_spesa(){
 
 				// Conversione dell'unità di misura inserita in quella utilizzata nel frigo
 				if(converti_quantita(&alimento_letto.quantita, alimento_letto.unita_misura) == 1){
-					printf("Quantita dell'alimento <%s> convertita per adattarla al contenuto del frigo.\n", alimento_letto.nome);
+					printf("Quantita dell'alimento <%s> convertita.\n", alimento_letto.nome);
 				}
 
 				// Ricerca nel  database dell'alimento letto
-				esito_ricerca = ricerca_database(alimento_letto.nome, &alimento_database);
+				esito_ricerca = ricerca_alimento_database(alimento_letto.nome, &alimento_database);
 				if(esito_ricerca == 1){
 					// Confronto fra le due unità di misura
 					if(strcmp(alimento_letto.unita_misura, alimento_database.unita_misura) != 0){
@@ -984,7 +981,7 @@ int carica_spesa(){
 				esito_aggiornamento = aggiorna_frigo(alimento_letto);
 
 				if(esito_aggiornamento == 2){
-					esito_aggiornamento = aggiorna_database(alimento_letto);
+					esito_aggiornamento = aggiorna_database(alimento_letto.nome, alimento_letto.unita_misura);
 					if(esito_aggiornamento == -1){
 					 return -3;
 					}
@@ -1060,6 +1057,8 @@ int riduci_alimento(const char* nome_alimento, float riduzione){
 					fwrite(&alimento_letto, sizeof(alimento_frigo), 1, stream);
 				}
 			}
+
+			registra_consumo(alimento_letto.nome, FLAG_ALIMENTO);
 
 			fclose(stream);
 			return 1;

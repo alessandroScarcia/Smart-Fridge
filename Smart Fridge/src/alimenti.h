@@ -38,14 +38,28 @@
 	#include <ctype.h>
 #endif
 
-/// Inclusione della libreria per la gestione delle date
-#include "date.h"
-
-/// Inclusione della libreria per la pulizia dei flussi di input
-#include "pulizia_flussi.h"
-
 #ifndef ALIMENTI_LIB
 #define ALIMENTI_LIB
+
+
+#ifndef UTENTI_LIB
+#include "utenti.h"
+#endif
+
+/// Inclusione della libreria per la gestione delle date
+#ifndef DATE_LIB
+#include "date.h"
+#endif
+
+/// Inclusione della libreria per la gestione dei consumi
+#ifndef CONSUMI_LIB
+#include "consumi.h"
+#endif
+
+/// Inclusione della libreria per la pulizia dei flussi di input
+#ifndef PULIZIA_FLUSSI_LIB
+#include "pulizia_flussi.h"
+#endif
 
 /// DEFINIZIONE DELLE COSTANTI SIMBOLICHE.
 
@@ -166,7 +180,7 @@ int eliminazione_alimenti_scaduti();
  *
  * @return righe numero di alimenti presenti nel frigo
  */
-int conta_alimenti();
+int conta_alimenti_frigo();
 
 
 
@@ -299,7 +313,7 @@ int input_id_alimento(int num_alimenti_frigo);
  * @return 0 se l'alimento non viene trovato
  * @return -1 se il file_database non può essere aperto
  */
-int ricerca_database(char *nome_alimento, alimento_database *alimento_estratto);
+int ricerca_alimento_database(char *nome_alimento, alimento_database *alimento_estratto);
 
 
 /**La funzione aggiorna_database permette al programma(o al frigo se vogliamo avere una visione piú realistica del prodotto)
@@ -308,7 +322,7 @@ int ricerca_database(char *nome_alimento, alimento_database *alimento_estratto);
  * un valore nutrizionale reale. Ovviamente la funzione deve conoscere gli alimenti che abbiamo inserito nel frigo e il relativo numero.
  * Una volta iniziato il confronto tra gli alimenti giá memorizzati e quelli recentemente aggiunti si decide, a seconda se un alimento é
  * conosciuto o meno, di aggiungerlo al database*/
-int aggiorna_database(alimento_frigo alimento);
+int aggiorna_database(char* nome_alimento, char* unita_misura);
 
 
 /**La funzione aggiorna_frigo una volta conosciuti il numero di alimenti da caricare e i dati a riguardo effettua la memorizzazione dei nuovi alimenti comprati
