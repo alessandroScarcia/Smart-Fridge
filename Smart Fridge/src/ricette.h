@@ -29,6 +29,10 @@
 #include "consumi.h"
 #endif
 
+#ifndef UTENTI_LIB
+#include "utenti.h"
+#endif
+
 #ifndef DATE_LIB
 #include "date.h"
 #endif
