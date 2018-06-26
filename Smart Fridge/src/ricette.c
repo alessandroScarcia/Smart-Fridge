@@ -4,15 +4,14 @@
  *  Created on: 16 mag 2018
  *      Author: david
  */
+#ifndef RICETTE_LIB
 #include "ricette.h"
-
-
+#endif
 
 /*
  * Modifica la prima funzione in base alle modifiche che hai apportato a riduci quantitá alimenti
  * PREPARA RICETTE: controlli su apertura file del frigo, inserimento di un valido id e possibilitá di effetuare una differenza tra le quantitá disponibili nel frigo e quelle espresse
  * dagli ingredienti delle ricette. Controllo anche su effettiva scrittura e opportuno richiamo alla funzione dei consumi che sta in fondo alla funzione
- * FUNZIONE LEGGI_CAMPO_RICETTA: non penso siano necessari controlli in quanto le stringhe passate si presume siano pulite
  * FUNZIONE input_x: tutte le funzioni precedute dalla paraola input devono essere controllate con un classico controllo sulle stringhe e interi e sulla accettibilitá dei valori. Solo per l'input ingrediente magari va prestata
  *  piú attenzione per il formato
  *  FUNZIONE modifica_ricetta(): controllo apertura file e presenza di valori, controllo su id inserito, controllo su campo inserito, controllo su successo modifica
@@ -30,71 +29,78 @@
  * FUNZIONE suggerimento_ricetta_manuale: controllo su file e su corretto inserimento id(la struttura della funzione non ti piacerá, e ci terrei che la modificassi in quanto funziona ma non é carina)
  * FUNZIONE suggerimento_ricetta_automatico: controllo su file e su corretto inserimento id(la struttura della funzione non ti piacerá, e ci terrei che la modificassi in quanto funziona ma non é carina). Ë uguale alla precedente solo che
  * cambia leggermente dal punto di vista strutturale.
- *FUNZIONE aggiorna_database_ricette: fai gli stessi controlli di alimenti
- *FUNZIONE lettura_nuove_ricette(): fai gli stessi controlli di alimenti(ho impostato la struttura simile alla tua)
  *FUNZIONE conta_kcal_ricetta: controllo su effettiva presenza dei dati degli ingredienti all'interno del file del database degli alimenti
  *
  */
 
 //NUOVA FUNZIONE
+
+
+int esiste_ricetta(char* nome_ricetta){
+	FILE* stream = NULL;
+	ricetta ricetta_letta;
+	char flag_esistenza = 0;
+
+	if((stream = fopen(FILE_DATABASE_RICETTE, "rb+")) == NULL){
+		return flag_esistenza;
+	}else{
+		while(fread(&ricetta_letta, sizeof(ricetta), 1, stream) > 0){
+			if(feof(stream) != 0){
+				break;
+			}
+
+			if(strcmp(ricetta_letta.nome_ricetta, nome_ricetta) == 0){
+				flag_esistenza = 1;
+				break;
+			}
+		}
+
+		fclose(stream);
+		return flag_esistenza;
+	}
+}
+
+
 int conta_ricette_preparabili(){
+	char flag_preparazione;								// Flag per memorizzare se una ricetta è preparabile
+	int num_ricette_preparabili = 0;					// Numero di ricette preparabili
+	int num_ricette_database;							// Numero di ricette presenti nel database
+	ricetta* ricette_database;							// Array che conterrà le ricette del database
 
-	int num_alimenti=conta_alimenti();
-	alimento_frigo alimenti_frigo[num_alimenti];
-	leggi_frigo(alimenti_frigo);
+	// Vengono contate le ricette conosciute
+	num_ricette_database = conta_ricette_database();
+	// Se le ricette conosciute sono pari a zero, non ci sono ricette preparabili
+	if(num_ricette_database == 0){
+		return num_ricette_preparabili;
+	}
 
-	int num_ricette=conta_righe_database_ricette();
-	int presenza_alimento=0;
-	int indice_ingrediente=0;
-	int indice_ric_prep=0;
-	float quantita_disponibile=0;
-
-	ricetta ricette_database[num_ricette];
+	// Estrazione delle ricette conosciute
+	ricette_database = (ricetta*) calloc(num_ricette_database, sizeof(ricetta));
 	lettura_database_ricette(ricette_database);
 
-	for(int i=0;i<num_ricette;i++){
+	// Viengono analizzate tutte le ricette conosciute
+	for(int i=0; i < num_ricette_database; i++){
+		// Viene impostato il flag ad 1 prima di analizzare tutti gli ingredienti
+		flag_preparazione = 1;
 
-		while(strcmp(ricette_database[i].ingredienti[indice_ingrediente].nome_ingredienti,"")!=0){//per ogni ingrediente
+		// Le quantità di ogni ingrediente della i-esima ricetta vengono confrontate con il contenuto del frigo
+		int j = 0;
+		while(strcmp(ricette_database[i].ingredienti[j].nome, "") != 0){
+			// Viene estratta dal frigo la quantità posseduta del j-esimo ingrediente
+			float quantita_posseduta = quantita_alimento(ricette_database[i].ingredienti[j].nome);
 
-			for(int j=0;j<num_alimenti;j++){//ripeti il confronto con gli alimenti del frigo
-
-					if(strcmp(ricette_database[i].ingredienti[indice_ingrediente].nome_ingredienti, alimenti_frigo[j].nome)==0){
-						quantita_disponibile=quantita_disponibile+alimenti_frigo[j].quantita;//incrementa la quantitá disponibile
-						if(quantita_disponibile>=ricette_database[i].ingredienti[indice_ingrediente].quantita_necessarie){//se la quantitá disponibile é maggiore di quella necessaria
-							presenza_alimento=1;//puoi segnalare che l'ingrediente é presente
-							break;
-						}
-
-					}
-			}
-
-			if(presenza_alimento==0){
+			if(quantita_posseduta < ricette_database[i].ingredienti[j].quantita){
+				flag_preparazione = 0;
 				break;
-			}else{
-				indice_ingrediente++;
-				quantita_disponibile=0;
-				if(strcmp(ricette_database[i].ingredienti[indice_ingrediente].nome_ingredienti,"")==0)//ho finito la ricetta
-					break;
-				presenza_alimento=0;
 			}
 		}
 
-
-		if(presenza_alimento==1){
-			indice_ric_prep++;
+		if(flag_preparazione == 1){
+			num_ricette_preparabili++;
 		}
-
-		indice_ingrediente=0;
-		presenza_alimento=0;
-		quantita_disponibile=0;
-	}
-	if(indice_ric_prep==0){
-			return -1;
-	}else{
-			return indice_ric_prep;
 	}
 
-	return 0;
+	return num_ricette_preparabili;
 }
 
 
@@ -104,83 +110,114 @@ int conta_ricette_preparabili(){
 
 
 //MODIFICA IN BASE A RIDUCI QUANTITÄ
-int prepara_ricetta(int num_ricette, ricetta* ricette_database){
-	int i_info_ricetta=0;
-	int scelta_prep;
-	int indice_ingrediente=0;
-	float q_riduzione;
+int prepara_ricetta(char* nome_ricetta, int dosi_ricetta){
+	FILE* stream = NULL;
+	ricetta ricetta_letta;
+	int flag_preparazione;
 
-	FILE *fp= fopen(FILE_FRIGO,"rb+"); //apri il file in modalitá "lettura binaria"
-	alimento_frigo alimenti_frigo;//struct di riferimento per scorrere il file
+	if(esiste_ricetta(nome_ricetta) == 0){
+		return 0;
+	}
 
-
-	printf("Inserisci id ricetta che vuoi preparare");
-	scanf("%d", &scelta_prep);
-
-
-		while(strcmp(ricette_database[i_info_ricetta].ingredienti[indice_ingrediente].nome_ingredienti,"")!=0){
-			q_riduzione=ricette_database[i_info_ricetta].ingredienti[indice_ingrediente].quantita_necessarie;
-
-			//printf("%.1f\n", q_riduzione);
-		    while(fread(&alimenti_frigo,sizeof(alimenti_frigo),1,fp)>0){//leggi fino a quando é presente una riga
-
-		    	if(strcmp(alimenti_frigo.nome, ricette_database[i_info_ricetta].ingredienti[indice_ingrediente].nome_ingredienti)==0){//se la linea non é vuota e possiede un alimento
-		    		int currPos = ftell(fp);//scopro la locazione di memoria su cui mi trovo al momento
-
-		    		if(alimenti_frigo.quantita>=q_riduzione){
-		    			alimenti_frigo.quantita=alimenti_frigo.quantita-q_riduzione;//riduco la quantitá dell'alimento
-		    			q_riduzione=0;
-		    		}else{
-		    			printf("Quantita disponibile prima %.1f\n", alimenti_frigo.quantita );
-		    			q_riduzione=q_riduzione-alimenti_frigo.quantita;
-		    			printf("Quantita ancora necessaria %.1f\n", q_riduzione );
-		    			alimenti_frigo.quantita=0;
-		    		}
-
-		      		if(alimenti_frigo.quantita==0){//se l'alimento si é esaurito notifica l'utente e inizializza la riga
-						strcpy(alimenti_frigo.nome,"");
-						strcpy(alimenti_frigo.unita_misura,"");
-						alimenti_frigo.scadenza.giorno=0;
-						alimenti_frigo.scadenza.mese=0;
-						alimenti_frigo.scadenza.anno=0;
-		      		}
-
-		    		fseek(fp,currPos-sizeof(alimenti_frigo),SEEK_SET);//posiziona il puntatore sulla locazione di memoria da cui iniziare a scrivere
-		        	fwrite(&alimenti_frigo,sizeof(alimenti_frigo),1,fp);//scrivi il contenuto della struct aggiornata
-		        	rewind(fp);
-		    		if(q_riduzione==0)
-		    			break;
-
-
-		    	}
-
-
-			  }
-
-		    indice_ingrediente++;
-
+	if((stream = fopen(FILE_DATABASE_RICETTE, "rb")) == NULL){
+		return 0;
+	}else{
+		while(fread(&ricetta_letta, sizeof(ricetta), 1, stream) > 0){
+			if(strcmp(ricetta_letta.nome_ricetta, nome_ricetta) == 0){
+				break;
+			}
 		}
 
-	fclose(fp); //chiudi il file
-	registra_consumi(ricette_database[i_info_ricetta].nome_ricetta,FLAG_RICETTA);
-	return 0;
+		flag_preparazione = 1;
+
+		for(int i = 0; i < MAX_INGREDIENTI; i++){
+			if(strcmp(ricetta_letta.ingredienti[i].nome, "") != 0){
+				if(ricetta_letta.ingredienti[i].quantita > quantita_alimento(ricetta_letta.ingredienti[i].nome)){
+					flag_preparazione = 0;
+				}
+			}else{
+				break;
+			}
+		}
+
+		if(flag_preparazione == 1){
+			for(int i = 0; i < MAX_INGREDIENTI; i++){
+				if(strcmp(ricetta_letta.ingredienti[i].nome, "") != 0){
+					riduci_alimento(ricetta_letta.ingredienti[i].nome, ricetta_letta.ingredienti[i].quantita);
+				}else{
+					break;
+				}
+			}
+
+			registra_consumo(nome_ricetta, FLAG_RICETTA);
+			fclose(stream);
+			return 1;
+		}else{
+			return 0;
+		}
+	}
 }
 
 
 
+void gestore_prepara_ricetta(){
+	int esito_input;
+	int esito_controllo;
+	int scelta;
+	int esito_autenticazione;
+	int esito_preparazione;
+	utente utente_autenticato;
+	char nome_ricetta[LUNG_NOME_RICETTA];
+	int dosi_ricetta;
+
+	puts("PREPARAZIONE RICETTA:");
+
+	do {
+		printf("Inserire:\n"
+				"[1] per autenticarsi e inserire le calorie nella propria giornata"
+				"[0] per preparare la ricetta in anonimo");
+		esito_input = scanf("%d", &scelta);
+		if(pulisci_stdin() == 1){
+			esito_input = 0;
+		}
+
+		if(scelta != 0 && scelta != 1){
+			esito_controllo = 0;
+		}else{
+			esito_controllo = 1;
+		}
+
+		if(esito_input == 0 || esito_controllo == 0){
+			puts("Inserimento non valido. Ripeterlo.");
+		}
+	} while (esito_input == 0 || esito_controllo == 0);
+
+	if(scelta == 1){
+		esito_autenticazione = autenticazione(&utente_autenticato);
+		if(esito_autenticazione == 0){
+			return;
+		}
+	}
+
+	do {
+		suggerimento_ricetta_automatico();
+
+		strcpy(nome_ricetta, input_nome_ricetta());
+
+		dosi_ricetta = input_dosi_ricetta();
+
+		if(prepara_ricetta(nome_ricetta, dosi_ricetta) == 0){
+			esito_preparazione = 0;
+			puts("Non è possibile preparare la ricetta scelta.");
+		}else{
+			if(esito_autenticazione == 1){
+				// calorie alla giornata dell'utente
+			}
+		}
+	} while (esito_preparazione == 0);
 
 
-
-
-
-
-
-
-
-
-
-
-
+}
 
 
 
@@ -206,7 +243,7 @@ int prepara_ricetta(int num_ricette, ricetta* ricette_database){
  * @pre  che la stringa su cui effettuare lo split sia piena, che ci sia un numero di campo >0  e che il flag un valore uguale a 0 o 1
  * @post Il valore restituito deve essere una stringa oppure un puntatore null
  */
-const char* leggi_campo_ricetta(char* linea, int num_campo, short flag_campo){
+char* leggi_campo_ricetta(char* linea, int num_campo, short flag_campo){
 
 	char * punta_delimitatore;//puntatore al carattere delimitatore della stringa che gli passiamo
 	int num_delimitatori=0;//numero di delimitatori presenti all'interno della stringa
@@ -254,29 +291,61 @@ const char* leggi_campo_ricetta(char* linea, int num_campo, short flag_campo){
 
 
 /**
- * Funzione che dopo aver allocato una stringa di una determinata lunghezza, si occupa di ricevere in input il nome della ricetta
+ * Funzione input_nome_ricetta():
+ *
+ * Permette di richiedere l'input del nome di una ricetta, consentendo gli spazi ma limitando
+ * la lunghezza della stringa al massimo stabilito da LUNG_NOME_RICETTA. Se il limite viene superato,
+ * l'input viene ripetuto.
+ *
  * @pre		Nessuna pre condizione particolare
- * @post	Deve essere restituita una stringa con almeno un carattere
+ * @post	Deve essere restituita una stringa con almeno un carattere.
  */
 char* input_nome_ricetta(){
-	char* nome_ricetta=(char *)malloc(sizeof(LUNG_NOME_RIC));
-	printf("Inserisci nuovo nome");
-	scanf("%50s", nome_ricetta);
-	return nome_ricetta;
+	int esito_input;				// Variabile per memorizzare l'esito dell'input
+	// Stringa da restituire contenente il nome della ricetta
+	char* nome_ricetta = (char*) calloc(LUNG_NOME_RICETTA, sizeof(char));
 
+	do{
+		printf("Inserisci il nome della ricetta:\n>");
+		scanf("%25[^\n]", nome_ricetta);
+		if(pulisci_stdin() == 1){
+			esito_input = 0;
+		}
+
+		if(esito_input == 0){
+			puts("Inserimento non valido. Ripeterlo.");
+		}
+	}while (esito_input == 0);
+
+	return nome_ricetta;
 }
 
 /**
- * Funzione che dopo aver allocato una stringa di una determinata lunghezza, si occupa di ricevere in input il tempo di preparazione della ricetta
+ * Funzione input_tempo_preparazione()
+ *
+ * Permette di richiedere l'input del tempo di preparazione di una ricetta, consentendo gli spazi
+ * ma limitando la lunghezza della stringa al massimo stabilito da LUNG_TEMPO_PREPARAZIONE. Se il limite
+ * viene superato, l'input viene ripetuto.
  * @pre		Nessuna pre condizione particolare
  * @post	Deve essere restituita una stringa con almeno un carattere
  */
-char* input_tempo_prep_ricetta(){
-	char* tempo_preparazione=(char *)malloc(sizeof(LUNG_TEMP_PREP));
-	printf("Inserisci nuovo tempo di preparazione");
-	scanf("%20s", tempo_preparazione);
-	return tempo_preparazione;
+char* input_tempo_preparazione(){
+	int esito_input;
+	char* tempo_preparazione=(char*) calloc(LUNG_TEMPO_PREPARAZIONE, sizeof(char));
 
+	do {
+		printf("Inserisci il tempo di preparazione:\n>");
+		scanf("%20[^\n]", tempo_preparazione);
+		if(pulisci_stdin() == 1){
+			esito_input = 0;
+		}
+
+		if(esito_input == 0){
+			puts("Inserimento non valido. Ripeterlo.");
+		}
+	} while (esito_input== 0);
+
+	return tempo_preparazione;
 }
 
 /**
@@ -285,9 +354,21 @@ char* input_tempo_prep_ricetta(){
  * @post	Deve essere restituita una stringa con almeno un carattere
  */
 char* input_complessita_ricetta(){
-	char* complessita=(char *)malloc(sizeof(LUNG_COMPLESSITA));
-	printf("Inserisci nuova complessita'");
-	scanf("%20s", complessita);
+	int esito_input;
+	char* complessita=(char*) calloc(LUNG_COMPLESSITA, sizeof(char));
+
+	do {
+		printf("Inserisci la complessità:\n>");
+		scanf("%20[^\n]", complessita);
+		if(pulisci_stdin() == 1){
+			esito_input = 0;
+		}
+
+		if(esito_input == 0){
+			puts("Inserimento non valido. Ripeterlo.");
+		}
+	} while (esito_input == 0);
+
 	return complessita;
 }
 
@@ -297,9 +378,52 @@ char* input_complessita_ricetta(){
  * @post	Deve essere restituita una stringa con almeno un carattere
  */
 char* input_preparazione_ricetta(){
-	char* preparazione=(char *)malloc(sizeof(LUNG_PREPARAZIONE));
-	printf("Inserisci nuova preparazione");
-	scanf("%s", preparazione);
+	int esito_input;
+	int esito_controllo;
+	int scelta;
+	char s[LUNG_PREPARAZIONE];
+	char* preparazione = (char*) calloc(LUNG_PREPARAZIONE, sizeof(char));
+
+	do {
+		printf("Inserire una fase della preparazione, premendo invio per confermare l'inserimento.\n[max. %d caratteri]:\n>", LUNG_PREPARAZIONE - strlen(s) - 1);
+		esito_input = scanf("%500[^\n]", s);
+		if(pulisci_stdin() == 1){
+			esito_input = 0;
+		}else if(strlen(preparazione) + strlen(s) > LUNG_PREPARAZIONE - 1){
+			esito_input = 0;
+		}
+
+		if(esito_input == 0){
+			puts("Inserimento non valido. Ripeterlo.");
+		}else{
+			do {
+				printf("Inserire 1 per inserire una nuova fase, 0 per terminare l'inserimento");
+				esito_input = scanf("%d", &scelta);
+				if(pulisci_stdin() == 1){
+					esito_input = 0;
+				}
+
+				if(scelta != 0 && scelta != 1){
+					esito_controllo = 0;
+				}else{
+					esito_controllo = 1;
+				}
+
+				if(esito_input == 0 || esito_controllo == 0){
+					puts("Inserimento non valido. Ripeterlo.");
+				}
+			} while (esito_input == 0 || esito_controllo == 0);
+
+			esito_input = 1;
+
+			strcat(preparazione, s);
+
+			if(scelta == 1){
+				strcat(preparazione, " - ");
+			}
+		}
+	} while (esito_input == 0 || scelta == 1);
+
 	return preparazione;
 }
 
@@ -310,9 +434,21 @@ char* input_preparazione_ricetta(){
  * @post	Deve essere restituita una stringa con almeno un carattere
  */
 char* input_ingredienti_ricetta(){
-	char* ingrediente=(char *)malloc(sizeof(LUNG_STR_LAVORO_RIC));
-	printf("Inserisci nuovo ingrediente:  ");
-	scanf ("%[^\n]%*c", ingrediente);
+	int esito_input;
+	char* ingrediente = (char*) calloc(LUNG_STR_LAVORO_RIC, sizeof(char));
+
+	do {
+		printf("Inserisci il nuovo ingrediente (\"null\" per terminare l'inserimento):\n>");
+		esito_input = scanf ("%[^\n]", ingrediente);
+		if(pulisci_stdin() == 1){
+			esito_input = 0;
+		}
+
+		if(esito_input != 1){
+			puts("Inserimento non valido. Ripeterlo.");
+		}
+	} while (esito_input != 1);
+
 	return ingrediente;
 }
 
@@ -321,15 +457,58 @@ char* input_ingredienti_ricetta(){
  * @pre		Nessuna pre condizione particolare
  * @post	Deve essere restituita una stringa con almeno un carattere
  */
-int input_porzione_ricetta(){
-	int porzione;
-	printf("Inserisci nuovo ingrediente:  ");
-	scanf ("%d", &porzione);
-	return porzione;
+int input_dosi_ricetta(){
+	int esito_input;
+	int esito_controllo;
+	int dosi;
+
+	do {
+		printf("Inserisci le dosi per la ricetta:\n>");
+		esito_input = scanf ("%d", &dosi);
+		if(pulisci_stdin() == 1){
+			esito_input = 0;
+		}
+
+		if(dosi < MIN_DOSI || dosi > MAX_DOSI){
+			esito_controllo = 0;
+		}else{
+			esito_controllo = 1;
+		}
+
+		if(esito_input != 1 || esito_controllo != 1){
+			puts("Inserimento non valido. Ripeterlo.");
+		}
+	} while (esito_input != 1 || esito_controllo != 1);
+
+	return dosi;
 }
 
 
+int input_id_ricetta(int max_id){
+	int id;
+	int esito_input;
+	int esito_controllo;
 
+	do{
+		printf("Inserire l'id della ricetta da selezionare [1 - %d]:\n>", max_id);
+		esito_input = scanf("%d", &id);
+		if(pulisci_stdin() == 1){
+			esito_input = 0;
+		}
+
+		if(id < 1 || id > max_id){
+			esito_controllo = 0;
+		}else{
+			esito_controllo = 1;
+		}
+
+		if(esito_input != 1 || esito_controllo != 1){
+			puts("Inserimento non valido. Ripeterlo.");
+		}
+	}while(esito_input != 1 || esito_controllo != 1);
+
+	return id;
+}
 
 
 /**
@@ -343,58 +522,93 @@ int input_porzione_ricetta(){
  * @post	Deve essere stato effettuata e salvata la modifica su file
  */
 int modifica_ricetta(){
-	int id_ricetta;//l'id ci servirá per capire quale ricetta é stata selezionata dall'utente e quindi a scorrere le varie ricette
-	int linea=0;//indice che ci aiuta a capire a quale riga siamo arrivati e quindi quale ricetta stiamo analizzando
-	int scelta_campo=0;//indica il campo della ricetta che deve essere modificato
-	char divisione_ingrediente[LUNG_STR_LAVORO_RIC]; //stringa di lavoro che accogliera' la riga ingrediente da dividere in quantitá, unitá di misura e nome
-	int indice_ingredienti=0;//indice per l'array di struct ingrediente memorizzato, a sua volta , nella array di tipo ricetta
+	FILE* stream = NULL;
+	ricetta ricetta_scelta;							// struct di riferimento per scorrere il file
+	int num_ricette_database;
+	int id_ricetta;										// Variabile per memorizzare il numero corrispondente alla ricetta selezionata dall'utente
+	int num_ricette_lette = 0;							//
+	int scelta_campo = 0;								// Variabile per memorizzare la scelta dell'utente di quale campo modificare
+	int esito_input;
+	int esito_controllo;
+	char divisione_ingrediente[LUNG_STR_LAVORO_RIC]; 	// Stringa per effettuare la tokenizzazione degli ingredienti
+	int indice_ingredienti = 0;							// indice per l'array di struct ingrediente memorizzato, a sua volta , nella array di tipo ricetta
 
-	ricetta catalogo_ricetta;//struct di riferimento per scorrere il file
 
-	FILE *fp= fopen(FILE_DATABASE_RICETTE,"rb+");
+	// Visualizzazione del database ottenendo il numero di ricette in esso presenti
+	num_ricette_database = visualizza_database_ricette(VISTA_MINIMIZZATA);
 
-	visualizza_database_ricette(VISTA_MINIMIZZATA); //viene stampato il contenuto attuale del database delle ricette
+	if(num_ricette_database == 0){
+		puts("Impossibilie effettuare alcuna modifica.");
+		return 0;
+	}
 
-	//CONTROLLO SU ID VALIDO ALE sfrutta la funzione conta righe binary se necessario
-	printf("\nInserisci id ricetta da modificare: ");
-	scanf("%d", &id_ricetta);
+	// Apertura del file in modalità lettura e aggiornamento binario
+	if((stream = fopen(FILE_DATABASE_RICETTE, "rb+")) == NULL){
+		puts("Impossibilie effettuare alcuna modifica.");
+		return 0;
+	}else{
 
-    while(fread(&catalogo_ricetta,sizeof(catalogo_ricetta),1,fp)>0){//leggi fino a quando é presente una riga
+		id_ricetta = input_id_ricetta(num_ricette_database);
 
-    	if(strcmp(catalogo_ricetta.nome_ricetta, "")!=0)//se la linea non é vuota e ha il nome di una ricetta
-    		++linea;//incrementa il numero di linee effettivamente piene del file database ricette
+		while(fread(&ricetta_scelta, sizeof(ricetta_scelta), 1, stream) > 0){//leggi fino a quando é presente una riga
 
-    	if(id_ricetta==linea){//se l'id della ricetta che si é preso come riferimento é uguale alla linea su cui ci troviamo abbiamo trovato la ricetta  a cui apportare le modifiche
+			if(strcmp(ricetta_scelta.nome_ricetta, "") != 0){
+				num_ricette_lette++;
+			}
 
-			int currPos = ftell(fp);//scopro la locazione di memoria su cui mi trovo al momento e inizializzo la riga con strighe vuote e valori nulli
-			visualizza_ricetta(catalogo_ricetta,VISTA_TOTALE);
+			// Se l'id selezionato dall'utente è pari al numero di ricette lette, è stata identificata la ricetta da modificare
+			if(id_ricetta == num_ricette_lette){
+				break;
+			}
+		 }
+
+		do {
+			fseek(stream, -sizeof(ricetta), SEEK_CUR);
+
+			visualizza_ricetta(ricetta_scelta, VISTA_TOTALE);
 
 			printf("Scegli quale campo modificare:\n"
-					"[1]Nome\n"
-					"[2]Tempo preparazione\n"
-					"[3]Complessita\n"
-					"[4]Preparazione(per favorire di una migliore visibilitá, separare le varie fasi con il carattere - )\n"
-					"[5]Ingredienti(si ricorda che ogni ingrediente deve essere nella forma:\n    quantita   unita' di misura   nome_ingrediente)\n"
-					"[6]Numero porzioni");
+					"[1] Nome\n"
+					"[2] Tempo preparazione\n"
+					"[3] Complessita\n"
+					"[4] Preparazione(per favorire di una migliore visibilitá, separare le varie fasi con il carattere - )\n"
+					"[5] Ingredienti (si ricorda che ogni ingrediente deve essere nella forma:\n    <quantita>   <unita' di misura>   <nome_ingrediente>)\n"
+					"[6] Numero porzioni\n"
+					"[0] Esci\n");
 
 
-			printf("\nInserisci numero campo da modificare  ");
-			scanf("%d", &scelta_campo);
+			do {
+				printf("\n Seleziona il campo da modificare:\n>");
+				esito_input = scanf("%d", &scelta_campo);
+				if(pulisci_stdin() == 1){
+					esito_input = 0;
+				}
 
-			pulisci_stdin();//puliamo il buffer di input prima di ricevere in ingresso nuovi dati
+				if(scelta_campo < 0 || scelta_campo > 6){
+					esito_controllo = 0;
+				}else{
+					esito_controllo = 1;
+				}
+
+				if(esito_input != 1 || esito_controllo != 1){
+					puts("inserimentonon valido. Ripeterlo.");
+				}
+			} while (esito_input != 1 || esito_controllo != 1);
 
 			switch(scelta_campo){
+			case 0:
+				break;
 			case 1:
-				strcpy(catalogo_ricetta.nome_ricetta,input_nome_ricetta());
+				strcpy(ricetta_scelta.nome_ricetta, input_nome_ricetta());
 				break;
 			case 2:
-				strcpy(catalogo_ricetta.tempo_prep,input_tempo_prep_ricetta());
+				strcpy(ricetta_scelta.tempo_preparazione, input_tempo_preparazione());
 				break;
 			case 3:
-				strcpy(catalogo_ricetta.complessita,input_complessita_ricetta());
+				strcpy(ricetta_scelta.complessita, input_complessita_ricetta());
 				break;
 			case 4:
-				strcpy(catalogo_ricetta.preparazione,input_preparazione_ricetta());
+				strcpy(ricetta_scelta.preparazione, input_preparazione_ricetta());
 				break;
 			case 5:
 				/*Qualora fosse il campo ingrediente ad essere scelto, una volta ricevuti in input i dati dell'ingrediente si effettua la divisione della stringa
@@ -403,46 +617,56 @@ int modifica_ricetta(){
 				do{
 					strcpy(divisione_ingrediente, input_ingredienti_ricetta());
 
-					if(strcmp(divisione_ingrediente,"")!=0){
+					if(strcmp(divisione_ingrediente, "null") != 0){
 
-						int esito_lettura=0;
-						esito_lettura=sscanf(divisione_ingrediente, "%f %[a-zA-Z] %[a-zA-Z]", &catalogo_ricetta.ingredienti[indice_ingredienti].quantita_necessarie, catalogo_ricetta.ingredienti[indice_ingredienti].unita_misura , catalogo_ricetta.ingredienti[indice_ingredienti].nome_ingredienti);
+						int esito_lettura;
+						esito_lettura = sscanf(divisione_ingrediente,
+								"%f %[a-zA-Z] %[a-zA-Z]",
+								&ricetta_scelta.ingredienti[indice_ingredienti].quantita, ricetta_scelta.ingredienti[indice_ingredienti].unita_misura,
+								ricetta_scelta.ingredienti[indice_ingredienti].nome);
 
-						if(esito_lettura==NUM_CAMPI_INGREDIENTI){
-							indice_ingredienti++;
-						}else if(esito_lettura==-1){
-							break;
+
+						if(controlla_unita_misura(ricetta_scelta.ingredienti[indice_ingredienti].unita_misura) == 0){
+							esito_lettura = 0;
 						}else{
-							printf("Attenzione ingrediente inserito non valido. Reinserire ingrediente");
+							alimento_database dati_ingrediente;
+							if(ricerca_alimento_database(ricetta_scelta.ingredienti[indice_ingredienti].nome, &dati_ingrediente) == 1){
+								if(strcmp(dati_ingrediente.unita_misura, ricetta_scelta.ingredienti[indice_ingredienti].unita_misura) != 0){
+									esito_lettura = 0;
+								}else if(controlla_quantita(ricetta_scelta.ingredienti[indice_ingredienti].quantita,
+										ricetta_scelta.ingredienti[indice_ingredienti].unita_misura) != 1){
+									esito_lettura = 0;
+								}
+							}
 						}
 
+						if(esito_lettura == 0){
+							printf("Ingrediente inserito non valido. Ripetere inserimento");
+						}else{
+							indice_ingredienti++;
+						}
 
 					}else{
 						break;
 					}
 
-				}while(indice_ingredienti<MAX_NUM_INGR);
+				}while(indice_ingredienti < MAX_INGREDIENTI);
 
-				catalogo_ricetta.kcal_ricetta=conta_kcal_ricetta(catalogo_ricetta.ingredienti,indice_ingredienti+1);//memorizzo le kcal della ricetta passando i dati di essa
+				ricetta_scelta.kcal_ricetta = 0;// conta_kcal_ricetta(catalogo_ricetta.ingredienti,indice_ingredienti+1);//memorizzo le kcal della ricetta passando i dati di essa
 				break;
 
 			case 6:
-				catalogo_ricetta.porzione=input_porzione_ricetta();
+				ricetta_scelta.dosi = input_dosi_ricetta();
 				break;
-			default:
-				printf("Valore inserito non valido");
 			}
 
-
 			// scrivo la riga "inizializzata" alla posizione della ricetta rimossa
-			fseek(fp, currPos-sizeof(catalogo_ricetta),SEEK_SET);//posiziona il puntatore sulla locazione di memoria da cui iniziare a scrivere
-			fwrite(&catalogo_ricetta,sizeof(catalogo_ricetta),1,fp);//scrivi il contenuto della struct aggiornata
-			break;//esci e termina l'inserimento
-    	}
-	  }
+			fwrite(&ricetta_scelta, sizeof(ricetta), 1, stream);//scrivi il contenuto della struct aggiornata
+			//esci e termina l'inserimento
+		} while (scelta_campo != 0);
+	}
 
-
-	fclose(fp);
+	fclose(stream);
 	return 1;
 }
 
@@ -458,48 +682,46 @@ int modifica_ricetta(){
  */
 int elimina_ricetta(){
 	int id_ricetta;//l'id ci servirá per capire quale ricetta é stata selezionata dall'utente e quindi a scorrere le varie ricette
-	int linea=0;//indice che ci aiuta a capire a quale riga siamo arrivati e quindi quale ricetta stiamo analizzando
-	ricetta catalogo_ricetta;//struct di riferimento per scorrere il file
+	int num_ricette_lette = 0;//indice che ci aiuta a capire a quale riga siamo arrivati e quindi quale ricetta stiamo analizzando
+	int num_ricette_database;
+	FILE* stream = NULL;
+	ricetta ricetta_scelta;//struct di riferimento per scorrere il file
 
-	FILE *fp= fopen(FILE_DATABASE_RICETTE,"rb+");
+	puts("Cancellazione ricetta.\n");
 
-	visualizza_database_ricette(VISTA_MINIMIZZATA); //viene stampato il contenuto attuale del database delle ricette
+	num_ricette_database = visualizza_database_ricette(VISTA_MINIMIZZATA); //viene stampato il contenuto attuale del database delle ricette
 
-	//CONTROLLO SU ID VALIDO ALE sfrutta la funzione conta righe binary se necessario
-	printf("\nInserisci id ricetta da eliminare: ");
-	scanf("%d", &id_ricetta);
+	if(num_ricette_database == 0){
+		puts("Non sono state ancora memorizzate delle ricette.");
+		return 0;
+	}
 
-    while(fread(&catalogo_ricetta,sizeof(catalogo_ricetta),1,fp)>0){//leggi fino a quando é presente una riga
 
-    	if(strcmp(catalogo_ricetta.nome_ricetta, "")!=0)//se la linea non é vuota e ha il nome di una ricetta
-    		++linea;//incrementa il numero di linee effettivamente piene del file database ricette
+	if((stream = fopen(FILE_DATABASE_RICETTE, "rb+")) == NULL){
+		puts("Impossibile aprire il file database ricette.");
+		return 0;
+	}else{
+		id_ricetta = input_id_ricetta(num_ricette_database);
 
-    	if(id_ricetta==linea){//se l'id della ricetta che si é preso come riferimento é uguale alla linea su cui ci troviamo abbiamo trovato la ricetta  a cui apportare le modifiche
+		while(fread(&ricetta_scelta, sizeof(ricetta), 1, stream) > 0){//leggi fino a quando é presente una riga
 
-			//scopro la locazione di memoria su cui mi trovo al momento e inizializzo la riga con strighe vuote e valori nulli
-			int currPos = ftell(fp);
-
-			catalogo_ricetta.id_ricetta=0;
-			strcpy(catalogo_ricetta.nome_ricetta,"");
-			strcpy(catalogo_ricetta.tempo_prep,"");
-			strcpy(catalogo_ricetta.complessita,"");
-			strcpy(catalogo_ricetta.complessita,"");
-			strcpy(catalogo_ricetta.preparazione, "");
-			catalogo_ricetta.kcal_ricetta=0;
-			for(int i=0;i<MAX_NUM_INGR;i++){
-				strcpy(catalogo_ricetta.ingredienti[i].nome_ingredienti, "");
+			if(strcmp(ricetta_scelta.nome_ricetta, "")!=0){//se la linea non é vuota e ha il nome di una ricetta
+				num_ricette_lette++;//incrementa il numero di linee effettivamente piene del file database ricette
 			}
 
+			if(id_ricetta == num_ricette_lette){//se l'id della ricetta che si é preso come riferimento é uguale alla linea su cui ci troviamo abbiamo trovato la ricetta  a cui apportare le modifiche
 
-			// scrivo la riga "inizializzata" alla posizione della ricetta rimossa
-			fseek(fp, currPos-sizeof(catalogo_ricetta),SEEK_SET);//posiziona il puntatore sulla locazione di memoria da cui iniziare a scrivere
-			fwrite(&catalogo_ricetta,sizeof(catalogo_ricetta),1,fp);//scrivi il contenuto della struct aggiornata
-			break;//esci e termina l'inserimento
-    	}
+				strcpy(ricetta_scelta.nome_ricetta, "");
 
-	  }
+				// scrivo la riga "inizializzata" alla posizione della ricetta rimossa
+				fseek(stream, -sizeof(ricetta), SEEK_CUR);//posiziona il puntatore sulla locazione di memoria da cui iniziare a scrivere
+				fwrite(&ricetta_scelta, sizeof(ricetta), 1, stream);//scrivi il contenuto della struct aggiornata
+				break;//esci e termina l'inserimento
+			}
+		}
+	}
 
-	fclose(fp);
+	fclose(stream);
 	return 1;
 }
 
@@ -514,33 +736,39 @@ int elimina_ricetta(){
  * @post	Deve essere stato mostrato il contenuto della ricetta
  */
 int visualizza_ricetta(ricetta dati_ricette, int vista_ricetta){
-	int indice_ingrediente=0; //indice che ci serve per scorrere tra gli ingredienti
-	int indice_preparazione=0; //indice che ci serve per scorrere tra le fasi della preparazione
+	int indice_ingrediente = 0; //indice che ci serve per scorrere tra gli ingredienti
+	int indice_preparazione = 0; //indice che ci serve per scorrere tra le fasi della preparazione
 
-
-	printf("%14s%8s%14s%10d%10d\n", dati_ricette.nome_ricetta,dati_ricette.tempo_prep, dati_ricette.complessita,dati_ricette.kcal_ricetta, dati_ricette.porzione);
+	printf("%14s%8s%14s%10d%10d\n", dati_ricette.nome_ricetta,dati_ricette.tempo_preparazione, dati_ricette.complessita,dati_ricette.kcal_ricetta, dati_ricette.dosi);
 
 	if(vista_ricetta==VISTA_TOTALE){
 		printf("\n INGREDIENTI:\n\n");
 		printf(" -------------------------------------------------------------\n");
 		printf("|ID| NOME INGREDIENTE| QUANTITA' NECESSARIA | UNITA DI MISURA |\n");
 		printf(" -------------------------------------------------------------\n");
-		while(strcmp(dati_ricette.ingredienti[indice_ingrediente].nome_ingredienti,"")!=0){
-			printf("%2d|%18s|%22.1f|%17s|\n", indice_ingrediente+1, dati_ricette.ingredienti[indice_ingrediente].nome_ingredienti, dati_ricette.ingredienti[indice_ingrediente].quantita_necessarie,dati_ricette.ingredienti[indice_ingrediente].unita_misura);
-			printf(" -------------------------------------------------------------\n");
+
+		while(strcmp(dati_ricette.ingredienti[indice_ingrediente].nome,"")!=0){
 			indice_ingrediente++;
+			printf("%2d|%18s|%22.1f|%17s|\n",
+					indice_ingrediente, dati_ricette.ingredienti[indice_ingrediente].nome,
+					dati_ricette.ingredienti[indice_ingrediente].quantita,dati_ricette.ingredienti[indice_ingrediente].unita_misura);
+			printf(" -------------------------------------------------------------\n");
 		}
 
 		printf("\n\n PREPARAZIONE:\n");
-		while(indice_preparazione<MAX_NUM_FASI){
+		while(indice_preparazione < MAX_NUM_FASI){
 
-			char *copia_riga=strdup(dati_ricette.preparazione); //le modifiche(i "tagli" per trovare la fase) vengono fatte sulla copia
+			char* copia_riga = strdup(dati_ricette.preparazione); //le modifiche (i "tagli" per trovare la fase) vengono fatte sulla copia
+
 			if(leggi_campo_ricetta(copia_riga,indice_preparazione+1,CAMPO_MULTIPLO)==NULL){ //se la prossima fase non esiste esci.
 				break;
+
 			}else{
-				copia_riga=strdup(dati_ricette.preparazione);
+
+				copia_riga = strdup(dati_ricette.preparazione);
 				printf(" %d. %s\n", indice_preparazione+1, leggi_campo_ricetta(copia_riga,indice_preparazione+1,CAMPO_MULTIPLO));//stampa la fase con l'indice
 				indice_preparazione++;
+
 			}
 
 		}
@@ -567,36 +795,49 @@ int visualizza_ricetta(ricetta dati_ricette, int vista_ricetta){
  */
 int visualizza_database_ricette(int vista){
 
-	int flag_mostra_int=0;
-	int id_ricette;
-	FILE* stream_database = fopen(FILE_DATABASE_RICETTE, "rb+");
-	ricetta lista_ricette;//creo una struct di tipo alimenti ome riferimento per scorrere all'interno del file
+	int flag_mostra_int = 0;
+	int num_ricette_lette = 0;
+	FILE* stream = NULL;
+	ricetta ricetta_letta;//creo una struct di tipo alimenti ome riferimento per scorrere all'interno del file
 
-	//fino a quando puoi prelevare righe stampa il contenuto della struct ossia gli elementi di ogni riga
-    while(fread(&lista_ricette,sizeof(lista_ricette),1,stream_database)>0){
+	if((stream = fopen(FILE_DATABASE_RICETTE, "rb")) == NULL){
+		puts("Non sono state ancora memorizzate delle ricette.");
+		return num_ricette_lette;
+	}else{
+		//fino a quando puoi prelevare righe stampa il contenuto della struct ossia gli elementi di ogni riga
+		while(fread(&ricetta_letta, sizeof(ricetta), 1, stream) > 0){
 
+			if(feof(stream) != 0){
+				break;
+			}
 
-    	if(strcmp(lista_ricette.nome_ricetta, "")!=0){// se il nome passato corrisponde alla stringa vuota allora stampero'...
+			if(strcmp(ricetta_letta.nome_ricetta, "") != 0){
 
-    			 if(flag_mostra_int==0 || id_ricette==1){
-    		    	printf(" ____________________________________________________________\n");
-    		    	printf("|ID| NOME RICETTA | DURATA |  COMPLESSITA' | KCAL | PORZIONI |\n");
-    		    	printf(" ____________________________________________________________\n");
-    			 }
+				num_ricette_lette++;
 
- 		    	printf("%3d",id_ricette);
-    			visualizza_ricetta(lista_ricette,vista);
-    		}
-		id_ricette++; //passo alla ricetta successiva
+				 if(flag_mostra_int == 0){
+					printf(" ____________________________________________________________\n");
+					printf("|ID| NOME RICETTA | DURATA |  COMPLESSITA' | KCAL | PORZIONI |\n");
+					printf(" ____________________________________________________________\n");
+				 }
 
+				printf("%3d", num_ricette_lette);
+				visualizza_ricetta(ricetta_letta, vista);
+			}
 
-		 if(vista==VISTA_MINIMIZZATA)
-			 flag_mostra_int=1;
+			if(vista==VISTA_MINIMIZZATA){
+				flag_mostra_int = 1;
+			}
 
-    }
+		}
+	}
 
-    return 1;
+	if(num_ricette_lette == 0){
+		puts("Non sono state ancora memorizzate delle ricette.");
+	}
 
+	fclose(stream);
+    return num_ricette_lette;
 }
 
 
@@ -610,39 +851,28 @@ int visualizza_database_ricette(int vista){
  * @post	Deve essere stato caricato correttamente l'array di struct inizialmente passato
  */
 int lettura_database_ricette(ricetta* ricette_database){
-		int id_ricette=0;
-		int indice_ingrediente=0;
+	FILE* stream = NULL;
+	ricetta ricetta_letta;
+	int num_ricette_lette = 0;
 
-		FILE* stream_database = fopen(FILE_DATABASE_RICETTE, "rb+");
-		ricetta lista_ricette;
+	if((stream = fopen(FILE_DATABASE_RICETTE, "rb+")) == NULL){
+		return -1;
+	}else{
 
-	    while(fread(&lista_ricette,sizeof(lista_ricette),1,stream_database)>0){
+		while(fread(&ricetta_letta, sizeof(ricetta), 1, stream)>0){
 
-	    if(strcmp(lista_ricette.nome_ricetta,"")){
+			if(feof(stream) != 0){
+				break;
+			}
 
-				strcpy(ricette_database[id_ricette].nome_ricetta,lista_ricette.nome_ricetta);
-				strcpy(ricette_database[id_ricette].tempo_prep,lista_ricette.tempo_prep);
-				strcpy(ricette_database[id_ricette].complessita,lista_ricette.complessita);
+			if(strcmp(ricetta_letta.nome_ricetta, "")){
+				ricette_database[num_ricette_lette] = ricetta_letta;
+				num_ricette_lette++;
+			}
+		}
+	}
 
-
-				while(strcmp(lista_ricette.ingredienti[indice_ingrediente].nome_ingredienti,"")){
-					strcpy(ricette_database[id_ricette].ingredienti[indice_ingrediente].nome_ingredienti,lista_ricette.ingredienti[indice_ingrediente].nome_ingredienti);
-					ricette_database[id_ricette].ingredienti[indice_ingrediente].quantita_necessarie=lista_ricette.ingredienti[indice_ingrediente].quantita_necessarie;
-					indice_ingrediente++;
-				}
-
-
-				strcpy(ricette_database[id_ricette].preparazione,lista_ricette.preparazione);
-				ricette_database[id_ricette].kcal_ricetta=lista_ricette.kcal_ricetta;
-				ricette_database[id_ricette].porzione=lista_ricette.porzione;
-
-				id_ricette++;
-				indice_ingrediente=0;
-
-	    	}
-	    }
-
-	return 1;
+	return num_ricette_lette;
 }
 
 /**
@@ -651,20 +881,29 @@ int lettura_database_ricette(ricetta* ricette_database){
  * @pre		Nessuna pre condizione particolare
  * @post	Deve essere passato un numero di righe con un valore significativo(>=0)
  */
-int conta_righe_database_ricette(){
-		FILE *fp= fopen(FILE_DATABASE_RICETTE,"rb"); //apri il file in modalitá "lettura binaria"
-		int righe=0;				    //variabile che conta le righe del file
-		ricetta lista_ricette;			//genero una struct di riferimento che mi permette di scorrere all'interno del file di tipo binario
+int conta_ricette_database(){
+	FILE* stream = NULL; //apri il file in modalitá "lettura binaria"
+	int num_ricette = 0;				    //variabile che conta le righe del file
+	ricetta ricetta_letta;			//genero una struct di riferimento che mi permette di scorrere all'interno del file di tipo binario
 
-        while(fread(&lista_ricette,sizeof(lista_ricette),1,fp)>0){//fino a quando riesci a leggere righe dal file
+	if((stream = fopen(FILE_DATABASE_RICETTE,"rb")) == NULL){
+		return num_ricette;
+	}else{
 
-        	if(strcmp(lista_ricette.nome_ricetta,""))
-        		righe++;		//incremento il contatore del numero di righe
+		while(fread(&ricetta_letta, sizeof(ricetta), 1, stream) > 0){//fino a quando riesci a leggere righe dal file
 
-		  }
+			if(feof(stream) != 0){
+				break;
+			}
 
-		fclose(fp); //chiudi il file
-		return righe;
+			if(strcmp(ricetta_letta.nome_ricetta, "") != 0){
+				num_ricette++;		//incremento il contatore del numero di righe
+			}
+		}
+
+		fclose(stream); //chiudi il file
+		return num_ricette;
+	}
 }
 
 
@@ -677,8 +916,12 @@ int conta_righe_database_ricette(){
  */
 int inizializza_ricette_preparabili(int num_ricette, char* ricette_preparabili[num_ricette]){
 
+	if(num_ricette <= 0){
+		return 0;
+	}
+
 	for(int i=0;i<num_ricette;i++){
-		ricette_preparabili[i]=NULL;
+		ricette_preparabili[i] = NULL;
 	}
 
 	return 1;
@@ -694,119 +937,27 @@ int inizializza_ricette_preparabili(int num_ricette, char* ricette_preparabili[n
  * @pre		l'array di struct con le ricette deve possedere almeno 1 ricetta e il numero di ricette deve essere un valore significativo(>0)
  * @post	Deve essere stato effettuato correttamente l'ordinamento
  */
-int ordina_ric_kcal(ricetta* ricette_database, int num_ricette){
+int ordina_ricette_kcal(ricetta* ricette_database, int num_ricette){
 
 	ricetta x ;//struct di appoggio per scambiare 2 righe
 
-	  for (int gap = num_ricette/2; gap > 0; gap /= 2)
-	    {
+	for (int gap = num_ricette/2; gap > 0; gap /= 2){
 
-	        for (int i = gap; i < num_ricette; i += 1)
-	        {
+		for (int i = gap; i < num_ricette; i += 1){
 
-	            x = ricette_database[i];
-	            int j;
-	            for (j = i; j >= gap && ricette_database[j - gap].kcal_ricetta > x.kcal_ricetta; j -= gap)
-	            	ricette_database[j] = ricette_database[j - gap];
+			x = ricette_database[i];
+			int j;
+			for (j = i; j >= gap && ricette_database[j - gap].kcal_ricetta > x.kcal_ricetta; j -= gap)
+				ricette_database[j] = ricette_database[j - gap];
 
-	            ricette_database[j] = x;
-	        }
-	    }
-
-	 for (int i=0; i < num_ricette; i++){
-			printf("%s %d\n", ricette_database[i].nome_ricetta, ricette_database[i].kcal_ricetta);
-	 }
-
-	return 1;
-}
-
-/**
- *La funzione registra_consumi riceve in ingresso il nome di un prodotto dove per prodotto intendiamo il nome di una ricetta o di un alimento e
- *un flag dove 0 indica che siamo in presenza di un alimento e 1 che indica che siamo in presenza di una ricetta. Inizialmente viene fatto un check
- *un all'interno del file dei consumi per vedere se il prodotto é giá stato consumato in passato e qualora lo sia, basta solo incrementare la sua
- *un frequenza. Nel caso in cui sia la prima volta che lo si consuma viene creata una nuova riga in cui memorizzare nome, la categoria di appartenenza
- *e la frequenza iniziale
- * @pre		Il nome del prodotto deve essere una stringa con lunghezza maggiore di 0 e il flag deve avere un valore significativo (0 o 1)
- * @post	Deve essere stato effettuata e salvata la modifica su file
- */
-int registra_consumi(char nome_prodotto[LUNG_PRODOTTO], short flag_prodotto){
-	int flag_trovato=0; //flag che ci aiuta a scorrere il file dei consumi e a trovare, qualora ci fosse, un prodotto giá salvato in passato
-	int currPos;// ci aiuta a salvare la posizione corrente del puntatore al file
-	consumi prodotto_consumo;
-	FILE *fp= fopen(FILE_CONSUMI,"rb+");
-
-	 while(fread(&prodotto_consumo,sizeof(prodotto_consumo),1,fp)>0){//leggi fino a quando é presente una riga
-		 //DEBUG: printf("Nome_ricetta consumata %s, frequenza: %d, Flag: %d\n", prodotto_consumo.nome_prodotto,prodotto_consumo.frequenza,prodotto_consumo.flag_prodotto);
-
-		 //se ho trovato il nome del prodotto che ho passato alla funzione all'interno del file aggiorno la sua frequenza di consumo
-		 if(strcmp(prodotto_consumo.nome_prodotto, nome_prodotto)==0){//se la linea non é vuota e possiede un alimento
-			prodotto_consumo.frequenza++;
-			currPos = ftell(fp);//scopro la locazione di memoria su cui mi trovo al momento
-			fseek(fp,currPos-sizeof(prodotto_consumo),SEEK_SET);//posiziona il puntatore sulla locazione di memoria da cui iniziare a scrivere
-			fwrite(&prodotto_consumo,sizeof(prodotto_consumo),1,fp);//scrivi il contenuto della struct aggiornata
-			flag_trovato=1;//segnalo che é stato trovato
-			break;
-		}
-
-	 }
-
-
-	 //se il prodotto non é stato trovato all'interno del file vuol dire che é la prima volta che lo si consuma
-	 if(flag_trovato==0){
-		//DEBUG: printf("Il prodotto consumato per la prima volta e' %s", prodotto_consumo.nome_prodotto);
-		strcpy(prodotto_consumo.nome_prodotto, nome_prodotto);//copio il nome del prodotto
-		prodotto_consumo.flag_prodotto=flag_prodotto;//memorizzo la tipologia di prodotto
-		prodotto_consumo.frequenza=1;
-		fwrite(&prodotto_consumo,sizeof(prodotto_consumo),1,fp);
-	 }
-
-	fclose(fp);
-	return 1;
-}
-
-
-
-
-/**
- * Questa funzione avendo in ingresso la tipologia di prodotto, stampa il prodotto di quella categoria maggiormente consumato. Ricordiamo che il flag
- * puó avere  1 in caso di ricette e 0 in caso di alimenti. Tramite un ciclo che analizza tutto il file dei consumi viene rintracciato la ricetta o
- * l'alimento con la frequenza maggiore. In caso questi non sia presente e la stringa del prodotto maggiormente consumato rimanga vuota verrá
- * stampato un mess di avviso
- * @pre		Il flag deve avere un valore significativo (0 o 1)
- * @post	Deve essere stato mostrato un messaggio in base all'esito e la ricerca deve essere terminata con successo
- */
-int ricerca_prod_magg_cons(short flag_prodotto){
-	FILE *fp= fopen(FILE_CONSUMI,"rb+"); //apri il file in modalitá "lettura binaria"
-	consumi prodotto_consumo;
-
-	int freq_consumo=0;
-	char prod_magg_cons[LUNG_PRODOTTO];
-	strcpy(prod_magg_cons,""); //occorre inizializzare la stringa che conterrá il prodotto in quanto se non sono presenti alimenti o ricette consumate viene stampato un messaggio di avviso
-
-	while(fread(&prodotto_consumo,sizeof(prodotto_consumo),1,fp)>0){//leggi fino a quando é presente una riga
-		//DEBUG: printf("Nome_ricetta consumata %s, frequenza: %d, Flag: %d\n", prodotto_consumo.nome_prodotto,prodotto_consumo.frequenza,prodotto_consumo.flag_prodotto);
-
-		/**se il prodotto correntemente analizzato ha una frequenza maggiore ed é del tipo specificato dal flag(ricordiamo 1->ricette e 0->alimenti)
-		 	 allora lo salvo come il prodotto maggiormente consumato**/
-		if(prodotto_consumo.frequenza>freq_consumo && prodotto_consumo.flag_prodotto==flag_prodotto){
-			freq_consumo=prodotto_consumo.frequenza;
-			strcpy(prod_magg_cons,prodotto_consumo.nome_prodotto);
+			ricette_database[j] = x;
 		}
 	}
 
-	//qualora sia stato trovato un prodotto lo stampo opportunatamente. In caso contrario avviso l'utente
-	if(strcmp(prod_magg_cons,"")!=0){
-		if(flag_prodotto==FLAG_ALIMENTO){
-			printf("L'alimento maggiormente consumato e' %s con una frequenza di %d\n", prod_magg_cons,freq_consumo);
-		}else{
-			printf("La ricetta maggiormente consumata e' %s con una frequenza di %d\n", prod_magg_cons,freq_consumo);
-		}
-	}else{
-		printf("Non sono presenti prodotti con il paramentro richiesto\n");
+	for (int i=0; i < num_ricette; i++){
+		printf("%s %d\n", ricette_database[i].nome_ricetta, ricette_database[i].kcal_ricetta);
 	}
 
-
-	fclose(fp); //chiudi il file
 	return 1;
 }
 
@@ -821,10 +972,14 @@ int ricerca_prod_magg_cons(short flag_prodotto){
  * @pre		La listadegli alimenti deve possedere almeno un alimento e il numero  di alimenti deve essere un valore significativo
  * @post	Deve essere terminata con successo la ricerca
  */
-int ricette_alimenti_in_scadenza(alimento_frigo* alimenti_frigo,int num_alimenti){
+int ricette_alimenti_in_scadenza(alimento_frigo* alimenti_frigo, int num_alimenti){
+
 	char alimenti_in_scadenza[MAX_ALIM_SUGG][LUNG_NOME_ALIMENTO];
+
 	ordina_alimenti_scadenza(alimenti_frigo, num_alimenti);
+
 	printf("Gli alimenti che stanno per scadere sono: %s e %s\n",alimenti_frigo[0].nome,alimenti_frigo[1].nome);
+
 	for(int i=0;i<NUM_ALIM_SUGG_SCAD;i++){
 		strcpy(alimenti_in_scadenza[i],alimenti_frigo[i].nome);
 	}
@@ -841,33 +996,31 @@ int ricette_alimenti_in_scadenza(alimento_frigo* alimenti_frigo,int num_alimenti
  * @post	Deve essere stato inserito almeno un alimento
  */
 int inserimento_manuale_ingredienti(char nome_ingredienti[MAX_ALIM_SUGG][LUNG_NOME_ALIMENTO]){
-	int num_alimenti_inseriti=0;
-	int risposta=0;
+	int esito_input;
+	int num_alimenti_inseriti = 0;
+
 	printf("Cercare una ricetta in base agli ingredienti e' semplice. \n"
 			"1.Inserisci il nome dell'ingrediente con cui vuoi realizzare una tua ricetta\n"
 			"2.Decidi se continuare con l'inserimento o meno (premi ctrl+z per terminare)\n"
 			"Ti ricordiamo che potrai inserire fino ad un massimo di %d ingredienti\n\n",MAX_ALIM_SUGG );
 
 
-//richiama la funzione che pulisce
-	pulisci_stdin();
-
-
 	do{
-		printf("Inserisci nome ingrediente da cercare ");
-
-		if(gets(nome_ingredienti[num_alimenti_inseriti])==NULL){//riceve in
-			break;
+		printf("Inserisci nome ingrediente da cercare:\n>");
+		esito_input = scanf("%[^\n]", nome_ingredienti[num_alimenti_inseriti]);
+		if(pulisci_stdin() == 1){
+			esito_input = 0;
+		}else if(strlen(nome_ingredienti[num_alimenti_inseriti]) > LUNG_NOME_ALIMENTO){
+			esito_input = 0;
 		}
 
-		//vanno i  controlli sulla stringa
-		num_alimenti_inseriti++;
-
-		if(num_alimenti_inseriti==MAX_ALIM_SUGG-1){
-			break;
+		if(esito_input == 0){
+			puts("Inserimento non valido. Ripeterlo.");
+		}else{
+			num_alimenti_inseriti++;
 		}
 
-	}while(risposta!=1);
+	}while(esito_input == 0 || num_alimenti_inseriti < MAX_ALIM_SUGG);
 
 	return num_alimenti_inseriti;
 }
@@ -886,7 +1039,7 @@ int inserimento_manuale_ingredienti(char nome_ingredienti[MAX_ALIM_SUGG][LUNG_NO
  * @post	Deve essere stato mostrato un messaggio in base all'esito della ricerca
  */
 int suggerimento_ricetta_manuale(int num_alimenti_sugg, char nome_ingredienti[MAX_ALIM_SUGG][LUNG_NOME_ALIMENTO]){
-	int num_ricette=conta_righe_database_ricette();
+	int num_ricette = conta_ricette_database();
 	int presenza_alimento=0; // serve a capire se un ingrediente é presente o meno nella ricetta
 	int indice_ingrediente=0; // serve a scandire i vari ingredienti della ricetta
 	ricetta ricette_preparabili[num_ricette]; //serve a memorizzare i nomi delle ricette che si possono preparare. Nel migliore dei casi esso avrá lunghezza pari al numero di ricette presente nel database
@@ -895,34 +1048,34 @@ int suggerimento_ricetta_manuale(int num_alimenti_sugg, char nome_ingredienti[MA
 	ricetta ricette_database[num_ricette];// array di struct che memorizza le varie ricette
 	lettura_database_ricette(ricette_database); //popolamento delle ricette presenti nel database
 
-	printf("RICETTE CHE SI POSSONO FARE:\n");
+	printf("RICETTE PREPARABILI:\n");
 	//inizializza_ricette_preparabili(num_ricette, ricette_preparabili);//occorre inizializzare l'array di puntatori per effetuare controlli futuri
 
 	for(int i=0;i<num_ricette;i++){
 
 		for(int j=0;j<num_alimenti_sugg;j++){//ripeto per il numero di alimenti suggeriti
 
-			while(strcmp(ricette_database[i].ingredienti[indice_ingrediente].nome_ingredienti,"")!=0){//prendiamo in considerazione solo le righe piene
+			while(strcmp(ricette_database[i].ingredienti[indice_ingrediente].nome, "")!=0){//prendiamo in considerazione solo le righe piene
 
-					if(strcmp(ricette_database[i].ingredienti[indice_ingrediente].nome_ingredienti, nome_ingredienti[j])==0){
-						presenza_alimento=1;//puoi segnalare che l'ingrediente é presente
-						break;
-					}
-					indice_ingrediente++;
+				if(strcmp(ricette_database[i].ingredienti[indice_ingrediente].nome, nome_ingredienti[j])==0){
+					presenza_alimento = 1;//puoi segnalare che l'ingrediente é presente
+					break;
+				}
+				indice_ingrediente++;
 			}
 
 			indice_ingrediente=0;
-			if(presenza_alimento==0){//in caso il flag di presenza sia rimasto a 0 passa alla ricetta successiva
+			if(presenza_alimento == 0){//in caso il flag di presenza sia rimasto a 0 passa alla ricetta successiva
 				break;
 			}else{
-				if(num_alimenti_sugg!=1 && j!=num_alimenti_sugg-1) //se la lista degli alimenti non é composta solo da un elemento e se non siamo arrivati all'ultimo ingrediente suggerito
-					presenza_alimento=0;//riporta il flag di presenza a 0 per poter analizzare il prossimo ingrediente
+				if(num_alimenti_sugg != 1 && j != num_alimenti_sugg-1) //se la lista degli alimenti non é composta solo da un elemento e se non siamo arrivati all'ultimo ingrediente suggerito
+					presenza_alimento = 0;//riporta il flag di presenza a 0 per poter analizzare il prossimo ingrediente
 			}
 
 		}
 
 		if(presenza_alimento==1){//se l'ultimo flag di presenza é 1 vuol dire che la ricetta che ho analizzato é valida pertanto la salvo
-			ricette_preparabili[indice_ric_prep]=ricette_database[i];
+			ricette_preparabili[indice_ric_prep] = ricette_database[i];
 			indice_ric_prep++;
 		}
 
@@ -932,7 +1085,7 @@ int suggerimento_ricetta_manuale(int num_alimenti_sugg, char nome_ingredienti[MA
 
 
 	if(indice_ric_prep==0){//qualora non siano stati memorizzati ricette preparabili notifica l'utente
-			printf("Non c'e' alcuna ricetta che puoi preparare con la combinazione di ingredienti da te inserita\n");
+		printf("Non c'e' alcuna ricetta che puoi preparare con la combinazione di ingredienti da te inserita\n");
 	}else{
 		for(int i=0;i<indice_ric_prep;i++)
 			visualizza_ricetta(ricette_preparabili[i],VISTA_MINIMIZZATA);
@@ -958,67 +1111,40 @@ int suggerimento_ricetta_manuale(int num_alimenti_sugg, char nome_ingredienti[MA
  * @pre		Deve essere passato almeno un alimento e quindi il numero di alimenti deve essere anch'esso un valore significativo
  * @post	Deve essere stato mostrato un messaggio in base all'esito della ricerca
  */
-int suggerimento_ricetta_automatico(alimento_frigo* alimenti_frigo,int num_alimenti){
+int suggerimento_ricetta_automatico(){
 
-	int num_ricette=conta_righe_database_ricette();
-	int presenza_alimento=0;
-	int indice_ingrediente=0;
+	int num_ricette = conta_ricette_database();
+	int flag_preparazione;
 	ricetta ricette_preparabili[num_ricette]; //serve a memorizzare i nomi delle ricette che si possono preparare. Nel migliore dei casi esso avrá lunghezza pari al numero di ricette presente nel database
-	int indice_ric_prep=0;
-	float quantita_disponibile=0;
+	int indice_ric_prep = 0;
 
 	ricetta ricette_database[num_ricette];
 	lettura_database_ricette(ricette_database);
 
-
-	printf("RICETTE CHE SI POSSONO FARE:\n");
-
-
-	for(int i=0;i<num_ricette;i++){
-
-		while(strcmp(ricette_database[i].ingredienti[indice_ingrediente].nome_ingredienti,"")!=0){//per ogni ingrediente
-
-			for(int j=0;j<num_alimenti;j++){//ripeti il confronto con gli alimenti del frigo
-
-					if(strcmp(ricette_database[i].ingredienti[indice_ingrediente].nome_ingredienti, alimenti_frigo[j].nome)==0){
-						quantita_disponibile=quantita_disponibile+alimenti_frigo[j].quantita;//incrementa la quantitá disponibile
-						if(quantita_disponibile>=ricette_database[i].ingredienti[indice_ingrediente].quantita_necessarie){//se la quantitá disponibile é maggiore di quella necessaria
-							presenza_alimento=1;//puoi segnalare che l'ingrediente é presente
-							break;
-						}
-
-					}
-			}
-
-			if(presenza_alimento==0){
-				printf("Non puoi fare %s perche manca: %s  %d\n",ricette_database[i].nome_ricetta, ricette_database[i].ingredienti[indice_ingrediente].nome_ingredienti,indice_ingrediente);
-				break;
+	for(int i=0; i < num_ricette; i++){
+		flag_preparazione = 1;
+		for(int j = 0; j < MAX_INGREDIENTI; j++){
+			if(strcmp(ricette_database[i].ingredienti[j].nome, "") != 0){
+				if(ricette_database[i].ingredienti[j].quantita > quantita_alimento(ricette_database[i].ingredienti[j].nome)){
+					flag_preparazione = 0;
+				}
 			}else{
-				indice_ingrediente++;
-				quantita_disponibile=0;
-				if(strcmp(ricette_database[i].ingredienti[indice_ingrediente].nome_ingredienti,"")==0)//ho finito la ricetta
-					break;
-				presenza_alimento=0;
+				break;
 			}
 		}
 
-
-
-		if(presenza_alimento==1){
-			ricette_preparabili[indice_ric_prep]=ricette_database[i];
+		if(flag_preparazione == 1){
+			ricette_preparabili[indice_ric_prep] = ricette_database[i];
 			indice_ric_prep++;
 		}
-
-		indice_ingrediente=0;
-		presenza_alimento=0;
-		quantita_disponibile=0;
 	}
-	if(indice_ric_prep==0){
+
+	if(indice_ric_prep == 0){
 			printf("Non c'e' alcuna ricetta che puoi preparare con gli alimenti attuali. Fai la spesa\n");
 	}else{
-		for(int i=0;i<indice_ric_prep;i++)
-			visualizza_ricetta(ricette_preparabili[i],VISTA_MINIMIZZATA);
-			//prepara_ricetta(indice_ric_prep,ricette_preparabili,ricette_database);
+		for(int i=0; i < indice_ric_prep; i++){
+			visualizza_ricetta(ricette_preparabili[i], VISTA_MINIMIZZATA);
+		}
 	}
 
 	return 1;
@@ -1036,55 +1162,43 @@ int suggerimento_ricetta_automatico(alimento_frigo* alimenti_frigo,int num_alime
  * @pre		Deve essere passata una struct contenente valori significativi
  * @post	Devono essere stati scritti su file i dati relativi alla ricetta
  */
-int aggiorna_database_ricette(ricetta nuove_ricette){
-	int id_ricette=1;
-    int flag_presente=0;//questo flag viene attivato se la nuova ricetta che si vuole caricare nel database é giá stata memorizzata in passato
-	FILE* stream_database;
+int aggiorna_database_ricette(ricetta nuova_ricetta){
+    ricetta analisi_ricetta;//genero una struct di rifermiento per scorrere all'interno del file
+	FILE* stream = NULL;
+	fpos_t riga_vuota = -1;
 
-	if((stream_database = fopen(FILE_DATABASE_RICETTE, "rb+")) == NULL){// se il file degli alimenti presenti nel frigo esiste
-		stream_database = fopen(FILE_DATABASE_RICETTE, "wb+");//apre uno stream di lettura e scrittura in coda sul file del database
-	}else{
-		stream_database = fopen(FILE_DATABASE_RICETTE, "rb+");//apre uno stream di lettura e scrittura in coda sul file del database
-	}
-
-	ricetta analisi_ricetta;//genero una struct di rifermiento per scorrere all'interno del file
-
-
-
-	while(fread(&analisi_ricetta,sizeof(analisi_ricetta),1,stream_database)>0){// ripeti fino a quando é possibile prelevare una riga
-
-		//se l'elemento x della lista degli alimenti comprati e uguale ad un alimento presente nel database
-		if(strcmp(nuove_ricette.nome_ricetta, analisi_ricetta.nome_ricetta)==0){
-			flag_presente=1;//attiva il flag della presenza
-			printf("ricetta %s presente nel database\n", analisi_ricetta.nome_ricetta);
-		}
-	}
-	rewind(stream_database);//viene riportato il puntatore all'inizio del file
-
-
-
-	if(flag_presente==0){//se la ricetta non é presente nel database
-
-		while(fread(&analisi_ricetta,sizeof(analisi_ricetta),1,stream_database)>0){
-
-			if(strcmp(analisi_ricetta.nome_ricetta, "")==0){// se la riga é inizializzata ossia non ci sono dati relativi a ricette
-				nuove_ricette.id_ricetta=id_ricette;//viene memorizzato l'id nella struct
-				int currPos = ftell(stream_database);//viene memorizzata la locazione attuale di inizio riga
-				fseek(stream_database,currPos-sizeof(analisi_ricetta),SEEK_SET);//viene posizionato il puntatore del file ad inizio riga cosí da poter effettuare l'opzione di modifica
-				fwrite(&nuove_ricette,sizeof(nuove_ricette),1,stream_database);//viene memorizzato la ricetta x all'interno del file
-				rewind(stream_database);//viene riportato il puntatore all'inizio del file
-				flag_presente=-1;
-				break;
-			}
-		}
-
-		if(flag_presente!=-1){
-			nuove_ricette.id_ricetta=id_ricette;//viene memorizzato l'id nella struct
-			fwrite(&nuove_ricette,sizeof(nuove_ricette),1,stream_database);//viene memorizzata la struct(il nuovo alimento) nel file
+	if((stream = fopen(FILE_DATABASE_RICETTE, "rb+")) == NULL){// se il file degli alimenti presenti nel frigo esiste
+		if((stream = fopen(FILE_DATABASE_RICETTE, "wb+")) == NULL){
+			return 0;
 		}
 	}
 
-    fclose(stream_database);
+	// Viene ricercata nel file una riga marcata come cancellata (nome uguale a stringa vuota)
+	while(fread(&analisi_ricetta, sizeof(analisi_ricetta), 1, stream) > 0){
+
+		if(feof(stream) != 0){
+			break;
+		}
+
+		// Se viene individuata una riga marcata come cancellata, ne viene memorizzata la posizione
+		if(strcmp(analisi_ricetta.nome_ricetta, "") == 0){
+			fseek(stream, -sizeof(ricetta), SEEK_CUR);
+			fgetpos(stream, &riga_vuota);
+			break;
+		}
+	}
+
+	// Se la riga vuota è stata identificata, va impostato il puntatore a quella riga
+	if(riga_vuota != -1){
+		fsetpos(stream, &riga_vuota);
+	}else{ // Altrimenti viene impostato il puntatore alla fine del file
+		fseek(stream, 0, SEEK_END);
+	}
+
+	// Viene memorizzata la nuova ricetta nel file
+	fwrite(&nuova_ricetta, sizeof(ricetta), 1, stream);
+
+    fclose(stream);
   	return 1;
 }
 
@@ -1100,141 +1214,105 @@ int aggiorna_database_ricette(ricetta nuove_ricette){
  * @post	Deve essere stato effettuato con successo almeno un'estrazione di una ricetta o in caso contrario deve essere mostrato un messaggio di errore
  */
 int lettura_nuove_ricette(){
-		int indice_ingredienti=0;
-		int indice_ricetta=0;//indice che servirá a scorrere l'array di struct lista_spesa durante la lettura del file
-		char linea[LUNG_TUPLA_RICETTE];//dichiariamo la stringa che conterrá l'intera tupla proveniente dal file
-		char ingredienti[LUNG_STR_LAVORO_RIC];//
+	FILE* stream;//apro il file in lettura
+	ricetta ricetta_letta; //dichiaro un'array di struct che ospiterá i valori dei singoli alimenti comprati
 
-		FILE* stream;//apro il file in lettura
-		ricetta carica_ricette; //dichiaro un'array di struct che ospiterá i valori dei singoli alimenti comprati
+	alimento_database dati_ingrediente;
 
-		int esito_lettura;							// Variabile per contenere l'esito delle letture degli alimenti
-		int esito_input;							// Variabile per memorizzare l'esito degli inserimenti dell'utente
-		int flag_inserimento;						// Flag per memorizzare la corretteza dell'alimento letto
-    	char* divisione_ingrediente;
+	int flag_inserimento;
+	int num_ricette_lette = 0;
+	int num_ricette_scartate = 0;
+	int num_ingredienti = 0;
+	char linea[LUNG_TUPLA_RICETTE];//dichiariamo la stringa che conterrá l'intera tupla proveniente dal file
+	char ingredienti[LUNG_STR_LAVORO_RIC];
 
-		// tentativo di apertura della spesa in lettura
-		if((stream = fopen(FILE_NUOVE_RICETTE, "r")) == NULL){
-			return -1; // se il file non può essere aperto viene ritornato il valore -1
-		}else{
-			// estrazione di ogni riga del file (riga == 1 alimento)
-			while(fgets(linea, LUNG_TUPLA_RICETTE, stream) != NULL){
+	int esito_lettura;							// Variabile per contenere l'esito delle letture degli alimenti
+	char* divisione_ingrediente;
 
-				// modifica dei valori di flagInserimento e num_alimenti_caricati supponendo che l'alimento letto verrà inserito
-				flag_inserimento = 1;
-				indice_ricetta++;
-				indice_ingredienti=0;
+	// tentativo di apertura della spesa in lettura
+	if((stream = fopen(FILE_NUOVE_RICETTE, "r")) == NULL){
+		return -1; // se il file non può essere aperto viene ritornato il valore -1
+	}else{
+		// estrazione di ogni riga del file (riga == 1 alimento)
+		while(fgets(linea, LUNG_TUPLA_RICETTE, stream) != NULL){
+			flag_inserimento = 1;
+			// Pulitura dallo stream della parte di riga non letta
+			if(linea[strlen(linea) - 1] != '\n'){
+				pulisci_riga_flusso(stream);
+			}
 
-				//inizializzazione ingredienti e preparazione
-				for(int i=0;i<MAX_NUM_INGR;i++){
-					strcpy(carica_ricette.ingredienti[i].nome_ingredienti, "");
-				}
+			// azzeramento del numero di ingredienti per la lettura della nuova ricetta
+			num_ingredienti = 0;
 
-				// estrazione dei campi della riga letta dal file
-				esito_lettura = sscanf(linea, "%[a-zA-Z];%[^;];%[a-zA-Z0-9];%[^;];%[a-zA-Z];%d",
-						carica_ricette.nome_ricetta, ingredienti, carica_ricette.tempo_prep, carica_ricette.preparazione, carica_ricette.complessita, &carica_ricette.porzione);
+			//inizializzazione ingredienti e preparazione
+			for(int i=0;i<MAX_INGREDIENTI;i++){
+				strcpy(ricetta_letta.ingredienti[i].nome, "");
+			}
 
-				// Controlli sull'esito dell'estrazione, per verificare errori nel formato della riga:
-				// se sono presenti errori di questo tipo viene richiesto di scegliere se correggere l'alimento manualmente
-				// o saltarlo.
-				if(esito_lettura != NUM_CAMPI_RICETTA){
-					printf("Errore nella lettura della ricetta numero %d.\n", indice_ricetta);
-					// Richiesta di correzione manuale dell'alimento letto
-					do{
-						puts("Inserire 1 per correggerlo manualmente, 0 per saltarlo: ");
-						esito_input = scanf("%d", &flag_inserimento);
-						//pulisci_stdin();
+			// estrazione dei campi della riga letta dal file
+			esito_lettura = sscanf(linea, "%25[a-zA-Z];%100[^;];%20[^;];%20[^;];%500[a-zA-Z];%d",
+					ricetta_letta.nome_ricetta, ingredienti, ricetta_letta.tempo_preparazione, ricetta_letta.preparazione, ricetta_letta.complessita, &ricetta_letta.dosi);
 
-						if((flag_inserimento != 0 && flag_inserimento != 1) || esito_input != 1){
-							puts("Inserimento non valido. Ripeterlo.\n");
-						}
-					}while((flag_inserimento != 0 && flag_inserimento != 1) || esito_input != 1);
+			// Viene verificato il formato della prima estrazione
+			if(esito_lettura != NUM_CAMPI_RICETTA){
 
+				printf("Errore nella lettura della ricetta numero %d. Verrà ignorata.\n", num_ricette_lette);
+				flag_inserimento = 0;
 
-					// Correzione dell'alimento, se scelto dall'utente
-					if(flag_inserimento == 1){
+			}else if(esiste_ricetta(ricetta_letta.nome_ricetta) == 1){
 
-						puts("Correzione manuale dell'alimento.\n");
-						//alimento_letto = input_alimento_frigo();
+				printf("Errore ricetta %d: Nome <%s> già in uso. Verrà ignorata.", num_ricette_lette, ricetta_letta.nome_ricetta);
+				flag_inserimento = 0;
+
+			}else if(strlen(ingredienti) == 0){
+				printf("Errore ricetta %d: Ingredienti non presenti. Verrà ignorata.", num_ricette_lette);
+				flag_inserimento = 0;
+			}else{// Se il formato della ricetta era corretto vengono estratti gli ingredienti dalla stringa ingredienti
+
+				while(num_ingredienti < MAX_INGREDIENTI){
+
+					divisione_ingrediente = strdup(ingredienti);//duplico la riga che contiene gli ingredienti
+
+					//se il prossimo ingrediente che estraggo non esiste termino di memorizzare gli ingredienti altrimenti estraggo i dati ingrediente
+					if(leggi_campo_ricetta(divisione_ingrediente, num_ingredienti + 1, CAMPO_MULTIPLO) == NULL){
+						break;
 
 					}else{
-						// Se si sceglie di saltare l'alimento, deve essere decrementato il numero di alimenti caricati
-						indice_ricetta--;
-					}
-				}
+						//duplico nuovamente la stringa contenente gli ingredienti in quanto il contenuto é stato perso nella fase di check sopra
+						divisione_ingrediente = strdup(ingredienti);
 
-				//se la lettura é andata a buon fine passo alla memorizzazione degli ingredienti, al calcolo delle kcal e all'aggiornamento del database
-				if(esito_lettura == NUM_CAMPI_RICETTA){
+						//memorizzo nella stringa di lavoro l'ingrediente estratto dalla linea contenente tutti gli ingredienti
+						strcpy(divisione_ingrediente, leggi_campo_ricetta(divisione_ingrediente,num_ingredienti + 1,CAMPO_MULTIPLO));
 
-						while(indice_ingredienti<MAX_NUM_INGR){
+						//divido ulteriormente la stringa contenente l'ingrediente cosí da avere i singoli dati quali nome,quantita e relativa unitá di misura
+						sscanf(divisione_ingrediente, "%f %[a-zA-Z] %[a-zA-Z]",
+								&ricetta_letta.ingredienti[num_ingredienti].quantita, ricetta_letta.ingredienti[num_ingredienti].unita_misura , ricetta_letta.ingredienti[num_ingredienti].nome);
 
-							divisione_ingrediente=strdup(ingredienti);//duplico la riga che contiene gli ingredienti
+						abbassa_maiuscole(ricetta_letta.nome_ricetta);
 
-							//se il prossimo ingrediente che estraggo non esiste termino di memorizzare gli ingredienti altrimenti estraggo i dati ingrediente
-							if(leggi_campo_ricetta(divisione_ingrediente,indice_ingredienti+1,CAMPO_MULTIPLO)==NULL){
-								break;
-							}else{
-								//duplico nuovamente la stringa contenente gli ingredienti in quanto il contenuto é stato perso nella fase di check sopra
-								divisione_ingrediente=strdup(ingredienti);
-
-								//memorizzo nella stringa di lavoro l'ingrediente estratto dalla linea contenente tutti gli ingredienti
-								strcpy(divisione_ingrediente, leggi_campo_ricetta(divisione_ingrediente,indice_ingredienti+1,CAMPO_MULTIPLO));
-
-								//divido ulteriormente la stringa contenente l'ingrediente cosí da avere i singoli dati quali nome,quantita e relativa unitá di misura
-								sscanf(divisione_ingrediente, "%f %[a-zA-Z] %[a-zA-Z]", &carica_ricette.ingredienti[indice_ingredienti].quantita_necessarie, carica_ricette.ingredienti[indice_ingredienti].unita_misura , carica_ricette.ingredienti[indice_ingredienti].nome_ingredienti);
-
-								indice_ingredienti++;
-							}
-
+						if(ricerca_alimento_database(ricetta_letta.ingredienti[num_ingredienti].nome, &dati_ingrediente) != 1){
+							aggiorna_database(ricetta_letta.ingredienti[num_ingredienti].nome, ricetta_letta.ingredienti[num_ingredienti].unita_misura);
+						}else if(strcmp(ricetta_letta.ingredienti[num_ingredienti].unita_misura, dati_ingrediente.unita_misura) != 0){
+							puts("La ricetta <%s> ha degli ingredienti non validi per il database degli alimenti. Verrà ignorata.");
+							flag_inserimento = 0;
 						}
 
-						carica_ricette.kcal_ricetta=conta_kcal_ricetta(carica_ricette.ingredienti,indice_ingredienti+1);//memorizzo le kcal della ricetta passando i dati di essa
-						aggiorna_database_ricette(carica_ricette);// aggiorno il database, memorizzando la ricetta
+						num_ingredienti++;
+					}
+
 				}
 
 			}
-		}
 
-
-		fclose(stream);
-
-
-	return 1;
-	}
-
-
-
-
-/**
- * Funzione che calcola le kcal della ricetta che si sta prendendo in considerazione. In input verrá pertanto fornito l'array di struct
- * avente gli ingredienti e il numero di tali ingredienti. A questo punto  é necessario popolare un array di struct avente
- * le informazioni degli alimenti presenti nel database. In questa maniera siamo in grado di trovare una corrispondenza tra ingredienti e alimenti
- * presenti nel database, estraendo cosí il corrispettivo fabbisogno calorico per poi sommarlo a quello complessivo della ricetta. L'operazione
- * viene fatta per ogni ingrediente e al termine vengono fornite in output le kcal di quell'alimento.
- * @pre		Deve essere passata un'array di struct contenente valori significativi, come lo deve essere il numero di tali ingredienti
- * @post	Deve essere generato un valore significativo(intero maggiore o uguale di 0)
- */
-int conta_kcal_ricetta(ingrediente ingredienti[MAX_NUM_INGR], int num_ingredienti){
-	int kcal_ricetta=0;
-	int indice_ingrediente=0;
-
-	int num_alimenti=conta_alimenti_database();//numero di alimenti effettivamente presenti nel database
-	alimento_database alimenti_database[num_alimenti]; //creo un array di struct corrispondente al num di alimenti presenti nel database
-	leggi_database_alimenti(alimenti_database);//popolo l'array di struct
-
-	for(int i=0;i<num_ingredienti;i++){
-		for(int j=0;j<num_alimenti;j++){//ripeti il confronto con gli alimenti del database
-
-			//se ho trovato corrispondenza con un alimento del frigo aggiungo le calorie di quell'alimento a quelle complessive della ricetta
-			if(strcmp(ingredienti[indice_ingrediente].nome_ingredienti, alimenti_database[j].nome)==0){
-				kcal_ricetta=kcal_ricetta+(alimenti_database[j].kcal*ingredienti[indice_ingrediente].quantita_necessarie)/alimenti_database[j].campione_kcal;
-				break;
+			if(flag_inserimento == 1){
+				ricetta_letta.kcal_ricetta = 0;//conta_kcal_ricetta(carica_ricette.ingredienti,num_ingredienti+1);//memorizzo le kcal della ricetta passando i dati di essa
+				aggiorna_database_ricette(ricetta_letta);// aggiorno il database, memorizzando la ricetta
+			}else{
+				num_ricette_scartate++;
 			}
-
-
 		}
-		indice_ingrediente++;
 	}
 
-	return kcal_ricetta;
+	fclose(stream);
+	return num_ricette_lette - num_ricette_scartate;
 }

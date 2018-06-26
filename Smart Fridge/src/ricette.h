@@ -4,42 +4,67 @@
  *  Created on: 16 mag 2018
  *      Author: david
  */
-#include "alimenti.h"
-#ifndef RICETTE_STRUCT
-#define RICETTE_STRUCT
 	//**********************************LIBRERIE INCLUSE***********************************
-#include <stdbool.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+/// Inclusione delle librerie standard.
+#ifndef STD_LIB
+#define STD_LIB
+	#include <stdbool.h>
+	#include <stdio.h>
+	#include <stdlib.h>
+	#include <time.h>
+#endif
 
+#ifndef RICETTE_LIB
+#define RICETTE_LIB
+
+/// Inclusione delle librerie per la manipolazione di stringhe e caratteri.
+#ifndef STRING_LIB
+#define STRING_LIB
+	#include <string.h>
+	#include <ctype.h>
+#endif
+
+/// Inclusione della libreria per la gestione dei consumi
+#ifndef CONSUMI_LIB
+#include "consumi.h"
+#endif
+
+#ifndef DATE_LIB
+#include "date.h"
+#endif
+/// Inlusione della libreria per la gestione degli alimenti.
+#ifndef ALIMENTI_LIB
 #include "alimenti.h"
+#endif
+/// Inclusione della libreria per la pulizia dei flussi di input.
+#ifndef PULIZIA_FLUSSI_LIB
 #include "pulizia_flussi.h"
+#endif
 
 	//***************************DEFINIZIONI DI COSTANTI***********************************
 
 	//LUNGHEZZE DI STRINGHE
-#define LUNG_NOME_RIC 50
-#define LUNG_INGR 20
-#define LUNG_TEMP_PREP 20
-#define LUNG_PREPARAZIONE 500
-#define LUNG_COMPLESSITA 20
+#define LUNG_NOME_RICETTA 26			/// Lunghezza in caratteri per la stringa del nome di una ricetta + carattere terminatore
+#define LUNG_INGREDIENTE 20
+#define LUNG_TEMPO_PREPARAZIONE 21
+#define LUNG_PREPARAZIONE 501
+#define LUNG_COMPLESSITA 21
 #define LUNG_TUPLA_RICETTE 1000//lunghezza della tupla ossia una riga quanto deve essere grande
 #define LUNG_STR_LAVORO_RIC 100 //lunghezza della stringa che verrá utilizzata in varie funzioni per effettuare split o altre operazioni su stringhe
 #define LUNG_NOME_FILE 100 //lunghezza da riservare al nome del file
 #define LUNG_PRODOTTO 50
 
 	//NUMERO DI ELEMENTI DI ARRAY/MATRICI ECC
-#define MAX_NUM_INGR 20
+#define MAX_INGREDIENTI 20
 #define MAX_NUM_FASI 20
-#define MAX_NUM_U_MISURA 20
+#define MIN_DOSI 1
+#define MAX_DOSI 20
 #define NUM_CAMPI_RICETTA 6
 #define NUM_DELIM 2
 #define NUM_ALIM_SUGG_SCAD 2
 #define NUM_CAMPI_INGREDIENTI 3
 
 //COSTANTI DI RICERCA
-#define FLAG_RICETTA 1 //flag che ci aiuta a capire che bisogna memorizzare/estrarre un prodotto di tipo ricetta dal file dei consumi
 #define MOD_RICERCA_AUTOMATICA 1 //se passato 1 la ricerca delle ricette viene fatta in base agli alimenti presenti nel frigo e alla loro relativa quantitá
 #define MOD_RICERCA_MANUALE 0	//se passato 0 la ricerca delle ricette viene fatta in base ai nomi degli alimenti inseriti dall'utente
 
@@ -55,61 +80,56 @@
 // Nomi dei file utilizzati:
 #define FILE_DATABASE_RICETTE "../database_ricette.csv"
 #define FILE_NUOVE_RICETTE "../nuove_ricette.csv"
-#define FILE_CONSUMI "../consumi.csv"
 
 
 
 //COSTANTI PER LA VISUALIZZAZIONE
-#define MOSTRA_DATABASE "" //per mostrare l'intero database basta passare una stringa vuota alla funzione visualziza database
-#define VISTA_TOTALE 0  //ci permette di vedere tutte le informazioni riguardante/i la/e ricetta/e
-#define VISTA_MINIMIZZATA 1 //ci permette di vedere le informazioni di base riguardante/i la/e ricetta/e
+#define MOSTRA_DATABASE "" 	   	//per mostrare l'intero database basta passare una stringa vuota alla funzione visualziza database
+#define VISTA_TOTALE 0  	   	//ci permette di vedere tutte le informazioni riguardante/i la/e ricetta/e
+#define VISTA_MINIMIZZATA 1    	//ci permette di vedere le informazioni di base riguardante/i la/e ricetta/e
 
 	//*********************************DEFINIZIONI DI STRUCT***********************************
 
 typedef struct {
-	char nome_ingredienti[LUNG_INGR];
-	float quantita_necessarie;
+	char nome[LUNG_INGREDIENTE];
+	float quantita;
 	char unita_misura[LUNG_UNITA_MISURA];
 }ingrediente;
 
 
 	//Questa struttura é utilizzata per i file binari per a memorizzazione dei dati relativi ad un alimento
 typedef struct {
-	int id_ricetta;
-	char nome_ricetta[LUNG_NOME_RIC];
-	ingrediente ingredienti[MAX_NUM_INGR];
-	char tempo_prep[LUNG_TEMP_PREP];
+	char nome_ricetta[LUNG_NOME_RICETTA];
+	ingrediente ingredienti[MAX_INGREDIENTI];
+	char tempo_preparazione[LUNG_TEMPO_PREPARAZIONE];
 	char preparazione[LUNG_PREPARAZIONE];
 	char complessita[LUNG_COMPLESSITA];
 	int kcal_ricetta;
-	int porzione;
+	int dosi;
 }ricetta;
 
-
-
-typedef struct{
-	char nome_prodotto[LUNG_PRODOTTO];
-	short flag_prodotto;
-	int frequenza;
-}consumi;
-
-
-
-#endif
 
 
 
 //*********************************DEFINIZIONI DEI PROTOTIPI***********************************
 
 
+int esiste_ricetta(char* nome_ricetta);
+
+
 int conta_ricette_preparabili();
 
+
+int prepara_ricetta(char* nome_ricetta, int dosi_ricetta);
+
+
+void gestore_prepara_ricetta();
 
 
 /**Serve ad effettuare una tokenizzazione della stringa che gli passiamo
  *
  * @param linea				stringa che dovrá essere divisa in token
- * @param num				numero del campo da estrarre dalla stringa
+ * @param num_campo			numero del campo da estrarre dalla stringa
  * @param flag_campo		tipologia di estrazione da effettuare. Qualora sia 1 bisogna effettuare il conteggio dei campi presenti all'interno
  * 							della stringa
  *
@@ -117,7 +137,7 @@ int conta_ricette_preparabili();
  * @return "vuoto"			se il campo stringa da estrarre é assente
  * @return tok				se l'estrazione ha avuto successo(il token sarebbe il valore)
  */
-const char* leggi_campo_ricetta(char* linea, int num, short flag_campo);
+char* leggi_campo_ricetta(char* linea, int num_campo, short flag_campo);
 
 
 
@@ -151,17 +171,17 @@ int visualizza_ricetta(ricetta dati_ricetta, int vista_ricetta);
  * @param vista				flag che in base ad un controllo permette di visualizzare tutti i dati della ricetta o solo quelli principali
  * @return 1				in caso di successo nella visualizzazione
  */
-int visualizza_database_ricette(char nome_ricetta[LUNG_NOME_RIC], int id_ricetta_pers, int vista);
+int visualizza_database_ricette(int vista);
 
 
 
 
 /**Serve a memorizzare la ricetta che passiamo all'interno di un file con accesso binario che fungerá da database
  *
- * @param nuove_ricette		struct che possiede i dati della ricetta da aggiungere al database
+ * @param nuova_ricetta		struct che possiede i dati della ricetta da aggiungere al database
  * @return 1				in caso di successo nell'aggiornamento del database
  */
-int aggiorna_database_ricette(ricetta nuove_ricette);
+int aggiorna_database_ricette(ricetta nuova_ricetta);
 
 
 
@@ -181,7 +201,7 @@ int elimina_ricetta();
  * @param num_alimenti		numero degli alimenti presenti nel frigo
  * @return 1				in caso di successo nella visualizzazione di un suggerimento
  */
-int suggerimento_ricetta_automatico(alimento_frigo* alimenti_frigo,int num_alimenti);
+int suggerimento_ricetta_automatico();
 
 
 
@@ -203,7 +223,7 @@ int suggerimento_ricetta_manuale(int num_alimenti, char nome_alimenti[MAX_ALIM_S
  * @param num_ricette		numero delle ricette su cui effettuare l'ordinamento
  * @return 1				in caso di successo nell'ordinamento
  */
-int ordina_ric_kcal(ricetta* ricette_database, int num_ricette);
+int ordina_ricette_kcal(ricetta* ricette_database, int num_ricette);
 
 
 
@@ -223,7 +243,7 @@ int inizializza_ricette_preparabili(int num_ricette, char* ricette_preparabili[n
  *
  * @return righe numero di righe presenti nel database
  */
-int conta_righe_database_ricette();
+int conta_ricette_database();
 
 
 
@@ -235,39 +255,6 @@ int conta_righe_database_ricette();
  * @return 1				in caso di successo nella lettura dei valori
  */
 int lettura_database_ricette(ricetta* ricette_database);
-
-
-
-
-/**DA SPOSTARE funzione che si occupa di memorizzare il prodotto consumato(0-->alimento,  1---->ricetta)
- * all'interno di file che memorizza i vari consumi degli utenti
- *
- * @param nome_prodotto		nome della ricetta/alimento da registrare
- * @param flag_prodotto		tipologia di prodotto da registrare (alimento/ricetta)
- * @return 1				in caso di avvenuto successo nella registrazione del consumo
- */
-int registra_consumi(char nome_prodotto[LUNG_PRODOTTO], short flag_prodotto);
-
-
-
-
-/**funzione che ricerca il prodotto maggiormente consumato in base al valore del flag che viene passato(0-->alimento, 1--->ricetta) e lo stampa
- *
- * @param flag_prodotto		tipologia di prodotto(ricetta/alimento)	su cui deve essere effettuata la ricerca
- * @return 1				in caso di successo della ricerca
- */
-int ricerca_prod_magg_cons(short flag_prodotto);
-
-
-
-
-/**funzione che calcola le calorie prodotte per una ricetta in base al numero e nome degli ingredienti che possiede
- *
- * @param ingredienti		array di struct che memorizza i dati relativi agli ingredienti di una data ricetta
- * @param num_ingredienti	numero di ingredienti effettivi della ricetta
- * @return kcal_ricetta		numero di kcal che la ricetta produce
- */
-int conta_kcal_ricetta(ingrediente ingredienti[MAX_NUM_INGR], int num_ingredienti);
 
 
 
@@ -307,7 +294,7 @@ int modifica_ricetta();
  *
  * @return porzione				nuova porzione inserita dall'utente
  */
-int input_porzione_ricetta();
+int input_dosi_ricetta();
 
 
 
@@ -343,7 +330,7 @@ char* input_complessita_ricetta();
  *
  * @return tempo_preparazione 	nuovo tempo di preparazione inserito dall'utente
  */
-char* input_tempo_prep_ricetta();
+char* input_tempo_preparazione();
 
 
 
@@ -353,3 +340,8 @@ char* input_tempo_prep_ricetta();
  * @return nome_ricetta		    nuovo nome della ricetta inserito dall'utente
  */
 char* input_nome_ricetta();
+
+
+int input_id_ricetta(int max_id);
+
+#endif
