@@ -29,21 +29,13 @@
 #include "consumi.h"
 #endif
 
-#ifndef UTENTI_LIB
 #include "utenti.h"
-#endif
 
-#ifndef DATE_LIB
 #include "date.h"
-#endif
 /// Inlusione della libreria per la gestione degli alimenti.
-#ifndef ALIMENTI_LIB
 #include "alimenti.h"
-#endif
 /// Inclusione della libreria per la pulizia dei flussi di input.
-#ifndef PULIZIA_FLUSSI_LIB
 #include "pulizia_flussi.h"
-#endif
 
 	//***************************DEFINIZIONI DI COSTANTI***********************************
 

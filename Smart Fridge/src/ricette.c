@@ -1235,6 +1235,7 @@ int lettura_nuove_ricette(){
 	}else{
 		// estrazione di ogni riga del file (riga == 1 alimento)
 		while(fgets(linea, LUNG_TUPLA_RICETTE, stream) != NULL){
+			num_ricette_lette++;
 			flag_inserimento = 1;
 			// Pulitura dallo stream della parte di riga non letta
 			if(linea[strlen(linea) - 1] != '\n'){
@@ -1250,7 +1251,7 @@ int lettura_nuove_ricette(){
 			}
 
 			// estrazione dei campi della riga letta dal file
-			esito_lettura = sscanf(linea, "%25[a-zA-Z];%100[^;];%20[^;];%20[^;];%500[a-zA-Z];%d",
+			esito_lettura = sscanf(linea, "%25[a-zA-Z];%100[^;];%20[^;];%500[^;];%20[a-zA-Z];%d",
 					ricetta_letta.nome_ricetta, ingredienti, ricetta_letta.tempo_preparazione, ricetta_letta.preparazione, ricetta_letta.complessita, &ricetta_letta.dosi);
 
 			// Viene verificato il formato della prima estrazione
@@ -1288,7 +1289,7 @@ int lettura_nuove_ricette(){
 						sscanf(divisione_ingrediente, "%f %[a-zA-Z] %[a-zA-Z]",
 								&ricetta_letta.ingredienti[num_ingredienti].quantita, ricetta_letta.ingredienti[num_ingredienti].unita_misura , ricetta_letta.ingredienti[num_ingredienti].nome);
 
-						abbassa_maiuscole(ricetta_letta.nome_ricetta);
+						abbassa_maiuscole(ricetta_letta.ingredienti[num_ingredienti].nome);
 
 						if(ricerca_alimento_database(ricetta_letta.ingredienti[num_ingredienti].nome, &dati_ingrediente) != 1){
 							aggiorna_database(ricetta_letta.ingredienti[num_ingredienti].nome, ricetta_letta.ingredienti[num_ingredienti].unita_misura);
