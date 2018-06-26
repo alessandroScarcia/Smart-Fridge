@@ -748,11 +748,13 @@ int visualizza_ricetta(ricetta dati_ricette, int vista_ricetta){
 		printf(" -------------------------------------------------------------\n");
 
 		while(strcmp(dati_ricette.ingredienti[indice_ingrediente].nome,"")!=0){
-			indice_ingrediente++;
+
 			printf("%2d|%18s|%22.1f|%17s|\n",
 					indice_ingrediente, dati_ricette.ingredienti[indice_ingrediente].nome,
 					dati_ricette.ingredienti[indice_ingrediente].quantita,dati_ricette.ingredienti[indice_ingrediente].unita_misura);
 			printf(" -------------------------------------------------------------\n");
+
+			indice_ingrediente++;
 		}
 
 		printf("\n\n PREPARAZIONE:\n");
@@ -1288,6 +1290,8 @@ int lettura_nuove_ricette(){
 						//divido ulteriormente la stringa contenente l'ingrediente cosí da avere i singoli dati quali nome,quantita e relativa unitá di misura
 						sscanf(divisione_ingrediente, "%f %[a-zA-Z] %[a-zA-Z]",
 								&ricetta_letta.ingredienti[num_ingredienti].quantita, ricetta_letta.ingredienti[num_ingredienti].unita_misura , ricetta_letta.ingredienti[num_ingredienti].nome);
+
+
 
 						abbassa_maiuscole(ricetta_letta.ingredienti[num_ingredienti].nome);
 
