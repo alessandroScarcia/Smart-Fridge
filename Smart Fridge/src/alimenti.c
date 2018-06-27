@@ -1000,6 +1000,31 @@ int carica_spesa(){
 }
 
 
+float soglia_alimento(const char* nome_alimento){
+	FILE* stream = NULL;
+	float soglia_alimento = 0;
+	alimento_database alimento_letto;
+
+	if((stream = fopen(FILE_DATABASE_ALIMENTI, "rb")) == NULL){
+		return soglia_alimento;
+	}else{
+		while(fread(&alimento_letto, sizeof(alimento), 1, stream) > 0){
+			if(strcmp(alimento_letto.nome, nome_alimento) == 0){
+				soglia_alimento += alimento_letto.soglia_spesa;
+			}
+		}
+
+		fclose(stream);
+		return soglia_alimento;
+	}
+}
+
+
+
+
+
+
+
 float quantita_alimento(const char* nome_alimento){
 	FILE* stream = NULL;
 	float quantita_alimento = 0;
@@ -1051,6 +1076,8 @@ int riduci_alimento(const char* nome_alimento, float riduzione){
 					if(alimento_letto.quantita <= 0){
 						riduzione = abs(alimento_letto.quantita);
 						strcpy(alimento_letto.nome, "");
+					}else{
+						riduzione = 0;
 					}
 
 					fseek(stream, -sizeof(alimento_frigo), SEEK_CUR);

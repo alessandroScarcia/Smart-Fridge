@@ -47,19 +47,18 @@
 #endif
 
 /// Inclusione della libreria per la gestione delle date
-#ifndef DATE_LIB
+
 #include "date.h"
-#endif
+
 
 /// Inclusione della libreria per la gestione dei consumi
-#ifndef CONSUMI_LIB
+
 #include "consumi.h"
-#endif
+
 
 /// Inclusione della libreria per la pulizia dei flussi di input
-#ifndef PULIZIA_FLUSSI_LIB
+
 #include "pulizia_flussi.h"
-#endif
 
 /// DEFINIZIONE DELLE COSTANTI SIMBOLICHE.
 
@@ -75,9 +74,9 @@
 #define NUM_CAMPI_ALIMENTO_FRIGO 6 		///numero di colonne che possiede il file contenente i dati degli alimenti comprati
 
 /// Nomi dei file utilizzati:
-#define FILE_SPESA "spesa_effettuata.csv"
-#define FILE_FRIGO "alimenti_frigo.dat"
-#define FILE_DATABASE_ALIMENTI "database_alimenti.dat"
+#define FILE_SPESA "../spesa_effettuata.csv"
+#define FILE_FRIGO "../alimenti_frigo.dat"
+#define FILE_DATABASE_ALIMENTI "../database_alimenti.dat"
 
 /// Unità di misura significative:
 #define UNITA_KG "kg"					/// Unità di misura dei chilogrammi
@@ -130,6 +129,7 @@ typedef struct{
 alimento_frigo alimento;
 
 
+float soglia_alimento(const char* nome_alimento);
 
 
 /** funzione che ordina gli alimenti del frigo in base alla scadenza.

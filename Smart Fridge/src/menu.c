@@ -307,7 +307,7 @@ int menu_alimenti(){
 				break;
 
 			case 3:
-				visualizza_database_alimenti();//visualizza gli alimenti che si sono memorizzati nel database
+				visualizza_database_alimenti(VISTA_TOTALE);//visualizza gli alimenti che si sono memorizzati nel database
 				break;
 
 			case 4:
