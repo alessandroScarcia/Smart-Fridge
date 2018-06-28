@@ -10,14 +10,16 @@
 #include "alimenti.h"
 #include "date.h"
 #include "ricette.h"
-
-
-
+#include "lista_spesa.h"
+#include "utenti.h"
+#include "menu_settimanale.h"
 
 /**
- * La funzione input scelta si occupa di ricevere in input il comando per accedere ad una determinata voce dei menu. Si é pensato che la scelta essendo un numero
- * avrá anche esso un range. Se la scelta é compresa nel range vuol dire che é accettabile altrimenti verrá scartata e verrá richiesto di reinserire il valore. Con la funzione  strtol
- * siamo in grado di capire inoltre se viene inserito anche un carattere all'interno della scelta e pertanto siamo in grado di prevenire un errore di tipo per l'input
+ * La funzione input scelta si occupa di ricevere in input il comando per accedere ad una determinata voce dei menu. Si é pensato che la scelta
+ * essendo un numero avrá anche esso un range. Se la scelta é compresa nel range vuol dire che é accettabile altrimenti verrá scartata e verrá
+ * richiesto di reinserire il valore. Con la funzione  strtol siamo in grado di capire inoltre se viene inserito anche un carattere all'interno
+ * della scelta e pertanto siamo in grado di prevenire un errore di tipo per l'input
+ *
  * @pre  Che vengano passati dei valori significativi di massimo e minimo
  * @post Il valore restituito deve essere un intero
  */
@@ -35,7 +37,7 @@ int input_scelta(int valore_minimo, int valore_massimo) {
 			scanf("%*[^\n ]"); //libera il buffer della scanf
 		}
 	} while (*parte_stringa != 0 || parte_intera > valore_massimo || parte_intera < valore_minimo); //...sono presenti numeri e lettere(parte stringa punta ad una locazione di input_int nella stringa in ingresso e i vincoli non sono rispettati
-
+	pulisci_stdin();
 	return (int)parte_intera;//restituisci il numero che é stato inserit
 }
 
@@ -59,9 +61,10 @@ int visualizza_voci_menu(int voce){
 			printf("|                                *****MENU PRINCIPALE*****                                 |\n");
 			printf("|[1] per accedere al menu alimenti                                                         |\n");
 			printf("|[2] per accedere al menu ricette                                                          |\n");
-			printf("|[3] per visualizzare le notifiche                                                         |\n");
-			//printf("|[4]  per accedere al menu spesa                                                           |\n");
-			//printf("|[5]  per accedere al menu utenti                                                          |\n");
+			printf("|[3]  per accedere al menu utenti                                                          |\n");
+			printf("|[4]  per accedere al menu spesa                                                           |\n");
+			printf("|[5]  per accedere al menu menu settimanale                                                |\n");
+			printf("|[6] per visualizzare le notifiche                                                         |\n");
 			printf("|[0] per uscire                                                                            |\n");
 			printf(" __________________________________________________________________________________________\n");
 			printf("       ||                         ||  (c)redit  ||                                        \n");
@@ -105,6 +108,27 @@ int visualizza_voci_menu(int voce){
 			printf(" ________________________________________________________________________________________________\n");
 			printf("       ||                                                                               \n");
 			break;
+		case MENU_LISTA_SPESA:
+			printf(" ________________________________________________________________________________________________\n");
+			printf("|                      *****MENU LISTA DELLA SPESA*****                                          |\n");
+			printf("|[1] per generare lista della spesa personale             |\n");
+			printf("|[2] per visualizzare lista della spesa globale |\n");
+			printf("|[3] per generare lista della spesa personale                                                     |\n");
+			printf("|[4] per visualizzare lista della spesa personale                                                     |\n");
+			printf("|[0] per tornare indietro                                                                        |\n");
+			printf(" ________________________________________________________________________________________________\n");
+			printf("       ||                                                                               \n");
+			break;
+		case OPZIONI_MENU_SETTIMANALE:
+			printf(" ________________________________________________________________________________________________\n");
+			printf("|                      *****GESTIONE MENU SETTIMANALE*****                                      |\n");
+			printf("|[1] per inizializzare il menu settimanale |\n");
+			printf("|[2] per modificare menu personale             |\n");
+			printf("|[3] per visualizzare menu personale             |\n");
+			printf("|[0] per tornare indietro                                                                        |\n");
+			printf(" ________________________________________________________________________________________________\n");
+			printf("       ||                                                                               \n");
+			break;
 	}
 	printf("------------------\n");
 
@@ -123,7 +147,7 @@ int visualizza_voci_menu(int voce){
 int visualizza_notifiche(){
 	int flag_elimina_alimenti;
 	if(conta_notifiche()==0){
-		printf("Non ci sono notifiche da segnalare");
+		printf("Non ci sono notifiche da segnalare\n");
 
 	}else{
 		if(conta_alimenti_scaduti()>0){
@@ -154,6 +178,127 @@ int conta_notifiche (){
 }
 
 
+
+int menu_lista_spesa(){
+			int scelta; //memorizza la scelta effettuata dall'utente
+			utente u;
+
+			visualizza_voci_menu(MENU_LISTA_SPESA);
+			printf("Inserisci comando ~ ");
+
+			do{//ripeti fino a quando...
+
+				scelta=input_scelta(MIN_SCELTA_SPESA,MAX_SCELTA_SPESA);
+
+				switch (scelta) {//in base alla scelta vai alla funzione corrispondente
+				case 0://esci
+				  return 1;
+				  break;
+
+				case 1:
+					lettura_alimenti_acquistabili();
+					break;
+
+				case 2:
+					visualizza_lista_spesa(LISTA_SPESA_GLOBALE);
+					break;
+
+				case 3:
+					gestore_spesa_personale();
+					break;
+
+				case 4:
+
+					//autenticazione(con controllo su esito) dell'utente
+					if (autenticazione(&u) == -1){
+						printf("Operazione di utenticazione fallita");
+						return -1;
+					}
+
+					//generazione del nome del file che ospiterá la spesa personale
+					char nome_file[MAX_LUNG_NOMEFILE] = PRIMA_PARTE_NOMEFILE;
+					strcat(nome_file, u.nickname);
+					strcat(nome_file, FORM_FILE_SPESA);
+					visualizza_lista_spesa(nome_file);
+					break;
+
+				default:
+					puts("Incorrect command");
+					break;
+
+				}
+
+
+				if(scelta){// se la scelta non é quella di uscire allora chiedi di inserire un nuovo valore
+					system("pause");
+					visualizza_voci_menu(MENU_LISTA_SPESA);
+					printf("\nSeleziona un'altra scelta del menu ricette ~ ");
+				}
+
+
+			}while(scelta);//l'utente non esce
+
+			return 0;
+}
+
+
+
+
+int gestore_menu_settimanale(){
+			int scelta; //memorizza la scelta effettuata dall'utente
+			visualizza_voci_menu(OPZIONI_MENU_SETTIMANALE);
+			utente u;
+			printf("Inserisci comando ~ ");
+
+			do{//ripeti fino a quando...
+
+				scelta=input_scelta(MIN_SCELTA_MENU_SET,MAX_SCELTA_MENU_SET);
+
+				switch (scelta) {//in base alla scelta vai alla funzione corrispondente
+				case 0://esci
+				  return 1;
+				  break;
+
+				case 1:
+					inizializzazione();
+					break;
+
+				case 2:
+					scelta_pasto();
+					break;
+
+				case 3:
+					if(autenticazione(&u))
+						visualizza_database_menu(u.nickname);
+					break;
+
+				default:
+					puts("Incorrect command");
+					break;
+
+				}
+
+
+				if(scelta){// se la scelta non é quella di uscire allora chiedi di inserire un nuovo valore
+					system("pause");
+					visualizza_voci_menu(OPZIONI_MENU_SETTIMANALE);
+					printf("\nSeleziona un'altra scelta del menu ricette ~ ");
+				}
+
+
+			}while(scelta);//l'utente non esce
+
+			return 0;
+}
+
+
+
+
+
+
+
+
+
 /**
  * Funzione che si occupa di passare gli alimenti presenti nel frigo e le ricette salvate nel database e di effettuare ricerche e ordinamenti su
  * tali dati estratti.
@@ -165,11 +310,11 @@ int menu_ricette_ricerca(){
 	char nome_alimenti[MAX_ALIM_SUGG][LUNG_NOME_ALIMENTO];
 	visualizza_voci_menu(SOTT_MENU_RICETTE);
 
-	int num_ricette=conta_righe_database_ricette();
+	int num_ricette=conta_ricette_database();
 	ricetta ricette_database[num_ricette];
 	lettura_database_ricette(ricette_database);
 
-	int num_alimenti=conta_alimenti();
+	int num_alimenti=conta_alimenti_frigo();
 	alimento_frigo alimenti_frigo[num_alimenti];
 	leggi_frigo(alimenti_frigo);
 
@@ -193,7 +338,7 @@ int menu_ricette_ricerca(){
 						break;
 
 					case 3:
-						ordina_ric_kcal(ricette_database,num_ricette);
+						ordina_ricette_kcal(ricette_database,num_ricette);
 						break;
 					case 4:
 						ricette_alimenti_in_scadenza(alimenti_frigo,num_alimenti);
@@ -207,7 +352,7 @@ int menu_ricette_ricerca(){
 		if(scelta){// se la scelta non é quella di uscire allora chiedi di inserire un nuovo valore
 			system("pause");
 			visualizza_voci_menu(SOTT_MENU_RICETTE);
-			printf("\nSeleziona un'altra scelta del menu: ");
+			printf("\nSeleziona un'altra scelta del menu ~ ");
 		}
 
 	}while(scelta);
@@ -270,7 +415,7 @@ int menu_ricette(){
 				if(scelta){// se la scelta non é quella di uscire allora chiedi di inserire un nuovo valore
 					system("pause");
 					visualizza_voci_menu(MENU_RICETTE);
-					printf("\nSeleziona un'altra scelta del menu ricette: ");
+					printf("\nSeleziona un'altra scelta del menu ricette  ~ ");
 				}
 
 
@@ -299,15 +444,16 @@ int menu_alimenti(){
 				return 1;
 
 			case 1:
+				elimina_file_spesa(LISTA_SPESA_GLOBALE);
 				carica_spesa();//leggi file della spesa
 				break;
 
 			case 2:
-				//riduci_alimento();//elimina alimenti dal frigo
+				 gestore_riduzione_alimenti();//elimina alimenti dal frigo
 				break;
 
 			case 3:
-				visualizza_database_alimenti(VISTA_TOTALE);//visualizza gli alimenti che si sono memorizzati nel database
+				visualizza_database_alimenti();//visualizza gli alimenti che si sono memorizzati nel database
 				break;
 
 			case 4:
@@ -327,7 +473,7 @@ int menu_alimenti(){
 			if(scelta!=0){// se la scelta non é quella di uscire allora chiedi di inserire un nuovo valore
 				system("pause");
 				visualizza_voci_menu(MENU_ALIMENTI);
-			    printf("\nSeleziona un'altra scelta del menu alimenti: ");
+			    printf("\nSeleziona un'altra scelta del menu alimenti  ~  ");
 			}
 
 
@@ -367,6 +513,18 @@ int menu_principale(){
 			break;
 
 		case 3:
+			menu_database_utenti(1);
+			break;
+
+		case 4:
+			menu_lista_spesa();
+			break;
+
+		case 5:
+			gestore_menu_settimanale();
+			break;
+
+		case 6:
 			visualizza_notifiche();
 			break;
 
@@ -384,7 +542,7 @@ int menu_principale(){
 		if(scelta!=0){
 			system("pause");
 			visualizza_voci_menu(MENU_PRINCIPALE);
-			printf("\nSeleziona un'altra scelta del menu principale: ");
+			printf("\nSeleziona un'altra scelta del menu principale  ~ ");
 		}
 
 
