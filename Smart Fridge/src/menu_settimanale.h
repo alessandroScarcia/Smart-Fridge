@@ -13,7 +13,7 @@
  * @authors Alessandro Scarcia, Davide Quatela, Michela Salvemini
  */
 
-//Inclusione delle librerie standard
+/// Inclusione delle librerie standard
 #ifndef STD_LIB
 #define STD_LIB
 	#include <stdbool.h>
@@ -22,45 +22,45 @@
 	#include <time.h>
 #endif
 
-//Inclusione della libreria matematica
+/// Inclusione della libreria matematica
 #ifndef MATH_LIB
 #define MATH_LIB
 #include <math.h>
 #endif
 
-// Inclusione delle librerie per la manipolazione di stringhe e caratteri
+/// Inclusione delle librerie per la manipolazione di stringhe e caratteri
 #ifndef STRING_LIB
 #define STRING_LIB
 	#include <string.h>
 	#include <ctype.h>
 #endif
 
-// Inclusione della libreria per la pulizia dei flussi di input
-//#include "pulizia_flussi.h"
 
-//Inclusione della libreria per la gestione degli utenti
+#ifndef MENU_SETTIMANALE_LIB
+#define MENU_SETTIMANALE_LIB
 
+/// Inclusione della libreria per la pulizia dei flussi di input
+#include "pulizia_flussi.h"
 
-
-#ifndef MENU_SETTIMANALE
-#define MENU_SETTIMANALE
-
+///Inclusione della libreria per la gestione degli utenti
 #include "utenti.h"
 
 /// DEFINIZIONE DELLE COSTANTI SIMBOLICHE.
 
 
 /// Numero di elementi di determinati oggetti:
-#define NUM_ALIMENTO 5
+#define NUM_CIBI 5
 #define NUM_PASTI 5
-#define GIORNI_SETTIMANA 7
+#define NUM_GIORNI 7
+#define MIN_KCAL_GIORNATA 1800
+#define MAX_KCAL_GIORNATA 5000
 
 /// Lunghezze delle stringhe:
-#define DIM_GIORNO 15
-#define DIM_CIBO 40
-#define DIM_PASTO 10
-#define MAX_LUNG_NOMEFILE 30
-
+#define LUNG_GIORNO 15
+#define LUNG_CIBO 41
+#define LUNG_QUANTITA 11
+#define LUNG_PASTO 10
+#define LUNG_NOME_FILE_MENU 30
 
 #define FILE_MENU "menu_"
 
@@ -77,10 +77,10 @@
  */
 
 typedef struct {
-	char nome_cibo[DIM_CIBO];
-	short unsigned flag;
-	float quantita; //quantità
-}cibo;
+	char nome_cibo[LUNG_CIBO];
+	char quantita[LUNG_QUANTITA]; //quantità
+	short flag;
+} cibo;
 
 /**
  * @typedef pasto
@@ -91,9 +91,9 @@ typedef struct {
  */
 
 typedef struct {
-	char nome_pasto[DIM_PASTO];
-	cibo alimento[NUM_ALIMENTO];
-}pasto;
+	char nome_pasto[LUNG_PASTO];
+	cibo cibi[NUM_CIBI];
+} pasto;
 
 /**
  * @typedef giorno
@@ -104,12 +104,15 @@ typedef struct {
  */
 
 typedef struct {
-	char giorno[DIM_GIORNO];
-	pasto pasto[NUM_PASTI];
-
+	int kcal;
+	char nome_giorno[LUNG_GIORNO];
+	pasto pasti[NUM_PASTI];
 } giorno; //cambio nome
 
-#endif /* MENU_SETTIMANALE */
+
+
+char* crea_nome_file(const char* nickname);
+
 
 /**
  * La procedura inizializzazione() chiama una serie di funzioni utili ad un inizializzazione di un vettore di 7
@@ -117,7 +120,7 @@ typedef struct {
  *
  * @param no
  */
-void inizializzazione ();
+int inizializzazione (const char* nome_utente);
 
 /**
  * La funzione inizializzazione_giorno() riceve in ingresso un puntatore
@@ -128,7 +131,7 @@ void inizializzazione ();
  * @param menu varibile da modificare, indice variabile per la scelta della modifica da effetuare
  * @return 0 se l'operazione va a buon fine
  */
-int inizializzazione_giorno (giorno* menu, int indice);
+int inizializzazione_giorno (giorno* giornata, int indice);
 
 /**
  * La funzione inizializzazione_pasti() riceve in ingresso un puntatore
@@ -139,7 +142,7 @@ int inizializzazione_giorno (giorno* menu, int indice);
  * @param menu varibile da modificare, num_pasto variabile per la scelta della modifica da effetuare
  * @return 0 se l'operazione va a buon fine
  */
-int inizializzazione_pasti (giorno* menu);
+int inizializzazione_pasti (giorno* giornata);
 
 /**
  * La funzione inizializzazione_pasti() riceve in ingresso un puntatore
@@ -150,7 +153,7 @@ int inizializzazione_pasti (giorno* menu);
  * @param menu varibile da modificare, num_pasto variabile per impostare l'indice della varaibile pasto.
  * @return 0 se l'operazione va a buon fine
  */
-int inizializzazione_alimenti (giorno* menu, short int num_pasto);
+int inizializzazione_alimenti (giorno* giornata, short int num_pasto);
 
 /**
  * La funzione inizializzazione_file_menu() riceve in ingresso un vettore
@@ -160,7 +163,7 @@ int inizializzazione_alimenti (giorno* menu, short int num_pasto);
  * @param vettore menu da scrivere su file.
  * @return 0 se l'operazione va a buon fine
  */
-int inizializzazione_file_menu (giorno write_menu[], char nomefile[]);
+int inizializzazione_file_menu (const char* nomefile, giorno* menu );
 
 
 
@@ -174,6 +177,29 @@ int inizializzazione_file_menu (giorno write_menu[], char nomefile[]);
  */
 int visualizza_database_menu (char nomefile[]);
 
+
+int esiste_menu(char* nickname);
+
+
+int input_kcal_giornata();
+
+
+int input_numero_pasto();
+
+
+int input_numero_giorno();
+
+
+char* input_nome_cibo();
+
+
+char* input_quantita_cibo();
+
+
+int input_flag_cibo();
+
+
+
 /**
  * La funzione scelta_pasto() non riceve nulla in ingresso.
  * La funzione si occuperà dell'autenticazione dell'utente e quindi
@@ -186,7 +212,7 @@ int visualizza_database_menu (char nomefile[]);
  * @param no
  * @return 0 se l'operazione va a buon fine
  */
-int scelta_pasto();
+void modifica_menu();
 
 /**
  * La funzione scelta_alimenti() riceve in ingresso un dato strutturato di tipo "giorno" ed un numero corrispondente all'indice del vettore
@@ -197,25 +223,29 @@ int scelta_pasto();
  * @param menu su cui effettuare le modifiche.
  * @return 0 se l'operazione va a buon fine
  */
-int scelta_alimenti (giorno* menu, short int num_pasto);
+void modifica_alimenti_pasto (giorno* giornata, short int num_pasto);
 
 /**
  * La funzione estrazione_struct() riceve in ingresso un puntatore ad una struct di tipo giorno, il nome dell'utente e l'indice corrispondente
  * al giorno della settimana.
  * La funzione estrarrà n-esimo elemento dal file, lo memorizzerà nella variabile di tipo giorno ricevuta in ingresso e terminerà la sua funzione.
  *
- * @param menu su cui memorizzare la struct da estrarre da file, nome_utente per aprire il menu corrispondente a tale utente, n per estrarre n-esimo
+ * @param giornata su cui memorizzare la struct da estrarre da file, nome_utente per aprire il menu corrispondente a tale utente, num_giorno per estrarre n-esimo
  * elemento del file.
  * @return 0 se l'operazione va a buon fine
  */
-int estrazione_struct (giorno* menu, char nome_utente[], int n);
+int estrai_giorno (giorno* giornata, char* nome_utente, int num_giorno);
+
+
+int estrai_kcal(int* kcal, char* nome_utente, int num_giorno);
+
 
 /**
  * La funzione stampa_menu() riceve in ingresso un dato strutturato di tipo giorno e lo stampa su schermo.
  * @param menu da stampare su schermo.
  * @return 0 se l'operazione va a buon fine
  */
-void stampa_menu (giorno* menu);
+void stampa_giorno (giorno* giornata);
 
 /**
  * La procedura scrivi_menu() riceve in ingresso un dato strutturato di tipo giorno, il nome del file da aprire, la posizione dove andare a sovrascrivere.
@@ -224,23 +254,26 @@ void stampa_menu (giorno* menu);
  * @param menu da scrivere su file, nome_utente da cui generare il nome del file su cui scrivere, i corrispondente alla posizione su cui scrivere nel file.
  *
  */
-void scrivi_menu (giorno* menu, char nome_utente[], int i);
+int scrivi_giorno (giorno* giornata, char* nome_utente, int i);
+//
+///**
+// * La funzione conta_ricette_menu() riceve in ingresso un nome utente ed il numero corrispondente al giorno da estrarre da file ed analizzate.
+// * Apre il file, estrare la struct nella posizione corrispondente al giorno_x, scorre tra gli alimenti contenuti nel menu di tale giorno analizzando il flag.
+// * Quando trova un flag corrispondente ad 1 aumenta un contatore.
+// * @param nome_utente da cui ricare il nome del file, giorno_x da cui ricavare la posizione del giorno che si intende analizzare.
+// * @return contatore corrispondente al numero di ricette presenti nel giorno.
+// */
+//short int conta_ricette_menu(char nome_utente[], short int giorno_x);
+//
+//
+///**
+// * La funzione conta_ricette_menu() riceve in ingresso un nome utente ed il numero corrispondente al giorno da estrarre da file ed analizzate.
+// * Apre il file, estrare la struct nella posizione corrispondente al giorno_x, scorre tra gli alimenti contenuti nel menu di tale giorno analizzando il flag.
+// * Quando trova un flag corrispondente ad 1 aumenta un contatore.
+// * @param nome_utente da cui ricare il nome del file, giorno_x da cui ricavare la posizione del giorno che si intende analizzare.
+// * @return contatore corrispondente al numero di ricette presenti nel giorno.
+// */
+//void ricette_presenti (char vet_ricette[], char nome_utente[], short int giorno_x);
 
-/**
- * La funzione conta_ricette_menu() riceve in ingresso un nome utente ed il numero corrispondente al giorno da estrarre da file ed analizzate.
- * Apre il file, estrare la struct nella posizione corrispondente al giorno_x, scorre tra gli alimenti contenuti nel menu di tale giorno analizzando il flag.
- * Quando trova un flag corrispondente ad 1 aumenta un contatore.
- * @param nome_utente da cui ricare il nome del file, giorno_x da cui ricavare la posizione del giorno che si intende analizzare.
- * @return contatore corrispondente al numero di ricette presenti nel giorno.
- */
-short int conta_ricette_menu(char nome_utente[], short int giorno_x);
 
-
-/**
- * La funzione conta_ricette_menu() riceve in ingresso un nome utente ed il numero corrispondente al giorno da estrarre da file ed analizzate.
- * Apre il file, estrare la struct nella posizione corrispondente al giorno_x, scorre tra gli alimenti contenuti nel menu di tale giorno analizzando il flag.
- * Quando trova un flag corrispondente ad 1 aumenta un contatore.
- * @param nome_utente da cui ricare il nome del file, giorno_x da cui ricavare la posizione del giorno che si intende analizzare.
- * @return contatore corrispondente al numero di ricette presenti nel giorno.
- */
-void ricette_presenti (char vet_ricette[], char nome_utente[], short int giorno_x);
+#endif

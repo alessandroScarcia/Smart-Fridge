@@ -4,11 +4,17 @@
  *  Created on: 10 mag 2018
  *      Author: Michela
  */
-
+#ifndef UTENTI_LIB
 #include "utenti.h"
+#endif
 
+int esiste_nickname(const char* nickname){
+	int lung_nickname = strlen(nickname);
 
-int esiste_nickname(char* nickname){
+	if(lung_nickname < MIN_LUNG_NICKNAME || lung_nickname > MAX_LUNG_NICKNAME - 1){
+		return 0;
+	}
+
 	FILE* stream = NULL;
 	utente u;
 
@@ -60,19 +66,29 @@ char* input_nuovo_nickname(){
 char* input_nickname(){
 	char* nickname = (char*) calloc(MAX_LUNG_NICKNAME, sizeof(char));
 	int esito_input;
+	int esito_controllo;
+	int lung_nickname;
 
 	do{
-		printf("Inserisci il nickname [max. 15 lettere, min. 5 lettere]:\n>");
+		printf("Inserisci il nickname [max. 15 lettere, min. 5 lettere]:\n~");
 		esito_input = scanf("%15[a-zA-Z]", nickname);
 		if(pulisci_stdin() == 1){
 			esito_input = 0;
 		}
 
-		if(esito_input != 1){
+		lung_nickname = strlen(nickname);
+
+		if(lung_nickname < MIN_LUNG_NICKNAME || lung_nickname > MAX_LUNG_NICKNAME - 1){
+			esito_controllo = 0;
+		}else{
+			esito_controllo = 1;
+		}
+
+		if(esito_input != 1 || esito_controllo != 1){
 			puts("Inserimento non valido. Ripeterlo.\n");
 		}
 
-	}while(esito_input != 1);
+	}while(esito_input != 1 || esito_controllo != 1);
 
 	return nickname;
 }
@@ -99,7 +115,7 @@ char* input_password(){
 	int esito_input;
 
 	do{
-		printf("Inserire la password [max. 8 caratteri]:\n>");
+		printf("Inserire la password [max. 8 caratteri]:\n~");
 		esito_input = scanf("%8s", password);
 		if(pulisci_stdin() == 1){
 			esito_input = 0;
@@ -197,7 +213,7 @@ int input_preferenza(char* preferenza){
 	int esito_input;
 
 	do{
-		printf("Inserire il valore della preferenza (\"null\" per terminare l'inserimento) [max. 20 lettere minuscole]:\n>");
+		printf("Inserire il valore della preferenza (\"null\" per terminare l'inserimento) [max. 20 lettere minuscole]:\n~");
 		esito_input = scanf("%20[a-z]", preferenza);
 		if(pulisci_stdin() == 1){
 			esito_input = 0;
@@ -256,7 +272,7 @@ utente genera_utente(){
 	for(int i = 0; i < NUM_PREFERENZE; i++){
 		int esito_estrazione;							// Variabile per memorizzare l'esito dell'estrazione
 		int esito_controllo;							// Variabile per memorizzare gli esiti dei controlli
-		char preferenza_casuale[LUNG_NOME_ALIMENTO];	// Stringa per contenere il nome estratto dal database
+		char preferenza_casuale[LUNG_PREFERENZA];	// Stringa per contenere il nome estratto dal database
 
 		// Estrazione casuale di un nome di un alimento
 		esito_estrazione = alimento_casuale(preferenza_casuale);
@@ -375,7 +391,7 @@ int crea_utenti(){
 	do{
 		esito_controllo = 1;
 
-		printf("Selezionare la modalità di creazione di utente/i:\n1 - Automatica\n2 - Manuale\n>");
+		printf("Selezionare la modalità di creazione di utente/i:\n1 - Automatica\n2 - Manuale\n~");
 		esito_input = scanf("%d", &scelta);
 		if(pulisci_stdin() == 1){
 			esito_input = 0;
@@ -386,7 +402,7 @@ int crea_utenti(){
 		}
 
 		if(esito_input != 1 || esito_controllo != 1){
-			puts("Inserimento non valido. Ripeterlo");
+			puts("Inserimento non valido. Ripeterlo.");
 		}
 
 	}while(esito_input != 1 || esito_controllo != 1);
@@ -396,7 +412,7 @@ int crea_utenti(){
 		do{
 			esito_controllo = 1;
 
-			printf("Inserire il numero di utenti da generare [max. %hu]:\n>", n_utenti_creabili);
+			printf("Inserire il numero di utenti da generare [max. %hu]:\n~", n_utenti_creabili);
 			esito_input = scanf("%hu", &n_utenti);
 			if(pulisci_stdin() == 1){
 				esito_input = 0;
@@ -447,7 +463,7 @@ void modifica_preferenze(utente* u){
 
 	if(num_preferenze_utente > 0 && num_preferenze_utente < NUM_PREFERENZE){
 		do{
-			printf("Inserire [1] per modificare una preferenza esistente, [2] per aggiungerne una nuova:\n>");
+			printf("Inserire [1] per modificare una preferenza esistente, [2] per aggiungerne una nuova:\n~");
 			esito_input = scanf("%d", &scelta);
 			if(pulisci_stdin() == 1){
 				esito_input = 0;
@@ -474,7 +490,7 @@ void modifica_preferenze(utente* u){
 		input_preferenza((*u).preferenze[num_preferenze_utente]);
 	}else{
 		do{
-			printf("Inserire il numero della preferenza da modificare:\n>");
+			printf("Inserire il numero della preferenza da modificare:\n~");
 			esito_input = scanf("%d", &scelta);
 			if(pulisci_stdin() == 1){
 				esito_input = 0;
@@ -528,7 +544,7 @@ int gestore_modifiche(){
 
 			do{
 				puts("\nSelezionare il campo da modificare:");
-				printf("1 - Nickname\n2 - Password\n3 - Preferenze\n0 - Esci\n\n>");
+				printf("1 - Nickname\n2 - Password\n3 - Preferenze\n0 - Esci\n\n~");
 				esito_input = scanf("%d", &scelta);
 				if(pulisci_stdin() == 1){
 					esito_input = 0;
@@ -645,8 +661,9 @@ int autenticazione(utente* u){
 
 			// Se i dati dell'accesso non sono validi, viene richiesto se ripetere l'accesso o annullarlo
 			if(esito_controllo != 1){
+
 				do{
-					printf("Inserire [1] per ripetere l'accesso, [0] per annullare:\n>");
+					printf("Inserire [1] per ripetere l'accesso, [0] per annullare:\n~");
 					esito_input = scanf("%d", &scelta);
 					if(pulisci_stdin() == 1){
 						esito_input = 0;
@@ -821,7 +838,7 @@ int elimina_utente(){
 			fseek(stream, -sizeof(utente), SEEK_CUR);
 
 			do{
-				printf("Inserire [1] per confermare l'eliminazione, [0] per annullarla:\n>");
+				printf("Inserire [1] per confermare l'eliminazione, [0] per annullarla:\n~");
 				esito_input = scanf("%d", &scelta);
 				if(pulisci_stdin() == 1){
 					esito_input = 0;

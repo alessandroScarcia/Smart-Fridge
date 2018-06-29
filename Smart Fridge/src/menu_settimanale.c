@@ -1,11 +1,20 @@
-/*
- * menu_settimanale.c
- *
- *  Created on: 25 mag 2018
- *      Author: Michela
- */
 #include "menu_settimanale.h"
-#include "utenti.h"
+
+char* crea_nome_file(const char* nickname){
+	char* nome_file = (char*) calloc(LUNG_NOME_FILE_MENU, sizeof(char));
+
+	int lung_nickname = strlen(nickname);
+
+	if(lung_nickname < MIN_LUNG_NICKNAME || lung_nickname > MAX_LUNG_NICKNAME - 1){
+		return NULL;
+	}else{
+		strcat(nome_file, FILE_MENU);
+		strcat(nome_file, nickname);
+		strcat(nome_file, ".dat");
+
+		return nome_file;
+	}
+}
 
 /**
  * Procedura inizializzazione ():
@@ -23,29 +32,32 @@
  * @post Il valore restituito rappresenta l'esito della precedura.
  *
  */
-void inizializzazione (){
+int inizializzazione(const char* nome_utente) {
+	giorno menu[NUM_GIORNI]; //vettore che conterrà i 7 menu corrispondenti ai 7 giorni della settimana
 
-	giorno menu[GIORNI_SETTIMANA]; //vettore che conterrà i 7 menu corrispondenti ai 7 giorni della settimana
-	utente u;
+	int lung_nome_utente = strlen(nome_utente);
 
-	if (autenticazione(&u)==1){ //Se l'autenticazione va a buon fine esegui
+	if(lung_nome_utente < MIN_LUNG_NICKNAME || lung_nome_utente > MAX_LUNG_NICKNAME - 1){
+		return 0;
+	}else if(esiste_nickname(nome_utente) == 0){
+		return 0;
+	}
 
-		int i;
-
-		for(i=0;i<GIORNI_SETTIMANA;i++){     //scorri nel vettore menu
+	for (int i = 0; i < NUM_GIORNI; i++) {     //scorri nel vettore menu
 
 		inizializzazione_giorno(&menu[i], i); //inizializza il singolo elemento appartenente al vettore
 		inizializzazione_pasti(&menu[i]);
 
-		}
-
-		inizializzazione_file_menu(menu, u.nickname); //scrivi su file il vettore inizializzato
-
-
-
 	}
-}
 
+	//scrivi su file il vettore inizializzato
+	if (inizializzazione_file_menu(nome_utente, menu) == 0) {
+		return 0;
+	} else {
+		return 1;
+	}
+
+}
 
 /**
  * Funzione inizializzazione_giorno ():
@@ -62,35 +74,38 @@ void inizializzazione (){
  * @post Il valore restituito rappresenta l'esito della funzione.
  *
  */
-int inizializzazione_giorno (giorno* menu, int indice) {
+int inizializzazione_giorno(giorno* giornata, int num_giorno) {
 
-			switch (indice) {
-			case 0:
-				strcpy(menu->giorno, "Lunedi");
-				break;
-			case 1:
-				strcpy(menu->giorno, "Martedi");
-				break;
-			case 2:
-				strcpy(menu->giorno, "Mercoledi");
-				break;
-			case 3:
-				strcpy(menu->giorno, "Giovedi");
-				break;
-			case 4:
-				strcpy(menu->giorno, "Venerdi");
-				break;
-			case 5:
-				strcpy(menu->giorno, "Sabato");
-				break;
-			case 6:
-				strcpy(menu->giorno, "Domenica");
-				break;
-			}
+	giornata->kcal = 0;
 
-    return 0;
+	switch (num_giorno) {
+	case 0:
+		strcpy(giornata->nome_giorno, "Lunedi");
+		break;
+	case 1:
+		strcpy(giornata->nome_giorno, "Martedi");
+		break;
+	case 2:
+		strcpy(giornata->nome_giorno, "Mercoledi");
+		break;
+	case 3:
+		strcpy(giornata->nome_giorno, "Giovedi");
+		break;
+	case 4:
+		strcpy(giornata->nome_giorno, "Venerdi");
+		break;
+	case 5:
+		strcpy(giornata->nome_giorno, "Sabato");
+		break;
+	case 6:
+		strcpy(giornata->nome_giorno, "Domenica");
+		break;
+	default:
+		break;
+	}
+
+	return 0;
 }
-
 
 /**
  * Funzione inizializzazione_pasti ():
@@ -108,40 +123,36 @@ int inizializzazione_giorno (giorno* menu, int indice) {
  * @post Il valore restituito rappresenta l'esito della funzione.
  *
  */
-int inizializzazione_pasti (giorno* menu) {
+int inizializzazione_pasti(giorno* menu) {
 
-	short int i;
-
-
-	for (i=0;i<NUM_PASTI;i++){ //scorrimento nel vettore pasto
-
+	for (int i = 0; i < NUM_PASTI; i++) { //scorrimento nel vettore pasto
 
 		//ad ogni case, copio una stringa che identifica quel pasto
 		switch (i) {
 		case 0:
-			strcpy(menu->pasto[i].nome_pasto, "Colazione");
+			strcpy(menu->pasti[i].nome_pasto, "Colazione");
 
 			inizializzazione_alimenti(menu, i); //inizializzo i singoli alimenti del pasto
 			break;
 		case 1:
-			strcpy(menu->pasto[i].nome_pasto, "Spuntino");
+			strcpy(menu->pasti[i].nome_pasto, "Spuntino 1");
 
 			inizializzazione_alimenti(menu, i);
 			break;
 		case 2:
-			strcpy(menu->pasto[i].nome_pasto, "Pranzo");
+			strcpy(menu->pasti[i].nome_pasto, "Pranzo");
 
-			inizializzazione_alimenti(menu, i );
+			inizializzazione_alimenti(menu, i);
 			break;
 		case 3:
-			strcpy(menu->pasto[i].nome_pasto, "Snack");
+			strcpy(menu->pasti[i].nome_pasto, "Spuntino 2");
 
 			inizializzazione_alimenti(menu, i);
 			break;
 		case 4:
-			strcpy(menu->pasto[i].nome_pasto, "Cena");
+			strcpy(menu->pasti[i].nome_pasto, "Cena");
 
-			inizializzazione_alimenti(menu, i );
+			inizializzazione_alimenti(menu, i);
 			break;
 
 		}
@@ -151,7 +162,6 @@ int inizializzazione_pasti (giorno* menu) {
 	return 0;
 
 }
-
 
 /**
  * Funzione inizializzazione_alimenti ():
@@ -167,18 +177,15 @@ int inizializzazione_pasti (giorno* menu) {
  * @post Il valore restituito rappresenta l'esito della funzione.
  *
  */
-int inizializzazione_alimenti (giorno* menu, short int num_pasto){
+int inizializzazione_alimenti(giorno* giornata, short int num_pasto) {
 
-	int i;
+	for (int i = 0; i < NUM_CIBI; i++) { //scorrimento nel vettore alimenti
 
-	for(i=0;i<=NUM_ALIMENTO;i++){ //scorrimento nel vettore alimenti
+		giornata->pasti[num_pasto].cibi[i].flag = -1;
 
-		menu->pasto[num_pasto].alimento[i].flag=-1; //imposto un flag che non identifica ne un singolo alimento ne una ricetta (flag non significativo)
+		strcpy(giornata->pasti[num_pasto].cibi[i].nome_cibo, ""); // Copio una striga vuota nel nome dell'i-esimo alimento
 
-
-		strcpy( menu->pasto[num_pasto].alimento[i].nome_cibo, ""); // Copio una striga vuota nel nome dell'i-esimo alimento
-
-		menu->pasto[num_pasto].alimento[i].quantita=0; // imposto una quantità pari a 0
+		strcpy(giornata->pasti[num_pasto].cibi[i].quantita, ""); // imposto una quantità pari a 0
 
 	}
 
@@ -199,32 +206,204 @@ int inizializzazione_alimenti (giorno* menu, short int num_pasto){
  * @post Il valore restituito rappresenta l'esito della funzione.
  *
  */
-int inizializzazione_file_menu (giorno write_menu[], char nome_utente[]){
-
-	//Genero il nome del file
-	char nomefile[MAX_LUNG_NOMEFILE]="menu_";
-	strcat(nomefile, nome_utente);
-    strcat(nomefile, ".dat");
-    //fine generazione nome file
+int inizializzazione_file_menu(const char* nome_utente, giorno* menu) {
+	char nomefile[LUNG_NOME_FILE_MENU];
+	strcpy(nomefile, crea_nome_file(nome_utente));
 
 	FILE *f;
-	int i;
 
-	f=fopen(nomefile, "wb+");
-
-	//scrivo uno per uno i singolo elementi del vettore di struct passato in ingresso
-	for(i=0;i<GIORNI_SETTIMANA;i++){
-
-	fseek(f, 0, SEEK_END); //posizione il puntatore alla fine del file per permettere la scrittura in ordine rispetto ai giorni della settimana
-	fwrite(&write_menu[i],sizeof(giorno),1, f);
-
+	if ((f = fopen(nomefile, "wb+")) == NULL) {
+		return 0;
+	} else {
+		//scrivo uno per uno i singolo elementi del vettore di struct passato in ingresso
+		for (int i = 0; i < NUM_GIORNI; i++) {
+			fwrite(&menu[i], sizeof(giorno), 1, f);
+		}
 	}
 
-	fclose (f);
+	fclose(f);
 
-	return 0;
+	return 1;
 
 }
+
+
+int esiste_menu(char* nome_utente){
+	int lung_nome_utente = strlen(nome_utente);
+
+	if(lung_nome_utente < MIN_LUNG_NICKNAME || lung_nome_utente > MAX_LUNG_NICKNAME - 1){
+		return -1;
+	}else{
+		FILE* stream = NULL;
+		char* nome_file = crea_nome_file(nome_utente);
+
+		if((stream = fopen(nome_file, "rb")) == NULL){
+			return 0;
+		}else{
+			fclose(stream);
+			return 1;
+		}
+	}
+}
+
+
+int input_kcal_giornata(){
+	int esito_input;
+	int esito_controllo;
+	int kcal_giornata;
+
+	do {
+		printf("Inserisci le kcal per la giornata:\n~");
+		esito_input = scanf("%d", &kcal_giornata);
+		if(pulisci_stdin() == 1){
+			esito_input = 0;
+		}
+
+		if(kcal_giornata < MIN_KCAL_GIORNATA || kcal_giornata > MAX_KCAL_GIORNATA){
+			esito_controllo = 0;
+		}else{
+			esito_controllo = 1;
+		}
+
+		if(esito_input != 1 || esito_controllo != 1){
+			puts("Inserimento non valido. Ripeterlo.");
+		}
+	} while (esito_input != 1 || esito_controllo != 1);
+
+	return kcal_giornata;
+}
+
+
+int input_numero_giorno(){
+	int esito_input;
+	int esito_controllo;
+	int num_giorno;
+
+	do {
+		printf("Seleziona un giorno della settimana:"
+				"\n[0] Lunedi\n[1] Martedi\n[2] Mercoledi\n[3] Giovedi"
+				"\n[4] Venerdi\n[5] Sabato\n[6] Domenica\n\n~");
+
+		esito_input = scanf("%d", &num_giorno); //Scelta e memorizzazione della posizione della struct
+		if(pulisci_stdin() == 1){
+			esito_input = 0;
+		}
+
+		if(num_giorno < 0 || num_giorno > 6){
+			esito_controllo = 0;
+		}else{
+			esito_controllo = 1;
+		}
+
+		if(esito_input != 1 || esito_controllo != 1){
+			puts("Inserimento non valido. Ripeterlo.");
+		}
+	} while (esito_input != 1 || esito_controllo != 1);
+
+	return num_giorno;
+}
+
+
+int input_numero_pasto(){
+	int esito_input;
+	int esito_controllo;
+	int num_pasto;
+
+	do {
+
+		printf("Seleziona un pasto:"
+				"\n\t[0] Colazione\n\t[1] Spuntino di meta' mattina\n\t[2]Pranzo\n\t[3]Snack pomeridiano\n\t[4]Cena\n~");
+		esito_input = scanf("%d", &num_pasto); //Scelta e memorizzazione della posizione della struct
+		if(pulisci_stdin() == 1){
+			esito_input = 0;
+		}
+
+		if(num_pasto < 0 || num_pasto > NUM_PASTI - 1){
+			esito_controllo = 0;
+		}else{
+			esito_controllo = 1;
+		}
+
+		if(esito_input != 1 || esito_controllo != 1){
+			puts("Inserimento non valido. Ripeterlo.");
+		}
+	} while (esito_input != 1 || esito_controllo != 1);
+
+	return num_pasto;
+}
+
+
+char* input_nome_cibo(){
+	int esito_input;
+	char* nome_cibo = (char*) calloc(LUNG_CIBO, sizeof(char));
+
+	do {
+
+		printf("Inserisci il nome del cibo:\n~");
+		esito_input = scanf("%40s", nome_cibo); //Scelta e memorizzazione della posizione della struct
+		if(pulisci_stdin() == 1){
+			esito_input = 0;
+		}
+
+		if(esito_input != 1){
+			puts("Inserimento non valido. Ripeterlo.");
+		}
+
+	} while (esito_input != 1);
+
+	return nome_cibo;
+}
+
+
+char* input_quantita_cibo(){
+	int esito_input;
+	char* quantita = (char*) calloc(LUNG_QUANTITA, sizeof(char));
+
+	do {
+
+		printf("Inserisci la quantità del cibo[\"null\" per una quantita nulla]:\n~");
+		esito_input = scanf("%10s", quantita); //Scelta e memorizzazione della posizione della struct
+		if(pulisci_stdin() == 1){
+			esito_input = 0;
+		}
+
+		if(esito_input != 1){
+			puts("Inserimento non valido. Ripeterlo.");
+		}
+
+	} while (esito_input != 1);
+
+	return quantita;
+}
+
+
+
+int input_flag_cibo(){
+	int esito_input;
+	int esito_controllo;
+	int flag;
+
+	do{
+		printf("Inserisci la tipologia del cibo:\n\t[0] Alimento singolo\n\t[1] Ricetta\n~");
+		esito_input = scanf("%d", &flag);
+		if(pulisci_stdin() == 1){
+			esito_input = 0;
+		}
+
+		if(flag < 0 || flag > 1){
+			esito_controllo = 0;
+		}else{
+			esito_controllo = 1;
+		}
+
+		if(esito_input != 1 || esito_controllo != 1){
+			puts("Inserimento non valido. Ripeterlo.");
+		}
+	}while(esito_input != 1 || esito_controllo != 1);
+
+	return flag;
+}
+
 
 
 /**
@@ -240,37 +419,44 @@ int inizializzazione_file_menu (giorno write_menu[], char nome_utente[]){
  * @post Il valore restituito rappresenta l'esito della funzione.
  *
  */
-int visualizza_database_menu (char nome_utente[]){
+int visualizza_database_menu(char nome_utente[]) {
 
+	//Genero il nome del file
+	char* nomefile = crea_nome_file(nome_utente);
 
-    //Genero il nome del file
-	char nomefile[MAX_LUNG_NOMEFILE] = "menu_";
-	strcat(nomefile,nome_utente);
-	strcat(nomefile,".dat");
-	//fine generazione nome file
-
-	giorno menu;
+	giorno giornata;
 	FILE* f;
 
-
-	if((f=fopen(nomefile,"rb"))==NULL){ //Se il file non viene aperto
+	if ((f = fopen(nomefile, "rb")) == NULL) { //Se il file non viene aperto
 		printf("\nIMPOSSIBILI APRIRE IL FILE");
 		return 1;
 	}
 
+	while (fread(&giornata, sizeof(giorno), 1, f) > 0) {
 
-	while(fread(&menu, sizeof(menu),1,f)>0){
-
-	     stampa_menu(&menu);
+		stampa_giorno(&giornata);
 
 	}
-	fclose (f);
 
+	fclose(f);
 
-	return 0;
+	return 1;
 }
 
 
+void ordina_cibi_pasto(cibo* cibi){
+	cibo tmp;
+
+	for(int i = 1; i < NUM_CIBI; i++){
+		if(strcmp(cibi[i].nome_cibo, "") != 0){
+			if(strcmp(cibi[i-1].nome_cibo, "") == 0){
+				tmp = cibi[i-1];
+				cibi[i-1] = cibi[i];
+				cibi[i] = tmp;
+			}
+		}
+	}
+}
 
 
 /**
@@ -292,42 +478,88 @@ int visualizza_database_menu (char nome_utente[]){
  * @post Il valore restituito rappresenta l'esito della funzione.
  *
  */
-int scelta_pasto (){
-
-	short int num_pasto;
-	giorno menu;
+void modifica_menu() {
+	int scelta;
+	int esito_input;
+	int esito_controllo;
+	int num_pasto;
+	int num_giorno;
+	giorno giornata;
 	utente u;
-	int i;
 
-	if (autenticazione (&u)==1){ //Se l'autenticazione va a buon fine esegui:
+	if (autenticazione(&u) == 1) { //Se l'autenticazione va a buon fine esegui:
 
-	printf("\n1.Lunedi\n2.Martedi\n3.Mercoledi\n4.Giovedi\n5.Venerdi\n6.Sabato\n7.Domenica\n (Inserire il numero corrispondente al giorno)");
-	scanf("%d", &i); //Scelta e memorizzazione della posizione della struct
-	estrazione_struct(&menu, u.nickname, i); //da estrarre da file
+		if(esiste_menu(u.nickname) == 0){
+			if(inizializzazione(u.nickname) == 0){
+				puts("Impossibile effettuare la modifica.");
+				return;
+			}
+		}
 
-	stampa_menu(&menu); //stampa struct estratta
+		do{
 
+			num_giorno = input_numero_giorno();
 
-    //Scelta del pasto da modificare
-	printf("Quale pasto intendi modificare? \n");
-	printf("1.Colazione\n2.Spuntino di meta' mattina\n3.Pranzo\n4.Snack pomeridiano\n5.Cena\n");
-	scanf("%hd", &num_pasto); //memorizzazione scelta
+			if(estrai_giorno(&giornata, u.nickname, num_giorno) != 1){
+				puts("Errore nell'estrazione della giornata."); //da estrarre da file
+				return;
+			}
 
-	 num_pasto--;
+			stampa_giorno(&giornata); //stampa struct estratta
 
-	scelta_alimenti (&menu, num_pasto);
+			do{
+				printf("Inserisci:\n\t[1] per modificare le kcal della giornata\n\t[0] per modificare un pasto\n~");
+				esito_input = scanf("%d", &scelta);
+				if(pulisci_stdin() == 1){
+					esito_input = 0;
+				}
 
+				if(scelta < 0 || scelta > 1){
+					esito_controllo = 0;
+				}else{
+					esito_controllo = 1;
+				}
 
-	scrivi_menu(&menu, u.nickname, i);
+				if(esito_input != 1 || esito_controllo != 1){
+					puts("Inserimento non valido. Ripeterlo.");
+				}
+			}while(esito_input != 1 || esito_controllo != 1);
 
-	visualizza_database_menu(u.nickname);
+			if (scelta == 1) {
+				giornata.kcal = input_kcal_giornata();
+			} else if (scelta == 0) {
+				//Scelta del pasto da modificare
+				num_pasto = input_numero_pasto();;
 
-	return 0;
-	} else {
-		return 1;
+				modifica_alimenti_pasto(&giornata, num_pasto);
+
+			}
+
+			scrivi_giorno(&giornata, u.nickname, num_giorno);
+
+			visualizza_database_menu(u.nickname);
+
+			do{
+				printf("Inserisci:\n\t[1] per effettuare una nuova modifica sul menu\n\t[0] per terminare le modifiche sul menu\n~");
+				esito_input = scanf("%d", &scelta);
+				if(pulisci_stdin() == 1){
+					esito_input = 0;
+				}
+
+				if(scelta < 0 || scelta > 1){
+					esito_controllo = 0;
+				}else{
+					esito_controllo = 1;
+				}
+
+				if(esito_input != 1 || esito_controllo != 1){
+					puts("Inserimento non valido. Ripeterlo.");
+				}
+			}while(esito_input != 1 || esito_controllo != 1);
+		}while(scelta == 1);
+
 	}
 }
-
 
 /**
  * Funzione scelta_alimenti ():
@@ -342,34 +574,140 @@ int scelta_pasto (){
  * @post Il valore restituito rappresenta l'esito della funzione.
  *
  */
-int scelta_alimenti (giorno* menu, short int num_pasto){
+void modifica_alimenti_pasto(giorno* giornata, short int num_pasto) {
+	int esito_input;
+	int esito_controllo;
+	int scelta;
+	short num_cibi = 0;
 
-	short int risposta;
+	for(int i = 0; i < NUM_CIBI; i++){
+		if(strcmp(giornata->pasti[num_pasto].cibi[i].nome_cibo, "") != 0){
+			num_cibi++;
+		}
+	}
 
-	//Controlli sulla stampa solo degli elementi non vuoti
+	do{
 
-	//Scelta dell'alimento da sovrascrivere
-	printf("Scegli l'alimento o la ricetta da modificare: ");
-	scanf("%hd", &risposta);
+		if(num_cibi > 0 && num_cibi < NUM_CIBI){
 
+			do {
+				printf("Inserisci:\n\t[1] per modificare un cibo\n\t[0] per aggiungerne uno\n~");
+				esito_input = scanf("%d", &scelta);
+				if(pulisci_stdin() == 1){
+					esito_input = 0;
+				}
 
-	printf("\nInserire 1 se si sta inserendo una ricetta, 0 se si sta inserendo un alimento singolo: ");
-	scanf ("%hd", &menu->pasto[num_pasto].alimento[risposta-1].flag);
+				if(scelta < 0 || scelta > 1){
+					esito_controllo = 0;
+				}else{
+					esito_controllo = 1;
+				}
 
-	printf("\nInserire il nome: ");
-	scanf("%s", menu->pasto[num_pasto].alimento[risposta-1].nome_cibo);
+				if(esito_input != 1 || esito_controllo != 1){
+					puts("Inserimento non valido. Ripeterlo.");
+				}
+			} while (esito_input != 1 || esito_controllo != 1);
 
-	printf("\nInserire porzioni (in kg, litri o numero di porzioni): ");
-	scanf("%f", &menu->pasto[num_pasto].alimento[risposta-1].quantita);
+		}else{
+			if(num_cibi == 0){
+				scelta = 0;
+			}else if(num_cibi == NUM_CIBI){
+				scelta = 1;
+			}
+		}
 
-	return 0;
+		if(scelta == 0){
 
+			puts("Aggiungi un nuovo cibo:\n");
+
+			giornata->pasti[num_pasto].cibi[num_cibi].flag = input_flag_cibo();
+
+			do {
+				strcpy(giornata->pasti[num_pasto].cibi[num_cibi].nome_cibo, input_nome_cibo());
+
+				for(int i = 0; i < num_cibi; i++){
+					if(giornata->pasti[num_pasto].cibi[i].flag == giornata->pasti[num_pasto].cibi[num_cibi].flag){
+						if(strcmp(giornata->pasti[num_pasto].cibi[i].nome_cibo, giornata->pasti[num_pasto].cibi[num_cibi].nome_cibo) == 0){
+							esito_input = 0;
+							break;
+						}
+					}else{
+						esito_input = 1;
+					}
+				}
+
+				if(esito_input == 0){
+					puts("Nome cibo già presente nel pasto. Inserirne uno diverso.");
+				}
+			} while (esito_input == 0);
+
+			strcpy(giornata->pasti[num_pasto].cibi[num_cibi].quantita, input_quantita_cibo());
+
+			if(strcmp(giornata->pasti[num_pasto].cibi[num_cibi].quantita, "null") == 0){
+				strcpy(giornata->pasti[num_pasto].cibi[num_cibi].nome_cibo, "");
+				puts("Nuovo cibo non inserito.");
+			}else{
+				num_cibi++;
+			}
+
+		}else if(scelta == 1){
+			int indice_cibo_scelto;
+			char nome_cibo[LUNG_CIBO];
+
+			puts("Modifica un cibo:\n");
+
+			do {
+				strcpy(nome_cibo, input_nome_cibo());
+
+				for(int i = 0; i < num_cibi; i++){
+					if(strcmp(giornata->pasti[num_pasto].cibi[i].nome_cibo, nome_cibo) != 0){
+						esito_input = 0;
+					}else{
+						indice_cibo_scelto = i;
+						esito_input = 1;
+						break;
+					}
+				}
+
+				if(esito_input == 0){
+					puts("Cibo non presente nel pasto. Sceglierne uno presente.");
+				}
+			} while (esito_input == 0);
+
+			strcpy(giornata->pasti[num_pasto].cibi[indice_cibo_scelto].quantita, input_quantita_cibo());
+
+			if(strcmp(giornata->pasti[num_pasto].cibi[indice_cibo_scelto].quantita, "null") == 0){
+				strcpy(giornata->pasti[num_pasto].cibi[indice_cibo_scelto].nome_cibo, "");
+				puts("Cibo eliminato.");
+
+				ordina_cibi_pasto(giornata->pasti[num_pasto].cibi);
+			}
+		}
+
+		do{
+			printf("Inserire:\n\t[1] per effettuare nuove operazioni su questo pasto\n\t[0] per terminare le modifiche su questo pasto\n~");
+			esito_input = scanf("%d", &scelta);
+			if(pulisci_stdin() == 1){
+				esito_input = 0;
+			}
+
+			if(scelta < 0 || scelta > 1){
+				esito_controllo = 0;
+			}else{
+				esito_controllo = 1;
+			}
+
+			if(esito_input != 1 || esito_controllo != 1){
+				puts("Inserimento non valido. Ripeterlo.");
+			}
+		}while(esito_input != 1 || esito_controllo != 1);
+
+	}while(scelta == 1);
 }
 
 
-
 /**
- * Funzione estrazione_struct ():
+ * Funzione estrai_giorno ():
  *
  * La funzione ha il compito di estrarre dal file menu di un utente la struct all'n-esima posizione.
  *
@@ -381,25 +719,58 @@ int scelta_alimenti (giorno* menu, short int num_pasto){
  * @post Il valore restituito rappresenta l'esito della funzione.
  *
  */
-int estrazione_struct (giorno* menu, char nome_utente[], int n){
+int estrai_giorno(giorno* giornata, char* nome_utente, int num_giorno) {
+
+	if(num_giorno < 0 || num_giorno > NUM_GIORNI - 1){
+		return -1;
+	}
+
+	if(esiste_nickname(nome_utente) == 0){
+		return -1;
+	}
+
+	FILE* stream = NULL;
+
+	char* nome_file = crea_nome_file(nome_utente);
+
+	if((stream = fopen(nome_file, "rb")) == NULL){
+		return 0;
+	}else{
+
+		fseek(stream, num_giorno * sizeof(giorno), SEEK_SET); //posiziono il puntatore all'num_giorno-esima posizione
+		fread(giornata, sizeof(giorno), 1, stream);
+
+		fclose(stream);
+		return 1;
+	}
+}
 
 
-	FILE *f;
+int estrai_kcal(int* kcal, char* nome_utente, int num_giorno){
+	if(num_giorno < 0 || num_giorno > NUM_GIORNI - 1){
+		return -1;
+	}
 
+	if(esiste_nickname(nome_utente) == 0){
+		return -1;
+	}
 
-	char nomefile[MAX_LUNG_NOMEFILE] = "menu_";
-	strcat(nomefile,nome_utente);
-	strcat(nomefile,".dat");
+	FILE* stream = NULL;
+	giorno giornata;
+	char* nome_file = crea_nome_file(nome_utente);
 
-	f=fopen(nomefile, "rb");
+	if((stream = fopen(nome_file, "rb")) == NULL){
+		return 0;
+	}else{
 
-	fseek(f, n*sizeof(giorno)-sizeof(giorno), SEEK_SET); //posiziono il puntatore all'n-esima posizione
-	fread(menu, sizeof(giorno), 1, f);
+		fseek(stream, num_giorno * sizeof(giorno), SEEK_SET); //posiziono il puntatore all'num_giorno-esima posizione
+		fread(&giornata, sizeof(giorno), 1, stream);
 
-	fclose(f);
+		*kcal = giornata.kcal;
 
-	return 0;
-
+		fclose(stream);
+		return 1;
+	}
 }
 
 
@@ -415,25 +786,33 @@ int estrazione_struct (giorno* menu, char nome_utente[], int n){
  * @post no
  *
  */
-void scrivi_menu (giorno* menu, char nome_utente[], int i){
+int scrivi_giorno(giorno* giornata, char* nome_utente, int num_giorno) {
 
+	if(num_giorno < 0 || num_giorno > NUM_GIORNI - 1){
+		return -1;
+	}
 
-	FILE* f;
-	char nomefile[MAX_LUNG_NOMEFILE] = "menu_";
-	strcat(nomefile,nome_utente);
-	strcat(nomefile,".dat");
+	if(esiste_nickname(nome_utente) != 1){
+		return -1;
+	}
 
+	FILE* stream = NULL;
 
-	f=fopen(nomefile, "rb+");
+	char* nomefile = crea_nome_file(nome_utente);
 
+	if((stream = fopen(nomefile, "rb+")) == NULL){
+		return 0;
+	}else{
 
-	fseek(f, i*sizeof(giorno)-sizeof(giorno), SEEK_SET);
-	fwrite(menu, sizeof(giorno), 1, f);
+		fseek(stream, num_giorno * sizeof(giorno), SEEK_SET);
+		fwrite(giornata, sizeof(giorno), 1, stream);
 
-	fclose(f);
+		fclose(stream);
+		return 1;
+
+	}
 
 }
-
 
 /**
  * Procedura stampa_menu ():
@@ -447,99 +826,116 @@ void scrivi_menu (giorno* menu, char nome_utente[], int i){
  * @post no
  *
  */
-void stampa_menu (giorno* menu){
+void stampa_giorno(giorno* giornata) {
 
-	short int j, k;
+	int num_cibi_letti;
 
-	printf("*********************************************************************************************************");
-	printf("\n%s\n", menu->giorno);
-	for (j=0;j<5;j++){
-		printf("- %s:\n",menu->pasto[j].nome_pasto );
-		for (k=0;k<5;k++){
+	printf(
+			"*********************************************************************************************************\n");
+	printf("%s kcal: ", giornata->nome_giorno);
+	if(giornata->kcal == 0){
+		puts("Non ancora assegnate.");
+	}else{
+		printf("%d\n", giornata->kcal);
+	}
 
-		printf("\t%s\n", menu->pasto[j].alimento[k].nome_cibo);
+	for (int i = 0; i < NUM_PASTI; i++) {
+		num_cibi_letti = 0;
+
+		printf("# %s:\n", giornata->pasti[i].nome_pasto);
+
+		for (int j = 0; j < NUM_PASTI - 1; j++) {
+
+			if(strcmp(giornata->pasti[i].cibi[j].nome_cibo, "") != 0){
+				printf("\t- %s %s\n", giornata->pasti[i].cibi[j].nome_cibo, giornata->pasti[i].cibi[j].quantita);
+				num_cibi_letti++;
+			}
+
+		}
+
+		if(num_cibi_letti == 0){
+			printf("\t- Nessun cibo.\n");
 		}
 	}
-	printf("*********************************************************************************************************\n");
-
+	printf(
+			"*********************************************************************************************************\n");
 }
 
-
-
-/**
- * Funzione conta_ricette_menu ():
- *
- * La funzione ha il compito analizzare il menu interessato per individuare il numero presente in quel dato menu.
- *
- * Al tal scopo vengono passati alla funzione un nome_utente che permettere la generazione del nome del file da cui estrarre la struct e
- * un variabile che indentifica in quale posizione estrarre la struct.
- * Quindi, viene chiamata la funzone estrazione_struct, che permettere la memorizzaizone della struct in menu.
- * Sucessivamente vengono implementati due cicli for innestati che permettore lo scorrimento prima nel vettore pasto e poi un ulteriore scorrimento
- * nel vettore alimenti. Viene analizzato il flag appartenente al alimenti ad ogni singolo scorrimento.
- * Grazie ad un if quaando si incontra un flag pari a 1, viene aumentato un contatore.
- * Tale contatore viene restituito una volta terminata l'analisi di tutta la struct.
- *
- * @pre Non vi sono specifiche pre-condizioni per la funzione
- * @post num_ricette che restituisce il numero delle ricette presente nel menu di un giorno specifico.
- *
- */
-short int conta_ricette_menu(char nome_utente[], short int giorno_x){
-    short int num_ricette;
-    giorno menu;
-
-    short int j, k;
-
-    estrazione_struct (&menu,nome_utente, giorno_x);
-
-    for (j=0;j<5;j++){
-
-    	for(k=0;k<5;k++){
-
-    		if (menu.pasto[j].alimento[k].flag==1){
-    			num_ricette++;
-    		}
-    	}
-    }
-
-
-	return num_ricette;
-}
-
-
-/**
- * Procedura ricette_presenti ():
- *
- * La procedura ha il compito popolare un vettore passotogli in ingresso con i nomi delle ricette presenti nel menu di un giorno specifico.
- *
- * Al tal scopo vengono passati alla funzione un nome_utente che permettere la generazione del nome del file da cui estrarre la struct,
- * un variabile che indentifica in quale posizione estrarre la struct e un vettore bidimensionale su cui memorizzare i nomi delle ricette
- * Quindi, viene chiamata la funzone estrazione_struct, che permettere la memorizzaizone della struct in menu.
- * Sucessivamente vengono implementati due cicli for innestati che permettore lo scorrimento prima nel vettore pasto e poi un ulteriore scorrimento
- * nel vettore alimenti. Viene analizzato il flag appartenente al alimenti ad ogni singolo scorrimento.
- * Grazie ad un if quaando si incontra un flag pari a 1, viene copiato il nome della variabile con tale flag nell i-esima posizione del vettore
- * bidimensionale (vet_ricette), quindi viene aumentato il contatore i per evitare una sovrascrittura nel vet_ricette.
- *
- *
- * @pre Non vi sono specifiche pre-condizioni per la funzione
- * @post no.
- *
- */
-void ricette_presenti (char vet_ricette[], char nome_utente[], short int giorno_x){
-	 short int j, k, i;
-     giorno menu;
-
-
-     estrazione_struct (&menu,nome_utente, giorno_x);
-
-     for (j=0;j<5;j++){
-
-         	for(k=0;k<5;k++){
-
-         		if (menu.pasto[j].alimento[k].flag==1){
-         			strcpy(&vet_ricette[i], menu.pasto[j].alimento[k].nome_cibo );
-         			i++;
-         		}
-         	}
-         }
-
-}
+//
+///**
+// * Funzione conta_ricette_menu ():
+// *
+// * La funzione ha il compito analizzare il menu interessato per individuare il numero presente in quel dato menu.
+// *
+// * Al tal scopo vengono passati alla funzione un nome_utente che permettere la generazione del nome del file da cui estrarre la struct e
+// * un variabile che indentifica in quale posizione estrarre la struct.
+// * Quindi, viene chiamata la funzone estrazione_struct, che permettere la memorizzaizone della struct in menu.
+// * Sucessivamente vengono implementati due cicli for innestati che permettore lo scorrimento prima nel vettore pasto e poi un ulteriore scorrimento
+// * nel vettore alimenti. Viene analizzato il flag appartenente al alimenti ad ogni singolo scorrimento.
+// * Grazie ad un if quaando si incontra un flag pari a 1, viene aumentato un contatore.
+// * Tale contatore viene restituito una volta terminata l'analisi di tutta la struct.
+// *
+// * @pre Non vi sono specifiche pre-condizioni per la funzione
+// * @post num_ricette che restituisce il numero delle ricette presente nel menu di un giorno specifico.
+// *
+// */
+//short int conta_ricette_menu(char nome_utente[], short int giorno_x){
+//    short int num_ricette;
+//    giorno menu;
+//
+//    short int j, k;
+//
+//    estrazione_struct (&menu,nome_utente, giorno_x);
+//
+//    for (j=0;j<5;j++){
+//
+//    	for(k=0;k<5;k++){
+//
+//    		if (menu.pasto[j].alimento[k].flag==1){
+//    			num_ricette++;
+//    		}
+//    	}
+//    }
+//
+//
+//	return num_ricette;
+//}
+//
+//
+///**
+// * Procedura ricette_presenti ():
+// *
+// * La procedura ha il compito popolare un vettore passotogli in ingresso con i nomi delle ricette presenti nel menu di un giorno specifico.
+// *
+// * Al tal scopo vengono passati alla funzione un nome_utente che permettere la generazione del nome del file da cui estrarre la struct,
+// * un variabile che indentifica in quale posizione estrarre la struct e un vettore bidimensionale su cui memorizzare i nomi delle ricette
+// * Quindi, viene chiamata la funzone estrazione_struct, che permettere la memorizzaizone della struct in menu.
+// * Sucessivamente vengono implementati due cicli for innestati che permettore lo scorrimento prima nel vettore pasto e poi un ulteriore scorrimento
+// * nel vettore alimenti. Viene analizzato il flag appartenente al alimenti ad ogni singolo scorrimento.
+// * Grazie ad un if quaando si incontra un flag pari a 1, viene copiato il nome della variabile con tale flag nell i-esima posizione del vettore
+// * bidimensionale (vet_ricette), quindi viene aumentato il contatore i per evitare una sovrascrittura nel vet_ricette.
+// *
+// *
+// * @pre Non vi sono specifiche pre-condizioni per la funzione
+// * @post no.
+// *
+// */
+//void ricette_presenti (char vet_ricette[], char nome_utente[], short int giorno_x){
+//	 short int j, k, i;
+//     giorno menu;
+//
+//
+//     estrazione_struct (&menu,nome_utente, giorno_x);
+//
+//     for (j=0;j<5;j++){
+//
+//         	for(k=0;k<5;k++){
+//
+//         		if (menu.pasto[j].alimento[k].flag==1){
+//         			strcpy(&vet_ricette[i], menu.pasto[j].alimento[k].nome_cibo );
+//         			i++;
+//         		}
+//         	}
+//         }
+//
+//}

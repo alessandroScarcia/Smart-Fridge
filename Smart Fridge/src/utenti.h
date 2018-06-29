@@ -21,15 +21,18 @@
 	#include <ctype.h>
 #endif
 
-#include "alimenti.h"
-#include "pulizia_flussi.h"
 
 #ifndef UTENTI_LIB
 #define UTENTI_LIB
 
+
+#include "alimenti.h"
+
+#include "pulizia_flussi.h"
+
 #define MAX_UTENTI 6
 
-#define MIN_LUNG_NICKNAME 6							/// Lunghezza minima in caratteri per il nickname di un utente (compreso il terminatore '\0')
+#define MIN_LUNG_NICKNAME 5							/// Lunghezza minima in caratteri per il nickname di un utente (escluso il terminatore '\0')
 #define MAX_LUNG_NICKNAME 16 						/// Lunghezza massima in caratteri per il nickname di un utente (compreso il terminatore '\0')
 #define NUM_PREFERENZE 3 							/// Numero di preferenze alimentari per ogni utente
 #define LUNG_PREFERENZA 21 							/// Lunghezza massima in caratteri per la preferenza alimentare di ogni utente
@@ -74,7 +77,7 @@ typedef struct{
  * @return 0 se il nickname non è presente nel database.
  * @return -1 se il FILE_DATABASE_UTENTI non può essere aperto.
  */
-int esiste_nickname(char* nickname);
+int esiste_nickname(const char* nickname);
 
 
 /**
