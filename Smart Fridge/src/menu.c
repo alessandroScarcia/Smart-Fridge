@@ -14,6 +14,7 @@
 #include "utenti.h"
 #include "menu_settimanale.h"
 
+
 /**
  * La funzione input scelta si occupa di ricevere in input il comando per accedere ad una determinata voce dei menu. Si é pensato che la scelta
  * essendo un numero avrá anche esso un range. Se la scelta é compresa nel range vuol dire che é accettabile altrimenti verrá scartata e verrá
@@ -196,7 +197,7 @@ int menu_lista_spesa(){
 				  break;
 
 				case 1:
-					lettura_alimenti_acquistabili();
+					generatore_spesa_globale();
 					break;
 
 				case 2:
@@ -204,7 +205,7 @@ int menu_lista_spesa(){
 					break;
 
 				case 3:
-					gestore_spesa_personale();
+					generatore_spesa_personale();
 					break;
 
 				case 4:
@@ -216,7 +217,7 @@ int menu_lista_spesa(){
 					}
 
 					//generazione del nome del file che ospiterá la spesa personale
-					char nome_file[MAX_LUNG_NOMEFILE] = PRIMA_PARTE_NOMEFILE;
+					char nome_file[LUNG_NOME_FILE_RICETTE] = PRIMA_PARTE_NOMEFILE;
 					strcat(nome_file, u.nickname);
 					strcat(nome_file, FORM_FILE_SPESA);
 					visualizza_lista_spesa(nome_file);
@@ -260,11 +261,21 @@ int gestore_menu_settimanale(){
 				  break;
 
 				case 1:
-					inizializzazione();
+					//autenticazione(con controllo su esito) dell'utente
+					if (autenticazione(&u) == -1){
+						printf("Operazione di utenticazione fallita");
+						return -1;
+					}
+					inizializzazione(u.nickname);
 					break;
 
 				case 2:
-					scelta_pasto();
+					//autenticazione(con controllo su esito) dell'utente
+					if (autenticazione(&u) == -1){
+						printf("Operazione di utenticazione fallita");
+						return -1;
+					}
+					modifica_menu();
 					break;
 
 				case 3:
