@@ -5,13 +5,15 @@
  *      Author: david
  */
 
-#ifndef LISTA_SPESA_H_
-#define LISTA_SPESA_H_
+#ifndef LISTA_SPESA_LIB
+#define LISTA_SPESA_LIB
 
 
 #include "menu_settimanale.h"
 
 #include "ricette.h"
+
+#include "alimenti.h"
 
 
 #define LISTA_SPESA_GLOBALE "../lista_spesa.txt"   //directory in cui trovare il file della spesa globale
@@ -27,7 +29,7 @@
  * @param nome_file
  * @return 0
  */
-int aggiorna_lista_spesa(char nome_alimento[LUNG_NOME_ALIMENTO],char nome_file[LUNG_NOME_FILE]);
+int aggiorna_lista_spesa(char nome_alimento[LUNG_NOME_ALIMENTO], char nome_file[LUNG_NOME_FILE_RICETTE]);
 
 
 /**Funzione che dopo aver allocato una stringa di una determinata lunghezza, si occupa di ricevere in input il nome della ricetta
@@ -66,13 +68,13 @@ int controllo_soglia(float soglia_spesa,char nome_alimento[LUNG_NOME_ALIMENTO]);
  * @return 0			in caso sia terminata la funzione saltando tutti i controlli
  * @return -1			in caso di errore nella apertura del file database
  */
-int lettura_alimenti_acquistabili();
+int generatore_spesa_globale();
 
 /**Funzione che si occupa di creare il file che conterrá gli alimenti che un utente specifico deve comprare.
  *
  * @return 1 in caso a funzione sia terminata con successo
  */
-int gestore_spesa_personale();
+int generatore_spesa_personale();
 
 
 /** Funzione che provvede a visualizzare gli alimenti che devono essere comprati dal file della lista personale o di quella globale.
@@ -80,15 +82,6 @@ int gestore_spesa_personale();
  * @param nome_file
  * @return 1
  */
-int visualizza_lista_spesa(char nome_file[LUNG_NOME_FILE]);
+int visualizza_lista_spesa(char nome_file[LUNG_NOME_FILE_RICETTE]);
 
-
-/**Funzione che si occupa di estrarre gli ingredienti di una determinata ricetta.
- *
- * @param nome_ricetta
- * @param ingredienti
- * @return indice_ingrediente  numero ingredienti estratti dalla ricetta
- */
-int estrazione_ingredienti(char nome_ricetta[DIM_CIBO], ingrediente* ingredienti);
-
-#endif /* LISTA_SPESA_H_ */
+#endif

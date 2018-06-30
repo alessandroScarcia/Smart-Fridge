@@ -17,11 +17,11 @@
  * @pre		Che il nome del file sia significativo e che la stringa che rappresenta il nome dell'alimento non sia vuota
  * @post	Deve essere scritto su file l'alimento passato
  */
-int aggiorna_lista_spesa(char nome_alimento[LUNG_NOME_ALIMENTO],char nome_file[LUNG_NOME_FILE]) {
+int aggiorna_lista_spesa(char nome_alimento[LUNG_NOME_ALIMENTO],char nome_file[LUNG_NOME_FILE_RICETTE]) {
 	FILE *fp;
 	int esito_scrittura;
 	int flag_presenza = 0;
-	char alimento_letto[LUNG_NOME_ALIMENTO];
+	char alimento_letto[LUNG_NOME_ALIMENTO + 1];
 
 
 	// tentativo di apertura del file frigo in lettura e scrittura
@@ -55,7 +55,7 @@ int aggiorna_lista_spesa(char nome_alimento[LUNG_NOME_ALIMENTO],char nome_file[L
 
 	esito_scrittura = fprintf(fp, "%s\n", nome_alimento);
 
-	if (esito_scrittura == 0) {
+	if (esito_scrittura < 0) {
 
 		printf("Errore nella scrittura di %s. Si prega di inserire manualmente l'alimento",nome_alimento);
 
@@ -80,12 +80,12 @@ int aggiorna_lista_spesa(char nome_alimento[LUNG_NOME_ALIMENTO],char nome_file[L
  */
 char* input_nome_alimento() {
 	int esito_input;			// Variabile per memorizzare l'esito dell'input
-	// Stringa da restituire contenente il nome della ricetta
+	// Stringa da restituire contenente il nome dell'alimento
 	char* nome_alimento = (char*) calloc(LUNG_NOME_ALIMENTO, sizeof(char));
 
 	do {
 		printf("Inserisci il nome dell'alimento:\n>");
-		scanf("%25[^\n]", nome_alimento);
+		scanf("%20[^\n]", nome_alimento);
 		if (pulisci_stdin() == 1) {
 			esito_input = 0;
 		}
@@ -111,26 +111,39 @@ char* input_nome_alimento() {
  * @pre		Il nome del file deve essere significativo(il file deve esistere e deve possedere almeno un alimento)
  * @post	Deve essere stampato almeno un alimento
  */
-int visualizza_lista_spesa(char nome_file[LUNG_NOME_FILE]) {
+int visualizza_lista_spesa(char nome_file[LUNG_NOME_FILE_RICETTE]) {
 
 	FILE *stream = NULL;
-	char nome_alimento[LUNG_NOME_ALIMENTO];
+	char nome_alimento[LUNG_NOME_ALIMENTO + 1];
+	int num_alimenti = 0;
+
+	printf("Lista della spesa: %s", nome_file);
 
 	if ((stream = fopen(nome_file, "r")) == NULL) {
+
+		puts("\n*ERRORE: Lista della spesa non accessibile*\n");
 
 		return -1;
 
 	} else {
 
-		while (feof(stream) == 0) {
+		while (fgets(nome_alimento, LUNG_NOME_ALIMENTO, stream) != NULL) {
+			if(nome_alimento[strlen(nome_alimento) - 1] != '\n'){
+				pulisci_riga_flusso(stream);
+			}
 
-			fscanf(stream, "%s\n", nome_alimento);
+			num_alimenti++;
+			sscanf(nome_alimento, "%20[a-zA-Z]", nome_alimento);
 			printf("%s\n", nome_alimento);
 
 		}
 
+		if(num_alimenti == 0){
+			puts("Non sono presenti alimenti nella lista della spesa.\n");
+		}
 	}
 
+	fclose(stream);
 	return 1;
 }
 
@@ -142,7 +155,7 @@ int visualizza_lista_spesa(char nome_file[LUNG_NOME_FILE]) {
  * @pre		Il nome del file deve essere significativo(il file deve esistere)
  * @post	In caso il file esista esso deve essere eliminato correttamente
  */
-int elimina_file_spesa(char nome_file[LUNG_NOME_FILE]) {
+int elimina_file_spesa(char nome_file[LUNG_NOME_FILE_RICETTE]) {
 	FILE *fp;
 
 	if ((fp = fopen(nome_file, "r")) == NULL) {
@@ -177,19 +190,25 @@ int elimina_file_spesa(char nome_file[LUNG_NOME_FILE]) {
  * @pre		nessuna particolare pre condizione
  * @post	nessuna particolare post condizione
  */
-int lettura_alimenti_acquistabili() {
-	alimento_database alimento;
-	FILE *stream = NULL;
+int generatore_spesa_globale() {
+	int num_alimenti_database;
 
-	if ((stream = fopen(FILE_DATABASE_ALIMENTI, "rb")) == NULL) {
+	num_alimenti_database = conta_alimenti_database();
 
-		return -1;
+	if(num_alimenti_database == 0){
+		return 0;
+	}
+
+	alimento_database alimenti_database[num_alimenti_database];
+
+	if (leggi_database_alimenti(alimenti_database) == 0 ) {
+		return 0;
 
 	} else {
 
-		while (fread(&alimento, sizeof(alimento_database), 1, stream) > 0) {
+		for(int i = 0; i < num_alimenti_database; i++) {
 			//se la soglia é maggiore di 0 e se la quantitá disponibile é minore di tale soglia allora occorre memorizzare l'alimento
-			if (controllo_soglia(alimento.soglia_spesa, alimento.nome))
+			if (controllo_soglia(alimenti_database[i].soglia_spesa, alimento.nome))
 				aggiorna_lista_spesa(alimento.nome, LISTA_SPESA_GLOBALE);
 
 		}
@@ -198,59 +217,6 @@ int lettura_alimenti_acquistabili() {
 	}
 
 	return 0;
-}
-
-
-
-
-/**
- * Funzione che si occupa di estrarre gli ingredienti di una determinata ricetta.
- *
- * Una volta passato il nome della ricetta e l'array di struct di tipo ingrediente che deve essere popolato viene aperto in lettura il file
- * del database alimenti e viene fatto un check sul nome passato. Qualora venga trovata la ricetta passata si memorizzano gli ingredienti
- * di tale ricetta nella struct e si restituisce il numero di tali ingredienti. In caso non venga trovata la ricetta viene restituito -1
- *
- * @pre		Il nome del file della ricetta non deve essere vuoto e l'array di struct deve avere dimensione maggiore degli ingredienti della ricetta
- * @post	Deve essere restituita, in caso venga trovata la ricetta, il numero corretto di ingredienti estratti
- */
-int estrazione_ingredienti(char nome_ricetta[DIM_CIBO], ingrediente* ingredienti) {
-	FILE* stream_database;
-	int flag_presente = 0;//flag che ci permette di segnalare se una ricetta é presente oppure no
-	int indice_ingrediente = 0; //indice che ci aiuta a popolare l''array di struct
-
-	if ((stream_database = fopen(FILE_DATABASE_RICETTE, "rb+")) == NULL)
-		return -1;
-
-	ricetta analisi_ricetta;
-
-	flag_presente = esiste_ricetta(nome_ricetta);
-
-	if (flag_presente == 0)
-		return -1;
-
-	while (fread(&analisi_ricetta, sizeof(analisi_ricetta), 1, stream_database) > 0) {
-
-		if (strcmp(nome_ricetta, analisi_ricetta.nome_ricetta) == 0) {
-
-			do {
-
-				//il controllo sul nome ci aiuta a capire quando stiamo controllando l'ingrediente successivo all'ultimo che é una stringa vuota
-				if (strcmp(analisi_ricetta.ingredienti[indice_ingrediente].nome , "") != 0) { //se l'ingrediente é significativo allora...
-					strcpy(ingredienti[indice_ingrediente].nome , analisi_ricetta.ingredienti[indice_ingrediente].nome);
-					indice_ingrediente++;
-				} else { //...altrimenti esci dal ciclo
-					break;
-				}
-
-			} while (indice_ingrediente < MAX_INGREDIENTI); //ripeti fino al numero massimo di ingredienti concessi per ricetta
-
-		}
-
-	}
-
-	fclose(stream_database);
-
-	return indice_ingrediente;
 }
 
 
@@ -271,9 +237,10 @@ int estrazione_ingredienti(char nome_ricetta[DIM_CIBO], ingrediente* ingredienti
  * @pre		Nessuna pre condizione
  * @post	Venga generato il file della spesa dell'utente
  */
-int gestore_spesa_personale() {
+int generatore_spesa_personale() {
 	utente u;
 	giorno menu;
+	float soglia_spesa;
 
 	//autenticazione(con controllo su esito) dell'utente
 	if (autenticazione(&u) == -1){
@@ -282,7 +249,7 @@ int gestore_spesa_personale() {
 	}
 
 	//generazione del nome del file che ospiterá la spesa personale
-	char nome_file[MAX_LUNG_NOMEFILE] = PRIMA_PARTE_NOMEFILE;
+	char nome_file[LUNG_NOME_FILE_RICETTE] = PRIMA_PARTE_NOMEFILE;
 	strcat(nome_file, u.nickname);
 	strcat(nome_file, FORM_FILE_SPESA);
 
@@ -290,23 +257,23 @@ int gestore_spesa_personale() {
 
 	for (int i_giorno = 1; i_giorno <= 7; i_giorno++) {
 
-		estrazione_struct(&menu, u.nickname, i_giorno); //viene estratto il menu giornaliero
+		estrai_giorno(&menu, u.nickname, i_giorno); //viene estratto il menu giornaliero
 
 		for (int i_pasto = 0; i_pasto < NUM_PASTI; i_pasto++) {
 
-			for (int i_alimento = 0; i_alimento < NUM_ALIMENTO; i_alimento++) {
+			for (int i_alimento = 0; i_alimento < NUM_CIBI; i_alimento++) {
 
-				if (menu.pasto[i_pasto].alimento[i_alimento].flag == FLAG_RICETTA) {//se l'alimento che si sta analizzando é una ricetta
+				if (menu.pasti[i_pasto].cibi[i_alimento].flag == FLAG_RICETTA) {//se l'alimento che si sta analizzando é una ricetta
 					//vengono estratti gli ingredienti
 					int num_ingredienti;
 					ingrediente ingredienti[MAX_INGREDIENTI];
-					num_ingredienti = estrazione_ingredienti(menu.pasto[i_pasto].alimento[i_alimento].nome_cibo,ingredienti);
+					num_ingredienti = estrazione_ingredienti(menu.pasti[i_pasto].cibi[i_alimento].nome_cibo, ingredienti);
 
 					if (num_ingredienti == -1) {//controllo che ci aiuta a capire se la ricetta non esiste nel database
 
 						printf(
 								"Non e' stato possibile estrarre gli alimenti che compongono la ricetta: %s\n",
-								menu.pasto[i_pasto].alimento[i_alimento].nome_cibo);
+								menu.pasti[i_pasto].cibi[i_alimento].nome_cibo);
 						printf(
 								"Si cosiglia di caricare la ricetta nel database delle ricette per facilitare la creazione della spesa\n");
 
@@ -323,24 +290,19 @@ int gestore_spesa_personale() {
 
 					}
 
-				} else {
-					//altimenti se ció che si sta analizzando é un alimento si effettua un controllo diretto sulla soglia e sulla quantitá
+				} else if(menu.pasti[i_pasto].cibi[i_alimento].flag == FLAG_ALIMENTO){
+					//altrimenti se ció che si sta analizzando é un alimento si effettua un controllo diretto sulla soglia e sulla quantitá
 					//disponibile
-					if (menu.pasto[i_pasto].alimento[i_alimento].flag == FLAG_ALIMENTO){
 
-						if(controllo_soglia(soglia_alimento(menu.pasto[i_pasto].alimento[i_alimento].nome_cibo),
-								menu.pasto[i_pasto].alimento[i_alimento].nome_cibo) == 1){
+					soglia_spesa = soglia_alimento(menu.pasti[i_pasto].cibi[i_alimento].nome_cibo);
 
-							aggiorna_lista_spesa(menu.pasto[i_pasto].alimento[i_alimento].nome_cibo, nome_file);
+					if(soglia_alimento(menu.pasti[i_pasto].cibi[i_alimento].nome_cibo) == -1){
+						printf("Non e' stato possibile estrarre l'alimento perche' sconosciuto al database: %s\n",
+								menu.pasti[i_pasto].cibi[i_alimento].nome_cibo);
 
-						}else{
+					}else if(controllo_soglia(soglia_spesa, menu.pasti[i_pasto].cibi[i_alimento].nome_cibo) == 1){
 
-							if(soglia_alimento(menu.pasto[i_pasto].alimento[i_alimento].nome_cibo)==0){
-								printf("Non e' stato possibile estrarre l'alimento perche' sconosciuto al database: %s\n",
-										menu.pasto[i_pasto].alimento[i_alimento].nome_cibo);
-							}
-
-						}
+						aggiorna_lista_spesa(menu.pasti[i_pasto].cibi[i_alimento].nome_cibo, nome_file);
 
 					}
 
@@ -367,21 +329,31 @@ int gestore_spesa_personale() {
  */
 int controllo_soglia(float soglia_spesa, char nome_alimento[LUNG_NOME_ALIMENTO]) {
 
+	int lung_nome_alimento = strlen(nome_alimento);
+	if(lung_nome_alimento < 1 || lung_nome_alimento > LUNG_NOME_ALIMENTO){
+		return -1;
+
+	}
+
+	if(soglia_spesa < 0){
+		return -1;
+
+	}
+
 	if (soglia_spesa > 0) {
 
 		if (quantita_alimento(nome_alimento) < soglia_spesa) {
 			return 1;
+
 		} else {
 			return 0;
+
 		}
 
 	} else {
-
 		return 0;
 
 	}
-
-	return -1;
 
 }
 

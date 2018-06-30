@@ -40,14 +40,14 @@
 	//***************************DEFINIZIONI DI COSTANTI***********************************
 
 	//LUNGHEZZE DI STRINGHE
-#define LUNG_NOME_RICETTA 26			/// Lunghezza in caratteri per la stringa del nome di una ricetta + carattere terminatore
+#define LUNG_NOME_RICETTA 21			/// Lunghezza in caratteri per la stringa del nome di una ricetta + carattere terminatore
 #define LUNG_INGREDIENTE 20
 #define LUNG_TEMPO_PREPARAZIONE 21
 #define LUNG_PREPARAZIONE 501
 #define LUNG_COMPLESSITA 21
 #define LUNG_TUPLA_RICETTE 1000//lunghezza della tupla ossia una riga quanto deve essere grande
 #define LUNG_STR_LAVORO_RIC 100 //lunghezza della stringa che verrá utilizzata in varie funzioni per effettuare split o altre operazioni su stringhe
-#define LUNG_NOME_FILE 100 //lunghezza da riservare al nome del file
+#define LUNG_NOME_FILE_RICETTE 100 //lunghezza da riservare al nome del file
 #define LUNG_PRODOTTO 50
 
 	//NUMERO DI ELEMENTI DI ARRAY/MATRICI ECC
@@ -111,6 +111,15 @@ typedef struct {
 
 
 int esiste_ricetta(char* nome_ricetta);
+
+
+/**Funzione che si occupa di estrarre gli ingredienti di una determinata ricetta.
+ *
+ * @param nome_ricetta
+ * @param ingredienti
+ * @return indice_ingrediente  numero ingredienti estratti dalla ricetta
+ */
+int estrazione_ingredienti(char nome_ricetta[LUNG_NOME_RICETTA], ingrediente* ingredienti);
 
 
 int conta_ricette_preparabili();

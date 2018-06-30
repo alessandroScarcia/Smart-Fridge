@@ -59,6 +59,57 @@ int esiste_ricetta(char* nome_ricetta){
 }
 
 
+/**
+ * Funzione che si occupa di estrarre gli ingredienti di una determinata ricetta.
+ *
+ * Una volta passato il nome della ricetta e l'array di struct di tipo ingrediente che deve essere popolato viene aperto in lettura il file
+ * del database alimenti e viene fatto un check sul nome passato. Qualora venga trovata la ricetta passata si memorizzano gli ingredienti
+ * di tale ricetta nella struct e si restituisce il numero di tali ingredienti. In caso non venga trovata la ricetta viene restituito -1
+ *
+ * @pre		Il nome del file della ricetta non deve essere vuoto e l'array di struct deve avere dimensione maggiore degli ingredienti della ricetta
+ * @post	Deve essere restituita, in caso venga trovata la ricetta, il numero corretto di ingredienti estratti
+ */
+int estrazione_ingredienti(char nome_ricetta[LUNG_NOME_RICETTA], ingrediente* ingredienti) {
+	FILE* stream_database;
+	int flag_presente = 0;//flag che ci permette di segnalare se una ricetta é presente oppure no
+	int indice_ingrediente = 0; //indice che ci aiuta a popolare l''array di struct
+
+	if ((stream_database = fopen(FILE_DATABASE_RICETTE, "rb+")) == NULL)
+		return -1;
+
+	ricetta analisi_ricetta;
+
+	flag_presente = esiste_ricetta(nome_ricetta);
+
+	if (flag_presente == 0)
+		return -1;
+
+	while (fread(&analisi_ricetta, sizeof(ricetta), 1, stream_database) > 0) {
+
+		if (strcmp(nome_ricetta, analisi_ricetta.nome_ricetta) == 0) {
+
+			do {
+
+				//il controllo sul nome ci aiuta a capire quando stiamo controllando l'ingrediente successivo all'ultimo che é una stringa vuota
+				if (strcmp(analisi_ricetta.ingredienti[indice_ingrediente].nome , "") != 0) { //se l'ingrediente é significativo allora...
+					strcpy(ingredienti[indice_ingrediente].nome , analisi_ricetta.ingredienti[indice_ingrediente].nome);
+					indice_ingrediente++;
+				} else { //...altrimenti esci dal ciclo
+					break;
+				}
+
+			} while (indice_ingrediente < MAX_INGREDIENTI); //ripeti fino al numero massimo di ingredienti concessi per ricetta
+
+		}
+
+	}
+
+	fclose(stream_database);
+
+	return indice_ingrediente;
+}
+
+
 int conta_ricette_preparabili(){
 	char flag_preparazione;								// Flag per memorizzare se una ricetta è preparabile
 	int num_ricette_preparabili = 0;					// Numero di ricette preparabili
@@ -305,7 +356,7 @@ char* input_nome_ricetta(){
 
 	do{
 		printf("Inserisci il nome della ricetta:\n>");
-		scanf("%25[^\n]", nome_ricetta);
+		scanf("%20[^\n]", nome_ricetta);
 		if(pulisci_stdin() == 1){
 			esito_input = 0;
 		}
@@ -1251,7 +1302,7 @@ int lettura_nuove_ricette(){
 			}
 
 			// estrazione dei campi della riga letta dal file
-			esito_lettura = sscanf(linea, "%25[a-zA-Z];%100[^;];%20[^;];%500[^;];%20[a-zA-Z];%d",
+			esito_lettura = sscanf(linea, "%20[a-zA-Z];%100[^;];%20[^;];%500[^;];%20[a-zA-Z];%d",
 					ricetta_letta.nome_ricetta, ingredienti, ricetta_letta.tempo_preparazione, ricetta_letta.preparazione, ricetta_letta.complessita, &ricetta_letta.dosi);
 
 			// Viene verificato il formato della prima estrazione
