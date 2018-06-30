@@ -4,9 +4,7 @@
  *  Created on: 16 mag 2018
  *      Author: david
  */
-#ifndef RICETTE_LIB
 #include "ricette.h"
-#endif
 
 /*
  * Modifica la prima funzione in base alle modifiche che hai apportato a riduci quantitá alimenti
@@ -1292,12 +1290,23 @@ int lettura_nuove_ricette(){
 								&ricetta_letta.ingredienti[num_ingredienti].quantita, ricetta_letta.ingredienti[num_ingredienti].unita_misura , ricetta_letta.ingredienti[num_ingredienti].nome);
 
 
-
+						// Abbassamento delle maiuscole negli ingredienti così da omologare il nomee l'unità di misura dell'ingrediente al contenuto del database
+						// alimenti
 						abbassa_maiuscole(ricetta_letta.ingredienti[num_ingredienti].nome);
+						abbassa_maiuscole(ricetta_letta.ingredienti[num_ingredienti].unita_misura);
 
-						if(ricerca_alimento_database(ricetta_letta.ingredienti[num_ingredienti].nome, &dati_ingrediente) != 1){
-							aggiorna_database(ricetta_letta.ingredienti[num_ingredienti].nome, ricetta_letta.ingredienti[num_ingredienti].unita_misura);
-						}else if(strcmp(ricetta_letta.ingredienti[num_ingredienti].unita_misura, dati_ingrediente.unita_misura) != 0){
+						// Conversione della quantità per omologarla al ontenuto del database alimenti
+						converti_quantita(&ricetta_letta.ingredienti[num_ingredienti].quantita, ricetta_letta.ingredienti[num_ingredienti].unita_misura);
+
+
+						if (controlla_unita_misura(ricetta_letta.ingredienti[num_ingredienti].unita_misura) == 1) {
+							if(ricerca_alimento_database(ricetta_letta.ingredienti[num_ingredienti].nome, &dati_ingrediente) != 1){
+								aggiorna_database(ricetta_letta.ingredienti[num_ingredienti].nome, ricetta_letta.ingredienti[num_ingredienti].unita_misura);
+							}else if(strcmp(ricetta_letta.ingredienti[num_ingredienti].unita_misura, dati_ingrediente.unita_misura) != 0){
+								puts("La ricetta <%s> ha degli ingredienti non validi per il database degli alimenti. Verrà ignorata.");
+								flag_inserimento = 0;
+							}
+						}else{
 							puts("La ricetta <%s> ha degli ingredienti non validi per il database degli alimenti. Verrà ignorata.");
 							flag_inserimento = 0;
 						}
