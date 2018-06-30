@@ -4,9 +4,7 @@
  *  Created on: 10 mag 2018
  *      Author: Michela
  */
-#ifndef UTENTI_LIB
 #include "utenti.h"
-#endif
 
 int esiste_nickname(const char* nickname){
 	int lung_nickname = strlen(nickname);
@@ -113,18 +111,28 @@ char* genera_nickname(){
 char* input_password(){
 	char* password = (char*) calloc(LUNG_PASSWORD, sizeof(char));
 	int esito_input;
+	int esito_controllo;
+	int lung_password;
 
 	do{
-		printf("Inserire la password [max. 8 caratteri]:\n~");
+		printf("Inserire la password [8 caratteri]:\n~");
 		esito_input = scanf("%8s", password);
 		if(pulisci_stdin() == 1){
 			esito_input = 0;
 		}
 
-		if(esito_input != 1){
+		lung_password = strlen(password);
+
+		if(lung_password != LUNG_PASSWORD - 1){
+			esito_controllo = 0;
+		}else{
+			esito_controllo = 1;
+		}
+
+		if(esito_input != 1 || esito_controllo != 1){
 			puts("Inserimento non valido. Ripeterlo.\n");
 		}
-	}while(esito_input != 1);
+	}while(esito_input != 1 || esito_controllo != 1);
 	return password;
 }
 
@@ -738,51 +746,52 @@ paramentri: i è un indice da passare che servirà per il salvataggio dell'utente,
  */
 int menu_database_utenti (int i){
 
-	int response;
+	int esito_input;
+	int esito_controllo;
+	int scelta;
 
 	do {
-		printf("\n- Inserire [1] per la creazione di un nuovo profilo;");
-		printf("\n- Inserire [2] per la modifica del nome di un profilo esistente;");
-		printf("\n- Inserire [3] per la modifica del cognome di un profilo esistente;");
-		printf("\n- Inserire [4] per la modifica delle preferenze alimentari di un profilo esistente;");
-		printf("\n- Inserire [5] per la modifica della password di un profilo esistente;");
-		printf("\n- Inserire [6] per la visualizzazione di un profilo esistente;");
-		printf("\n- Inserire [7] per la visualizzazione di tutti gli utenti;");
-		printf("\n- Inserire [0] per terminare programma.\n");
+		do {
+			printf("Inserisci:"
+					"\n\t[1] per creare nuovi utenti;"
+					"\n\t[2] per modificare il tuo profilo;"
+					"\n\t[3] per visualizzare tutti gli utenti;"
+					"\n\t[0] per uscire dal menu utenti."
+					"\n~");
+			esito_input = scanf("%d", &scelta);
+			if(pulisci_stdin() == 1){
+				esito_input = 0;
+			}
 
+			if(scelta < 0 || scelta > 3){
+				esito_controllo = 0;
+			}else{
+				esito_controllo = 1;
+			}
 
-		scanf("%d", &response);
+			if(esito_input != 1 || esito_controllo != 1){
+				puts("Inserimento non valido. Ripeterlo.");
+			}
+		} while (esito_input != 1 || esito_controllo != 1);
 
-		switch(response) {
+		switch(scelta) {
 
 		case 1:
-			input_utente(i);
-			i++;
+			crea_utenti();
 			break;
 		case 2:
-			//modifica_nome();
+			gestore_modifiche();
 			break;
 		case 3:
-			//modifica_cognome();
-			break;
-		case 4:
-			//modifica_preferenza();
-			break;
-		case 5:
-			//modifica_password();
-			break;
-		case 6:
-			//output_utente();
-			break;
-		case 7:
 			visualizza_database_utenti();
 			break;
-
+		default:
+			break;
 		}
 
-	} while (response!=0);
+	} while (scelta != 0);
 
-	return 0;
+	return 1;
 }
 
 
