@@ -122,6 +122,9 @@ int esiste_ricetta(char* nome_ricetta);
 int estrazione_ingredienti(char nome_ricetta[LUNG_NOME_RICETTA], ingrediente* ingredienti);
 
 
+int estrai_kcal_ricetta(char* nome_ricetta, int* kcal);
+
+
 int conta_ricette_preparabili();
 
 

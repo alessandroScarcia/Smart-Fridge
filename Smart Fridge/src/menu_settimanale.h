@@ -111,7 +111,7 @@ typedef struct {
 
 
 
-char* crea_nome_file(const char* nickname);
+char* crea_nome_file_menu(const char* nickname);
 
 
 /**
@@ -237,7 +237,7 @@ void modifica_alimenti_pasto (giorno* giornata, short int num_pasto);
 int estrai_giorno (giorno* giornata, char* nome_utente, int num_giorno);
 
 
-int estrai_kcal(int* kcal, char* nome_utente, int num_giorno);
+int estrai_kcal_menu(int* kcal, char* nome_utente, int num_giorno);
 
 
 /**

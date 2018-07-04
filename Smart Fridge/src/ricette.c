@@ -110,6 +110,30 @@ int estrazione_ingredienti(char nome_ricetta[LUNG_NOME_RICETTA], ingrediente* in
 }
 
 
+int estrai_kcal_ricetta(char* nome_ricetta, int* kcal){
+	FILE* stream = NULL;
+	ricetta ricetta_letta;
+
+	if(esiste_ricetta(nome_ricetta) == 0){
+		return 0;
+	}
+
+	if((stream = fopen(FILE_DATABASE_RICETTE, "rb")) == NULL){
+		return 0;
+	}else{
+		while(fread(&ricetta_letta, sizeof(ricetta), 1, stream) > 0){
+			if(strcmp(ricetta_letta.nome_ricetta, nome_ricetta) == 0){
+				*kcal = ricetta_letta.kcal_ricetta;
+				break;
+			}
+		}
+
+		fclose(stream);
+		return 1;
+	}
+}
+
+
 int conta_ricette_preparabili(){
 	char flag_preparazione;								// Flag per memorizzare se una ricetta è preparabile
 	int num_ricette_preparabili = 0;					// Numero di ricette preparabili

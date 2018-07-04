@@ -1,6 +1,6 @@
 #include "menu_settimanale.h"
 
-char* crea_nome_file(const char* nickname){
+char* crea_nome_file_menu(const char* nickname){
 	char* nome_file = (char*) calloc(LUNG_NOME_FILE_MENU, sizeof(char));
 
 	int lung_nickname = strlen(nickname);
@@ -208,7 +208,7 @@ int inizializzazione_alimenti(giorno* giornata, short int num_pasto) {
  */
 int inizializzazione_file_menu(const char* nome_utente, giorno* menu) {
 	char nomefile[LUNG_NOME_FILE_MENU];
-	strcpy(nomefile, crea_nome_file(nome_utente));
+	strcpy(nomefile, crea_nome_file_menu(nome_utente));
 
 	FILE *f;
 
@@ -235,7 +235,7 @@ int esiste_menu(char* nome_utente){
 		return -1;
 	}else{
 		FILE* stream = NULL;
-		char* nome_file = crea_nome_file(nome_utente);
+		char* nome_file = crea_nome_file_menu(nome_utente);
 
 		if((stream = fopen(nome_file, "rb")) == NULL){
 			return 0;
@@ -422,7 +422,7 @@ int input_flag_cibo(){
 int visualizza_database_menu(char nome_utente[]) {
 
 	//Genero il nome del file
-	char* nomefile = crea_nome_file(nome_utente);
+	char* nomefile = crea_nome_file_menu(nome_utente);
 
 	giorno giornata;
 	FILE* f;
@@ -731,7 +731,7 @@ int estrai_giorno(giorno* giornata, char* nome_utente, int num_giorno) {
 
 	FILE* stream = NULL;
 
-	char* nome_file = crea_nome_file(nome_utente);
+	char* nome_file = crea_nome_file_menu(nome_utente);
 
 	if((stream = fopen(nome_file, "rb")) == NULL){
 		return 0;
@@ -746,7 +746,7 @@ int estrai_giorno(giorno* giornata, char* nome_utente, int num_giorno) {
 }
 
 
-int estrai_kcal(int* kcal, char* nome_utente, int num_giorno){
+int estrai_kcal_menu(int* kcal, char* nome_utente, int num_giorno){
 	if(num_giorno < 0 || num_giorno > NUM_GIORNI - 1){
 		return -1;
 	}
@@ -757,7 +757,7 @@ int estrai_kcal(int* kcal, char* nome_utente, int num_giorno){
 
 	FILE* stream = NULL;
 	giorno giornata;
-	char* nome_file = crea_nome_file(nome_utente);
+	char* nome_file = crea_nome_file_menu(nome_utente);
 
 	if((stream = fopen(nome_file, "rb")) == NULL){
 		return 0;
@@ -798,7 +798,7 @@ int scrivi_giorno(giorno* giornata, char* nome_utente, int num_giorno) {
 
 	FILE* stream = NULL;
 
-	char* nomefile = crea_nome_file(nome_utente);
+	char* nomefile = crea_nome_file_menu(nome_utente);
 
 	if((stream = fopen(nomefile, "rb+")) == NULL){
 		return 0;
