@@ -9,94 +9,99 @@
 
 
 
-int input_alimento_consumato(assunzione* cibo) {
+int input_alimento_consumato() {
 
-	short int risposta;
-	ricetta r;
-	alimento_database a;
-	char nome [LUNG_NOME_RICETTA];
+	utente persona;
 
-	do {
+	if (autenticazione(&persona)==1){
+		assunzione cibo;
+		int esito_input;
+		cibo.flag=3;
+		cibo.quantita=0;
+        do {
+			printf("\nInserire il nome di cio' che hai assunto\n>");
+			scanf("%20s", cibo.nome);
 
-		printf("\nInserire 1 per registrare una ricetta, 0 per registrare un singolo alimento (-1 per uscire) :\n>");
-		scanf("%hd", &risposta);
+			if(pulisci_stdin() == 1){
+						esito_input = 0;
+					}
+
+			if(esito_input == 0){
+				puts("Inserimento non valido. Ripeterlo.");
+			}
+		}while (esito_input == 0);
+
+		do {
+			printf("\nInserire calorie\n>");
+			scanf("%hu", &cibo.kcal);
+			if(pulisci_stdin() == 1){
+					esito_input = 0;
+			}
+
+			if(esito_input == 0){
+				puts("Inserimento non valido. Ripeterlo.");
+			}
+		}while (esito_input == 0);
 
 
-	}while (risposta!= 1 && risposta != 0 && risposta != -1);
 
-	if (risposta == 1) {
+		scrittura_diretta_assunzione (&cibo, persona.nickname);
 
-		cibo->flag=1;
-
-		printf("Inserisci nome della ricetta\n> ");
-		scanf("%s", nome);
-
-		if(esiste_ricetta(nome)==1){
-			strcpy(cibo->nome, r.nome_ricetta);
-			//cibo.kcal= calcolo calorie ricetta
-		} else {
-			//aggiorna database
-		}
-	} else if (risposta == 0) {
-
-		cibo->flag=0;
-
-		printf("Inserisci nome alimento:\n>");
-		scanf("%s", nome);
-
-		if(	ricerca_alimento_database(nome, &a)==1){
-			strcpy(cibo->nome, a.nome);
-			cibo->kcal = calcolo_kcal_alimento(a.kcal, a.campione_kcal);
-		} else {
-			//aggiorna_database
-		}
-
-	} else if(risposta==-1){
-
-		return -1;
-
+		return 0;
 	}
 
-	return 0;
+	return 1;
 
 }
 
 
 
-unsigned short int calcolo_kcal_alimento(unsigned short int kcal, int campione) {
+unsigned short int calcolo_kcal(unsigned short int kcal, int campione, float q_consumata) {
+
+	if (q_consumata==0){
+		return 0;
+	}
 
 	unsigned short int risultato_kcal;
-	float q_consumata;
-
-
-	printf("\nInserire la quantita' consumata\n>");
-	scanf("%f", &q_consumata);
 
 	risultato_kcal = (q_consumata * kcal) / campione;
 
 	return risultato_kcal;
 
 }
+// nome, flag, quantità
+//controllo data
+int aggiorno_database_calorie(char nome_consumo[], int flag_consumo, float quantita_consumo, char nickname[]) {
 
-int aggiorno_database_calorie(assunzione* cibo, char nickname[]) {
-
-	char nome_file[LUNG_NOME_FILE] = "../assunzioni_";
+	char nome_file[LUNG_FILE_CALORIE] = "../assunzioni_";
 	strcat(nome_file, nickname);
 	strcat(nome_file, ".dat");
 
-	FILE* stream;
+	assunzione cibo;
 
-	if((stream = fopen(nome_file, "rb+")) == NULL){
-			// Se non esiste nessun file assunzioni deve essere creato
-		if(creazione_assunzioni ()==-1){
-					return -1;
-				}
+
+	strcpy(cibo.nome, nome_consumo);
+	cibo.flag=flag_consumo;
+	cibo.quantita=quantita_consumo;
+
+	if (cibo.flag==1){
+
+	  int  kcal_ricetta;
+	  int dosi_ricetta;
+	  estrai_kcal_ricetta(cibo.nome, &kcal_ricetta, &dosi_ricetta);
+	  cibo.kcal=calcolo_kcal(kcal_ricetta, dosi_ricetta, cibo.quantita);
+
+	} else if (cibo.flag==0) {
+
+		alimento_database ricerca_a;
+		ricerca_alimento_database(cibo.nome, &ricerca_a);
+		cibo.kcal=calcolo_kcal(ricerca_a.kcal, ricerca_a.campione_kcal, cibo.quantita);
+
 	}
 
-	fseek(stream, 0, SEEK_END); //posizione il puntatore alla fine del file per permettere la scrittura in ordine rispetto ai giorni della settimana
-	fwrite(cibo, sizeof(assunzione), 1, stream);
+	scrittura_diretta_assunzione (&cibo, nickname);
 
-	fclose(stream);
+
 
 	return 0;
 }
@@ -105,7 +110,7 @@ int scrivi_data(char nickname[]) {
 
 	data data_attuale = data_odierna();
 
-	char nome_file[LUNG_NOME_FILE] = "../assunzioni_";
+	char nome_file[LUNG_FILE_CALORIE] = "../assunzioni_";
 	strcat(nome_file, nickname);
 	strcat(nome_file, ".dat");
 
@@ -120,55 +125,10 @@ int scrivi_data(char nickname[]) {
 
 	fclose(f);
 
-	stampa_database_assunzioni() ;
-
 	return 0;
 }
 
-int apertura_file_assunzioni() {
 
-	utente persona;
-
-	if (autenticazione(&persona) == 1) {
-		data data_letta;
-		assunzione cibo;
-		int differenza;
-
-		char nome_file[LUNG_NOME_FILE] = "../assunzioni_";
-		strcat(nome_file, persona.nickname);
-		strcat(nome_file, ".dat");
-
-		FILE* f;
-
-		if((f = fopen(nome_file, "rb+"))==NULL){
-			if(creazione_assunzioni ()==-1) {
-						return -1;
-			}
-		}
-
-		fseek(f, 0, SEEK_SET);
-		fread(&data_letta, sizeof(data), 1, f);
-
-		fclose(f);
-
-		if (diff_date(&differenza, data_letta, data_odierna()) == 0) {
-			//reset
-			scrivi_data(persona.nickname);
-		}
-
-		while (input_alimento_consumato(&cibo)==1) {
-
-			aggiorno_database_calorie(&cibo, persona.nickname);
-			printf("\nPer uscire, inserire -1\n");
-
-		}
-
-	stampa_database_assunzioni();
-	return 0;
-	} else {
-		return 1;
-	}
-}
 
 int stampa_database_assunzioni() {
 
@@ -178,14 +138,14 @@ int stampa_database_assunzioni() {
 
 		data data_letta;
 		assunzione cibo;
-		char nome_file[LUNG_NOME_FILE] = "../assunzioni_";
+		char nome_file[LUNG_FILE_CALORIE] = "../assunzioni_";
 		strcat(nome_file, persona.nickname);
 		strcat(nome_file, ".dat");
 
 		FILE* f;
 
 		if((f = fopen(nome_file, "rb+"))==NULL){
-			if(creazione_assunzioni ()==-1) {
+			if(scrivi_data(persona.nickname)==-1) {
 				return -1;
 			}
 		}
@@ -197,8 +157,10 @@ int stampa_database_assunzioni() {
 				data_letta.mese, data_letta.anno);
 
 		while (fread(&cibo, sizeof(assunzione), 1, f) > 0) {
-			printf("Nome: %s\nQuantita': %.2f\nkcal: %hu\n\n", cibo.nome,
+			if (cibo.kcal !=0){
+			       printf("Nome: %s\nQuantita': %.2f\nkcal: %hu\n\n", cibo.nome,
 					cibo.quantita, cibo.kcal);
+			}
 		}
 
 		fclose(f);
@@ -217,14 +179,16 @@ int calcolo_kcal_totali(char nomefile[]) {
 
 	if((f = fopen(nomefile, "rb+"))==NULL){
 
-		if(creazione_assunzioni ()==-1) {
+		if(scrivi_data (nomefile)==-1) {
 					return -1;
 		}
 	}
 
 	fseek(f, sizeof(data), SEEK_SET);
 	while (fread(&cibo, sizeof(assunzione), 1, f) > 0) {
-		tot_kcal += cibo.kcal;
+		if ( cibo.kcal !=0){
+	    	 tot_kcal += cibo.kcal;
+	    }
 	}
 
 	fclose(f);
@@ -235,21 +199,9 @@ int calcolo_kcal_totali(char nomefile[]) {
 	return 0;
 }
 
-int creazione_assunzioni (){
 
-	utente persona;
 
-	if (autenticazione(&persona) == 1) {
-
-		scrivi_data(persona.nickname);
-	} else {
-		return 1;
-	}
-
-	return 0;
-}
-
-int modifica_consumo (){
+int modifica_assunzione (){
 
 	utente persona;
 
@@ -259,59 +211,101 @@ int modifica_consumo (){
 
 		FILE* stream;
 
-		char nome_file[LUNG_NOME_FILE] = "../assunzioni_";
+		char nome_file[LUNG_FILE_CALORIE] = "../assunzioni_";
 		strcat(nome_file, persona.nickname);
 		strcat(nome_file, ".dat");
 
 		assunzione nuova_assunzione;
 		short int posizione;
+		int esito_input;
 
-		printf("Inserisci il nome del cosumo da modifcare\n>");
-		scanf("%s", nuova_assunzione.nome);
+		do {
+			printf("Inserisci il nome del cosumo da modifcare\n>");
+			scanf("%s", nuova_assunzione.nome);
+			if(pulisci_stdin() == 1){
+				esito_input = 0;
+			}
 
-		posizione=ricerca_assunzione_database (&nuova_assunzione, persona.nickname);
+			if(esito_input == 0){
+				puts("Inserimento non valido. Ripeterlo.");
+			}
+		}while (esito_input == 0);
+
+		posizione=ricerca_assunzione_database (nuova_assunzione.nome, persona.nickname);
 
 		if (posizione==0 || posizione==-1){
 			printf("Impossibile terminare la modifica.\nFunzione terminata.\n\n");
 			return 0;
 		}
 
-		if (nuova_assunzione.quantita==0){
-			//cancella da database
+		printf("%d\n", nuova_assunzione.flag );
+		if (nuova_assunzione.flag==3){
+			do {
+				printf("\nInserire le nuove kcal (0 per elimanre il consumo)\n>");
+				scanf("%hu", &nuova_assunzione.kcal);
+				if(pulisci_stdin() == 1){
+					esito_input = 0;
+				}
+
+				if(esito_input == 0){
+					puts("Inserimento non valido. Ripeterlo.");
+				}
+			}while (esito_input == 0);
 		} else {
-			if (nuova_assunzione.flag==1){
-				//calcolo kcal
-			} else {
-				alimento_database a;
-				ricerca_alimento_database(nuova_assunzione.nome, &a);
-				nuova_assunzione.kcal=calcolo_kcal_alimento(a.kcal, a.campione_kcal);
-			}
+
+				do {
+					printf("Inserire nuova quantita' (0 per elimare il consumo)\n>");
+				    scanf("%f", &nuova_assunzione.quantita);
+				    if(pulisci_stdin() == 1){
+						esito_input = 0;
+					}
+
+					if(esito_input == 0){
+						puts("Inserimento non valido. Ripeterlo.");
+					}
+				}while (esito_input == 0);
+
+				if (nuova_assunzione.flag==1){
+
+						  int  kcal_ricetta;
+						  int dosi_ricetta;
+						  estrai_kcal_ricetta(nuova_assunzione.nome, &kcal_ricetta, &dosi_ricetta);
+						  nuova_assunzione.kcal=calcolo_kcal(kcal_ricetta, dosi_ricetta, nuova_assunzione.quantita);
+
+					} else if (nuova_assunzione.flag==0){
+
+						alimento_database a;
+						ricerca_alimento_database (nuova_assunzione.nome, &a);
+						nuova_assunzione.kcal=calcolo_kcal(a.kcal, a.campione_kcal, nuova_assunzione.quantita);
+
+					}
+
+		 }
 
 			if((stream = fopen(nome_file, "rb+"))==NULL){
 
-					if(creazione_assunzioni ()==-1) {
-								return -1;
-					}
-				}
-			fseek(stream, sizeof(data)+posizione*sizeof(assunzione), SEEK_SET);
+				printf("Errore\n");
+				return 1;
+
+			}
+			fseek(stream, sizeof(data)+posizione*sizeof(assunzione)-sizeof(assunzione), SEEK_SET);
 			fwrite(&nuova_assunzione, sizeof(assunzione), 1, stream);
-		}
+
+			return 0;
 
 		} else {
 			return 1;
 		}
-
-		return 0;
 }
 
-short int ricerca_assunzione_database (assunzione* cibo, char nickname[]){
+short int ricerca_assunzione_database (char nome[], char nickname[]){
 
 	assunzione lettura;
 	short int posizione;
 
-	abbassa_maiuscole (cibo->nome);
+	abbassa_maiuscole (nome);
 
-	char nome_file[LUNG_NOME_FILE] = "../assunzioni_";
+	char nome_file[LUNG_FILE_CALORIE] = "../assunzioni_";
 	strcat(nome_file, nickname);
 	strcat(nome_file, ".dat");
 
@@ -326,7 +320,7 @@ short int ricerca_assunzione_database (assunzione* cibo, char nickname[]){
 	while(feof(f) == 0){
 				fread(&lettura, sizeof(assunzione), 1, f);
 				posizione++;
-				if(strcmp(lettura.nome, cibo->nome) == 0){
+				if(strcmp(lettura.nome, nome) == 0){
 					return posizione;
 				}
 			}
@@ -334,3 +328,81 @@ short int ricerca_assunzione_database (assunzione* cibo, char nickname[]){
 
 	return 0;
 }
+
+int scrittura_diretta_assunzione (assunzione* cibo, char nickname[]){
+
+	char nome_file[LUNG_FILE_CALORIE] = "../assunzioni_";
+	strcat(nome_file, nickname);
+	strcat(nome_file, ".dat");
+
+	FILE* stream;
+	data controllo_data;
+	int differenza;
+
+	if((stream = fopen(nome_file, "rb+"))==NULL){
+			scrivi_data(nickname);
+	}
+
+	fseek(stream, 0, SEEK_SET);
+	fread(&controllo_data, sizeof(data), 1, stream);
+
+	if (diff_date(&differenza, controllo_data, data_odierna()) != 0) {
+		//reset
+		scrivi_data(nickname);
+	}
+
+	fseek(stream, 0, SEEK_END);
+	fwrite(cibo, sizeof(assunzione), 1, stream);
+
+	return 0;
+}
+
+
+void istogrami (){
+
+	utente persona;
+
+	if (autenticazione(&persona)== 1){
+
+		char nome_file[LUNG_FILE_CALORIE] = "../assunzioni_";
+		strcat(nome_file, persona.nickname);
+		strcat(nome_file, ".dat");
+
+		/*FILE* stream;
+		data controllo_data;
+		int differenza;*/
+		int kcal_giornaliere;
+
+		/*if((stream = fopen(nome_file, "rb+"))==NULL){
+				scrivi_data(persona.nickname);
+		}
+
+		fseek(stream, 0, SEEK_SET);
+		fread(&controllo_data, sizeof(data), 1, stream);
+
+		if (diff_date(&differenza, controllo_data, data_odierna()) != 0) {
+			//reset
+			scrivi_data(persona.nickname);
+
+		}*/
+
+		estrai_kcal_menu(&kcal_giornaliere, persona.nickname, giorno_odierno());
+
+		 printf("Assunzioni persona media: 2000 kcal: ");
+		 for (int i=0; i<2000; i+=200){
+			 printf("%c", 219);
+		 }
+		 printf("\nIl tuo obiettivo: %d", kcal_giornaliere);
+		 for (int i=0; i < kcal_giornaliere; i+=200){
+			 printf("%c", 219);
+		 }
+		 printf("\nIl tuo stato attuale: \n");
+		 for (int i=0; i < calcolo_kcal_totali(persona.nickname); i+=200){
+		 	 printf("%c", 219);
+		 }
+
+	}
+
+}
+
+

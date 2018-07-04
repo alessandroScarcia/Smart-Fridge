@@ -110,30 +110,6 @@ int estrazione_ingredienti(char nome_ricetta[LUNG_NOME_RICETTA], ingrediente* in
 }
 
 
-int estrai_kcal_ricetta(char* nome_ricetta, int* kcal){
-	FILE* stream = NULL;
-	ricetta ricetta_letta;
-
-	if(esiste_ricetta(nome_ricetta) == 0){
-		return 0;
-	}
-
-	if((stream = fopen(FILE_DATABASE_RICETTE, "rb")) == NULL){
-		return 0;
-	}else{
-		while(fread(&ricetta_letta, sizeof(ricetta), 1, stream) > 0){
-			if(strcmp(ricetta_letta.nome_ricetta, nome_ricetta) == 0){
-				*kcal = ricetta_letta.kcal_ricetta;
-				break;
-			}
-		}
-
-		fclose(stream);
-		return 1;
-	}
-}
-
-
 int conta_ricette_preparabili(){
 	char flag_preparazione;								// Flag per memorizzare se una ricetta è preparabile
 	int num_ricette_preparabili = 0;					// Numero di ricette preparabili
@@ -1394,7 +1370,13 @@ int lettura_nuove_ricette(){
 			}
 
 			if(flag_inserimento == 1){
-				ricetta_letta.kcal_ricetta = 0;//conta_kcal_ricetta(carica_ricette.ingredienti,num_ingredienti+1);//memorizzo le kcal della ricetta passando i dati di essa
+				alimento_database a;
+
+				for (int i=0; i<num_ingredienti; i++){
+					ricerca_alimento_database(ricetta_letta.ingredienti[i].nome, &a);
+					ricetta_letta.kcal_ricetta +=calcolo_kcal(a.kcal, a.campione_kcal,ricetta_letta.ingredienti[i].quantita );
+				}
+
 				aggiorna_database_ricette(ricetta_letta);// aggiorno il database, memorizzando la ricetta
 			}else{
 				num_ricette_scartate++;
@@ -1405,3 +1387,32 @@ int lettura_nuove_ricette(){
 	fclose(stream);
 	return num_ricette_lette - num_ricette_scartate;
 }
+
+
+
+int estrai_kcal_ricetta(char* nome_ricetta, int* kcal, int* dosi){
+	FILE* stream = NULL;
+	ricetta ricetta_letta;
+
+	if(esiste_ricetta(nome_ricetta) == 0){
+		return 0;
+	}
+
+	if((stream = fopen(FILE_DATABASE_RICETTE, "rb")) == NULL){
+		return 0;
+	}else{
+		while(fread(&ricetta_letta, sizeof(ricetta), 1, stream) > 0){
+			if(strcmp(ricetta_letta.nome_ricetta, nome_ricetta) == 0){
+				*kcal = ricetta_letta.kcal_ricetta;
+				*dosi= ricetta_letta.dosi;
+				break;
+			}
+		}
+
+		fclose(stream);
+		return 1;
+	}
+}
+
+
+
