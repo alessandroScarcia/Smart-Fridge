@@ -16,6 +16,7 @@
  * @authors Davide Quatela, Alessandro Scarcia, Michela Salvemini
  */
 
+
 /// Inclusione delle librerie standard
 #ifndef STD_LIB
 #define STD_LIB

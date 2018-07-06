@@ -9,7 +9,6 @@
 #include "interfaccia.h"
 
 
-
 /**
  * La funzione input scelta si occupa di ricevere in input il comando per accedere ad una determinata voce dei menu. Si é pensato che la scelta
  * essendo un numero avrá anche esso un range. Se la scelta é compresa nel range vuol dire che é accettabile altrimenti verrá scartata e verrá

@@ -6,7 +6,6 @@
  */
 
 
-
 #include "alimenti.h"
 #include "date.h"
 #include "ricette.h"

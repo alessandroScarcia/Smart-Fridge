@@ -728,6 +728,11 @@ int output_preferenze(const utente u){
 }
 
 
+
+
+
+
+
 /**
  *
  *
@@ -743,7 +748,7 @@ void output_utente(const utente u){
 /*Sommario: Funzione che stampa le varie operazione che si possono effettuare, leggerà la risposa inserita da tastiera ed in base al
  * numero inserito, verrà chiamata una funzione opportuna;
 paramentri: i è un indice da passare che servirà per il salvataggio dell'utente, corrisponde all'ultimo indice assegnato ad un utente
- */
+
 int menu_database_utenti (int i){
 
 	int esito_input;
@@ -753,10 +758,10 @@ int menu_database_utenti (int i){
 	do {
 		do {
 			printf("Inserisci:"
-					"\n\t[1] per creare nuovi utenti;"
-					"\n\t[2] per modificare il tuo profilo;"
-					"\n\t[3] per visualizzare tutti gli utenti;"
-					"\n\t[0] per uscire dal menu utenti."
+					"\n\t[1] per creare nuovi utenti"
+					"\n\t[2] per modificare il tuo profilo"
+					"\n\t[3] per visualizzare tutti gli utenti"
+					"\n\t[0] per uscire dal menu utenti"
 					"\n~");
 			esito_input = scanf("%d", &scelta);
 			if(pulisci_stdin() == 1){
@@ -794,7 +799,7 @@ int menu_database_utenti (int i){
 	return 1;
 }
 
-
+ */
 int conta_utenti(){
 	utente u;
 	int num_utenti = 0;
@@ -870,6 +875,14 @@ int elimina_utente(){
 
 				puts("Eliminazione utente effettuata.");
 				fclose(stream);
+
+
+				char file_menu_settimanale[LUNG_NOME_FILE_MENU];
+				strcpy(file_menu_settimanale, FILE_MENU);
+				strcat(file_menu_settimanale, utente_eliminare.nickname);
+				elimina_file_menu(file_menu_settimanale);
+
+
 				return 1;
 			}else{
 				puts("Annullamento eliminazione utente");
