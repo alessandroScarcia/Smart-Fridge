@@ -86,8 +86,6 @@ int esiste_nickname(const char* nickname);
  *
  * @return Stringa corrispondente al nickname inserito.
  */
-char* input_nuovo_nickname();
-
 
 char* input_nickname();
 
@@ -184,7 +182,11 @@ int salva_n_utenti(utente* utenti, int n);
  */
 int crea_utenti();
 
-
+/**
+* La funzione ha il compito di permettere la modifica delle preferenze di un utente.
+*
+* @param u struct contenente l'utente da modificare
+*/
 void modifica_preferenze(utente* u);
 
 

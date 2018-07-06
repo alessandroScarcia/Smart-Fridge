@@ -6,6 +6,21 @@
  */
 #include "utenti.h"
 
+/**
+ * Funzione esiste_nickname ():
+ *
+ * La funzione ha il compito di verificare se il nickname passato è già presente nel database.
+ *
+ * A tal scopo acquisisce la lunghezza del nickname passato in ingresso, memorizzandola in una variabile, controllare
+ * se tale lunghezza è idonea. Fatto ciò apre il file utnetni, legge ogni utente presente al suo interno fino a quando
+ * non trova un utente con tale nickname, restituindo così 1.
+ * nel caso non lo trovasse, il valore restituito sarebbe zero.
+ *
+ * @pre Non vi sono specifiche pre-condizioni per la funzione
+ * @post Il valore restituito rappresenta l'esito della funzione.
+ *
+ */
+
 int esiste_nickname(const char* nickname){
 	int lung_nickname = strlen(nickname);
 
@@ -20,8 +35,10 @@ int esiste_nickname(const char* nickname){
 		return 0;
 	}else{
 		while(feof(stream) == 0){
-			fread(&u, sizeof(utente), 1, stream);
 
+			//lettua di ogbi struct
+			fread(&u, sizeof(utente), 1, stream);
+			//se viene trovata una struct con nome corrispondente, termina ritornando 1
 			if(strcmp(u.nickname, nickname) == 0){
 				fclose(stream);
 				return 1;
@@ -34,33 +51,19 @@ int esiste_nickname(const char* nickname){
 }
 
 
-char* input_nuovo_nickname(){
-	char* nickname = (char*) calloc(MAX_LUNG_NICKNAME, sizeof(char));
-	int esito_input;
-	int esito_controllo;
-
-	do{
-
-		printf("Inserisci un nickname [max. 15 lettere, min. 5 lettere]:\n>");
-		esito_input = scanf("%15[a-zA-Z]", nickname);
-		if(pulisci_stdin() == 1){
-			esito_input = 0;
-		}
-
-		esito_controllo = esiste_nickname(nickname);
-
-		if(esito_input != 1){
-			puts("Inserimento non valido. Ripeterlo.\n");
-		}else if(esito_controllo == 1){
-			puts("Il nickname inserito non è disponibile. Sceglierne un altro.");
-		}
-
-	}while(esito_input != 1 || esito_controllo == 1);
-
-	return nickname;
-}
-
-
+/**
+ * Funzione input_nickname ():
+ *
+ * La funzione ha il compito di richiedere l'inserimento di un nickname destinato ad un nuovo utente.
+ *
+ * A tal scopo viene allorato una spazio di memoria per contenere il nickname inserito da tastiera da parte dell'utente.
+ * Viene richiesto di inserire da tastiera il nickname fino a quanto non viene inserito un nickname che non è esistente.
+ * La funzione ritorna il nickname.
+ *
+ * @pre Non vi sono specifiche pre-condizioni per la funzione
+ * @post Il valore restituito è un puntatore alla stringa contenente il nickname.
+ *
+ */
 char* input_nickname(){
 	char* nickname = (char*) calloc(MAX_LUNG_NICKNAME, sizeof(char));
 	int esito_input;
@@ -73,8 +76,11 @@ char* input_nickname(){
 		if(pulisci_stdin() == 1){
 			esito_input = 0;
 		}
-
+		//acquisizione della lunghezza effettiva del nickname inserito
 		lung_nickname = strlen(nickname);
+
+		//controllo se già esiste un utente con tale nickname
+		esito_controllo = esiste_nickname(nickname);
 
 		if(lung_nickname < MIN_LUNG_NICKNAME || lung_nickname > MAX_LUNG_NICKNAME - 1){
 			esito_controllo = 0;
@@ -91,6 +97,20 @@ char* input_nickname(){
 	return nickname;
 }
 
+/**
+ * Funzione genera_nickname ():
+ *
+ * La funzione ha il compito di  generare un nickname in modo casuale.
+ *
+ * A tal scopo, dopo aver allocato uno spazio di dimensione adatta al contenimento del nickname, posiziona il carattere
+ * terminale alla fine. Ripete un ciclo che permette continua fino a quando il nickname non raggiunge una dimesione
+ * accettata e/o il nickname esiste già. La generazione si serve del codice ASCII, generando random un numero corrispondente
+ * ad un carattere minuscolo dell'alfabeto.
+ *
+ * @pre Non vi sono specifiche pre-condizioni per la funzione
+ * @post Il valore restituito è un puntatore alla stringa contenente il nickname.
+ *
+ */
 
 char* genera_nickname(){
 	int dim_nickname = rand() % (MAX_LUNG_NICKNAME - MIN_LUNG_NICKNAME + 1) + MIN_LUNG_NICKNAME;
@@ -107,7 +127,19 @@ char* genera_nickname(){
 	return nickname;
 }
 
-
+/**
+ * Funzione input_password ():
+ *
+ * La funzione permette la richiesta diinserimento di una password.
+ *
+ * A tal scopo, dopo aver allocato uno spazio di dimensione adatta al contenimento della password, richiede l'inserimento
+ * di quest'ultima da tastiera. Esegue vari controlli sulla dimensione e sul singolo input per verificare che abbia
+ * i requisiti richiesti.
+ *
+ * @pre Non vi sono specifiche pre-condizioni per la funzione
+ * @post Il valore restituito è un puntatore alla stringa contenente la password.
+ *
+ */
 char* input_password(){
 	char* password = (char*) calloc(LUNG_PASSWORD, sizeof(char));
 	int esito_input;
@@ -137,6 +169,17 @@ char* input_password(){
 }
 
 
+/**
+ * Funzione genera_password ():
+ *
+ * La funzione permette la crezione randomica di una password.
+ *
+ * A tale scopo, viene generato un numero e cercato il corrispondente carattere sulla tabella ASCII.
+ *
+ * @pre Non vi sono specifiche pre-condizioni per la funzione
+ * @post Il valore restituito è un puntatore alla stringa contenente la password.
+ *
+ */
 char* genera_password(){
 	char* password = (char*) calloc(LUNG_PASSWORD, sizeof(char));
 	char tipo_char;
@@ -173,9 +216,19 @@ char* genera_password(){
 }
 
 
-/*Sommario: Funzione base per la creazione della password, con la possibilità di scelta tra la generazione casuale
-            e l'inserimento manuale da parte dell'utente esterno, il tutto attraverso la chiamata di fuzioni oppurtune.
-Parametri: puntatore di tipo utente, dove sono memorizzati gli offset dell'utente, quest'ultimo verrà passato alle funzioni chiamate.
+/**
+ * Funzione generatore_password ():
+ *
+ * La funzione permette la scelta tra generazione password automatica e l'inserimento manuale.
+ *
+ * A tal scopo, dopo aver allocato uno spazio di dimensione adatta al contenimento della password, richiede l'inserimento
+ * di (1) per generare automaticamente una password, (2) per l'inserimento manuale.
+ * Superati i controlli sull'input, uno switch effettua un controllo sulla risposta e chiama una funzione in base
+ * ad essa.
+ *
+ * @pre Non vi sono specifiche pre-condizioni per la funzione
+ * @post Il valore restituito è un puntatore alla stringa contenente la password.
+ *
  */
 void generatore_password(char* password_utente){
 	char* password_generata;
@@ -191,7 +244,7 @@ void generatore_password(char* password_utente){
 		if(pulisci_stdin() == 1){
 			esito_input = 0;
 		}
-
+		//controllo sull'input
 		if(modalita_generazione != GEN_AUTOMATICA && modalita_generazione != GEN_MANUALE){
 			esito_controllo = 0;
 		}else{
@@ -204,6 +257,7 @@ void generatore_password(char* password_utente){
 
 	}while(esito_input != 1 || esito_controllo != 1);
 
+	//scelta della funzione necessaria in base all'input
 	switch(modalita_generazione){
 	case GEN_AUTOMATICA:
 		password_generata = genera_password();
@@ -217,19 +271,32 @@ void generatore_password(char* password_utente){
 }
 
 
+/**
+ * Funzione input_preferenza ():
+ *
+ * La funzione permette l'input da tastiera da parte dell'utente delle sue preferenze alimentari (massimo 3 preferenze).
+ *
+ * A tal scopo, viene richiesto l'inserimento da tastiera, che se supera i controlli, viene memorizzato nella stringa
+ * passata in ingresso alla funzione.
+ *
+ * @pre Non vi sono specifiche pre-condizioni per la funzione
+ * @post Il valore restituito identifica l'esito della funzione.
+ */
 int input_preferenza(char* preferenza){
 	int esito_input;
 
 	do{
 		printf("Inserire il valore della preferenza (\"null\" per terminare l'inserimento) [max. 20 lettere minuscole]:\n~");
-		esito_input = scanf("%20[a-z]", preferenza);
+		esito_input = scanf("%20[^\n]", preferenza);
 		if(pulisci_stdin() == 1){
 			esito_input = 0;
 		}
 
 		if(esito_input != 1){
 			puts("Inserimento non valido. Ripeterlo.");
-		}else if(strcmp(preferenza, "null") == 0){
+
+		} //se l'utente non vuole più inserire preferenza, fine funzione
+		else if(strcmp(preferenza, "null") == 0){
 			return 0;
 		}
 	}while(esito_input != 1);
@@ -238,10 +305,19 @@ int input_preferenza(char* preferenza){
 }
 
 
-/*
-Sommario: Creazione di una variabile di tipo utente, che verrà riempita attraverso input da tastiera.
-          La funzione chiamerà a sua volta un'altra funzione, che eseguirà altre specifiche spiegate in seguito
-Parametri: i rappresenta n-esimo utente registrato, quindi l'ultimo indice assegnato.
+/**
+ * Funzione input_utente ():
+ *
+ * La funzione è una funzione di base che richiama tutte le funzioni necessarie per riempire una struct di tipo utente.
+ * Dopo aver creato una struct capace di contenere i dati richiesti.
+ * Una strcpy copierà la stringa restituita dalla funzione posta come secondo argomento della stessa.
+ * Una funzione permetterà la generazione di una password (scelta tra due modalità diverse).
+ * Un for ripeterà la chiamata alla funzione per l'inserimento delle preferenze (alimentari), se la funzione resituisce 0,
+ * automaticamente le preferenze rimanenti verranno rimpite attraverso un for con "null".
+ *
+ * @pre Non vi sono specifiche pre-condizioni per la funzione
+ * @post Il valore restituito è una struct di tipo utente rimpita con dati significativi.
+ *
  */
 utente input_utente(){
 	utente nuovo_utente;
@@ -267,6 +343,22 @@ utente input_utente(){
 }
 
 
+/**
+ * Funzione genera_utente ():
+ *
+ * La funzione ha il compito di generare randomicamente un utente.
+ *
+ * A tale scopo, viene creata una struct capace di contenere i dati relativi all'utente.
+ * Il nickname viene generato grazie una funzione genera_nickname() (anch'essa genera in modo randomico), grazie ad una
+ * funzione che copia il valore restituito nella struct creata. Stessa cosa vale per la password, generata tramite
+ * genera_password(). Un ciclo for permette il rimpimento delle aree di memoria riservate alle preferenze alimentari,
+ * grazie alla funzione alimento_causuale. Se non può essere estratto nessun nome per la preferenza viene assegnato "null".
+ * Le preferenze che seguono una contenete "null", verranno riempite con "null" anch'esse.
+ *
+ * @pre Non vi sono specifiche pre-condizioni per la funzione
+ * @post Il valore restituito è una struct di tipo utente rimpita con dati significativi.
+ *
+ */
 utente genera_utente(){
 	utente utente_generato; // Variabile che conterrà l'utente generato
 
@@ -331,6 +423,18 @@ utente genera_utente(){
 }
 
 
+/**
+ * Funzione genera_n_utenti ():
+ *
+ * La funzione ha il compito di generare randomicamente il numero degli utenti passato in ingresso alla funzione.
+ *
+ * A tale scopo, un for ripete la funzione genera_utente per n volte, riempend un vettore di struct che viene
+ * restuituito dalla funzione.
+ *
+ * @pre Non vi sono specifiche pre-condizioni per la funzione
+ * @post Il valore restituito è un puntatore al vettore di struct di tipo utente.
+ *
+ */
 utente* genera_n_utenti(int n){
 	utente* utenti_generati = (utente*) calloc(n, sizeof(utente));
 
@@ -342,6 +446,20 @@ utente* genera_n_utenti(int n){
 }
 
 
+/**
+ * Funzione salva_n_utenti ():
+ *
+ * La funzione ha il compito di scrivere su file il vettore di struct passatagli in ingresso, di dimensione n.
+ *
+ * A tale scopo, dopo aver superato gli opportuni controlli nell'apertura del database
+ * contenente gli utenti, while legge tutti gli utenti gia prensenti nel database e se trova uno con nickname con
+ * stringa vuota, lo sovrascrivere con una delle struct presenti nel vettore passato in ingresso.
+ * Se non ci sono utenti con nickname vuoto, si procede alla scrittura su file in coda.
+ *
+ * @pre Non vi sono specifiche pre-condizioni per la funzione
+ * @post Il valore restituito è l'esito della funzione
+ *
+ */
 int salva_n_utenti(utente* utenti, int n){
 	FILE* stream;
 	utente utente_letto;
@@ -357,19 +475,26 @@ int salva_n_utenti(utente* utenti, int n){
 		flag_posizionamento = 0;
 		fseek(stream, 0, SEEK_SET);
 
+		//lettura di ogni utente già presente nel database
 		while(feof(stream) == 0){
 			fread(&utente_letto, sizeof(utente), 1, stream);
 
+			//controllo che i valori letti siano effettivamente validi
 			if(strcmp(utente_letto.nickname, "") == 0){
+
+				//sovrascrittura se i valori non sono validi
 				fseek(stream, -sizeof(utente), SEEK_CUR);
 				fwrite(&utenti[i], sizeof(utente), 1, stream);
 
+				//flag per indicare che la struct è stata memorizzata su file
 				flag_posizionamento = 1;
 
 				break;
 			}
 		}
 
+
+		//se la struct non è stata memorizzata su file, viene scritta alla fine di esso
 		if(flag_posizionamento == 0){
 			fseek(stream, 0, SEEK_END);
 			fwrite(&utenti[i], sizeof(utente), 1, stream);
@@ -381,6 +506,21 @@ int salva_n_utenti(utente* utenti, int n){
 }
 
 
+/**
+ * Funzione crea_utenti ():
+ *
+ * La funzione ha il compito di permettere la creazione di un utente, tramite la scelta di due modalità: casuale o manuale.
+ *
+ * A tale scopo, viene creata una variabile destinata a contenere il numero degli utenti creabili su database
+ * (n_utenti_creabili). Se tale variabile è minore o uguale a zero, vuol dire che non è possibile creare ulteriori utenti.
+ * Se è possibile, viene richiesto l'inserimento di (1) per la generazione automatica, (2) per l'inserimento manuale.
+ * In base alla scelta, vengono chiamte funzioni apposite. In caso di generazione automatica, viene richiesto
+ * il numero degli utenti da generare.
+ *
+ * @pre Non vi sono specifiche pre-condizioni per la funzione
+ * @post Il valore restituito è l'esito della funzione
+ *
+ */
 int crea_utenti(){
 	int esito_input;
 	int esito_controllo;
@@ -389,8 +529,10 @@ int crea_utenti(){
 	unsigned short n_utenti = 0;
 	utente* utenti_creati;
 
+	// conteggio utenti creabili
 	n_utenti_creabili = MAX_UTENTI - conta_utenti();
 
+	//Messaggio di errore se sono gia stati creati il numero di utenti massimo
 	if(n_utenti_creabili <= 0){
 		puts("Non è possibile creare ulteriori utenti. Numero massimo di utenti raggiunto.");
 		return 0;
@@ -401,6 +543,7 @@ int crea_utenti(){
 
 		printf("Selezionare la modalità di creazione di utente/i:\n1 - Automatica\n2 - Manuale\n~");
 		esito_input = scanf("%d", &scelta);
+
 		if(pulisci_stdin() == 1){
 			esito_input = 0;
 		}
@@ -408,18 +551,19 @@ int crea_utenti(){
 		if(scelta != 1 && scelta != 2){
 			esito_controllo = 0;
 		}
-
+		//Se non si inseriscono i valori richiesti
 		if(esito_input != 1 || esito_controllo != 1){
 			puts("Inserimento non valido. Ripeterlo.");
 		}
 
 	}while(esito_input != 1 || esito_controllo != 1);
 
+	//controllo della scelta
 	switch(scelta){
 	case GEN_AUTOMATICA:
 		do{
 			esito_controllo = 1;
-
+			//Possibilità di creare più di un utente automaticamente
 			printf("Inserire il numero di utenti da generare [max. %hu]:\n~", n_utenti_creabili);
 			esito_input = scanf("%hu", &n_utenti);
 			if(pulisci_stdin() == 1){
@@ -436,6 +580,7 @@ int crea_utenti(){
 
 		}while(esito_input != 1 || esito_controllo != 1);
 
+		//Allocazione della memoria per contenere gli utenti richiesti da generare
 		utenti_creati = (utente*) calloc(n_utenti, sizeof(utente));
 
 		utenti_creati = genera_n_utenti(n_utenti);
@@ -444,14 +589,14 @@ int crea_utenti(){
 
 	case GEN_MANUALE:
 		n_utenti = 1;
-
+		//allocazione della memoria per 1 unico utente
 		utenti_creati = (utente*) calloc(n_utenti, sizeof(utente));
 
 		*utenti_creati = input_utente();
 
 		break;
 	}
-
+	//salvataggio degli utenti creati su file
 	if(salva_n_utenti(utenti_creati, n_utenti) == 0){
 		return -1;
 	}
@@ -459,7 +604,22 @@ int crea_utenti(){
 	return 1;
 }
 
-
+/**
+ * Funzione modifica_preferenze ():
+ *
+ * La funzione ha il compito di permettere la modifica delle preferenze di un utente.
+ *
+ * A tale scopo, viene passata la struct contenente i dati dell'utente, vengono controllate le preferenze
+ * effettivamente piene e se ci sono quindi preferenze vuote.
+ * Nel caso di presenza di preferenze vuote, viene richiesto all'utente se si desidere aggiungere o modficare
+ * una preferenza, in base alla scelte, di proseguirà alla modifica o della preferenza scelta o della prima prefereza
+ * risultante vuota.
+ * Se non vengono individuate preferenze vuote, si procede alla richiesta dell'inserimento del numero della preferenza
+ * che si desidera modificare.
+ *
+ * @pre La struct in ingresso non può essere vuota.
+ *
+ */
 void modifica_preferenze(utente* u){
 	int num_preferenze_utente;
 	int scelta;
@@ -467,8 +627,11 @@ void modifica_preferenze(utente* u){
 	int esito_controllo;
 
 	puts("");
+
+	//conteggio delle prefenze contenenti dati significativi
 	num_preferenze_utente = output_preferenze(*u);
 
+	//Se esistono preferenze con valore "null"
 	if(num_preferenze_utente > 0 && num_preferenze_utente < NUM_PREFERENZE){
 		do{
 			printf("Inserire [1] per modificare una preferenza esistente, [2] per aggiungerne una nuova:\n~");
@@ -520,6 +683,20 @@ void modifica_preferenze(utente* u){
 }
 
 
+/**
+ * Funzione gestore_modifiche ():
+ *
+ * La funzione ha il compito di gestire qualsiasi modifica l'utente voglia effettuare sui suoi dati
+ *
+ * A tale scopo, viene richiesto chiamata una funzione (autenticazione()) per la verifica dei diritti alla modifiche
+ * Controllato l'esito di tale funzione, se positovo, viene richiesto quale campo si desider modificare.
+ * In base alla scelta, vengono chiamate funzioni oppurtune.
+ * Fatte le modifiche, viene salvato su file.
+ *
+ * @pre
+ * @post Il valoredi ritorno rappresental'esito della funzione.
+ *
+ */
 int gestore_modifiche(){
 	FILE* stream = NULL;
 	utente utente_letto;
@@ -534,6 +711,7 @@ int gestore_modifiche(){
 		printf("Effettuare l'accesso ad un utente per modificarlo:\n");
 		esito_controllo = autenticazione(&utente_modificato);
 
+		//se l'autenticazione non va a buon fine
 		if(esito_controllo != 1){
 			puts("Annullamento modifica.");
 
@@ -541,13 +719,14 @@ int gestore_modifiche(){
 			return 0;
 		}
 
-		do{
+		do{ //Posizonamento puntatore alla struct corrispondente a quella da modificare
 			fread(&utente_letto, sizeof(utente), 1, stream);
 		}while(strcmp(utente_letto.nickname, utente_modificato.nickname) != 0);
 
 		do{
+			//stampa utente su schermo
 			output_utente(utente_modificato);
-
+			//riposizionamento del puntatore all'inzio della struct prelevata
 			fseek(stream, -sizeof(utente), SEEK_CUR);
 
 			do{
@@ -569,6 +748,7 @@ int gestore_modifiche(){
 				}
 			}while(esito_input != 1);
 
+			//Controllo della scelta e richiamo alle funzioni di modifca in base ad essa
 			switch(scelta){
 			case CAMPO_NICKNAME:
 				strcpy(utente_modificato.nickname, input_nuovo_nickname());
@@ -583,6 +763,8 @@ int gestore_modifiche(){
 				break;
 			}
 
+			//scrittura su file
+
 			fwrite(&utente_modificato, sizeof(utente), 1, stream);
 
 		}while(scelta != 0);
@@ -593,6 +775,17 @@ int gestore_modifiche(){
 }
 
 
+/**
+ * Funzione visualizza_database_utenti ():
+ *
+ * La funzione ha il compito di visualizzare su schermo tutti gli utenti memorizzati su file.
+ *
+ * A tale scopo, un if controlla se ci sono effettivamente utenti registrati grazie una funzione conta_utenti.
+ * Se esistono, vengono letti uno per volta e passati ad una funzione di stampa (output_utente()).
+ *
+ * @post Il valore di ritorno rappresental'esito della funzione.
+ *
+ */
 int visualizza_database_utenti(){
 	FILE* stream;
 	utente u;
@@ -601,12 +794,14 @@ int visualizza_database_utenti(){
 		return 0;
 	}else{
 		puts("DATABASE UTENTI:");
+
+		//conteggio utenti presenti su file
 		if(conta_utenti() > 0){
 			while(fread(&u, sizeof(utente), 1, stream)){
 				if(feof(stream) != 0){
 					break;
 				}
-
+				//se l'utente contine valori significativi, stampa su schermo
 				if(strcmp(u.nickname, "") != 0){
 					output_utente(u);
 				}
@@ -621,11 +816,20 @@ int visualizza_database_utenti(){
 }
 
 
+
 /**
+ * Funzione autenticazione ():
  *
- * @pre
+ * La funzione ha il compito di verificare se l'utente abbia i diritti di accesso
  *
- * @post
+ * A tale scopo, viene richiesto l'input del nickname, se questo esiste e corrisponde ad un utente, viene richiesta
+ * la password di tale utente. Se quella inserita corrisponde effettivamente alla password dell'utente, la funzione
+ * restituisce (1), altrimenti (0). Se la password è sbagliata, viene chiesto all'utente se desidera riprovare per un
+ * massimo di volte stabilito.
+ *
+ *@pre non sono presenti pre requisiti.
+ * @post Il valore di ritorno rappresental'esito della funzione.
+ *
  */
 int autenticazione(utente* u){
 	FILE* stream = NULL;				// Variabile puntatore a FILE_DATABASE_UTENTI
@@ -708,6 +912,20 @@ int autenticazione(utente* u){
 }
 
 
+/**
+ * Funzione output_preferenze ():
+ *
+ * La funzione ha il compito di stampare su schermo la preferenze appartenenti
+ * alla struct  di tipo utente passata in ingresso.
+ *
+ * A tale scopo, un for ripete un ciclo che stampa le preferenze se diverse da "null".
+ * Se non sono presenti preferenze conteneti valori diversi da "null", viene stampato un messaggio di
+ * assenza delle preferenze.
+ *
+ *@pre struct in ingresso non vuota
+ * @post Il valore di ritorno è il numero delle preferenze con valori significativi.
+ *
+ */
 int output_preferenze(const utente u){
 	int num_preferenze = 0;
 
@@ -729,12 +947,13 @@ int output_preferenze(const utente u){
 
 
 
-
-
-
-
 /**
+ * Funzione output_utente ():
  *
+ * La funzione ha il compito di stampare su schermo la struct passata in ingresso.
+ *
+ *
+ * @pre nla struct non deve essere vuota
  *
  */
 void output_utente(const utente u){
@@ -800,6 +1019,19 @@ int menu_database_utenti (int i){
 }
 
  */
+
+/**
+ * Funzione conta_utenti ():
+ *
+ * La funzione ha il compito di contare il numero degli utenti presenti su file.
+ *
+ * A tale scopo, viene aperto il file utenti, letto ciascuna delle struct presenti, se la struct contiene
+ * valori signficativi, un contatore viene incrementato.
+ *
+ *
+ * @post Il valore di ritorno rappresenta il numero degli utenti presenti su file.
+ *
+ */
 int conta_utenti(){
 	utente u;
 	int num_utenti = 0;
@@ -824,6 +1056,19 @@ int conta_utenti(){
 
 }
 
+
+/**
+ * Funzione elimina_utente ():
+ *
+ * La funzione ha il compito eliminare l'utente da file.
+ *
+ * A tale scopo, viene richiesto di effettuare l'accesso, se esso va a buon fine ed esistono quindi utenti su file,
+ * il nickname dell'utente viene sostituito da una stringa vuota.
+ * Si chiede conferma per la riscrittura su file, se positiva, la struct viene salvata con le modifiche.
+ *
+ * @post Il valore di ritorno rappresenta l'esito della funzione
+ *
+ */
 int elimina_utente(){
 	FILE* stream = NULL;
 	utente utente_eliminare;
@@ -832,26 +1077,34 @@ int elimina_utente(){
 	int esito_input;
 	int esito_controllo;
 
+	//se non ci sono utenti o il file non esiste, stampa messaggio di errore
+
 	if((stream = fopen(FILE_DATABASE_UTENTI,"rb+")) == NULL || conta_utenti() == 0){
 		puts("Non esistono utenti eliminabili.");
 		return -1;
 	}else{
 		puts("Effettuare l'accesso all'utente da eliminare:");
-		esito_controllo = autenticazione(&utente_eliminare);
 
+		//effettuo accesso
+		esito_controllo = autenticazione(&utente_eliminare);
+		//Se l'accesso non va a buon fine, termina funzione
 		if(esito_controllo == 0){
 			puts("Annullamento eliminazione utente.");
 
 			fclose(stream);
 			return 0;
 		}else{
+
+			//Viene letto da file l'utente corrispondente a quello con cui è stata effettuata l'autenticazione
 			do{
 				fread(&utente_letto, sizeof(utente), 1, stream);
 			}while(strcmp(utente_letto.nickname, utente_eliminare.nickname) != 0);
 
+			//riposizionamento del puntatore ad inizio struct letta
 			fseek(stream, -sizeof(utente), SEEK_CUR);
 
 			do{
+
 				printf("Inserire [1] per confermare l'eliminazione, [0] per annullarla:\n~");
 				esito_input = scanf("%d", &scelta);
 				if(pulisci_stdin() == 1){
@@ -869,6 +1122,7 @@ int elimina_utente(){
 				}
 			}while(esito_input != 1 || esito_controllo != 1);
 
+			//sostituzione nickname con stringa vuota
 			if(scelta == 1){
 				strcpy(utente_eliminare.nickname, "");
 				fwrite(&utente_eliminare, sizeof(utente), 1, stream);
