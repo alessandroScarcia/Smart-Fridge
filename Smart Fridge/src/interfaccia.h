@@ -5,29 +5,112 @@
  *      Author: david
  */
 
+
+
+#include "alimenti.h"
+#include "date.h"
+#include "ricette.h"
+#include "lista_spesa.h"
+#include "utenti.h"
+#include "menu_settimanale.h"
+#include "calorie.h"
+
+
+
 #define LUNG_SCELTA 2//lunghezza della stringa che accoglierá la scelta inserita dall'utente
 
 
-//COSTANTI PER LA VISUALIZZAZIONE DELLE VOCI DEL MENU
-#define MENU_PRINCIPALE 1
-#define MENU_ALIMENTI 2
-#define MENU_RICETTE 3
-#define SOTT_MENU_RICETTE 4
+///COSTANTI PER LA VISUALIZZAZIONE DELLE VOCI DEL MENU
+#define MENU_PRINCIPALE 0
+#define MENU_ALIMENTI 1
+#define MENU_RICETTE 2
+#define MENU_UTENTI 3
+#define OPZIONI_MENU_SETTIMANALE 4
+#define MENU_CALORIE 5
+#define MENU_LISTA_SPESA 6
+#define MENU_RICERCA 7
 
 
-//COSTANTI PER DETERMINARE IL RANGE DEI VALORI DI SCELTA NEL MENU
+
+#define SUPERIORE 1
+#define INFERIORE 0
+
+
+///COSTANTI PER DETERMINARE IL RANGE DEI VALORI DI SCELTA NEL MENU
 #define MIN_SCELTA_PRINCIPALE 0
 #define MAX_SCELTA_PRINCIPALE 99
 
 #define MIN_SCELTA_RICETTA 0
 #define MAX_SCELTA_RICETTA 6
 
+#define MIN_SCELTA_UTENTE 0
+#define MAX_SCELTA_UTENTE 4
 
 #define MIN_SCELTA_ALIMENTI 0
-#define MAX_SCELTA_ALIMENTI 5
+#define MAX_SCELTA_ALIMENTI 6
 
 #define MIN_SCELTA_RICERCA_RIC 0
 #define MAX_SCELTA_RICERCA_RIC 4
+
+#define MIN_SCELTA_SPESA 0
+#define MAX_SCELTA_SPESA 4
+
+#define MIN_SCELTA_MENU_SET 0
+#define MAX_SCELTA_MENU_SET  4
+
+#define MIN_SCELTA_MENU_CALORIE 0
+#define MAX_SCELTA_MENU_CALORIE  4
+
+
+void riga_contorno(int posizione);
+
+
+
+void parte_inferiore_tabella();
+
+
+
+void voci_principale();
+
+
+void voci_alimenti();
+
+
+void voci_ricette();
+
+
+
+void voci_utenti();
+
+
+
+void voci_ricerca();
+
+
+void voci_lista_spesa();
+
+
+void voci_menu_settimanale();
+
+
+
+void voci_calorie();
+
+
+int visualizza_voci_menu(int voce);
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /**funzione che si occupa di controllare se sono stati inseriti effettivamente valori numerici da parte dell'utente. Qualora sia stato inserito un valore non valido viene notificato un
@@ -56,11 +139,48 @@ int menu_principale();
  */
 int menu_ricette();
 
+
+
+
+/**menu che mostra le operazioni che si possono effettuare sulla sezione ricette
+ *
+ * @return
+ */
+int menu_lista_spesa();
+
+
+
+
+/**menu che mostra le operazioni che si possono effettuare sulla sezione ricette
+ *
+ * @return
+ */
+int menu_utenti();
+
+
+
+/**menu che mostra le operazioni che si possono effettuare sulla sezione ricette
+ *
+ * @return
+ */
+int menu_calorie();
+
+
+
+/**menu che mostra le operazioni che si possono effettuare sulla sezione ricette
+ *
+ * @return
+ */
+int gestore_menu_settimanale();
+
+
+
+
 /**menu che mostra le operazioni che si possono effettuare sulla sezione di ricerca delle ricette
  *
  * @return
  */
-int menu_ricette_ricerca();
+int menu_ricerca();
 
 /**funzione che si occupa di contare le notifiche
  *
@@ -86,3 +206,7 @@ int visualizza_voci_menu(int voce);
  * @return
  */
 int visualizza_crediti();
+
+
+
+int menu_calorie();

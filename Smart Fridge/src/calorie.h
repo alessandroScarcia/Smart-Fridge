@@ -40,6 +40,8 @@
 
 /// Inclusione della libreria per la gestione dei consumi
 
+#include "menu_settimanale.h"
+
 
 
 
@@ -51,8 +53,10 @@
 #define CALORIE_H_
 
 #define LUNG_FILE_CALORIE 50
+#define LUNG_NOME_ASSUNZIONE 50
+
 typedef struct{
-	char nome[LUNG_NOME_ALIMENTO];
+	char nome[LUNG_NOME_ASSUNZIONE];
 	float quantita;
 	unsigned short int kcal;
 	int flag;

@@ -276,4 +276,5 @@ int scrivi_giorno (giorno* giornata, char* nome_utente, int i);
 //void ricette_presenti (char vet_ricette[], char nome_utente[], short int giorno_x);
 
 
+int elimina_file_menu(char nome_file[LUNG_NOME_FILE_MENU]);
 #endif

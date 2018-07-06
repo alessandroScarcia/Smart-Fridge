@@ -72,32 +72,7 @@ int aggiorna_lista_spesa(char nome_alimento[LUNG_NOME_ALIMENTO],char nome_file[L
 
 }
 
-/**
- * Funzione che dopo aver allocato una stringa di una determinata lunghezza, si occupa di ricevere in input il nome della ricetta
- *
- * @pre		Nessuna pre condizione particolare
- * @post	Deve essere restituita una stringa con almeno un carattere
- */
-char* input_nome_alimento() {
-	int esito_input;			// Variabile per memorizzare l'esito dell'input
-	// Stringa da restituire contenente il nome dell'alimento
-	char* nome_alimento = (char*) calloc(LUNG_NOME_ALIMENTO, sizeof(char));
 
-	do {
-		printf("Inserisci il nome dell'alimento:\n>");
-		scanf("%20[^\n]", nome_alimento);
-		if (pulisci_stdin() == 1) {
-			esito_input = 0;
-		}
-
-		if (esito_input == 0) {
-			puts("Inserimento non valido. Ripeterlo.");
-		}
-	} while (esito_input == 0);
-
-	return nome_alimento;
-
-}
 
 
 
@@ -155,7 +130,7 @@ int visualizza_lista_spesa(char nome_file[LUNG_NOME_FILE_RICETTE]) {
  * @pre		Il nome del file deve essere significativo(il file deve esistere)
  * @post	In caso il file esista esso deve essere eliminato correttamente
  */
-int elimina_file_spesa(char nome_file[LUNG_NOME_FILE_RICETTE]) {
+int elimina_file_spesa(char nome_file[LUNG_NOME_FILE_SPESA]) {
 	FILE *fp;
 
 	if ((fp = fopen(nome_file, "r")) == NULL) {

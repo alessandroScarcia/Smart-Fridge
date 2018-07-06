@@ -16,6 +16,41 @@ char* crea_nome_file_menu(const char* nickname){
 	}
 }
 
+
+
+
+
+/**
+ * Funzione che si occupa di eliminare il nome del file specificato e di restituire in caso di successo il valore -1
+ *
+ * @pre		Il nome del file deve essere significativo(il file deve esistere)
+ * @post	In caso il file esista esso deve essere eliminato correttamente
+ */
+int elimina_file_menu(char nome_file[LUNG_NOME_FILE_MENU]) {
+	FILE *fp;
+
+	if ((fp = fopen(nome_file, "r")) == NULL) {
+		return -1;
+	}
+	fclose(fp);
+
+	int ret = remove(nome_file);//rimuove il file dal nome specificato
+
+	if (ret == 0) {
+
+		return 1;
+
+	} else {
+
+		return -1;
+
+	}
+
+	return 0;
+}
+
+
+
 /**
  * Procedura inizializzazione ():
  *

@@ -203,6 +203,12 @@ int conta_alimenti_scaduti();
 
 
 
+/**Funzione che dopo aver allocato una stringa di una determinata lunghezza, si occupa di ricevere in input il nome della ricetta
+ *
+ * @return nome_alimento
+ */
+char* input_nome_alimento();
+
 
 
 /**

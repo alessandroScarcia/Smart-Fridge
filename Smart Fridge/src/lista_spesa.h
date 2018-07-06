@@ -21,7 +21,7 @@
 //NOTA: il file della lista della spesa personale sará sempre nel seguente formato :   ../spesa_nickname.txt
 #define PRIMA_PARTE_NOMEFILE "../spesa_"		   //prima parte nel nome file della lista personale
 #define FORM_FILE_SPESA ".txt"					   //formato del file della lista personale
-
+#define LUNG_NOME_FILE_SPESA 30
 
 /**Funzione che provvede a scrivere su file(il nome é specificato dal parametro in ingresso) il nome dell'alimento che passiamo alla funzione.
  *
@@ -29,14 +29,10 @@
  * @param nome_file
  * @return 0
  */
-int aggiorna_lista_spesa(char nome_alimento[LUNG_NOME_ALIMENTO], char nome_file[LUNG_NOME_FILE_RICETTE]);
+int aggiorna_lista_spesa(char nome_alimento[LUNG_NOME_ALIMENTO], char nome_file[LUNG_NOME_FILE_SPESA]);
 
 
-/**Funzione che dopo aver allocato una stringa di una determinata lunghezza, si occupa di ricevere in input il nome della ricetta
- *
- * @return nome_alimento
- */
-char* input_nome_alimento();
+
 
 
 /**Funzione che si occupa di eliminare il nome del file specificato e di restituire in caso di successo il valore -1
@@ -82,6 +78,6 @@ int generatore_spesa_personale();
  * @param nome_file
  * @return 1
  */
-int visualizza_lista_spesa(char nome_file[LUNG_NOME_FILE_RICETTE]);
+int visualizza_lista_spesa(char nome_file[LUNG_NOME_FILE_SPESA]);
 
 #endif
