@@ -8,7 +8,7 @@
 #include "lista_spesa.h"
 
 /**
- * Funzione che provvede a scrivere su file(il nome é specificato dal parametro in ingresso) il nome dell'alimento che passiamo alla funzione.
+ * Funzione che provvede a scrivere su file(il nome e' specificato dal parametro in ingresso) il nome dell'alimento che passiamo alla funzione.
  *
  * Dopo aver eseguito i vari controlli sulla modalitá di apertura del file della spesa(esso puó riferirsi a quello personale o a quello globale),
  * viene scritto su di esso il nome dell'alimento. Qualora l'inserimento non vada a termine viene notificato un messaggio di errore e si chiede
@@ -17,7 +17,7 @@
  * @pre		Che il nome del file sia significativo e che la stringa che rappresenta il nome dell'alimento non sia vuota
  * @post	Deve essere scritto su file l'alimento passato
  */
-int aggiorna_lista_spesa(char nome_alimento[LUNG_NOME_ALIMENTO],char nome_file[LUNG_NOME_FILE_RICETTE]) {
+int aggiorna_lista_spesa(char nome_alimento[LUNG_NOME_ALIMENTO],char nome_file[LUNG_NOME_FILE_SPESA]) {
 	FILE *fp;
 	int esito_scrittura;
 	int flag_presenza = 0;
@@ -36,6 +36,7 @@ int aggiorna_lista_spesa(char nome_alimento[LUNG_NOME_ALIMENTO],char nome_file[L
 		//vengono estratti gli alimenti giá presenti nel file e per evitare caricamento di alimenti omonimi. Inoltre viene troncato lo \n
 		//per far si che strcmp lavori senza intoppi.
 		while (fgets(alimento_letto, LUNG_NOME_ALIMENTO, fp) != NULL) {
+
 			if(alimento_letto[strlen(alimento_letto) - 1] != '\n'){
 				pulisci_riga_flusso(fp);
 			}
@@ -57,7 +58,7 @@ int aggiorna_lista_spesa(char nome_alimento[LUNG_NOME_ALIMENTO],char nome_file[L
 
 	if (esito_scrittura < 0) {
 
-		printf("Errore nella scrittura di %s. Si prega di inserire manualmente l'alimento",nome_alimento);
+		printf("Errore nella scrittura di %s. Si prega di inserire manualmente l'alimento\n",nome_alimento);
 
 		do {
 
@@ -92,7 +93,7 @@ int visualizza_lista_spesa(char nome_file[LUNG_NOME_FILE_RICETTE]) {
 	char nome_alimento[LUNG_NOME_ALIMENTO + 1];
 	int num_alimenti = 0;
 
-	printf("Lista della spesa: %s", nome_file);
+	printf("Lista della spesa: %s\n", nome_file);
 
 	if ((stream = fopen(nome_file, "r")) == NULL) {
 
@@ -103,6 +104,7 @@ int visualizza_lista_spesa(char nome_file[LUNG_NOME_FILE_RICETTE]) {
 	} else {
 
 		while (fgets(nome_alimento, LUNG_NOME_ALIMENTO, stream) != NULL) {
+
 			if(nome_alimento[strlen(nome_alimento) - 1] != '\n'){
 				pulisci_riga_flusso(stream);
 			}
@@ -159,7 +161,7 @@ int elimina_file_spesa(char nome_file[LUNG_NOME_FILE_SPESA]) {
 /**
  * Funzione che si occupa di leggere dal database gli alimenti che possono essere inseriti nella lista della spesa. Per far ció viene
  * effettuata la lettura del database alimenti e viene fatto un controllo sulla soglia tramite la funzione controllo soglia. Se la condizione
- * é vera(vedi funione controllo_soglia per avere un'idea sui valori restituiti) allora l'alimento viene passato alla funzione aggiorna_lista_spesa
+ * e' vera(vedi funione controllo_soglia per avere un'idea sui valori restituiti) allora l'alimento viene passato alla funzione aggiorna_lista_spesa
  * Al termine viene restituito 1
  *
  * @pre		nessuna particolare pre condizione
@@ -173,6 +175,7 @@ int generatore_spesa_globale() {
 	if(num_alimenti_database == 0){
 		return 0;
 	}
+	elimina_file_spesa(LISTA_SPESA_GLOBALE);
 
 	alimento_database alimenti_database[num_alimenti_database];
 
@@ -182,9 +185,9 @@ int generatore_spesa_globale() {
 	} else {
 
 		for(int i = 0; i < num_alimenti_database; i++) {
-			//se la soglia é maggiore di 0 e se la quantitá disponibile é minore di tale soglia allora occorre memorizzare l'alimento
-			if (controllo_soglia(alimenti_database[i].soglia_spesa, alimento.nome))
-				aggiorna_lista_spesa(alimento.nome, LISTA_SPESA_GLOBALE);
+			//se la soglia e' maggiore di 0 e se la quantitá disponibile e' minore di tale soglia allora occorre memorizzare l'alimento
+			if (controllo_soglia(alimenti_database[i].soglia_spesa, alimenti_database[i].nome))
+				aggiorna_lista_spesa(alimenti_database[i].nome, LISTA_SPESA_GLOBALE);
 
 		}
 
@@ -200,13 +203,13 @@ int generatore_spesa_globale() {
 /**
  * Funzione che si occupa di creare il file che conterrá gli alimenti che un utente specifico deve comprare.
  *
- * Per far ció la prima operazione da compiere é l'autenticazione dell'utente. Qualora essa vada a buon fine viene sfruttato il nickname
- * dell'utente per creare un file della spesa personalizzato. La seconda operazione necessaria é quella di estrarre dal menu settimanale
+ * Per far ció la prima operazione da compiere e' l'autenticazione dell'utente. Qualora essa vada a buon fine viene sfruttato il nickname
+ * dell'utente per creare un file della spesa personalizzato. La seconda operazione necessaria e' quella di estrarre dal menu settimanale
  * gli alimenti e le ricette che l'utente consuma giornalmente. Per ogni pasto viene fatto un confronto sulla tipologia dell'alimento.
  * Se siamo in presenza di una ricetta viene popolato un array di struct(di tipo ingrediente) che avrá tutti gli ingredienti che compongono la
- * ricetta. Se il numero di ingredienti di una data ricetta é -1 vuol dire che la ricetta non é presente nel database e viene notificato un messaggio
+ * ricetta. Se il numero di ingredienti di una data ricetta e' -1 vuol dire che la ricetta non e' presente nel database e viene notificato un messaggio
  * all'utente. Se viene restituito un valore diverso vuol dire che gli ingredienti sono candidati ad essere memorizzati nella lista della spesa,
- * ma occorre effettuare un controllo con la soglia e la quantitá disponibile. Sela quantitá disponibile é inferiore alla soglia l'ingrediente viene
+ * ma occorre effettuare un controllo con la soglia e la quantitá disponibile. Sela quantitá disponibile e' inferiore alla soglia l'ingrediente viene
  * memorizzato. Stessa ragionamento per gli alimenti singoli presenti nel menú settimanale.
  *
  * @pre		Nessuna pre condizione
@@ -219,7 +222,7 @@ int generatore_spesa_personale() {
 
 	//autenticazione(con controllo su esito) dell'utente
 	if (autenticazione(&u) == -1){
-		printf("Operazione di utenticazione fallita");
+		printf("Operazione di utenticazione fallita\n");
 		return -1;
 	}
 
@@ -238,7 +241,7 @@ int generatore_spesa_personale() {
 
 			for (int i_alimento = 0; i_alimento < NUM_CIBI; i_alimento++) {
 
-				if (menu.pasti[i_pasto].cibi[i_alimento].flag == FLAG_RICETTA) {//se l'alimento che si sta analizzando é una ricetta
+				if (menu.pasti[i_pasto].cibi[i_alimento].flag == FLAG_RICETTA) {//se l'alimento che si sta analizzando e' una ricetta
 					//vengono estratti gli ingredienti
 					int num_ingredienti;
 					ingrediente ingredienti[MAX_INGREDIENTI];
@@ -266,7 +269,7 @@ int generatore_spesa_personale() {
 					}
 
 				} else if(menu.pasti[i_pasto].cibi[i_alimento].flag == FLAG_ALIMENTO){
-					//altrimenti se ció che si sta analizzando é un alimento si effettua un controllo diretto sulla soglia e sulla quantitá
+					//altrimenti se ció che si sta analizzando e' un alimento si effettua un controllo diretto sulla soglia e sulla quantitá
 					//disponibile
 
 					soglia_spesa = soglia_alimento(menu.pasti[i_pasto].cibi[i_alimento].nome_cibo);
@@ -303,7 +306,6 @@ int generatore_spesa_personale() {
  * @post	Che venga effettuato correttamente il confronto tra quantitá e soglia dell'alimento
  */
 int controllo_soglia(float soglia_spesa, char nome_alimento[LUNG_NOME_ALIMENTO]) {
-
 	int lung_nome_alimento = strlen(nome_alimento);
 	if(lung_nome_alimento < 1 || lung_nome_alimento > LUNG_NOME_ALIMENTO){
 		return -1;

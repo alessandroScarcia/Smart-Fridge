@@ -6,6 +6,7 @@
  */
 #include "ricette.h"
 
+
 /*
  * Modifica la prima funzione in base alle modifiche che hai apportato a riduci quantitá alimenti
  * PREPARA RICETTE: controlli su apertura file del frigo, inserimento di un valido id e possibilitá di effetuare una differenza tra le quantitá disponibili nel frigo e quelle espresse
@@ -22,10 +23,10 @@
  * FUNZIONE ordina_ric_kcal: controllo su stile e...non penso ci siano controlli di rilevanza
  * FUNZIONE  registra_consumi: controllo su parametri passati e controllo su file(scrittura,lettura)
  * FUNZIONE ricerca_prod_magg_cons: controlli su file e controllo corretta restituzione di un valore
- *  FUNZIONE ricette_alimenti_in_scadenza: controllo su parametri passati alle altre funzioni e nessun tipo di controllo. Questa funzione é una sorta di ponte che ho evitato di mettere tutto nella switch del menu di ricerca
+ *  FUNZIONE ricette_alimenti_in_scadenza: controllo su parametri passati alle altre funzioni e nessun tipo di controllo. Questa funzione e' una sorta di ponte che ho evitato di mettere tutto nella switch del menu di ricerca
  * FUNZIONE inserimento_manuale_ingredienti: controllo  su valori inseriti dall'utente
- * FUNZIONE suggerimento_ricetta_manuale: controllo su file e su corretto inserimento id(la struttura della funzione non ti piacerá, e ci terrei che la modificassi in quanto funziona ma non é carina)
- * FUNZIONE suggerimento_ricetta_automatico: controllo su file e su corretto inserimento id(la struttura della funzione non ti piacerá, e ci terrei che la modificassi in quanto funziona ma non é carina). Ë uguale alla precedente solo che
+ * FUNZIONE suggerimento_ricetta_manuale: controllo su file e su corretto inserimento id(la struttura della funzione non ti piacerá, e ci terrei che la modificassi in quanto funziona ma non e' carina)
+ * FUNZIONE suggerimento_ricetta_automatico: controllo su file e su corretto inserimento id(la struttura della funzione non ti piacerá, e ci terrei che la modificassi in quanto funziona ma non e' carina). Ë uguale alla precedente solo che
  * cambia leggermente dal punto di vista strutturale.
  *FUNZIONE conta_kcal_ricetta: controllo su effettiva presenza dei dati degli ingredienti all'interno del file del database degli alimenti
  *
@@ -71,7 +72,7 @@ int esiste_ricetta(char* nome_ricetta){
  */
 int estrazione_ingredienti(char nome_ricetta[LUNG_NOME_RICETTA], ingrediente* ingredienti) {
 	FILE* stream_database;
-	int flag_presente = 0;//flag che ci permette di segnalare se una ricetta é presente oppure no
+	int flag_presente = 0;//flag che ci permette di segnalare se una ricetta e' presente oppure no
 	int indice_ingrediente = 0; //indice che ci aiuta a popolare l''array di struct
 
 	if ((stream_database = fopen(FILE_DATABASE_RICETTE, "rb+")) == NULL)
@@ -90,8 +91,8 @@ int estrazione_ingredienti(char nome_ricetta[LUNG_NOME_RICETTA], ingrediente* in
 
 			do {
 
-				//il controllo sul nome ci aiuta a capire quando stiamo controllando l'ingrediente successivo all'ultimo che é una stringa vuota
-				if (strcmp(analisi_ricetta.ingredienti[indice_ingrediente].nome , "") != 0) { //se l'ingrediente é significativo allora...
+				//il controllo sul nome ci aiuta a capire quando stiamo controllando l'ingrediente successivo all'ultimo che e' una stringa vuota
+				if (strcmp(analisi_ricetta.ingredienti[indice_ingrediente].nome , "") != 0) { //se l'ingrediente e' significativo allora...
 					strcpy(ingredienti[indice_ingrediente].nome , analisi_ricetta.ingredienti[indice_ingrediente].nome);
 					indice_ingrediente++;
 				} else { //...altrimenti esci dal ciclo
@@ -223,8 +224,8 @@ void gestore_prepara_ricetta(){
 
 	do {
 		printf("Inserire:\n"
-				"[1] per autenticarsi e inserire le calorie nella propria giornata"
-				"[0] per preparare la ricetta in anonimo");
+				"[1] per autenticarsi e inserire le calorie nella propria giornata\n"
+				"[0] per preparare la ricetta in anonimo\n>");
 		esito_input = scanf("%d", &scelta);
 		if(pulisci_stdin() == 1){
 			esito_input = 0;
@@ -249,18 +250,50 @@ void gestore_prepara_ricetta(){
 	}
 
 	do {
-		suggerimento_ricetta_automatico();
+		esito_preparazione=suggerimento_ricetta_automatico();
+
+		if(esito_preparazione==-1){
+			break;
+		}
 
 		strcpy(nome_ricetta, input_nome_ricetta());
 
 		dosi_ricetta = input_dosi_ricetta();
 
-		if(prepara_ricetta(nome_ricetta, dosi_ricetta) == 0){
+		esito_preparazione=prepara_ricetta(nome_ricetta, dosi_ricetta);
+		if(esito_preparazione == 0){
 			esito_preparazione = 0;
 			puts("Non è possibile preparare la ricetta scelta.");
+
+			do {
+				printf("Inserire:\n"
+						"[1] per preparare un altra ricetta"
+						"[0] per uscire");
+				esito_input = scanf("%d", &scelta);
+				if(pulisci_stdin() == 1){
+					esito_input = 0;
+				}
+
+				if(scelta != 0 && scelta != 1){
+					esito_controllo = 0;
+				}else{
+					esito_controllo = 1;
+				}
+
+				if(esito_input == 0 || esito_controllo == 0){
+					puts("Inserimento non valido. Ripeterlo.");
+				}
+			} while (esito_input == 0 || esito_controllo == 0);
+
+			if(scelta==0){
+				break;
+			}
+
 		}else{
 			if(esito_autenticazione == 1){
 				// calorie alla giornata dell'utente
+				aggiorno_database_calorie(nome_ricetta, FLAG_RICETTA, dosi_ricetta, utente_autenticato.nickname);
+
 			}
 		}
 	} while (esito_preparazione == 0);
@@ -274,18 +307,18 @@ void gestore_prepara_ricetta(){
 
 /**
  *La funzione seguente riceve il puntatore alla linea da cui voglio estrarre un valore e il numero del campo che voglio analizzare e
- *un flag che indica che tipologia di campo. Il principale compito della funzione é quello di effettuare una "tokenizzazione" della stringa
+ *un flag che indica che tipologia di campo. Il principale compito della funzione e' quello di effettuare una "tokenizzazione" della stringa
  *che gli passiamo. Nel caso di una stringa avente i campi formati da valori singoli nella forma VALORE-DELIMITATORE-VALORE la prima parte
  *fino a alla dichiarazione di tok viene ignorata. In questo preciso caso il token(ossia il puntatore tok) permette l'estrazione del valore
- *successivo al delimitatore su cui é posizionato. In questo senso tok scandisce i vari delimitatori per trovare il numero del campo nel
- *quale é presente il valore da estrarre. In caso il numero del campo e quindi il valore da estrarre sia valido e soprattutto esista viene
+ *successivo al delimitatore su cui e' posizionato. In questo senso tok scandisce i vari delimitatori per trovare il numero del campo nel
+ *quale e' presente il valore da estrarre. In caso il numero del campo e quindi il valore da estrarre sia valido e soprattutto esista viene
  *restituito sottoforma di puntatore di stringa. In caso contrario esso viene restituito come NULL
  *
  *
- *Ma adesso soffermiamoci nel caso in cui un campo sia a sua volta formato da campi e di cui non si sappia il numero come é il caso della preparazione
- *perché noi non conosciamo il numero di fasi inserite. Lo stratagemma é quello di passare come num di campo l'indice della fase
- *(ATTENZIONE: qui non si ragiona con indici di array ma per indice si intende il numero del campo che parte da 1). A questo punto lo stratagemma é
- *quello di contare i caratteri delimitatori(nel nostro caso i - per le fasi), in quanto sappiamo che se la stringa é nella forma VALORE-DELIMITATORE-VALORE...
+ *Ma adesso soffermiamoci nel caso in cui un campo sia a sua volta formato da campi e di cui non si sappia il numero come e' il caso della preparazione
+ *perche' noi non conosciamo il numero di fasi inserite. Lo stratagemma e' quello di passare come num di campo l'indice della fase
+ *(ATTENZIONE: qui non si ragiona con indici di array ma per indice si intende il numero del campo che parte da 1). A questo punto lo stratagemma e'
+ *quello di contare i caratteri delimitatori(nel nostro caso i - per le fasi), in quanto sappiamo che se la stringa e' nella forma VALORE-DELIMITATORE-VALORE...
  *allora necessariamente il numero di campi sará uguale al numero di delimitatori+1. La prima parte pertanto fa un check da indice del campo e
  *caratteri delimitatori. Qualora il campo passato sia maggiore del numero di - allora abbiamo finito con l'estrazione e viene restituito NULL.
  *
@@ -478,7 +511,7 @@ char* input_preparazione_ricetta(){
 
 /**
  * Funzione che dopo aver allocato una stringa di una determinata lunghezza, si occupa di ricevere in input l'ingrediente x della ricetta. Ovviamente in questo caso sono ammessi
- * gli spazi in quanto sappiamo che il formato dell'ingrediente é :  quantitá  unitá_di_misura nome_ingrediente
+ * gli spazi in quanto sappiamo che il formato dell'ingrediente e' :  quantitá  unitá_di_misura nome_ingrediente
  * @pre		Nessuna pre condizione particolare
  * @post	Deve essere restituita una stringa con almeno un carattere
  */
@@ -599,7 +632,7 @@ int modifica_ricetta(){
 
 		id_ricetta = input_id_ricetta(num_ricette_database);
 
-		while(fread(&ricetta_scelta, sizeof(ricetta_scelta), 1, stream) > 0){//leggi fino a quando é presente una riga
+		while(fread(&ricetta_scelta, sizeof(ricetta_scelta), 1, stream) > 0){//leggi fino a quando e' presente una riga
 
 			if(strcmp(ricetta_scelta.nome_ricetta, "") != 0){
 				num_ricette_lette++;
@@ -724,13 +757,13 @@ int modifica_ricetta(){
 
 /**
  *La funzione elimina_ricetta apre il database delle ricette, ne mostra il contenuto, e chiede quale delle ricette mostrate occorre cancellare.
- *L'individuazione della ricetta avviene tramite l'inserimento dell'ID. In questa maniera si risale alla riga dove é memorizzata la ricetta
+ *L'individuazione della ricetta avviene tramite l'inserimento dell'ID. In questa maniera si risale alla riga dove e' memorizzata la ricetta
  *inizializzandone il contenuto e salvando poi le modifiche. Al termine la funzione restituisce 1.
  * @pre		Nessuna pre condizione particolare
  * @post	Deve essere stato effettuata e salvata l'eliminazione su file
  */
 int elimina_ricetta(){
-	int id_ricetta;//l'id ci servirá per capire quale ricetta é stata selezionata dall'utente e quindi a scorrere le varie ricette
+	int id_ricetta;//l'id ci servirá per capire quale ricetta e' stata selezionata dall'utente e quindi a scorrere le varie ricette
 	int num_ricette_lette = 0;//indice che ci aiuta a capire a quale riga siamo arrivati e quindi quale ricetta stiamo analizzando
 	int num_ricette_database;
 	FILE* stream = NULL;
@@ -752,13 +785,13 @@ int elimina_ricetta(){
 	}else{
 		id_ricetta = input_id_ricetta(num_ricette_database);
 
-		while(fread(&ricetta_scelta, sizeof(ricetta), 1, stream) > 0){//leggi fino a quando é presente una riga
+		while(fread(&ricetta_scelta, sizeof(ricetta), 1, stream) > 0){//leggi fino a quando e' presente una riga
 
-			if(strcmp(ricetta_scelta.nome_ricetta, "")!=0){//se la linea non é vuota e ha il nome di una ricetta
+			if(strcmp(ricetta_scelta.nome_ricetta, "")!=0){//se la linea non e' vuota e ha il nome di una ricetta
 				num_ricette_lette++;//incrementa il numero di linee effettivamente piene del file database ricette
 			}
 
-			if(id_ricetta == num_ricette_lette){//se l'id della ricetta che si é preso come riferimento é uguale alla linea su cui ci troviamo abbiamo trovato la ricetta  a cui apportare le modifiche
+			if(id_ricetta == num_ricette_lette){//se l'id della ricetta che si e' preso come riferimento e' uguale alla linea su cui ci troviamo abbiamo trovato la ricetta  a cui apportare le modifiche
 
 				strcpy(ricetta_scelta.nome_ricetta, "");
 
@@ -838,7 +871,7 @@ int visualizza_ricetta(ricetta dati_ricette, int vista_ricetta){
  * Visualizza_database_ricette mostra il contenuto del database delle ricette in base alla modalitá con cui scegliamo di mostrare i dati. Il parametro
  * in ingresso nome_ricetta, infatti, qualora fosse una stringa vuota mostrerá l'intero contenuto del database. Nel caso in cui venga passato un nome
  * di una ricetta verranno in quel caso estratte dal database le informazioni riguardo quella ricetta qualora sia presete nel database.
- * Inoltre il parametro in ingresso id_ricetta permette di mostrare a schermo un id che magari é calcolato esternamente alla funzione(si faccia
+ * Inoltre il parametro in ingresso id_ricetta permette di mostrare a schermo un id che magari e' calcolato esternamente alla funzione(si faccia
  * riferimento alla funzione suggerimento_ricetta_automatico o suggerimento_ricetta_manuale per capire in quale contesto la si utilizza). Qualora
  * invece non sia nessun interesse o nel caso in cui debba essere mostrato l'intero database verrá passato come id personalizzato 0.
  * @pre		Deve essere passata una stringa o vuota o piena, l'id deve essere un numero >=1 e la vista deve essere un valore pari a 0 o 1
@@ -960,7 +993,7 @@ int conta_ricette_database(){
 
 /**
  * Funzione che ha in ingresso un array di puntatori di tipo stringa che rappresentano i nomi delle ricette preparabili e il numero di ricette
- * presenti nel database. Questo perché nella migliore delle ipotesi tutte le ricette del database possono essere preparabili. La funzione inizializza
+ * presenti nel database. Questo perche' nella migliore delle ipotesi tutte le ricette del database possono essere preparabili. La funzione inizializza
  * tutto l'array di puntatori a NULL
  * @pre		Il numero di ricette deve essere un valore maggiore di 0
  * @post	Deve essere stata effettuata correttamente l'inizializzazione
@@ -982,7 +1015,7 @@ int inizializza_ricette_preparabili(int num_ricette, char* ricette_preparabili[n
 /**
  * La funzione seguente si occupa,avendo in ingresso il num di ricette complessive e l'array di struct che costituisce la lista di tutte le ricette,
  * di ordinare le ricette in base alle kcal prodotte, tramite l'algoritmo di ordinamento shell sort. A differenza del classico shell sort che
- * sfrutta un array formato dai vari gap ossia dalle varie distanze con cui confrontare e scambiare gli elementi, qui si é preferito sfruttare
+ * sfrutta un array formato dai vari gap ossia dalle varie distanze con cui confrontare e scambiare gli elementi, qui si e' preferito sfruttare
  * inizialmente il num di ricette diviso 2 come gap di partenza e successivamente dividere il gap fino a quando non risultasse minore di 0.
  * Ovviamente lo scambio viene fatto in base al campo delle kcal. Al termine viene stampato l'ordinamento effettuato
  * @pre		l'array di struct con le ricette deve possedere almeno 1 ricetta e il numero di ricette deve essere un valore significativo(>0)
@@ -1047,22 +1080,24 @@ int ricette_alimenti_in_scadenza(alimento_frigo* alimenti_frigo, int num_aliment
  * @post	Deve essere stato inserito almeno un alimento
  */
 int inserimento_manuale_ingredienti(char nome_ingredienti[MAX_ALIM_SUGG][LUNG_NOME_ALIMENTO]){
-	int esito_input;
 	int num_alimenti_inseriti = 0;
-
+	int esito_input = 0;
 	printf("Cercare una ricetta in base agli ingredienti e' semplice. \n"
 			"1.Inserisci il nome dell'ingrediente con cui vuoi realizzare una tua ricetta\n"
-			"2.Decidi se continuare con l'inserimento o meno (premi ctrl+z per terminare)\n"
+			"2.Decidi se continuare o meno con l'inserimento  (premi ctrl+z per terminare)\n"
 			"Ti ricordiamo che potrai inserire fino ad un massimo di %d ingredienti\n\n",MAX_ALIM_SUGG );
 
-
+	printf("Inserisci nome ingrediente su cui effettuare la ricerca\n");
 	do{
-		printf("Inserisci nome ingrediente da cercare:\n>");
-		esito_input = scanf("%[^\n]", nome_ingredienti[num_alimenti_inseriti]);
-		if(pulisci_stdin() == 1){
-			esito_input = 0;
+
+		printf("%d.", num_alimenti_inseriti+1);
+
+		if(gets(nome_ingredienti[num_alimenti_inseriti])==NULL){
+			break;
 		}else if(strlen(nome_ingredienti[num_alimenti_inseriti]) > LUNG_NOME_ALIMENTO){
 			esito_input = 0;
+		}else{
+			esito_input = 1;
 		}
 
 		if(esito_input == 0){
@@ -1071,7 +1106,10 @@ int inserimento_manuale_ingredienti(char nome_ingredienti[MAX_ALIM_SUGG][LUNG_NO
 			num_alimenti_inseriti++;
 		}
 
-	}while(esito_input == 0 || num_alimenti_inseriti < MAX_ALIM_SUGG);
+
+		printf("Inserisci prossimo ingrediente (o termina con ctrl+z)\n");
+	}while(esito_input != 1 || num_alimenti_inseriti < MAX_ALIM_SUGG);
+
 
 	return num_alimenti_inseriti;
 }
@@ -1080,7 +1118,7 @@ int inserimento_manuale_ingredienti(char nome_ingredienti[MAX_ALIM_SUGG][LUNG_NO
 
 /**
  *La funzione suggerimento_ricetta_manuale avendo in ingresso il numero(num_alimenti_sugg) e i nomi degli ingredienti(nome_ingredienti)
- *su cui effettuare la ricerca fornisce il nome delle ricette che si possono preparare con tali ingredienti. La funzione é composta da un ciclo
+ *su cui effettuare la ricerca fornisce il nome delle ricette che si possono preparare con tali ingredienti. La funzione e' composta da un ciclo
  *su piú esterno che scandisce le vare ricette presenti ne database, e 2 cicli piú interni che si occupano di scandire di volta gli ingredienti
  *passati come parametro alla funzione con quelli che possiede ogni ricetta. Nel caso in cui una ricetta abbia gli ingredienti che abbiamo
  *passato essa va memorizzata come ricetta preparabile. Al termine del controllo sulle ricette vengono stampate a schermo quelle preparabili
@@ -1091,7 +1129,7 @@ int inserimento_manuale_ingredienti(char nome_ingredienti[MAX_ALIM_SUGG][LUNG_NO
  */
 int suggerimento_ricetta_manuale(int num_alimenti_sugg, char nome_ingredienti[MAX_ALIM_SUGG][LUNG_NOME_ALIMENTO]){
 	int num_ricette = conta_ricette_database();
-	int presenza_alimento=0; // serve a capire se un ingrediente é presente o meno nella ricetta
+	int presenza_alimento=0; // serve a capire se un ingrediente e' presente o meno nella ricetta
 	int indice_ingrediente=0; // serve a scandire i vari ingredienti della ricetta
 	ricetta ricette_preparabili[num_ricette]; //serve a memorizzare i nomi delle ricette che si possono preparare. Nel migliore dei casi esso avrá lunghezza pari al numero di ricette presente nel database
 	int indice_ric_prep=0; //serve a contare e a spostarsi nell'array delle ricette preparabili
@@ -1109,7 +1147,7 @@ int suggerimento_ricetta_manuale(int num_alimenti_sugg, char nome_ingredienti[MA
 			while(strcmp(ricette_database[i].ingredienti[indice_ingrediente].nome, "")!=0){//prendiamo in considerazione solo le righe piene
 
 				if(strcmp(ricette_database[i].ingredienti[indice_ingrediente].nome, nome_ingredienti[j])==0){
-					presenza_alimento = 1;//puoi segnalare che l'ingrediente é presente
+					presenza_alimento = 1;//puoi segnalare che l'ingrediente e' presente
 					break;
 				}
 				indice_ingrediente++;
@@ -1119,13 +1157,13 @@ int suggerimento_ricetta_manuale(int num_alimenti_sugg, char nome_ingredienti[MA
 			if(presenza_alimento == 0){//in caso il flag di presenza sia rimasto a 0 passa alla ricetta successiva
 				break;
 			}else{
-				if(num_alimenti_sugg != 1 && j != num_alimenti_sugg-1) //se la lista degli alimenti non é composta solo da un elemento e se non siamo arrivati all'ultimo ingrediente suggerito
+				if(num_alimenti_sugg != 1 && j != num_alimenti_sugg-1) //se la lista degli alimenti non e' composta solo da un elemento e se non siamo arrivati all'ultimo ingrediente suggerito
 					presenza_alimento = 0;//riporta il flag di presenza a 0 per poter analizzare il prossimo ingrediente
 			}
 
 		}
 
-		if(presenza_alimento==1){//se l'ultimo flag di presenza é 1 vuol dire che la ricetta che ho analizzato é valida pertanto la salvo
+		if(presenza_alimento==1){//se l'ultimo flag di presenza e' 1 vuol dire che la ricetta che ho analizzato e' valida pertanto la salvo
 			ricette_preparabili[indice_ric_prep] = ricette_database[i];
 			indice_ric_prep++;
 		}
@@ -1150,12 +1188,12 @@ int suggerimento_ricetta_manuale(int num_alimenti_sugg, char nome_ingredienti[MA
 
 /**
  *La funzione suggerimento_ricetta_automatica avendo in ingresso gli alimenti del frigo e il numero di tali alimenti fornisce il nome delle ricette
- *che si possono preparare con tali ingredienti. La funzione é composta da un ciclo piú esterno che scandisce le vare ricette presenti ne database, e
+ *che si possono preparare con tali ingredienti. La funzione e' composta da un ciclo piú esterno che scandisce le vare ricette presenti ne database, e
  *2 cicli piú interni che si occupano di scandire di volta gli alimenti presenti nel frigo con quelli che possiede ogni ricetta.
  *Nel caso in cui l'ingrediente di una ricetta sia presente bisogna controllare se la quatitá dell'alimento a disposizione sia sufficiente.
  *Il controllo viene effettuato pertanto anche qualora vi sia piú di una occorrenza di uno stesso alimento. A tal proposito sappiamo che stessi
  *alimenti con diversa scadenza sono memorizzati su record diversi. In questo caso devo sommare le quantitá degli alimenti con stesso nome
- *ESEMPIO: ho 2 uova che scadono x/xx/xxxx e 2 uova che scadono yy/yy/yyyy. Voglio preparare la torta di mele che ne richiede 4. Posso prepararla perché
+ *ESEMPIO: ho 2 uova che scadono x/xx/xxxx e 2 uova che scadono yy/yy/yyyy. Voglio preparare la torta di mele che ne richiede 4. Posso prepararla perche'
  *ho 4 uova a disposizione complessivamente.
  *Al termine del controllo sulle ricette vengono stampate a schermo quelle preparabili
  *passato qualora ce ne fossero o un messaggio di avvertenza che segnala che non esistono ricette con la combinazione di ingredienti fornita in input
@@ -1192,6 +1230,7 @@ int suggerimento_ricetta_automatico(){
 
 	if(indice_ric_prep == 0){
 			printf("Non c'e' alcuna ricetta che puoi preparare con gli alimenti attuali. Fai la spesa\n");
+			return -1;
 	}else{
 		for(int i=0; i < indice_ric_prep; i++){
 			visualizza_ricetta(ricette_preparabili[i], VISTA_MINIMIZZATA);
@@ -1206,7 +1245,7 @@ int suggerimento_ricetta_automatico(){
 
 /**
  * La funzione riceve in input la struct contenente i dati inerenti ad una singola ricetta e procede con il controllo sull'esistenza e apertura del file databse_ricette. Qualora non
- * sia possibile aprire il file in lettura viene creato per scriverci sopra la prima volta. La prima operazione da compiere qualora il file esista é controllare se la ricetta
+ * sia possibile aprire il file in lettura viene creato per scriverci sopra la prima volta. La prima operazione da compiere qualora il file esista e' controllare se la ricetta
  * che vogliamo salvare non sia giá presente nel database. Per far ció leggiamo sequenzialmente il file e se troviamo una ricetta con lo stesso nome aggiorniamo il flag di presenza.
  * Nel caso in cui la ricetta abbia superato il controllo e pertanto non sia presente nel database, essa viene salvata alla prima riga vuota presente nel file(ricordiamo che
  * il progetto in generale si basa sul recupero delle righe all'interno di un file).
@@ -1260,7 +1299,7 @@ int aggiorna_database_ricette(ricetta nuova_ricetta){
  * Viene pertanto scandita con la fgets ogni linea presente nel file,estratta e poi splittata tramite la sscanf. Qualora fossero rinvenuti errori come l'assenza di un campo viene chiesto
  * se si vuole modificare la ricetta oppure no. Qualora l'estrazione da file abbia avuto successo viene effettuato lo split degli ingredienti per memorizzare opportunamente i valori all'interno
  * dell'array di struct. Infine vengono calcolate le calorie prodotte dalla ricetta e viene richiamata la funzione che si occupa della memorizzazione dei dati raccolti. L'operazione viene
- * ripetuta fino a quando é possibile estrarre una riga dal file ossia fino a quando é presente una ricetta nel file
+ * ripetuta fino a quando e' possibile estrarre una riga dal file ossia fino a quando e' presente una ricetta nel file
  * @pre		Nessuna particolare pre-condizione
  * @post	Deve essere stato effettuato con successo almeno un'estrazione di una ricetta o in caso contrario deve essere mostrato un messaggio di errore
  */
@@ -1330,7 +1369,7 @@ int lettura_nuove_ricette(){
 						break;
 
 					}else{
-						//duplico nuovamente la stringa contenente gli ingredienti in quanto il contenuto é stato perso nella fase di check sopra
+						//duplico nuovamente la stringa contenente gli ingredienti in quanto il contenuto e' stato perso nella fase di check sopra
 						divisione_ingrediente = strdup(ingredienti);
 
 						//memorizzo nella stringa di lavoro l'ingrediente estratto dalla linea contenente tutti gli ingredienti
@@ -1370,11 +1409,12 @@ int lettura_nuove_ricette(){
 			}
 
 			if(flag_inserimento == 1){
-				alimento_database a;
+				alimento_database alimento;
+				ricetta_letta.kcal_ricetta=0;
 
 				for (int i=0; i<num_ingredienti; i++){
-					ricerca_alimento_database(ricetta_letta.ingredienti[i].nome, &a);
-					ricetta_letta.kcal_ricetta +=calcolo_kcal(a.kcal, a.campione_kcal,ricetta_letta.ingredienti[i].quantita );
+					ricerca_alimento_database(ricetta_letta.ingredienti[i].nome, &alimento);
+					ricetta_letta.kcal_ricetta +=calcolo_kcal(alimento.kcal, alimento.campione_kcal, ricetta_letta.ingredienti[i].quantita);
 				}
 
 				aggiorna_database_ricette(ricetta_letta);// aggiorno il database, memorizzando la ricetta

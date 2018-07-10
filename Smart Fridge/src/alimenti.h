@@ -16,7 +16,6 @@
  * @authors Davide Quatela, Alessandro Scarcia, Michela Salvemini
  */
 
-
 /// Inclusione delle librerie standard
 #ifndef STD_LIB
 #define STD_LIB
@@ -37,6 +36,10 @@
 #define STRING_LIB
 	#include <string.h>
 	#include <ctype.h>
+#endif
+
+#ifndef CALORIE_LIB
+#include "calorie.h"
 #endif
 
 #ifndef ALIMENTI_LIB
@@ -60,6 +63,8 @@
 /// Inclusione della libreria per la pulizia dei flussi di input
 
 #include "pulizia_flussi.h"
+
+
 
 /// DEFINIZIONE DELLE COSTANTI SIMBOLICHE.
 
@@ -162,7 +167,11 @@ int leggi_database_alimenti(alimento_database* lista_alimenti);
 
 
 
-
+/**Funzione che serve a popolare un'array di struct( passato per riferimento ) con gli alimenti presenti nel frigo e le relative informazioni
+ *
+ * @param lista_frigo			array di struct che deve essere popolato
+ * @return num_alimenti_letti	elementi effettivamente caricati
+ */
 int leggi_frigo(alimento_frigo* lista_frigo);
 
 
@@ -314,11 +323,11 @@ int input_id_alimento(int num_alimenti_frigo);
  * La funzione ricerca_database() permette di ricercare nel database la presenza di un alimento
  * attraverso il suo nome e di estrarne le caratteristiche se viene individuato.
  *
- * @param nome_alimento Nome dell'alimento da ricercare
+ * @param nome_alimento 	Nome dell'alimento da ricercare
  * @param alimento_estratto Puntatore alla variabile che deve memorizzare l'alimento trovato
- * @return 1 se l'alimento viene trovato
- * @return 0 se l'alimento non viene trovato
- * @return -1 se il file_database non può essere aperto
+ * @return 1 				se l'alimento viene trovato
+ * @return 0 				se l'alimento non viene trovato
+ * @return -1				 se il file_database non può essere aperto
  */
 int ricerca_alimento_database(char *nome_alimento, alimento_database *alimento_estratto);
 
@@ -328,35 +337,55 @@ int ricerca_alimento_database(char *nome_alimento, alimento_database *alimento_e
  * sará piú semplice ed efficace gestire le abitudini dell'utente riguardo il consumo di kcal e la generazione di ricette con
  * un valore nutrizionale reale. Ovviamente la funzione deve conoscere gli alimenti che abbiamo inserito nel frigo e il relativo numero.
  * Una volta iniziato il confronto tra gli alimenti giá memorizzati e quelli recentemente aggiunti si decide, a seconda se un alimento é
- * conosciuto o meno, di aggiungerlo al database*/
+ * conosciuto o meno, di aggiungerlo al database
+ * @param nome_alimento 	Nome dell'alimento da inserire
+ * @param unita_misura		Unitá di misura dell'alimento che deve essere salvata insieme al nome
+ * @return 1 				se l'aggiornamento é terminato con successo
+ * */
 int aggiorna_database(char* nome_alimento, char* unita_misura);
 
 
 /**La funzione aggiorna_frigo una volta conosciuti il numero di alimenti da caricare e i dati a riguardo effettua la memorizzazione dei nuovi alimenti comprati
  * all'interno del file alimenti_frigo. La scrittura nel file in questo caso é ottimizzata in quanto si é previsto che, qualora ci siano righe inizializzate
  * ottenute dalla cancellazione di alimenti che non sono piú presenti nel frigo, esse vengano riutilizzate per una nuova memorizzazione. In questa maniera
- * evitiamo algoritmi di compattamento delle righe "piene"*/
+ * evitiamo algoritmi di compattamento delle righe "piene"
+ * @param alimento 	Alimento da salvare nel file del frigo
+ * @return 1 				se l'aggiornamento é terminato con successo
+ * */
 int aggiorna_frigo(alimento_frigo alimento);
 
 
 /**La funzione visualizza_database apre in lettura il file database_alimenti e ne mostra il contenuto. Questa funzione puó tornare utile non
- * solo all'utente ma anche al programmatore in fase di Debug*/
+ * solo all'utente ma anche al programmatore in fase di Debug
+ * @param
+ * @return 1 				se l'aggiornamento é terminato con successo */
 int  visualizza_database_alimenti();
 
 
 /**La funzione visualizza_frigo oltre ad essere una funzione a se stante che permette di visualizzare il contenuto del frigo(del file alimenti_frigo.csv)
  * serve nella fase di riduzione della quantitá di un alimento. Avendo una lista a portata di mano con tanto di indice per ogni alimento
- * permettiamo all'utente di risparmiare tempo e di avere un quadro semplificato del contenuto del frigo*/
+ * permettiamo all'utente di risparmiare tempo e di avere un quadro semplificato del contenuto del frigo
+ * @param
+ * @return 1 				se l'aggiornamento é terminato con successo */
 int visualizza_frigo();
 
 
+/***Funzione che si occupa di estrarre la quantitá di un alimento presente nel frigo.
+ * @param nome_alimento 	Nome dell'alimento da inserire da cui estrarre la quantitá
+ * @return quantita_alimento 	quantitá dell'alimento presente nel frigo
+ */
 float quantita_alimento(const char* nome_alimento);
 
-
+/**Funzione che si occupa di ridurre la quantità di un certo alimento presente nel frigo.
+ * @param nome_alimento 	Nome dell'alimento da inserire da cui ridurre la quantitá
+ * @return 1 	            se la quantitá dell'alimento presente nel frigo é stata correttamente ridotta
+ */
 int riduci_alimento(const char* nome_alimento, float riduzione);
 
-
-void gestore_riduzione_alimenti();
+/**Funzione che si occupa di gestire l'operazione di riduzione di un alimento permettendo all'utente di registrare tale consumo.
+ *
+ * @return 1 				se l'aggiornamento é terminato con successo */
+int gestore_riduzione_alimenti();
 
 
 /**La procedura lettura file si occupa principalmente di prelevare i dati da un file che chiameremo spesa_effettuata.csv

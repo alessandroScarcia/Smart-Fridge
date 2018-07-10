@@ -7,12 +7,10 @@
 //esci la funzione che fa l'input al nome alimento
 
 
-
-
 /**
  * La funzione, avendo in ingresso gli alimenti del frigo con il relativo numero, si occupa di riordinare tali alimenti, o meglio l'array di struct che li contiene, in base
- * alla data di scadenza. L'ordinamento é effettuato attraverso l'algoritmo shell sort in quanto risultava quello piú semplice ed efficace da implementare dato il quantitativo
- * di dati(non é eccessivo considerato che il frigo avrá al massimo un centinaio al massimo di alimenti). Inoltre in questa versione di shell sort si é optato di non creare a parte un
+ * alla data di scadenza. L'ordinamento e' effettuato attraverso l'algoritmo shell sort in quanto risultava quello piú semplice ed efficace da implementare dato il quantitativo
+ * di dati(non e' eccessivo considerato che il frigo avrá al massimo un centinaio al massimo di alimenti). Inoltre in questa versione di shell sort si e' optato di non creare a parte un
  * array contenente i gap (distanza per gli scambi), ma di sfruttare il numero di alimenti inizialmente e poi dividere per 2 di volta in volta la lunghezza.
  *
  * @pre  l'array di struct deve possedere almeno un alimento da ordinare e pertanto il numero di alimenti deve essere idoneo.
@@ -30,7 +28,7 @@ int ordina_alimenti_scadenza(alimento_frigo* alimenti_frigo, int  num_alimenti){
 					// salva il corrente elemento puntato da i in tmp
 		        	tmp = alimenti_frigo[i];
 
-		            //sposta i precedenti elementi fino alla corretta locazione di alimenti_frigo[i] é 	trovata
+		            //sposta i precedenti elementi fino alla corretta locazione di alimenti_frigo[i] e' 	trovata
 		        	int j;
 		        	// diff_date(differenza,alimenti_frigo[j - gap].scadenza, data_odierna()) > diff_date(differenza,tmp.scadenza,data_odierna())
 		            for (j = i; j >= gap && confronta_date(alimenti_frigo[j - gap].scadenza, tmp.scadenza) == SECONDA_DATA_ANTECEDENTE; j -= gap){
@@ -108,7 +106,7 @@ int conta_alimenti_frigo(){
 
 /**
  * Dopo aver popolato un array di struct di tipo alimento frigo la funzione si occupa di confrontare la data di scadenza con la data odierna. Qualora la differenza tra date
- * produca un valore negativo vuol, dire che l'alimento é scaduto e pertanto occorre incrementare il contatore. Questa funzione serve principalmente nel menu principale per
+ * produca un valore negativo vuol, dire che l'alimento e' scaduto e pertanto occorre incrementare il contatore. Questa funzione serve principalmente nel menu principale per
  * conteggiare il numero di notifiche che devono eesre viste dall'utente
  *
  * @pre  Nessuna pre condizione particolare
@@ -130,7 +128,7 @@ int conta_alimenti_scaduti(){
 
 		// Per ogni alimento del frigo, se la loro data è antecedente a data_esecuzione, va incrementato num_alimenti_scaduti
 		for(int i = 0; i < num_alimenti; i++){
-			//se la differenza tra data odierna e data di scadenza produce un valore negativo allora l'alimento é scaduto
+			//se la differenza tra data odierna e data di scadenza produce un valore negativo allora l'alimento e' scaduto
 			if(confronta_date(alimenti_frigo[i].scadenza, data_esecuzione) == PRIMA_DATA_ANTECEDENTE){
 				num_alimenti_scaduti++;
 			}
@@ -168,7 +166,7 @@ int leggi_database_alimenti(alimento_database* lista_alimenti){
 		}
 
 		fclose(stream);
-		return num_alimenti_letti;//se la funzione é andata a buon fine restituisci il numero di elementi caricati
+		return num_alimenti_letti;//se la funzione e' andata a buon fine restituisci il numero di elementi caricati
 	}
 }
 
@@ -176,7 +174,7 @@ int leggi_database_alimenti(alimento_database* lista_alimenti){
 
 /**
  * Funzione che viene richiamata direttamente dal menu e dal gestore delle notifiche. Essa si occupa  di scovare tutti gli alimenti scaduti(se la differenza tra data odierna e data di scadenza
- * produce un valore negativo allora l'alimento é scaduto) e di inizializzare la riga in maniera tale da poterla recuperare in una prossima scrittura. Ovviamente nella ricerca vengono
+ * produce un valore negativo allora l'alimento e' scaduto) e di inizializzare la riga in maniera tale da poterla recuperare in una prossima scrittura. Ovviamente nella ricerca vengono
  * sempre scartate le righe vuote
  * @pre  Nessuna pre condizione particolare
  * @post Deve essere stata effettuata con successo la scrittura su file
@@ -238,7 +236,7 @@ int visualizza_alimenti_scaduti(){
 	leggi_frigo(alimenti_frigo);
 
 	//per tutti gli alimenti del frigo viene confrontata la data di scadenza con la data odierna. Qualora la scadenza sia passata
-	//viene notificato che l'alimento x é scaduto
+	//viene notificato che l'alimento x e' scaduto
     for(int i = 0; i < num_alimenti; i++){
 
     	if(confronta_date(alimenti_frigo[i].scadenza, data_odierna()) == PRIMA_DATA_ANTECEDENTE){
@@ -252,7 +250,7 @@ int visualizza_alimenti_scaduti(){
 }
 
 
-/** Funzione che si occupa di controllare se l'unitá di misura di un alimento é valida o meno. Qualora lo sia viene restituito 1
+/** Funzione che si occupa di controllare se l'unitá di misura di un alimento e' valida o meno. Qualora lo sia viene restituito 1
  * in caso contrario 0.
  *
  * @pre  Nessuna pre condizione particolare
@@ -274,7 +272,7 @@ int controlla_unita_misura(char* unita_misura){
 
 
 
-/**Funzione che si occupa di controllare se la quantitá é valida imponendone un limite massimo di accettabilitá in base alla unitá di misura
+/**Funzione che si occupa di controllare se la quantitá e' valida imponendone un limite massimo di accettabilitá in base alla unitá di misura
  * corrispondente
  *
  * @pre  la quantitá deve essere un valore positivo >=0
@@ -305,7 +303,7 @@ int controlla_quantita(float quantita, char* unita_misura){
 
 
 
-/**Funzione che si occupa di controllare la data di scadenza rispetto la data odierna. Se la data di scadenza non é valida viene restituito -1.
+/**Funzione che si occupa di controllare la data di scadenza rispetto la data odierna. Se la data di scadenza non e' valida viene restituito -1.
  * In caso la data odierna sia antecedente viene restituito 1. Nel caso in cui la scadenza sia antecedente viene restituito 0
  *
  * @pre  la data di scadenza sia in un formato valido anche se viene effettuato il controllo
@@ -370,10 +368,12 @@ void abbassa_maiuscole(char *s){
 
 
 
-/**
+/**Funzione che si occupa dell'inserimento da tastiera di un alimento nel formato valido per il caricamento. La funzione si basa
+ * principalmente su un ciclo che analizza l'input dell'utente controllando i vari valori inseriti. Qualora la scanf non produca errori e
+ * restituisca il numero massimo di "hit", l'alimento é da considerarsi valido e pertanto puó essere restituito dalla funzione
  *
  * @pre  Nessuna pre condizione particolare
- * @post Deve essere termianta con successo la visualizzazione
+ * @post Deve essere restituito un alimento nel formato valido
  */
 alimento_frigo input_alimento_frigo(){
 	int esito_input;
@@ -402,10 +402,12 @@ alimento_frigo input_alimento_frigo(){
 
 
 
-/**
+/**Funzione che si occupa dell'inserimento di una unitá di misura in un formato valido. Qualora l'unitá di misura sia composta da sole lettere
+ * viene richiamata la funzione controlla_unita_misura per effettuare un ulteriore check sulla esistenza di tale unitá di misura tra quelle
+ * standard(g,lt,kg,ml). L'inserimento viene effettuato fino a quando non viene inserita una unitá di misura valida
  *
  * @pre  Nessuna pre condizione particolare
- * @post Deve essere termianta con successo la visualizzazione
+ * @post Deve essere memorizzata nel puntatore una unitá di misura valida
  */
 void input_unita_misura(char *unita_misura){
 	int esito_input;
@@ -430,24 +432,28 @@ void input_unita_misura(char *unita_misura){
 
 
 
-/**
+/**Funzione che si occupa dell'inserimento di una quantitá in un formato valido. Qualora la quantitá sia composta da soli numeri(ricordiamo
+ * che la quantitá puó essere con la virgola per quelle quantitá che prevedono unitá di misura come kg ed lt), viene richiamata
+ * la funzione controlla_quantita per effettuare un ulteriore check sulla validitá di tale quantitá anche in base alla unitá di misura passata
+ * ( avere 1000g di un alimento equivale a 1kg). L'inserimento viene effettuato fino a quando non viene inserita una quantitá valida
  *
  * @pre  Nessuna pre condizione particolare
- * @post Deve essere termianta con successo la visualizzazione
+ * @post Deve essere restituita una quantitá significativa
  */
 float input_quantita(char *unita_misura){
 	int esito_input;
 	int esito_controllo;
 	float quantita = 0;
 
+	// Ciclo per la ripetizione dell'inserimento fino a riceverlo significativo
 	do{
 		puts("Inserisci la quantita: ");
-		esito_input = scanf("%f", &quantita);
+		esito_input = scanf("%3f", &quantita);
 		if(pulisci_stdin() == 1){
 			esito_input = 0;
 		}
 
-		esito_controllo = controlla_quantita(quantita, unita_misura);
+		esito_controllo = controlla_quantita(quantita, unita_misura);//controlla validitá quantitá
 
 		if(esito_controllo != 1 || esito_input != 1){
 			puts("Inserimento non valido. Ripeterlo.");
@@ -462,19 +468,22 @@ float input_quantita(char *unita_misura){
 
 
 
-/**
+/**Funzione che si occupa dell'inserimento di una data di scadenza in un formato valido. Qualora la scadenza sia significativa viene richiamata
+ * la funzione controlla_data_scadenza per effettuare un ulteriore check sulla validitá di tale data. L'inserimento viene effettuato fino a quando
+ * il controllo sulla validitá non viene superato
  *
  * @pre  Nessuna pre condizione particolare
- * @post Deve essere termianta con successo la visualizzazione
+ * @post Deve essere restituita una data di scadenza valida
  */
 data input_data_scadenza(){
 	data data_inserita;
 	int esito_controllo;
 
+// Ciclo per la ripetizione dell'inserimento fino a riceverlo significativo
 	do{
-		data_inserita = input_data();
+		data_inserita = input_data();//richiamo alla funzione che effettua l'inserimento della data in un formato valido
 
-		esito_controllo = controlla_data_scadenza(data_inserita);
+		esito_controllo = controlla_data_scadenza(data_inserita);//controllo sulla validitá della data di scadenza
 		if(esito_controllo != 1){
 			puts("Inserimento non valido. Ripeterlo.");
 		}
@@ -487,18 +496,23 @@ data input_data_scadenza(){
 
 
 
-/**
+
+
+/**Funzione che si occupa dell'inserimento delle kcal di un alimento in un formato valido. L'inserimento viene effettuato fino a quando
+ * il controllo sulla validitá non viene superato
  *
  * @pre  Nessuna pre condizione particolare
- * @post Deve essere termianta con successo la visualizzazione
+ * @post Devono essere restituite delle kcal valide
  */
 int input_kcal(char *nome_alimento, int campione_kcal, char *unita_misura){
 	float kcal;
 	int esito_input;
 
+
+// Ciclo per la ripetizione dell'inserimento fino a riceverlo significativo
 	do{
 		printf("Inserisci le kcal per <%d %s> dell'alimento <%s> : ", campione_kcal, unita_misura, nome_alimento);
-		esito_input = scanf("%f", &kcal);
+		esito_input = scanf("%4f", &kcal);
 		if(pulisci_stdin() == 1){
 			esito_input = 0;
 		}
@@ -514,23 +528,27 @@ int input_kcal(char *nome_alimento, int campione_kcal, char *unita_misura){
 
 
 
-/**
+/**Funzione che si occupa dell'inserimento di un id valido e del controllo di tale valore in base al range in cui é possibile stabilirlo.
+ * Se l'id dell'alimento ha un valore compreso tra il minimo consentito ed il numero degli alimenti del frigo allora é valido e quindi puó
+ * essere restituito dalla funzione
  *
- * @pre  Nessuna pre condizione particolare
- * @post Deve essere termianta con successo la visualizzazione
+ * @pre  Deve essere passato un numero di alimenti maggiore o uguale di 0
+ * @post Deve essere restituito un id valido
  */
 int input_id_alimento(int num_alimenti_frigo){
 	int id_alimento;
 	int esito_input;
 	int esito_controllo;
 
+// Ciclo per la ripetizione dell'inserimento fino a riceverlo significativo
 	do{
 		printf("Inserisci l'id di un alimento: ");
-		esito_input = scanf("%d", &id_alimento);
+		esito_input = scanf("%2d", &id_alimento);
 		if(pulisci_stdin() == 1){
 			esito_input = 0;
 		}
 
+		//controlli sulla validitá del valore inserito
 		if(id_alimento < MIN_ID_ALIMENTO || id_alimento > num_alimenti_frigo){
 			esito_controllo = 0;
 		}else{
@@ -548,10 +566,11 @@ int input_id_alimento(int num_alimenti_frigo){
 
 
 
-/**
+/**Funzione che si occupa di restituire in maniera opportuna un campione valido in base alla unitá di misura che passiamo alla funzione.
+ * Qualora l'unitá di misura non sia valida viene restituito 0 per segnalare quindi un errore
  *
- * @pre  Nessuna pre condizione particolare
- * @post Deve essere termianta con successo la visualizzazione
+ * @pre  Deve essere passata una stringa con almeno un carattere
+ * @post Deve essere restituito un campione valido in base alla unitá di misura oppure 0 per segnalare una invaliditá nello stabilire il campione
  */
 int calcola_campione_kcal(char *unita_misura){
 	// Analisi dell'unità di misura ricevuta e restituzione del valore di campione corrispondente
@@ -571,24 +590,33 @@ int calcola_campione_kcal(char *unita_misura){
 }
 
 
-/**
+
+
+
+/**Funzione che si occupa dell'input da tastiera della soglia della spesa. La soglia ricordiamo che é una quantitá al di sotto della quale un alimento
+ * deve essere considerato come candidato per essere comprato. Alla funzione vengono passati il nome dell'alimento(deve essere mostrato in output
+ * per fornire ulteriori informazioni sull'inserimento da effettuare) e l'unitá di misura per effettuare un controllo sulla validitá
+ * del valore inserito come soglia. Qualora il valore sia significativo viene restituito dalla funzione altrimenti si continua a chiedere l'inserimento.
  *
- * @param quantita
- * @param unita_misura
- * @return quantita_minima
+ * @pre  Deve essere passato un nome di alimento con almeno un carattere e una unitá di misura significativa
+ * @post Deve essere restituita una soglia valida
  */
 float input_soglia_spesa(char *nome_alimento, char* unita_misura){
 	float soglia;
 	int esito_input;
 	int esito_controllo;
 
+	// Ciclo per la ripetizione dell'inserimento fino a riceverlo significativo
 	do{
 		printf("Inserisci la soglia per l'inserimento nella generazione\n della spesa dell'alimento <%s> [0 per escluderlo]: ", nome_alimento);
 		esito_input = scanf("%3f", &soglia);
+
+
 		if(pulisci_stdin() == 1){
 			esito_input = 0;
 		}
 
+		//controlli sulla validitá del valore inserito
 		if(esito_input == 1){
 			if(soglia == 0){
 				esito_controllo = 1;
@@ -608,10 +636,12 @@ float input_soglia_spesa(char *nome_alimento, char* unita_misura){
 
 
 
-/**
+/** Funzione che si occupa di ricercare un alimento all'interno del database alimenti. Vengono passati come parametri il nome dell'alimento su cui
+ * effettuare la ricerca e la struct che sará popolata con le informazioni dell'alimento qualora sia presemte nel database. Una volta effettuato
+ * il caricamento delle informazioni viene restituito 1 e in caso contrario viene restituito 0
  *
- * @pre  Nessuna pre condizione particolare
- * @post Deve essere termianta con successo la visualizzazione
+ * @pre  il nome dell'alimento passato deve essere composto da almeno un carattere
+ * @post In caso venga trovato l'alimento deve essere restituita la struct popolata da informazioni significative
  */
 int ricerca_alimento_database(char *nome_alimento, alimento_database *alimento_estratto){
 	alimento_database alimento;
@@ -620,9 +650,11 @@ int ricerca_alimento_database(char *nome_alimento, alimento_database *alimento_e
 	if((stream = fopen(FILE_DATABASE_ALIMENTI, "rb")) == NULL){
 		return -1;
 	}else{
+		//estrazione degli alimenti e confronto con il nome passato come parametro.
 		while(feof(stream) == 0){
 			fread(&alimento, sizeof(alimento_database), 1, stream);
 
+		//se l'alimento é presente nel database vengono copiate le informazioni
 			if(strcmp(alimento.nome, nome_alimento) == 0){
 				*alimento_estratto =  alimento;
 				return 1;
@@ -637,10 +669,15 @@ int ricerca_alimento_database(char *nome_alimento, alimento_database *alimento_e
 
 
 
-/**
+/**Funzione che si occupa di inserire le informazioni riguardanti un alimento sconosciuto all'interno del database. In un primo momento
+ * viene fatto un check sul nome dell'alimento qualora sia giá presente nel database(viene richiamata la funzione ricerca_database). Se
+ * la ricerca non é andata a buon fine pertanto l'alimento non é presente nel database vengono memorizzate le informazioni passate come parametri
+ * ossia il nome e l'unitá di misura(la scelta di passare questo dato é per non richiedere all'utente di reinserirlo in quanto viene direttamente
+ * estratto altrove), ed in seguito le altre informazioni(richieste in input o calcolate dinamicamente) come le kcal, la soglia per fare la spesa
+ * e il campione kcal.
  *
- * @pre  Nessuna pre condizione particolare
- * @post Deve essere termianta con successo la visualizzazione
+ * @pre  il nome dell'alimento e l'unitá di misura devono possedere almeno un carattere
+ * @post Devono essere state memorizzate correttamente tutte le informazioni riguardanti un dato alimento
  */
 int aggiorna_database(char* nome_alimento, char* unita_misura){
 	FILE *stream = NULL;								// Puntatore al file database_alimenti
@@ -693,10 +730,14 @@ int aggiorna_database(char* nome_alimento, char* unita_misura){
 
 
 
-/**
+/**Funzione che si occupa di inserire nel file contente gli alimenti presenti nel frigo l'alimento(struct) che passiamo come parametro alla funzione.
+ * L'aggiornamento é stato pensato come il salvataggio di un alimento per riga del file. Ogni alimento é diverso dagli altri per nome e data di scadenza.
+ * Qualora venga caricato un alimento omonimo ad uno presente nel frigo viene fatto un controllo sulle scadenze. Se le scadenze sono uguali allora
+ * nel complesso il prodotto é uguale quindi viene solo incrementata la quantitá di tale alimento presente nel frigo. Nel caso in cui siamo a che fare
+ * con un alimento con nome diverso o con stesso nome ma con data di scadenza diversa, esso verrá salvato nella prima riga libera presente nel file.
  *
- * @pre  Nessuna pre condizione particolare
- * @post Deve essere termianta con successo la visualizzazione
+ * @pre  L'alimento passato come parametro deve essere significativo
+ * @post Deve essere stato salvato correttamente l'alimento nel file
  */
 int aggiorna_frigo(alimento_frigo alimento){
 	FILE *stream = NULL;							// puntatore al file contenente gli alimenti del frigo
@@ -771,10 +812,13 @@ int aggiorna_frigo(alimento_frigo alimento){
 
 
 
-/**
+/**Funzione che si occupa di visualizzare tutti gli alimenti presenti nel database, con le relative informazioni .
+ *
+ * Qualora sia possibile aprire il file viene effettato un ciclo per la stampa di tutti gli alimenti presenti nel file. Al termine viene
+ * restituito il numero di alimenti visualizzati in quanto tale dato potrebbe tornare utile in altre funzioni
  *
  * @pre  Nessuna pre condizione particolare
- * @post Deve essere termianta con successo la visualizzazione
+ * @post Nessuna post condizione particolare
  */
 int visualizza_database_alimenti(){
 	FILE *stream = NULL;					// Puntatore al FILE_DATABASE
@@ -802,10 +846,13 @@ int visualizza_database_alimenti(){
 }
 
 
-/**
+/**Funzione che si occupa di visualizzare tutti gli alimenti presenti nel frigo, con le relative informazioni .
+ *
+ * Qualora sia possibile aprire il file viene effettato un ciclo per la stampa di tutti gli alimenti presenti nel file. Al termine viene
+ * restituito il numero di alimenti visualizzati in quanto tale dato potrebbe tornare utile in altre funzioni
  *
  * @pre  Nessuna pre condizione particolare
- * @post Deve essere termianta con successo la visualizzazione
+ * @post Nessuna post condizione particolare
  */
 int visualizza_frigo(){
 	FILE *stream = NULL;				// Puntatore a FILE_FRIGO
@@ -839,16 +886,20 @@ int visualizza_frigo(){
 		}
 	}
 
-    return num_alimenti;///se la funzione é andata a buon fine restituisci 1
+    return num_alimenti;///se la funzione e' andata a buon fine restituisci 1
 }
 
 
 
 
-/**
+/**Funzione che serve a popolare un'array di struct( passato per riferimento ) con gli alimenti presenti nel frigo e le relative informazioni.
  *
- * @pre  Nessuna pre condizione particolare
- * @post Deve essere termianta con successo la visualizzazione
+ * Qualora sia possibile aprire il file contenente gli alimenti del frigo viene effettauto un ciclo, all'interno del quale, l'alimento estratto
+ * viene memorizzato in una opportuna posizione dell'array di struct. Al termine della estrazione viene restituito il numero di alimenti letti
+ * in quanto puó tonrare utile per altre funzioni
+ *
+ * @pre  L'array di struct passato abbia una lunghezza pari o superiore al numero di elementi presenti nel frigo
+ * @post Deve essere stati memorizzati tutti gli alimenti del file all'interno della struct
  */
 int leggi_frigo(alimento_frigo* lista_frigo){
 	int num_alimenti_letti = 0;
@@ -871,16 +922,30 @@ int leggi_frigo(alimento_frigo* lista_frigo){
 			}
 		}
 	}
-    return num_alimenti_letti;///se la funzione é andata a buon fine restituisci 1
+    return num_alimenti_letti;//se la funzione e' andata a buon fine restituisci il numero degli alimenti
 }
 
 
 
 
-/**
+/**Funzione che si occupa di estrarre dal file, che contiene la spesa effettuata, gli alimenti comprati con le info di base che lo riguardano come
+ * nome,quantitá,unitá di misura,scadenza. In questo caso queste informazioni sono contenute all'interno di un file testuale che deve essere scansionato
+ * riga per riga. La riga di un file é da considerarsi tale fino al carattere terminatore e ad ogni estrazione occorre pulire lo stream in caso
+ * la riga presente nel file sia superiore a quella consentita. Inoltre per ogni riga é necessario l'intervento della sscanf per "tokenizzare" i vari
+ * valori della riga e memorizzarli opportunamente all'interno della struct. Qualora la sscanf abbia prodotto un numero di hit inferiore a quelli
+ * necessari per considerare l'alimento correttamente estratto, viene chiesto se si vuole correggere l'alimento oppure no. In caso affermativo viene
+ * avviata la fase di correzione che si occupa di correggere un dato alimento richiamando opportunatamente altre funzioni per l'inserimento fino a
+ * quando l'input non sia significativo.
+ *
+ * Al termine della fase di estrazione e correzione eventuale, viene richiamata la funzione che si occupa di aggiornare il database per far si che
+ * vengano memorizzate le informazioni riguardanti alimenti sconosciuti al frigo. Una volta terminata la fase di aggiornamento del database viene
+ * effettuato un check sulla validitá degli altri campi dell'alimento e in caso viene chiesto di effettuare una correzione su tali valori. Un esempio
+ * é il caso di un alimento scaduto che viene erroneamente caricato nel frigo. A tal proposito viene chiesto all'utente se vuole correggere tale data
+ * e proseguire con il caricamento. Una volta che la lista della spesa é stata completamente estratta viene avviata la fase di aggiornamento del frigo
+ * con il richiamo alla opportuna funzione.
  *
  * @pre  Nessuna pre condizione particolare
- * @post Deve essere termianta con successo la visualizzazione
+ * @post Devono essere memorizzati in una struct gli alimenti con i relativi valori significativi.
  */
 int carica_spesa(){
 	FILE *stream = NULL;						// Puntatore al file contenente la spesa
@@ -955,7 +1020,7 @@ int carica_spesa(){
 
 				// Richiesta all'utente della correzione manuale
 				do{
-					printf("Inserire 1 per correggere l'unità di misura, 0 per saltare l'alimento: ");
+					printf("Inserire 1 per correggere l'unità di misura, 0 per ignorare l'alimento: ");
 					esito_input = scanf("%d", &flag_inserimento);
 					if(pulisci_stdin() == 1){
 						esito_input = 0;
@@ -1000,7 +1065,7 @@ int carica_spesa(){
 
 						// Richiesta all'utente della correzione manuale
 						do{
-							printf("Inserire 1 per correggere l'unità di misura con quella conosciuta, 0 per saltare l'alimento: ");
+							printf("Inserire 1 per correggere l'unità di misura con quella conosciuta, 0 per ignorare l'alimento: ");
 							esito_input = scanf("%d", &flag_inserimento);
 							if(pulisci_stdin() == 1){
 								esito_input = 0;
@@ -1033,7 +1098,7 @@ int carica_spesa(){
 
 					// Richiesta all'utente della correzione manuale
 					do{
-						printf("Inserire 1 per correggere la quantità, 0 per saltare l'alimento: ");
+						printf("Inserire 1 per correggere la quantità, 0 per ignorare l'alimento: ");
 						esito_input = scanf("%d", &flag_inserimento);
 						if(pulisci_stdin() == 1){
 							esito_input = 0;
@@ -1047,7 +1112,7 @@ int carica_spesa(){
 					// Correzione della quantità se deciso dall'utente
 					if(flag_inserimento == 1){
 
-						puts("Correzione manuale della quantità.");
+						puts("Correzione manuale della quantità.\n");
 						//esci controllo quantitá che sta nella funzione qua sotto
 						alimento_letto.quantita = input_quantita(alimento_letto.unita_misura);
 
@@ -1071,7 +1136,7 @@ int carica_spesa(){
 				// Richiesta all'utente ella correzione manuale
 				if(flag_inserimento == 0){
 					do{
-						printf("Inserire 1 per correggere la data di scadenza, 0 per saltare l'alimento: ");
+						printf("Inserire 1 per correggere la data di scadenza, 0 per ignorare l'alimento: ");
 						esito_input = scanf("%d", &flag_inserimento);
 						if(pulisci_stdin() == 1){
 							esito_input = 0;
@@ -1125,16 +1190,19 @@ int carica_spesa(){
 
 
 
-/**
+/**Funzione che si occupa di estrarre la soglia di un alimento presente nel database. Qualora sia possibile accedere al file viene fatto
+ * controllo su tutto il database fino a quando non si trova l'alimento con il nome che abbiamo passato come parametro.
+ * Una volta trovato viene restituita tale soglia.
  *
- * @pre  Nessuna pre condizione particolare
- * @post Deve essere termianta con successo la visualizzazione
+ * @pre  Che il nome passato come parametro sia di almeno un carattere
+ * @post nessuna post condizione particolare
  */
 float soglia_alimento(const char* nome_alimento){
 	FILE* stream = NULL;
 	float soglia_alimento = -1;
 	alimento_database alimento_letto;
 
+	//se non é possibile accedere al file viene restituito -1 altrimenti viene scansionato il file del database
 	if((stream = fopen(FILE_DATABASE_ALIMENTI, "rb")) == NULL){
 		return soglia_alimento;
 	}else{
@@ -1143,7 +1211,7 @@ float soglia_alimento(const char* nome_alimento){
 			if(feof(stream)!=0){
 				break;
 			}
-
+			//se l'alimento viene trovato viene memorizzata tale soglia per poi essere restituita
 			if(strcmp(alimento_letto.nome, nome_alimento) == 0){
 				soglia_alimento = alimento_letto.soglia_spesa;
 				break;
@@ -1159,20 +1227,29 @@ float soglia_alimento(const char* nome_alimento){
 
 
 
-/**
+/**Funzione che si occupa di estrarre la quantitá di un alimento presente nel frigo. Qualora sia possibile accedere al file viene fatto
+ * controllo su tutto il file fino a quando non si trova l'alimento con il nome che abbiamo passato come parametro.
+ * Una volta trovato viene restituita tale quantitá.
  *
- * @pre  Nessuna pre condizione particolare
- * @post Deve essere termianta con successo la visualizzazione
+ * @pre  Che il nome passato come parametro sia di almeno un carattere
+ * @post nessuna post condizione particolare
  */
 float quantita_alimento(const char* nome_alimento){
 	FILE* stream = NULL;
 	float quantita_alimento = 0;
 	alimento_frigo alimento_letto;
 
+	//se non é possibile accedere al file viene restituito 0 altrimenti viene scansionato il file del frigo
 	if((stream = fopen(FILE_FRIGO, "rb")) == NULL){
 		return quantita_alimento;
 	}else{
 		while(fread(&alimento_letto, sizeof(alimento), 1, stream) > 0){
+
+			if(feof(stream)!=0){
+				break;
+			}
+
+			//se l'alimento viene trovato viene memorizzata tale quantitá
 			if(strcmp(alimento_letto.nome, nome_alimento) == 0){
 				quantita_alimento += alimento_letto.quantita;
 			}
@@ -1184,64 +1261,10 @@ float quantita_alimento(const char* nome_alimento){
 }
 
 
-
-
-
 /**
- *
- * @pre  Nessuna pre condizione particolare
- * @post Deve essere termianta con successo la visualizzazione
- */
-int riduci_alimento(const char* nome_alimento, float riduzione){
-	FILE* stream;
-	alimento_frigo alimento_letto;
-	float q_alimento_riduzione = quantita_alimento(nome_alimento);
-
-	if(q_alimento_riduzione == 0){
-		return -1;
-	}else if(q_alimento_riduzione < riduzione || riduzione == 0){
-		return 0;
-	}else{
-		if((stream = fopen(FILE_FRIGO, "rb+")) == NULL){
-			return -1;
-		}else{
-			while(riduzione > 0){
-
-				fread(&alimento_letto, sizeof(alimento_frigo), 1, stream);
-
-				if(feof(stream) != 0){
-					break;
-				}
-
-				if(strcmp(alimento_letto.nome, nome_alimento) == 0){
-					alimento_letto.quantita -= riduzione;
-
-					if(alimento_letto.quantita <= 0){
-						riduzione = abs(alimento_letto.quantita);
-						strcpy(alimento_letto.nome, "");
-					}else{
-						riduzione = 0;
-					}
-
-					fseek(stream, -sizeof(alimento_frigo), SEEK_CUR);
-					fwrite(&alimento_letto, sizeof(alimento_frigo), 1, stream);
-				}
-			}
-
-			registra_consumo(alimento_letto.nome, FLAG_ALIMENTO);
-
-			fclose(stream);
-			return 1;
-		}
-	}
-}
-
-
-
-
-
-/**
- * Funzione che dopo aver allocato una stringa di una determinata lunghezza, si occupa di ricevere in input il nome della ricetta
+ * Funzione che dopo aver allocato una stringa di una determinata lunghezza, si occupa di ricevere in input il nome dell'alimento.
+ *  L'inserimento viene effettuato fino a quando non é stata inserita una stringa significativa e pertanto fino a quando l'esito dell'input
+ *  non risulta positivo
  *
  * @pre		Nessuna pre condizione particolare
  * @post	Deve essere restituita una stringa con almeno un carattere
@@ -1251,10 +1274,11 @@ char* input_nome_alimento() {
 	// Stringa da restituire contenente il nome dell'alimento
 	char* nome_alimento = (char*) calloc(LUNG_NOME_ALIMENTO, sizeof(char));
 
+	// Ciclo per la ripetizione dell'inserimento fino a riceverlo significativo
 	do {
 		printf("Inserisci il nome dell'alimento:\n>");
 		scanf("%20[^\n]", nome_alimento);
-		if (pulisci_stdin() == 1) {
+		if (pulisci_stdin() == 1) {//viene pulito lo stream di input qualora sia stato inserito un valore non corretto per la scanf
 			esito_input = 0;
 		}
 
@@ -1273,27 +1297,108 @@ char* input_nome_alimento() {
 
 
 
+/**Funzione che si occupa di ridurre la quantità di un certo alimento presente nel frigo.
+ *
+ * Il nome dell'alimento é specificato come parametro di ingresso assieme alla quantitá da ridurre. La funzione pertanto controlla
+ * in primo luogo se la quantitá presente nel frigo é maggiore o uguale di 0. Qualora la quantitá da ridurre sia superiore a quella
+ * effettivamente disponibile nel frigo o se la quantitá da ridurre é uguale a 0 viene restituito 0 per segnalare che non é stata effettuata la
+ * riduzione. Nel caso in cui la quantitá da ridurre e a quantitá disponibile siano significative viene aperto il file del frigo e viene effettuata
+ * la riduzione della quantitá. Inoltre viene richiamata la funzione che si occupa di memorizzare i consumi per registrare l'alimento ridotto.
+ *
+ * @pre  Sia passato come nome di alimento una stringa con almeno un carattere
+ * @post Deve essere restituito un valore per segnalare un errore o in alternativa deve essere stata effettuata con successo la riduzione
+ */
+int riduci_alimento(const char* nome_alimento, float riduzione){
+	FILE* stream;
+	alimento_frigo alimento_letto;
+
+	//viene memorizzata la quantitá dell'alimento se presente nel frigo
+	float q_alimento_riduzione = quantita_alimento(nome_alimento);
+
+	//se la quantitá non é accettabile viene restituito un valore per segnalare un errore nell'operazione di riduzione
+	//in caso contrario viene aperto il file del frigo
+	if(q_alimento_riduzione == 0){
+		return -1;
+	}else if(q_alimento_riduzione < riduzione || riduzione == 0){
+		return 0;
+	}else{
+		if((stream = fopen(FILE_FRIGO, "rb+")) == NULL){
+			return -1;
+		}else{
+			while(riduzione > 0){
+
+				fread(&alimento_letto, sizeof(alimento_frigo), 1, stream);
+
+				if(feof(stream) != 0){
+					break;
+				}
+				//se l'alimento letto é quello da ridurre applica la riduzione della quantitá
+				if(strcmp(alimento_letto.nome, nome_alimento) == 0){
+					alimento_letto.quantita -= riduzione;
+
+					//qualora la quantitá sia scesa al di sotto di zero significa che occorre continuare l'operazione di riduzione, applicandola
+					//ad uno stesso alimento ma che scade in un giorno differente (es ho bisogno di 6 uova, ma ne ho 4 che scadono in data xx/xx/xxxx
+					//e 3 che scadono in data yy/yy/yyyy. A fine operazione ne rimarrá 1 nel frigo che scade in data yy/yy/yyyyy). In caso contrario
+					//imponiamo la riduzione a 0 per uscire dal ciclo
+					if(alimento_letto.quantita <= 0){
+						//rendiamo la quantitá dell'alimento positiva per ottenere il valore della successiva riduzione da effettuare
+						riduzione = abs(alimento_letto.quantita);
+
+						//inizializziamo il nome per recuperare la riga all'interno del file
+						strcpy(alimento_letto.nome, "");
+					}else{
+						riduzione = 0;
+					}
+
+					//aggiorniamo il file del frigo
+					fseek(stream, -sizeof(alimento_frigo), SEEK_CUR);
+					fwrite(&alimento_letto, sizeof(alimento_frigo), 1, stream);
+				}
+			}
+
+			registra_consumo(alimento_letto.nome, FLAG_ALIMENTO);
+
+			fclose(stream);
+			return 1;
+		}
+	}
+}
 
 
-/**
+
+
+
+/**Funzione che si occupa di gestire l'operazione di riduzione di un alimento permettendo all'utente di registrare tale consumo.
+ *
+ *
+ * Una volta effettuata la scelta da parte dell'utente se registrare il consumo ed effettuato un check su tale scelta, viene mostrato il contenuto del frigo
+ * per poter permettere all'utente di scegliere l'alimento da consumare. Qualora la riduzione(funzione riduci alimento) abbia avuto sucesso viene
+ * eventualmente registrato tale consumo e viene chiesto se si vuole rieffettuare l'inserimento.
  *
  * @pre  Nessuna pre condizione particolare
- * @post Deve essere termianta con successo la visualizzazione
+ * @post Deve essere stata effettuata con successo la riduzione ed eventualmente registrato il consumo.
  */
-void gestore_riduzione_alimenti(){
+int gestore_riduzione_alimenti(){
 	int esito_input;
 	int esito_controllo = 0;
 	int esito_riduzione;
 	int scelta = 0;
 	char nome_alimento[LUNG_NOME_ALIMENTO];
 	float q_riduzione;
+	utente persona;
+
+	if(conta_alimenti_frigo()==0){
+		printf("Non puoi effettuare l'operazione di riduzione in quanto non sono presenti alimenti nel frigo\n");
+		return 0;
+	}
 
 	puts("Riduzione di un alimento.\n");
 
+	//viene chiesto se si vuole registrare il consumo al termine della riduzione. La scelta viene controllata tramite il classico controllo sull'input
 	do {
 		printf("Inserire:\n"
-				"[1] per autenticarsi e inserire le calorie nella propria giornata"
-				"[0] per preparare la ricetta in anonimo");
+				"[1] per autenticarsi e inserire le calorie nella propria giornata\n"
+				"[0] per ridurre alimento in anonimo\n~");
 		esito_input = scanf("%d", &scelta);
 		if(pulisci_stdin() == 1){
 			esito_input = 0;
@@ -1311,10 +1416,12 @@ void gestore_riduzione_alimenti(){
 	} while (esito_input == 0 || esito_controllo == 0);
 
 	do {
+		//viene visualizzato il contenuto del frigo e viene chiesto di inserire l'alimento da ridurre tramite la funzione input nome
 		visualizza_frigo();
 
-		input_nome_alimento();
+		strcpy(nome_alimento,input_nome_alimento());
 
+		//viene chiesto di inserire una quantitá significativa da ridurre
 		do{
 			printf("\nInserire la quantita della riduzione dell'alimento:\n>");
 			esito_input = scanf("%f", &q_riduzione);
@@ -1328,6 +1435,7 @@ void gestore_riduzione_alimenti(){
 
 		}while(esito_input != 1);
 
+		//viene effettuata la riduzione e viene controllato l'esito per poter notificare un feedback all'utente
 		esito_riduzione = riduci_alimento(nome_alimento, q_riduzione);
 
 		if(esito_riduzione == -1){
@@ -1336,9 +1444,18 @@ void gestore_riduzione_alimenti(){
 			puts("Quantità della riduzione non valida.");
 		}else{
 			puts("Riduzione effettuata con successo.");
+
+			//qualora l'utente abbia inizialmente inserito 1 viene registrato il consumo dopo essersi autenticati
+			if(scelta==1){
+
+				if (autenticazione(&persona)==1){
+					aggiorno_database_calorie(nome_alimento,FLAG_ALIMENTO,q_riduzione,persona.nickname);
+				}
+			}
 		}
 
 
+		//viene chiesto se si vuole rieffettuare l'inserimento e viene fatto un controllo su tale scelta
 		do {
 			printf("\nInserire [1] per ripetere la riduzione, [0] per annullare:\n>");
 			esito_input = scanf("%d", &scelta);
@@ -1358,36 +1475,40 @@ void gestore_riduzione_alimenti(){
 		} while (esito_input != 1 || esito_controllo != 1);
 	} while (scelta != 0);
 
-
-
-
+	return 1;
 
 }
 
 
 
-/**
+/**Funzione che si occupa di permettere la modifica della soglia della spesa.
+ *
+ * Il funzionamento si basa su una iniziale visualizzazione del database al fine da poter permettere all'utente di capire quale id corrisponde all'alimento
+ * che vuole modificare. Una volta effettuata tale operazione(apertura del file permettendo), viene effettuato un ciclo per il posizionamento del puntatore
+ * all'interno del file qualora venga inserito un id significativo e pertanto venga individuato tale alimento. Una volta fatto ció viene chiesto all'utente
+ * di inserire il nuovo valore che verrá poi inserito all'interno del file per poter permettere cosí l'aggiornamento della soglia.
  *
  * @pre  Nessuna pre condizione particolare
- * @post Deve essere termianta con successo la visualizzazione
+ * @post Deve essere stata aggiornata con successo la soglia della spesa qualora sia possibile modificare tale informazione
  */
 int modifica_soglia_spesa(){
 	FILE* stream = NULL;
 
 	alimento_database alimento;
-	unsigned short flag_alimento = 0;
-	unsigned short id_alimento;
+	unsigned short flag_alimento = 0;//flag che ci aiuta a capire se l'alimento é stato modificato
+	unsigned short id_alimento;		//informazione che ci aiuta a scorrere i vari alimenti presenti nel database
 
 	int num_alimenti_database;
-	unsigned short num_alimenti_letti = 0;
+	unsigned short num_alimenti_letti = 0;	//informazione che ci aiuta a scorrere solo le righe del file effettivamente piene
 
 	int soglia_spesa;
 
 	if((stream = fopen(FILE_DATABASE_ALIMENTI, "rb+")) == NULL){
 		return 0;
 	}else{
-		num_alimenti_database = visualizza_database_alimenti();
+		num_alimenti_database = visualizza_database_alimenti(); //vengono visualizzati gli alimenti e viene assegnato il numero di tali alimenti
 
+		//viene chiesto all'utente di inserire l'id dell'alimento da modificare qualora sia presente almeno un alimento
 		if(num_alimenti_database > 0){
 			id_alimento = input_id_alimento(num_alimenti_database);
 
@@ -1402,6 +1523,8 @@ int modifica_soglia_spesa(){
 				if(strcmp(alimento.nome, "") != 0){
 					num_alimenti_letti++;
 
+					//se siamo arrivati all'alimento corrispondente all'id inserito dall'utente viene posizionato il puntatore
+					//all'iterno del file e viene aggiornato il flag
 					if(num_alimenti_letti == id_alimento){
 						fseek(stream, -sizeof(alimento_frigo), SEEK_CUR);
 						flag_alimento++;
@@ -1415,7 +1538,7 @@ int modifica_soglia_spesa(){
 			return num_alimenti_database;
 		}
 
-		// Input nuova soglia per la generazione della spesa
+		// Input nuova soglia per la generazione della spesa e aggiornamento di tale valore
 		soglia_spesa = input_quantita(alimento.unita_misura);
 
 		alimento.soglia_spesa = soglia_spesa;
@@ -1430,28 +1553,35 @@ int modifica_soglia_spesa(){
 
 
 
-/**
+
+/**Funzione che si occupa di permettere la modifica della kcal di un alimento.
+ *
+ * Il funzionamento si basa su una iniziale visualizzazione del database al fine da poter permettere all'utente di capire quale id corrisponde all'alimento
+ * che vuole modificare. Una volta effettuata tale operazione(apertura del file permettendo), viene effettuato un ciclo per il posizionamento del puntatore
+ * all'interno del file, qualora venga inserito un id significativo e pertanto venga individuato tale alimento. Una volta fatto ció viene chiesto all'utente
+ * di inserire il nuovo valore che verrá poi inserito all'interno del file per poter permettere cosí l'aggiornamento delle kcal.
  *
  * @pre  Nessuna pre condizione particolare
- * @post Deve essere termianta con successo la visualizzazione
+ * @post Deve essere stato aggiornato con successo il valore delle kcal qualora sia possibile modificare tale informazione
  */
 int modifica_kcal(){
 	FILE* stream = NULL;
 
 	alimento_database alimento;
-	unsigned short flag_alimento = 0;
-	unsigned short id_alimento;
+	unsigned short flag_alimento = 0; //flag che ci aiuta a capire se l'alimento é stato modificato
+	unsigned short id_alimento; //informazione che ci aiuta a scorrere i vari alimenti presenti nel database
 
 	int num_alimenti_database;
-	unsigned short num_alimenti_letti = 0;
+	unsigned short num_alimenti_letti = 0;//informazione che ci aiuta a scorrere solo le righe del file effettivamente piene
 
 	int kcal;
 
 	if((stream = fopen(FILE_DATABASE_ALIMENTI, "rb+")) == NULL){
 		return 0;
 	}else{
-		num_alimenti_database = visualizza_database_alimenti();
+		num_alimenti_database = visualizza_database_alimenti();//vengono visualizzati gli alimenti e viene assegnato il numero di tali alimenti
 
+		//viene chiesto all'utente di inserire l'id dell'alimento da modificare qualora sia presente almeno un alimento
 		if(num_alimenti_database > 0){
 			id_alimento = input_id_alimento(num_alimenti_database);
 
@@ -1466,6 +1596,8 @@ int modifica_kcal(){
 				if(strcmp(alimento.nome, "") != 0){
 					num_alimenti_letti++;
 
+					//se siamo arrivati all'alimento corrispondente all'id inserito dall'utente viene posizionato il puntatore
+					//all'iterno del file e viene aggiornato il flag
 					if(num_alimenti_letti == id_alimento){
 						fseek(stream, -sizeof(alimento_frigo), SEEK_CUR);
 						flag_alimento++;
@@ -1479,7 +1611,7 @@ int modifica_kcal(){
 			return num_alimenti_database;
 		}
 
-		// Input nuova soglia per la generazione della spesa
+		// Input nuov e kcal dell'alimento
 		kcal = input_kcal(alimento.nome, alimento.campione_kcal, alimento.unita_misura);
 
 		alimento.kcal = kcal;
@@ -1494,7 +1626,12 @@ int modifica_kcal(){
 
 
 
-/**
+/**Funzione che si occupa di estrarre dal file del database il nome di alimento in maniera casuale.
+ *
+ *
+ * Una volta aperto correttamente il file del database viene posizionato in maniera del tutto casuale il puntatore del file in base alla dimensione
+ * di ogni riga. In questa maniera é possibile accedere ad uno specifico alimento e popolare la struct alimento_database, per poi estrarre l'unica
+ * informazione a noi interessata quale il nome. Esso viene copiato nella stringa passata per riferimento e viene restituito 1
  *
  * @pre  Nessuna pre condizione particolare
  * @post Deve essere termianta con successo la visualizzazione

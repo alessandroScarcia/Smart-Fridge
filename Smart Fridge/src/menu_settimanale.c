@@ -37,7 +37,7 @@ int elimina_file_menu(char nome_file[LUNG_NOME_FILE_MENU]) {
 	int ret = remove(nome_file);//rimuove il file dal nome specificato
 
 	if (ret == 0) {
-
+		printf("\n %s correttamente eliminato\n", nome_file);
 		return 1;
 
 	} else {
@@ -375,7 +375,7 @@ char* input_nome_cibo(){
 	do {
 
 		printf("Inserisci il nome del cibo:\n~");
-		esito_input = scanf("%40s", nome_cibo); //Scelta e memorizzazione della posizione della struct
+		esito_input = scanf("%40[^\n]", nome_cibo); //Scelta e memorizzazione della posizione della struct
 		if(pulisci_stdin() == 1){
 			esito_input = 0;
 		}
@@ -463,7 +463,7 @@ int visualizza_database_menu(char nome_utente[]) {
 	FILE* f;
 
 	if ((f = fopen(nomefile, "rb")) == NULL) { //Se il file non viene aperto
-		printf("\nIMPOSSIBILI APRIRE IL FILE");
+		printf("\nImpossibile aprire il file\n");
 		return 1;
 	}
 
@@ -477,7 +477,6 @@ int visualizza_database_menu(char nome_utente[]) {
 
 	return 1;
 }
-
 
 
 void ordina_cibi_pasto(cibo* cibi){
@@ -537,7 +536,7 @@ void modifica_menu() {
 			num_giorno = input_numero_giorno();
 
 			if(estrai_giorno(&giornata, u.nickname, num_giorno) != 1){
-				puts("Errore nell'estrazione della giornata."); //da estrarre da file
+				puts("Errore nell'estrazione della giornata.\n"); //da estrarre da file
 				return;
 			}
 
@@ -897,81 +896,4 @@ void stampa_giorno(giorno* giornata) {
 			"*********************************************************************************************************\n");
 }
 
-//
-///**
-// * Funzione conta_ricette_menu ():
-// *
-// * La funzione ha il compito analizzare il menu interessato per individuare il numero presente in quel dato menu.
-// *
-// * Al tal scopo vengono passati alla funzione un nome_utente che permettere la generazione del nome del file da cui estrarre la struct e
-// * un variabile che indentifica in quale posizione estrarre la struct.
-// * Quindi, viene chiamata la funzone estrazione_struct, che permettere la memorizzaizone della struct in menu.
-// * Sucessivamente vengono implementati due cicli for innestati che permettore lo scorrimento prima nel vettore pasto e poi un ulteriore scorrimento
-// * nel vettore alimenti. Viene analizzato il flag appartenente al alimenti ad ogni singolo scorrimento.
-// * Grazie ad un if quaando si incontra un flag pari a 1, viene aumentato un contatore.
-// * Tale contatore viene restituito una volta terminata l'analisi di tutta la struct.
-// *
-// * @pre Non vi sono specifiche pre-condizioni per la funzione
-// * @post num_ricette che restituisce il numero delle ricette presente nel menu di un giorno specifico.
-// *
-// */
-//short int conta_ricette_menu(char nome_utente[], short int giorno_x){
-//    short int num_ricette;
-//    giorno menu;
-//
-//    short int j, k;
-//
-//    estrazione_struct (&menu,nome_utente, giorno_x);
-//
-//    for (j=0;j<5;j++){
-//
-//    	for(k=0;k<5;k++){
-//
-//    		if (menu.pasto[j].alimento[k].flag==1){
-//    			num_ricette++;
-//    		}
-//    	}
-//    }
-//
-//
-//	return num_ricette;
-//}
-//
-//
-///**
-// * Procedura ricette_presenti ():
-// *
-// * La procedura ha il compito popolare un vettore passotogli in ingresso con i nomi delle ricette presenti nel menu di un giorno specifico.
-// *
-// * Al tal scopo vengono passati alla funzione un nome_utente che permettere la generazione del nome del file da cui estrarre la struct,
-// * un variabile che indentifica in quale posizione estrarre la struct e un vettore bidimensionale su cui memorizzare i nomi delle ricette
-// * Quindi, viene chiamata la funzone estrazione_struct, che permettere la memorizzaizone della struct in menu.
-// * Sucessivamente vengono implementati due cicli for innestati che permettore lo scorrimento prima nel vettore pasto e poi un ulteriore scorrimento
-// * nel vettore alimenti. Viene analizzato il flag appartenente al alimenti ad ogni singolo scorrimento.
-// * Grazie ad un if quaando si incontra un flag pari a 1, viene copiato il nome della variabile con tale flag nell i-esima posizione del vettore
-// * bidimensionale (vet_ricette), quindi viene aumentato il contatore i per evitare una sovrascrittura nel vet_ricette.
-// *
-// *
-// * @pre Non vi sono specifiche pre-condizioni per la funzione
-// * @post no.
-// *
-// */
-//void ricette_presenti (char vet_ricette[], char nome_utente[], short int giorno_x){
-//	 short int j, k, i;
-//     giorno menu;
-//
-//
-//     estrazione_struct (&menu,nome_utente, giorno_x);
-//
-//     for (j=0;j<5;j++){
-//
-//         	for(k=0;k<5;k++){
-//
-//         		if (menu.pasto[j].alimento[k].flag==1){
-//         			strcpy(&vet_ricette[i], menu.pasto[j].alimento[k].nome_cibo );
-//         			i++;
-//         		}
-//         	}
-//         }
-//
-//}
+

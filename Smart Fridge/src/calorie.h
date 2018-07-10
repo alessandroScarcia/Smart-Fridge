@@ -26,6 +26,10 @@
 #endif
 
 
+
+#ifndef CALORIE_LIB
+#define CALORIE_LIB
+
 #ifndef UTENTI_LIB
 #include "utenti.h"
 #endif
@@ -33,23 +37,28 @@
 /// Inclusione della libreria per la gestione delle date
 
 #include "date.h"
-/// Inclusione della libreria per la gestione delle ricette
-#ifndef RICETTE_LIB
-#include "ricette.h"
-#endif
+
+
 
 /// Inclusione della libreria per la gestione dei consumi
 
 #include "menu_settimanale.h"
 
 
+#define FLAG_INPUT_LIBERO  3
+#define  KCAL_MEDIE_GIORNALIERE 2000
+#define CAMPIONE_ISTOGRAMMI 200
+
 
 /// Inclusione della libreria per la pulizia dei flussi di input
 
 #include "pulizia_flussi.h"
 
-#ifndef CALORIE_H_
-#define CALORIE_H_
+/// Inclusione della libreria per la gestione delle ricette
+#ifndef RICETTE_LIB
+#include "ricette.h"
+#endif
+
 
 #define LUNG_FILE_CALORIE 50
 #define LUNG_NOME_ASSUNZIONE 50
@@ -61,7 +70,7 @@ typedef struct{
 	int flag;
 } assunzione;
 
-#endif/* CALORIE_H_ */
+
 
 /**Questa funzione ha il compito di popolare una struct di tipo assunzione passatagli in ingresso, con i dati
  * inseriti dal'utente. Per fare ciò chiede all'utente di inserire 0 se ha intenzione di inserire un alimento
@@ -77,6 +86,9 @@ typedef struct{
  */
 int input_alimento_consumato ();
 
+
+
+
 /**La funzione calcolo_kcal_alimento() ha il compito di calcolare le kcal di un alimento basandosi sulla quantità,
  * il tutto attraverso una proporzione.
  *
@@ -86,6 +98,7 @@ int input_alimento_consumato ();
  * @return risultato_kcal	kcal per il quantitativo inserito
  */
 unsigned short int calcolo_kcal(unsigned short int kcal, int campione, float q_consumata);
+
 
 /**La funzione aggiorno_database_calorie() ha il compito di scrive su file assunzioni relativo all'utente,
  * il quale nickname viene passato come parametro di ingresso alla fuzione, il cibo assunto.
@@ -137,7 +150,7 @@ int stampa_database_assunzioni ();
  *@return -1 				se non riesce ad aprire e creare il file
  *@return 0					se la funzione riesce a svolgere il suo compito
  */
-int calcolo_kcal_totali (char nomefile[]);
+unsigned short calcolo_kcal_totali(char* nomefile);
 
 /**La funzione creazione_assunzioni() ha il compito di creare il file assunzioni.
  *
@@ -166,7 +179,7 @@ int modifica_assunzione ();
  *@return posizione 		se trova la struct con nome corrispondente al nome passato in ingresso
  *@return 0					se non trova una struct con nome corrispondente al nome passato in ingresso
  */
-short int ricerca_assunzione_database (char nome[], char nickname[]);
+short int ricerca_assunzione_database (assunzione* nuova_assunzione, char nickname[]);
 
 /**La funzione scrittura_diretta_assunzione() ha il compito di scrivere sul file corrispondente all'utente il quale nickname viene passato
  * in ingresso, la struct pasastagli in ingresso.
@@ -185,3 +198,4 @@ int scrittura_diretta_assunzione (assunzione* cibo, char nickname[]);
  */
 void istogrami ();
 
+#endif/* CALORIE_H_ */

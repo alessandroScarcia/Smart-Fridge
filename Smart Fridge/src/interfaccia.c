@@ -9,9 +9,10 @@
 #include "interfaccia.h"
 
 
+
 /**
- * La funzione input scelta si occupa di ricevere in input il comando per accedere ad una determinata voce dei menu. Si é pensato che la scelta
- * essendo un numero avrá anche esso un range. Se la scelta é compresa nel range vuol dire che é accettabile altrimenti verrá scartata e verrá
+ * La funzione input scelta si occupa di ricevere in input il comando per accedere ad una determinata voce dei menu. Si e' pensato che la scelta
+ * essendo un numero avrá anche esso un range. Se la scelta e' compresa nel range vuol dire che e' accettabile altrimenti verrá scartata e verrá
  * richiesto di reinserire il valore.
  *
  * @pre  Che vengano passati dei valori significativi di massimo e minimo
@@ -40,7 +41,7 @@ int input_scelta(int valore_minimo, int valore_massimo) {
 	} while (esito_input != 1 || esito_controllo != 1);
 
 
-	return scelta;//restituisci il numero che é stato inserit
+	return scelta;//restituisci il numero che e' stato inserit
 }
 
 
@@ -149,7 +150,7 @@ void voci_utenti(){
 	printf("%c[1] per creare nuovi utenti                                                               %c\n", 179, 179);
 	printf("%c[2] per visualizzare tutti gli utenti                                                     %c\n", 179, 179);
 	printf("%c[3] per modificare il tuo profilo                                                         %c\n", 179, 179);
-	printf("%c[4] per eliminare un utente                                                     %c\n", 179, 179);
+	printf("%c[4] per eliminare un utente                                                               %c\n", 179, 179);
 	printf("%c[0] per uscire                                                                            %c\n", 179, 179);
 	parte_inferiore_tabella();
 
@@ -350,7 +351,7 @@ int menu_calorie(){
 				}
 
 
-				if(scelta){// se la scelta non é quella di uscire allora chiedi di inserire un nuovo valore
+				if(scelta){// se la scelta non e' quella di uscire allora chiedi di inserire un nuovo valore
 					system("pause");
 					visualizza_voci_menu(MENU_CALORIE);
 					printf("\nSeleziona un'altra scelta del menu calorie ~ ");
@@ -414,7 +415,7 @@ int menu_lista_spesa(){
 				}
 
 
-				if(scelta){// se la scelta non é quella di uscire allora chiedi di inserire un nuovo valore
+				if(scelta){// se la scelta non e' quella di uscire allora chiedi di inserire un nuovo valore
 					system("pause");
 					visualizza_voci_menu(MENU_LISTA_SPESA);
 					printf("\nSeleziona un'altra scelta del menu ricette ~ ");
@@ -466,7 +467,7 @@ int gestore_menu_settimanale(){
 				}
 
 
-				if(scelta){// se la scelta non é quella di uscire allora chiedi di inserire un nuovo valore
+				if(scelta){// se la scelta non e' quella di uscire allora chiedi di inserire un nuovo valore
 					system("pause");
 					visualizza_voci_menu(OPZIONI_MENU_SETTIMANALE);
 					printf("\nSeleziona un'altra scelta del menu ricette ~ ");
@@ -520,7 +521,7 @@ int menu_utente(){
 						break;
 		}
 
-		if(scelta){// se la scelta non é quella di uscire allora chiedi di inserire un nuovo valore
+		if(scelta){// se la scelta non e' quella di uscire allora chiedi di inserire un nuovo valore
 			system("pause");
 			visualizza_voci_menu(MENU_UTENTI);
 			printf("\nSeleziona un'altra scelta del menu ~ ");
@@ -556,7 +557,7 @@ int menu_ricerca(){
 	printf("Inserisci comando ~ ");
 
 	do{
-		scelta=input_scelta(MIN_SCELTA_RICERCA_RIC,MAX_SCELTA_RICERCA_RIC);
+		scelta=input_scelta(MIN_SCELTA_RICERCA,MAX_SCELTA_RICERCA);
 
 		switch (scelta) {//in base alla scelta vai alla funzione corrispondente
 					case 0://esci
@@ -589,7 +590,7 @@ int menu_ricerca(){
 						break;
 		}
 
-		if(scelta){// se la scelta non é quella di uscire allora chiedi di inserire un nuovo valore
+		if(scelta){// se la scelta non e' quella di uscire allora chiedi di inserire un nuovo valore
 			system("pause");
 			visualizza_voci_menu(MENU_RICERCA);
 			printf("\nSeleziona un'altra scelta del menu ~ ");
@@ -636,7 +637,7 @@ int menu_ricette(){
 					elimina_ricetta();//visualizza gli alimenti che abbiamo memorizzato nel frigo
 					break;
 
-				case 6:
+				case 5:
 					gestore_prepara_ricetta();
 					break;
 
@@ -648,7 +649,7 @@ int menu_ricette(){
 				}
 
 
-				if(scelta){// se la scelta non é quella di uscire allora chiedi di inserire un nuovo valore
+				if(scelta){// se la scelta non e' quella di uscire allora chiedi di inserire un nuovo valore
 					system("pause");
 					visualizza_voci_menu(MENU_RICETTE);
 					printf("\nSeleziona un'altra scelta del menu ricette  ~ ");
@@ -711,7 +712,7 @@ int menu_alimenti(){
 			}
 
 
-			if(scelta!=0){// se la scelta non é quella di uscire allora chiedi di inserire un nuovo valore
+			if(scelta!=0){// se la scelta non e' quella di uscire allora chiedi di inserire un nuovo valore
 				system("pause");
 				visualizza_voci_menu(MENU_ALIMENTI);
 			    printf("\nSeleziona un'altra scelta del menu alimenti  ~  ");

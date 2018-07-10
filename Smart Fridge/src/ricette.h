@@ -14,6 +14,8 @@
 	#include <time.h>
 #endif
 
+
+
 #ifndef RICETTE_LIB
 #define RICETTE_LIB
 
@@ -24,16 +26,22 @@
 	#include <ctype.h>
 #endif
 
+
+/// Inlusione della libreria per la gestione degli alimenti.
+#include "alimenti.h"
+
 /// Inclusione della libreria per la gestione dei consumi
-#ifndef CONSUMI_LIB
+
 #include "consumi.h"
+
+#ifndef CALORIE_LIB
+#include "calorie.h"
 #endif
 
 #include "utenti.h"
 
 #include "date.h"
-/// Inlusione della libreria per la gestione degli alimenti.
-#include "alimenti.h"
+
 /// Inclusione della libreria per la pulizia dei flussi di input.
 #include "pulizia_flussi.h"
 

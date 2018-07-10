@@ -143,7 +143,7 @@ int aggiorno_database_calorie(char nome_consumo[], int flag_consumo, float quant
 	cibo.flag=flag_consumo;
 	cibo.quantita=quantita_consumo;
 
-	if (cibo.flag==FLAG_RICETTA){ //flag
+	if (cibo.flag==FLAG_RICETTA){
 
 	  int  kcal_ricetta;
 	  int dosi_ricetta;
@@ -249,7 +249,7 @@ int stampa_database_assunzioni() {
 				data_letta.mese, data_letta.anno);
 
 		while (fread(&cibo, sizeof(assunzione), 1, f) > 0) {
-			if (cibo.kcal !=0){
+			if (cibo.kcal != 0){
 			       printf("Nome: %s\nQuantita': %.2f\nkcal: %hu\n\n", cibo.nome,
 					cibo.quantita, cibo.kcal);
 			}
@@ -257,7 +257,11 @@ int stampa_database_assunzioni() {
 
 		fclose(f);
 
-		calcolo_kcal_totali(nome_file);
+	    printf("Calorie assunte in totale: %d\n", calcolo_kcal_totali(nome_file));
+
+
+	}else{
+		return -1;
 	}
 
 	return 0;
@@ -280,7 +284,7 @@ int stampa_database_assunzioni() {
  *
  */
 
-unsigned short calcolo_kcal_totali(char nomefile[]) {
+unsigned short calcolo_kcal_totali(char* nomefile) {
 
 	FILE* f;
 	assunzione cibo;
@@ -302,9 +306,7 @@ unsigned short calcolo_kcal_totali(char nomefile[]) {
 
 	fclose(f);
 
-    if(tot_kcal>0){
-    	printf("Calorie assunte in totale: %hu", tot_kcal);
-    }
+
 	return tot_kcal;
 }
 
@@ -330,9 +332,7 @@ int modifica_assunzione (){
 
 	utente persona;
 
-
-
-	if (autenticazione(&persona) == 1) {
+	if(autenticazione(&persona) == 1){
 
 		FILE* stream;
 
@@ -344,8 +344,9 @@ int modifica_assunzione (){
 		short int posizione; //varibile per memorizzare la posizione dove scrivere il nuovo record
 		int esito_input;
 
+
 		do {
-			printf("Inserisci il nome del cosumo da modifcare\n>");
+			printf("Inserisci il nome del cosumo da modificare\n>");
 			scanf("%20[a-zA-Z]", nuova_assunzione.nome);
 			if(pulisci_stdin() == 1){
 				esito_input = 0;
@@ -356,8 +357,8 @@ int modifica_assunzione (){
 			}
 		}while (esito_input == 0);
 
-		posizione=ricerca_assunzione_database (nuova_assunzione.nome, persona.nickname);
 
+		posizione=ricerca_assunzione_database (&nuova_assunzione, persona.nickname);
 
 		//Se si presenta uno dei due casi, vuol dire che il file non esiste o l'elemento cercato non è stato trovato
 		if (posizione==0 || posizione==-1){
@@ -367,7 +368,7 @@ int modifica_assunzione (){
 
 		if (nuova_assunzione.flag==FLAG_INPUT_LIBERO){
 			do {
-				printf("\nInserire le nuove kcal (0 per elimanre il consumo)\n>");
+				printf("\nInserire le nuove kcal (0 per elimanare il consumo)\n>");
 				scanf("%hu", &nuova_assunzione.kcal);
 				if(pulisci_stdin() == 1){
 					esito_input = 0;
@@ -412,21 +413,26 @@ int modifica_assunzione (){
 
 		 }
 
-			if((stream = fopen(nome_file, "rb+"))==NULL){
 
-				printf("Errore\n");
-				return 1;
-
-			}
-
-			fseek(stream, sizeof(data)+posizione*sizeof(assunzione)-sizeof(assunzione), SEEK_SET);
-			fwrite(&nuova_assunzione, sizeof(assunzione), 1, stream);
-
-			return 0;
-
-		} else {
-			return 1;
+		if(nuova_assunzione.flag==FLAG_INPUT_LIBERO && nuova_assunzione.kcal==0){
+			strcpy(nuova_assunzione.nome,"");
 		}
+
+		if((stream = fopen(nome_file, "rb+"))==NULL){
+
+			printf("Errore\n");
+			return 1;
+
+		}
+
+		fseek(stream, sizeof(data)+posizione*sizeof(assunzione)-sizeof(assunzione), SEEK_SET);
+		fwrite(&nuova_assunzione, sizeof(assunzione), 1, stream);
+		fclose(stream);
+		return 0;
+
+	} else {
+		return 1;
+	}
 }
 
 
@@ -445,12 +451,12 @@ int modifica_assunzione (){
  * @post Il valore restituito indica l'esito della funzione o la posizione della struct trovata.
  *
  */
-short int ricerca_assunzione_database (char nome[], char nickname[]){
+short int ricerca_assunzione_database (assunzione* nuova_assunzione, char nickname[]){
 
 	assunzione lettura;
 	short int posizione; //variabile di memorizzazione della posizione della struct da trovare
 
-	abbassa_maiuscole (nome);
+	abbassa_maiuscole (nuova_assunzione->nome);
 
 	char nome_file[LUNG_FILE_CALORIE] = "../assunzioni_";
 	strcat(nome_file, nickname);
@@ -466,12 +472,16 @@ short int ricerca_assunzione_database (char nome[], char nickname[]){
 
 	while(feof(f) == 0){
 
-				fread(&lettura, sizeof(assunzione), 1, f);
-				posizione++;//leggo, incremento
-				if(strcmp(lettura.nome, nome) == 0){
-					return posizione;
-				}
-			}
+		fread(&lettura, sizeof(assunzione), 1, f);
+		if(strcmp(lettura.nome,"") != 0){
+			posizione++;//leggo, incremento
+		}
+		if(strcmp(lettura.nome, nuova_assunzione->nome) == 0){
+			nuova_assunzione->flag=lettura.flag;
+			fclose (f);
+			return posizione;
+		}
+	}
 	fclose (f);
 
 	return 0;
@@ -509,14 +519,22 @@ int scrittura_diretta_assunzione (assunzione* cibo, char nickname[]){
 	fseek(stream, 0, SEEK_SET);
 	fread(&controllo_data, sizeof(data), 1, stream);
 
-	if (diff_date(&differenza, controllo_data, data_odierna()) != 0) {
+	diff_date(&differenza, controllo_data, data_odierna());
+
+	if (differenza != 0) {
 		//reset
 		scrivi_data(nickname);
 	}
 
+
 	fseek(stream, 0, SEEK_END);
 	fwrite(cibo, sizeof(assunzione), 1, stream);
+	fseek(stream, 0, SEEK_END);
+	fread(cibo, sizeof(assunzione), 1, stream);
 
+	if(strcmp(cibo->nome,"") != 0){
+		printf("%s scritto correttamente in %s\n", cibo->nome, nome_file);
+	}
 	return 0;
 }
 
@@ -541,6 +559,7 @@ int scrittura_diretta_assunzione (assunzione* cibo, char nickname[]){
 void istogrami (){
 
 	utente persona;
+	int kcal_totali=0;
 
 	if (autenticazione(&persona)== 1){
 
@@ -560,10 +579,13 @@ void istogrami (){
 		 for (int i=0; i < kcal_giornaliere; i+=CAMPIONE_ISTOGRAMMI){
 			 printf("%c", 219);
 		 }
-		 printf("\nIl tuo stato attuale: \n");
-		 for (int i=0; i < calcolo_kcal_totali(persona.nickname); i+=CAMPIONE_ISTOGRAMMI){
+		 printf("\nIl tuo stato attuale:                ");
+		 kcal_totali=calcolo_kcal_totali(nome_file);
+
+		 for (int i=0; i < kcal_totali; i+=CAMPIONE_ISTOGRAMMI){
 		 	 printf("%c", 219);
 		 }
+		 printf("\nCalorie assunte in totale: %d\n", kcal_totali);
 
 	}
 

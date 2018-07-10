@@ -6,6 +6,7 @@
  */
 
 
+
 #include "alimenti.h"
 #include "date.h"
 #include "ricette.h"
@@ -48,8 +49,8 @@
 #define MIN_SCELTA_ALIMENTI 0
 #define MAX_SCELTA_ALIMENTI 6
 
-#define MIN_SCELTA_RICERCA_RIC 0
-#define MAX_SCELTA_RICERCA_RIC 4
+#define MIN_SCELTA_RICERCA 0
+#define MAX_SCELTA_RICERCA 6
 
 #define MIN_SCELTA_SPESA 0
 #define MAX_SCELTA_SPESA 4
@@ -59,56 +60,6 @@
 
 #define MIN_SCELTA_MENU_CALORIE 0
 #define MAX_SCELTA_MENU_CALORIE  4
-
-
-void riga_contorno(int posizione);
-
-
-
-void parte_inferiore_tabella();
-
-
-
-void voci_principale();
-
-
-void voci_alimenti();
-
-
-void voci_ricette();
-
-
-
-void voci_utenti();
-
-
-
-void voci_ricerca();
-
-
-void voci_lista_spesa();
-
-
-void voci_menu_settimanale();
-
-
-
-void voci_calorie();
-
-
-int visualizza_voci_menu(int voce);
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

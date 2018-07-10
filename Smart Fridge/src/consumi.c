@@ -69,6 +69,7 @@ int ricerca_prod_magg_cons(short flag_prodotto){
 	int freq_consumo = 0;
 	char prod_magg_cons[LUNG_NOME_PRODOTTO];
 
+
 	if((stream = fopen(FILE_CONSUMI, "rb+")) == NULL){
 		return 0;
 	}else{

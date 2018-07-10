@@ -25,6 +25,7 @@
 #ifndef UTENTI_LIB
 #define UTENTI_LIB
 
+#include "menu_settimanale.h"
 
 #include "alimenti.h"
 
@@ -32,7 +33,7 @@
 
 #define MAX_UTENTI 6
 
-#define MIN_LUNG_NICKNAME 5							/// Lunghezza minima in caratteri per il nickname di un utente (escluso il terminatore '\0')
+#define MIN_LUNG_NICKNAME 3							/// Lunghezza minima in caratteri per il nickname di un utente (escluso il terminatore '\0')
 #define MAX_LUNG_NICKNAME 16 						/// Lunghezza massima in caratteri per il nickname di un utente (compreso il terminatore '\0')
 #define NUM_PREFERENZE 3 							/// Numero di preferenze alimentari per ogni utente
 #define LUNG_PREFERENZA 21 							/// Lunghezza massima in caratteri per la preferenza alimentare di ogni utente
@@ -86,6 +87,8 @@ int esiste_nickname(const char* nickname);
  *
  * @return Stringa corrispondente al nickname inserito.
  */
+char* input_nuovo_nickname();
+
 
 char* input_nickname();
 
@@ -182,11 +185,7 @@ int salva_n_utenti(utente* utenti, int n);
  */
 int crea_utenti();
 
-/**
-* La funzione ha il compito di permettere la modifica delle preferenze di un utente.
-*
-* @param u struct contenente l'utente da modificare
-*/
+
 void modifica_preferenze(utente* u);
 
 

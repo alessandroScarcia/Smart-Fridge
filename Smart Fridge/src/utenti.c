@@ -71,7 +71,7 @@ char* input_nickname(){
 	int lung_nickname;
 
 	do{
-		printf("Inserisci il nickname [max. 15 lettere, min. 5 lettere]:\n~");
+		printf("Inserisci il nickname [max. 15 lettere, min. 3 lettere]:\n~");
 		esito_input = scanf("%15[a-zA-Z]", nickname);
 		if(pulisci_stdin() == 1){
 			esito_input = 0;
@@ -324,7 +324,7 @@ utente input_utente(){
 
 	puts("DATI DEL NUOVO UTENTE:");
 
-	strcpy(nuovo_utente.nickname, input_nuovo_nickname());
+	strcpy(nuovo_utente.nickname, input_nickname());
 
 	generatore_password(nuovo_utente.password);
 
@@ -751,7 +751,7 @@ int gestore_modifiche(){
 			//Controllo della scelta e richiamo alle funzioni di modifca in base ad essa
 			switch(scelta){
 			case CAMPO_NICKNAME:
-				strcpy(utente_modificato.nickname, input_nuovo_nickname());
+				strcpy(utente_modificato.nickname, input_nickname());
 				break;
 			case CAMPO_PASSWORD:
 				strcpy(utente_modificato.password, input_password());
