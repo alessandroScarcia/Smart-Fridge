@@ -24,7 +24,6 @@
  * @post Il valore restituito rappresenta l'esito della funzione.
  *
  */
-
 int input_alimento_consumato() {
 
 	utente persona;
@@ -167,7 +166,7 @@ int aggiorno_database_calorie(char nome_consumo[], int flag_consumo, float quant
 
 
 /**
- * Funzione scrivi_data ():
+ * Funzione inizializza_file_assunzione ():
  *
  * La funzione ha il compito creare una struct di tipo data e assegnarle la data prese dal computer. Fatto ciò, grazie
  * al nickname passato in ingresso aprirà il file, lo resetterà e ci scriverà all'inzio la data.
@@ -179,7 +178,7 @@ int aggiorno_database_calorie(char nome_consumo[], int flag_consumo, float quant
  * @post Il valore restituito rappresenta l'esito della funzione.
  *
  */
-int scrivi_data(char nickname[]) {
+int inizializza_file_assunzione(char nickname[]) {
 
 	data data_attuale = data_odierna();
 
@@ -198,7 +197,7 @@ int scrivi_data(char nickname[]) {
 
 	fclose(f);
 
-	return 0;
+	return 1;
 }
 
 
@@ -236,7 +235,7 @@ int stampa_database_assunzioni() {
 		FILE* f;
 
 		if((f = fopen(nome_file, "rb+"))==NULL){
-			if(scrivi_data(persona.nickname)==-1) { //creazione e scrittura della data in caso il file non esistesse
+			if(inizializza_file_assunzione(persona.nickname)==-1) { //creazione e scrittura della data in caso il file non esistesse
 				return -1;
 			}
 		}
@@ -292,7 +291,7 @@ unsigned short calcolo_kcal_totali(char* nomefile) {
 
 	if((f = fopen(nomefile, "rb+"))==NULL){
 
-		if(scrivi_data (nomefile)==-1) {
+		if(inizializza_file_assunzione (nomefile)==-1) {
 					return -1;
 		}
 	}
@@ -425,6 +424,7 @@ int modifica_assunzione (){
 
 		}
 
+
 		fseek(stream, sizeof(data)+posizione*sizeof(assunzione)-sizeof(assunzione), SEEK_SET);
 		fwrite(&nuova_assunzione, sizeof(assunzione), 1, stream);
 		fclose(stream);
@@ -454,7 +454,7 @@ int modifica_assunzione (){
 short int ricerca_assunzione_database (assunzione* nuova_assunzione, char nickname[]){
 
 	assunzione lettura;
-	short int posizione; //variabile di memorizzazione della posizione della struct da trovare
+	short int posizione=0; //variabile di memorizzazione della posizione della struct da trovare
 
 	abbassa_maiuscole (nuova_assunzione->nome);
 
@@ -513,7 +513,7 @@ int scrittura_diretta_assunzione (assunzione* cibo, char nickname[]){
 	int differenza;
 
 	if((stream = fopen(nome_file, "rb+"))==NULL){
-			scrivi_data(nickname);
+			inizializza_file_assunzione(nickname);
 	}
 
 	fseek(stream, 0, SEEK_SET);
@@ -523,19 +523,21 @@ int scrittura_diretta_assunzione (assunzione* cibo, char nickname[]){
 
 	if (differenza != 0) {
 		//reset
-		scrivi_data(nickname);
+		inizializza_file_assunzione(nickname);
 	}
 
 
 	fseek(stream, 0, SEEK_END);
 	fwrite(cibo, sizeof(assunzione), 1, stream);
-	fseek(stream, 0, SEEK_END);
-	fread(cibo, sizeof(assunzione), 1, stream);
+
 
 	if(strcmp(cibo->nome,"") != 0){
 		printf("%s scritto correttamente in %s\n", cibo->nome, nome_file);
 	}
-	return 0;
+
+	fclose(stream);
+
+	return 1;
 }
 
 

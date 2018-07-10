@@ -111,16 +111,16 @@ unsigned short int calcolo_kcal(unsigned short int kcal, int campione, float q_c
  */
 int aggiorno_database_calorie(char nome_consumo[], int flag_consumo, float quantita_consumo, char nickname[]);
 
-/**La funzione scrivi_data() ha il compito di resettare il file e scrivere in prima posizione la data
+/**La funzione inizializza_file_assunzione() ha il compito di resettare il file e scrivere in prima posizione la data
  * odierna.
  *
  * @param nickname			nome con cui creare il nome del file su cui scrivere
  *
  * @return -1 				se non riesce a creare il file
- * @return 0				se riesce a svolgere il suo compito
+ * @return 	1			se riesce a svolgere il suo compito
  *
  */
-int scrivi_data(char nickname[]);
+int inizializza_file_assunzione(char nickname[]);
 
 /**La funzione apertura_file_assunzioni() ha il compito di aprire il file se l'autenticazioen va a buon fine e
  * verificare che la data presente sia quella odierna servendosi di una funzione che calcola la differenza tra le
