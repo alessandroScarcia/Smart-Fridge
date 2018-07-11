@@ -1,32 +1,54 @@
+/**
+ * @file consumi.c
+ *
+ * Implementazione delle funzioni di cosumi.h
+ */
 #include "consumi.h"
 
 /**
- *La funzione registra_consumi riceve in ingresso il nome di un prodotto dove per prodotto intendiamo il nome di una ricetta o di un alimento e
- *un flag dove 0 indica che siamo in presenza di un alimento e 1 che indica che siamo in presenza di una ricetta. Inizialmente viene fatto un check
- *un all'interno del file dei consumi per vedere se il prodotto é giá stato consumato in passato e qualora lo sia, basta solo incrementare la sua
- *un frequenza. Nel caso in cui sia la prima volta che lo si consuma viene creata una nuova riga in cui memorizzare nome, la categoria di appartenenza
- *e la frequenza iniziale
- * @pre		Il nome del prodotto deve essere una stringa con lunghezza maggiore di 0 e il flag deve avere un valore significativo (0 o 1)
- * @post	Deve essere stato effettuata e salvata la modifica su file
+ * Funzione registra_consumo:
+ * La funzione ha il compito di registrare la consumazione di un prodotto. Ciò significa incrementare il valore
+ * di frequenza, nel record corrispondente al prodotto, in FILE_CONSUMI. A questo scopo, apre il file o lo crea
+ * se non esiste. Successivamente effettua una scansione dei record del file. Se individua il record
+ * corridpondente al prodotto, memorizza la sua posizione. Se viene memorizzata la posizione del record, viene
+ * posizionato il puntatore a quel record e ne viene incrementato il valore di frequenza. Altrimenti viene
+ * creato un nuovo record con valore di frequenza pari a 1.
+ *
+ * @pre		Il nome del prodotto deve essere una stringa non vuota e non più lunga di LUNG_NOME_PRODOTTO
+ * @post	Deve essere controllato il valore di ritorno per verificare l'esito della registrazione
  */
 int registra_consumo(char* nome_prodotto, short flag_prodotto){
-	FILE* stream = NULL;
-	fpos_t riga_consumo = -1;// ci aiuta a salvare la posizione corrente del puntatore al file
-	consumo prodotto_consumo;
+	// Controlli sui parametri attuali
+	int l_nome_prodotto = strlen(nome_prodotto);
+	if(l_nome_prodotto < 1 || l_nome_prodotto >= LUNG_NOME_PRODOTTO){
+		return 0;
+	}
 
+	if(flag_prodotto != FLAG_RICETTA && flag_prodotto != FLAG_ALIMENTO){
+		return 0;
+	}
+
+	FILE* stream = NULL;				// Puntatore a FILE_CONSUMI
+	fpos_t riga_consumo = -1;			// Posizione del record esistente per il prodotto interessato
+	consumo prodotto_letto;				// Variabile utilizzata per I/O su FILE_CONSUMI
+
+	// Apertura del file in lettura e aggiornamento binario, o creazione del file nuovo se inesistente
 	if((stream = fopen(FILE_CONSUMI,"rb+")) == NULL){
 		if((stream = fopen(FILE_CONSUMI,"wb+")) == NULL){
-			return 0;
+			// Se non può essere creato il file ritorna -1
+			return -1;
 		}
 	}
 
-	while(fread(&prodotto_consumo, sizeof(consumo), 1, stream) > 0){//leggi fino a quando é presente una riga
+	// Scansione del contenuto di FILE_CONSUMI
+	while(fread(&prodotto_letto, sizeof(consumo), 1, stream) > 0){
+		// Se si raggiunge la fine del file, è necessario terminare l'iterazione
 		if(feof(stream) != 0){
 			break;
 		}
 
-		//se ho trovato il nome del prodotto che ho passato alla funzione all'interno del file aggiorno la sua frequenza di consumo
-		if(strcmp(prodotto_consumo.nome_prodotto, nome_prodotto) == 0){//se la linea non é vuota e possiede un alimento
+		// Se viene identificato il record del prodotto interessato, ne viene memorizzata la posizione
+		if(strcmp(prodotto_letto.nome_prodotto, nome_prodotto) == 0){
 			fseek(stream, -sizeof(consumo), SEEK_CUR);
 			fgetpos(stream, &riga_consumo);
 			break;
@@ -34,17 +56,24 @@ int registra_consumo(char* nome_prodotto, short flag_prodotto){
 	}
 
 
-	//se il prodotto non é stato trovato all'interno del file vuol dire che é la prima volta che lo si consuma
+	// Se non è stato individuato il record del prodotto, viene posizionato il puntatore alla fine del file
 	if(riga_consumo == -1){
-		strcpy(prodotto_consumo.nome_prodotto, nome_prodotto);//copio il nome del prodotto
-		prodotto_consumo.flag_prodotto = flag_prodotto;//memorizzo la tipologia di prodotto
-		prodotto_consumo.frequenza = 1;
+		fseek(stream, 0, SEEK_END);
+
+		// Viene generato il record da aggungere
+		strcpy(prodotto_letto.nome_prodotto, nome_prodotto);//copio il nome del prodotto
+		prodotto_letto.flag_prodotto = flag_prodotto;//memorizzo la tipologia di prodotto
+		prodotto_letto.frequenza = 1;
 	}else{
+		// Altrimenti viene posizionato il puntatore al record del prodotto
 		fsetpos(stream, &riga_consumo);
-		prodotto_consumo.frequenza++;
+
+		// Viene incrementato il valore di frequenza nel record del prodotto torvato
+		prodotto_letto.frequenza++;
 	}
 
-	fwrite(&prodotto_consumo, sizeof(consumo), 1, stream);
+	// Scrittura del record creato o aggiornato
+	fwrite(&prodotto_letto, sizeof(consumo), 1, stream);
 
 	fclose(stream);
 	return 1;
@@ -52,41 +81,44 @@ int registra_consumo(char* nome_prodotto, short flag_prodotto){
 
 
 
-
 /**
- * Questa funzione avendo in ingresso la tipologia di prodotto, stampa il prodotto di quella categoria maggiormente consumato. Ricordiamo che il flag
- * puó avere  1 in caso di ricette e 0 in caso di alimenti. Tramite un ciclo che analizza tutto il file dei consumi viene rintracciato la ricetta o
- * l'alimento con la frequenza maggiore. In caso questi non sia presente e la stringa del prodotto maggiormente consumato rimanga vuota verrá
- * stampato un mess di avviso
- * @pre		Il flag deve avere un valore significativo (0 o 1)
- * @post	Deve essere stato mostrato un messaggio in base all'esito e la ricerca deve essere terminata con successo
+ *
+ *
+ * @pre		Il flag deve avere un valore significativo.
+ * @post	Deve essere controllato l'esito della ricerca, per verificare l'esito della funzione.
  */
 int ricerca_prod_magg_cons(short flag_prodotto){
-	FILE* stream = NULL; //apri il file in modalitá "lettura binaria"
-	consumo prodotto_consumo;
+	// Controlli sui parametri attuali
+	if(flag_prodotto != FLAG_RICETTA && flag_prodotto != FLAG_ALIMENTO){
+		return 0;
+	}
 
-	int freq_consumo = 0;
-	char prod_magg_cons[LUNG_NOME_PRODOTTO];
+	FILE* stream = NULL; 						// Puntatore a FILE_CONSUMI
+	consumo prodotto_letto;						// Variabile per le operazioni di I/O su FILE_CONSUMI
+
+	int freq_consumo = 0;						// Variabile la frequenza del prodotto maggiormente consumato
+	char prod_magg_cons[LUNG_NOME_PRODOTTO] = "";	// Stringa contenente il nome del prodotto maggiormente consumato
 
 
+	// Apertura del file in lettura binaria
 	if((stream = fopen(FILE_CONSUMI, "rb")) == NULL){
 		puts("Non sono mai stati effettuati consumi.");
-		return 0;
+		return -1;
 	}else{
-		while(fread(&prodotto_consumo, sizeof(consumo), 1, stream) > 0){//leggi fino a quando é presente una riga
-
+		// Scansione di FILE_CONSUMI, memorizzando il prodotto maggiormente consumato
+		while(fread(&prodotto_letto, sizeof(consumo), 1, stream) > 0){
+			// Termina l'iterazione una volta raggionta la fine del file
 			if(feof(stream) != 0){
 				break;
 			}
-			/*se il prodotto correntemente analizzato ha una frequenza maggiore ed é del tipo specificato dal flag(ricordiamo 1->ricette e 0->alimenti)
-				 allora lo salvo come il prodotto maggiormente consumato*/
-			if(prodotto_consumo.frequenza > freq_consumo && prodotto_consumo.flag_prodotto==flag_prodotto){
-				freq_consumo = prodotto_consumo.frequenza;
-				strcpy(prod_magg_cons,prodotto_consumo.nome_prodotto);
+
+			if(prodotto_letto.frequenza > freq_consumo && prodotto_letto.flag_prodotto==flag_prodotto){
+				freq_consumo = prodotto_letto.frequenza;
+				strcpy(prod_magg_cons,prodotto_letto.nome_prodotto);
 			}
 		}
 
-		//qualora sia stato trovato un prodotto lo stampo opportunatamente. In caso contrario avviso l'utente
+		// Stampa del prodotto maggiormente consumato, o di un messaggio di errore se non viene individuato
 		if(strcmp(prod_magg_cons,"") != 0){
 			if(flag_prodotto == FLAG_ALIMENTO){
 				printf("L'alimento maggiormente consumato e' %s con una frequenza di %d\n", prod_magg_cons, freq_consumo);
@@ -98,6 +130,6 @@ int ricerca_prod_magg_cons(short flag_prodotto){
 		}
 	}
 
-	fclose(stream); //chiudi il file
+	fclose(stream);
 	return 1;
 }

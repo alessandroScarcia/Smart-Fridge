@@ -32,27 +32,22 @@
 #endif
 
 
-#include "alimenti.h"
+#include "alimenti.h"      ///libreria che permette la gestione(manipolazione,caricamento ecc) degli alimenti
 
-#include "date.h"
+#include "ricette.h"      ///libreria che permette la gestione(manipolazione,caricamento ecc) delle ricette
 
-#include "ricette.h"
+#include "lista_spesa.h" ///libreria che permette la gestione(creazione,modifica ecc) della lista della spesa
 
-#include "lista_spesa.h"
+#include "utenti.h"     ///libreria che permette la gestione(creazione,modifica ecc) dei profili utente
 
-#include "utenti.h"
+#include "menu_settimanale.h"  ///libreria che permette la gestione(modifica) del menu settimanale
 
-#include "menu_settimanale.h"
-
-#include "calorie.h"
+#include "calorie.h"		///libreria che permette la gestione delle kcal di un utente
 
 
 
 #ifndef INTERFACCIA_LIB
 #define INTERFACCIA_LIB
-
-#define LUNG_SCELTA 2//lunghezza della stringa che accoglierá la scelta inserita dall'utente
-
 
 ///COSTANTI PER LA VISUALIZZAZIONE DELLE VOCI DEL MENU
 #define MENU_PRINCIPALE 0
@@ -191,6 +186,54 @@ int visualizza_voci_menu(int voce);
  */
 int visualizza_crediti();
 
+/**
+ * Funzione che si occupa della visualizzazione del contorno del titolo
+ */
+void riga_contorno(int posizione);
 
+/**
+ * Funzione che si occupa della visualizzazione della riga inferiore del contorno della schermata
+ */
+void parte_inferiore_tabella();
+
+/**
+ * Funzione che si occupa della visualizzazione delle voci del menu principale
+ */
+void voci_principale();
+
+/**
+ * Funzione che si occupa della visualizzazione delle voci del menu alimenti
+ */
+void voci_alimenti();
+
+/**
+ * Funzione che si occupa della visualizzazione delle voci del menu ricette
+ */
+void voci_ricette();
+
+/**
+ * Funzione che si occupa della visualizzazione delle voci del menu utenti
+ */
+void voci_utenti();
+
+/**
+ * Funzione che si occupa della visualizzazione delle voci del menu ricerca
+ */
+void voci_ricerca();
+
+/**
+ * Funzione che si occupa della visualizzazione delle voci del menu lista della spesa
+ */
+void voci_lista_spesa();
+
+/**
+ * Funzione che si occupa della visualizzazione delle voci del menu settimanale
+ */
+void voci_menu_settimanale();
+
+/**
+ * Funzione che si occupa della visualizzazione delle voci del menu calorie
+ */
+void voci_calorie();
 
 #endif

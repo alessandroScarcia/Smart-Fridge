@@ -36,35 +36,52 @@
 #ifndef CONSUMI_LIB
 #define CONSUMI_LIB
 
-#define FILE_CONSUMI "../consumi.dat"
+/// Nomi di file:
+#define FILE_CONSUMI "../consumi.dat"		/// Nome del file contenente le frequenze di consumazione dei prodotti del frigo
 
-#define FLAG_RICETTA 1
-#define FLAG_ALIMENTO 0
+/// Flags:
+#define FLAG_RICETTA 1						/// Valore corrispondente ad un prodotto di tipo ricetta
+#define FLAG_ALIMENTO 0						/// Valore corrispondente ad un prodotto di tipo alimento
 
-#define LUNG_NOME_PRODOTTO 31
+/// Lunghezze delle stringhe:
+#define LUNG_NOME_PRODOTTO 31				/// Lunghezza massima in caratteri per il nome di un prodotto (compreso il carattere terminatore)
 
-
+/**
+ * @typedef consumo
+ *
+ * Tipo di dato utilizzato per la lettura e scrittura di un record in FILE_CONSUMI.
+ * I membri che lo caratterizzano sono: nome del prodotto consumato, flag che indica
+ * il tipo del prodotto, frequenza delle consumazioni del prodotto.
+ */
 typedef struct{
 	char nome_prodotto[LUNG_NOME_PRODOTTO];
 	short flag_prodotto;
 	int frequenza;
 }consumo;
 
-/**Funzione che si occupa di memorizzare il prodotto consumato(0-->alimento,  1---->ricetta)
- * all'interno di file che memorizza i vari consumi degli utenti
+/**
+ * Funzione che si occupa di memorizzare l'incremento del valore frequenza di un prodotto
+ * in FILE_CONSUMI.
  *
- * @param nome_prodotto		nome della ricetta/alimento da registrare
- * @param flag_prodotto		tipologia di prodotto da registrare (alimento/ricetta)
- * @return 1				in caso di avvenuto successo nella registrazione del consumo
+ * @param nome_prodotto		Nome del prodotto per cui incrementare la frequenza.
+ * @param flag_prodotto		Tipologia di prodotto da registrare.
+ *
+ * @return 1				In caso successo nella registrazione del consumo.
+ * @return 0				Se i parametri attuali non sono validi
+ * @return -1				Se il file non può essere aperto e creato
  */
 int registra_consumo(char* nome_prodotto, short flag_prodotto);
 
 
 
-/**funzione che ricerca il prodotto maggiormente consumato in base al valore del flag che viene passato(0-->alimento, 1--->ricetta) e lo stampa
+/**
+ * Funzione che ricerca il prodotto maggiormente consumato, della tipologia ricevuta in ingresso.
  *
- * @param flag_prodotto		tipologia di prodotto(ricetta/alimento)	su cui deve essere effettuata la ricerca
- * @return 1				in caso di successo della ricerca
+ * @param flag_prodotto		Tipologia di prodotto da ricercare.
+ *
+ * @return 1				In caso di successo della ricerca.
+ * @return 0				Se il parametro non è valido.
+ * @return -1				Se non è possibile aprire FILE_COSUMI.
  */
 int ricerca_prod_magg_cons(short flag_prodotto);
 
