@@ -1,0 +1,536 @@
+\hypertarget{calorie_8h}{}\section{Riferimenti per il file src/calorie.h}
+\label{calorie_8h}\index{src/calorie.\+h@{src/calorie.\+h}}
+
+
+Libreria per la gestione delle calorie.  
+
+
+{\ttfamily \#include \char`\"{}utenti.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}date.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}menu\+\_\+settimanale.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}pulizia\+\_\+flussi.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}ricette.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$ctype.\+h$>$}\newline
+\subsection*{Strutture dati}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structassunzione}{assunzione}
+\end{DoxyCompactItemize}
+\subsection*{Definizioni}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{calorie_8h_af12cbc4b154eb2eefd852623d7806dc8}{M\+A\+T\+H\+\_\+\+L\+IB}
+\item 
+\#define \hyperlink{calorie_8h_a3f71b4ea87bcf3feda424bc285bcef6a}{S\+T\+R\+I\+N\+G\+\_\+\+L\+IB}
+\item 
+\#define \hyperlink{calorie_8h_a44025ea4cc36c9e7271dde01e93673d8}{C\+A\+L\+O\+R\+I\+E\+\_\+\+L\+IB}
+\item 
+\#define \hyperlink{calorie_8h_abe1a32b87158cd81b0a00ffd27bd03a2}{F\+L\+A\+G\+\_\+\+I\+N\+P\+U\+T\+\_\+\+L\+I\+B\+E\+RO}~3
+\begin{DoxyCompactList}\small\item\em Inclusione della libreria per la gestione degli utenti. \end{DoxyCompactList}\item 
+\#define \hyperlink{calorie_8h_a6dc22caac0814a91c4f374f1a0ae5392}{K\+C\+A\+L\+\_\+\+M\+E\+D\+I\+E\+\_\+\+G\+I\+O\+R\+N\+A\+L\+I\+E\+RE}~2000
+\item 
+\#define \hyperlink{calorie_8h_a9d99561fd63cbd4f33338d6a7fefa071}{C\+A\+M\+P\+I\+O\+N\+E\+\_\+\+I\+S\+T\+O\+G\+R\+A\+M\+MI}~200
+\item 
+\#define \hyperlink{calorie_8h_a351b8e2ce32a54884e97ea4de537787c}{P\+R\+E\+F\+I\+X\+\_\+\+F\+I\+L\+E\+\_\+\+A\+S\+S\+U\+N\+Z\+I\+O\+NI}~\char`\"{}../assunzioni\+\_\+\char`\"{}
+\begin{DoxyCompactList}\small\item\em Costanti per i nome del file assunzione. \end{DoxyCompactList}\item 
+\#define \hyperlink{calorie_8h_adb3e0c63e510c6946b75a0f3a5242e06}{S\+U\+F\+F\+I\+X\+\_\+\+F\+I\+L\+E\+\_\+\+A\+S\+S\+U\+N\+Z\+I\+O\+NI}~\char`\"{}.dat\char`\"{}
+\item 
+\#define \hyperlink{calorie_8h_a67a72036bc8860d24db0e1cb16b3c423}{L\+U\+N\+G\+\_\+\+F\+I\+L\+E\+\_\+\+A\+S\+S\+U\+N\+Z\+I\+O\+NI}~50
+\item 
+\#define \hyperlink{calorie_8h_a88b0ffe468e9084f35b1c67962e6627c}{L\+U\+N\+G\+\_\+\+N\+O\+M\+E\+\_\+\+A\+S\+S\+U\+N\+Z\+I\+O\+NE}~21
+\item 
+\#define \hyperlink{calorie_8h_a3cf3c52d50488687fccc8871298b8f4d}{M\+I\+N\+\_\+\+K\+C\+AL}~0
+\item 
+\#define \hyperlink{calorie_8h_a69b0cf4ad457cc9a0fddbdccbc58bfa8}{M\+A\+X\+\_\+\+K\+C\+AL}~5000
+\end{DoxyCompactItemize}
+\subsection*{Funzioni}
+\begin{DoxyCompactItemize}
+\item 
+char $\ast$ \hyperlink{calorie_8h_aab4f1124bc81a30708b9520671ef672b}{input\+\_\+nome\+\_\+assunzione} ()
+\item 
+unsigned short int \hyperlink{calorie_8h_a90efaa78bd85014349089f4e607720dd}{input\+\_\+kcal\+\_\+libere} ()
+\item 
+int \hyperlink{calorie_8h_a6e41da04fc6821fa1b6bf2bed8e2d307}{input\+\_\+alimento\+\_\+consumato} ()
+\item 
+unsigned short int \hyperlink{calorie_8h_a7911299a005ffc33f45edd4e6f6c5a75}{calcolo\+\_\+kcal} (unsigned short int kcal, int campione, float q\+\_\+consumata)
+\item 
+int \hyperlink{calorie_8h_aad23ab12f44405ba4e09e437a448d0b1}{aggiorno\+\_\+database\+\_\+calorie} (char nome\+\_\+consumo\mbox{[}$\,$\mbox{]}, int flag\+\_\+consumo, float quantita\+\_\+consumo, char nickname\mbox{[}$\,$\mbox{]})
+\item 
+int \hyperlink{calorie_8h_a02d5d248e5e5f6681420662fed46dfdd}{inizializza\+\_\+file\+\_\+assunzione} (char nickname\mbox{[}$\,$\mbox{]})
+\item 
+int \hyperlink{calorie_8h_a1a6f92b9ecbca69276eceb73f2707f64}{apertura\+\_\+file\+\_\+assunzioni} ()
+\item 
+int \hyperlink{calorie_8h_aa8c36a190de86246240bc2aa45ab1eca}{stampa\+\_\+database\+\_\+assunzioni} ()
+\item 
+unsigned short \hyperlink{calorie_8h_adb87f48dc857b9c2aa92873005814c7d}{calcolo\+\_\+kcal\+\_\+totali} (char $\ast$nomefile)
+\item 
+int \hyperlink{calorie_8h_ae58e1b9cadf3906f02861f7850377de6}{creazione\+\_\+assunzioni} ()
+\item 
+int \hyperlink{calorie_8h_aacf26004c17e4042071db3f0bc51727c}{modifica\+\_\+assunzione} ()
+\item 
+short int \hyperlink{calorie_8h_aa9581b3482b7025bf2a7b2fbd15f60e2}{ricerca\+\_\+assunzione\+\_\+database} (\hyperlink{structassunzione}{assunzione} $\ast$nuova\+\_\+assunzione, char nickname\mbox{[}$\,$\mbox{]})
+\item 
+int \hyperlink{calorie_8h_a1d6ede62ed123e9bec97f4b7941bffb4}{scrittura\+\_\+diretta\+\_\+assunzione} (\hyperlink{structassunzione}{assunzione} $\ast$\hyperlink{structcibo}{cibo}, char nickname\mbox{[}$\,$\mbox{]})
+\item 
+void \hyperlink{calorie_8h_a5749b56f193b104db97c500a51f4eb10}{istogrami} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Descrizione dettagliata}
+Libreria per la gestione delle calorie. 
+
+La libreria \hyperlink{calorie_8h}{calorie.\+h} è stata implementata per permettere all\textquotesingle{}utente la gestione delle proprie assunzioni con il corrispettivo valore calorico.
+
+\begin{DoxyAuthor}{Autori}
+Alessandro Scarcia, Davide Quatela, Michela Salvemini 
+\end{DoxyAuthor}
+
+
+\subsection{Documentazione delle definizioni}
+\mbox{\Hypertarget{calorie_8h_a44025ea4cc36c9e7271dde01e93673d8}\label{calorie_8h_a44025ea4cc36c9e7271dde01e93673d8}} 
+\index{calorie.\+h@{calorie.\+h}!C\+A\+L\+O\+R\+I\+E\+\_\+\+L\+IB@{C\+A\+L\+O\+R\+I\+E\+\_\+\+L\+IB}}
+\index{C\+A\+L\+O\+R\+I\+E\+\_\+\+L\+IB@{C\+A\+L\+O\+R\+I\+E\+\_\+\+L\+IB}!calorie.\+h@{calorie.\+h}}
+\subsubsection{\texorpdfstring{C\+A\+L\+O\+R\+I\+E\+\_\+\+L\+IB}{CALORIE\_LIB}}
+{\footnotesize\ttfamily \#define C\+A\+L\+O\+R\+I\+E\+\_\+\+L\+IB}
+
+\mbox{\Hypertarget{calorie_8h_a9d99561fd63cbd4f33338d6a7fefa071}\label{calorie_8h_a9d99561fd63cbd4f33338d6a7fefa071}} 
+\index{calorie.\+h@{calorie.\+h}!C\+A\+M\+P\+I\+O\+N\+E\+\_\+\+I\+S\+T\+O\+G\+R\+A\+M\+MI@{C\+A\+M\+P\+I\+O\+N\+E\+\_\+\+I\+S\+T\+O\+G\+R\+A\+M\+MI}}
+\index{C\+A\+M\+P\+I\+O\+N\+E\+\_\+\+I\+S\+T\+O\+G\+R\+A\+M\+MI@{C\+A\+M\+P\+I\+O\+N\+E\+\_\+\+I\+S\+T\+O\+G\+R\+A\+M\+MI}!calorie.\+h@{calorie.\+h}}
+\subsubsection{\texorpdfstring{C\+A\+M\+P\+I\+O\+N\+E\+\_\+\+I\+S\+T\+O\+G\+R\+A\+M\+MI}{CAMPIONE\_ISTOGRAMMI}}
+{\footnotesize\ttfamily \#define C\+A\+M\+P\+I\+O\+N\+E\+\_\+\+I\+S\+T\+O\+G\+R\+A\+M\+MI~200}
+
+\mbox{\Hypertarget{calorie_8h_abe1a32b87158cd81b0a00ffd27bd03a2}\label{calorie_8h_abe1a32b87158cd81b0a00ffd27bd03a2}} 
+\index{calorie.\+h@{calorie.\+h}!F\+L\+A\+G\+\_\+\+I\+N\+P\+U\+T\+\_\+\+L\+I\+B\+E\+RO@{F\+L\+A\+G\+\_\+\+I\+N\+P\+U\+T\+\_\+\+L\+I\+B\+E\+RO}}
+\index{F\+L\+A\+G\+\_\+\+I\+N\+P\+U\+T\+\_\+\+L\+I\+B\+E\+RO@{F\+L\+A\+G\+\_\+\+I\+N\+P\+U\+T\+\_\+\+L\+I\+B\+E\+RO}!calorie.\+h@{calorie.\+h}}
+\subsubsection{\texorpdfstring{F\+L\+A\+G\+\_\+\+I\+N\+P\+U\+T\+\_\+\+L\+I\+B\+E\+RO}{FLAG\_INPUT\_LIBERO}}
+{\footnotesize\ttfamily \#define F\+L\+A\+G\+\_\+\+I\+N\+P\+U\+T\+\_\+\+L\+I\+B\+E\+RO~3}
+
+
+
+Inclusione della libreria per la gestione degli utenti. 
+
+Inclusione della libreria per la gestione delle date Inclusione della libreria per la gestione dei consumi Inclusione della libreria per la pulizia dei flussi di input Inclusione della libreria per la gestione delle ricette \mbox{\Hypertarget{calorie_8h_a6dc22caac0814a91c4f374f1a0ae5392}\label{calorie_8h_a6dc22caac0814a91c4f374f1a0ae5392}} 
+\index{calorie.\+h@{calorie.\+h}!K\+C\+A\+L\+\_\+\+M\+E\+D\+I\+E\+\_\+\+G\+I\+O\+R\+N\+A\+L\+I\+E\+RE@{K\+C\+A\+L\+\_\+\+M\+E\+D\+I\+E\+\_\+\+G\+I\+O\+R\+N\+A\+L\+I\+E\+RE}}
+\index{K\+C\+A\+L\+\_\+\+M\+E\+D\+I\+E\+\_\+\+G\+I\+O\+R\+N\+A\+L\+I\+E\+RE@{K\+C\+A\+L\+\_\+\+M\+E\+D\+I\+E\+\_\+\+G\+I\+O\+R\+N\+A\+L\+I\+E\+RE}!calorie.\+h@{calorie.\+h}}
+\subsubsection{\texorpdfstring{K\+C\+A\+L\+\_\+\+M\+E\+D\+I\+E\+\_\+\+G\+I\+O\+R\+N\+A\+L\+I\+E\+RE}{KCAL\_MEDIE\_GIORNALIERE}}
+{\footnotesize\ttfamily \#define K\+C\+A\+L\+\_\+\+M\+E\+D\+I\+E\+\_\+\+G\+I\+O\+R\+N\+A\+L\+I\+E\+RE~2000}
+
+\mbox{\Hypertarget{calorie_8h_a67a72036bc8860d24db0e1cb16b3c423}\label{calorie_8h_a67a72036bc8860d24db0e1cb16b3c423}} 
+\index{calorie.\+h@{calorie.\+h}!L\+U\+N\+G\+\_\+\+F\+I\+L\+E\+\_\+\+A\+S\+S\+U\+N\+Z\+I\+O\+NI@{L\+U\+N\+G\+\_\+\+F\+I\+L\+E\+\_\+\+A\+S\+S\+U\+N\+Z\+I\+O\+NI}}
+\index{L\+U\+N\+G\+\_\+\+F\+I\+L\+E\+\_\+\+A\+S\+S\+U\+N\+Z\+I\+O\+NI@{L\+U\+N\+G\+\_\+\+F\+I\+L\+E\+\_\+\+A\+S\+S\+U\+N\+Z\+I\+O\+NI}!calorie.\+h@{calorie.\+h}}
+\subsubsection{\texorpdfstring{L\+U\+N\+G\+\_\+\+F\+I\+L\+E\+\_\+\+A\+S\+S\+U\+N\+Z\+I\+O\+NI}{LUNG\_FILE\_ASSUNZIONI}}
+{\footnotesize\ttfamily \#define L\+U\+N\+G\+\_\+\+F\+I\+L\+E\+\_\+\+A\+S\+S\+U\+N\+Z\+I\+O\+NI~50}
+
+\mbox{\Hypertarget{calorie_8h_a88b0ffe468e9084f35b1c67962e6627c}\label{calorie_8h_a88b0ffe468e9084f35b1c67962e6627c}} 
+\index{calorie.\+h@{calorie.\+h}!L\+U\+N\+G\+\_\+\+N\+O\+M\+E\+\_\+\+A\+S\+S\+U\+N\+Z\+I\+O\+NE@{L\+U\+N\+G\+\_\+\+N\+O\+M\+E\+\_\+\+A\+S\+S\+U\+N\+Z\+I\+O\+NE}}
+\index{L\+U\+N\+G\+\_\+\+N\+O\+M\+E\+\_\+\+A\+S\+S\+U\+N\+Z\+I\+O\+NE@{L\+U\+N\+G\+\_\+\+N\+O\+M\+E\+\_\+\+A\+S\+S\+U\+N\+Z\+I\+O\+NE}!calorie.\+h@{calorie.\+h}}
+\subsubsection{\texorpdfstring{L\+U\+N\+G\+\_\+\+N\+O\+M\+E\+\_\+\+A\+S\+S\+U\+N\+Z\+I\+O\+NE}{LUNG\_NOME\_ASSUNZIONE}}
+{\footnotesize\ttfamily \#define L\+U\+N\+G\+\_\+\+N\+O\+M\+E\+\_\+\+A\+S\+S\+U\+N\+Z\+I\+O\+NE~21}
+
+\mbox{\Hypertarget{calorie_8h_af12cbc4b154eb2eefd852623d7806dc8}\label{calorie_8h_af12cbc4b154eb2eefd852623d7806dc8}} 
+\index{calorie.\+h@{calorie.\+h}!M\+A\+T\+H\+\_\+\+L\+IB@{M\+A\+T\+H\+\_\+\+L\+IB}}
+\index{M\+A\+T\+H\+\_\+\+L\+IB@{M\+A\+T\+H\+\_\+\+L\+IB}!calorie.\+h@{calorie.\+h}}
+\subsubsection{\texorpdfstring{M\+A\+T\+H\+\_\+\+L\+IB}{MATH\_LIB}}
+{\footnotesize\ttfamily \#define M\+A\+T\+H\+\_\+\+L\+IB}
+
+\mbox{\Hypertarget{calorie_8h_a69b0cf4ad457cc9a0fddbdccbc58bfa8}\label{calorie_8h_a69b0cf4ad457cc9a0fddbdccbc58bfa8}} 
+\index{calorie.\+h@{calorie.\+h}!M\+A\+X\+\_\+\+K\+C\+AL@{M\+A\+X\+\_\+\+K\+C\+AL}}
+\index{M\+A\+X\+\_\+\+K\+C\+AL@{M\+A\+X\+\_\+\+K\+C\+AL}!calorie.\+h@{calorie.\+h}}
+\subsubsection{\texorpdfstring{M\+A\+X\+\_\+\+K\+C\+AL}{MAX\_KCAL}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+\+K\+C\+AL~5000}
+
+\mbox{\Hypertarget{calorie_8h_a3cf3c52d50488687fccc8871298b8f4d}\label{calorie_8h_a3cf3c52d50488687fccc8871298b8f4d}} 
+\index{calorie.\+h@{calorie.\+h}!M\+I\+N\+\_\+\+K\+C\+AL@{M\+I\+N\+\_\+\+K\+C\+AL}}
+\index{M\+I\+N\+\_\+\+K\+C\+AL@{M\+I\+N\+\_\+\+K\+C\+AL}!calorie.\+h@{calorie.\+h}}
+\subsubsection{\texorpdfstring{M\+I\+N\+\_\+\+K\+C\+AL}{MIN\_KCAL}}
+{\footnotesize\ttfamily \#define M\+I\+N\+\_\+\+K\+C\+AL~0}
+
+\mbox{\Hypertarget{calorie_8h_a351b8e2ce32a54884e97ea4de537787c}\label{calorie_8h_a351b8e2ce32a54884e97ea4de537787c}} 
+\index{calorie.\+h@{calorie.\+h}!P\+R\+E\+F\+I\+X\+\_\+\+F\+I\+L\+E\+\_\+\+A\+S\+S\+U\+N\+Z\+I\+O\+NI@{P\+R\+E\+F\+I\+X\+\_\+\+F\+I\+L\+E\+\_\+\+A\+S\+S\+U\+N\+Z\+I\+O\+NI}}
+\index{P\+R\+E\+F\+I\+X\+\_\+\+F\+I\+L\+E\+\_\+\+A\+S\+S\+U\+N\+Z\+I\+O\+NI@{P\+R\+E\+F\+I\+X\+\_\+\+F\+I\+L\+E\+\_\+\+A\+S\+S\+U\+N\+Z\+I\+O\+NI}!calorie.\+h@{calorie.\+h}}
+\subsubsection{\texorpdfstring{P\+R\+E\+F\+I\+X\+\_\+\+F\+I\+L\+E\+\_\+\+A\+S\+S\+U\+N\+Z\+I\+O\+NI}{PREFIX\_FILE\_ASSUNZIONI}}
+{\footnotesize\ttfamily \#define P\+R\+E\+F\+I\+X\+\_\+\+F\+I\+L\+E\+\_\+\+A\+S\+S\+U\+N\+Z\+I\+O\+NI~\char`\"{}../assunzioni\+\_\+\char`\"{}}
+
+
+
+Costanti per i nome del file assunzione. 
+
+\mbox{\Hypertarget{calorie_8h_a3f71b4ea87bcf3feda424bc285bcef6a}\label{calorie_8h_a3f71b4ea87bcf3feda424bc285bcef6a}} 
+\index{calorie.\+h@{calorie.\+h}!S\+T\+R\+I\+N\+G\+\_\+\+L\+IB@{S\+T\+R\+I\+N\+G\+\_\+\+L\+IB}}
+\index{S\+T\+R\+I\+N\+G\+\_\+\+L\+IB@{S\+T\+R\+I\+N\+G\+\_\+\+L\+IB}!calorie.\+h@{calorie.\+h}}
+\subsubsection{\texorpdfstring{S\+T\+R\+I\+N\+G\+\_\+\+L\+IB}{STRING\_LIB}}
+{\footnotesize\ttfamily \#define S\+T\+R\+I\+N\+G\+\_\+\+L\+IB}
+
+\mbox{\Hypertarget{calorie_8h_adb3e0c63e510c6946b75a0f3a5242e06}\label{calorie_8h_adb3e0c63e510c6946b75a0f3a5242e06}} 
+\index{calorie.\+h@{calorie.\+h}!S\+U\+F\+F\+I\+X\+\_\+\+F\+I\+L\+E\+\_\+\+A\+S\+S\+U\+N\+Z\+I\+O\+NI@{S\+U\+F\+F\+I\+X\+\_\+\+F\+I\+L\+E\+\_\+\+A\+S\+S\+U\+N\+Z\+I\+O\+NI}}
+\index{S\+U\+F\+F\+I\+X\+\_\+\+F\+I\+L\+E\+\_\+\+A\+S\+S\+U\+N\+Z\+I\+O\+NI@{S\+U\+F\+F\+I\+X\+\_\+\+F\+I\+L\+E\+\_\+\+A\+S\+S\+U\+N\+Z\+I\+O\+NI}!calorie.\+h@{calorie.\+h}}
+\subsubsection{\texorpdfstring{S\+U\+F\+F\+I\+X\+\_\+\+F\+I\+L\+E\+\_\+\+A\+S\+S\+U\+N\+Z\+I\+O\+NI}{SUFFIX\_FILE\_ASSUNZIONI}}
+{\footnotesize\ttfamily \#define S\+U\+F\+F\+I\+X\+\_\+\+F\+I\+L\+E\+\_\+\+A\+S\+S\+U\+N\+Z\+I\+O\+NI~\char`\"{}.dat\char`\"{}}
+
+
+
+\subsection{Documentazione delle funzioni}
+\mbox{\Hypertarget{calorie_8h_aad23ab12f44405ba4e09e437a448d0b1}\label{calorie_8h_aad23ab12f44405ba4e09e437a448d0b1}} 
+\index{calorie.\+h@{calorie.\+h}!aggiorno\+\_\+database\+\_\+calorie@{aggiorno\+\_\+database\+\_\+calorie}}
+\index{aggiorno\+\_\+database\+\_\+calorie@{aggiorno\+\_\+database\+\_\+calorie}!calorie.\+h@{calorie.\+h}}
+\subsubsection{\texorpdfstring{aggiorno\+\_\+database\+\_\+calorie()}{aggiorno\_database\_calorie()}}
+{\footnotesize\ttfamily int aggiorno\+\_\+database\+\_\+calorie (\begin{DoxyParamCaption}\item[{char}]{nome\+\_\+consumo\mbox{[}$\,$\mbox{]},  }\item[{int}]{flag\+\_\+consumo,  }\item[{float}]{quantita\+\_\+consumo,  }\item[{char}]{nickname\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+La funzione \hyperlink{calorie_8c_aad23ab12f44405ba4e09e437a448d0b1}{aggiorno\+\_\+database\+\_\+calorie()} ha il compito di scrive su file assunzioni relativo all\textquotesingle{}utente, il quale nickname viene passato come parametro di ingresso alla fuzione, il cibo assunto.
+
+
+\begin{DoxyParams}{Parametri}
+{\em cibo} & struct da scrivere su file \\
+\hline
+{\em nickname} & nome con cui creare il nome del file su cui scrivere\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Restituisce}
+-\/1 se il file non esiste e non è possibile crearne uno 
+
+1 se la funzione riesce a svolgere il suo compito
+\end{DoxyReturn}
+Funzione aggiorno\+\_\+database\+\_\+calorie ()\+:
+
+La funzione ha il compito di creare una struct di tipo assunzioni e rimpirla con dati significativi, sulla base dei dati passati in ingresso alla stessa.
+
+A tal scopo, dopo aver creato la struct di tipo assunzioni denominata cibo, copierà il nome\+\_\+consumo passato in ingresso nel campo della struct denominato nome. Imposterà il flag con quello passatogli in ingresso e farà altrettanto con la quantità. Fatto ciò, controllerà il flag. Se il flag identifica una ricetta, verrano create due variabile di tipo int (kcal\+\_\+ricetta e dosi\+\_\+ricetta) utilizzate in combinazione con una funzione in moda da poter estrarre da un database di ricette le kcal per un tot di dosi. Grazie a queste informazioni sarà possibile calcolare le kcal per il quantitativo assunto dall\textquotesingle{}utente tramite una funzione. Stesso lavoro verrà fatto in caso di un flag che identifiche un alimento. Infatti, verrà usata una funzione diversa per estrarre da un database apposito l\textquotesingle{}alimento che verrà memorizzato in una struct creata appositamente.
+
+In fine, rimpita la struct cibo, verrà passata ad una funzione di scrittura su file.
+
+\begin{DoxyPrecond}{Precondizione}
+Nome\+\_\+consumo non può essere vuoto, flag\+\_\+consumo può assumero solo i valori 1 o 0, il nickname deve appartenere ad uno degli utenti, quindi non può essere vuoto.
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Il valore restituito rappresenta l\textquotesingle{}esito della funzione. 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{calorie_8h_a1a6f92b9ecbca69276eceb73f2707f64}\label{calorie_8h_a1a6f92b9ecbca69276eceb73f2707f64}} 
+\index{calorie.\+h@{calorie.\+h}!apertura\+\_\+file\+\_\+assunzioni@{apertura\+\_\+file\+\_\+assunzioni}}
+\index{apertura\+\_\+file\+\_\+assunzioni@{apertura\+\_\+file\+\_\+assunzioni}!calorie.\+h@{calorie.\+h}}
+\subsubsection{\texorpdfstring{apertura\+\_\+file\+\_\+assunzioni()}{apertura\_file\_assunzioni()}}
+{\footnotesize\ttfamily int apertura\+\_\+file\+\_\+assunzioni (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+La funzione \hyperlink{calorie_8h_a1a6f92b9ecbca69276eceb73f2707f64}{apertura\+\_\+file\+\_\+assunzioni()} ha il compito di aprire il file se l\textquotesingle{}autenticazioen va a buon fine e verificare che la data presente sia quella odierna servendosi di una funzione che calcola la differenza tra le due date passategli in ingresso. Se la funzione restituisce zero, si procede all\textquotesingle{}input dell\textquotesingle{}alimento consumato, altrimenti viene resettato il file e scritta la nuova data, solo dopo si procede all\textquotesingle{}input degli alimenti.
+
+\begin{DoxyReturn}{Restituisce}
+0 se l\textquotesingle{}autenticazione non ha successo 
+
+-\/1 se non riesce ad aprire e creare il file 
+
+1 se la funzione riesce a svolgere il suo compito 
+\end{DoxyReturn}
+\mbox{\Hypertarget{calorie_8h_a7911299a005ffc33f45edd4e6f6c5a75}\label{calorie_8h_a7911299a005ffc33f45edd4e6f6c5a75}} 
+\index{calorie.\+h@{calorie.\+h}!calcolo\+\_\+kcal@{calcolo\+\_\+kcal}}
+\index{calcolo\+\_\+kcal@{calcolo\+\_\+kcal}!calorie.\+h@{calorie.\+h}}
+\subsubsection{\texorpdfstring{calcolo\+\_\+kcal()}{calcolo\_kcal()}}
+{\footnotesize\ttfamily unsigned short int calcolo\+\_\+kcal (\begin{DoxyParamCaption}\item[{unsigned short int}]{kcal,  }\item[{int}]{campione,  }\item[{float}]{q\+\_\+consumata }\end{DoxyParamCaption})}
+
+La funzione calcolo\+\_\+kcal\+\_\+alimento() ha il compito di calcolare le kcal di un alimento basandosi sulla quantità, il tutto attraverso una proporzione.
+
+
+\begin{DoxyParams}{Parametri}
+{\em kcal} & numero intero corrispondente alle kcal per un dato campione \\
+\hline
+{\em campione} & numero intero che rappresenta la quantità corrispondente alle kcal\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Restituisce}
+0 se i dati inseriti non sono validi 
+
+risultato\+\_\+kcal kcal per il quantitativo inserito
+\end{DoxyReturn}
+Funzione calcolo\+\_\+kcal ()\+:
+
+La funzione ha il compito di calcolare tramite una proporzione le calorie assunte sulla base delle quantità passategli in ingresso.
+
+A tal scopo utilizzera le variabile di ingresso kcal e campione, dove kcal sta per il valore calorico del campione ricevuto e la quantità.
+
+\begin{DoxyPrecond}{Precondizione}
+Il campione non può essere pari a 0, kcal non può essere negativo 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Il valore restituito rappresenta l\textquotesingle{}apporto calorico calcolato. 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{calorie_8h_adb87f48dc857b9c2aa92873005814c7d}\label{calorie_8h_adb87f48dc857b9c2aa92873005814c7d}} 
+\index{calorie.\+h@{calorie.\+h}!calcolo\+\_\+kcal\+\_\+totali@{calcolo\+\_\+kcal\+\_\+totali}}
+\index{calcolo\+\_\+kcal\+\_\+totali@{calcolo\+\_\+kcal\+\_\+totali}!calorie.\+h@{calorie.\+h}}
+\subsubsection{\texorpdfstring{calcolo\+\_\+kcal\+\_\+totali()}{calcolo\_kcal\_totali()}}
+{\footnotesize\ttfamily unsigned short calcolo\+\_\+kcal\+\_\+totali (\begin{DoxyParamCaption}\item[{char $\ast$}]{nomefile }\end{DoxyParamCaption})}
+
+La funzione \hyperlink{calorie_8c_adb87f48dc857b9c2aa92873005814c7d}{calcolo\+\_\+kcal\+\_\+totali()} ha il compito di aprire il file, posizionare il puntatore dopo la data e leggere tutti i suoi elementi al suo interno accumulando le kcal di ciauscino in una variabile per poi essere stampata su schermo.
+
+
+\begin{DoxyParams}{Parametri}
+{\em nomefile} & stringa utile all\textquotesingle{}apertura del file\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Restituisce}
+-\/1 se non riesce ad aprire e creare il file 
+
+1 se la funzione riesce a svolgere il suo compito
+\end{DoxyReturn}
+Funzione calcolo\+\_\+kcal\+\_\+totali ()\+:
+
+La funzione ha il compito aprire un file assunzioni legato ad un utente, leggere tutte le struct relative alle assunzioni presenti e memorizzare in una variabile accumulatore le kcal di ciascuna assunzione.
+
+A tal scopo, viene creata una struct di tipo assunzione, per contenere i dati presenti su file, e una variabile tot\+\_\+kcal di accumulazione. Aperto il file, in puntatore va spostato oltre la data posizionata all\textquotesingle{}inizio, per poi proseguire una corretta lettura delle sole assunzioni.
+
+\begin{DoxyPrecond}{Precondizione}
+nome\+\_\+file non vuoto 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Il valore restituito è il calcolo delle calorie assunte in totale 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{calorie_8h_ae58e1b9cadf3906f02861f7850377de6}\label{calorie_8h_ae58e1b9cadf3906f02861f7850377de6}} 
+\index{calorie.\+h@{calorie.\+h}!creazione\+\_\+assunzioni@{creazione\+\_\+assunzioni}}
+\index{creazione\+\_\+assunzioni@{creazione\+\_\+assunzioni}!calorie.\+h@{calorie.\+h}}
+\subsubsection{\texorpdfstring{creazione\+\_\+assunzioni()}{creazione\_assunzioni()}}
+{\footnotesize\ttfamily int creazione\+\_\+assunzioni (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+La funzione \hyperlink{calorie_8h_ae58e1b9cadf3906f02861f7850377de6}{creazione\+\_\+assunzioni()} ha il compito di creare il file assunzioni.
+
+\begin{DoxyReturn}{Restituisce}
+0 se l\textquotesingle{}autenticazione non va a buon fine 
+
+1 se la funzione riesce a svolgere il suo compito 
+\end{DoxyReturn}
+\mbox{\Hypertarget{calorie_8h_a02d5d248e5e5f6681420662fed46dfdd}\label{calorie_8h_a02d5d248e5e5f6681420662fed46dfdd}} 
+\index{calorie.\+h@{calorie.\+h}!inizializza\+\_\+file\+\_\+assunzione@{inizializza\+\_\+file\+\_\+assunzione}}
+\index{inizializza\+\_\+file\+\_\+assunzione@{inizializza\+\_\+file\+\_\+assunzione}!calorie.\+h@{calorie.\+h}}
+\subsubsection{\texorpdfstring{inizializza\+\_\+file\+\_\+assunzione()}{inizializza\_file\_assunzione()}}
+{\footnotesize\ttfamily int inizializza\+\_\+file\+\_\+assunzione (\begin{DoxyParamCaption}\item[{char}]{nickname\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+La funzione \hyperlink{calorie_8c_a02d5d248e5e5f6681420662fed46dfdd}{inizializza\+\_\+file\+\_\+assunzione()} ha il compito di resettare il file e scrivere in prima posizione la data odierna.
+
+
+\begin{DoxyParams}{Parametri}
+{\em nickname} & nome con cui creare il nome del file su cui scrivere\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Restituisce}
+-\/1 se non riesce a creare il file 
+
+1 se riesce a svolgere il suo compito
+\end{DoxyReturn}
+Funzione inizializza\+\_\+file\+\_\+assunzione ()\+:
+
+La funzione ha il compito creare una struct di tipo data e assegnarle la data prese dal computer. Fatto ciò, grazie al nickname passato in ingresso aprirà il file, lo resetterà e ci scriverà all\textquotesingle{}inzio la data.
+
+A tal scopo, creata la struct di dipo data, chiamerà una funzione per riempirla. Apre il file in modalità wb e scrive la data tramite un fseek all\textquotesingle{}inizio del file.
+
+\begin{DoxyPrecond}{Precondizione}
+Il nickname deve corrispondere a quello di un utente effettivamente esistente, per mantenere un senso logico. 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Il valore restituito rappresenta l\textquotesingle{}esito della funzione. 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{calorie_8h_a6e41da04fc6821fa1b6bf2bed8e2d307}\label{calorie_8h_a6e41da04fc6821fa1b6bf2bed8e2d307}} 
+\index{calorie.\+h@{calorie.\+h}!input\+\_\+alimento\+\_\+consumato@{input\+\_\+alimento\+\_\+consumato}}
+\index{input\+\_\+alimento\+\_\+consumato@{input\+\_\+alimento\+\_\+consumato}!calorie.\+h@{calorie.\+h}}
+\subsubsection{\texorpdfstring{input\+\_\+alimento\+\_\+consumato()}{input\_alimento\_consumato()}}
+{\footnotesize\ttfamily int input\+\_\+alimento\+\_\+consumato (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Questa funzione ha il compito di popolare una struct di tipo assunzione passatagli in ingresso, con i dati inseriti dal\textquotesingle{}utente. Per fare ciò chiede all\textquotesingle{}utente di inserire 0 se ha intenzione di inserire un alimento oppure 1 se si tratta di una ricetta. Fatta tale distinzione, vengono chiamate opportune funzioni per l\textquotesingle{}estrazione dal database del tipo di dato che si deve gestire, permettendo il popolamento della struct passata in ingresso.
+
+
+\begin{DoxyParams}{Parametri}
+{\em cibo} & struct che conterrà il nome, la quantità e le calorie dell\textquotesingle{}alimento assunto dall\textquotesingle{}utente\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Restituisce}
+-\/1 se l\textquotesingle{}utente vuole smettere di inserire alimenti 
+
+1 se tutto avviene in modo corretto
+\end{DoxyReturn}
+Funzione input\+\_\+alimento\+\_\+consumato ()\+:
+
+La funzione ha il compito di prendere in input da tastiera un alimento/ricetta non presente nel database, per memorizzarlo nel file delle calorie assunte dell\textquotesingle{}utente.
+
+A tal scopo esegue la funzione auteticazzione, per verificare che l\textquotesingle{}utente abbia i diritti di accesso, in caso contrario termina. Verificato ciò, il flag viene impostato automaticamente con una costante che indica si tratti di un alimento/ricetta non presente nei database. La quantità, per le stesse ragioni, viene impostata a 0. Viene richiesto, inoltre, di inserire le calorie in quanto non è possibile calcolarle in quanto non si hann abbastanza informazioni relative a ciò che ha inserito. Opportuni controlli verificheranno che l\textquotesingle{}input sia corretto. Fatto ciò, verrà chiamata una funzione di scrittura diretta su file.
+
+\begin{DoxyPrecond}{Precondizione}
+Non vi sono specifiche pre-\/condizioni per la funzione 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Il valore restituito rappresenta l\textquotesingle{}esito della funzione. 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{calorie_8h_a90efaa78bd85014349089f4e607720dd}\label{calorie_8h_a90efaa78bd85014349089f4e607720dd}} 
+\index{calorie.\+h@{calorie.\+h}!input\+\_\+kcal\+\_\+libere@{input\+\_\+kcal\+\_\+libere}}
+\index{input\+\_\+kcal\+\_\+libere@{input\+\_\+kcal\+\_\+libere}!calorie.\+h@{calorie.\+h}}
+\subsubsection{\texorpdfstring{input\+\_\+kcal\+\_\+libere()}{input\_kcal\_libere()}}
+{\footnotesize\ttfamily unsigned short int input\+\_\+kcal\+\_\+libere (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Questa funzione ha il compito di richiedere all\textquotesingle{}utente il valore di kcal relative ad un assunzione libera. Ilvalore viene inserito, controllando che sia significativo nel formato e nel valore. Se corretto, lo stesso viene restituito.
+
+\begin{DoxyReturn}{Restituisce}
+kcal inserite dall\textquotesingle{}utente
+\end{DoxyReturn}
+Funzione \hyperlink{calorie_8c_a90efaa78bd85014349089f4e607720dd}{input\+\_\+kcal\+\_\+libere()}
+
+La funzione ha il compito di richiedere l\textquotesingle{}input all\textquotesingle{}utente delle calorie relative ad un assunzione libera. Tale inserimento deve essere un valore short int, e deve essere rispettare i limiti di M\+I\+N\+\_\+\+K\+C\+AL e M\+A\+X\+\_\+\+K\+C\+AL. L\textquotesingle{}input viene iterato fino a quanndo il valore inserito non è valido.
+
+\begin{DoxyPrecond}{Precondizione}
+Non ci sono pre condizioni
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Il valore di ritorno deve essere ricevuto in una variabile con adeguato tipo 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{calorie_8h_aab4f1124bc81a30708b9520671ef672b}\label{calorie_8h_aab4f1124bc81a30708b9520671ef672b}} 
+\index{calorie.\+h@{calorie.\+h}!input\+\_\+nome\+\_\+assunzione@{input\+\_\+nome\+\_\+assunzione}}
+\index{input\+\_\+nome\+\_\+assunzione@{input\+\_\+nome\+\_\+assunzione}!calorie.\+h@{calorie.\+h}}
+\subsubsection{\texorpdfstring{input\+\_\+nome\+\_\+assunzione()}{input\_nome\_assunzione()}}
+{\footnotesize\ttfamily char$\ast$ input\+\_\+nome\+\_\+assunzione (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Questa funzione ha il compito di richiedere all\textquotesingle{}utente di inserire il nome relativo ad un assunzione. Il valore inserito dall\textquotesingle{}utente viene controllato, verificando che sia della lunghezza massima stabilita. Se corretto, viene restituito il puntatore alla stringa del nome inserito.
+
+\begin{DoxyReturn}{Restituisce}
+puntatore alla stringa inserita dall\textquotesingle{}utente
+\end{DoxyReturn}
+Funzione \hyperlink{calorie_8c_aab4f1124bc81a30708b9520671ef672b}{input\+\_\+nome\+\_\+assunzione()}
+
+La funzione ha il compito di richiedere l\textquotesingle{}input all\textquotesingle{}utente del nome di un assunzione. Il valore inserito deve esere una stringa, di massimo 20 caratteri. Se non viene rispettato questo limite l\textquotesingle{}inserimento è considerato non valido.
+
+L\textquotesingle{}input viene iterato fino a quanndo il valore inserito non è valido.
+
+\begin{DoxyPrecond}{Precondizione}
+Non ci sono pre condizioni
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Il valore di ritorno deve essere ricevuto in una variabile con adeguato tipo 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{calorie_8h_a5749b56f193b104db97c500a51f4eb10}\label{calorie_8h_a5749b56f193b104db97c500a51f4eb10}} 
+\index{calorie.\+h@{calorie.\+h}!istogrami@{istogrami}}
+\index{istogrami@{istogrami}!calorie.\+h@{calorie.\+h}}
+\subsubsection{\texorpdfstring{istogrami()}{istogrami()}}
+{\footnotesize\ttfamily void istogrami (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+La procedura \hyperlink{calorie_8c_a5749b56f193b104db97c500a51f4eb10}{istogrami()} ha il compito di stampare su schermo le calorie che l\textquotesingle{}utente dovrebbe assumere in base al suo menu di riferimento e quelle che effettivamente assunto in base al file assunzioni.
+
+Funzione istogrami ()\+:
+
+La funzione ha il compito aprire un file assunzioni legato ad un utente, il cui nickname è ottenuto tramite una funzione di auteticazione se viene soddisfatta. Si estraggono le calorie che l\textquotesingle{}utente dovrebbe assumere sulla base di ciò che ha inserito sul menu settimanale, tali calorie vengono identificate con degli asterischi\+: un asterisco ($\ast$) rappresenta 200 calorie. Si legge su file quante calorie sono state effettivamente assunto e si stampa su schermo utilizzando lo stesso metodo. L\textquotesingle{}arrotondamento è fatto per eccesso.
+
+\begin{DoxyPrecond}{Precondizione}
+nome nickname non vuoto. 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Il valore restituito indica l\textquotesingle{}esito della funzione. 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{calorie_8h_aacf26004c17e4042071db3f0bc51727c}\label{calorie_8h_aacf26004c17e4042071db3f0bc51727c}} 
+\index{calorie.\+h@{calorie.\+h}!modifica\+\_\+assunzione@{modifica\+\_\+assunzione}}
+\index{modifica\+\_\+assunzione@{modifica\+\_\+assunzione}!calorie.\+h@{calorie.\+h}}
+\subsubsection{\texorpdfstring{modifica\+\_\+assunzione()}{modifica\_assunzione()}}
+{\footnotesize\ttfamily int modifica\+\_\+assunzione (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+La funzione \hyperlink{calorie_8c_aacf26004c17e4042071db3f0bc51727c}{modifica\+\_\+assunzione()} ha il compito di modifcare una delle struct presenti nel file, su richiesta dell\textquotesingle{}utente.
+
+\begin{DoxyReturn}{Restituisce}
+0 se non riesce ad aprire il file o se l\textquotesingle{}autenticazione fallisce 
+
+1 se la funzione riesce ad effetturare la modifica correttamente
+\end{DoxyReturn}
+Funzione modifica\+\_\+assunzione ()\+:
+
+La funzione ha il compito aprire un file assunzioni legato ad un utente, leggere tutte le struct presenti e estrarre e modificare la struct richiesta dall\textquotesingle{}untente, per poi salvarne le modifiche.
+
+A tal scopo, effettuata l\textquotesingle{}autenticazione, viene aperto il file corrispondente all\textquotesingle{}utente autenticato. Viene richiesto all\textquotesingle{}utente di inserire il nome dell\textquotesingle{}alimento/ricetta da modicare, ricercata tale ricetta tramite una funzione e modificata in modo diverso in base al suo flag. Se il flag indica un input libero, viene richiesto esclusivamente l\textquotesingle{}input delle kcal, zero per eliminare l\textquotesingle{}alimento. se il flag indica una ricetta o un alimento, verrà richiesto l\textquotesingle{}input della nuova quantità e le kcal verranno calcolate grazie a delle funzioni apposite.
+
+\begin{DoxyPrecond}{Precondizione}
+non sono presenti pre requisiti. 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Il valore restituito indica l\textquotesingle{}esito della funzione. 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{calorie_8h_aa9581b3482b7025bf2a7b2fbd15f60e2}\label{calorie_8h_aa9581b3482b7025bf2a7b2fbd15f60e2}} 
+\index{calorie.\+h@{calorie.\+h}!ricerca\+\_\+assunzione\+\_\+database@{ricerca\+\_\+assunzione\+\_\+database}}
+\index{ricerca\+\_\+assunzione\+\_\+database@{ricerca\+\_\+assunzione\+\_\+database}!calorie.\+h@{calorie.\+h}}
+\subsubsection{\texorpdfstring{ricerca\+\_\+assunzione\+\_\+database()}{ricerca\_assunzione\_database()}}
+{\footnotesize\ttfamily short int ricerca\+\_\+assunzione\+\_\+database (\begin{DoxyParamCaption}\item[{\hyperlink{structassunzione}{assunzione} $\ast$}]{nuova\+\_\+assunzione,  }\item[{char}]{nickname\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+La funzione \hyperlink{calorie_8c_aa9581b3482b7025bf2a7b2fbd15f60e2}{ricerca\+\_\+assunzione\+\_\+database()} ha il compito di aprire il file assunzioni legato all\textquotesingle{}utente il cui nome gli viene passato in ingresso, cercare nel file una struct di tipo assunzione che abbia la stringa nome uguale alla varibile nome passata in ingresso. Se la trova, ritorna la sua posizioen nel file.
+
+
+\begin{DoxyParams}{Parametri}
+{\em nome} & variabile per la ricerca nel file \\
+\hline
+{\em nickname} & variabile per aprire il file legato all\textquotesingle{}utente\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Restituisce}
+posizione se trova la struct con nome corrispondente al nome passato in ingresso 
+
+0 se non trova una struct con nome corrispondente al nome passato in ingresso
+\end{DoxyReturn}
+Funzione ricerca\+\_\+assunzione\+\_\+database ()\+:
+
+La funzione ha il compito aprire un file assunzioni legato ad un utente, il cui nickname viene passato in ingresso, e ricercare nel file un assunzione con il nome corrispondente al nome passato in ingresso.
+
+A tal scopo, aperto il file, sposta il puntatore dopo la data scritta su file e inizia a leggere il suo contenuto attraverso un while, se viene trovata la struct con nome corrispondente al nome passato in ingresso, un return permette l\textquotesingle{}uscita dalla funzione. Nel while è presente un contatore, in modo che la funzione possa restituire tale contatore, quindi la posizione della struct trovata su file.
+
+\begin{DoxyPrecond}{Precondizione}
+nome dell\textquotesingle{}assunzione da cercare e nickname non vuoti. 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Il valore restituito indica l\textquotesingle{}esito della funzione o la posizione della struct trovata. 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{calorie_8h_a1d6ede62ed123e9bec97f4b7941bffb4}\label{calorie_8h_a1d6ede62ed123e9bec97f4b7941bffb4}} 
+\index{calorie.\+h@{calorie.\+h}!scrittura\+\_\+diretta\+\_\+assunzione@{scrittura\+\_\+diretta\+\_\+assunzione}}
+\index{scrittura\+\_\+diretta\+\_\+assunzione@{scrittura\+\_\+diretta\+\_\+assunzione}!calorie.\+h@{calorie.\+h}}
+\subsubsection{\texorpdfstring{scrittura\+\_\+diretta\+\_\+assunzione()}{scrittura\_diretta\_assunzione()}}
+{\footnotesize\ttfamily int scrittura\+\_\+diretta\+\_\+assunzione (\begin{DoxyParamCaption}\item[{\hyperlink{structassunzione}{assunzione} $\ast$}]{cibo,  }\item[{char}]{nickname\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+La funzione \hyperlink{calorie_8c_a1d6ede62ed123e9bec97f4b7941bffb4}{scrittura\+\_\+diretta\+\_\+assunzione()} ha il compito di scrivere sul file corrispondente all\textquotesingle{}utente il quale nickname viene passato in ingresso, la struct pasastagli in ingresso.
+
+
+\begin{DoxyParams}{Parametri}
+{\em nickname} & variabile per l\textquotesingle{}apertura del file corrispondente all\textquotesingle{}utente \\
+\hline
+{\em cibo} & struct da scrivere su file\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Restituisce}
+1 se il file viene aggiornato correttamente
+\end{DoxyReturn}
+Funzione scrittura\+\_\+diretta\+\_\+assunzione ()\+:
+
+La funzione ha il compito aprire un file assunzioni legato ad un utente, il cui nickname viene passato in ingresso, e scrivere su file la struct cibo passata in ingresso
+
+A tal scopo, aperto il file, si effettua un controllo sulla data. Se la data corrispondente alla data odierna, si passa alla scrittura su file, altrimenti viene chiamata una funzione che resetta il file e scrive la data odierna su di esso, procedendo alla scrittura solo successivamente.
+
+\begin{DoxyPrecond}{Precondizione}
+nome nickname non vuoto. 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Il valore restituito indica l\textquotesingle{}esito della funzione. 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{calorie_8h_aa8c36a190de86246240bc2aa45ab1eca}\label{calorie_8h_aa8c36a190de86246240bc2aa45ab1eca}} 
+\index{calorie.\+h@{calorie.\+h}!stampa\+\_\+database\+\_\+assunzioni@{stampa\+\_\+database\+\_\+assunzioni}}
+\index{stampa\+\_\+database\+\_\+assunzioni@{stampa\+\_\+database\+\_\+assunzioni}!calorie.\+h@{calorie.\+h}}
+\subsubsection{\texorpdfstring{stampa\+\_\+database\+\_\+assunzioni()}{stampa\_database\_assunzioni()}}
+{\footnotesize\ttfamily int stampa\+\_\+database\+\_\+assunzioni (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+La funzione \hyperlink{calorie_8c_aa8c36a190de86246240bc2aa45ab1eca}{stampa\+\_\+database\+\_\+assunzioni()} ha il compito di aprire il file tutti i suoi elementi al suo interno stampandoli su schermo.
+
+\begin{DoxyReturn}{Restituisce}
+-\/1 se non riesce ad aprire e creare il file 
+
+1 se la funzione riesce a svolgere il suo compito
+\end{DoxyReturn}
+Funzione stampa\+\_\+database\+\_\+assunzioni ()\+:
+
+La funzione ha il compito aprire un file assunzioni legato ad un utente e stampare il suo contenuto su schermo.
+
+A tal scopo, effetua un autenticazione per veficare i diritti di accesso a tali informazioni. Chiamata la funzione che si occupa di tale compito, grazie alla stessa prende i dati relativi all\textquotesingle{}utente auteticato e li usa per aprire il file corrispondente. Effettua un cotrollo sull\textquotesingle{}esistenza del file, in caso non esista lo crea tramite scrivi\+\_\+data() Nel caso esista, posiziona il puntatore ad inzio file e legge la data scritta il tale posizione, stampando su schermo tale data. Procede succesivamente alla lettura delle assunzioni e della loro stampa su schermo. Infine, procede alla chiamata di una funzione per il calcolo delle kcal totali.
+
+\begin{DoxyPrecond}{Precondizione}
+Non sono presenti pre requisiti. 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Il valore restituito rappresenta l\textquotesingle{}esito della funzione. 
+\end{DoxyPostcond}

@@ -1,0 +1,414 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.13"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Smart Fridge:  File sorgente src/ricette.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Smart Fridge
+   &#160;<span id="projectnumber">1.0</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generato da Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Cerca');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Cerca');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">ricette.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="ricette_8h.html">Vai alla documentazione di questo file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="comment">//**********************************LIBRERIE INCLUSE***********************************</span></div><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment"></span><span class="preprocessor">#ifndef STD_LIB</span></div><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#define STD_LIB</span></div><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">    #include &lt;stdbool.h&gt;</span></div><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">    #include &lt;stdio.h&gt;</span></div><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">    #include &lt;stdlib.h&gt;</span></div><div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">    #include &lt;time.h&gt;</span></div><div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#endif</span></div><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div><div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div><div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#ifndef RICETTE_LIB</span></div><div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="ricette_8h.html#a6aee8782685ed63783ca8f71a372bd3e">   32</a></span>&#160;<span class="preprocessor">#define RICETTE_LIB</span></div><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#ifndef STRING_LIB</span></div><div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="ricette_8h.html#a3f71b4ea87bcf3feda424bc285bcef6a">   36</a></span>&#160;<span class="preprocessor">#define STRING_LIB</span></div><div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor">    #include &lt;string.h&gt;</span></div><div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor">    #include &lt;ctype.h&gt;</span></div><div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor">#endif</span></div><div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div><div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div><div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="alimenti_8h.html">alimenti.h</a>&quot;</span></div><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div><div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div><div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="consumi_8h.html">consumi.h</a>&quot;</span></div><div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div><div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="preprocessor">#ifndef CALORIE_LIB</span></div><div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="calorie_8h.html">calorie.h</a>&quot;</span></div><div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="preprocessor">#endif</span></div><div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div><div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="utenti_8h.html">utenti.h</a>&quot;</span></div><div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="date_8h.html">date.h</a>&quot;</span></div><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div><div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="pulizia__flussi_8h.html">pulizia_flussi.h</a>&quot;</span></div><div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div><div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="comment">//***************************DEFINIZIONI DI COSTANTI***********************************</span></div><div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div><div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="comment">//LUNGHEZZE DI STRINGHE</span></div><div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="ricette_8h.html#aacd065596f33b6510fa58f8ba4dea542">   63</a></span>&#160;<span class="preprocessor">#define LUNG_NOME_RICETTA 21            </span></div><div class="line"><a name="l00064"></a><span class="lineno"><a class="line" href="ricette_8h.html#a4cfbc12da1c68bf747428d14ce5b1a24">   64</a></span>&#160;<span class="preprocessor">#define LUNG_INGREDIENTE 20</span></div><div class="line"><a name="l00065"></a><span class="lineno"><a class="line" href="ricette_8h.html#a711f3911a37877bbfa09796364e391ab">   65</a></span>&#160;<span class="preprocessor">#define LUNG_TEMPO_PREPARAZIONE 21</span></div><div class="line"><a name="l00066"></a><span class="lineno"><a class="line" href="ricette_8h.html#abdbfa8d79884434777eae730867d54cd">   66</a></span>&#160;<span class="preprocessor">#define LUNG_PREPARAZIONE 501</span></div><div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="ricette_8h.html#afdcfe3df8eca40e79c8d2854a52acbb0">   67</a></span>&#160;<span class="preprocessor">#define LUNG_COMPLESSITA 21</span></div><div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="ricette_8h.html#a9a6006a14749ff4dd74910c60f3c0efc">   68</a></span>&#160;<span class="preprocessor">#define LUNG_TUPLA_RICETTE 1000//lunghezza della tupla ossia una riga quanto deve essere grande</span></div><div class="line"><a name="l00069"></a><span class="lineno"><a class="line" href="ricette_8h.html#a410f8ef3927dcc7cab8d3b5b97b82e9c">   69</a></span>&#160;<span class="preprocessor">#define LUNG_STR_LAVORO_RIC 100 //lunghezza della stringa che verrá utilizzata in varie funzioni per effettuare split o altre operazioni su stringhe</span></div><div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div><div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div><div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="comment">//NUMERO DI ELEMENTI DI ARRAY/MATRICI ECC</span></div><div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="ricette_8h.html#a3f37fa2abc5ee352f9a922ef72b80116">   73</a></span>&#160;<span class="preprocessor">#define MAX_INGREDIENTI 20</span></div><div class="line"><a name="l00074"></a><span class="lineno"><a class="line" href="ricette_8h.html#a860b572992bbe8ce25f974e06722d050">   74</a></span>&#160;<span class="preprocessor">#define MAX_NUM_FASI 20</span></div><div class="line"><a name="l00075"></a><span class="lineno"><a class="line" href="ricette_8h.html#a63074f42d937d16756fc545dd297ca75">   75</a></span>&#160;<span class="preprocessor">#define MIN_DOSI 1</span></div><div class="line"><a name="l00076"></a><span class="lineno"><a class="line" href="ricette_8h.html#a88eed168671edfd35b418e808d1c601a">   76</a></span>&#160;<span class="preprocessor">#define MAX_DOSI 20</span></div><div class="line"><a name="l00077"></a><span class="lineno"><a class="line" href="ricette_8h.html#af0b537bd8e31fb81bd3d6ba0a1e39e3b">   77</a></span>&#160;<span class="preprocessor">#define NUM_CAMPI_RICETTA 6</span></div><div class="line"><a name="l00078"></a><span class="lineno"><a class="line" href="ricette_8h.html#a0bbd21d2b82b4d048b4f848af2b2d470">   78</a></span>&#160;<span class="preprocessor">#define NUM_DELIM 2</span></div><div class="line"><a name="l00079"></a><span class="lineno"><a class="line" href="ricette_8h.html#aec3338025dc8f79e39b5d4eb70d5e5d2">   79</a></span>&#160;<span class="preprocessor">#define NUM_ALIM_SUGG_SCAD 2</span></div><div class="line"><a name="l00080"></a><span class="lineno"><a class="line" href="ricette_8h.html#a0121c4e3ed692f61cb2727c5c7447a1c">   80</a></span>&#160;<span class="preprocessor">#define NUM_CAMPI_INGREDIENTI 3</span></div><div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div><div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="comment">//COSTANTI DI RICERCA</span></div><div class="line"><a name="l00083"></a><span class="lineno"><a class="line" href="ricette_8h.html#a7f26806c8a56ade63476d5694dd0abd1">   83</a></span>&#160;<span class="preprocessor">#define MOD_RICERCA_AUTOMATICA 1 //se passato 1 la ricerca delle ricette viene fatta in base agli alimenti presenti nel frigo e alla loro relativa quantitá #define MOD_RICERCA_MANUALE 0    //se passato 0 la ricerca delle ricette viene fatta in base ai nomi degli alimenti inseriti dall&#39;utente
+
+
+
+// DIVISIONE CAMPI (leggi_campo_ricetta)
+#define CAMPO_MULTIPLO 1    //ci aiuta a capire che lo split della stringa deve essere fatto contando il numero di caratteri delimitatori(vedi documentazione di leggi_campo_ricetta)
+#define DELIMITATORE_PREPARAZIONE &#39;-&#39; //carattere per la separazione della preparazione
+#define SEQUENZA_DELIMITATORI &quot;-&quot;   //sequenza di caratteri su cui deve essere effettuato lo split della stringa quando non conosciamo il numero di campi
+
+
+
+// Nomi dei file utilizzati:
+#define FILE_DATABASE_RICETTE &quot;../database_ricette.csv&quot; //file di memorizzione delle ricette prese in input
+#define FILE_NUOVE_RICETTE &quot;../nuove_ricette.csv&quot; //file di estrazione delle ricette
+
+
+
+//COSTANTI PER LA VISUALIZZAZIONE
+#define MOSTRA_DATABASE &quot;&quot;      //per mostrare l&#39;intero database basta passare una stringa vuota alla funzione visualziza database
+#define VISTA_TOTALE 0          //ci permette di vedere tutte le informazioni riguardante/i la/e ricetta/e
+#define VISTA_MINIMIZZATA 1     //ci permette di vedere le informazioni di base riguardante/i la/e ricetta/e
+
+    //*********************************DEFINIZIONI DI STRUCT***********************************
+
+typedef struct {
+    char nome[LUNG_INGREDIENTE];
+    float quantita;
+    char unita_misura[LUNG_UNITA_MISURA];
+}ingrediente;
+
+
+    //Questa struttura é utilizzata per i file binari per a memorizzazione dei dati relativi ad un alimento
+typedef struct {
+    char nome_ricetta[LUNG_NOME_RICETTA];
+    ingrediente ingredienti[MAX_INGREDIENTI];
+    char tempo_preparazione[LUNG_TEMPO_PREPARAZIONE];
+    char preparazione[LUNG_PREPARAZIONE];
+    char complessita[LUNG_COMPLESSITA];
+    int kcal_ricetta;
+    int dosi;
+}ricetta;
+
+
+
+
+//*********************************DEFINIZIONI DEI PROTOTIPI***********************************
+
+
+int esiste_ricetta(char* nome_ricetta);
+
+
+/**Funzione che si occupa di estrarre gli ingredienti di una determinata ricetta.
+ *
+ * @param nome_ricetta
+ * @param ingredienti
+ * @return indice_ingrediente  numero ingredienti estratti dalla ricetta
+ */
+int estrazione_ingredienti(char nome_ricetta[LUNG_NOME_RICETTA], ingrediente* ingredienti);
+
+
+int estrai_kcal_ricetta(char* nome_ricetta, int* kcal, int* dosi);
+
+
+int conta_ricette_preparabili();
+
+
+int prepara_ricetta(char* nome_ricetta, int dosi_ricetta);
+
+
+void gestore_prepara_ricetta();
+
+
+/**Serve ad effettuare una tokenizzazione della stringa che gli passiamo
+ *
+ * @param linea             stringa che dovrá essere divisa in token
+ * @param num_campo         numero del campo da estrarre dalla stringa
+ * @param flag_campo        tipologia di estrazione da effettuare. Qualora sia 1 bisogna effettuare il conteggio dei campi presenti all&#39;interno
+ *                          della stringa
+ *
+ * @return NULL             se abbiamo terminato di analizzare la riga
+ * @return &quot;vuoto&quot;          se il campo stringa da estrarre é assente
+ * @return tok              se l&#39;estrazione ha avuto successo(il token sarebbe il valore)
+ */
+char* leggi_campo_ricetta(char* linea, int num_campo, short flag_campo);
+
+
+
+
+/**Serve a leggere da file .csv le ricette nuove
+ *
+ * @return 1                in caso di successo di estrazione dati da file
+ */
+int lettura_nuove_ricette();
+
+
+
+
+/**Funzione che serve a visualizzare i dati relativi ad una singola ricetta
+ *
+ * @param dati_ricette      struct che contiene i dati della ricetta
+ * @param vista_ricetta     flag che in base ad un controllo permette di visualizzare tutti i dati della ricetta o solo quelli principali
+ *
+ * @return 1                in caso di successo nella visualizzazione
+ */
+int visualizza_ricetta(ricetta dati_ricetta, int vista_ricetta);
+
+
+
+
+/**permette la visualizzazione del database o di una singola ricetta in base all&#39;id che passiamo.
+ * Inoltre possiamo decidere in che modalitá vedere i dati(0--&gt;totale, 1--&gt;minimizzata)
+ *
+ * @param nome_ricetta      nome della ricetta da visualizzare in caso possieda un valore. In caso sia una stringa vuota viene mostrato l&#39;intero database
+ * @param id_ricetta_pers   id che viene mostrato a schermo a seguito di una ricerca o altre operazioni
+ * @param vista             flag che in base ad un controllo permette di visualizzare tutti i dati della ricetta o solo quelli principali
+ * @return 1                in caso di successo nella visualizzazione
+ */
+int visualizza_database_ricette(int vista);
+
+
+
+
+/**Serve a memorizzare la ricetta che passiamo all&#39;interno di un file con accesso binario che fungerá da database
+ *
+ * @param nuova_ricetta     struct che possiede i dati della ricetta da aggiungere al database
+ * @return 1                in caso di successo nell&#39;aggiornamento del database
+ */
+int aggiorna_database_ricette(ricetta nuova_ricetta);
+
+
+
+
+/**Si occupa di eliminare una ricetta in base all&#39;id inserito dall&#39;utente. La riga che conteneva la ricetta viene inizializzata
+ *
+ * @return 1                in caso di successo nell&#39;eliminazione
+ */
+int elimina_ricetta();
+
+
+
+
+/** La funzione suggerirá le ricette che si possono effettuare con gli ingredienti a disposizione nel frigo
+ *
+ * @param alimenti_frigo    Elenco degli alimenti del frigo su cui effettuare la ricerca della ricetta
+ * @param num_alimenti      numero degli alimenti presenti nel frigo
+ * @return 1                in caso di successo nella visualizzazione di un suggerimento
+ */
+int suggerimento_ricetta_automatico();
+
+
+
+
+/**Suggerisce le ricette che si possono fare con gli alimenti inseriti manualmente dall&#39;utente
+ *
+ * @param num_alimenti      numero di ingredienti su cui effettuare la ricerca
+ * @param nome_alimenti     nome degli alimenti su cui effettuare a ricerca della ricetta
+ * @return 1                in caso di successo nella visualizzazione di un suggerimento
+ */
+int suggerimento_ricetta_manuale(int num_alimenti, char nome_alimenti[MAX_ALIM_SUGG][LUNG_NOME_ALIMENTO]);
+
+
+
+
+/**Ordina le ricette presenti nel database in base alle kcal che producono. L&#39;ordinamento viene effettuato tramite shell sort
+ *
+ * @param ricette_database  array di struct che possiede tutte le ricette presenti nel database su cui effettuare l&#39;ordinamento
+ * @param num_ricette       numero delle ricette su cui effettuare l&#39;ordinamento
+ * @return 1                in caso di successo nell&#39;ordinamento
+ */
+int ordina_ricette_kcal(ricetta* ricette_database, int num_ricette);
+
+
+
+
+/**Funzione che si occupa di inizializzare l&#39;array di puntatori che conterrá il nome delle ricette preparabili con valori NULLI
+ *
+* @param num_ricette         numero delle ricette che si devono inizializzare
+* @param ricette_preparabili array di stringhe che devono essere inizializzate
+* @return 1                  in caso di successo nell&#39;inizializzazione
+*/
+int inizializza_ricette_preparabili(int num_ricette, char* ricette_preparabili[num_ricette]);
+
+
+
+
+/**conta le righe(le ricette) presenti nel database delle ricette escludendo le righe inizializzate(vuote)
+ *
+ * @return righe numero di righe presenti nel database
+ */
+int conta_ricette_database();
+
+
+
+
+/**popola un array di struct con le ricette presenti nel database.
+ * Questa funzione serve a non effettuare ogni volta la lettura del file all&#39;interno di altre funzioni
+ *
+ * @param ricette_database  array di struct che verrá riempito con le ricette del database
+ * @return 1                in caso di successo nella lettura dei valori
+ */
+int lettura_database_ricette(ricetta* ricette_database);
+
+
+
+
+/**funzione di ricerca ricette, ottimizzata per gli alimenti che stanno per scadere all&#39;interno del frigo
+ *
+ * @param alimenti_frigo    elenco degli alimenti del frigo(ordinati per scadenza) su cui effettuare la ricerca della ricetta
+ * @param num_alimenti      numero di alimenti presenti nel frigo
+ * @return 1                in caso di successo
+ */
+int ricette_alimenti_in_scadenza(alimento_frigo* alimenti_frigo,int num_alimenti);
+
+
+
+
+/**funzione che serve ad inserire manualmente gli ingredienti da usare come paroli chiave per la ricerca di ricette che possiedono tali ingredienti
+ *
+ * @param nome_alimenti             matrice che conterrá i nomi degli ingredienti su cui effettuare la ricerca della ricetta
+ * @return num_alimenti_inseriti++  indice incrementato che corrisponde al numero effettivo di ingredienti inseriti dall&#39;utente
+ */
+int inserimento_manuale_ingredienti(char nome_alimenti[MAX_ALIM_SUGG][LUNG_NOME_ALIMENTO]);
+
+
+
+
+/**funzione che si occupa di modificare un campo di una determinata ricetta inseriti dall&#39;utente, con un nuovo valore anch&#39;esso inserito
+ * manualmente
+ *
+ * @return 1            in caso di sucesso della funzione
+ */
+int modifica_ricetta();
+
+
+
+
+/**funzione che si occupa dell&#39;inserimento di un nuovo valore per il campo porzione
+ *
+ * @return porzione             nuova porzione inserita dall&#39;utente
+ */
+int input_dosi_ricetta();
+
+
+
+
+/**funzione che si occupa dell&#39;inserimento di un nuovo ingrediente per una data ricetta
+ *
+ * @return ingrediente          nuovo ingrediente inserito dall&#39;utente
+ */
+char* input_ingredienti_ricetta();
+
+
+
+
+/**funzione che si occupa dell&#39;inserimento di un nuovo valore per il campo preparazione
+ *
+ * @return preparazione         nuova preparazione inserita dall&#39;utente
+ */
+char* input_preparazione_ricetta();
+
+
+
+
+/**funzione che si occupa dell&#39;inserimento di un nuovo valore per il campo complessitá
+ *
+ * @return complessita          nuova complessita inserita dall&#39;utente
+ */
+char* input_complessita_ricetta();
+
+
+
+
+/**funzione che si occupa dell&#39;inserimento di un nuovo valore per il campo tempo di preparazione
+ *
+ * @return tempo_preparazione   nuovo tempo di preparazione inserito dall&#39;utente
+ */
+char* input_tempo_preparazione();
+
+
+
+
+/**funzione che si occupa dell&#39;inserimento di un nuovo valore per il campo nome ricetta
+ *
+ * @return nome_ricetta         nuovo nome della ricetta inserito dall&#39;utente
+ */
+char* input_nome_ricetta();
+
+
+int input_id_ricetta(int max_id);
+
+#endif
+</span></div><div class="line"><a name="l00084"></a><span class="lineno"><a class="line" href="ricette_8h.html#a6d15b62e8a61e243b1a05d68b5695357">   84</a></span>&#160;<span class="preprocessor">#define MOD_RICERCA_MANUALE 0   //se passato 0 la ricerca delle ricette viene fatta in base ai nomi degli alimenti inseriti dall&#39;utente</span></div><div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div><div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;</div><div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;</div><div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="comment">// DIVISIONE CAMPI (leggi_campo_ricetta)</span></div><div class="line"><a name="l00089"></a><span class="lineno"><a class="line" href="ricette_8h.html#a32bffe236e24edcfbb5f67a9f8deae3d">   89</a></span>&#160;<span class="preprocessor">#define CAMPO_MULTIPLO 1    //ci aiuta a capire che lo split della stringa deve essere fatto contando il numero di caratteri delimitatori(vedi documentazione di leggi_campo_ricetta)</span></div><div class="line"><a name="l00090"></a><span class="lineno"><a class="line" href="ricette_8h.html#a48b5900fac1118389598194d0b8e94ae">   90</a></span>&#160;<span class="preprocessor">#define DELIMITATORE_PREPARAZIONE &#39;-&#39; //carattere per la separazione della preparazione</span></div><div class="line"><a name="l00091"></a><span class="lineno"><a class="line" href="ricette_8h.html#a263f258d0a8cf5629f67a538c2783b26">   91</a></span>&#160;<span class="preprocessor">#define SEQUENZA_DELIMITATORI &quot;-&quot;   //sequenza di caratteri su cui deve essere effettuato lo split della stringa quando non conosciamo il numero di campi</span></div><div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;</div><div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;</div><div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;</div><div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="comment">// Nomi dei file utilizzati:</span></div><div class="line"><a name="l00096"></a><span class="lineno"><a class="line" href="ricette_8h.html#a94be93c21c42250054978223cc2ce56e">   96</a></span>&#160;<span class="preprocessor">#define FILE_DATABASE_RICETTE &quot;../database_ricette.csv&quot; //file di memorizzione delle ricette prese in input</span></div><div class="line"><a name="l00097"></a><span class="lineno"><a class="line" href="ricette_8h.html#a4416110277d6f4b44f9661f059ee53c4">   97</a></span>&#160;<span class="preprocessor">#define FILE_NUOVE_RICETTE &quot;../nuove_ricette.csv&quot; //file di estrazione delle ricette</span></div><div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;</div><div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;</div><div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;</div><div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="comment">//COSTANTI PER LA VISUALIZZAZIONE</span></div><div class="line"><a name="l00102"></a><span class="lineno"><a class="line" href="ricette_8h.html#a7941dc4bc3d823e805fa471363baeea1">  102</a></span>&#160;<span class="preprocessor">#define MOSTRA_DATABASE &quot;&quot;      //per mostrare l&#39;intero database basta passare una stringa vuota alla funzione visualziza database</span></div><div class="line"><a name="l00103"></a><span class="lineno"><a class="line" href="ricette_8h.html#a2ea4c79ac538778932f230d8a4eada59">  103</a></span>&#160;<span class="preprocessor">#define VISTA_TOTALE 0          //ci permette di vedere tutte le informazioni riguardante/i la/e ricetta/e</span></div><div class="line"><a name="l00104"></a><span class="lineno"><a class="line" href="ricette_8h.html#a6284d381291203cd6e1aa8d2d91b0fd3">  104</a></span>&#160;<span class="preprocessor">#define VISTA_MINIMIZZATA 1     //ci permette di vedere le informazioni di base riguardante/i la/e ricetta/e</span></div><div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;</div><div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <span class="comment">//*********************************DEFINIZIONI DI STRUCT***********************************</span></div><div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;</div><div class="line"><a name="l00108"></a><span class="lineno"><a class="line" href="structingrediente.html">  108</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div><div class="line"><a name="l00109"></a><span class="lineno"><a class="line" href="structingrediente.html#abc3e24e6f64482d852f4911224236939">  109</a></span>&#160;    <span class="keywordtype">char</span> nome[<a class="code" href="ricette_8h.html#a4cfbc12da1c68bf747428d14ce5b1a24">LUNG_INGREDIENTE</a>];</div><div class="line"><a name="l00110"></a><span class="lineno"><a class="line" href="structingrediente.html#ad790202dff2ec007bdff02bb6d6635b0">  110</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="structingrediente.html#ad790202dff2ec007bdff02bb6d6635b0">quantita</a>;</div><div class="line"><a name="l00111"></a><span class="lineno"><a class="line" href="structingrediente.html#ab434c5cb78713bf062a8729071d3bc0d">  111</a></span>&#160;    <span class="keywordtype">char</span> unita_misura[LUNG_UNITA_MISURA];</div><div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;}<a class="code" href="structingrediente.html">ingrediente</a>;</div><div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;</div><div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;</div><div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    <span class="comment">//Questa struttura é utilizzata per i file binari per a memorizzazione dei dati relativi ad un alimento</span></div><div class="line"><a name="l00116"></a><span class="lineno"><a class="line" href="structricetta.html">  116</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div><div class="line"><a name="l00117"></a><span class="lineno"><a class="line" href="structricetta.html#a40bb51c26dc338c485cc655bea2c2ca5">  117</a></span>&#160;    <span class="keywordtype">char</span> nome_ricetta[<a class="code" href="ricette_8h.html#aacd065596f33b6510fa58f8ba4dea542">LUNG_NOME_RICETTA</a>];</div><div class="line"><a name="l00118"></a><span class="lineno"><a class="line" href="structricetta.html#ac8567e615af6b01c27b2aea1fc81c50f">  118</a></span>&#160;    <a class="code" href="structingrediente.html">ingrediente</a> ingredienti[<a class="code" href="ricette_8h.html#a3f37fa2abc5ee352f9a922ef72b80116">MAX_INGREDIENTI</a>];</div><div class="line"><a name="l00119"></a><span class="lineno"><a class="line" href="structricetta.html#aa7c5427cccd26a39a8c7a34050eea6be">  119</a></span>&#160;    <span class="keywordtype">char</span> tempo_preparazione[<a class="code" href="ricette_8h.html#a711f3911a37877bbfa09796364e391ab">LUNG_TEMPO_PREPARAZIONE</a>];</div><div class="line"><a name="l00120"></a><span class="lineno"><a class="line" href="structricetta.html#a8c769fcee937b4b060b796a2ae2c1086">  120</a></span>&#160;    <span class="keywordtype">char</span> preparazione[<a class="code" href="ricette_8h.html#abdbfa8d79884434777eae730867d54cd">LUNG_PREPARAZIONE</a>];</div><div class="line"><a name="l00121"></a><span class="lineno"><a class="line" href="structricetta.html#ad991258e93efcc820a11f9a1a2e0f079">  121</a></span>&#160;    <span class="keywordtype">char</span> complessita[<a class="code" href="ricette_8h.html#afdcfe3df8eca40e79c8d2854a52acbb0">LUNG_COMPLESSITA</a>];</div><div class="line"><a name="l00122"></a><span class="lineno"><a class="line" href="structricetta.html#abdd39d8054927daf2a648aef9aea1909">  122</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="structricetta.html#abdd39d8054927daf2a648aef9aea1909">kcal_ricetta</a>;</div><div class="line"><a name="l00123"></a><span class="lineno"><a class="line" href="structricetta.html#abbc9584ea1555c9642adbe72ffb2f9bd">  123</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="structricetta.html#abbc9584ea1555c9642adbe72ffb2f9bd">dosi</a>;</div><div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;}<a class="code" href="structricetta.html">ricetta</a>;</div><div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;</div><div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;</div><div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;</div><div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;</div><div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<span class="comment">//*********************************DEFINIZIONI DEI PROTOTIPI***********************************</span></div><div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;</div><div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;</div><div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;<span class="keywordtype">int</span> <a class="code" href="ricette_8h.html#a91f5743050906045b86995dd852235a7">esiste_ricetta</a>(<span class="keywordtype">char</span>* nome_ricetta);</div><div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;</div><div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;</div><div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;<span class="keywordtype">int</span> <a class="code" href="ricette_8h.html#aaed76ea15a6538a28c990009e2c0fbe1">estrazione_ingredienti</a>(<span class="keywordtype">char</span> nome_ricetta[<a class="code" href="ricette_8h.html#aacd065596f33b6510fa58f8ba4dea542">LUNG_NOME_RICETTA</a>], <a class="code" href="structingrediente.html">ingrediente</a>* ingredienti);</div><div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;</div><div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;</div><div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;<span class="keywordtype">int</span> <a class="code" href="ricette_8h.html#a29a6b70af1dc01b5538937b21d7484e0">estrai_kcal_ricetta</a>(<span class="keywordtype">char</span>* nome_ricetta, <span class="keywordtype">int</span>* kcal, <span class="keywordtype">int</span>* dosi);</div><div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;</div><div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;</div><div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;<span class="keywordtype">int</span> <a class="code" href="ricette_8h.html#a6d25b4740912391464d805a2f50dd3df">conta_ricette_preparabili</a>();</div><div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;</div><div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;</div><div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;<span class="keywordtype">int</span> <a class="code" href="ricette_8h.html#a044e83e33d6f5b57fd1cd538c4acbe61">prepara_ricetta</a>(<span class="keywordtype">char</span>* nome_ricetta, <span class="keywordtype">int</span> dosi_ricetta);</div><div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;</div><div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;</div><div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;<span class="keywordtype">void</span> <a class="code" href="ricette_8h.html#adf2aaa5bef801b3faa0a40adeb8df605">gestore_prepara_ricetta</a>();</div><div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;</div><div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;</div><div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;<span class="keywordtype">char</span>* <a class="code" href="ricette_8h.html#a902276b9eb7a94494faa65a44d707afa">leggi_campo_ricetta</a>(<span class="keywordtype">char</span>* linea, <span class="keywordtype">int</span> num_campo, <span class="keywordtype">short</span> flag_campo);</div><div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;</div><div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;</div><div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;</div><div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;</div><div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;<span class="keywordtype">int</span> <a class="code" href="ricette_8h.html#ad39adfc2461f28e268847f9af8313451">lettura_nuove_ricette</a>();</div><div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;</div><div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;</div><div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;</div><div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;</div><div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;<span class="keywordtype">int</span> <a class="code" href="ricette_8h.html#ac2eb4afe048ff50a49392017c8e81d54">visualizza_ricetta</a>(<a class="code" href="structricetta.html">ricetta</a> dati_ricetta, <span class="keywordtype">int</span> vista_ricetta);</div><div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;</div><div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;</div><div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;</div><div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;</div><div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;<span class="keywordtype">int</span> <a class="code" href="ricette_8h.html#a4149df822177a13133bab226be9711f9">visualizza_database_ricette</a>(<span class="keywordtype">int</span> vista);</div><div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;</div><div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;</div><div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;</div><div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;</div><div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;<span class="keywordtype">int</span> <a class="code" href="ricette_8h.html#ab4d271ff37e418aca05689f552b9d164">aggiorna_database_ricette</a>(<a class="code" href="structricetta.html">ricetta</a> nuova_ricetta);</div><div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;</div><div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;</div><div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;</div><div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;</div><div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;<span class="keywordtype">int</span> <a class="code" href="ricette_8h.html#a77953d2180ea32dc11b099d493bf46ff">elimina_ricetta</a>();</div><div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;</div><div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;</div><div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;</div><div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;</div><div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;<span class="keywordtype">int</span> <a class="code" href="ricette_8h.html#add2568bec3431612ac1f207b303f6be2">suggerimento_ricetta_automatico</a>();</div><div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;</div><div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;</div><div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;</div><div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;</div><div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;<span class="keywordtype">int</span> <a class="code" href="ricette_8h.html#ae148ce73d22fb04ab30a4ca18bd09458">suggerimento_ricetta_manuale</a>(<span class="keywordtype">int</span> num_alimenti, <span class="keywordtype">char</span> nome_alimenti[MAX_ALIM_SUGG][LUNG_NOME_ALIMENTO]);</div><div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;</div><div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;</div><div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;</div><div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;</div><div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;<span class="keywordtype">int</span> <a class="code" href="ricette_8h.html#aa33e65064c109879b58f97fcfb1bfe6a">ordina_ricette_kcal</a>(<a class="code" href="structricetta.html">ricetta</a>* ricette_database, <span class="keywordtype">int</span> num_ricette);</div><div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;</div><div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;</div><div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;</div><div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;</div><div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;<span class="keywordtype">int</span> <a class="code" href="ricette_8h.html#ac421bea1de8d985331add3988824d1ef">inizializza_ricette_preparabili</a>(<span class="keywordtype">int</span> num_ricette, <span class="keywordtype">char</span>* ricette_preparabili[num_ricette]);</div><div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;</div><div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;</div><div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;</div><div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;</div><div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;<span class="keywordtype">int</span> <a class="code" href="ricette_8h.html#a34b53ba22d2a49e5ef3f0a1ddb8e1fb2">conta_ricette_database</a>();</div><div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;</div><div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;</div><div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;</div><div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;</div><div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;<span class="keywordtype">int</span> <a class="code" href="ricette_8h.html#a8e6cf451a1370431785a6f966e1ec7e0">lettura_database_ricette</a>(<a class="code" href="structricetta.html">ricetta</a>* ricette_database);</div><div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;</div><div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;</div><div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;</div><div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;</div><div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;<span class="keywordtype">int</span> <a class="code" href="ricette_8h.html#a93fc79e3549c9535ce3f0552f76d60df">ricette_alimenti_in_scadenza</a>(alimento_frigo* alimenti_frigo,<span class="keywordtype">int</span> num_alimenti);</div><div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;</div><div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;</div><div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;</div><div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;</div><div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;<span class="keywordtype">int</span> <a class="code" href="ricette_8h.html#a6567248b014061541f063ea8efb0112e">inserimento_manuale_ingredienti</a>(<span class="keywordtype">char</span> nome_alimenti[MAX_ALIM_SUGG][LUNG_NOME_ALIMENTO]);</div><div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;</div><div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;</div><div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;</div><div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;</div><div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;<span class="keywordtype">int</span> <a class="code" href="ricette_8h.html#a54a0967bab4f2d4810dd4652f90dab0d">modifica_ricetta</a>();</div><div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;</div><div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;</div><div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;</div><div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;</div><div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;<span class="keywordtype">int</span> <a class="code" href="ricette_8h.html#a11c21f5c5b20c4f40d3a6585c1c1d937">input_dosi_ricetta</a>();</div><div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;</div><div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;</div><div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;</div><div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;</div><div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;<span class="keywordtype">char</span>* <a class="code" href="ricette_8h.html#a882b63989d7ad015ac4df03cc84c49f9">input_ingredienti_ricetta</a>();</div><div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;</div><div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;</div><div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;</div><div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;</div><div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;<span class="keywordtype">char</span>* <a class="code" href="ricette_8h.html#af8aac090f40dfd0d17f195d4e8fb275b">input_preparazione_ricetta</a>();</div><div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;</div><div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;</div><div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;</div><div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;</div><div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;<span class="keywordtype">char</span>* <a class="code" href="ricette_8h.html#a492e7082d80a8b36ab857e0319924334">input_complessita_ricetta</a>();</div><div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;</div><div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;</div><div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;</div><div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;</div><div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;<span class="keywordtype">char</span>* <a class="code" href="ricette_8h.html#a9e9d0674ee0217f9bbae17c3e4eea17e">input_tempo_preparazione</a>();</div><div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;</div><div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;</div><div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;</div><div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;</div><div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;<span class="keywordtype">char</span>* <a class="code" href="ricette_8h.html#ad21462b0daaec0f04de000d2fcb2881c">input_nome_ricetta</a>();</div><div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;</div><div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;</div><div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;<span class="keywordtype">int</span> <a class="code" href="ricette_8h.html#a7ed8f6a042fc0f9f5f14306d91bbc424">input_id_ricetta</a>(<span class="keywordtype">int</span> max_id);</div><div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;</div><div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;<span class="preprocessor">#endif</span></div><div class="ttc" id="ricette_8h_html_ad39adfc2461f28e268847f9af8313451"><div class="ttname"><a href="ricette_8h.html#ad39adfc2461f28e268847f9af8313451">lettura_nuove_ricette</a></div><div class="ttdeci">int lettura_nuove_ricette()</div><div class="ttdef"><b>Definition:</b> ricette.c:1384</div></div>
+<div class="ttc" id="ricette_8h_html_abdbfa8d79884434777eae730867d54cd"><div class="ttname"><a href="ricette_8h.html#abdbfa8d79884434777eae730867d54cd">LUNG_PREPARAZIONE</a></div><div class="ttdeci">#define LUNG_PREPARAZIONE</div><div class="ttdef"><b>Definition:</b> ricette.h:66</div></div>
+<div class="ttc" id="structingrediente_html_ad790202dff2ec007bdff02bb6d6635b0"><div class="ttname"><a href="structingrediente.html#ad790202dff2ec007bdff02bb6d6635b0">ingrediente::quantita</a></div><div class="ttdeci">float quantita</div><div class="ttdef"><b>Definition:</b> ricette.h:110</div></div>
+<div class="ttc" id="ricette_8h_html_a29a6b70af1dc01b5538937b21d7484e0"><div class="ttname"><a href="ricette_8h.html#a29a6b70af1dc01b5538937b21d7484e0">estrai_kcal_ricetta</a></div><div class="ttdeci">int estrai_kcal_ricetta(char *nome_ricetta, int *kcal, int *dosi)</div><div class="ttdef"><b>Definition:</b> ricette.c:1519</div></div>
+<div class="ttc" id="ricette_8h_html_a54a0967bab4f2d4810dd4652f90dab0d"><div class="ttname"><a href="ricette_8h.html#a54a0967bab4f2d4810dd4652f90dab0d">modifica_ricetta</a></div><div class="ttdeci">int modifica_ricetta()</div><div class="ttdef"><b>Definition:</b> ricette.c:661</div></div>
+<div class="ttc" id="ricette_8h_html_a7ed8f6a042fc0f9f5f14306d91bbc424"><div class="ttname"><a href="ricette_8h.html#a7ed8f6a042fc0f9f5f14306d91bbc424">input_id_ricetta</a></div><div class="ttdeci">int input_id_ricetta(int max_id)</div><div class="ttdef"><b>Definition:</b> ricette.c:622</div></div>
+<div class="ttc" id="ricette_8h_html_af8aac090f40dfd0d17f195d4e8fb275b"><div class="ttname"><a href="ricette_8h.html#af8aac090f40dfd0d17f195d4e8fb275b">input_preparazione_ricetta</a></div><div class="ttdeci">char * input_preparazione_ricetta()</div><div class="ttdef"><b>Definition:</b> ricette.c:498</div></div>
+<div class="ttc" id="ricette_8h_html_ac421bea1de8d985331add3988824d1ef"><div class="ttname"><a href="ricette_8h.html#ac421bea1de8d985331add3988824d1ef">inizializza_ricette_preparabili</a></div><div class="ttdeci">int inizializza_ricette_preparabili(int num_ricette, char *ricette_preparabili[num_ricette])</div><div class="ttdef"><b>Definition:</b> ricette.c:1061</div></div>
+<div class="ttc" id="ricette_8h_html_aaed76ea15a6538a28c990009e2c0fbe1"><div class="ttname"><a href="ricette_8h.html#aaed76ea15a6538a28c990009e2c0fbe1">estrazione_ingredienti</a></div><div class="ttdeci">int estrazione_ingredienti(char nome_ricetta[LUNG_NOME_RICETTA], ingrediente *ingredienti)</div><div class="ttdef"><b>Definition:</b> ricette.c:53</div></div>
+<div class="ttc" id="ricette_8h_html_a902276b9eb7a94494faa65a44d707afa"><div class="ttname"><a href="ricette_8h.html#a902276b9eb7a94494faa65a44d707afa">leggi_campo_ricetta</a></div><div class="ttdeci">char * leggi_campo_ricetta(char *linea, int num_campo, short flag_campo)</div><div class="ttdef"><b>Definition:</b> ricette.c:357</div></div>
+<div class="ttc" id="structricetta_html"><div class="ttname"><a href="structricetta.html">ricetta</a></div><div class="ttdef"><b>Definition:</b> ricette.h:116</div></div>
+<div class="ttc" id="ricette_8h_html_aacd065596f33b6510fa58f8ba4dea542"><div class="ttname"><a href="ricette_8h.html#aacd065596f33b6510fa58f8ba4dea542">LUNG_NOME_RICETTA</a></div><div class="ttdeci">#define LUNG_NOME_RICETTA</div><div class="ttdoc">Inlusione della libreria per la gestione degli alimenti. </div><div class="ttdef"><b>Definition:</b> ricette.h:63</div></div>
+<div class="ttc" id="ricette_8h_html_a6d25b4740912391464d805a2f50dd3df"><div class="ttname"><a href="ricette_8h.html#a6d25b4740912391464d805a2f50dd3df">conta_ricette_preparabili</a></div><div class="ttdeci">int conta_ricette_preparabili()</div><div class="ttdef"><b>Definition:</b> ricette.c:105</div></div>
+<div class="ttc" id="structingrediente_html"><div class="ttname"><a href="structingrediente.html">ingrediente</a></div><div class="ttdef"><b>Definition:</b> ricette.h:108</div></div>
+<div class="ttc" id="ricette_8h_html_add2568bec3431612ac1f207b303f6be2"><div class="ttname"><a href="ricette_8h.html#add2568bec3431612ac1f207b303f6be2">suggerimento_ricetta_automatico</a></div><div class="ttdeci">int suggerimento_ricetta_automatico()</div><div class="ttdef"><b>Definition:</b> ricette.c:1276</div></div>
+<div class="ttc" id="ricette_8h_html_a711f3911a37877bbfa09796364e391ab"><div class="ttname"><a href="ricette_8h.html#a711f3911a37877bbfa09796364e391ab">LUNG_TEMPO_PREPARAZIONE</a></div><div class="ttdeci">#define LUNG_TEMPO_PREPARAZIONE</div><div class="ttdef"><b>Definition:</b> ricette.h:65</div></div>
+<div class="ttc" id="ricette_8h_html_ac2eb4afe048ff50a49392017c8e81d54"><div class="ttname"><a href="ricette_8h.html#ac2eb4afe048ff50a49392017c8e81d54">visualizza_ricetta</a></div><div class="ttdeci">int visualizza_ricetta(ricetta dati_ricetta, int vista_ricetta)</div><div class="ttdef"><b>Definition:</b> ricette.c:877</div></div>
+<div class="ttc" id="ricette_8h_html_aa33e65064c109879b58f97fcfb1bfe6a"><div class="ttname"><a href="ricette_8h.html#aa33e65064c109879b58f97fcfb1bfe6a">ordina_ricette_kcal</a></div><div class="ttdeci">int ordina_ricette_kcal(ricetta *ricette_database, int num_ricette)</div><div class="ttdef"><b>Definition:</b> ricette.c:1084</div></div>
+<div class="ttc" id="pulizia__flussi_8h_html"><div class="ttname"><a href="pulizia__flussi_8h.html">pulizia_flussi.h</a></div></div>
+<div class="ttc" id="ricette_8h_html_ab4d271ff37e418aca05689f552b9d164"><div class="ttname"><a href="ricette_8h.html#ab4d271ff37e418aca05689f552b9d164">aggiorna_database_ricette</a></div><div class="ttdeci">int aggiorna_database_ricette(ricetta nuova_ricetta)</div><div class="ttdef"><b>Definition:</b> ricette.c:1333</div></div>
+<div class="ttc" id="ricette_8h_html_a91f5743050906045b86995dd852235a7"><div class="ttname"><a href="ricette_8h.html#a91f5743050906045b86995dd852235a7">esiste_ricetta</a></div><div class="ttdeci">int esiste_ricetta(char *nome_ricetta)</div><div class="ttdef"><b>Definition:</b> ricette.c:15</div></div>
+<div class="ttc" id="alimenti_8h_html"><div class="ttname"><a href="alimenti_8h.html">alimenti.h</a></div><div class="ttdoc">Libreria per la gestione degli alimenti. </div></div>
+<div class="ttc" id="ricette_8h_html_a77953d2180ea32dc11b099d493bf46ff"><div class="ttname"><a href="ricette_8h.html#a77953d2180ea32dc11b099d493bf46ff">elimina_ricetta</a></div><div class="ttdeci">int elimina_ricetta()</div><div class="ttdef"><b>Definition:</b> ricette.c:822</div></div>
+<div class="ttc" id="ricette_8h_html_a4cfbc12da1c68bf747428d14ce5b1a24"><div class="ttname"><a href="ricette_8h.html#a4cfbc12da1c68bf747428d14ce5b1a24">LUNG_INGREDIENTE</a></div><div class="ttdeci">#define LUNG_INGREDIENTE</div><div class="ttdef"><b>Definition:</b> ricette.h:64</div></div>
+<div class="ttc" id="structricetta_html_abdd39d8054927daf2a648aef9aea1909"><div class="ttname"><a href="structricetta.html#abdd39d8054927daf2a648aef9aea1909">ricetta::kcal_ricetta</a></div><div class="ttdeci">int kcal_ricetta</div><div class="ttdef"><b>Definition:</b> ricette.h:122</div></div>
+<div class="ttc" id="calorie_8h_html"><div class="ttname"><a href="calorie_8h.html">calorie.h</a></div><div class="ttdoc">Libreria per la gestione delle calorie. </div></div>
+<div class="ttc" id="ricette_8h_html_a6567248b014061541f063ea8efb0112e"><div class="ttname"><a href="ricette_8h.html#a6567248b014061541f063ea8efb0112e">inserimento_manuale_ingredienti</a></div><div class="ttdeci">int inserimento_manuale_ingredienti(char nome_alimenti[MAX_ALIM_SUGG][LUNG_NOME_ALIMENTO])</div><div class="ttdef"><b>Definition:</b> ricette.c:1152</div></div>
+<div class="ttc" id="ricette_8h_html_a93fc79e3549c9535ce3f0552f76d60df"><div class="ttname"><a href="ricette_8h.html#a93fc79e3549c9535ce3f0552f76d60df">ricette_alimenti_in_scadenza</a></div><div class="ttdeci">int ricette_alimenti_in_scadenza(alimento_frigo *alimenti_frigo, int num_alimenti)</div><div class="ttdef"><b>Definition:</b> ricette.c:1124</div></div>
+<div class="ttc" id="ricette_8h_html_a044e83e33d6f5b57fd1cd538c4acbe61"><div class="ttname"><a href="ricette_8h.html#a044e83e33d6f5b57fd1cd538c4acbe61">prepara_ricetta</a></div><div class="ttdeci">int prepara_ricetta(char *nome_ricetta, int dosi_ricetta)</div><div class="ttdef"><b>Definition:</b> ricette.c:164</div></div>
+<div class="ttc" id="ricette_8h_html_a882b63989d7ad015ac4df03cc84c49f9"><div class="ttname"><a href="ricette_8h.html#a882b63989d7ad015ac4df03cc84c49f9">input_ingredienti_ricetta</a></div><div class="ttdeci">char * input_ingredienti_ricetta()</div><div class="ttdef"><b>Definition:</b> ricette.c:560</div></div>
+<div class="ttc" id="ricette_8h_html_a8e6cf451a1370431785a6f966e1ec7e0"><div class="ttname"><a href="ricette_8h.html#a8e6cf451a1370431785a6f966e1ec7e0">lettura_database_ricette</a></div><div class="ttdeci">int lettura_database_ricette(ricetta *ricette_database)</div><div class="ttdef"><b>Definition:</b> ricette.c:996</div></div>
+<div class="ttc" id="ricette_8h_html_adf2aaa5bef801b3faa0a40adeb8df605"><div class="ttname"><a href="ricette_8h.html#adf2aaa5bef801b3faa0a40adeb8df605">gestore_prepara_ricetta</a></div><div class="ttdeci">void gestore_prepara_ricetta()</div><div class="ttdef"><b>Definition:</b> ricette.c:233</div></div>
+<div class="ttc" id="ricette_8h_html_a34b53ba22d2a49e5ef3f0a1ddb8e1fb2"><div class="ttname"><a href="ricette_8h.html#a34b53ba22d2a49e5ef3f0a1ddb8e1fb2">conta_ricette_database</a></div><div class="ttdeci">int conta_ricette_database()</div><div class="ttdef"><b>Definition:</b> ricette.c:1028</div></div>
+<div class="ttc" id="ricette_8h_html_a4149df822177a13133bab226be9711f9"><div class="ttname"><a href="ricette_8h.html#a4149df822177a13133bab226be9711f9">visualizza_database_ricette</a></div><div class="ttdeci">int visualizza_database_ricette(int vista)</div><div class="ttdef"><b>Definition:</b> ricette.c:937</div></div>
+<div class="ttc" id="ricette_8h_html_a11c21f5c5b20c4f40d3a6585c1c1d937"><div class="ttname"><a href="ricette_8h.html#a11c21f5c5b20c4f40d3a6585c1c1d937">input_dosi_ricetta</a></div><div class="ttdeci">int input_dosi_ricetta()</div><div class="ttdef"><b>Definition:</b> ricette.c:587</div></div>
+<div class="ttc" id="consumi_8h_html"><div class="ttname"><a href="consumi_8h.html">consumi.h</a></div><div class="ttdoc">Libreria per la gestione dei consumi. </div></div>
+<div class="ttc" id="ricette_8h_html_a3f37fa2abc5ee352f9a922ef72b80116"><div class="ttname"><a href="ricette_8h.html#a3f37fa2abc5ee352f9a922ef72b80116">MAX_INGREDIENTI</a></div><div class="ttdeci">#define MAX_INGREDIENTI</div><div class="ttdef"><b>Definition:</b> ricette.h:73</div></div>
+<div class="ttc" id="ricette_8h_html_afdcfe3df8eca40e79c8d2854a52acbb0"><div class="ttname"><a href="ricette_8h.html#afdcfe3df8eca40e79c8d2854a52acbb0">LUNG_COMPLESSITA</a></div><div class="ttdeci">#define LUNG_COMPLESSITA</div><div class="ttdef"><b>Definition:</b> ricette.h:67</div></div>
+<div class="ttc" id="ricette_8h_html_ad21462b0daaec0f04de000d2fcb2881c"><div class="ttname"><a href="ricette_8h.html#ad21462b0daaec0f04de000d2fcb2881c">input_nome_ricetta</a></div><div class="ttdeci">char * input_nome_ricetta()</div><div class="ttdef"><b>Definition:</b> ricette.c:414</div></div>
+<div class="ttc" id="utenti_8h_html"><div class="ttname"><a href="utenti_8h.html">utenti.h</a></div><div class="ttdoc">Libreria per la gestione degli utenti. </div></div>
+<div class="ttc" id="date_8h_html"><div class="ttname"><a href="date_8h.html">date.h</a></div><div class="ttdoc">Libreria per la gestione delle date. </div></div>
+<div class="ttc" id="ricette_8h_html_ae148ce73d22fb04ab30a4ca18bd09458"><div class="ttname"><a href="ricette_8h.html#ae148ce73d22fb04ab30a4ca18bd09458">suggerimento_ricetta_manuale</a></div><div class="ttdeci">int suggerimento_ricetta_manuale(int num_alimenti, char nome_alimenti[MAX_ALIM_SUGG][LUNG_NOME_ALIMENTO])</div><div class="ttdef"><b>Definition:</b> ricette.c:1203</div></div>
+<div class="ttc" id="ricette_8h_html_a492e7082d80a8b36ab857e0319924334"><div class="ttname"><a href="ricette_8h.html#a492e7082d80a8b36ab857e0319924334">input_complessita_ricetta</a></div><div class="ttdeci">char * input_complessita_ricetta()</div><div class="ttdef"><b>Definition:</b> ricette.c:468</div></div>
+<div class="ttc" id="structricetta_html_abbc9584ea1555c9642adbe72ffb2f9bd"><div class="ttname"><a href="structricetta.html#abbc9584ea1555c9642adbe72ffb2f9bd">ricetta::dosi</a></div><div class="ttdeci">int dosi</div><div class="ttdef"><b>Definition:</b> ricette.h:123</div></div>
+<div class="ttc" id="ricette_8h_html_a9e9d0674ee0217f9bbae17c3e4eea17e"><div class="ttname"><a href="ricette_8h.html#a9e9d0674ee0217f9bbae17c3e4eea17e">input_tempo_preparazione</a></div><div class="ttdeci">char * input_tempo_preparazione()</div><div class="ttdef"><b>Definition:</b> ricette.c:443</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generato da &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.13
+</small></address>
+</body>
+</html>

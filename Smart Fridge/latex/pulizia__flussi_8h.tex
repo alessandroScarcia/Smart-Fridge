@@ -1,0 +1,68 @@
+\hypertarget{pulizia__flussi_8h}{}\section{Riferimenti per il file src/pulizia\+\_\+flussi.h}
+\label{pulizia__flussi_8h}\index{src/pulizia\+\_\+flussi.\+h@{src/pulizia\+\_\+flussi.\+h}}
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+\subsection*{Definizioni}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{pulizia__flussi_8h_ad6c0688c1cd58b44b65c09b15887dd25}{P\+U\+L\+I\+Z\+I\+A\+\_\+\+F\+L\+U\+S\+S\+I\+\_\+\+L\+IB}
+\end{DoxyCompactItemize}
+\subsection*{Funzioni}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{pulizia__flussi_8h_ae90974f09f8272221a500c021ae9ddc9}{pulisci\+\_\+stdin} ()
+\item 
+void \hyperlink{pulizia__flussi_8h_a53ddb24d51525a4b2b9672c7562a0df6}{pulisci\+\_\+riga\+\_\+flusso} (F\+I\+LE $\ast$stream)
+\end{DoxyCompactItemize}
+
+
+\subsection{Descrizione dettagliata}
+Libreria per effettuare la pulizia dei flussi di input.
+
+Le funzioni implementate in questa libreria in generale permettono eliminare parti o l\textquotesingle{}intero contenuto di flussi aperti. L\textquotesingle{}obiettivo è quello di sopperire agli errori fra un operazione di input e l\textquotesingle{}altra, dovuti alla presenza di input non consumato. 
+
+\subsection{Documentazione delle definizioni}
+\mbox{\Hypertarget{pulizia__flussi_8h_ad6c0688c1cd58b44b65c09b15887dd25}\label{pulizia__flussi_8h_ad6c0688c1cd58b44b65c09b15887dd25}} 
+\index{pulizia\+\_\+flussi.\+h@{pulizia\+\_\+flussi.\+h}!P\+U\+L\+I\+Z\+I\+A\+\_\+\+F\+L\+U\+S\+S\+I\+\_\+\+L\+IB@{P\+U\+L\+I\+Z\+I\+A\+\_\+\+F\+L\+U\+S\+S\+I\+\_\+\+L\+IB}}
+\index{P\+U\+L\+I\+Z\+I\+A\+\_\+\+F\+L\+U\+S\+S\+I\+\_\+\+L\+IB@{P\+U\+L\+I\+Z\+I\+A\+\_\+\+F\+L\+U\+S\+S\+I\+\_\+\+L\+IB}!pulizia\+\_\+flussi.\+h@{pulizia\+\_\+flussi.\+h}}
+\subsubsection{\texorpdfstring{P\+U\+L\+I\+Z\+I\+A\+\_\+\+F\+L\+U\+S\+S\+I\+\_\+\+L\+IB}{PULIZIA\_FLUSSI\_LIB}}
+{\footnotesize\ttfamily \#define P\+U\+L\+I\+Z\+I\+A\+\_\+\+F\+L\+U\+S\+S\+I\+\_\+\+L\+IB}
+
+
+
+\subsection{Documentazione delle funzioni}
+\mbox{\Hypertarget{pulizia__flussi_8h_a53ddb24d51525a4b2b9672c7562a0df6}\label{pulizia__flussi_8h_a53ddb24d51525a4b2b9672c7562a0df6}} 
+\index{pulizia\+\_\+flussi.\+h@{pulizia\+\_\+flussi.\+h}!pulisci\+\_\+riga\+\_\+flusso@{pulisci\+\_\+riga\+\_\+flusso}}
+\index{pulisci\+\_\+riga\+\_\+flusso@{pulisci\+\_\+riga\+\_\+flusso}!pulizia\+\_\+flussi.\+h@{pulizia\+\_\+flussi.\+h}}
+\subsubsection{\texorpdfstring{pulisci\+\_\+riga\+\_\+flusso()}{pulisci\_riga\_flusso()}}
+{\footnotesize\ttfamily void pulisci\+\_\+riga\+\_\+flusso (\begin{DoxyParamCaption}\item[{F\+I\+LE $\ast$}]{stream }\end{DoxyParamCaption})}
+
+La procedura pulizia\+\_\+riga\+\_\+flusso() permette di consumare l\textquotesingle{}input rimasto non consumato da una riga di un file (fino al primo carattere di new line).
+
+La procedura \hyperlink{pulizia__flussi_8c_a53ddb24d51525a4b2b9672c7562a0df6}{pulisci\+\_\+riga\+\_\+flusso()} utilizza la funzione fgetc() per consumare tutti i caratteri presenti in un flusso, puntato dal puntatore a file ricevuto come parametro stream, fino al raggiungimento del primo carattere di newline.
+
+
+\begin{DoxyParams}{Parametri}
+{\em stream} & Flusso nel quale consumare i caratteri. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{pulizia__flussi_8h_ae90974f09f8272221a500c021ae9ddc9}\label{pulizia__flussi_8h_ae90974f09f8272221a500c021ae9ddc9}} 
+\index{pulizia\+\_\+flussi.\+h@{pulizia\+\_\+flussi.\+h}!pulisci\+\_\+stdin@{pulisci\+\_\+stdin}}
+\index{pulisci\+\_\+stdin@{pulisci\+\_\+stdin}!pulizia\+\_\+flussi.\+h@{pulizia\+\_\+flussi.\+h}}
+\subsubsection{\texorpdfstring{pulisci\+\_\+stdin()}{pulisci\_stdin()}}
+{\footnotesize\ttfamily int pulisci\+\_\+stdin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+La funzione pulizia\+\_\+stdin() permette di consumare l\textquotesingle{}input rimasto non consumato all\textquotesingle{}interno del flusso stdin.
+
+\begin{DoxyReturn}{Restituisce}
+0 se non è stata necessaria la pulizia. 
+
+1 se è stata necessaria la pulizia.
+\end{DoxyReturn}
+La funzione \hyperlink{pulizia__flussi_8c_ae90974f09f8272221a500c021ae9ddc9}{pulisci\+\_\+stdin()} utilizza la funzione getchar() per consumare tutti i caratteri presenti nel flusso stdin, fino al raggiungimento di E\+OF.
+
+\begin{DoxyPostcond}{Postcondizione}
+Il valore di ritorno deve essere controllato per verificare se è stata necessaria la pulizia. 
+\end{DoxyPostcond}

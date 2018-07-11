@@ -1,0 +1,127 @@
+\hypertarget{lista__spesa_8c}{}\section{Riferimenti per il file src/lista\+\_\+spesa.c}
+\label{lista__spesa_8c}\index{src/lista\+\_\+spesa.\+c@{src/lista\+\_\+spesa.\+c}}
+{\ttfamily \#include \char`\"{}lista\+\_\+spesa.\+h\char`\"{}}\newline
+\subsection*{Funzioni}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{lista__spesa_8c_a481de1948e750e6ebbcd582866cdb673}{aggiorna\+\_\+lista\+\_\+spesa} (char nome\+\_\+alimento\mbox{[}L\+U\+N\+G\+\_\+\+N\+O\+M\+E\+\_\+\+A\+L\+I\+M\+E\+N\+TO\mbox{]}, char nome\+\_\+file\mbox{[}\hyperlink{lista__spesa_8h_ae5e17d2168d3d53cc80b24bb81bcd01d}{L\+U\+N\+G\+\_\+\+N\+O\+M\+E\+\_\+\+F\+I\+L\+E\+\_\+\+S\+P\+E\+SA}\mbox{]})
+\item 
+int \hyperlink{lista__spesa_8c_a76869c873c7827a7d4dacc0ef9c2bf49}{visualizzazione\+\_\+personale} ()
+\item 
+int \hyperlink{lista__spesa_8c_a1e9450e223c0bd7444db28882c7de652}{visualizza\+\_\+lista\+\_\+spesa} (char nome\+\_\+file\mbox{[}\hyperlink{lista__spesa_8h_ae5e17d2168d3d53cc80b24bb81bcd01d}{L\+U\+N\+G\+\_\+\+N\+O\+M\+E\+\_\+\+F\+I\+L\+E\+\_\+\+S\+P\+E\+SA}\mbox{]})
+\item 
+int \hyperlink{lista__spesa_8c_a42d956d1a115bcbe4897e7fd0a5de1f0}{elimina\+\_\+file\+\_\+spesa} (char nome\+\_\+file\mbox{[}\hyperlink{lista__spesa_8h_ae5e17d2168d3d53cc80b24bb81bcd01d}{L\+U\+N\+G\+\_\+\+N\+O\+M\+E\+\_\+\+F\+I\+L\+E\+\_\+\+S\+P\+E\+SA}\mbox{]})
+\item 
+int \hyperlink{lista__spesa_8c_a24759826dd9a345b7f1a4b594ca06e07}{generatore\+\_\+spesa\+\_\+globale} ()
+\item 
+int \hyperlink{lista__spesa_8c_af7d6391d23059bcdeb2b309323ee60f6}{generatore\+\_\+spesa\+\_\+personale} ()
+\item 
+int \hyperlink{lista__spesa_8c_a9ffa3a13ed2681a8e5b8afff5ccc59b7}{controllo\+\_\+soglia} (float soglia\+\_\+spesa, char nome\+\_\+alimento\mbox{[}L\+U\+N\+G\+\_\+\+N\+O\+M\+E\+\_\+\+A\+L\+I\+M\+E\+N\+TO\mbox{]})
+\end{DoxyCompactItemize}
+
+
+\subsection{Documentazione delle funzioni}
+\mbox{\Hypertarget{lista__spesa_8c_a481de1948e750e6ebbcd582866cdb673}\label{lista__spesa_8c_a481de1948e750e6ebbcd582866cdb673}} 
+\index{lista\+\_\+spesa.\+c@{lista\+\_\+spesa.\+c}!aggiorna\+\_\+lista\+\_\+spesa@{aggiorna\+\_\+lista\+\_\+spesa}}
+\index{aggiorna\+\_\+lista\+\_\+spesa@{aggiorna\+\_\+lista\+\_\+spesa}!lista\+\_\+spesa.\+c@{lista\+\_\+spesa.\+c}}
+\subsubsection{\texorpdfstring{aggiorna\+\_\+lista\+\_\+spesa()}{aggiorna\_lista\_spesa()}}
+{\footnotesize\ttfamily int aggiorna\+\_\+lista\+\_\+spesa (\begin{DoxyParamCaption}\item[{char}]{nome\+\_\+alimento\mbox{[}\+L\+U\+N\+G\+\_\+\+N\+O\+M\+E\+\_\+\+A\+L\+I\+M\+E\+N\+T\+O\mbox{]},  }\item[{char}]{nome\+\_\+file\mbox{[}\+L\+U\+N\+G\+\_\+\+N\+O\+M\+E\+\_\+\+F\+I\+L\+E\+\_\+\+S\+P\+E\+S\+A\mbox{]} }\end{DoxyParamCaption})}
+
+Funzione che provvede a scrivere su file(il nome e\textquotesingle{} specificato dal parametro in ingresso) il nome dell\textquotesingle{}alimento che passiamo alla funzione.
+
+Dopo aver eseguito i vari controlli sulla modalitá di apertura del file della spesa(esso puó riferirsi a quello personale o a quello globale), viene scritto su di esso il nome dell\textquotesingle{}alimento. Qualora l\textquotesingle{}inserimento non vada a termine viene notificato un messaggio di errore e si chiede di riscrivere l\textquotesingle{}alimento
+
+\begin{DoxyPrecond}{Precondizione}
+Che il nome del file sia significativo e che la stringa che rappresenta il nome dell\textquotesingle{}alimento non sia vuota 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Deve essere scritto su file l\textquotesingle{}alimento passato 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{lista__spesa_8c_a9ffa3a13ed2681a8e5b8afff5ccc59b7}\label{lista__spesa_8c_a9ffa3a13ed2681a8e5b8afff5ccc59b7}} 
+\index{lista\+\_\+spesa.\+c@{lista\+\_\+spesa.\+c}!controllo\+\_\+soglia@{controllo\+\_\+soglia}}
+\index{controllo\+\_\+soglia@{controllo\+\_\+soglia}!lista\+\_\+spesa.\+c@{lista\+\_\+spesa.\+c}}
+\subsubsection{\texorpdfstring{controllo\+\_\+soglia()}{controllo\_soglia()}}
+{\footnotesize\ttfamily int controllo\+\_\+soglia (\begin{DoxyParamCaption}\item[{float}]{soglia\+\_\+spesa,  }\item[{char}]{nome\+\_\+alimento\mbox{[}\+L\+U\+N\+G\+\_\+\+N\+O\+M\+E\+\_\+\+A\+L\+I\+M\+E\+N\+T\+O\mbox{]} }\end{DoxyParamCaption})}
+
+Funzione che si occupa di confrontare la soglia in ingresso con la quantità di quell\textquotesingle{}alimento. Qualora la quantitá disponibile nel frigo sia inferiore della soglia prestabilita viene restituito 1 e 0 in caso contrario. Nel caso in cui invece la soglia di un determinato alimento sia settata a 0 viene restituito, allo stesso modo, 0. Qualora i controlli non vadano a buon fine viene restituito -\/1
+
+\begin{DoxyPrecond}{Precondizione}
+nessuna particolare pre condizione 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Che venga effettuato correttamente il confronto tra quantitá e soglia dell\textquotesingle{}alimento 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{lista__spesa_8c_a42d956d1a115bcbe4897e7fd0a5de1f0}\label{lista__spesa_8c_a42d956d1a115bcbe4897e7fd0a5de1f0}} 
+\index{lista\+\_\+spesa.\+c@{lista\+\_\+spesa.\+c}!elimina\+\_\+file\+\_\+spesa@{elimina\+\_\+file\+\_\+spesa}}
+\index{elimina\+\_\+file\+\_\+spesa@{elimina\+\_\+file\+\_\+spesa}!lista\+\_\+spesa.\+c@{lista\+\_\+spesa.\+c}}
+\subsubsection{\texorpdfstring{elimina\+\_\+file\+\_\+spesa()}{elimina\_file\_spesa()}}
+{\footnotesize\ttfamily int elimina\+\_\+file\+\_\+spesa (\begin{DoxyParamCaption}\item[{char}]{nome\+\_\+file\mbox{[}\+L\+U\+N\+G\+\_\+\+N\+O\+M\+E\+\_\+\+F\+I\+L\+E\+\_\+\+S\+P\+E\+S\+A\mbox{]} }\end{DoxyParamCaption})}
+
+Funzione che si occupa di eliminare il nome del file specificato e di restituire in caso di successo il valore -\/1
+
+\begin{DoxyPrecond}{Precondizione}
+Il nome del file deve essere significativo(il file deve esistere) 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+In caso il file esista esso deve essere eliminato correttamente 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{lista__spesa_8c_a24759826dd9a345b7f1a4b594ca06e07}\label{lista__spesa_8c_a24759826dd9a345b7f1a4b594ca06e07}} 
+\index{lista\+\_\+spesa.\+c@{lista\+\_\+spesa.\+c}!generatore\+\_\+spesa\+\_\+globale@{generatore\+\_\+spesa\+\_\+globale}}
+\index{generatore\+\_\+spesa\+\_\+globale@{generatore\+\_\+spesa\+\_\+globale}!lista\+\_\+spesa.\+c@{lista\+\_\+spesa.\+c}}
+\subsubsection{\texorpdfstring{generatore\+\_\+spesa\+\_\+globale()}{generatore\_spesa\_globale()}}
+{\footnotesize\ttfamily int generatore\+\_\+spesa\+\_\+globale (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Funzione che si occupa di leggere dal database gli alimenti che possono essere inseriti nella lista della spesa. Per far ció viene effettuata la lettura del database alimenti e viene fatto un controllo sulla soglia tramite la funzione controllo soglia. Se la condizione e\textquotesingle{} vera(vedi funione controllo\+\_\+soglia per avere un\textquotesingle{}idea sui valori restituiti) allora l\textquotesingle{}alimento viene passato alla funzione aggiorna\+\_\+lista\+\_\+spesa Al termine viene restituito 1
+
+\begin{DoxyPrecond}{Precondizione}
+nessuna particolare pre condizione 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+nessuna particolare post condizione 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{lista__spesa_8c_af7d6391d23059bcdeb2b309323ee60f6}\label{lista__spesa_8c_af7d6391d23059bcdeb2b309323ee60f6}} 
+\index{lista\+\_\+spesa.\+c@{lista\+\_\+spesa.\+c}!generatore\+\_\+spesa\+\_\+personale@{generatore\+\_\+spesa\+\_\+personale}}
+\index{generatore\+\_\+spesa\+\_\+personale@{generatore\+\_\+spesa\+\_\+personale}!lista\+\_\+spesa.\+c@{lista\+\_\+spesa.\+c}}
+\subsubsection{\texorpdfstring{generatore\+\_\+spesa\+\_\+personale()}{generatore\_spesa\_personale()}}
+{\footnotesize\ttfamily int generatore\+\_\+spesa\+\_\+personale (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Funzione che si occupa di creare il file che conterrá gli alimenti che un utente specifico deve comprare.
+
+Per far ció la prima operazione da compiere e\textquotesingle{} l\textquotesingle{}autenticazione dell\textquotesingle{}utente. Qualora essa vada a buon fine viene sfruttato il nickname dell\textquotesingle{}utente per creare un file della spesa personalizzato. La seconda operazione necessaria e\textquotesingle{} quella di estrarre dal menu settimanale gli alimenti e le ricette che l\textquotesingle{}utente consuma giornalmente. Per ogni pasto viene fatto un confronto sulla tipologia dell\textquotesingle{}alimento. Se siamo in presenza di una ricetta viene popolato un array di struct(di tipo ingrediente) che avrá tutti gli ingredienti che compongono la ricetta. Se il numero di ingredienti di una data ricetta e\textquotesingle{} -\/1 vuol dire che la ricetta non e\textquotesingle{} presente nel database e viene notificato un messaggio all\textquotesingle{}utente. Se viene restituito un valore diverso vuol dire che gli ingredienti sono candidati ad essere memorizzati nella lista della spesa, ma occorre effettuare un controllo con la soglia e la quantitá disponibile. Sela quantitá disponibile e\textquotesingle{} inferiore alla soglia l\textquotesingle{}ingrediente viene memorizzato. Stessa ragionamento per gli alimenti singoli presenti nel menú settimanale.
+
+\begin{DoxyPrecond}{Precondizione}
+Nessuna pre condizione 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Venga generato il file della spesa dell\textquotesingle{}utente 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{lista__spesa_8c_a1e9450e223c0bd7444db28882c7de652}\label{lista__spesa_8c_a1e9450e223c0bd7444db28882c7de652}} 
+\index{lista\+\_\+spesa.\+c@{lista\+\_\+spesa.\+c}!visualizza\+\_\+lista\+\_\+spesa@{visualizza\+\_\+lista\+\_\+spesa}}
+\index{visualizza\+\_\+lista\+\_\+spesa@{visualizza\+\_\+lista\+\_\+spesa}!lista\+\_\+spesa.\+c@{lista\+\_\+spesa.\+c}}
+\subsubsection{\texorpdfstring{visualizza\+\_\+lista\+\_\+spesa()}{visualizza\_lista\_spesa()}}
+{\footnotesize\ttfamily int visualizza\+\_\+lista\+\_\+spesa (\begin{DoxyParamCaption}\item[{char}]{nome\+\_\+file\mbox{[}\+L\+U\+N\+G\+\_\+\+N\+O\+M\+E\+\_\+\+F\+I\+L\+E\+\_\+\+S\+P\+E\+S\+A\mbox{]} }\end{DoxyParamCaption})}
+
+Funzione che provvede a visualizzare gli alimenti che devono essere comprati dal file della lista personale o di quella globale.
+
+Qualora non sia possibile aprire il file in lettura(ricordiamo che il nome del file della spesa viene generato esternamente alla funzione), viene restituito -\/1. Nel caso in cui sia possibile aprire il file da cui desideriamo estrarre gli alimenti da acquistare viene effettuata la stampa fino al termine del file.
+
+\begin{DoxyPrecond}{Precondizione}
+Il nome del file deve essere significativo(il file deve esistere e deve possedere almeno un alimento) 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Deve essere stampato almeno un alimento 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{lista__spesa_8c_a76869c873c7827a7d4dacc0ef9c2bf49}\label{lista__spesa_8c_a76869c873c7827a7d4dacc0ef9c2bf49}} 
+\index{lista\+\_\+spesa.\+c@{lista\+\_\+spesa.\+c}!visualizzazione\+\_\+personale@{visualizzazione\+\_\+personale}}
+\index{visualizzazione\+\_\+personale@{visualizzazione\+\_\+personale}!lista\+\_\+spesa.\+c@{lista\+\_\+spesa.\+c}}
+\subsubsection{\texorpdfstring{visualizzazione\+\_\+personale()}{visualizzazione\_personale()}}
+{\footnotesize\ttfamily int visualizzazione\+\_\+personale (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Funzione che si occupa di effettuare l\textquotesingle{}autenticazione dell\textquotesingle{}utente per poter poi poter mostrare la lista della spesa personale
+
+\begin{DoxyPrecond}{Precondizione}
+Nessuna particolare pre condizione 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+nessuna particolare post condizione 
+\end{DoxyPostcond}

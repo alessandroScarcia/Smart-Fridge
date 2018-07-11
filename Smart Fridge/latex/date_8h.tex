@@ -1,0 +1,535 @@
+\hypertarget{date_8h}{}\section{Riferimenti per il file src/date.h}
+\label{date_8h}\index{src/date.\+h@{src/date.\+h}}
+
+
+Libreria per la gestione delle date.  
+
+
+{\ttfamily \#include \char`\"{}pulizia\+\_\+flussi.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+\subsection*{Strutture dati}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structdata}{data}
+\end{DoxyCompactItemize}
+\subsection*{Definizioni}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{date_8h_af12cbc4b154eb2eefd852623d7806dc8}{M\+A\+T\+H\+\_\+\+L\+IB}
+\begin{DoxyCompactList}\small\item\em Inclusione delle librerie standard. \end{DoxyCompactList}\item 
+\#define \hyperlink{date_8h_a01352d00b183a41dbc06ddd3557a1c59}{D\+A\+T\+E\+\_\+\+L\+IB}
+\item 
+\#define \hyperlink{date_8h_a60c61291457c6c6e7f7149f954a1eb43}{N\+U\+M\+\_\+\+C\+A\+M\+P\+I\+\_\+\+D\+A\+TA}~3
+\begin{DoxyCompactList}\small\item\em Inclusione della libreria per la pulizia dei flussi di input. \end{DoxyCompactList}\item 
+\#define \hyperlink{date_8h_a1267e06d3a20d32eba3324abd0cf0587}{M\+I\+N\+\_\+\+G\+I\+O\+R\+NO}~1
+\begin{DoxyCompactList}\small\item\em Limiti per la significatività di valori\+: \end{DoxyCompactList}\item 
+\#define \hyperlink{date_8h_a00d12a3bf33d5910414a4f3c7770ebab}{M\+A\+X\+\_\+\+G\+I\+O\+R\+N\+O\+\_\+30}~30
+\item 
+\#define \hyperlink{date_8h_a0c86fecaf5aef1c48c4ead1ddba5cd02}{M\+A\+X\+\_\+\+G\+I\+O\+R\+N\+O\+\_\+31}~31
+\item 
+\#define \hyperlink{date_8h_a82706a0f5940acea4d3c8dbf3b598a28}{M\+A\+X\+\_\+\+F\+E\+B\+B\+R\+A\+IO}~28
+\item 
+\#define \hyperlink{date_8h_acd35a3df22adb08b09527bca2048804c}{M\+A\+X\+\_\+\+F\+E\+B\+B\+R\+A\+I\+O\+\_\+\+B\+IS}~29
+\item 
+\#define \hyperlink{date_8h_a63cfe9c618afda8d9c1bd81f8f929bff}{M\+I\+N\+\_\+\+M\+E\+SE}~1
+\item 
+\#define \hyperlink{date_8h_a32df43954eb6eea4b4e07751068f97f7}{M\+A\+X\+\_\+\+M\+E\+SE}~12
+\item 
+\#define \hyperlink{date_8h_a98a0525423565ba022422c2419977f44}{M\+I\+N\+\_\+\+A\+N\+NO}~1900
+\item 
+\#define \hyperlink{date_8h_abe4076ab2e7aff3f56f45822352824ad}{M\+A\+X\+\_\+\+A\+N\+NO}~2100
+\item 
+\#define \hyperlink{date_8h_ab52d7f2cb69849c9cb020239390e7bca}{C\+O\+N\+T\+R\+O\+L\+L\+O\+\_\+\+B\+I\+S\+E\+S\+T\+I\+L\+E\+\_\+1}~4
+\begin{DoxyCompactList}\small\item\em Costanti numeriche per calcoli\+: \end{DoxyCompactList}\item 
+\#define \hyperlink{date_8h_a93f7d3d6301401066d5da25b70efa8f9}{C\+O\+N\+T\+R\+O\+L\+L\+O\+\_\+\+B\+I\+S\+E\+S\+T\+I\+L\+E\+\_\+2}~100
+\item 
+\#define \hyperlink{date_8h_acd88daa731b605f0dcb6d9a2c2adfba2}{C\+O\+N\+T\+R\+O\+L\+L\+O\+\_\+\+B\+I\+S\+E\+S\+T\+I\+L\+E\+\_\+3}~400
+\item 
+\#define \hyperlink{date_8h_aa3777ad19370d366da572d41644292dd}{B\+A\+S\+E\+\_\+\+M\+E\+S\+E\+\_\+\+C\+O\+R\+R\+E\+N\+TE}~1
+\item 
+\#define \hyperlink{date_8h_af421baf7650dbeca1ca1cbd93aa89973}{B\+A\+S\+E\+\_\+\+A\+N\+N\+O\+\_\+\+C\+O\+R\+R\+E\+N\+TE}~1900
+\item 
+\#define \hyperlink{date_8h_aff6bf9fd1fc35f1690fbdd66f68aad18}{D\+A\+T\+A\+\_\+\+N\+O\+N\+\_\+\+V\+A\+L\+I\+DA}~-\/1
+\begin{DoxyCompactList}\small\item\em Valori di ritorno delle funzioni\+: \end{DoxyCompactList}\item 
+\#define \hyperlink{date_8h_a025501d119f06c0de4e4db3c4ae3ef9b}{D\+A\+T\+E\+\_\+\+U\+G\+U\+A\+LI}~0
+\item 
+\#define \hyperlink{date_8h_acbe34cf265fe76649e7705fd31bb77d3}{P\+R\+I\+M\+A\+\_\+\+D\+A\+T\+A\+\_\+\+A\+N\+T\+E\+C\+E\+D\+E\+N\+TE}~1
+\item 
+\#define \hyperlink{date_8h_a07b5f6cb5262d2d53433a33da95a3678}{S\+E\+C\+O\+N\+D\+A\+\_\+\+D\+A\+T\+A\+\_\+\+A\+N\+T\+E\+C\+E\+D\+E\+N\+TE}~2
+\end{DoxyCompactItemize}
+\subsection*{Funzioni}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{date_8h_acd1b226c15f0f582cc5e5011c380acf1}{controlla\+\_\+data} (\hyperlink{structdata}{data} d)
+\begin{DoxyCompactList}\small\item\em Implementazione delle funzioni della libreria \hyperlink{date_8h}{date.\+h}. \end{DoxyCompactList}\item 
+double \hyperlink{date_8h_a9fb50a281390d039697ee8903edbe4d0}{giorno\+\_\+giuliano} (\hyperlink{structdata}{data} d1)
+\item 
+int \hyperlink{date_8h_a6e04e729b850a65683d3df16ea167858}{diff\+\_\+date} (int $\ast$differenza, \hyperlink{structdata}{data} d1, \hyperlink{structdata}{data} d2)
+\item 
+int \hyperlink{date_8h_a3c80db910b9f748e16c16e2c8bfa53f3}{confronta\+\_\+date} (\hyperlink{structdata}{data} d1, \hyperlink{structdata}{data} d2)
+\item 
+int \hyperlink{date_8h_afbef0466d48888c4cd6d47de5b5c5baf}{genera\+\_\+data} (\hyperlink{structdata}{data} $\ast$data\+\_\+generata, \hyperlink{structdata}{data} d1, \hyperlink{structdata}{data} d2)
+\item 
+\hyperlink{structdata}{data} \hyperlink{date_8h_a21e03980ab79861ed672cf571293b41f}{data\+\_\+odierna} ()
+\item 
+int \hyperlink{date_8h_a2218060883057187054ac7065ab45330}{giorno\+\_\+odierno} ()
+\item 
+\hyperlink{structdata}{data} \hyperlink{date_8h_af93cf7bf0773e10ac8fd26d8620e9f85}{data\+\_\+gregoriana} (double data\+\_\+giuliana)
+\item 
+\hyperlink{structdata}{data} \hyperlink{date_8h_a1687d0b372d4e9f523d480a48c772014}{shift\+\_\+data\+\_\+odierna} (short valore\+\_\+shift)
+\item 
+\hyperlink{structdata}{data} \hyperlink{date_8h_ae4de4b55842d1d5289b7ec4a103b74f2}{input\+\_\+data} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Descrizione dettagliata}
+Libreria per la gestione delle date. 
+
+La libreria \hyperlink{date_8h}{date.\+h} è stata implementata per facilitare la manipolazione delle date all\textquotesingle{}interno del caso di studio. A questo scopo è definito un nuovo tipo di dato, \char`\"{}data\char`\"{}, e funzioni per manipolarlo e generare informazioni da dati di questo tipo.
+
+\begin{DoxyAuthor}{Autori}
+Alessandro Scarcia, Davide Quatela, Michela Salvemini 
+\end{DoxyAuthor}
+
+
+\subsection{Documentazione delle definizioni}
+\mbox{\Hypertarget{date_8h_af421baf7650dbeca1ca1cbd93aa89973}\label{date_8h_af421baf7650dbeca1ca1cbd93aa89973}} 
+\index{date.\+h@{date.\+h}!B\+A\+S\+E\+\_\+\+A\+N\+N\+O\+\_\+\+C\+O\+R\+R\+E\+N\+TE@{B\+A\+S\+E\+\_\+\+A\+N\+N\+O\+\_\+\+C\+O\+R\+R\+E\+N\+TE}}
+\index{B\+A\+S\+E\+\_\+\+A\+N\+N\+O\+\_\+\+C\+O\+R\+R\+E\+N\+TE@{B\+A\+S\+E\+\_\+\+A\+N\+N\+O\+\_\+\+C\+O\+R\+R\+E\+N\+TE}!date.\+h@{date.\+h}}
+\subsubsection{\texorpdfstring{B\+A\+S\+E\+\_\+\+A\+N\+N\+O\+\_\+\+C\+O\+R\+R\+E\+N\+TE}{BASE\_ANNO\_CORRENTE}}
+{\footnotesize\ttfamily \#define B\+A\+S\+E\+\_\+\+A\+N\+N\+O\+\_\+\+C\+O\+R\+R\+E\+N\+TE~1900}
+
+\mbox{\Hypertarget{date_8h_aa3777ad19370d366da572d41644292dd}\label{date_8h_aa3777ad19370d366da572d41644292dd}} 
+\index{date.\+h@{date.\+h}!B\+A\+S\+E\+\_\+\+M\+E\+S\+E\+\_\+\+C\+O\+R\+R\+E\+N\+TE@{B\+A\+S\+E\+\_\+\+M\+E\+S\+E\+\_\+\+C\+O\+R\+R\+E\+N\+TE}}
+\index{B\+A\+S\+E\+\_\+\+M\+E\+S\+E\+\_\+\+C\+O\+R\+R\+E\+N\+TE@{B\+A\+S\+E\+\_\+\+M\+E\+S\+E\+\_\+\+C\+O\+R\+R\+E\+N\+TE}!date.\+h@{date.\+h}}
+\subsubsection{\texorpdfstring{B\+A\+S\+E\+\_\+\+M\+E\+S\+E\+\_\+\+C\+O\+R\+R\+E\+N\+TE}{BASE\_MESE\_CORRENTE}}
+{\footnotesize\ttfamily \#define B\+A\+S\+E\+\_\+\+M\+E\+S\+E\+\_\+\+C\+O\+R\+R\+E\+N\+TE~1}
+
+\mbox{\Hypertarget{date_8h_ab52d7f2cb69849c9cb020239390e7bca}\label{date_8h_ab52d7f2cb69849c9cb020239390e7bca}} 
+\index{date.\+h@{date.\+h}!C\+O\+N\+T\+R\+O\+L\+L\+O\+\_\+\+B\+I\+S\+E\+S\+T\+I\+L\+E\+\_\+1@{C\+O\+N\+T\+R\+O\+L\+L\+O\+\_\+\+B\+I\+S\+E\+S\+T\+I\+L\+E\+\_\+1}}
+\index{C\+O\+N\+T\+R\+O\+L\+L\+O\+\_\+\+B\+I\+S\+E\+S\+T\+I\+L\+E\+\_\+1@{C\+O\+N\+T\+R\+O\+L\+L\+O\+\_\+\+B\+I\+S\+E\+S\+T\+I\+L\+E\+\_\+1}!date.\+h@{date.\+h}}
+\subsubsection{\texorpdfstring{C\+O\+N\+T\+R\+O\+L\+L\+O\+\_\+\+B\+I\+S\+E\+S\+T\+I\+L\+E\+\_\+1}{CONTROLLO\_BISESTILE\_1}}
+{\footnotesize\ttfamily \#define C\+O\+N\+T\+R\+O\+L\+L\+O\+\_\+\+B\+I\+S\+E\+S\+T\+I\+L\+E\+\_\+1~4}
+
+
+
+Costanti numeriche per calcoli\+: 
+
+\mbox{\Hypertarget{date_8h_a93f7d3d6301401066d5da25b70efa8f9}\label{date_8h_a93f7d3d6301401066d5da25b70efa8f9}} 
+\index{date.\+h@{date.\+h}!C\+O\+N\+T\+R\+O\+L\+L\+O\+\_\+\+B\+I\+S\+E\+S\+T\+I\+L\+E\+\_\+2@{C\+O\+N\+T\+R\+O\+L\+L\+O\+\_\+\+B\+I\+S\+E\+S\+T\+I\+L\+E\+\_\+2}}
+\index{C\+O\+N\+T\+R\+O\+L\+L\+O\+\_\+\+B\+I\+S\+E\+S\+T\+I\+L\+E\+\_\+2@{C\+O\+N\+T\+R\+O\+L\+L\+O\+\_\+\+B\+I\+S\+E\+S\+T\+I\+L\+E\+\_\+2}!date.\+h@{date.\+h}}
+\subsubsection{\texorpdfstring{C\+O\+N\+T\+R\+O\+L\+L\+O\+\_\+\+B\+I\+S\+E\+S\+T\+I\+L\+E\+\_\+2}{CONTROLLO\_BISESTILE\_2}}
+{\footnotesize\ttfamily \#define C\+O\+N\+T\+R\+O\+L\+L\+O\+\_\+\+B\+I\+S\+E\+S\+T\+I\+L\+E\+\_\+2~100}
+
+\mbox{\Hypertarget{date_8h_acd88daa731b605f0dcb6d9a2c2adfba2}\label{date_8h_acd88daa731b605f0dcb6d9a2c2adfba2}} 
+\index{date.\+h@{date.\+h}!C\+O\+N\+T\+R\+O\+L\+L\+O\+\_\+\+B\+I\+S\+E\+S\+T\+I\+L\+E\+\_\+3@{C\+O\+N\+T\+R\+O\+L\+L\+O\+\_\+\+B\+I\+S\+E\+S\+T\+I\+L\+E\+\_\+3}}
+\index{C\+O\+N\+T\+R\+O\+L\+L\+O\+\_\+\+B\+I\+S\+E\+S\+T\+I\+L\+E\+\_\+3@{C\+O\+N\+T\+R\+O\+L\+L\+O\+\_\+\+B\+I\+S\+E\+S\+T\+I\+L\+E\+\_\+3}!date.\+h@{date.\+h}}
+\subsubsection{\texorpdfstring{C\+O\+N\+T\+R\+O\+L\+L\+O\+\_\+\+B\+I\+S\+E\+S\+T\+I\+L\+E\+\_\+3}{CONTROLLO\_BISESTILE\_3}}
+{\footnotesize\ttfamily \#define C\+O\+N\+T\+R\+O\+L\+L\+O\+\_\+\+B\+I\+S\+E\+S\+T\+I\+L\+E\+\_\+3~400}
+
+\mbox{\Hypertarget{date_8h_aff6bf9fd1fc35f1690fbdd66f68aad18}\label{date_8h_aff6bf9fd1fc35f1690fbdd66f68aad18}} 
+\index{date.\+h@{date.\+h}!D\+A\+T\+A\+\_\+\+N\+O\+N\+\_\+\+V\+A\+L\+I\+DA@{D\+A\+T\+A\+\_\+\+N\+O\+N\+\_\+\+V\+A\+L\+I\+DA}}
+\index{D\+A\+T\+A\+\_\+\+N\+O\+N\+\_\+\+V\+A\+L\+I\+DA@{D\+A\+T\+A\+\_\+\+N\+O\+N\+\_\+\+V\+A\+L\+I\+DA}!date.\+h@{date.\+h}}
+\subsubsection{\texorpdfstring{D\+A\+T\+A\+\_\+\+N\+O\+N\+\_\+\+V\+A\+L\+I\+DA}{DATA\_NON\_VALIDA}}
+{\footnotesize\ttfamily \#define D\+A\+T\+A\+\_\+\+N\+O\+N\+\_\+\+V\+A\+L\+I\+DA~-\/1}
+
+
+
+Valori di ritorno delle funzioni\+: 
+
+\mbox{\Hypertarget{date_8h_a01352d00b183a41dbc06ddd3557a1c59}\label{date_8h_a01352d00b183a41dbc06ddd3557a1c59}} 
+\index{date.\+h@{date.\+h}!D\+A\+T\+E\+\_\+\+L\+IB@{D\+A\+T\+E\+\_\+\+L\+IB}}
+\index{D\+A\+T\+E\+\_\+\+L\+IB@{D\+A\+T\+E\+\_\+\+L\+IB}!date.\+h@{date.\+h}}
+\subsubsection{\texorpdfstring{D\+A\+T\+E\+\_\+\+L\+IB}{DATE\_LIB}}
+{\footnotesize\ttfamily \#define D\+A\+T\+E\+\_\+\+L\+IB}
+
+\mbox{\Hypertarget{date_8h_a025501d119f06c0de4e4db3c4ae3ef9b}\label{date_8h_a025501d119f06c0de4e4db3c4ae3ef9b}} 
+\index{date.\+h@{date.\+h}!D\+A\+T\+E\+\_\+\+U\+G\+U\+A\+LI@{D\+A\+T\+E\+\_\+\+U\+G\+U\+A\+LI}}
+\index{D\+A\+T\+E\+\_\+\+U\+G\+U\+A\+LI@{D\+A\+T\+E\+\_\+\+U\+G\+U\+A\+LI}!date.\+h@{date.\+h}}
+\subsubsection{\texorpdfstring{D\+A\+T\+E\+\_\+\+U\+G\+U\+A\+LI}{DATE\_UGUALI}}
+{\footnotesize\ttfamily \#define D\+A\+T\+E\+\_\+\+U\+G\+U\+A\+LI~0}
+
+\mbox{\Hypertarget{date_8h_af12cbc4b154eb2eefd852623d7806dc8}\label{date_8h_af12cbc4b154eb2eefd852623d7806dc8}} 
+\index{date.\+h@{date.\+h}!M\+A\+T\+H\+\_\+\+L\+IB@{M\+A\+T\+H\+\_\+\+L\+IB}}
+\index{M\+A\+T\+H\+\_\+\+L\+IB@{M\+A\+T\+H\+\_\+\+L\+IB}!date.\+h@{date.\+h}}
+\subsubsection{\texorpdfstring{M\+A\+T\+H\+\_\+\+L\+IB}{MATH\_LIB}}
+{\footnotesize\ttfamily \#define M\+A\+T\+H\+\_\+\+L\+IB}
+
+
+
+Inclusione delle librerie standard. 
+
+Inclusione della libreria matematica \mbox{\Hypertarget{date_8h_abe4076ab2e7aff3f56f45822352824ad}\label{date_8h_abe4076ab2e7aff3f56f45822352824ad}} 
+\index{date.\+h@{date.\+h}!M\+A\+X\+\_\+\+A\+N\+NO@{M\+A\+X\+\_\+\+A\+N\+NO}}
+\index{M\+A\+X\+\_\+\+A\+N\+NO@{M\+A\+X\+\_\+\+A\+N\+NO}!date.\+h@{date.\+h}}
+\subsubsection{\texorpdfstring{M\+A\+X\+\_\+\+A\+N\+NO}{MAX\_ANNO}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+\+A\+N\+NO~2100}
+
+\mbox{\Hypertarget{date_8h_a82706a0f5940acea4d3c8dbf3b598a28}\label{date_8h_a82706a0f5940acea4d3c8dbf3b598a28}} 
+\index{date.\+h@{date.\+h}!M\+A\+X\+\_\+\+F\+E\+B\+B\+R\+A\+IO@{M\+A\+X\+\_\+\+F\+E\+B\+B\+R\+A\+IO}}
+\index{M\+A\+X\+\_\+\+F\+E\+B\+B\+R\+A\+IO@{M\+A\+X\+\_\+\+F\+E\+B\+B\+R\+A\+IO}!date.\+h@{date.\+h}}
+\subsubsection{\texorpdfstring{M\+A\+X\+\_\+\+F\+E\+B\+B\+R\+A\+IO}{MAX\_FEBBRAIO}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+\+F\+E\+B\+B\+R\+A\+IO~28}
+
+\mbox{\Hypertarget{date_8h_acd35a3df22adb08b09527bca2048804c}\label{date_8h_acd35a3df22adb08b09527bca2048804c}} 
+\index{date.\+h@{date.\+h}!M\+A\+X\+\_\+\+F\+E\+B\+B\+R\+A\+I\+O\+\_\+\+B\+IS@{M\+A\+X\+\_\+\+F\+E\+B\+B\+R\+A\+I\+O\+\_\+\+B\+IS}}
+\index{M\+A\+X\+\_\+\+F\+E\+B\+B\+R\+A\+I\+O\+\_\+\+B\+IS@{M\+A\+X\+\_\+\+F\+E\+B\+B\+R\+A\+I\+O\+\_\+\+B\+IS}!date.\+h@{date.\+h}}
+\subsubsection{\texorpdfstring{M\+A\+X\+\_\+\+F\+E\+B\+B\+R\+A\+I\+O\+\_\+\+B\+IS}{MAX\_FEBBRAIO\_BIS}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+\+F\+E\+B\+B\+R\+A\+I\+O\+\_\+\+B\+IS~29}
+
+\mbox{\Hypertarget{date_8h_a00d12a3bf33d5910414a4f3c7770ebab}\label{date_8h_a00d12a3bf33d5910414a4f3c7770ebab}} 
+\index{date.\+h@{date.\+h}!M\+A\+X\+\_\+\+G\+I\+O\+R\+N\+O\+\_\+30@{M\+A\+X\+\_\+\+G\+I\+O\+R\+N\+O\+\_\+30}}
+\index{M\+A\+X\+\_\+\+G\+I\+O\+R\+N\+O\+\_\+30@{M\+A\+X\+\_\+\+G\+I\+O\+R\+N\+O\+\_\+30}!date.\+h@{date.\+h}}
+\subsubsection{\texorpdfstring{M\+A\+X\+\_\+\+G\+I\+O\+R\+N\+O\+\_\+30}{MAX\_GIORNO\_30}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+\+G\+I\+O\+R\+N\+O\+\_\+30~30}
+
+\mbox{\Hypertarget{date_8h_a0c86fecaf5aef1c48c4ead1ddba5cd02}\label{date_8h_a0c86fecaf5aef1c48c4ead1ddba5cd02}} 
+\index{date.\+h@{date.\+h}!M\+A\+X\+\_\+\+G\+I\+O\+R\+N\+O\+\_\+31@{M\+A\+X\+\_\+\+G\+I\+O\+R\+N\+O\+\_\+31}}
+\index{M\+A\+X\+\_\+\+G\+I\+O\+R\+N\+O\+\_\+31@{M\+A\+X\+\_\+\+G\+I\+O\+R\+N\+O\+\_\+31}!date.\+h@{date.\+h}}
+\subsubsection{\texorpdfstring{M\+A\+X\+\_\+\+G\+I\+O\+R\+N\+O\+\_\+31}{MAX\_GIORNO\_31}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+\+G\+I\+O\+R\+N\+O\+\_\+31~31}
+
+\mbox{\Hypertarget{date_8h_a32df43954eb6eea4b4e07751068f97f7}\label{date_8h_a32df43954eb6eea4b4e07751068f97f7}} 
+\index{date.\+h@{date.\+h}!M\+A\+X\+\_\+\+M\+E\+SE@{M\+A\+X\+\_\+\+M\+E\+SE}}
+\index{M\+A\+X\+\_\+\+M\+E\+SE@{M\+A\+X\+\_\+\+M\+E\+SE}!date.\+h@{date.\+h}}
+\subsubsection{\texorpdfstring{M\+A\+X\+\_\+\+M\+E\+SE}{MAX\_MESE}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+\+M\+E\+SE~12}
+
+\mbox{\Hypertarget{date_8h_a98a0525423565ba022422c2419977f44}\label{date_8h_a98a0525423565ba022422c2419977f44}} 
+\index{date.\+h@{date.\+h}!M\+I\+N\+\_\+\+A\+N\+NO@{M\+I\+N\+\_\+\+A\+N\+NO}}
+\index{M\+I\+N\+\_\+\+A\+N\+NO@{M\+I\+N\+\_\+\+A\+N\+NO}!date.\+h@{date.\+h}}
+\subsubsection{\texorpdfstring{M\+I\+N\+\_\+\+A\+N\+NO}{MIN\_ANNO}}
+{\footnotesize\ttfamily \#define M\+I\+N\+\_\+\+A\+N\+NO~1900}
+
+\mbox{\Hypertarget{date_8h_a1267e06d3a20d32eba3324abd0cf0587}\label{date_8h_a1267e06d3a20d32eba3324abd0cf0587}} 
+\index{date.\+h@{date.\+h}!M\+I\+N\+\_\+\+G\+I\+O\+R\+NO@{M\+I\+N\+\_\+\+G\+I\+O\+R\+NO}}
+\index{M\+I\+N\+\_\+\+G\+I\+O\+R\+NO@{M\+I\+N\+\_\+\+G\+I\+O\+R\+NO}!date.\+h@{date.\+h}}
+\subsubsection{\texorpdfstring{M\+I\+N\+\_\+\+G\+I\+O\+R\+NO}{MIN\_GIORNO}}
+{\footnotesize\ttfamily \#define M\+I\+N\+\_\+\+G\+I\+O\+R\+NO~1}
+
+
+
+Limiti per la significatività di valori\+: 
+
+\mbox{\Hypertarget{date_8h_a63cfe9c618afda8d9c1bd81f8f929bff}\label{date_8h_a63cfe9c618afda8d9c1bd81f8f929bff}} 
+\index{date.\+h@{date.\+h}!M\+I\+N\+\_\+\+M\+E\+SE@{M\+I\+N\+\_\+\+M\+E\+SE}}
+\index{M\+I\+N\+\_\+\+M\+E\+SE@{M\+I\+N\+\_\+\+M\+E\+SE}!date.\+h@{date.\+h}}
+\subsubsection{\texorpdfstring{M\+I\+N\+\_\+\+M\+E\+SE}{MIN\_MESE}}
+{\footnotesize\ttfamily \#define M\+I\+N\+\_\+\+M\+E\+SE~1}
+
+\mbox{\Hypertarget{date_8h_a60c61291457c6c6e7f7149f954a1eb43}\label{date_8h_a60c61291457c6c6e7f7149f954a1eb43}} 
+\index{date.\+h@{date.\+h}!N\+U\+M\+\_\+\+C\+A\+M\+P\+I\+\_\+\+D\+A\+TA@{N\+U\+M\+\_\+\+C\+A\+M\+P\+I\+\_\+\+D\+A\+TA}}
+\index{N\+U\+M\+\_\+\+C\+A\+M\+P\+I\+\_\+\+D\+A\+TA@{N\+U\+M\+\_\+\+C\+A\+M\+P\+I\+\_\+\+D\+A\+TA}!date.\+h@{date.\+h}}
+\subsubsection{\texorpdfstring{N\+U\+M\+\_\+\+C\+A\+M\+P\+I\+\_\+\+D\+A\+TA}{NUM\_CAMPI\_DATA}}
+{\footnotesize\ttfamily \#define N\+U\+M\+\_\+\+C\+A\+M\+P\+I\+\_\+\+D\+A\+TA~3}
+
+
+
+Inclusione della libreria per la pulizia dei flussi di input. 
+
+D\+E\+F\+I\+N\+I\+Z\+I\+O\+NE D\+E\+L\+LE C\+O\+S\+T\+A\+N\+TI S\+I\+M\+B\+O\+L\+I\+C\+HE. Numero di elementi di determinati oggetti\+: \mbox{\Hypertarget{date_8h_acbe34cf265fe76649e7705fd31bb77d3}\label{date_8h_acbe34cf265fe76649e7705fd31bb77d3}} 
+\index{date.\+h@{date.\+h}!P\+R\+I\+M\+A\+\_\+\+D\+A\+T\+A\+\_\+\+A\+N\+T\+E\+C\+E\+D\+E\+N\+TE@{P\+R\+I\+M\+A\+\_\+\+D\+A\+T\+A\+\_\+\+A\+N\+T\+E\+C\+E\+D\+E\+N\+TE}}
+\index{P\+R\+I\+M\+A\+\_\+\+D\+A\+T\+A\+\_\+\+A\+N\+T\+E\+C\+E\+D\+E\+N\+TE@{P\+R\+I\+M\+A\+\_\+\+D\+A\+T\+A\+\_\+\+A\+N\+T\+E\+C\+E\+D\+E\+N\+TE}!date.\+h@{date.\+h}}
+\subsubsection{\texorpdfstring{P\+R\+I\+M\+A\+\_\+\+D\+A\+T\+A\+\_\+\+A\+N\+T\+E\+C\+E\+D\+E\+N\+TE}{PRIMA\_DATA\_ANTECEDENTE}}
+{\footnotesize\ttfamily \#define P\+R\+I\+M\+A\+\_\+\+D\+A\+T\+A\+\_\+\+A\+N\+T\+E\+C\+E\+D\+E\+N\+TE~1}
+
+\mbox{\Hypertarget{date_8h_a07b5f6cb5262d2d53433a33da95a3678}\label{date_8h_a07b5f6cb5262d2d53433a33da95a3678}} 
+\index{date.\+h@{date.\+h}!S\+E\+C\+O\+N\+D\+A\+\_\+\+D\+A\+T\+A\+\_\+\+A\+N\+T\+E\+C\+E\+D\+E\+N\+TE@{S\+E\+C\+O\+N\+D\+A\+\_\+\+D\+A\+T\+A\+\_\+\+A\+N\+T\+E\+C\+E\+D\+E\+N\+TE}}
+\index{S\+E\+C\+O\+N\+D\+A\+\_\+\+D\+A\+T\+A\+\_\+\+A\+N\+T\+E\+C\+E\+D\+E\+N\+TE@{S\+E\+C\+O\+N\+D\+A\+\_\+\+D\+A\+T\+A\+\_\+\+A\+N\+T\+E\+C\+E\+D\+E\+N\+TE}!date.\+h@{date.\+h}}
+\subsubsection{\texorpdfstring{S\+E\+C\+O\+N\+D\+A\+\_\+\+D\+A\+T\+A\+\_\+\+A\+N\+T\+E\+C\+E\+D\+E\+N\+TE}{SECONDA\_DATA\_ANTECEDENTE}}
+{\footnotesize\ttfamily \#define S\+E\+C\+O\+N\+D\+A\+\_\+\+D\+A\+T\+A\+\_\+\+A\+N\+T\+E\+C\+E\+D\+E\+N\+TE~2}
+
+
+
+\subsection{Documentazione delle funzioni}
+\mbox{\Hypertarget{date_8h_a3c80db910b9f748e16c16e2c8bfa53f3}\label{date_8h_a3c80db910b9f748e16c16e2c8bfa53f3}} 
+\index{date.\+h@{date.\+h}!confronta\+\_\+date@{confronta\+\_\+date}}
+\index{confronta\+\_\+date@{confronta\+\_\+date}!date.\+h@{date.\+h}}
+\subsubsection{\texorpdfstring{confronta\+\_\+date()}{confronta\_date()}}
+{\footnotesize\ttfamily int confronta\+\_\+date (\begin{DoxyParamCaption}\item[{\hyperlink{structdata}{data}}]{d1,  }\item[{\hyperlink{structdata}{data}}]{d2 }\end{DoxyParamCaption})}
+
+La funzione \hyperlink{date_8c_a3c80db910b9f748e16c16e2c8bfa53f3}{confronta\+\_\+date()} riceve in ingresso due variabili di tipo data e, se esse sono significative, stabilisce se sono uguali oppure quale delle due antecede l\textquotesingle{}altra.
+
+
+\begin{DoxyParams}{Parametri}
+{\em d1} & Prima variabile del confronto \\
+\hline
+{\em d2} & Seconda Variabile del confronto \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Restituisce}
+-\/1 se le date non sono valide 
+
+0 se le date sono uguali 
+
+1 se la prima data antecede la seconda 
+
+2 se la seconda data antecede la prima
+\end{DoxyReturn}
+Funzione \hyperlink{date_8c_a3c80db910b9f748e16c16e2c8bfa53f3}{confronta\+\_\+date(data d1, data d2)}\+:
+
+La funzione determina l\textquotesingle{}ugualianza o la disugualianza fra le due date ricevute, analizzandone la differenza.
+
+Il valore che assume la differenza può essere di tre tipi\+:
+\begin{DoxyItemize}
+\item Uguale a zero -\/$>$ Le date sono uguali
+\item Maggiore di zero -\/$>$ La seconda data antecede la prima
+\item Minore di zero -\/$>$ La prima data antecede la seconda.
+\end{DoxyItemize}
+
+Dopo aver verificato il significato delle date, se sono valide viene calcolata la differenza e si determina in quale tipo precedentemente elencato rientra e viene ritornato il corrispondente valore.
+
+Se una delle date o entrambe non sono significative, viene ritornato D\+A\+T\+A\+\_\+\+N\+O\+N\+\_\+\+V\+A\+L\+I\+DA.
+
+\begin{DoxyPrecond}{Precondizione}
+Le date utilizzate per richiamare la funzione devono essere significative. 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Il valore di ritorno della funzione deve essere controllato per determinarne l\textquotesingle{}esito. 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{date_8h_acd1b226c15f0f582cc5e5011c380acf1}\label{date_8h_acd1b226c15f0f582cc5e5011c380acf1}} 
+\index{date.\+h@{date.\+h}!controlla\+\_\+data@{controlla\+\_\+data}}
+\index{controlla\+\_\+data@{controlla\+\_\+data}!date.\+h@{date.\+h}}
+\subsubsection{\texorpdfstring{controlla\+\_\+data()}{controlla\_data()}}
+{\footnotesize\ttfamily int controlla\+\_\+data (\begin{DoxyParamCaption}\item[{\hyperlink{structdata}{data}}]{d }\end{DoxyParamCaption})}
+
+
+
+Implementazione delle funzioni della libreria \hyperlink{date_8h}{date.\+h}. 
+
+La funzione \hyperlink{date_8c_acd1b226c15f0f582cc5e5011c380acf1}{controlla\+\_\+data()} riceve in ingresso una variabile di tipo data e stabilisce se questa rappresenta un informazione significativa.
+
+
+\begin{DoxyParams}{Parametri}
+{\em d} & Variabile da analizzare \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Restituisce}
+0 se la variabile non è significativa 
+
+1 se la variabile è significativa
+\end{DoxyReturn}
+Funzione \hyperlink{date_8c_acd1b226c15f0f582cc5e5011c380acf1}{controlla\+\_\+data(data d)}\+:
+
+La funzione ha il compito di verificare se la data d è significativa.
+
+A tal scopo esegue determinati controlli sui valori che la compongono. In primo luogo viene verificato se l\textquotesingle{}anno è bisestile oppure no, l\textquotesingle{}esito è memorizzato in un apposito flag.
+
+Successivamente viene verificato che il mese abbia un valore entro l\textquotesingle{}intervallo \mbox{[}1, 12\mbox{]}, dato che altri valori non sarebbero significativi.
+
+L\textquotesingle{}ultima verifica avviene sul valore del giorno. Viene accertato che sia nei limiti dell\textquotesingle{}intervallo corretto, in base al valore del mese e dell\textquotesingle{}anno.
+
+\begin{DoxyPrecond}{Precondizione}
+Non vi sono specifiche pre-\/condizioni per la funzione 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Il valore restituito deve essere controllato per verificare l\textquotesingle{}esito del controllo sulla data. 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{date_8h_af93cf7bf0773e10ac8fd26d8620e9f85}\label{date_8h_af93cf7bf0773e10ac8fd26d8620e9f85}} 
+\index{date.\+h@{date.\+h}!data\+\_\+gregoriana@{data\+\_\+gregoriana}}
+\index{data\+\_\+gregoriana@{data\+\_\+gregoriana}!date.\+h@{date.\+h}}
+\subsubsection{\texorpdfstring{data\+\_\+gregoriana()}{data\_gregoriana()}}
+{\footnotesize\ttfamily \hyperlink{structdata}{data} data\+\_\+gregoriana (\begin{DoxyParamCaption}\item[{double}]{data\+\_\+giuliana }\end{DoxyParamCaption})}
+
+La funzione \hyperlink{date_8c_af93cf7bf0773e10ac8fd26d8620e9f85}{data\+\_\+gregoriana()} datermina la data in formato gregoriana del giorno giuliano ricevuto in ingresso e la ritorna come dato di tipo data.
+
+
+\begin{DoxyParams}{Parametri}
+{\em data\+Giuliana} & Giorno giuliano da convertire \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Restituisce}
+Data in formato gregoriano corrispondente al giorno giuliano ricevuto
+\end{DoxyReturn}
+Funzione data\+\_\+gregoriana\+: La funzione riceve in ingresso una data nel formato di giorno giuliano, su di essa applica un algoritmo e restituisce il valore ad essa corrispondente in formato di tipo data.
+
+L\textquotesingle{}algoritmo applicato è stato preso dal seguente link Wikipedia\+: \href{https://it.wikipedia.org/wiki/Giorno_giuliano#Conversione_da_data_giuliana_a_data_normale}{\tt https\+://it.\+wikipedia.\+org/wiki/\+Giorno\+\_\+giuliano\#\+Conversione\+\_\+da\+\_\+data\+\_\+giuliana\+\_\+a\+\_\+data\+\_\+normale}
+
+\begin{DoxyPrecond}{Precondizione}
+La data passata alla funzione deve avere un valore significativo. 
+\end{DoxyPrecond}
+\mbox{\Hypertarget{date_8h_a21e03980ab79861ed672cf571293b41f}\label{date_8h_a21e03980ab79861ed672cf571293b41f}} 
+\index{date.\+h@{date.\+h}!data\+\_\+odierna@{data\+\_\+odierna}}
+\index{data\+\_\+odierna@{data\+\_\+odierna}!date.\+h@{date.\+h}}
+\subsubsection{\texorpdfstring{data\+\_\+odierna()}{data\_odierna()}}
+{\footnotesize\ttfamily \hyperlink{structdata}{data} data\+\_\+odierna (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+La funzione \hyperlink{date_8c_a21e03980ab79861ed672cf571293b41f}{data\+\_\+odierna()} è utilizzata per determinare la data al momento dell\textquotesingle{}esecuzione.
+
+\begin{DoxyReturn}{Restituisce}
+Un avariabile di tipo data il cui valore è la data al momento di esecuzione
+\end{DoxyReturn}
+Funzione \hyperlink{date_8c_a21e03980ab79861ed672cf571293b41f}{data\+\_\+odierna()}\+:
+
+La funzione permette di determinare la data odierna utilizzando le funzioni della libreria $<$time.\+h$>$. Estrapola la data almomento dell\textquotesingle{}esecuzione attraverso la funzione time(), ottenendo un valore di tipo time\+\_\+t. Questo valore viene poi convertito, con la funzione localtime(), nella struct tm., in cui i campi tm\+\_\+mday, tm\+\_\+mon e tm\+\_\+year contengono rispettivamente il giorno, il mese e l\textquotesingle{}anno della data odierna.
+
+\begin{DoxyPostcond}{Postcondizione}
+Il valore restituito dalla funzione deve essere memorizzato in una variabile di tipo data. 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{date_8h_a6e04e729b850a65683d3df16ea167858}\label{date_8h_a6e04e729b850a65683d3df16ea167858}} 
+\index{date.\+h@{date.\+h}!diff\+\_\+date@{diff\+\_\+date}}
+\index{diff\+\_\+date@{diff\+\_\+date}!date.\+h@{date.\+h}}
+\subsubsection{\texorpdfstring{diff\+\_\+date()}{diff\_date()}}
+{\footnotesize\ttfamily int diff\+\_\+date (\begin{DoxyParamCaption}\item[{int $\ast$}]{differenza,  }\item[{\hyperlink{structdata}{data}}]{d1,  }\item[{\hyperlink{structdata}{data}}]{d2 }\end{DoxyParamCaption})}
+
+La funzione \hyperlink{date_8c_a6e04e729b850a65683d3df16ea167858}{diff\+\_\+date()} determina la differenza in giorni fra due date ricevute in ingresso.
+
+
+\begin{DoxyParams}{Parametri}
+{\em differenza} & Puntatore alla variabile che conterrà la differenza fra le due date. \\
+\hline
+{\em d1} & Prima data della differenza. \\
+\hline
+{\em d2} & Seconda data della differenza. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Restituisce}
+Valore assoluto della differenza in giorni fra le due date.
+\end{DoxyReturn}
+Funzione diff\+\_\+date(data d1, data d2)\+:
+
+La funzione memorizza nella variabile puntata dal puntatore differenza, la differenza in giorni fra le due date ricevute. La differenza è calcolata utilizzando il corrispettivo valore giuliano delle due date.
+
+Se le date non sono valide, la funzione restituisce 0. Altrimenti restituisce 1 se il calcolo della differenza avviene correttamente.
+
+\begin{DoxyPrecond}{Precondizione}
+Le due date devono essere significative per un calcolo corretto della differenza. 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Deve essere controllato il valore di ritornodella funzione per determinarne l\textquotesingle{}esito. 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{date_8h_afbef0466d48888c4cd6d47de5b5c5baf}\label{date_8h_afbef0466d48888c4cd6d47de5b5c5baf}} 
+\index{date.\+h@{date.\+h}!genera\+\_\+data@{genera\+\_\+data}}
+\index{genera\+\_\+data@{genera\+\_\+data}!date.\+h@{date.\+h}}
+\subsubsection{\texorpdfstring{genera\+\_\+data()}{genera\_data()}}
+{\footnotesize\ttfamily int genera\+\_\+data (\begin{DoxyParamCaption}\item[{\hyperlink{structdata}{data} $\ast$}]{data\+\_\+generata,  }\item[{\hyperlink{structdata}{data}}]{d1,  }\item[{\hyperlink{structdata}{data}}]{d2 }\end{DoxyParamCaption})}
+
+La funzione \hyperlink{date_8c_afbef0466d48888c4cd6d47de5b5c5baf}{genera\+\_\+data()} riceve il puntatore ad una variabile di tipo data, e ne assegna un valore generato nell\textquotesingle{}intervallo rappresentato dalle altre due date ricevute in ingresso.
+
+
+\begin{DoxyParams}{Parametri}
+{\em data\+Generata} & Puntatore alla variabile da generare \\
+\hline
+{\em d1} & Primo estremo dell\textquotesingle{}intervallo in cui generare la data \\
+\hline
+{\em d2} & Secondo estremo dell\textquotesingle{}intervallo in cui generare la data \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Restituisce}
+D\+A\+T\+A\+\_\+\+N\+O\+N\+\_\+\+V\+A\+L\+I\+DA se una delle due date, d1 o d2, o entrambe non sono valida 
+
+D\+A\+T\+E\+\_\+\+U\+G\+U\+A\+LI se le date d1 e d2 sono uguali 
+
+1 se la generazione è avvenuta con successo
+\end{DoxyReturn}
+Funzione \hyperlink{date_8c_afbef0466d48888c4cd6d47de5b5c5baf}{genera\+\_\+data(data$\ast$ data\+\_\+generata, data d1, data d2)}\+:
+
+La funzione permette di generare una data all\textquotesingle{}interno in un intervallo fra due date. La data generata è memorizzata nella variabile puntata da data\+\_\+generata.
+
+Per prima cosa la funzione si accerta che le date siano significative, non uguliali e che d1 sia antecedente a d2. Nei primi due vengono ritornati rispettivamente i valori D\+A\+T\+A\+\_\+\+N\+ON V\+A\+L\+I\+DA o D\+A\+T\+E\+\_\+\+U\+G\+U\+A\+LI. Nel terzo caso viene ritornato il valore ottenuto richiamando la funzione ma con le date scambiate.
+
+Se la generazione va a buon fine, la funzione restituisce 1.
+
+N.\+B. Prima di calcolare un valore della data, vengono generati gli estremi per la generazione. Questo serve ad evitare di generare date fuori dall\textquotesingle{}intervallo, a seguito di generazioni di valori di anno e mese uguali ai valori degli estremi della data da generare.
+
+\begin{DoxyPrecond}{Precondizione}
+Le date inserite devono essere significative e d1 deve precedere d2. 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Il valore di ritorno della funzione deve essere controllato per determinare l\textquotesingle{}esito della generazione. 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{date_8h_a9fb50a281390d039697ee8903edbe4d0}\label{date_8h_a9fb50a281390d039697ee8903edbe4d0}} 
+\index{date.\+h@{date.\+h}!giorno\+\_\+giuliano@{giorno\+\_\+giuliano}}
+\index{giorno\+\_\+giuliano@{giorno\+\_\+giuliano}!date.\+h@{date.\+h}}
+\subsubsection{\texorpdfstring{giorno\+\_\+giuliano()}{giorno\_giuliano()}}
+{\footnotesize\ttfamily double giorno\+\_\+giuliano (\begin{DoxyParamCaption}\item[{\hyperlink{structdata}{data}}]{d1 }\end{DoxyParamCaption})}
+
+La funzione \hyperlink{date_8c_a9fb50a281390d039697ee8903edbe4d0}{giorno\+\_\+giuliano()} calcola il giorno giuliano di una data in formato gregoriano.
+
+
+\begin{DoxyParams}{Parametri}
+{\em d1} & Variabile di tipodata da convertire \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Restituisce}
+Il valore di d1 in giorno\+Giuliano
+\end{DoxyReturn}
+Funzione \hyperlink{date_8c_a9fb50a281390d039697ee8903edbe4d0}{giorno\+\_\+giuliano(data d1)}\+:
+
+La funzione riceve in ingresso una variabile di tipo data e restituisce un valore di tipo double equivalente al giorno giuliano corrispondente alla data in ingresso.
+
+L\textquotesingle{}algoritmo utilizzato è stato preso dalla seguente pagina Wiki\+Pedia\+: \href{https://it.wikipedia.org/wiki/Giorno_giuliano#Conversione_da_data_normale_a_data_giuliana}{\tt https\+://it.\+wikipedia.\+org/wiki/\+Giorno\+\_\+giuliano\#\+Conversione\+\_\+da\+\_\+data\+\_\+normale\+\_\+a\+\_\+data\+\_\+giuliana}
+
+La funzione modf() della libreria math.\+h è utilizzata per estrarre la parte intera del primo che le viene passato.
+
+\begin{DoxyPrecond}{Precondizione}
+La data passata alla funzione deve avere un valore significativo.
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Il valore restituito deve essere diverso da D\+A\+T\+A\+\_\+\+N\+O\+N\+\_\+\+V\+A\+L\+I\+DA 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{date_8h_a2218060883057187054ac7065ab45330}\label{date_8h_a2218060883057187054ac7065ab45330}} 
+\index{date.\+h@{date.\+h}!giorno\+\_\+odierno@{giorno\+\_\+odierno}}
+\index{giorno\+\_\+odierno@{giorno\+\_\+odierno}!date.\+h@{date.\+h}}
+\subsubsection{\texorpdfstring{giorno\+\_\+odierno()}{giorno\_odierno()}}
+{\footnotesize\ttfamily int giorno\+\_\+odierno (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+La funzione \hyperlink{date_8c_a2218060883057187054ac7065ab45330}{giorno\+\_\+odierno()} è utilizzata per determinare il giorno della settimana al momento dell\textquotesingle{}esecuzione, da 0 a 6.
+
+\begin{DoxyReturn}{Restituisce}
+Numero corrispondente al giorno della settimana al momento dell\textquotesingle{}esecuzione.
+\end{DoxyReturn}
+La funzione \hyperlink{date_8c_a2218060883057187054ac7065ab45330}{giorno\+\_\+odierno()} restituisce un numero, corrispondente al giorno della settimana, nell\textquotesingle{}intervallo \mbox{[}0 -\/ 6\mbox{]}. L\textquotesingle{}estrazione del giorno odierno della settimana avviene ricavando la data odierna attraverso la funzione time(), convertendola in struct tm attraverso la funzione localtime() ed estrapolandolo leggendo il valore del membro tm\+\_\+wday.
+
+\begin{DoxyPostcond}{Postcondizione}
+Il valore ritornato va interpretato come 0 Lunedì, 6 Domenica. 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{date_8h_ae4de4b55842d1d5289b7ec4a103b74f2}\label{date_8h_ae4de4b55842d1d5289b7ec4a103b74f2}} 
+\index{date.\+h@{date.\+h}!input\+\_\+data@{input\+\_\+data}}
+\index{input\+\_\+data@{input\+\_\+data}!date.\+h@{date.\+h}}
+\subsubsection{\texorpdfstring{input\+\_\+data()}{input\_data()}}
+{\footnotesize\ttfamily \hyperlink{structdata}{data} input\+\_\+data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+La funzione \hyperlink{date_8c_ae4de4b55842d1d5289b7ec4a103b74f2}{input\+\_\+data()} permette di richiedere all\textquotesingle{}utente l\textquotesingle{}inserimento di una data verificando la validità dell\textquotesingle{}input e ripetendo l\textquotesingle{}inserimento se necessario.
+
+\begin{DoxyReturn}{Restituisce}
+La data inserita dall\textquotesingle{}utente
+\end{DoxyReturn}
+Funzione \hyperlink{date_8c_ae4de4b55842d1d5289b7ec4a103b74f2}{input\+\_\+data()}\+:
+
+La funzione permette la richiesta all\textquotesingle{}utente di una data. Quest\textquotesingle{}ultima viene controllata e se non è significativa la richiesta di input viene ripetuta mostrando un messaggio di errore generico. Il primo input valido viene restituito dalla funzione.
+
+\begin{DoxyPostcond}{Postcondizione}
+La data restituita dalla funzione deve essere memorizzata in una variabile di tipo data. 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{date_8h_a1687d0b372d4e9f523d480a48c772014}\label{date_8h_a1687d0b372d4e9f523d480a48c772014}} 
+\index{date.\+h@{date.\+h}!shift\+\_\+data\+\_\+odierna@{shift\+\_\+data\+\_\+odierna}}
+\index{shift\+\_\+data\+\_\+odierna@{shift\+\_\+data\+\_\+odierna}!date.\+h@{date.\+h}}
+\subsubsection{\texorpdfstring{shift\+\_\+data\+\_\+odierna()}{shift\_data\_odierna()}}
+{\footnotesize\ttfamily \hyperlink{structdata}{data} shift\+\_\+data\+\_\+odierna (\begin{DoxyParamCaption}\item[{short}]{valore\+\_\+shift }\end{DoxyParamCaption})}
+
+La funzione \hyperlink{date_8c_a1687d0b372d4e9f523d480a48c772014}{shift\+\_\+data\+\_\+odierna()} genera una data sommando il valore indicato da valore\+Shift alla data odierna al momento dell\textquotesingle{}esecuzione.
+
+
+\begin{DoxyParams}{Parametri}
+{\em valore\+Shift} & Giorni da sommare alla data di esecuzione \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Restituisce}
+La data generata in formato gregoriano
+\end{DoxyReturn}
+Funzione shiftdata\+\_\+odierna\+:
+
+La funzione genera una data partendo dalla data odierna e shiftandola del valore ricevuto in ingresso attraverso il parametro valore\+Shift.
+
+In partiolare la data è generata trasformando prima la data odierna in giorno giuliano. Al valore ottenuto viene sommato algebricamente valore\+Shift, ottenendo il giorno giuliano della data da generare. Questa è convertita nel tipo di dato \char`\"{}data\char`\"{} attraverso la funzione giorno\+Gregoriano().
+
+La data generata è restituita come valore di ritorno.
+
+\begin{DoxyPostcond}{Postcondizione}
+La data generata restituita deve essere memorizzata in una variabile di tipo data. 
+\end{DoxyPostcond}

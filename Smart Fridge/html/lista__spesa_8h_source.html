@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.13"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Smart Fridge:  File sorgente src/lista_spesa.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Smart Fridge
+   &#160;<span id="projectnumber">1.0</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generato da Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Cerca');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Cerca');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">lista_spesa.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="lista__spesa_8h.html">Vai alla documentazione di questo file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#ifndef LISTA_SPESA_LIB</span></div><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#define LISTA_SPESA_LIB</span></div><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="menu__settimanale_8h.html">menu_settimanale.h</a>&quot;</span> </div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ricette_8h.html">ricette.h</a>&quot;</span>          </div><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="alimenti_8h.html">alimenti.h</a>&quot;</span>        </div><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div><div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div><div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="lista__spesa_8h.html#aadea0f62a54f7e16290d43e55bce1883">   27</a></span>&#160;<span class="preprocessor">#define LISTA_SPESA_GLOBALE &quot;../lista_spesa.txt&quot;   //directory in cui trovare il file della spesa globale</span></div><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment">//NOTA: il file della lista della spesa personale sará sempre nel seguente formato :   ../spesa_nickname.txt</span></div><div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="lista__spesa_8h.html#a0884003ceaf84f851fea4d5507dc88c3">   30</a></span>&#160;<span class="preprocessor">#define PREFIX_FILE_SPESA &quot;../spesa_&quot;          //prima parte nel nome file della lista personale</span></div><div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="lista__spesa_8h.html#a3a20b5bf92e1f63aadd5ebd9860b8a67">   31</a></span>&#160;<span class="preprocessor">#define SUFFIX_FILE_SPESA &quot;.txt&quot;                       //formato del file della lista personale</span></div><div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="lista__spesa_8h.html#ae5e17d2168d3d53cc80b24bb81bcd01d">   32</a></span>&#160;<span class="preprocessor">#define LUNG_NOME_FILE_SPESA 30</span></div><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div><div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keywordtype">int</span> <a class="code" href="lista__spesa_8h.html#a481de1948e750e6ebbcd582866cdb673">aggiorna_lista_spesa</a>(<span class="keywordtype">char</span> nome_alimento[LUNG_NOME_ALIMENTO], <span class="keywordtype">char</span> nome_file[<a class="code" href="lista__spesa_8h.html#ae5e17d2168d3d53cc80b24bb81bcd01d">LUNG_NOME_FILE_SPESA</a>]);</div><div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div><div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div><div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div><div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div><div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="keywordtype">int</span> <a class="code" href="lista__spesa_8h.html#ac971c93be56962be8e0ae52d9560c411">elimina_file_spesa</a>(<span class="keywordtype">char</span> nome_alimento[LUNG_NOME_ALIMENTO]);</div><div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div><div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div><div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="keywordtype">int</span> <a class="code" href="lista__spesa_8h.html#a9ffa3a13ed2681a8e5b8afff5ccc59b7">controllo_soglia</a>(<span class="keywordtype">float</span> soglia_spesa,<span class="keywordtype">char</span> nome_alimento[LUNG_NOME_ALIMENTO]);</div><div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div><div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div><div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="keywordtype">int</span> <a class="code" href="lista__spesa_8h.html#a24759826dd9a345b7f1a4b594ca06e07">generatore_spesa_globale</a>();</div><div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div><div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="keywordtype">int</span> <a class="code" href="lista__spesa_8h.html#af7d6391d23059bcdeb2b309323ee60f6">generatore_spesa_personale</a>();</div><div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div><div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div><div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="keywordtype">int</span> <a class="code" href="lista__spesa_8h.html#a1e9450e223c0bd7444db28882c7de652">visualizza_lista_spesa</a>(<span class="keywordtype">char</span> nome_file[<a class="code" href="lista__spesa_8h.html#ae5e17d2168d3d53cc80b24bb81bcd01d">LUNG_NOME_FILE_SPESA</a>]);</div><div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;</div><div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;</div><div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="keywordtype">int</span> <a class="code" href="lista__spesa_8h.html#a76869c873c7827a7d4dacc0ef9c2bf49">visualizzazione_personale</a>();</div><div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="preprocessor">#endif</span></div><div class="ttc" id="lista__spesa_8h_html_a76869c873c7827a7d4dacc0ef9c2bf49"><div class="ttname"><a href="lista__spesa_8h.html#a76869c873c7827a7d4dacc0ef9c2bf49">visualizzazione_personale</a></div><div class="ttdeci">int visualizzazione_personale()</div><div class="ttdef"><b>Definition:</b> lista_spesa.c:76</div></div>
+<div class="ttc" id="lista__spesa_8h_html_a1e9450e223c0bd7444db28882c7de652"><div class="ttname"><a href="lista__spesa_8h.html#a1e9450e223c0bd7444db28882c7de652">visualizza_lista_spesa</a></div><div class="ttdeci">int visualizza_lista_spesa(char nome_file[LUNG_NOME_FILE_SPESA])</div><div class="ttdef"><b>Definition:</b> lista_spesa.c:105</div></div>
+<div class="ttc" id="lista__spesa_8h_html_a9ffa3a13ed2681a8e5b8afff5ccc59b7"><div class="ttname"><a href="lista__spesa_8h.html#a9ffa3a13ed2681a8e5b8afff5ccc59b7">controllo_soglia</a></div><div class="ttdeci">int controllo_soglia(float soglia_spesa, char nome_alimento[LUNG_NOME_ALIMENTO])</div><div class="ttdef"><b>Definition:</b> lista_spesa.c:323</div></div>
+<div class="ttc" id="ricette_8h_html"><div class="ttname"><a href="ricette_8h.html">ricette.h</a></div><div class="ttdoc">Libreria per la gestione delle ricette. </div></div>
+<div class="ttc" id="menu__settimanale_8h_html"><div class="ttname"><a href="menu__settimanale_8h.html">menu_settimanale.h</a></div><div class="ttdoc">Libreria per la gestione e la creazione di un menu settimanale per ogni utente. </div></div>
+<div class="ttc" id="lista__spesa_8h_html_ae5e17d2168d3d53cc80b24bb81bcd01d"><div class="ttname"><a href="lista__spesa_8h.html#ae5e17d2168d3d53cc80b24bb81bcd01d">LUNG_NOME_FILE_SPESA</a></div><div class="ttdeci">#define LUNG_NOME_FILE_SPESA</div><div class="ttdef"><b>Definition:</b> lista_spesa.h:32</div></div>
+<div class="ttc" id="alimenti_8h_html"><div class="ttname"><a href="alimenti_8h.html">alimenti.h</a></div><div class="ttdoc">Libreria per la gestione degli alimenti. </div></div>
+<div class="ttc" id="lista__spesa_8h_html_a481de1948e750e6ebbcd582866cdb673"><div class="ttname"><a href="lista__spesa_8h.html#a481de1948e750e6ebbcd582866cdb673">aggiorna_lista_spesa</a></div><div class="ttdeci">int aggiorna_lista_spesa(char nome_alimento[LUNG_NOME_ALIMENTO], char nome_file[LUNG_NOME_FILE_SPESA])</div><div class="ttdef"><b>Definition:</b> lista_spesa.c:14</div></div>
+<div class="ttc" id="lista__spesa_8h_html_ac971c93be56962be8e0ae52d9560c411"><div class="ttname"><a href="lista__spesa_8h.html#ac971c93be56962be8e0ae52d9560c411">elimina_file_spesa</a></div><div class="ttdeci">int elimina_file_spesa(char nome_alimento[LUNG_NOME_ALIMENTO])</div></div>
+<div class="ttc" id="lista__spesa_8h_html_a24759826dd9a345b7f1a4b594ca06e07"><div class="ttname"><a href="lista__spesa_8h.html#a24759826dd9a345b7f1a4b594ca06e07">generatore_spesa_globale</a></div><div class="ttdeci">int generatore_spesa_globale()</div><div class="ttdef"><b>Definition:</b> lista_spesa.c:185</div></div>
+<div class="ttc" id="lista__spesa_8h_html_af7d6391d23059bcdeb2b309323ee60f6"><div class="ttname"><a href="lista__spesa_8h.html#af7d6391d23059bcdeb2b309323ee60f6">generatore_spesa_personale</a></div><div class="ttdeci">int generatore_spesa_personale()</div><div class="ttdef"><b>Definition:</b> lista_spesa.c:233</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generato da &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.13
+</small></address>
+</body>
+</html>

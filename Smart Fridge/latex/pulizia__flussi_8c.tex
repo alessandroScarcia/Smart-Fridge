@@ -1,0 +1,40 @@
+\hypertarget{pulizia__flussi_8c}{}\section{Riferimenti per il file src/pulizia\+\_\+flussi.c}
+\label{pulizia__flussi_8c}\index{src/pulizia\+\_\+flussi.\+c@{src/pulizia\+\_\+flussi.\+c}}
+{\ttfamily \#include \char`\"{}pulizia\+\_\+flussi.\+h\char`\"{}}\newline
+\subsection*{Funzioni}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{pulizia__flussi_8c_ae90974f09f8272221a500c021ae9ddc9}{pulisci\+\_\+stdin} ()
+\item 
+void \hyperlink{pulizia__flussi_8c_a53ddb24d51525a4b2b9672c7562a0df6}{pulisci\+\_\+riga\+\_\+flusso} (F\+I\+LE $\ast$stream)
+\end{DoxyCompactItemize}
+
+
+\subsection{Descrizione dettagliata}
+Questo file contiene le implementazioni delle funzioni definite all\textquotesingle{}interno del file \char`\"{}pulizia\+\_\+flussi.\+h\char`\"{}. 
+
+\subsection{Documentazione delle funzioni}
+\mbox{\Hypertarget{pulizia__flussi_8c_a53ddb24d51525a4b2b9672c7562a0df6}\label{pulizia__flussi_8c_a53ddb24d51525a4b2b9672c7562a0df6}} 
+\index{pulizia\+\_\+flussi.\+c@{pulizia\+\_\+flussi.\+c}!pulisci\+\_\+riga\+\_\+flusso@{pulisci\+\_\+riga\+\_\+flusso}}
+\index{pulisci\+\_\+riga\+\_\+flusso@{pulisci\+\_\+riga\+\_\+flusso}!pulizia\+\_\+flussi.\+c@{pulizia\+\_\+flussi.\+c}}
+\subsubsection{\texorpdfstring{pulisci\+\_\+riga\+\_\+flusso()}{pulisci\_riga\_flusso()}}
+{\footnotesize\ttfamily void pulisci\+\_\+riga\+\_\+flusso (\begin{DoxyParamCaption}\item[{F\+I\+LE $\ast$}]{stream }\end{DoxyParamCaption})}
+
+La procedura \hyperlink{pulizia__flussi_8c_a53ddb24d51525a4b2b9672c7562a0df6}{pulisci\+\_\+riga\+\_\+flusso()} utilizza la funzione fgetc() per consumare tutti i caratteri presenti in un flusso, puntato dal puntatore a file ricevuto come parametro stream, fino al raggiungimento del primo carattere di newline.
+
+
+\begin{DoxyParams}{Parametri}
+{\em stream} & Flusso nel quale consumare i caratteri. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{pulizia__flussi_8c_ae90974f09f8272221a500c021ae9ddc9}\label{pulizia__flussi_8c_ae90974f09f8272221a500c021ae9ddc9}} 
+\index{pulizia\+\_\+flussi.\+c@{pulizia\+\_\+flussi.\+c}!pulisci\+\_\+stdin@{pulisci\+\_\+stdin}}
+\index{pulisci\+\_\+stdin@{pulisci\+\_\+stdin}!pulizia\+\_\+flussi.\+c@{pulizia\+\_\+flussi.\+c}}
+\subsubsection{\texorpdfstring{pulisci\+\_\+stdin()}{pulisci\_stdin()}}
+{\footnotesize\ttfamily int pulisci\+\_\+stdin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+La funzione \hyperlink{pulizia__flussi_8c_ae90974f09f8272221a500c021ae9ddc9}{pulisci\+\_\+stdin()} utilizza la funzione getchar() per consumare tutti i caratteri presenti nel flusso stdin, fino al raggiungimento di E\+OF.
+
+\begin{DoxyPostcond}{Postcondizione}
+Il valore di ritorno deve essere controllato per verificare se è stata necessaria la pulizia. 
+\end{DoxyPostcond}

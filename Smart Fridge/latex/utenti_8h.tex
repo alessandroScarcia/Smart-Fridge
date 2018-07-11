@@ -1,0 +1,811 @@
+\hypertarget{utenti_8h}{}\section{Riferimenti per il file src/utenti.h}
+\label{utenti_8h}\index{src/utenti.\+h@{src/utenti.\+h}}
+
+
+Libreria per la gestione degli utenti.  
+
+
+{\ttfamily \#include \char`\"{}menu\+\_\+settimanale.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}alimenti.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}pulizia\+\_\+flussi.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$ctype.\+h$>$}\newline
+\subsection*{Strutture dati}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structutente}{utente}
+\end{DoxyCompactItemize}
+\subsection*{Definizioni}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{utenti_8h_a3f71b4ea87bcf3feda424bc285bcef6a}{S\+T\+R\+I\+N\+G\+\_\+\+L\+IB}
+\begin{DoxyCompactList}\small\item\em Inclusione delle librerie standard. \end{DoxyCompactList}\item 
+\#define \hyperlink{utenti_8h_a2df13304b7f365c9a36dd528bad30412}{U\+T\+E\+N\+T\+I\+\_\+\+L\+IB}
+\item 
+\#define \hyperlink{utenti_8h_a54ac4d1eb25b89436da633fdc51e77c3}{M\+A\+X\+\_\+\+U\+T\+E\+N\+TI}~6
+\begin{DoxyCompactList}\small\item\em Inclusione della libreria per la gestione del menu\+\_\+settimanale. \end{DoxyCompactList}\item 
+\#define \hyperlink{utenti_8h_a3d93581a285a9677267a4502ea1a033c}{N\+U\+M\+\_\+\+T\+I\+P\+I\+\_\+\+C\+H\+AR}~4
+\item 
+\#define \hyperlink{utenti_8h_a8bdcedbdfe34ab1a8a7fe6a7464ce97d}{C\+H\+A\+R\+\_\+\+S\+I\+M\+B\+O\+LO}~1
+\item 
+\#define \hyperlink{utenti_8h_a039613bed17450038e3fcdbb42c52d96}{C\+H\+A\+R\+\_\+\+C\+I\+F\+RA}~2
+\item 
+\#define \hyperlink{utenti_8h_a0dfc72ce91ad5322de937c1e71ae586b}{C\+H\+A\+R\+\_\+\+M\+A\+I\+U\+S\+C\+O\+LA}~3
+\item 
+\#define \hyperlink{utenti_8h_a58472aa049056530e54d1b8f6e9d1a77}{C\+H\+A\+R\+\_\+\+M\+I\+N\+U\+S\+C\+O\+LA}~4
+\item 
+\#define \hyperlink{utenti_8h_a080b9ac8de1a24b9f6419262f0ac01a2}{M\+I\+N\+\_\+\+A\+S\+C\+I\+I\+\_\+\+S\+I\+M\+B\+O\+LO}~33
+\item 
+\#define \hyperlink{utenti_8h_a79cc6342fce27500b348ed838ad4e88e}{M\+A\+X\+\_\+\+A\+S\+C\+I\+I\+\_\+\+S\+I\+M\+B\+O\+LO}~47
+\item 
+\#define \hyperlink{utenti_8h_a4663d9dd73baccac55cfa4aac2c72c22}{M\+I\+N\+\_\+\+A\+S\+C\+I\+I\+\_\+\+C\+I\+F\+RA}~48
+\item 
+\#define \hyperlink{utenti_8h_a7a426aedfa32234bbf8fe334d0267643}{M\+A\+X\+\_\+\+A\+S\+C\+I\+I\+\_\+\+C\+I\+F\+RA}~57
+\item 
+\#define \hyperlink{utenti_8h_a1d17eb0e02a16cb47b0d4a36b4f6df9d}{M\+I\+N\+\_\+\+A\+S\+C\+I\+I\+\_\+\+M\+A\+I\+U\+S\+C\+O\+LA}~66
+\item 
+\#define \hyperlink{utenti_8h_ae58e625f7790f2b3886eda607ad8c5b7}{M\+A\+X\+\_\+\+A\+S\+C\+I\+I\+\_\+\+M\+A\+I\+U\+S\+C\+O\+LA}~90
+\item 
+\#define \hyperlink{utenti_8h_a2969ad8435d77f3c48248c2988e3d1fb}{M\+I\+N\+\_\+\+A\+S\+C\+I\+I\+\_\+\+M\+I\+N\+U\+S\+C\+O\+LA}~97
+\item 
+\#define \hyperlink{utenti_8h_a71928bc2e7c6e43a89647cc85202a4a6}{M\+A\+X\+\_\+\+A\+S\+C\+I\+I\+\_\+\+M\+I\+N\+U\+S\+C\+O\+LA}~122
+\item 
+\#define \hyperlink{utenti_8h_afd3f4e6f098069fc2af012d2e454443a}{N\+U\+M\+\_\+\+P\+R\+E\+F\+E\+R\+E\+N\+ZE}~3
+\item 
+\#define \hyperlink{utenti_8h_a92238002c563d2de2f660b5bb93e087d}{G\+E\+N\+\_\+\+A\+U\+T\+O\+M\+A\+T\+I\+CA}~1
+\item 
+\#define \hyperlink{utenti_8h_aae033be173743c41e0246312006f2251}{G\+E\+N\+\_\+\+M\+A\+N\+U\+A\+LE}~2
+\item 
+\#define \hyperlink{utenti_8h_ab463df398e1f01e068a85efa43be7671}{C\+A\+M\+P\+O\+\_\+\+N\+I\+C\+K\+N\+A\+ME}~1
+\item 
+\#define \hyperlink{utenti_8h_abbcdc8f5ed8259e7b528c937551fb5f2}{C\+A\+M\+P\+O\+\_\+\+P\+A\+S\+S\+W\+O\+RD}~2
+\item 
+\#define \hyperlink{utenti_8h_a4dc9198a0529eefe5531e519c000f46e}{C\+A\+M\+P\+O\+\_\+\+P\+R\+E\+F\+E\+R\+E\+N\+ZE}~3
+\item 
+\#define \hyperlink{utenti_8h_a49877f8f080209d2fc73edd1a0414767}{M\+I\+N\+\_\+\+L\+U\+N\+G\+\_\+\+N\+I\+C\+K\+N\+A\+ME}~3
+\begin{DoxyCompactList}\small\item\em Lunghezze di stringhe\+: \end{DoxyCompactList}\item 
+\#define \hyperlink{utenti_8h_aee9dc743fce11eb4208a44c1d59ef64c}{M\+A\+X\+\_\+\+L\+U\+N\+G\+\_\+\+N\+I\+C\+K\+N\+A\+ME}~16
+\item 
+\#define \hyperlink{utenti_8h_a0fd5baff776b4f5be964c2f6383f415a}{L\+U\+N\+G\+\_\+\+P\+R\+E\+F\+E\+R\+E\+N\+ZA}~21
+\item 
+\#define \hyperlink{utenti_8h_ad21198b3cb8d2fe2c3d8fb67746bf172}{L\+U\+N\+G\+\_\+\+P\+A\+S\+S\+W\+O\+RD}~9
+\item 
+\#define \hyperlink{utenti_8h_a49cb5a152f4b513f7eebdbcc77b53b61}{F\+I\+L\+E\+\_\+\+D\+A\+T\+A\+B\+A\+S\+E\+\_\+\+U\+T\+E\+N\+TI}~\char`\"{}database\+\_\+utenti.\+dat\char`\"{}
+\begin{DoxyCompactList}\small\item\em Nome di file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Funzioni}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{utenti_8h_ac82e073503af896a390a544bfd05d916}{esiste\+\_\+nickname} (const char $\ast$nickname)
+\item 
+char $\ast$ \hyperlink{utenti_8h_a313944ae03275f5c5640091d94983752}{input\+\_\+nickname} ()
+\item 
+char $\ast$ \hyperlink{utenti_8h_a174d1325daa87807521ecfaeb15356cb}{genera\+\_\+nickname} ()
+\item 
+char $\ast$ \hyperlink{utenti_8h_aba3a015d332734bce8e15b6b67860129}{genera\+\_\+password} ()
+\item 
+char $\ast$ \hyperlink{utenti_8h_a32ea464274239d37a1c862420a2d2076}{input\+\_\+password} ()
+\item 
+void \hyperlink{utenti_8h_a3d24eee1e0857cdb3235dbb72de2e0fd}{generatore\+\_\+password} (char $\ast$password\+\_\+utente)
+\item 
+int \hyperlink{utenti_8h_a4362675e19acd7b1e0bc1d064b285530}{input\+\_\+preferenza} (char $\ast$preferenza)
+\item 
+\hyperlink{structutente}{utente} \hyperlink{utenti_8h_ad6a35d2d36fe87744edc5a28e0727da3}{input\+\_\+utente} ()
+\item 
+\hyperlink{structutente}{utente} \hyperlink{utenti_8h_ac936c99ad1d8bb5c7d9b9d37147a0576}{genera\+\_\+utente} ()
+\item 
+\hyperlink{structutente}{utente} $\ast$ \hyperlink{utenti_8h_a2fd9f3ff6568853f6af346c28235db37}{genera\+\_\+n\+\_\+utenti} (int n)
+\item 
+int \hyperlink{utenti_8h_ad805a0034443857290327abf1b42e7e4}{salva\+\_\+n\+\_\+utenti} (\hyperlink{structutente}{utente} $\ast$utenti, int n)
+\item 
+int \hyperlink{utenti_8h_a5175e2b07de5abb19aef4e0e1bd3635a}{crea\+\_\+utenti} ()
+\item 
+void \hyperlink{utenti_8h_a6427e961c8b4da62096f99b2fa7b051e}{modifica\+\_\+preferenze} (\hyperlink{structutente}{utente} $\ast$u)
+\item 
+int \hyperlink{utenti_8h_ad907371385837ca72c389ca32df39d80}{gestore\+\_\+modifiche} ()
+\item 
+int \hyperlink{utenti_8h_a84eaff176b61eeb1ab0908897d4f3cc6}{autenticazione} (\hyperlink{structutente}{utente} $\ast$u)
+\item 
+void \hyperlink{utenti_8h_a87ee6c560888e42fdd61588cd98743b6}{output\+\_\+utente} (const \hyperlink{structutente}{utente} u)
+\item 
+int \hyperlink{utenti_8h_a32e8982b503c10da62802a604f044efa}{output\+\_\+preferenze} (const \hyperlink{structutente}{utente} u)
+\item 
+int \hyperlink{utenti_8h_ad1417dda78bb50d93809ae0a28b2a29d}{visualizza\+\_\+database\+\_\+utenti} ()
+\item 
+int \hyperlink{utenti_8h_a501b188b76d88a30065fbfce37ed256d}{conta\+\_\+utenti} ()
+\item 
+int \hyperlink{utenti_8h_ada1d8f087bdf0124e1ac0f85692caeb6}{elimina\+\_\+utente} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Descrizione dettagliata}
+Libreria per la gestione degli utenti. 
+
+La libreria \hyperlink{utenti_8h}{utenti.\+h} è stata implementata per permettere la gestione degli utenti che usufruiscono dei servizi messi a disposizione dall\textquotesingle{}elettrodomestico. Avendo un profilo sará poi possibile infatti creare il proprio menu settimanale e tenere traccia delle proprie assunzioni giornaliere dopo aver effettuato l\textquotesingle{}operazione di autenticazione
+
+\begin{DoxyAuthor}{Autori}
+Alessandro Scarcia, Davide Quatela, Michela Salvemini 
+\end{DoxyAuthor}
+
+
+\subsection{Documentazione delle definizioni}
+\mbox{\Hypertarget{utenti_8h_ab463df398e1f01e068a85efa43be7671}\label{utenti_8h_ab463df398e1f01e068a85efa43be7671}} 
+\index{utenti.\+h@{utenti.\+h}!C\+A\+M\+P\+O\+\_\+\+N\+I\+C\+K\+N\+A\+ME@{C\+A\+M\+P\+O\+\_\+\+N\+I\+C\+K\+N\+A\+ME}}
+\index{C\+A\+M\+P\+O\+\_\+\+N\+I\+C\+K\+N\+A\+ME@{C\+A\+M\+P\+O\+\_\+\+N\+I\+C\+K\+N\+A\+ME}!utenti.\+h@{utenti.\+h}}
+\subsubsection{\texorpdfstring{C\+A\+M\+P\+O\+\_\+\+N\+I\+C\+K\+N\+A\+ME}{CAMPO\_NICKNAME}}
+{\footnotesize\ttfamily \#define C\+A\+M\+P\+O\+\_\+\+N\+I\+C\+K\+N\+A\+ME~1}
+
+\mbox{\Hypertarget{utenti_8h_abbcdc8f5ed8259e7b528c937551fb5f2}\label{utenti_8h_abbcdc8f5ed8259e7b528c937551fb5f2}} 
+\index{utenti.\+h@{utenti.\+h}!C\+A\+M\+P\+O\+\_\+\+P\+A\+S\+S\+W\+O\+RD@{C\+A\+M\+P\+O\+\_\+\+P\+A\+S\+S\+W\+O\+RD}}
+\index{C\+A\+M\+P\+O\+\_\+\+P\+A\+S\+S\+W\+O\+RD@{C\+A\+M\+P\+O\+\_\+\+P\+A\+S\+S\+W\+O\+RD}!utenti.\+h@{utenti.\+h}}
+\subsubsection{\texorpdfstring{C\+A\+M\+P\+O\+\_\+\+P\+A\+S\+S\+W\+O\+RD}{CAMPO\_PASSWORD}}
+{\footnotesize\ttfamily \#define C\+A\+M\+P\+O\+\_\+\+P\+A\+S\+S\+W\+O\+RD~2}
+
+\mbox{\Hypertarget{utenti_8h_a4dc9198a0529eefe5531e519c000f46e}\label{utenti_8h_a4dc9198a0529eefe5531e519c000f46e}} 
+\index{utenti.\+h@{utenti.\+h}!C\+A\+M\+P\+O\+\_\+\+P\+R\+E\+F\+E\+R\+E\+N\+ZE@{C\+A\+M\+P\+O\+\_\+\+P\+R\+E\+F\+E\+R\+E\+N\+ZE}}
+\index{C\+A\+M\+P\+O\+\_\+\+P\+R\+E\+F\+E\+R\+E\+N\+ZE@{C\+A\+M\+P\+O\+\_\+\+P\+R\+E\+F\+E\+R\+E\+N\+ZE}!utenti.\+h@{utenti.\+h}}
+\subsubsection{\texorpdfstring{C\+A\+M\+P\+O\+\_\+\+P\+R\+E\+F\+E\+R\+E\+N\+ZE}{CAMPO\_PREFERENZE}}
+{\footnotesize\ttfamily \#define C\+A\+M\+P\+O\+\_\+\+P\+R\+E\+F\+E\+R\+E\+N\+ZE~3}
+
+\mbox{\Hypertarget{utenti_8h_a039613bed17450038e3fcdbb42c52d96}\label{utenti_8h_a039613bed17450038e3fcdbb42c52d96}} 
+\index{utenti.\+h@{utenti.\+h}!C\+H\+A\+R\+\_\+\+C\+I\+F\+RA@{C\+H\+A\+R\+\_\+\+C\+I\+F\+RA}}
+\index{C\+H\+A\+R\+\_\+\+C\+I\+F\+RA@{C\+H\+A\+R\+\_\+\+C\+I\+F\+RA}!utenti.\+h@{utenti.\+h}}
+\subsubsection{\texorpdfstring{C\+H\+A\+R\+\_\+\+C\+I\+F\+RA}{CHAR\_CIFRA}}
+{\footnotesize\ttfamily \#define C\+H\+A\+R\+\_\+\+C\+I\+F\+RA~2}
+
+\mbox{\Hypertarget{utenti_8h_a0dfc72ce91ad5322de937c1e71ae586b}\label{utenti_8h_a0dfc72ce91ad5322de937c1e71ae586b}} 
+\index{utenti.\+h@{utenti.\+h}!C\+H\+A\+R\+\_\+\+M\+A\+I\+U\+S\+C\+O\+LA@{C\+H\+A\+R\+\_\+\+M\+A\+I\+U\+S\+C\+O\+LA}}
+\index{C\+H\+A\+R\+\_\+\+M\+A\+I\+U\+S\+C\+O\+LA@{C\+H\+A\+R\+\_\+\+M\+A\+I\+U\+S\+C\+O\+LA}!utenti.\+h@{utenti.\+h}}
+\subsubsection{\texorpdfstring{C\+H\+A\+R\+\_\+\+M\+A\+I\+U\+S\+C\+O\+LA}{CHAR\_MAIUSCOLA}}
+{\footnotesize\ttfamily \#define C\+H\+A\+R\+\_\+\+M\+A\+I\+U\+S\+C\+O\+LA~3}
+
+\mbox{\Hypertarget{utenti_8h_a58472aa049056530e54d1b8f6e9d1a77}\label{utenti_8h_a58472aa049056530e54d1b8f6e9d1a77}} 
+\index{utenti.\+h@{utenti.\+h}!C\+H\+A\+R\+\_\+\+M\+I\+N\+U\+S\+C\+O\+LA@{C\+H\+A\+R\+\_\+\+M\+I\+N\+U\+S\+C\+O\+LA}}
+\index{C\+H\+A\+R\+\_\+\+M\+I\+N\+U\+S\+C\+O\+LA@{C\+H\+A\+R\+\_\+\+M\+I\+N\+U\+S\+C\+O\+LA}!utenti.\+h@{utenti.\+h}}
+\subsubsection{\texorpdfstring{C\+H\+A\+R\+\_\+\+M\+I\+N\+U\+S\+C\+O\+LA}{CHAR\_MINUSCOLA}}
+{\footnotesize\ttfamily \#define C\+H\+A\+R\+\_\+\+M\+I\+N\+U\+S\+C\+O\+LA~4}
+
+\mbox{\Hypertarget{utenti_8h_a8bdcedbdfe34ab1a8a7fe6a7464ce97d}\label{utenti_8h_a8bdcedbdfe34ab1a8a7fe6a7464ce97d}} 
+\index{utenti.\+h@{utenti.\+h}!C\+H\+A\+R\+\_\+\+S\+I\+M\+B\+O\+LO@{C\+H\+A\+R\+\_\+\+S\+I\+M\+B\+O\+LO}}
+\index{C\+H\+A\+R\+\_\+\+S\+I\+M\+B\+O\+LO@{C\+H\+A\+R\+\_\+\+S\+I\+M\+B\+O\+LO}!utenti.\+h@{utenti.\+h}}
+\subsubsection{\texorpdfstring{C\+H\+A\+R\+\_\+\+S\+I\+M\+B\+O\+LO}{CHAR\_SIMBOLO}}
+{\footnotesize\ttfamily \#define C\+H\+A\+R\+\_\+\+S\+I\+M\+B\+O\+LO~1}
+
+\mbox{\Hypertarget{utenti_8h_a49cb5a152f4b513f7eebdbcc77b53b61}\label{utenti_8h_a49cb5a152f4b513f7eebdbcc77b53b61}} 
+\index{utenti.\+h@{utenti.\+h}!F\+I\+L\+E\+\_\+\+D\+A\+T\+A\+B\+A\+S\+E\+\_\+\+U\+T\+E\+N\+TI@{F\+I\+L\+E\+\_\+\+D\+A\+T\+A\+B\+A\+S\+E\+\_\+\+U\+T\+E\+N\+TI}}
+\index{F\+I\+L\+E\+\_\+\+D\+A\+T\+A\+B\+A\+S\+E\+\_\+\+U\+T\+E\+N\+TI@{F\+I\+L\+E\+\_\+\+D\+A\+T\+A\+B\+A\+S\+E\+\_\+\+U\+T\+E\+N\+TI}!utenti.\+h@{utenti.\+h}}
+\subsubsection{\texorpdfstring{F\+I\+L\+E\+\_\+\+D\+A\+T\+A\+B\+A\+S\+E\+\_\+\+U\+T\+E\+N\+TI}{FILE\_DATABASE\_UTENTI}}
+{\footnotesize\ttfamily \#define F\+I\+L\+E\+\_\+\+D\+A\+T\+A\+B\+A\+S\+E\+\_\+\+U\+T\+E\+N\+TI~\char`\"{}database\+\_\+utenti.\+dat\char`\"{}}
+
+
+
+Nome di file. 
+
+\mbox{\Hypertarget{utenti_8h_a92238002c563d2de2f660b5bb93e087d}\label{utenti_8h_a92238002c563d2de2f660b5bb93e087d}} 
+\index{utenti.\+h@{utenti.\+h}!G\+E\+N\+\_\+\+A\+U\+T\+O\+M\+A\+T\+I\+CA@{G\+E\+N\+\_\+\+A\+U\+T\+O\+M\+A\+T\+I\+CA}}
+\index{G\+E\+N\+\_\+\+A\+U\+T\+O\+M\+A\+T\+I\+CA@{G\+E\+N\+\_\+\+A\+U\+T\+O\+M\+A\+T\+I\+CA}!utenti.\+h@{utenti.\+h}}
+\subsubsection{\texorpdfstring{G\+E\+N\+\_\+\+A\+U\+T\+O\+M\+A\+T\+I\+CA}{GEN\_AUTOMATICA}}
+{\footnotesize\ttfamily \#define G\+E\+N\+\_\+\+A\+U\+T\+O\+M\+A\+T\+I\+CA~1}
+
+\mbox{\Hypertarget{utenti_8h_aae033be173743c41e0246312006f2251}\label{utenti_8h_aae033be173743c41e0246312006f2251}} 
+\index{utenti.\+h@{utenti.\+h}!G\+E\+N\+\_\+\+M\+A\+N\+U\+A\+LE@{G\+E\+N\+\_\+\+M\+A\+N\+U\+A\+LE}}
+\index{G\+E\+N\+\_\+\+M\+A\+N\+U\+A\+LE@{G\+E\+N\+\_\+\+M\+A\+N\+U\+A\+LE}!utenti.\+h@{utenti.\+h}}
+\subsubsection{\texorpdfstring{G\+E\+N\+\_\+\+M\+A\+N\+U\+A\+LE}{GEN\_MANUALE}}
+{\footnotesize\ttfamily \#define G\+E\+N\+\_\+\+M\+A\+N\+U\+A\+LE~2}
+
+\mbox{\Hypertarget{utenti_8h_ad21198b3cb8d2fe2c3d8fb67746bf172}\label{utenti_8h_ad21198b3cb8d2fe2c3d8fb67746bf172}} 
+\index{utenti.\+h@{utenti.\+h}!L\+U\+N\+G\+\_\+\+P\+A\+S\+S\+W\+O\+RD@{L\+U\+N\+G\+\_\+\+P\+A\+S\+S\+W\+O\+RD}}
+\index{L\+U\+N\+G\+\_\+\+P\+A\+S\+S\+W\+O\+RD@{L\+U\+N\+G\+\_\+\+P\+A\+S\+S\+W\+O\+RD}!utenti.\+h@{utenti.\+h}}
+\subsubsection{\texorpdfstring{L\+U\+N\+G\+\_\+\+P\+A\+S\+S\+W\+O\+RD}{LUNG\_PASSWORD}}
+{\footnotesize\ttfamily \#define L\+U\+N\+G\+\_\+\+P\+A\+S\+S\+W\+O\+RD~9}
+
+\mbox{\Hypertarget{utenti_8h_a0fd5baff776b4f5be964c2f6383f415a}\label{utenti_8h_a0fd5baff776b4f5be964c2f6383f415a}} 
+\index{utenti.\+h@{utenti.\+h}!L\+U\+N\+G\+\_\+\+P\+R\+E\+F\+E\+R\+E\+N\+ZA@{L\+U\+N\+G\+\_\+\+P\+R\+E\+F\+E\+R\+E\+N\+ZA}}
+\index{L\+U\+N\+G\+\_\+\+P\+R\+E\+F\+E\+R\+E\+N\+ZA@{L\+U\+N\+G\+\_\+\+P\+R\+E\+F\+E\+R\+E\+N\+ZA}!utenti.\+h@{utenti.\+h}}
+\subsubsection{\texorpdfstring{L\+U\+N\+G\+\_\+\+P\+R\+E\+F\+E\+R\+E\+N\+ZA}{LUNG\_PREFERENZA}}
+{\footnotesize\ttfamily \#define L\+U\+N\+G\+\_\+\+P\+R\+E\+F\+E\+R\+E\+N\+ZA~21}
+
+\mbox{\Hypertarget{utenti_8h_a7a426aedfa32234bbf8fe334d0267643}\label{utenti_8h_a7a426aedfa32234bbf8fe334d0267643}} 
+\index{utenti.\+h@{utenti.\+h}!M\+A\+X\+\_\+\+A\+S\+C\+I\+I\+\_\+\+C\+I\+F\+RA@{M\+A\+X\+\_\+\+A\+S\+C\+I\+I\+\_\+\+C\+I\+F\+RA}}
+\index{M\+A\+X\+\_\+\+A\+S\+C\+I\+I\+\_\+\+C\+I\+F\+RA@{M\+A\+X\+\_\+\+A\+S\+C\+I\+I\+\_\+\+C\+I\+F\+RA}!utenti.\+h@{utenti.\+h}}
+\subsubsection{\texorpdfstring{M\+A\+X\+\_\+\+A\+S\+C\+I\+I\+\_\+\+C\+I\+F\+RA}{MAX\_ASCII\_CIFRA}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+\+A\+S\+C\+I\+I\+\_\+\+C\+I\+F\+RA~57}
+
+\mbox{\Hypertarget{utenti_8h_ae58e625f7790f2b3886eda607ad8c5b7}\label{utenti_8h_ae58e625f7790f2b3886eda607ad8c5b7}} 
+\index{utenti.\+h@{utenti.\+h}!M\+A\+X\+\_\+\+A\+S\+C\+I\+I\+\_\+\+M\+A\+I\+U\+S\+C\+O\+LA@{M\+A\+X\+\_\+\+A\+S\+C\+I\+I\+\_\+\+M\+A\+I\+U\+S\+C\+O\+LA}}
+\index{M\+A\+X\+\_\+\+A\+S\+C\+I\+I\+\_\+\+M\+A\+I\+U\+S\+C\+O\+LA@{M\+A\+X\+\_\+\+A\+S\+C\+I\+I\+\_\+\+M\+A\+I\+U\+S\+C\+O\+LA}!utenti.\+h@{utenti.\+h}}
+\subsubsection{\texorpdfstring{M\+A\+X\+\_\+\+A\+S\+C\+I\+I\+\_\+\+M\+A\+I\+U\+S\+C\+O\+LA}{MAX\_ASCII\_MAIUSCOLA}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+\+A\+S\+C\+I\+I\+\_\+\+M\+A\+I\+U\+S\+C\+O\+LA~90}
+
+\mbox{\Hypertarget{utenti_8h_a71928bc2e7c6e43a89647cc85202a4a6}\label{utenti_8h_a71928bc2e7c6e43a89647cc85202a4a6}} 
+\index{utenti.\+h@{utenti.\+h}!M\+A\+X\+\_\+\+A\+S\+C\+I\+I\+\_\+\+M\+I\+N\+U\+S\+C\+O\+LA@{M\+A\+X\+\_\+\+A\+S\+C\+I\+I\+\_\+\+M\+I\+N\+U\+S\+C\+O\+LA}}
+\index{M\+A\+X\+\_\+\+A\+S\+C\+I\+I\+\_\+\+M\+I\+N\+U\+S\+C\+O\+LA@{M\+A\+X\+\_\+\+A\+S\+C\+I\+I\+\_\+\+M\+I\+N\+U\+S\+C\+O\+LA}!utenti.\+h@{utenti.\+h}}
+\subsubsection{\texorpdfstring{M\+A\+X\+\_\+\+A\+S\+C\+I\+I\+\_\+\+M\+I\+N\+U\+S\+C\+O\+LA}{MAX\_ASCII\_MINUSCOLA}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+\+A\+S\+C\+I\+I\+\_\+\+M\+I\+N\+U\+S\+C\+O\+LA~122}
+
+\mbox{\Hypertarget{utenti_8h_a79cc6342fce27500b348ed838ad4e88e}\label{utenti_8h_a79cc6342fce27500b348ed838ad4e88e}} 
+\index{utenti.\+h@{utenti.\+h}!M\+A\+X\+\_\+\+A\+S\+C\+I\+I\+\_\+\+S\+I\+M\+B\+O\+LO@{M\+A\+X\+\_\+\+A\+S\+C\+I\+I\+\_\+\+S\+I\+M\+B\+O\+LO}}
+\index{M\+A\+X\+\_\+\+A\+S\+C\+I\+I\+\_\+\+S\+I\+M\+B\+O\+LO@{M\+A\+X\+\_\+\+A\+S\+C\+I\+I\+\_\+\+S\+I\+M\+B\+O\+LO}!utenti.\+h@{utenti.\+h}}
+\subsubsection{\texorpdfstring{M\+A\+X\+\_\+\+A\+S\+C\+I\+I\+\_\+\+S\+I\+M\+B\+O\+LO}{MAX\_ASCII\_SIMBOLO}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+\+A\+S\+C\+I\+I\+\_\+\+S\+I\+M\+B\+O\+LO~47}
+
+\mbox{\Hypertarget{utenti_8h_aee9dc743fce11eb4208a44c1d59ef64c}\label{utenti_8h_aee9dc743fce11eb4208a44c1d59ef64c}} 
+\index{utenti.\+h@{utenti.\+h}!M\+A\+X\+\_\+\+L\+U\+N\+G\+\_\+\+N\+I\+C\+K\+N\+A\+ME@{M\+A\+X\+\_\+\+L\+U\+N\+G\+\_\+\+N\+I\+C\+K\+N\+A\+ME}}
+\index{M\+A\+X\+\_\+\+L\+U\+N\+G\+\_\+\+N\+I\+C\+K\+N\+A\+ME@{M\+A\+X\+\_\+\+L\+U\+N\+G\+\_\+\+N\+I\+C\+K\+N\+A\+ME}!utenti.\+h@{utenti.\+h}}
+\subsubsection{\texorpdfstring{M\+A\+X\+\_\+\+L\+U\+N\+G\+\_\+\+N\+I\+C\+K\+N\+A\+ME}{MAX\_LUNG\_NICKNAME}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+\+L\+U\+N\+G\+\_\+\+N\+I\+C\+K\+N\+A\+ME~16}
+
+\mbox{\Hypertarget{utenti_8h_a54ac4d1eb25b89436da633fdc51e77c3}\label{utenti_8h_a54ac4d1eb25b89436da633fdc51e77c3}} 
+\index{utenti.\+h@{utenti.\+h}!M\+A\+X\+\_\+\+U\+T\+E\+N\+TI@{M\+A\+X\+\_\+\+U\+T\+E\+N\+TI}}
+\index{M\+A\+X\+\_\+\+U\+T\+E\+N\+TI@{M\+A\+X\+\_\+\+U\+T\+E\+N\+TI}!utenti.\+h@{utenti.\+h}}
+\subsubsection{\texorpdfstring{M\+A\+X\+\_\+\+U\+T\+E\+N\+TI}{MAX\_UTENTI}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+\+U\+T\+E\+N\+TI~6}
+
+
+
+Inclusione della libreria per la gestione del menu\+\_\+settimanale. 
+
+Inclusione della libreria per la gestione degli alimenti Inclusione della libreria per la pulizia dei flussi di input Limiti e valori per determinati elementi\+: \mbox{\Hypertarget{utenti_8h_a4663d9dd73baccac55cfa4aac2c72c22}\label{utenti_8h_a4663d9dd73baccac55cfa4aac2c72c22}} 
+\index{utenti.\+h@{utenti.\+h}!M\+I\+N\+\_\+\+A\+S\+C\+I\+I\+\_\+\+C\+I\+F\+RA@{M\+I\+N\+\_\+\+A\+S\+C\+I\+I\+\_\+\+C\+I\+F\+RA}}
+\index{M\+I\+N\+\_\+\+A\+S\+C\+I\+I\+\_\+\+C\+I\+F\+RA@{M\+I\+N\+\_\+\+A\+S\+C\+I\+I\+\_\+\+C\+I\+F\+RA}!utenti.\+h@{utenti.\+h}}
+\subsubsection{\texorpdfstring{M\+I\+N\+\_\+\+A\+S\+C\+I\+I\+\_\+\+C\+I\+F\+RA}{MIN\_ASCII\_CIFRA}}
+{\footnotesize\ttfamily \#define M\+I\+N\+\_\+\+A\+S\+C\+I\+I\+\_\+\+C\+I\+F\+RA~48}
+
+\mbox{\Hypertarget{utenti_8h_a1d17eb0e02a16cb47b0d4a36b4f6df9d}\label{utenti_8h_a1d17eb0e02a16cb47b0d4a36b4f6df9d}} 
+\index{utenti.\+h@{utenti.\+h}!M\+I\+N\+\_\+\+A\+S\+C\+I\+I\+\_\+\+M\+A\+I\+U\+S\+C\+O\+LA@{M\+I\+N\+\_\+\+A\+S\+C\+I\+I\+\_\+\+M\+A\+I\+U\+S\+C\+O\+LA}}
+\index{M\+I\+N\+\_\+\+A\+S\+C\+I\+I\+\_\+\+M\+A\+I\+U\+S\+C\+O\+LA@{M\+I\+N\+\_\+\+A\+S\+C\+I\+I\+\_\+\+M\+A\+I\+U\+S\+C\+O\+LA}!utenti.\+h@{utenti.\+h}}
+\subsubsection{\texorpdfstring{M\+I\+N\+\_\+\+A\+S\+C\+I\+I\+\_\+\+M\+A\+I\+U\+S\+C\+O\+LA}{MIN\_ASCII\_MAIUSCOLA}}
+{\footnotesize\ttfamily \#define M\+I\+N\+\_\+\+A\+S\+C\+I\+I\+\_\+\+M\+A\+I\+U\+S\+C\+O\+LA~66}
+
+\mbox{\Hypertarget{utenti_8h_a2969ad8435d77f3c48248c2988e3d1fb}\label{utenti_8h_a2969ad8435d77f3c48248c2988e3d1fb}} 
+\index{utenti.\+h@{utenti.\+h}!M\+I\+N\+\_\+\+A\+S\+C\+I\+I\+\_\+\+M\+I\+N\+U\+S\+C\+O\+LA@{M\+I\+N\+\_\+\+A\+S\+C\+I\+I\+\_\+\+M\+I\+N\+U\+S\+C\+O\+LA}}
+\index{M\+I\+N\+\_\+\+A\+S\+C\+I\+I\+\_\+\+M\+I\+N\+U\+S\+C\+O\+LA@{M\+I\+N\+\_\+\+A\+S\+C\+I\+I\+\_\+\+M\+I\+N\+U\+S\+C\+O\+LA}!utenti.\+h@{utenti.\+h}}
+\subsubsection{\texorpdfstring{M\+I\+N\+\_\+\+A\+S\+C\+I\+I\+\_\+\+M\+I\+N\+U\+S\+C\+O\+LA}{MIN\_ASCII\_MINUSCOLA}}
+{\footnotesize\ttfamily \#define M\+I\+N\+\_\+\+A\+S\+C\+I\+I\+\_\+\+M\+I\+N\+U\+S\+C\+O\+LA~97}
+
+\mbox{\Hypertarget{utenti_8h_a080b9ac8de1a24b9f6419262f0ac01a2}\label{utenti_8h_a080b9ac8de1a24b9f6419262f0ac01a2}} 
+\index{utenti.\+h@{utenti.\+h}!M\+I\+N\+\_\+\+A\+S\+C\+I\+I\+\_\+\+S\+I\+M\+B\+O\+LO@{M\+I\+N\+\_\+\+A\+S\+C\+I\+I\+\_\+\+S\+I\+M\+B\+O\+LO}}
+\index{M\+I\+N\+\_\+\+A\+S\+C\+I\+I\+\_\+\+S\+I\+M\+B\+O\+LO@{M\+I\+N\+\_\+\+A\+S\+C\+I\+I\+\_\+\+S\+I\+M\+B\+O\+LO}!utenti.\+h@{utenti.\+h}}
+\subsubsection{\texorpdfstring{M\+I\+N\+\_\+\+A\+S\+C\+I\+I\+\_\+\+S\+I\+M\+B\+O\+LO}{MIN\_ASCII\_SIMBOLO}}
+{\footnotesize\ttfamily \#define M\+I\+N\+\_\+\+A\+S\+C\+I\+I\+\_\+\+S\+I\+M\+B\+O\+LO~33}
+
+\mbox{\Hypertarget{utenti_8h_a49877f8f080209d2fc73edd1a0414767}\label{utenti_8h_a49877f8f080209d2fc73edd1a0414767}} 
+\index{utenti.\+h@{utenti.\+h}!M\+I\+N\+\_\+\+L\+U\+N\+G\+\_\+\+N\+I\+C\+K\+N\+A\+ME@{M\+I\+N\+\_\+\+L\+U\+N\+G\+\_\+\+N\+I\+C\+K\+N\+A\+ME}}
+\index{M\+I\+N\+\_\+\+L\+U\+N\+G\+\_\+\+N\+I\+C\+K\+N\+A\+ME@{M\+I\+N\+\_\+\+L\+U\+N\+G\+\_\+\+N\+I\+C\+K\+N\+A\+ME}!utenti.\+h@{utenti.\+h}}
+\subsubsection{\texorpdfstring{M\+I\+N\+\_\+\+L\+U\+N\+G\+\_\+\+N\+I\+C\+K\+N\+A\+ME}{MIN\_LUNG\_NICKNAME}}
+{\footnotesize\ttfamily \#define M\+I\+N\+\_\+\+L\+U\+N\+G\+\_\+\+N\+I\+C\+K\+N\+A\+ME~3}
+
+
+
+Lunghezze di stringhe\+: 
+
+\mbox{\Hypertarget{utenti_8h_afd3f4e6f098069fc2af012d2e454443a}\label{utenti_8h_afd3f4e6f098069fc2af012d2e454443a}} 
+\index{utenti.\+h@{utenti.\+h}!N\+U\+M\+\_\+\+P\+R\+E\+F\+E\+R\+E\+N\+ZE@{N\+U\+M\+\_\+\+P\+R\+E\+F\+E\+R\+E\+N\+ZE}}
+\index{N\+U\+M\+\_\+\+P\+R\+E\+F\+E\+R\+E\+N\+ZE@{N\+U\+M\+\_\+\+P\+R\+E\+F\+E\+R\+E\+N\+ZE}!utenti.\+h@{utenti.\+h}}
+\subsubsection{\texorpdfstring{N\+U\+M\+\_\+\+P\+R\+E\+F\+E\+R\+E\+N\+ZE}{NUM\_PREFERENZE}}
+{\footnotesize\ttfamily \#define N\+U\+M\+\_\+\+P\+R\+E\+F\+E\+R\+E\+N\+ZE~3}
+
+\mbox{\Hypertarget{utenti_8h_a3d93581a285a9677267a4502ea1a033c}\label{utenti_8h_a3d93581a285a9677267a4502ea1a033c}} 
+\index{utenti.\+h@{utenti.\+h}!N\+U\+M\+\_\+\+T\+I\+P\+I\+\_\+\+C\+H\+AR@{N\+U\+M\+\_\+\+T\+I\+P\+I\+\_\+\+C\+H\+AR}}
+\index{N\+U\+M\+\_\+\+T\+I\+P\+I\+\_\+\+C\+H\+AR@{N\+U\+M\+\_\+\+T\+I\+P\+I\+\_\+\+C\+H\+AR}!utenti.\+h@{utenti.\+h}}
+\subsubsection{\texorpdfstring{N\+U\+M\+\_\+\+T\+I\+P\+I\+\_\+\+C\+H\+AR}{NUM\_TIPI\_CHAR}}
+{\footnotesize\ttfamily \#define N\+U\+M\+\_\+\+T\+I\+P\+I\+\_\+\+C\+H\+AR~4}
+
+\mbox{\Hypertarget{utenti_8h_a3f71b4ea87bcf3feda424bc285bcef6a}\label{utenti_8h_a3f71b4ea87bcf3feda424bc285bcef6a}} 
+\index{utenti.\+h@{utenti.\+h}!S\+T\+R\+I\+N\+G\+\_\+\+L\+IB@{S\+T\+R\+I\+N\+G\+\_\+\+L\+IB}}
+\index{S\+T\+R\+I\+N\+G\+\_\+\+L\+IB@{S\+T\+R\+I\+N\+G\+\_\+\+L\+IB}!utenti.\+h@{utenti.\+h}}
+\subsubsection{\texorpdfstring{S\+T\+R\+I\+N\+G\+\_\+\+L\+IB}{STRING\_LIB}}
+{\footnotesize\ttfamily \#define S\+T\+R\+I\+N\+G\+\_\+\+L\+IB}
+
+
+
+Inclusione delle librerie standard. 
+
+Inclusione delle librerie per la manipolazione di stringhe e caratteri \mbox{\Hypertarget{utenti_8h_a2df13304b7f365c9a36dd528bad30412}\label{utenti_8h_a2df13304b7f365c9a36dd528bad30412}} 
+\index{utenti.\+h@{utenti.\+h}!U\+T\+E\+N\+T\+I\+\_\+\+L\+IB@{U\+T\+E\+N\+T\+I\+\_\+\+L\+IB}}
+\index{U\+T\+E\+N\+T\+I\+\_\+\+L\+IB@{U\+T\+E\+N\+T\+I\+\_\+\+L\+IB}!utenti.\+h@{utenti.\+h}}
+\subsubsection{\texorpdfstring{U\+T\+E\+N\+T\+I\+\_\+\+L\+IB}{UTENTI\_LIB}}
+{\footnotesize\ttfamily \#define U\+T\+E\+N\+T\+I\+\_\+\+L\+IB}
+
+
+
+\subsection{Documentazione delle funzioni}
+\mbox{\Hypertarget{utenti_8h_a84eaff176b61eeb1ab0908897d4f3cc6}\label{utenti_8h_a84eaff176b61eeb1ab0908897d4f3cc6}} 
+\index{utenti.\+h@{utenti.\+h}!autenticazione@{autenticazione}}
+\index{autenticazione@{autenticazione}!utenti.\+h@{utenti.\+h}}
+\subsubsection{\texorpdfstring{autenticazione()}{autenticazione()}}
+{\footnotesize\ttfamily int autenticazione (\begin{DoxyParamCaption}\item[{\hyperlink{structutente}{utente} $\ast$}]{u }\end{DoxyParamCaption})}
+
+La funzione \hyperlink{utenti_8c_a84eaff176b61eeb1ab0908897d4f3cc6}{autenticazione()} permette di effettuare l\textquotesingle{}autenticazione di un utente.
+
+
+\begin{DoxyParams}{Parametri}
+{\em password} & Password dell\textquotesingle{}utente da identificare. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Restituisce}
+1 se l\textquotesingle{}autenticazione avviene. 
+
+0 se non avviene l\textquotesingle{}autenticazione.
+\end{DoxyReturn}
+Funzione autenticazione ()\+:
+
+La funzione ha il compito di verificare se l\textquotesingle{}utente abbia i diritti di accesso
+
+A tale scopo, viene richiesto l\textquotesingle{}input del nickname, se questo esiste e corrisponde ad un utente, viene richiesta la password di tale utente. Se quella inserita corrisponde effettivamente alla password dell\textquotesingle{}utente, la funzione restituisce (1), altrimenti (0). Se la password è sbagliata, viene chiesto all\textquotesingle{}utente se desidera riprovare per un massimo di volte stabilito.
+
+\begin{DoxyPrecond}{Precondizione}
+non sono presenti pre requisiti. 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Il valore di ritorno rappresental\textquotesingle{}esito della funzione. 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{utenti_8h_a501b188b76d88a30065fbfce37ed256d}\label{utenti_8h_a501b188b76d88a30065fbfce37ed256d}} 
+\index{utenti.\+h@{utenti.\+h}!conta\+\_\+utenti@{conta\+\_\+utenti}}
+\index{conta\+\_\+utenti@{conta\+\_\+utenti}!utenti.\+h@{utenti.\+h}}
+\subsubsection{\texorpdfstring{conta\+\_\+utenti()}{conta\_utenti()}}
+{\footnotesize\ttfamily int conta\+\_\+utenti (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Funzione per effettuare il conteggio degli utenti memorizzati.
+
+\begin{DoxyReturn}{Restituisce}
+Numero di utenti memorizzati
+\end{DoxyReturn}
+Funzione conta\+\_\+utenti ()\+:
+
+La funzione ha il compito di contare il numero degli utenti presenti su file.
+
+A tale scopo, viene aperto il file utenti, letto ciascuna delle struct presenti, se la struct contiene valori signficativi, un contatore viene incrementato.
+
+\begin{DoxyPostcond}{Postcondizione}
+Il valore di ritorno rappresenta il numero degli utenti presenti su file. 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{utenti_8h_a5175e2b07de5abb19aef4e0e1bd3635a}\label{utenti_8h_a5175e2b07de5abb19aef4e0e1bd3635a}} 
+\index{utenti.\+h@{utenti.\+h}!crea\+\_\+utenti@{crea\+\_\+utenti}}
+\index{crea\+\_\+utenti@{crea\+\_\+utenti}!utenti.\+h@{utenti.\+h}}
+\subsubsection{\texorpdfstring{crea\+\_\+utenti()}{crea\_utenti()}}
+{\footnotesize\ttfamily int crea\+\_\+utenti (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Funzione utilizzata per la generazione di utenti.
+
+\begin{DoxyReturn}{Restituisce}
+1 Se la creazione avviene con successo. 
+
+0 Se non è possibile effettuare la creazione. 
+
+-\/1 Se non possono essere salvati i dati creati.
+\end{DoxyReturn}
+Funzione crea\+\_\+utenti ()\+:
+
+La funzione ha il compito di permettere la creazione di un utente, tramite la scelta di due modalità\+: casuale o manuale.
+
+A tale scopo, viene creata una variabile destinata a contenere il numero degli utenti creabili su database (n\+\_\+utenti\+\_\+creabili). Se tale variabile è minore o uguale a zero, vuol dire che non è possibile creare ulteriori utenti. Se è possibile, viene richiesto l\textquotesingle{}inserimento di (1) per la generazione automatica, (2) per l\textquotesingle{}inserimento manuale. In base alla scelta, vengono chiamte funzioni apposite. In caso di generazione automatica, viene richiesto il numero degli utenti da generare.
+
+\begin{DoxyPrecond}{Precondizione}
+Non vi sono specifiche pre-\/condizioni per la funzione 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Il valore restituito è l\textquotesingle{}esito della funzione 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{utenti_8h_ada1d8f087bdf0124e1ac0f85692caeb6}\label{utenti_8h_ada1d8f087bdf0124e1ac0f85692caeb6}} 
+\index{utenti.\+h@{utenti.\+h}!elimina\+\_\+utente@{elimina\+\_\+utente}}
+\index{elimina\+\_\+utente@{elimina\+\_\+utente}!utenti.\+h@{utenti.\+h}}
+\subsubsection{\texorpdfstring{elimina\+\_\+utente()}{elimina\_utente()}}
+{\footnotesize\ttfamily int elimina\+\_\+utente (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Funzione per effettuare l\textquotesingle{}eliminazione di un utente.
+
+\begin{DoxyReturn}{Restituisce}
+-\/1 Se non è possibile aprire il file. 
+
+0 Se viene annullata l\textquotesingle{}eliminazione. 
+
+1 Se l\textquotesingle{}aliminazione va a buon fine.
+\end{DoxyReturn}
+Funzione elimina\+\_\+utente ()\+:
+
+La funzione ha il compito eliminare l\textquotesingle{}utente da file.
+
+A tale scopo, viene richiesto di effettuare l\textquotesingle{}accesso, se esso va a buon fine ed esistono quindi utenti su file, il nickname dell\textquotesingle{}utente viene sostituito da una stringa vuota. Si chiede conferma per la riscrittura su file, se positiva, la struct viene salvata con le modifiche.
+
+\begin{DoxyPostcond}{Postcondizione}
+Il valore di ritorno rappresenta l\textquotesingle{}esito della funzione 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{utenti_8h_ac82e073503af896a390a544bfd05d916}\label{utenti_8h_ac82e073503af896a390a544bfd05d916}} 
+\index{utenti.\+h@{utenti.\+h}!esiste\+\_\+nickname@{esiste\+\_\+nickname}}
+\index{esiste\+\_\+nickname@{esiste\+\_\+nickname}!utenti.\+h@{utenti.\+h}}
+\subsubsection{\texorpdfstring{esiste\+\_\+nickname()}{esiste\_nickname()}}
+{\footnotesize\ttfamily int esiste\+\_\+nickname (\begin{DoxyParamCaption}\item[{const char $\ast$}]{nickname }\end{DoxyParamCaption})}
+
+La funzione \hyperlink{utenti_8c_ac82e073503af896a390a544bfd05d916}{esiste\+\_\+nickname()} permette di verificare se il nickname passato è già presente nel database.
+
+\begin{DoxyReturn}{Restituisce}
+1 se il nickname è già presente nel database. 
+
+0 se il nickname non è presente nel database. 
+
+-\/1 se il F\+I\+L\+E\+\_\+\+D\+A\+T\+A\+B\+A\+S\+E\+\_\+\+U\+T\+E\+N\+TI non può essere aperto.
+\end{DoxyReturn}
+Funzione esiste\+\_\+nickname ()\+:
+
+La funzione ha il compito di verificare se il nickname passato è già presente nel database.
+
+A tal scopo acquisisce la lunghezza del nickname passato in ingresso, memorizzandola in una variabile, controllare se tale lunghezza è idonea. Fatto ciò apre il file utnetni, legge ogni utente presente al suo interno fino a quando non trova un utente con tale nickname, restituindo così 1. nel caso non lo trovasse, il valore restituito sarebbe zero.
+
+\begin{DoxyPrecond}{Precondizione}
+Non vi sono specifiche pre-\/condizioni per la funzione 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Il valore restituito rappresenta l\textquotesingle{}esito della funzione. 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{utenti_8h_a2fd9f3ff6568853f6af346c28235db37}\label{utenti_8h_a2fd9f3ff6568853f6af346c28235db37}} 
+\index{utenti.\+h@{utenti.\+h}!genera\+\_\+n\+\_\+utenti@{genera\+\_\+n\+\_\+utenti}}
+\index{genera\+\_\+n\+\_\+utenti@{genera\+\_\+n\+\_\+utenti}!utenti.\+h@{utenti.\+h}}
+\subsubsection{\texorpdfstring{genera\+\_\+n\+\_\+utenti()}{genera\_n\_utenti()}}
+{\footnotesize\ttfamily \hyperlink{structutente}{utente}$\ast$ genera\+\_\+n\+\_\+utenti (\begin{DoxyParamCaption}\item[{int}]{n }\end{DoxyParamCaption})}
+
+La funzione \hyperlink{utenti_8c_a2fd9f3ff6568853f6af346c28235db37}{genera\+\_\+n\+\_\+utenti()} effettua la generazione di n utenti, restituendo il puntatore all\textquotesingle{}array che li contiene
+
+
+\begin{DoxyParams}{Parametri}
+{\em n} & Numero di utenti da salvare \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Restituisce}
+Puntatore all\textquotesingle{}array che contiene gli utenti generati
+\end{DoxyReturn}
+Funzione genera\+\_\+n\+\_\+utenti ()\+:
+
+La funzione ha il compito di generare randomicamente il numero degli utenti passato in ingresso alla funzione.
+
+A tale scopo, un for ripete la funzione genera\+\_\+utente per n volte, riempend un vettore di struct che viene restuituito dalla funzione.
+
+\begin{DoxyPrecond}{Precondizione}
+Non vi sono specifiche pre-\/condizioni per la funzione 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Il valore restituito è un puntatore al vettore di struct di tipo utente. 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{utenti_8h_a174d1325daa87807521ecfaeb15356cb}\label{utenti_8h_a174d1325daa87807521ecfaeb15356cb}} 
+\index{utenti.\+h@{utenti.\+h}!genera\+\_\+nickname@{genera\+\_\+nickname}}
+\index{genera\+\_\+nickname@{genera\+\_\+nickname}!utenti.\+h@{utenti.\+h}}
+\subsubsection{\texorpdfstring{genera\+\_\+nickname()}{genera\_nickname()}}
+{\footnotesize\ttfamily char$\ast$ genera\+\_\+nickname (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+La funzione \hyperlink{utenti_8c_a174d1325daa87807521ecfaeb15356cb}{genera\+\_\+nickname()} permette di generare un nickname in modo casuale.
+
+\begin{DoxyReturn}{Restituisce}
+Stringa corrispondente al nickname generato.
+\end{DoxyReturn}
+Funzione genera\+\_\+nickname ()\+:
+
+La funzione ha il compito di generare un nickname in modo casuale.
+
+A tal scopo, dopo aver allocato uno spazio di dimensione adatta al contenimento del nickname, posiziona il carattere terminale alla fine. Ripete un ciclo che permette continua fino a quando il nickname non raggiunge una dimesione accettata e/o il nickname esiste già. La generazione si serve del codice A\+S\+C\+II, generando random un numero corrispondente ad un carattere minuscolo dell\textquotesingle{}alfabeto.
+
+\begin{DoxyPrecond}{Precondizione}
+Non vi sono specifiche pre-\/condizioni per la funzione 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Il valore restituito è un puntatore alla stringa contenente il nickname. 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{utenti_8h_aba3a015d332734bce8e15b6b67860129}\label{utenti_8h_aba3a015d332734bce8e15b6b67860129}} 
+\index{utenti.\+h@{utenti.\+h}!genera\+\_\+password@{genera\+\_\+password}}
+\index{genera\+\_\+password@{genera\+\_\+password}!utenti.\+h@{utenti.\+h}}
+\subsubsection{\texorpdfstring{genera\+\_\+password()}{genera\_password()}}
+{\footnotesize\ttfamily char$\ast$ genera\+\_\+password (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+La funzione genera\+\_\+password(int livello\+\_\+sicurezza) permette la generazione di una password con livello di sicurezza pari a quello inserito.
+
+
+\begin{DoxyParams}{Parametri}
+{\em livello\+\_\+sicurezza} & Livello di sicurezza della password da generare. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Restituisce}
+Stringa corrispondente alla password generata.
+\end{DoxyReturn}
+Funzione genera\+\_\+password ()\+:
+
+La funzione permette la crezione randomica di una password.
+
+A tale scopo, viene generato un numero e cercato il corrispondente carattere sulla tabella A\+S\+C\+II.
+
+\begin{DoxyPrecond}{Precondizione}
+Non vi sono specifiche pre-\/condizioni per la funzione 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Il valore restituito è un puntatore alla stringa contenente la password. 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{utenti_8h_ac936c99ad1d8bb5c7d9b9d37147a0576}\label{utenti_8h_ac936c99ad1d8bb5c7d9b9d37147a0576}} 
+\index{utenti.\+h@{utenti.\+h}!genera\+\_\+utente@{genera\+\_\+utente}}
+\index{genera\+\_\+utente@{genera\+\_\+utente}!utenti.\+h@{utenti.\+h}}
+\subsubsection{\texorpdfstring{genera\+\_\+utente()}{genera\_utente()}}
+{\footnotesize\ttfamily \hyperlink{structutente}{utente} genera\+\_\+utente (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+La funzione \hyperlink{utenti_8c_ac936c99ad1d8bb5c7d9b9d37147a0576}{genera\+\_\+utente()} effettua la generazione dei dati di un utente in modo casuale e restituisce l\textquotesingle{}utente creato.
+
+\begin{DoxyReturn}{Restituisce}
+Utente generato.
+\end{DoxyReturn}
+Funzione genera\+\_\+utente ()\+:
+
+La funzione ha il compito di generare randomicamente un utente.
+
+A tale scopo, viene creata una struct capace di contenere i dati relativi all\textquotesingle{}utente. Il nickname viene generato grazie una funzione \hyperlink{utenti_8c_a174d1325daa87807521ecfaeb15356cb}{genera\+\_\+nickname()} (anch\textquotesingle{}essa genera in modo randomico), grazie ad una funzione che copia il valore restituito nella struct creata. Stessa cosa vale per la password, generata tramite \hyperlink{utenti_8c_aba3a015d332734bce8e15b6b67860129}{genera\+\_\+password()}. Un ciclo for permette il rimpimento delle aree di memoria riservate alle preferenze alimentari, grazie alla funzione alimento\+\_\+causuale. Se non può essere estratto nessun nome per la preferenza viene assegnato \char`\"{}null\char`\"{}. Le preferenze che seguono una contenete \char`\"{}null\char`\"{}, verranno riempite con \char`\"{}null\char`\"{} anch\textquotesingle{}esse.
+
+\begin{DoxyPrecond}{Precondizione}
+Non vi sono specifiche pre-\/condizioni per la funzione 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Il valore restituito è una struct di tipo utente rimpita con dati significativi. 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{utenti_8h_a3d24eee1e0857cdb3235dbb72de2e0fd}\label{utenti_8h_a3d24eee1e0857cdb3235dbb72de2e0fd}} 
+\index{utenti.\+h@{utenti.\+h}!generatore\+\_\+password@{generatore\+\_\+password}}
+\index{generatore\+\_\+password@{generatore\+\_\+password}!utenti.\+h@{utenti.\+h}}
+\subsubsection{\texorpdfstring{generatore\+\_\+password()}{generatore\_password()}}
+{\footnotesize\ttfamily void generatore\+\_\+password (\begin{DoxyParamCaption}\item[{char $\ast$}]{password\+\_\+utente }\end{DoxyParamCaption})}
+
+La procedura \hyperlink{utenti_8c_a3d24eee1e0857cdb3235dbb72de2e0fd}{generatore\+\_\+password()} permette la selezione della modalità di generazione di una password e il salvataggio della stessa all\textquotesingle{}interno del corrispondente utente.
+
+
+\begin{DoxyParams}{Parametri}
+{\em password\+\_\+utente} & Puntatore alla stringa che dovrà contenera la password.\\
+\hline
+\end{DoxyParams}
+Funzione generatore\+\_\+password ()\+:
+
+La funzione permette la scelta tra generazione password automatica e l\textquotesingle{}inserimento manuale.
+
+A tal scopo, dopo aver allocato uno spazio di dimensione adatta al contenimento della password, richiede l\textquotesingle{}inserimento di (1) per generare automaticamente una password, (2) per l\textquotesingle{}inserimento manuale. Superati i controlli sull\textquotesingle{}input, uno switch effettua un controllo sulla risposta e chiama una funzione in base ad essa.
+
+\begin{DoxyPrecond}{Precondizione}
+Non vi sono specifiche pre-\/condizioni per la funzione 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Il valore restituito è un puntatore alla stringa contenente la password. 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{utenti_8h_ad907371385837ca72c389ca32df39d80}\label{utenti_8h_ad907371385837ca72c389ca32df39d80}} 
+\index{utenti.\+h@{utenti.\+h}!gestore\+\_\+modifiche@{gestore\+\_\+modifiche}}
+\index{gestore\+\_\+modifiche@{gestore\+\_\+modifiche}!utenti.\+h@{utenti.\+h}}
+\subsubsection{\texorpdfstring{gestore\+\_\+modifiche()}{gestore\_modifiche()}}
+{\footnotesize\ttfamily int gestore\+\_\+modifiche (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+La funzione \hyperlink{utenti_8c_ad907371385837ca72c389ca32df39d80}{gestore\+\_\+modifiche()} permette di far effettuare l\textquotesingle{}accesso ad utente per modificare i propri dati.
+
+\begin{DoxyReturn}{Restituisce}
+1 Se la modifica va a buon fine. 
+
+0 Se la modifica viene annullata. 
+
+-\/1 Se non è possibile aprire il file.
+\end{DoxyReturn}
+Funzione gestore\+\_\+modifiche ()\+:
+
+La funzione ha il compito di gestire qualsiasi modifica l\textquotesingle{}utente voglia effettuare sui suoi dati
+
+A tale scopo, viene richiesto chiamata una funzione (\hyperlink{utenti_8c_a84eaff176b61eeb1ab0908897d4f3cc6}{autenticazione()}) per la verifica dei diritti alla modifiche Controllato l\textquotesingle{}esito di tale funzione, se positovo, viene richiesto quale campo si desider modificare. In base alla scelta, vengono chiamate funzioni oppurtune. Fatte le modifiche, viene salvato su file.
+
+\begin{DoxyPrecond}{Precondizione}
+
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Il valoredi ritorno rappresental\textquotesingle{}esito della funzione. 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{utenti_8h_a313944ae03275f5c5640091d94983752}\label{utenti_8h_a313944ae03275f5c5640091d94983752}} 
+\index{utenti.\+h@{utenti.\+h}!input\+\_\+nickname@{input\+\_\+nickname}}
+\index{input\+\_\+nickname@{input\+\_\+nickname}!utenti.\+h@{utenti.\+h}}
+\subsubsection{\texorpdfstring{input\+\_\+nickname()}{input\_nickname()}}
+{\footnotesize\ttfamily char$\ast$ input\+\_\+nickname (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Funzione utilizzata per effettuare l\textquotesingle{}input di un nome utente.
+
+\begin{DoxyReturn}{Restituisce}
+Puntatore alla stringa inserita dall\textquotesingle{}utente.
+\end{DoxyReturn}
+Funzione input\+\_\+nickname ()\+:
+
+La funzione ha il compito di richiedere l\textquotesingle{}inserimento di un nickname destinato ad un nuovo utente.
+
+A tal scopo viene allorato una spazio di memoria per contenere il nickname inserito da tastiera da parte dell\textquotesingle{}utente. Viene richiesto di inserire da tastiera il nickname fino a quanto non viene inserito un nickname che non è esistente. La funzione ritorna il nickname.
+
+\begin{DoxyPrecond}{Precondizione}
+Non vi sono specifiche pre-\/condizioni per la funzione 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Il valore restituito è un puntatore alla stringa contenente il nickname. 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{utenti_8h_a32ea464274239d37a1c862420a2d2076}\label{utenti_8h_a32ea464274239d37a1c862420a2d2076}} 
+\index{utenti.\+h@{utenti.\+h}!input\+\_\+password@{input\+\_\+password}}
+\index{input\+\_\+password@{input\+\_\+password}!utenti.\+h@{utenti.\+h}}
+\subsubsection{\texorpdfstring{input\+\_\+password()}{input\_password()}}
+{\footnotesize\ttfamily char$\ast$ input\+\_\+password (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+La funzione input\+\_\+password(char$\ast$ password) permette la richiesta di inserimento di una password.
+
+\begin{DoxyReturn}{Restituisce}
+Stringa corrispondente alla password inserita.
+\end{DoxyReturn}
+Funzione input\+\_\+password ()\+:
+
+La funzione permette la richiesta diinserimento di una password.
+
+A tal scopo, dopo aver allocato uno spazio di dimensione adatta al contenimento della password, richiede l\textquotesingle{}inserimento di quest\textquotesingle{}ultima da tastiera. Esegue vari controlli sulla dimensione e sul singolo input per verificare che abbia i requisiti richiesti.
+
+\begin{DoxyPrecond}{Precondizione}
+Non vi sono specifiche pre-\/condizioni per la funzione 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Il valore restituito è un puntatore alla stringa contenente la password. 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{utenti_8h_a4362675e19acd7b1e0bc1d064b285530}\label{utenti_8h_a4362675e19acd7b1e0bc1d064b285530}} 
+\index{utenti.\+h@{utenti.\+h}!input\+\_\+preferenza@{input\+\_\+preferenza}}
+\index{input\+\_\+preferenza@{input\+\_\+preferenza}!utenti.\+h@{utenti.\+h}}
+\subsubsection{\texorpdfstring{input\+\_\+preferenza()}{input\_preferenza()}}
+{\footnotesize\ttfamily int input\+\_\+preferenza (\begin{DoxyParamCaption}\item[{char $\ast$}]{preferenza }\end{DoxyParamCaption})}
+
+La funzione input\+\_\+preferenze() permette di richiedere l\textquotesingle{}inserimento di una preferenza alimentare di un utente.
+
+\begin{DoxyReturn}{Restituisce}
+Stringa corrispondente alla preferenza inserita.
+\end{DoxyReturn}
+Funzione input\+\_\+preferenza ()\+:
+
+La funzione permette l\textquotesingle{}input da tastiera da parte dell\textquotesingle{}utente delle sue preferenze alimentari (massimo 3 preferenze).
+
+A tal scopo, viene richiesto l\textquotesingle{}inserimento da tastiera, che se supera i controlli, viene memorizzato nella stringa passata in ingresso alla funzione.
+
+\begin{DoxyPrecond}{Precondizione}
+Non vi sono specifiche pre-\/condizioni per la funzione 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Il valore restituito identifica l\textquotesingle{}esito della funzione. 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{utenti_8h_ad6a35d2d36fe87744edc5a28e0727da3}\label{utenti_8h_ad6a35d2d36fe87744edc5a28e0727da3}} 
+\index{utenti.\+h@{utenti.\+h}!input\+\_\+utente@{input\+\_\+utente}}
+\index{input\+\_\+utente@{input\+\_\+utente}!utenti.\+h@{utenti.\+h}}
+\subsubsection{\texorpdfstring{input\+\_\+utente()}{input\_utente()}}
+{\footnotesize\ttfamily \hyperlink{structutente}{utente} input\+\_\+utente (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+La funzione \hyperlink{utenti_8c_ad6a35d2d36fe87744edc5a28e0727da3}{input\+\_\+utente()} permette di richiedere l\textquotesingle{}inserimento dei dati relativi ad un nuovo utente.
+
+\begin{DoxyReturn}{Restituisce}
+Valori inseriti del nuovo utente.
+\end{DoxyReturn}
+Funzione input\+\_\+utente ()\+:
+
+La funzione è una funzione di base che richiama tutte le funzioni necessarie per riempire una struct di tipo utente. Dopo aver creato una struct capace di contenere i dati richiesti. Una strcpy copierà la stringa restituita dalla funzione posta come secondo argomento della stessa. Una funzione permetterà la generazione di una password (scelta tra due modalità diverse). Un for ripeterà la chiamata alla funzione per l\textquotesingle{}inserimento delle preferenze (alimentari), se la funzione resituisce 0, automaticamente le preferenze rimanenti verranno rimpite attraverso un for con \char`\"{}null\char`\"{}.
+
+\begin{DoxyPrecond}{Precondizione}
+Non vi sono specifiche pre-\/condizioni per la funzione 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Il valore restituito è una struct di tipo utente rimpita con dati significativi. 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{utenti_8h_a6427e961c8b4da62096f99b2fa7b051e}\label{utenti_8h_a6427e961c8b4da62096f99b2fa7b051e}} 
+\index{utenti.\+h@{utenti.\+h}!modifica\+\_\+preferenze@{modifica\+\_\+preferenze}}
+\index{modifica\+\_\+preferenze@{modifica\+\_\+preferenze}!utenti.\+h@{utenti.\+h}}
+\subsubsection{\texorpdfstring{modifica\+\_\+preferenze()}{modifica\_preferenze()}}
+{\footnotesize\ttfamily void modifica\+\_\+preferenze (\begin{DoxyParamCaption}\item[{\hyperlink{structutente}{utente} $\ast$}]{u }\end{DoxyParamCaption})}
+
+Procedura utilizzata per modificare i valori delle preferenze alimentari di un utente.
+
+
+\begin{DoxyParams}{Parametri}
+{\em u} & Dati dell\textquotesingle{}utente su cui effettuare la modifica.\\
+\hline
+\end{DoxyParams}
+Funzione modifica\+\_\+preferenze ()\+:
+
+La funzione ha il compito di permettere la modifica delle preferenze di un utente.
+
+A tale scopo, viene passata la struct contenente i dati dell\textquotesingle{}utente, vengono controllate le preferenze effettivamente piene e se ci sono quindi preferenze vuote. Nel caso di presenza di preferenze vuote, viene richiesto all\textquotesingle{}utente se si desidere aggiungere o modficare una preferenza, in base alla scelte, di proseguirà alla modifica o della preferenza scelta o della prima prefereza risultante vuota. Se non vengono individuate preferenze vuote, si procede alla richiesta dell\textquotesingle{}inserimento del numero della preferenza che si desidera modificare.
+
+\begin{DoxyPrecond}{Precondizione}
+La struct in ingresso non può essere vuota. 
+\end{DoxyPrecond}
+\mbox{\Hypertarget{utenti_8h_a32e8982b503c10da62802a604f044efa}\label{utenti_8h_a32e8982b503c10da62802a604f044efa}} 
+\index{utenti.\+h@{utenti.\+h}!output\+\_\+preferenze@{output\+\_\+preferenze}}
+\index{output\+\_\+preferenze@{output\+\_\+preferenze}!utenti.\+h@{utenti.\+h}}
+\subsubsection{\texorpdfstring{output\+\_\+preferenze()}{output\_preferenze()}}
+{\footnotesize\ttfamily int output\+\_\+preferenze (\begin{DoxyParamCaption}\item[{const \hyperlink{structutente}{utente}}]{u }\end{DoxyParamCaption})}
+
+La procedura \hyperlink{utenti_8c_a32e8982b503c10da62802a604f044efa}{output\+\_\+preferenze()} permette di visualizzare le preferenze di un utente.
+
+
+\begin{DoxyParams}{Parametri}
+{\em u} & Utente per cui visulizzare le preferenze.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Restituisce}
+numero di preferenze visualizzate.
+\end{DoxyReturn}
+Funzione output\+\_\+preferenze ()\+:
+
+La funzione ha il compito di stampare su schermo la preferenze appartenenti alla struct di tipo utente passata in ingresso.
+
+A tale scopo, un for ripete un ciclo che stampa le preferenze se diverse da \char`\"{}null\char`\"{}. Se non sono presenti preferenze conteneti valori diversi da \char`\"{}null\char`\"{}, viene stampato un messaggio di assenza delle preferenze.
+
+\begin{DoxyPrecond}{Precondizione}
+struct in ingresso non vuota 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Il valore di ritorno è il numero delle preferenze con valori significativi. 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{utenti_8h_a87ee6c560888e42fdd61588cd98743b6}\label{utenti_8h_a87ee6c560888e42fdd61588cd98743b6}} 
+\index{utenti.\+h@{utenti.\+h}!output\+\_\+utente@{output\+\_\+utente}}
+\index{output\+\_\+utente@{output\+\_\+utente}!utenti.\+h@{utenti.\+h}}
+\subsubsection{\texorpdfstring{output\+\_\+utente()}{output\_utente()}}
+{\footnotesize\ttfamily void output\+\_\+utente (\begin{DoxyParamCaption}\item[{const \hyperlink{structutente}{utente}}]{u }\end{DoxyParamCaption})}
+
+La procedura \hyperlink{utenti_8c_a87ee6c560888e42fdd61588cd98743b6}{output\+\_\+utente()} permette di visualizzare i dati di un utente.
+
+
+\begin{DoxyParams}{Parametri}
+{\em u} & Utente da visualizzare.\\
+\hline
+\end{DoxyParams}
+Funzione output\+\_\+utente ()\+:
+
+La funzione ha il compito di stampare su schermo la struct passata in ingresso.
+
+\begin{DoxyPrecond}{Precondizione}
+nla struct non deve essere vuota 
+\end{DoxyPrecond}
+\mbox{\Hypertarget{utenti_8h_ad805a0034443857290327abf1b42e7e4}\label{utenti_8h_ad805a0034443857290327abf1b42e7e4}} 
+\index{utenti.\+h@{utenti.\+h}!salva\+\_\+n\+\_\+utenti@{salva\+\_\+n\+\_\+utenti}}
+\index{salva\+\_\+n\+\_\+utenti@{salva\+\_\+n\+\_\+utenti}!utenti.\+h@{utenti.\+h}}
+\subsubsection{\texorpdfstring{salva\+\_\+n\+\_\+utenti()}{salva\_n\_utenti()}}
+{\footnotesize\ttfamily int salva\+\_\+n\+\_\+utenti (\begin{DoxyParamCaption}\item[{\hyperlink{structutente}{utente} $\ast$}]{utenti,  }\item[{int}]{n }\end{DoxyParamCaption})}
+
+La funzione \hyperlink{utenti_8c_ad805a0034443857290327abf1b42e7e4}{salva\+\_\+n\+\_\+utenti()} permette di salvare n utenti sul file F\+I\+L\+E\+\_\+\+D\+A\+T\+A\+B\+A\+S\+E\+\_\+\+U\+T\+E\+N\+TI.
+
+
+\begin{DoxyParams}{Parametri}
+{\em utenti} & Array contenente gli utenti da memorizzare. \\
+\hline
+{\em n} & Numero di utenti da memorizzare. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Restituisce}
+1 se vengono salvati tutti gli utenti. 
+
+0 se non può essere aperto F\+I\+L\+E\+\_\+\+D\+A\+T\+A\+B\+A\+S\+E\+\_\+\+U\+T\+E\+N\+TI.
+\end{DoxyReturn}
+Funzione salva\+\_\+n\+\_\+utenti ()\+:
+
+La funzione ha il compito di scrivere su file il vettore di struct passatagli in ingresso, di dimensione n.
+
+A tale scopo, dopo aver superato gli opportuni controlli nell\textquotesingle{}apertura del database contenente gli utenti, while legge tutti gli utenti gia prensenti nel database e se trova uno con nickname con stringa vuota, lo sovrascrivere con una delle struct presenti nel vettore passato in ingresso. Se non ci sono utenti con nickname vuoto, si procede alla scrittura su file in coda.
+
+\begin{DoxyPrecond}{Precondizione}
+Non vi sono specifiche pre-\/condizioni per la funzione 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Il valore restituito è l\textquotesingle{}esito della funzione 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{utenti_8h_ad1417dda78bb50d93809ae0a28b2a29d}\label{utenti_8h_ad1417dda78bb50d93809ae0a28b2a29d}} 
+\index{utenti.\+h@{utenti.\+h}!visualizza\+\_\+database\+\_\+utenti@{visualizza\+\_\+database\+\_\+utenti}}
+\index{visualizza\+\_\+database\+\_\+utenti@{visualizza\+\_\+database\+\_\+utenti}!utenti.\+h@{utenti.\+h}}
+\subsubsection{\texorpdfstring{visualizza\+\_\+database\+\_\+utenti()}{visualizza\_database\_utenti()}}
+{\footnotesize\ttfamily int visualizza\+\_\+database\+\_\+utenti (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Funzione per la visualizzazione del database utenti.
+
+\begin{DoxyReturn}{Restituisce}
+1 Se la visualizzazione va a buon fine. 
+
+0 Se il file non può essere aperto.
+\end{DoxyReturn}
+Funzione visualizza\+\_\+database\+\_\+utenti ()\+:
+
+La funzione ha il compito di visualizzare su schermo tutti gli utenti memorizzati su file.
+
+A tale scopo, un if controlla se ci sono effettivamente utenti registrati grazie una funzione conta\+\_\+utenti. Se esistono, vengono letti uno per volta e passati ad una funzione di stampa (\hyperlink{utenti_8c_a87ee6c560888e42fdd61588cd98743b6}{output\+\_\+utente()}).
+
+\begin{DoxyPostcond}{Postcondizione}
+Il valore di ritorno rappresental\textquotesingle{}esito della funzione. 
+\end{DoxyPostcond}

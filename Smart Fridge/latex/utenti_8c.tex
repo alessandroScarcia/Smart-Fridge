@@ -1,0 +1,390 @@
+\hypertarget{utenti_8c}{}\section{Riferimenti per il file src/utenti.c}
+\label{utenti_8c}\index{src/utenti.\+c@{src/utenti.\+c}}
+{\ttfamily \#include \char`\"{}utenti.\+h\char`\"{}}\newline
+\subsection*{Funzioni}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{utenti_8c_ac82e073503af896a390a544bfd05d916}{esiste\+\_\+nickname} (const char $\ast$nickname)
+\item 
+char $\ast$ \hyperlink{utenti_8c_a313944ae03275f5c5640091d94983752}{input\+\_\+nickname} ()
+\item 
+char $\ast$ \hyperlink{utenti_8c_a174d1325daa87807521ecfaeb15356cb}{genera\+\_\+nickname} ()
+\item 
+char $\ast$ \hyperlink{utenti_8c_a32ea464274239d37a1c862420a2d2076}{input\+\_\+password} ()
+\item 
+char $\ast$ \hyperlink{utenti_8c_aba3a015d332734bce8e15b6b67860129}{genera\+\_\+password} ()
+\item 
+void \hyperlink{utenti_8c_a3d24eee1e0857cdb3235dbb72de2e0fd}{generatore\+\_\+password} (char $\ast$password\+\_\+utente)
+\item 
+int \hyperlink{utenti_8c_a4362675e19acd7b1e0bc1d064b285530}{input\+\_\+preferenza} (char $\ast$preferenza)
+\item 
+\hyperlink{structutente}{utente} \hyperlink{utenti_8c_ad6a35d2d36fe87744edc5a28e0727da3}{input\+\_\+utente} ()
+\item 
+\hyperlink{structutente}{utente} \hyperlink{utenti_8c_ac936c99ad1d8bb5c7d9b9d37147a0576}{genera\+\_\+utente} ()
+\item 
+\hyperlink{structutente}{utente} $\ast$ \hyperlink{utenti_8c_a2fd9f3ff6568853f6af346c28235db37}{genera\+\_\+n\+\_\+utenti} (int n)
+\item 
+int \hyperlink{utenti_8c_ad805a0034443857290327abf1b42e7e4}{salva\+\_\+n\+\_\+utenti} (\hyperlink{structutente}{utente} $\ast$utenti, int n)
+\item 
+int \hyperlink{utenti_8c_a5175e2b07de5abb19aef4e0e1bd3635a}{crea\+\_\+utenti} ()
+\item 
+void \hyperlink{utenti_8c_a6427e961c8b4da62096f99b2fa7b051e}{modifica\+\_\+preferenze} (\hyperlink{structutente}{utente} $\ast$u)
+\item 
+int \hyperlink{utenti_8c_ad907371385837ca72c389ca32df39d80}{gestore\+\_\+modifiche} ()
+\item 
+int \hyperlink{utenti_8c_ad1417dda78bb50d93809ae0a28b2a29d}{visualizza\+\_\+database\+\_\+utenti} ()
+\item 
+int \hyperlink{utenti_8c_a84eaff176b61eeb1ab0908897d4f3cc6}{autenticazione} (\hyperlink{structutente}{utente} $\ast$u)
+\item 
+int \hyperlink{utenti_8c_a32e8982b503c10da62802a604f044efa}{output\+\_\+preferenze} (const \hyperlink{structutente}{utente} u)
+\item 
+void \hyperlink{utenti_8c_a87ee6c560888e42fdd61588cd98743b6}{output\+\_\+utente} (const \hyperlink{structutente}{utente} u)
+\item 
+int \hyperlink{utenti_8c_a501b188b76d88a30065fbfce37ed256d}{conta\+\_\+utenti} ()
+\item 
+int \hyperlink{utenti_8c_ada1d8f087bdf0124e1ac0f85692caeb6}{elimina\+\_\+utente} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Documentazione delle funzioni}
+\mbox{\Hypertarget{utenti_8c_a84eaff176b61eeb1ab0908897d4f3cc6}\label{utenti_8c_a84eaff176b61eeb1ab0908897d4f3cc6}} 
+\index{utenti.\+c@{utenti.\+c}!autenticazione@{autenticazione}}
+\index{autenticazione@{autenticazione}!utenti.\+c@{utenti.\+c}}
+\subsubsection{\texorpdfstring{autenticazione()}{autenticazione()}}
+{\footnotesize\ttfamily int autenticazione (\begin{DoxyParamCaption}\item[{\hyperlink{structutente}{utente} $\ast$}]{u }\end{DoxyParamCaption})}
+
+Funzione autenticazione ()\+:
+
+La funzione ha il compito di verificare se l\textquotesingle{}utente abbia i diritti di accesso
+
+A tale scopo, viene richiesto l\textquotesingle{}input del nickname, se questo esiste e corrisponde ad un utente, viene richiesta la password di tale utente. Se quella inserita corrisponde effettivamente alla password dell\textquotesingle{}utente, la funzione restituisce (1), altrimenti (0). Se la password è sbagliata, viene chiesto all\textquotesingle{}utente se desidera riprovare per un massimo di volte stabilito.
+
+\begin{DoxyPrecond}{Precondizione}
+non sono presenti pre requisiti. 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Il valore di ritorno rappresental\textquotesingle{}esito della funzione. 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{utenti_8c_a501b188b76d88a30065fbfce37ed256d}\label{utenti_8c_a501b188b76d88a30065fbfce37ed256d}} 
+\index{utenti.\+c@{utenti.\+c}!conta\+\_\+utenti@{conta\+\_\+utenti}}
+\index{conta\+\_\+utenti@{conta\+\_\+utenti}!utenti.\+c@{utenti.\+c}}
+\subsubsection{\texorpdfstring{conta\+\_\+utenti()}{conta\_utenti()}}
+{\footnotesize\ttfamily int conta\+\_\+utenti (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Funzione conta\+\_\+utenti ()\+:
+
+La funzione ha il compito di contare il numero degli utenti presenti su file.
+
+A tale scopo, viene aperto il file utenti, letto ciascuna delle struct presenti, se la struct contiene valori signficativi, un contatore viene incrementato.
+
+\begin{DoxyPostcond}{Postcondizione}
+Il valore di ritorno rappresenta il numero degli utenti presenti su file. 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{utenti_8c_a5175e2b07de5abb19aef4e0e1bd3635a}\label{utenti_8c_a5175e2b07de5abb19aef4e0e1bd3635a}} 
+\index{utenti.\+c@{utenti.\+c}!crea\+\_\+utenti@{crea\+\_\+utenti}}
+\index{crea\+\_\+utenti@{crea\+\_\+utenti}!utenti.\+c@{utenti.\+c}}
+\subsubsection{\texorpdfstring{crea\+\_\+utenti()}{crea\_utenti()}}
+{\footnotesize\ttfamily int crea\+\_\+utenti (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Funzione crea\+\_\+utenti ()\+:
+
+La funzione ha il compito di permettere la creazione di un utente, tramite la scelta di due modalità\+: casuale o manuale.
+
+A tale scopo, viene creata una variabile destinata a contenere il numero degli utenti creabili su database (n\+\_\+utenti\+\_\+creabili). Se tale variabile è minore o uguale a zero, vuol dire che non è possibile creare ulteriori utenti. Se è possibile, viene richiesto l\textquotesingle{}inserimento di (1) per la generazione automatica, (2) per l\textquotesingle{}inserimento manuale. In base alla scelta, vengono chiamte funzioni apposite. In caso di generazione automatica, viene richiesto il numero degli utenti da generare.
+
+\begin{DoxyPrecond}{Precondizione}
+Non vi sono specifiche pre-\/condizioni per la funzione 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Il valore restituito è l\textquotesingle{}esito della funzione 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{utenti_8c_ada1d8f087bdf0124e1ac0f85692caeb6}\label{utenti_8c_ada1d8f087bdf0124e1ac0f85692caeb6}} 
+\index{utenti.\+c@{utenti.\+c}!elimina\+\_\+utente@{elimina\+\_\+utente}}
+\index{elimina\+\_\+utente@{elimina\+\_\+utente}!utenti.\+c@{utenti.\+c}}
+\subsubsection{\texorpdfstring{elimina\+\_\+utente()}{elimina\_utente()}}
+{\footnotesize\ttfamily int elimina\+\_\+utente (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Funzione elimina\+\_\+utente ()\+:
+
+La funzione ha il compito eliminare l\textquotesingle{}utente da file.
+
+A tale scopo, viene richiesto di effettuare l\textquotesingle{}accesso, se esso va a buon fine ed esistono quindi utenti su file, il nickname dell\textquotesingle{}utente viene sostituito da una stringa vuota. Si chiede conferma per la riscrittura su file, se positiva, la struct viene salvata con le modifiche.
+
+\begin{DoxyPostcond}{Postcondizione}
+Il valore di ritorno rappresenta l\textquotesingle{}esito della funzione 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{utenti_8c_ac82e073503af896a390a544bfd05d916}\label{utenti_8c_ac82e073503af896a390a544bfd05d916}} 
+\index{utenti.\+c@{utenti.\+c}!esiste\+\_\+nickname@{esiste\+\_\+nickname}}
+\index{esiste\+\_\+nickname@{esiste\+\_\+nickname}!utenti.\+c@{utenti.\+c}}
+\subsubsection{\texorpdfstring{esiste\+\_\+nickname()}{esiste\_nickname()}}
+{\footnotesize\ttfamily int esiste\+\_\+nickname (\begin{DoxyParamCaption}\item[{const char $\ast$}]{nickname }\end{DoxyParamCaption})}
+
+Funzione esiste\+\_\+nickname ()\+:
+
+La funzione ha il compito di verificare se il nickname passato è già presente nel database.
+
+A tal scopo acquisisce la lunghezza del nickname passato in ingresso, memorizzandola in una variabile, controllare se tale lunghezza è idonea. Fatto ciò apre il file utnetni, legge ogni utente presente al suo interno fino a quando non trova un utente con tale nickname, restituindo così 1. nel caso non lo trovasse, il valore restituito sarebbe zero.
+
+\begin{DoxyPrecond}{Precondizione}
+Non vi sono specifiche pre-\/condizioni per la funzione 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Il valore restituito rappresenta l\textquotesingle{}esito della funzione. 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{utenti_8c_a2fd9f3ff6568853f6af346c28235db37}\label{utenti_8c_a2fd9f3ff6568853f6af346c28235db37}} 
+\index{utenti.\+c@{utenti.\+c}!genera\+\_\+n\+\_\+utenti@{genera\+\_\+n\+\_\+utenti}}
+\index{genera\+\_\+n\+\_\+utenti@{genera\+\_\+n\+\_\+utenti}!utenti.\+c@{utenti.\+c}}
+\subsubsection{\texorpdfstring{genera\+\_\+n\+\_\+utenti()}{genera\_n\_utenti()}}
+{\footnotesize\ttfamily \hyperlink{structutente}{utente}$\ast$ genera\+\_\+n\+\_\+utenti (\begin{DoxyParamCaption}\item[{int}]{n }\end{DoxyParamCaption})}
+
+Funzione genera\+\_\+n\+\_\+utenti ()\+:
+
+La funzione ha il compito di generare randomicamente il numero degli utenti passato in ingresso alla funzione.
+
+A tale scopo, un for ripete la funzione genera\+\_\+utente per n volte, riempend un vettore di struct che viene restuituito dalla funzione.
+
+\begin{DoxyPrecond}{Precondizione}
+Non vi sono specifiche pre-\/condizioni per la funzione 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Il valore restituito è un puntatore al vettore di struct di tipo utente. 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{utenti_8c_a174d1325daa87807521ecfaeb15356cb}\label{utenti_8c_a174d1325daa87807521ecfaeb15356cb}} 
+\index{utenti.\+c@{utenti.\+c}!genera\+\_\+nickname@{genera\+\_\+nickname}}
+\index{genera\+\_\+nickname@{genera\+\_\+nickname}!utenti.\+c@{utenti.\+c}}
+\subsubsection{\texorpdfstring{genera\+\_\+nickname()}{genera\_nickname()}}
+{\footnotesize\ttfamily char$\ast$ genera\+\_\+nickname (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Funzione genera\+\_\+nickname ()\+:
+
+La funzione ha il compito di generare un nickname in modo casuale.
+
+A tal scopo, dopo aver allocato uno spazio di dimensione adatta al contenimento del nickname, posiziona il carattere terminale alla fine. Ripete un ciclo che permette continua fino a quando il nickname non raggiunge una dimesione accettata e/o il nickname esiste già. La generazione si serve del codice A\+S\+C\+II, generando random un numero corrispondente ad un carattere minuscolo dell\textquotesingle{}alfabeto.
+
+\begin{DoxyPrecond}{Precondizione}
+Non vi sono specifiche pre-\/condizioni per la funzione 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Il valore restituito è un puntatore alla stringa contenente il nickname. 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{utenti_8c_aba3a015d332734bce8e15b6b67860129}\label{utenti_8c_aba3a015d332734bce8e15b6b67860129}} 
+\index{utenti.\+c@{utenti.\+c}!genera\+\_\+password@{genera\+\_\+password}}
+\index{genera\+\_\+password@{genera\+\_\+password}!utenti.\+c@{utenti.\+c}}
+\subsubsection{\texorpdfstring{genera\+\_\+password()}{genera\_password()}}
+{\footnotesize\ttfamily char$\ast$ genera\+\_\+password (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Funzione genera\+\_\+password ()\+:
+
+La funzione permette la crezione randomica di una password.
+
+A tale scopo, viene generato un numero e cercato il corrispondente carattere sulla tabella A\+S\+C\+II.
+
+\begin{DoxyPrecond}{Precondizione}
+Non vi sono specifiche pre-\/condizioni per la funzione 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Il valore restituito è un puntatore alla stringa contenente la password. 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{utenti_8c_ac936c99ad1d8bb5c7d9b9d37147a0576}\label{utenti_8c_ac936c99ad1d8bb5c7d9b9d37147a0576}} 
+\index{utenti.\+c@{utenti.\+c}!genera\+\_\+utente@{genera\+\_\+utente}}
+\index{genera\+\_\+utente@{genera\+\_\+utente}!utenti.\+c@{utenti.\+c}}
+\subsubsection{\texorpdfstring{genera\+\_\+utente()}{genera\_utente()}}
+{\footnotesize\ttfamily \hyperlink{structutente}{utente} genera\+\_\+utente (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Funzione genera\+\_\+utente ()\+:
+
+La funzione ha il compito di generare randomicamente un utente.
+
+A tale scopo, viene creata una struct capace di contenere i dati relativi all\textquotesingle{}utente. Il nickname viene generato grazie una funzione \hyperlink{utenti_8c_a174d1325daa87807521ecfaeb15356cb}{genera\+\_\+nickname()} (anch\textquotesingle{}essa genera in modo randomico), grazie ad una funzione che copia il valore restituito nella struct creata. Stessa cosa vale per la password, generata tramite \hyperlink{utenti_8c_aba3a015d332734bce8e15b6b67860129}{genera\+\_\+password()}. Un ciclo for permette il rimpimento delle aree di memoria riservate alle preferenze alimentari, grazie alla funzione alimento\+\_\+causuale. Se non può essere estratto nessun nome per la preferenza viene assegnato \char`\"{}null\char`\"{}. Le preferenze che seguono una contenete \char`\"{}null\char`\"{}, verranno riempite con \char`\"{}null\char`\"{} anch\textquotesingle{}esse.
+
+\begin{DoxyPrecond}{Precondizione}
+Non vi sono specifiche pre-\/condizioni per la funzione 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Il valore restituito è una struct di tipo utente rimpita con dati significativi. 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{utenti_8c_a3d24eee1e0857cdb3235dbb72de2e0fd}\label{utenti_8c_a3d24eee1e0857cdb3235dbb72de2e0fd}} 
+\index{utenti.\+c@{utenti.\+c}!generatore\+\_\+password@{generatore\+\_\+password}}
+\index{generatore\+\_\+password@{generatore\+\_\+password}!utenti.\+c@{utenti.\+c}}
+\subsubsection{\texorpdfstring{generatore\+\_\+password()}{generatore\_password()}}
+{\footnotesize\ttfamily void generatore\+\_\+password (\begin{DoxyParamCaption}\item[{char $\ast$}]{password\+\_\+utente }\end{DoxyParamCaption})}
+
+Funzione generatore\+\_\+password ()\+:
+
+La funzione permette la scelta tra generazione password automatica e l\textquotesingle{}inserimento manuale.
+
+A tal scopo, dopo aver allocato uno spazio di dimensione adatta al contenimento della password, richiede l\textquotesingle{}inserimento di (1) per generare automaticamente una password, (2) per l\textquotesingle{}inserimento manuale. Superati i controlli sull\textquotesingle{}input, uno switch effettua un controllo sulla risposta e chiama una funzione in base ad essa.
+
+\begin{DoxyPrecond}{Precondizione}
+Non vi sono specifiche pre-\/condizioni per la funzione 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Il valore restituito è un puntatore alla stringa contenente la password. 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{utenti_8c_ad907371385837ca72c389ca32df39d80}\label{utenti_8c_ad907371385837ca72c389ca32df39d80}} 
+\index{utenti.\+c@{utenti.\+c}!gestore\+\_\+modifiche@{gestore\+\_\+modifiche}}
+\index{gestore\+\_\+modifiche@{gestore\+\_\+modifiche}!utenti.\+c@{utenti.\+c}}
+\subsubsection{\texorpdfstring{gestore\+\_\+modifiche()}{gestore\_modifiche()}}
+{\footnotesize\ttfamily int gestore\+\_\+modifiche (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Funzione gestore\+\_\+modifiche ()\+:
+
+La funzione ha il compito di gestire qualsiasi modifica l\textquotesingle{}utente voglia effettuare sui suoi dati
+
+A tale scopo, viene richiesto chiamata una funzione (\hyperlink{utenti_8c_a84eaff176b61eeb1ab0908897d4f3cc6}{autenticazione()}) per la verifica dei diritti alla modifiche Controllato l\textquotesingle{}esito di tale funzione, se positovo, viene richiesto quale campo si desider modificare. In base alla scelta, vengono chiamate funzioni oppurtune. Fatte le modifiche, viene salvato su file.
+
+\begin{DoxyPrecond}{Precondizione}
+
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Il valoredi ritorno rappresental\textquotesingle{}esito della funzione. 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{utenti_8c_a313944ae03275f5c5640091d94983752}\label{utenti_8c_a313944ae03275f5c5640091d94983752}} 
+\index{utenti.\+c@{utenti.\+c}!input\+\_\+nickname@{input\+\_\+nickname}}
+\index{input\+\_\+nickname@{input\+\_\+nickname}!utenti.\+c@{utenti.\+c}}
+\subsubsection{\texorpdfstring{input\+\_\+nickname()}{input\_nickname()}}
+{\footnotesize\ttfamily char$\ast$ input\+\_\+nickname (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Funzione input\+\_\+nickname ()\+:
+
+La funzione ha il compito di richiedere l\textquotesingle{}inserimento di un nickname destinato ad un nuovo utente.
+
+A tal scopo viene allorato una spazio di memoria per contenere il nickname inserito da tastiera da parte dell\textquotesingle{}utente. Viene richiesto di inserire da tastiera il nickname fino a quanto non viene inserito un nickname che non è esistente. La funzione ritorna il nickname.
+
+\begin{DoxyPrecond}{Precondizione}
+Non vi sono specifiche pre-\/condizioni per la funzione 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Il valore restituito è un puntatore alla stringa contenente il nickname. 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{utenti_8c_a32ea464274239d37a1c862420a2d2076}\label{utenti_8c_a32ea464274239d37a1c862420a2d2076}} 
+\index{utenti.\+c@{utenti.\+c}!input\+\_\+password@{input\+\_\+password}}
+\index{input\+\_\+password@{input\+\_\+password}!utenti.\+c@{utenti.\+c}}
+\subsubsection{\texorpdfstring{input\+\_\+password()}{input\_password()}}
+{\footnotesize\ttfamily char$\ast$ input\+\_\+password (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Funzione input\+\_\+password ()\+:
+
+La funzione permette la richiesta diinserimento di una password.
+
+A tal scopo, dopo aver allocato uno spazio di dimensione adatta al contenimento della password, richiede l\textquotesingle{}inserimento di quest\textquotesingle{}ultima da tastiera. Esegue vari controlli sulla dimensione e sul singolo input per verificare che abbia i requisiti richiesti.
+
+\begin{DoxyPrecond}{Precondizione}
+Non vi sono specifiche pre-\/condizioni per la funzione 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Il valore restituito è un puntatore alla stringa contenente la password. 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{utenti_8c_a4362675e19acd7b1e0bc1d064b285530}\label{utenti_8c_a4362675e19acd7b1e0bc1d064b285530}} 
+\index{utenti.\+c@{utenti.\+c}!input\+\_\+preferenza@{input\+\_\+preferenza}}
+\index{input\+\_\+preferenza@{input\+\_\+preferenza}!utenti.\+c@{utenti.\+c}}
+\subsubsection{\texorpdfstring{input\+\_\+preferenza()}{input\_preferenza()}}
+{\footnotesize\ttfamily int input\+\_\+preferenza (\begin{DoxyParamCaption}\item[{char $\ast$}]{preferenza }\end{DoxyParamCaption})}
+
+Funzione input\+\_\+preferenza ()\+:
+
+La funzione permette l\textquotesingle{}input da tastiera da parte dell\textquotesingle{}utente delle sue preferenze alimentari (massimo 3 preferenze).
+
+A tal scopo, viene richiesto l\textquotesingle{}inserimento da tastiera, che se supera i controlli, viene memorizzato nella stringa passata in ingresso alla funzione.
+
+\begin{DoxyPrecond}{Precondizione}
+Non vi sono specifiche pre-\/condizioni per la funzione 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Il valore restituito identifica l\textquotesingle{}esito della funzione. 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{utenti_8c_ad6a35d2d36fe87744edc5a28e0727da3}\label{utenti_8c_ad6a35d2d36fe87744edc5a28e0727da3}} 
+\index{utenti.\+c@{utenti.\+c}!input\+\_\+utente@{input\+\_\+utente}}
+\index{input\+\_\+utente@{input\+\_\+utente}!utenti.\+c@{utenti.\+c}}
+\subsubsection{\texorpdfstring{input\+\_\+utente()}{input\_utente()}}
+{\footnotesize\ttfamily \hyperlink{structutente}{utente} input\+\_\+utente (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Funzione input\+\_\+utente ()\+:
+
+La funzione è una funzione di base che richiama tutte le funzioni necessarie per riempire una struct di tipo utente. Dopo aver creato una struct capace di contenere i dati richiesti. Una strcpy copierà la stringa restituita dalla funzione posta come secondo argomento della stessa. Una funzione permetterà la generazione di una password (scelta tra due modalità diverse). Un for ripeterà la chiamata alla funzione per l\textquotesingle{}inserimento delle preferenze (alimentari), se la funzione resituisce 0, automaticamente le preferenze rimanenti verranno rimpite attraverso un for con \char`\"{}null\char`\"{}.
+
+\begin{DoxyPrecond}{Precondizione}
+Non vi sono specifiche pre-\/condizioni per la funzione 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Il valore restituito è una struct di tipo utente rimpita con dati significativi. 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{utenti_8c_a6427e961c8b4da62096f99b2fa7b051e}\label{utenti_8c_a6427e961c8b4da62096f99b2fa7b051e}} 
+\index{utenti.\+c@{utenti.\+c}!modifica\+\_\+preferenze@{modifica\+\_\+preferenze}}
+\index{modifica\+\_\+preferenze@{modifica\+\_\+preferenze}!utenti.\+c@{utenti.\+c}}
+\subsubsection{\texorpdfstring{modifica\+\_\+preferenze()}{modifica\_preferenze()}}
+{\footnotesize\ttfamily void modifica\+\_\+preferenze (\begin{DoxyParamCaption}\item[{\hyperlink{structutente}{utente} $\ast$}]{u }\end{DoxyParamCaption})}
+
+Funzione modifica\+\_\+preferenze ()\+:
+
+La funzione ha il compito di permettere la modifica delle preferenze di un utente.
+
+A tale scopo, viene passata la struct contenente i dati dell\textquotesingle{}utente, vengono controllate le preferenze effettivamente piene e se ci sono quindi preferenze vuote. Nel caso di presenza di preferenze vuote, viene richiesto all\textquotesingle{}utente se si desidere aggiungere o modficare una preferenza, in base alla scelte, di proseguirà alla modifica o della preferenza scelta o della prima prefereza risultante vuota. Se non vengono individuate preferenze vuote, si procede alla richiesta dell\textquotesingle{}inserimento del numero della preferenza che si desidera modificare.
+
+\begin{DoxyPrecond}{Precondizione}
+La struct in ingresso non può essere vuota. 
+\end{DoxyPrecond}
+\mbox{\Hypertarget{utenti_8c_a32e8982b503c10da62802a604f044efa}\label{utenti_8c_a32e8982b503c10da62802a604f044efa}} 
+\index{utenti.\+c@{utenti.\+c}!output\+\_\+preferenze@{output\+\_\+preferenze}}
+\index{output\+\_\+preferenze@{output\+\_\+preferenze}!utenti.\+c@{utenti.\+c}}
+\subsubsection{\texorpdfstring{output\+\_\+preferenze()}{output\_preferenze()}}
+{\footnotesize\ttfamily int output\+\_\+preferenze (\begin{DoxyParamCaption}\item[{const \hyperlink{structutente}{utente}}]{u }\end{DoxyParamCaption})}
+
+Funzione output\+\_\+preferenze ()\+:
+
+La funzione ha il compito di stampare su schermo la preferenze appartenenti alla struct di tipo utente passata in ingresso.
+
+A tale scopo, un for ripete un ciclo che stampa le preferenze se diverse da \char`\"{}null\char`\"{}. Se non sono presenti preferenze conteneti valori diversi da \char`\"{}null\char`\"{}, viene stampato un messaggio di assenza delle preferenze.
+
+\begin{DoxyPrecond}{Precondizione}
+struct in ingresso non vuota 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Il valore di ritorno è il numero delle preferenze con valori significativi. 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{utenti_8c_a87ee6c560888e42fdd61588cd98743b6}\label{utenti_8c_a87ee6c560888e42fdd61588cd98743b6}} 
+\index{utenti.\+c@{utenti.\+c}!output\+\_\+utente@{output\+\_\+utente}}
+\index{output\+\_\+utente@{output\+\_\+utente}!utenti.\+c@{utenti.\+c}}
+\subsubsection{\texorpdfstring{output\+\_\+utente()}{output\_utente()}}
+{\footnotesize\ttfamily void output\+\_\+utente (\begin{DoxyParamCaption}\item[{const \hyperlink{structutente}{utente}}]{u }\end{DoxyParamCaption})}
+
+Funzione output\+\_\+utente ()\+:
+
+La funzione ha il compito di stampare su schermo la struct passata in ingresso.
+
+\begin{DoxyPrecond}{Precondizione}
+nla struct non deve essere vuota 
+\end{DoxyPrecond}
+\mbox{\Hypertarget{utenti_8c_ad805a0034443857290327abf1b42e7e4}\label{utenti_8c_ad805a0034443857290327abf1b42e7e4}} 
+\index{utenti.\+c@{utenti.\+c}!salva\+\_\+n\+\_\+utenti@{salva\+\_\+n\+\_\+utenti}}
+\index{salva\+\_\+n\+\_\+utenti@{salva\+\_\+n\+\_\+utenti}!utenti.\+c@{utenti.\+c}}
+\subsubsection{\texorpdfstring{salva\+\_\+n\+\_\+utenti()}{salva\_n\_utenti()}}
+{\footnotesize\ttfamily int salva\+\_\+n\+\_\+utenti (\begin{DoxyParamCaption}\item[{\hyperlink{structutente}{utente} $\ast$}]{utenti,  }\item[{int}]{n }\end{DoxyParamCaption})}
+
+Funzione salva\+\_\+n\+\_\+utenti ()\+:
+
+La funzione ha il compito di scrivere su file il vettore di struct passatagli in ingresso, di dimensione n.
+
+A tale scopo, dopo aver superato gli opportuni controlli nell\textquotesingle{}apertura del database contenente gli utenti, while legge tutti gli utenti gia prensenti nel database e se trova uno con nickname con stringa vuota, lo sovrascrivere con una delle struct presenti nel vettore passato in ingresso. Se non ci sono utenti con nickname vuoto, si procede alla scrittura su file in coda.
+
+\begin{DoxyPrecond}{Precondizione}
+Non vi sono specifiche pre-\/condizioni per la funzione 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Il valore restituito è l\textquotesingle{}esito della funzione 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{utenti_8c_ad1417dda78bb50d93809ae0a28b2a29d}\label{utenti_8c_ad1417dda78bb50d93809ae0a28b2a29d}} 
+\index{utenti.\+c@{utenti.\+c}!visualizza\+\_\+database\+\_\+utenti@{visualizza\+\_\+database\+\_\+utenti}}
+\index{visualizza\+\_\+database\+\_\+utenti@{visualizza\+\_\+database\+\_\+utenti}!utenti.\+c@{utenti.\+c}}
+\subsubsection{\texorpdfstring{visualizza\+\_\+database\+\_\+utenti()}{visualizza\_database\_utenti()}}
+{\footnotesize\ttfamily int visualizza\+\_\+database\+\_\+utenti (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Funzione visualizza\+\_\+database\+\_\+utenti ()\+:
+
+La funzione ha il compito di visualizzare su schermo tutti gli utenti memorizzati su file.
+
+A tale scopo, un if controlla se ci sono effettivamente utenti registrati grazie una funzione conta\+\_\+utenti. Se esistono, vengono letti uno per volta e passati ad una funzione di stampa (\hyperlink{utenti_8c_a87ee6c560888e42fdd61588cd98743b6}{output\+\_\+utente()}).
+
+\begin{DoxyPostcond}{Postcondizione}
+Il valore di ritorno rappresental\textquotesingle{}esito della funzione. 
+\end{DoxyPostcond}

@@ -1,0 +1,333 @@
+\hypertarget{interfaccia_8c}{}\section{Riferimenti per il file src/interfaccia.c}
+\label{interfaccia_8c}\index{src/interfaccia.\+c@{src/interfaccia.\+c}}
+{\ttfamily \#include \char`\"{}interfaccia.\+h\char`\"{}}\newline
+\subsection*{Funzioni}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{interfaccia_8c_ac388cb8a7bdf8e1134b082f0e319598a}{input\+\_\+scelta} (int valore\+\_\+minimo, int valore\+\_\+massimo)
+\item 
+void \hyperlink{interfaccia_8c_a130b6aded4a8d07433980b94390d8613}{riga\+\_\+contorno} (int posizione)
+\item 
+void \hyperlink{interfaccia_8c_a40dc86acaca4220203cfb4d8106fa6bf}{parte\+\_\+inferiore\+\_\+tabella} ()
+\item 
+void \hyperlink{interfaccia_8c_a49194076b43e45701bc44e07e0b343ff}{voci\+\_\+principale} ()
+\item 
+void \hyperlink{interfaccia_8c_a2b77dcb04114586234b5ece38eae04d7}{voci\+\_\+alimenti} ()
+\item 
+void \hyperlink{interfaccia_8c_ac7d83d7d70dee99ec9bcd7e40c5b4e40}{voci\+\_\+ricette} ()
+\item 
+void \hyperlink{interfaccia_8c_a83d146de741cf43f328d2c319017531d}{voci\+\_\+utenti} ()
+\item 
+void \hyperlink{interfaccia_8c_aaec7e51d70c8cd2f6cc2311ed163c078}{voci\+\_\+ricerca} ()
+\item 
+void \hyperlink{interfaccia_8c_a10e9bfba80fd53682ea833ad3a96a463}{voci\+\_\+lista\+\_\+spesa} ()
+\item 
+void \hyperlink{interfaccia_8c_ac0d91a73944238ab0ebde9149b01c283}{voci\+\_\+menu\+\_\+settimanale} ()
+\item 
+void \hyperlink{interfaccia_8c_a666ab0c1dae805e82db0dcad4da7b608}{voci\+\_\+calorie} ()
+\item 
+int \hyperlink{interfaccia_8c_adc2b2f26b29acaa72891bd39416bec5f}{visualizza\+\_\+voci\+\_\+menu} (int voce)
+\item 
+int \hyperlink{interfaccia_8c_a1f6c88fb5849cfab36f8621a0187b77c}{visualizza\+\_\+notifiche} ()
+\item 
+int \hyperlink{interfaccia_8c_aec7687ce69bd5a865340e5011d48b52b}{conta\+\_\+notifiche} ()
+\item 
+int \hyperlink{interfaccia_8c_accc1f65a850b0063960a19c999c4a3a0}{menu\+\_\+calorie} ()
+\item 
+int \hyperlink{interfaccia_8c_acf439d43d13f11ec13408a768863c535}{menu\+\_\+lista\+\_\+spesa} ()
+\item 
+int \hyperlink{interfaccia_8c_a3c64fce0f9c3d2fae65d8067bf885e72}{gestore\+\_\+menu\+\_\+settimanale} ()
+\item 
+int \hyperlink{interfaccia_8c_aa653309d79e57848841f76e6a61ae0a8}{menu\+\_\+utente} ()
+\item 
+int \hyperlink{interfaccia_8c_a0e892819b288b8ae8a006103ec6bb8a9}{menu\+\_\+ricerca} ()
+\item 
+int \hyperlink{interfaccia_8c_a700283b62fd3e1eb14874fdb1c15e538}{menu\+\_\+ricette} ()
+\item 
+int \hyperlink{interfaccia_8c_a9ab5271ce089740cc81f331e0a145794}{menu\+\_\+alimenti} ()
+\item 
+int \hyperlink{interfaccia_8c_ac1eddfc91b94d527351aa53c2c6b9db8}{menu\+\_\+principale} ()
+\item 
+int \hyperlink{interfaccia_8c_a91dcd548fb79b3dd2e871710a16f6efa}{visualizza\+\_\+crediti} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Documentazione delle funzioni}
+\mbox{\Hypertarget{interfaccia_8c_aec7687ce69bd5a865340e5011d48b52b}\label{interfaccia_8c_aec7687ce69bd5a865340e5011d48b52b}} 
+\index{interfaccia.\+c@{interfaccia.\+c}!conta\+\_\+notifiche@{conta\+\_\+notifiche}}
+\index{conta\+\_\+notifiche@{conta\+\_\+notifiche}!interfaccia.\+c@{interfaccia.\+c}}
+\subsubsection{\texorpdfstring{conta\+\_\+notifiche()}{conta\_notifiche()}}
+{\footnotesize\ttfamily int conta\+\_\+notifiche (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Funzione che serve a contare tutte le tipologie di notifiche che vanno mostrate nel menú principale \begin{DoxyPrecond}{Precondizione}
+Nessuna pre condizione particolare 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Il valore restituito deve essere un intero significativo ($>$=0) 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{interfaccia_8c_a3c64fce0f9c3d2fae65d8067bf885e72}\label{interfaccia_8c_a3c64fce0f9c3d2fae65d8067bf885e72}} 
+\index{interfaccia.\+c@{interfaccia.\+c}!gestore\+\_\+menu\+\_\+settimanale@{gestore\+\_\+menu\+\_\+settimanale}}
+\index{gestore\+\_\+menu\+\_\+settimanale@{gestore\+\_\+menu\+\_\+settimanale}!interfaccia.\+c@{interfaccia.\+c}}
+\subsubsection{\texorpdfstring{gestore\+\_\+menu\+\_\+settimanale()}{gestore\_menu\_settimanale()}}
+{\footnotesize\ttfamily int gestore\+\_\+menu\+\_\+settimanale (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Funzione che si occupa di far selezionare all\textquotesingle{}utente le operazioni possibili da effettuare sul menu settimanale. La scelta dell\textquotesingle{}opzione viene fatta attraverso una switch \begin{DoxyPrecond}{Precondizione}
+Nessuna pre condizione particolare 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Il risultato deve essere quello che l\textquotesingle{}opzione scelta si occupa 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{interfaccia_8c_ac388cb8a7bdf8e1134b082f0e319598a}\label{interfaccia_8c_ac388cb8a7bdf8e1134b082f0e319598a}} 
+\index{interfaccia.\+c@{interfaccia.\+c}!input\+\_\+scelta@{input\+\_\+scelta}}
+\index{input\+\_\+scelta@{input\+\_\+scelta}!interfaccia.\+c@{interfaccia.\+c}}
+\subsubsection{\texorpdfstring{input\+\_\+scelta()}{input\_scelta()}}
+{\footnotesize\ttfamily int input\+\_\+scelta (\begin{DoxyParamCaption}\item[{int}]{valore\+\_\+minimo,  }\item[{int}]{valore\+\_\+massimo }\end{DoxyParamCaption})}
+
+La funzione input scelta si occupa di ricevere in input il comando per accedere ad una determinata voce dei menu. Si e\textquotesingle{} pensato che la scelta essendo un numero avrá anche esso un range. Se la scelta e\textquotesingle{} compresa nel range vuol dire che e\textquotesingle{} accettabile altrimenti verrá scartata e verrá richiesto di reinserire il valore.
+
+\begin{DoxyPrecond}{Precondizione}
+Che vengano passati dei valori significativi di massimo e minimo 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Il valore restituito deve essere un intero 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{interfaccia_8c_a9ab5271ce089740cc81f331e0a145794}\label{interfaccia_8c_a9ab5271ce089740cc81f331e0a145794}} 
+\index{interfaccia.\+c@{interfaccia.\+c}!menu\+\_\+alimenti@{menu\+\_\+alimenti}}
+\index{menu\+\_\+alimenti@{menu\+\_\+alimenti}!interfaccia.\+c@{interfaccia.\+c}}
+\subsubsection{\texorpdfstring{menu\+\_\+alimenti()}{menu\_alimenti()}}
+{\footnotesize\ttfamily int menu\+\_\+alimenti (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Funzione che si occupa di far selezionare all\textquotesingle{}utente le operazioni possibili da effettuare sui dati di tipo alimenti. La scelta dell\textquotesingle{}opzione viene fatta attraverso una switch \begin{DoxyPrecond}{Precondizione}
+Nessuna pre condizione particolare 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Il risultato deve essere quello che l\textquotesingle{}opzione scelta si occupa 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{interfaccia_8c_accc1f65a850b0063960a19c999c4a3a0}\label{interfaccia_8c_accc1f65a850b0063960a19c999c4a3a0}} 
+\index{interfaccia.\+c@{interfaccia.\+c}!menu\+\_\+calorie@{menu\+\_\+calorie}}
+\index{menu\+\_\+calorie@{menu\+\_\+calorie}!interfaccia.\+c@{interfaccia.\+c}}
+\subsubsection{\texorpdfstring{menu\+\_\+calorie()}{menu\_calorie()}}
+{\footnotesize\ttfamily int menu\+\_\+calorie (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Funzione che si occupa di far selezionare all\textquotesingle{}utente le operazioni possibili da effettuare sul menu calorie. La scelta dell\textquotesingle{}opzione viene fatta attraverso una switch \begin{DoxyPrecond}{Precondizione}
+Nessuna pre condizione particolare 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Il risultato deve essere quello che l\textquotesingle{}opzione scelta si occupa 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{interfaccia_8c_acf439d43d13f11ec13408a768863c535}\label{interfaccia_8c_acf439d43d13f11ec13408a768863c535}} 
+\index{interfaccia.\+c@{interfaccia.\+c}!menu\+\_\+lista\+\_\+spesa@{menu\+\_\+lista\+\_\+spesa}}
+\index{menu\+\_\+lista\+\_\+spesa@{menu\+\_\+lista\+\_\+spesa}!interfaccia.\+c@{interfaccia.\+c}}
+\subsubsection{\texorpdfstring{menu\+\_\+lista\+\_\+spesa()}{menu\_lista\_spesa()}}
+{\footnotesize\ttfamily int menu\+\_\+lista\+\_\+spesa (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Funzione che si occupa di far selezionare all\textquotesingle{}utente le operazioni possibili da effettuare sul menu lista della spesa. La scelta dell\textquotesingle{}opzione viene fatta attraverso una switch \begin{DoxyPrecond}{Precondizione}
+Nessuna pre condizione particolare 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Il risultato deve essere quello che l\textquotesingle{}opzione scelta si occupa 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{interfaccia_8c_ac1eddfc91b94d527351aa53c2c6b9db8}\label{interfaccia_8c_ac1eddfc91b94d527351aa53c2c6b9db8}} 
+\index{interfaccia.\+c@{interfaccia.\+c}!menu\+\_\+principale@{menu\+\_\+principale}}
+\index{menu\+\_\+principale@{menu\+\_\+principale}!interfaccia.\+c@{interfaccia.\+c}}
+\subsubsection{\texorpdfstring{menu\+\_\+principale()}{menu\_principale()}}
+{\footnotesize\ttfamily int menu\+\_\+principale (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Funzione che si occupa di far selezionare all\textquotesingle{}utente le operazioni possibili da effettuare sul menu principale. La scelta dell\textquotesingle{}opzione viene fatta attraverso una switch \begin{DoxyPrecond}{Precondizione}
+Nessuna pre condizione particolare 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Il risultato deve essere quello che l\textquotesingle{}opzione scelta si occupa 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{interfaccia_8c_a0e892819b288b8ae8a006103ec6bb8a9}\label{interfaccia_8c_a0e892819b288b8ae8a006103ec6bb8a9}} 
+\index{interfaccia.\+c@{interfaccia.\+c}!menu\+\_\+ricerca@{menu\+\_\+ricerca}}
+\index{menu\+\_\+ricerca@{menu\+\_\+ricerca}!interfaccia.\+c@{interfaccia.\+c}}
+\subsubsection{\texorpdfstring{menu\+\_\+ricerca()}{menu\_ricerca()}}
+{\footnotesize\ttfamily int menu\+\_\+ricerca (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Funzione che si occupa di passare gli alimenti presenti nel frigo e le ricette salvate nel database e di effettuare ricerche e ordinamenti su tali dati estratti. \begin{DoxyPrecond}{Precondizione}
+Nessuna pre condizione particolare 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Che sia stato mostrato il giusto risultato in ase alla richiesta dell\textquotesingle{}utente 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{interfaccia_8c_a700283b62fd3e1eb14874fdb1c15e538}\label{interfaccia_8c_a700283b62fd3e1eb14874fdb1c15e538}} 
+\index{interfaccia.\+c@{interfaccia.\+c}!menu\+\_\+ricette@{menu\+\_\+ricette}}
+\index{menu\+\_\+ricette@{menu\+\_\+ricette}!interfaccia.\+c@{interfaccia.\+c}}
+\subsubsection{\texorpdfstring{menu\+\_\+ricette()}{menu\_ricette()}}
+{\footnotesize\ttfamily int menu\+\_\+ricette (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Funzione che si occupa di far selezionare all\textquotesingle{}utente le operazioni possibili da effettuare sui dati di tipo ricetta. La scelta dell\textquotesingle{}opzione viene fatta attraverso una switch \begin{DoxyPrecond}{Precondizione}
+Nessuna pre condizione particolare 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Il risultato deve essere quello che l\textquotesingle{}opzione scelta si occupa 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{interfaccia_8c_aa653309d79e57848841f76e6a61ae0a8}\label{interfaccia_8c_aa653309d79e57848841f76e6a61ae0a8}} 
+\index{interfaccia.\+c@{interfaccia.\+c}!menu\+\_\+utente@{menu\+\_\+utente}}
+\index{menu\+\_\+utente@{menu\+\_\+utente}!interfaccia.\+c@{interfaccia.\+c}}
+\subsubsection{\texorpdfstring{menu\+\_\+utente()}{menu\_utente()}}
+{\footnotesize\ttfamily int menu\+\_\+utente (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Funzione che si occupa di passare gli alimenti presenti nel frigo e le ricette salvate nel database e di effettuare ricerche e ordinamenti su tali dati estratti. \begin{DoxyPrecond}{Precondizione}
+Nessuna pre condizione particolare 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Che sia stato mostrato il giusto risultato in ase alla richiesta dell\textquotesingle{}utente 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{interfaccia_8c_a40dc86acaca4220203cfb4d8106fa6bf}\label{interfaccia_8c_a40dc86acaca4220203cfb4d8106fa6bf}} 
+\index{interfaccia.\+c@{interfaccia.\+c}!parte\+\_\+inferiore\+\_\+tabella@{parte\+\_\+inferiore\+\_\+tabella}}
+\index{parte\+\_\+inferiore\+\_\+tabella@{parte\+\_\+inferiore\+\_\+tabella}!interfaccia.\+c@{interfaccia.\+c}}
+\subsubsection{\texorpdfstring{parte\+\_\+inferiore\+\_\+tabella()}{parte\_inferiore\_tabella()}}
+{\footnotesize\ttfamily void parte\+\_\+inferiore\+\_\+tabella (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Funzione che si occupa della visualizzazione della riga inferiore del contorno della schermata \begin{DoxyPrecond}{Precondizione}
+Nessuna particolare pre condizione 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Che sia stata visualizzata correttamente la parte la linea di contorno 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{interfaccia_8c_a130b6aded4a8d07433980b94390d8613}\label{interfaccia_8c_a130b6aded4a8d07433980b94390d8613}} 
+\index{interfaccia.\+c@{interfaccia.\+c}!riga\+\_\+contorno@{riga\+\_\+contorno}}
+\index{riga\+\_\+contorno@{riga\+\_\+contorno}!interfaccia.\+c@{interfaccia.\+c}}
+\subsubsection{\texorpdfstring{riga\+\_\+contorno()}{riga\_contorno()}}
+{\footnotesize\ttfamily void riga\+\_\+contorno (\begin{DoxyParamCaption}\item[{int}]{posizione }\end{DoxyParamCaption})}
+
+Funzione che si occupa della visualizzazione del contorno del titolo \begin{DoxyPrecond}{Precondizione}
+Nessuna particolare pre condizione 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Che sia visualizzata correttamente la linea di contorno in base alla posizione 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{interfaccia_8c_a91dcd548fb79b3dd2e871710a16f6efa}\label{interfaccia_8c_a91dcd548fb79b3dd2e871710a16f6efa}} 
+\index{interfaccia.\+c@{interfaccia.\+c}!visualizza\+\_\+crediti@{visualizza\+\_\+crediti}}
+\index{visualizza\+\_\+crediti@{visualizza\+\_\+crediti}!interfaccia.\+c@{interfaccia.\+c}}
+\subsubsection{\texorpdfstring{visualizza\+\_\+crediti()}{visualizza\_crediti()}}
+{\footnotesize\ttfamily int visualizza\+\_\+crediti (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyPrecond}{Precondizione}
+Nessuna pre condizione particolare 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Il valore restituito deve essere una stringa oppure un puntatore null 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{interfaccia_8c_a1f6c88fb5849cfab36f8621a0187b77c}\label{interfaccia_8c_a1f6c88fb5849cfab36f8621a0187b77c}} 
+\index{interfaccia.\+c@{interfaccia.\+c}!visualizza\+\_\+notifiche@{visualizza\+\_\+notifiche}}
+\index{visualizza\+\_\+notifiche@{visualizza\+\_\+notifiche}!interfaccia.\+c@{interfaccia.\+c}}
+\subsubsection{\texorpdfstring{visualizza\+\_\+notifiche()}{visualizza\_notifiche()}}
+{\footnotesize\ttfamily int visualizza\+\_\+notifiche (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Funzione che si occupa di mostare le operazioni urgenti che l\textquotesingle{}utente ddeve effettuare. Nel caso in cui il valore delle notifiche sia maggiore di 1 e quindi il contatore degli alimenti scaduti segnala che un alimento o piú sono scaduti occorre chiedere se l\textquotesingle{}utente intende eliminare tali alimenti o tenerli. Nel caso in cui l\textquotesingle{}utente accettasse occorre richiamare la funzione che si occupa dell\textquotesingle{}eliminazione degli alimenti scaduti. In caso non ci siano notifiche da segnalare viene mostrato un messaggio. \begin{DoxyPrecond}{Precondizione}
+Nessuna pre condizione particolare 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Che venga effettuato con successo l\textquotesingle{}eliminazione degli alimenti scaduti in caso di accettazione da parte dell\textquotesingle{}utente 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{interfaccia_8c_adc2b2f26b29acaa72891bd39416bec5f}\label{interfaccia_8c_adc2b2f26b29acaa72891bd39416bec5f}} 
+\index{interfaccia.\+c@{interfaccia.\+c}!visualizza\+\_\+voci\+\_\+menu@{visualizza\+\_\+voci\+\_\+menu}}
+\index{visualizza\+\_\+voci\+\_\+menu@{visualizza\+\_\+voci\+\_\+menu}!interfaccia.\+c@{interfaccia.\+c}}
+\subsubsection{\texorpdfstring{visualizza\+\_\+voci\+\_\+menu()}{visualizza\_voci\_menu()}}
+{\footnotesize\ttfamily int visualizza\+\_\+voci\+\_\+menu (\begin{DoxyParamCaption}\item[{int}]{voce }\end{DoxyParamCaption})}
+
+La funzione visualizza\+\_\+voci\+\_\+menu allggerisce il codice delle funzioni dei menu e si occupa di mostrare opportunatamente le voci appertenenti ad un determinato menu \begin{DoxyPrecond}{Precondizione}
+Che la variabile voce sia un valore significativo 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Che siano state visualizzate le opzioni corrette per ogni menu 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{interfaccia_8c_a2b77dcb04114586234b5ece38eae04d7}\label{interfaccia_8c_a2b77dcb04114586234b5ece38eae04d7}} 
+\index{interfaccia.\+c@{interfaccia.\+c}!voci\+\_\+alimenti@{voci\+\_\+alimenti}}
+\index{voci\+\_\+alimenti@{voci\+\_\+alimenti}!interfaccia.\+c@{interfaccia.\+c}}
+\subsubsection{\texorpdfstring{voci\+\_\+alimenti()}{voci\_alimenti()}}
+{\footnotesize\ttfamily void voci\+\_\+alimenti (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Funzione che si occupa della visualizzazione delle voci del menu alimenti \begin{DoxyPrecond}{Precondizione}
+Nessuna particolare pre condizione 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Che siano state visualizzate le opzioni corrette per il menu 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{interfaccia_8c_a666ab0c1dae805e82db0dcad4da7b608}\label{interfaccia_8c_a666ab0c1dae805e82db0dcad4da7b608}} 
+\index{interfaccia.\+c@{interfaccia.\+c}!voci\+\_\+calorie@{voci\+\_\+calorie}}
+\index{voci\+\_\+calorie@{voci\+\_\+calorie}!interfaccia.\+c@{interfaccia.\+c}}
+\subsubsection{\texorpdfstring{voci\+\_\+calorie()}{voci\_calorie()}}
+{\footnotesize\ttfamily void voci\+\_\+calorie (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Funzione che si occupa della visualizzazione delle voci del menu calorie \begin{DoxyPrecond}{Precondizione}
+Nessuna particolare pre condizione 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Che siano state visualizzate le opzioni corrette per il menu 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{interfaccia_8c_a10e9bfba80fd53682ea833ad3a96a463}\label{interfaccia_8c_a10e9bfba80fd53682ea833ad3a96a463}} 
+\index{interfaccia.\+c@{interfaccia.\+c}!voci\+\_\+lista\+\_\+spesa@{voci\+\_\+lista\+\_\+spesa}}
+\index{voci\+\_\+lista\+\_\+spesa@{voci\+\_\+lista\+\_\+spesa}!interfaccia.\+c@{interfaccia.\+c}}
+\subsubsection{\texorpdfstring{voci\+\_\+lista\+\_\+spesa()}{voci\_lista\_spesa()}}
+{\footnotesize\ttfamily void voci\+\_\+lista\+\_\+spesa (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Funzione che si occupa della visualizzazione delle voci del menu lista della spesa \begin{DoxyPrecond}{Precondizione}
+Nessuna particolare pre condizione 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Che siano state visualizzate le opzioni corrette per il menu 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{interfaccia_8c_ac0d91a73944238ab0ebde9149b01c283}\label{interfaccia_8c_ac0d91a73944238ab0ebde9149b01c283}} 
+\index{interfaccia.\+c@{interfaccia.\+c}!voci\+\_\+menu\+\_\+settimanale@{voci\+\_\+menu\+\_\+settimanale}}
+\index{voci\+\_\+menu\+\_\+settimanale@{voci\+\_\+menu\+\_\+settimanale}!interfaccia.\+c@{interfaccia.\+c}}
+\subsubsection{\texorpdfstring{voci\+\_\+menu\+\_\+settimanale()}{voci\_menu\_settimanale()}}
+{\footnotesize\ttfamily void voci\+\_\+menu\+\_\+settimanale (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Funzione che si occupa della visualizzazione delle voci del menu settimanale \begin{DoxyPrecond}{Precondizione}
+Nessuna particolare pre condizione 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Che siano state visualizzate le opzioni corrette per il menu 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{interfaccia_8c_a49194076b43e45701bc44e07e0b343ff}\label{interfaccia_8c_a49194076b43e45701bc44e07e0b343ff}} 
+\index{interfaccia.\+c@{interfaccia.\+c}!voci\+\_\+principale@{voci\+\_\+principale}}
+\index{voci\+\_\+principale@{voci\+\_\+principale}!interfaccia.\+c@{interfaccia.\+c}}
+\subsubsection{\texorpdfstring{voci\+\_\+principale()}{voci\_principale()}}
+{\footnotesize\ttfamily void voci\+\_\+principale (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Funzione che si occupa della visualizzazione delle voci del menu principale \begin{DoxyPrecond}{Precondizione}
+Nessuna particolare pre condizione 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Che siano state visualizzate le opzioni corrette per il menu 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{interfaccia_8c_aaec7e51d70c8cd2f6cc2311ed163c078}\label{interfaccia_8c_aaec7e51d70c8cd2f6cc2311ed163c078}} 
+\index{interfaccia.\+c@{interfaccia.\+c}!voci\+\_\+ricerca@{voci\+\_\+ricerca}}
+\index{voci\+\_\+ricerca@{voci\+\_\+ricerca}!interfaccia.\+c@{interfaccia.\+c}}
+\subsubsection{\texorpdfstring{voci\+\_\+ricerca()}{voci\_ricerca()}}
+{\footnotesize\ttfamily void voci\+\_\+ricerca (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Funzione che si occupa della visualizzazione delle voci del menu ricerca \begin{DoxyPrecond}{Precondizione}
+Nessuna particolare pre condizione 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Che siano state visualizzate le opzioni corrette per il menu 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{interfaccia_8c_ac7d83d7d70dee99ec9bcd7e40c5b4e40}\label{interfaccia_8c_ac7d83d7d70dee99ec9bcd7e40c5b4e40}} 
+\index{interfaccia.\+c@{interfaccia.\+c}!voci\+\_\+ricette@{voci\+\_\+ricette}}
+\index{voci\+\_\+ricette@{voci\+\_\+ricette}!interfaccia.\+c@{interfaccia.\+c}}
+\subsubsection{\texorpdfstring{voci\+\_\+ricette()}{voci\_ricette()}}
+{\footnotesize\ttfamily void voci\+\_\+ricette (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Funzione che si occupa della visualizzazione delle voci del menu ricette \begin{DoxyPrecond}{Precondizione}
+Nessuna particolare pre condizione 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Che siano state visualizzate le opzioni corrette per il menu 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{interfaccia_8c_a83d146de741cf43f328d2c319017531d}\label{interfaccia_8c_a83d146de741cf43f328d2c319017531d}} 
+\index{interfaccia.\+c@{interfaccia.\+c}!voci\+\_\+utenti@{voci\+\_\+utenti}}
+\index{voci\+\_\+utenti@{voci\+\_\+utenti}!interfaccia.\+c@{interfaccia.\+c}}
+\subsubsection{\texorpdfstring{voci\+\_\+utenti()}{voci\_utenti()}}
+{\footnotesize\ttfamily void voci\+\_\+utenti (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Funzione che si occupa della visualizzazione delle voci del menu utenti \begin{DoxyPrecond}{Precondizione}
+Nessuna particolare pre condizione 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Che siano state visualizzate le opzioni corrette per il menu 
+\end{DoxyPostcond}

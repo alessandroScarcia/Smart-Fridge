@@ -1,0 +1,707 @@
+\hypertarget{interfaccia_8h}{}\section{Riferimenti per il file src/interfaccia.h}
+\label{interfaccia_8h}\index{src/interfaccia.\+h@{src/interfaccia.\+h}}
+
+
+Libreria per l\textquotesingle{}interfaccia utente.  
+
+
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$ctype.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}alimenti.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}ricette.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}lista\+\_\+spesa.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utenti.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}menu\+\_\+settimanale.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}calorie.\+h\char`\"{}}\newline
+\subsection*{Definizioni}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{interfaccia_8h_af12cbc4b154eb2eefd852623d7806dc8}{M\+A\+T\+H\+\_\+\+L\+IB}
+\begin{DoxyCompactList}\small\item\em Inclusione della libreria matematica. \end{DoxyCompactList}\item 
+\#define \hyperlink{interfaccia_8h_a3f71b4ea87bcf3feda424bc285bcef6a}{S\+T\+R\+I\+N\+G\+\_\+\+L\+IB}
+\begin{DoxyCompactList}\small\item\em Inclusione delle librerie per la manipolazione di stringhe e caratteri. \end{DoxyCompactList}\item 
+\#define \hyperlink{interfaccia_8h_a6ac30e0f8fd65f06c0a0ada1e1a05551}{I\+N\+T\+E\+R\+F\+A\+C\+C\+I\+A\+\_\+\+L\+IB}
+\begin{DoxyCompactList}\small\item\em libreria che permette la gestione(manipolazione,caricamento ecc) degli alimenti \end{DoxyCompactList}\item 
+\#define \hyperlink{interfaccia_8h_a250010b4515952ebdb6501d5afeba1d1}{M\+E\+N\+U\+\_\+\+P\+R\+I\+N\+C\+I\+P\+A\+LE}~0
+\begin{DoxyCompactList}\small\item\em C\+O\+S\+T\+A\+N\+TI P\+ER LA V\+I\+S\+U\+A\+L\+I\+Z\+Z\+A\+Z\+I\+O\+NE D\+E\+L\+LE V\+O\+CI D\+EL M\+E\+NU. \end{DoxyCompactList}\item 
+\#define \hyperlink{interfaccia_8h_ac25c7040bc3a00f670b23deae4e1f89c}{M\+E\+N\+U\+\_\+\+A\+L\+I\+M\+E\+N\+TI}~1
+\item 
+\#define \hyperlink{interfaccia_8h_a94b5d72cc672cd6a059d7505b425bcb7}{M\+E\+N\+U\+\_\+\+R\+I\+C\+E\+T\+TE}~2
+\item 
+\#define \hyperlink{interfaccia_8h_a16139520267780909ac02d8fde3064fc}{M\+E\+N\+U\+\_\+\+U\+T\+E\+N\+TI}~3
+\item 
+\#define \hyperlink{interfaccia_8h_a2e2a4a7197f7000d904a7fa1ee43d0dc}{O\+P\+Z\+I\+O\+N\+I\+\_\+\+M\+E\+N\+U\+\_\+\+S\+E\+T\+T\+I\+M\+A\+N\+A\+LE}~4
+\item 
+\#define \hyperlink{interfaccia_8h_ad1e0fcaba24069db52d272b24a030d03}{M\+E\+N\+U\+\_\+\+C\+A\+L\+O\+R\+IE}~5
+\item 
+\#define \hyperlink{interfaccia_8h_a6930909e7c43b228278c29a83d598dd0}{M\+E\+N\+U\+\_\+\+L\+I\+S\+T\+A\+\_\+\+S\+P\+E\+SA}~6
+\item 
+\#define \hyperlink{interfaccia_8h_a3930be24bc59270a8692bbdb570ee68f}{M\+E\+N\+U\+\_\+\+R\+I\+C\+E\+R\+CA}~7
+\item 
+\#define \hyperlink{interfaccia_8h_aa7d76397b4fbba32d209e0f193adb141}{S\+U\+P\+E\+R\+I\+O\+RE}~1
+\item 
+\#define \hyperlink{interfaccia_8h_a4990440f894717d34582d67d7c3018ed}{I\+N\+F\+E\+R\+I\+O\+RE}~0
+\item 
+\#define \hyperlink{interfaccia_8h_af039d148136a74cfad9baca72cd34357}{M\+I\+N\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+P\+R\+I\+N\+C\+I\+P\+A\+LE}~0
+\begin{DoxyCompactList}\small\item\em C\+O\+S\+T\+A\+N\+TI P\+ER D\+E\+T\+E\+R\+M\+I\+N\+A\+RE IL R\+A\+N\+GE D\+EI V\+A\+L\+O\+RI DI S\+C\+E\+L\+TA N\+EL M\+E\+NU. \end{DoxyCompactList}\item 
+\#define \hyperlink{interfaccia_8h_a28d9ef50c4855bd8bff98ddcf8c6abff}{M\+A\+X\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+P\+R\+I\+N\+C\+I\+P\+A\+LE}~99
+\item 
+\#define \hyperlink{interfaccia_8h_a089679d174d7513c983dadfbc7a0dbdf}{M\+I\+N\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+R\+I\+C\+E\+T\+TA}~0
+\item 
+\#define \hyperlink{interfaccia_8h_acbe6650b9b6b3aebdba738fb4581b074}{M\+A\+X\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+R\+I\+C\+E\+T\+TA}~6
+\item 
+\#define \hyperlink{interfaccia_8h_a1897c2ebecb5b907073bfd4117d6ccac}{M\+I\+N\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+U\+T\+E\+N\+TE}~0
+\item 
+\#define \hyperlink{interfaccia_8h_a9cac4dcd58150a09062cceb2b5665c45}{M\+A\+X\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+U\+T\+E\+N\+TE}~4
+\item 
+\#define \hyperlink{interfaccia_8h_a622192336538b0bb4e8d4f167e71d58b}{M\+I\+N\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+A\+L\+I\+M\+E\+N\+TI}~0
+\item 
+\#define \hyperlink{interfaccia_8h_a58008f586a40184ff11288391ffb73c0}{M\+A\+X\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+A\+L\+I\+M\+E\+N\+TI}~6
+\item 
+\#define \hyperlink{interfaccia_8h_ac101a183714f4b0780fe6102b60d172e}{M\+I\+N\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+R\+I\+C\+E\+R\+CA}~0
+\item 
+\#define \hyperlink{interfaccia_8h_a81e401994740157059b2dfbabe71f717}{M\+A\+X\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+R\+I\+C\+E\+R\+CA}~6
+\item 
+\#define \hyperlink{interfaccia_8h_afb4f7db26672cd703315fe4b7639910e}{M\+I\+N\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+S\+P\+E\+SA}~0
+\item 
+\#define \hyperlink{interfaccia_8h_a11eeabc01f9a9fa1519bf6df19fb5fff}{M\+A\+X\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+S\+P\+E\+SA}~4
+\item 
+\#define \hyperlink{interfaccia_8h_a33bb900eb9675e17f77d77e648c7fe00}{M\+I\+N\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+M\+E\+N\+U\+\_\+\+S\+ET}~0
+\item 
+\#define \hyperlink{interfaccia_8h_a9a24ad19c29c15ed45b6701cf49fed14}{M\+A\+X\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+M\+E\+N\+U\+\_\+\+S\+ET}~4
+\item 
+\#define \hyperlink{interfaccia_8h_a3f55b7176a86044b24c2113a86e6facc}{M\+I\+N\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+M\+E\+N\+U\+\_\+\+C\+A\+L\+O\+R\+IE}~0
+\item 
+\#define \hyperlink{interfaccia_8h_a53a186e828d0571002a3425ff64663a9}{M\+A\+X\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+M\+E\+N\+U\+\_\+\+C\+A\+L\+O\+R\+IE}~4
+\end{DoxyCompactItemize}
+\subsection*{Funzioni}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{interfaccia_8h_ac388cb8a7bdf8e1134b082f0e319598a}{input\+\_\+scelta} (int valore\+\_\+minimo, int valore\+\_\+massimo)
+\item 
+int \hyperlink{interfaccia_8h_a9ab5271ce089740cc81f331e0a145794}{menu\+\_\+alimenti} ()
+\item 
+int \hyperlink{interfaccia_8h_ac1eddfc91b94d527351aa53c2c6b9db8}{menu\+\_\+principale} ()
+\item 
+int \hyperlink{interfaccia_8h_a700283b62fd3e1eb14874fdb1c15e538}{menu\+\_\+ricette} ()
+\item 
+int \hyperlink{interfaccia_8h_acf439d43d13f11ec13408a768863c535}{menu\+\_\+lista\+\_\+spesa} ()
+\item 
+int \hyperlink{interfaccia_8h_a08855020533526ba029ac0e92b997e38}{menu\+\_\+utenti} ()
+\item 
+int \hyperlink{interfaccia_8h_accc1f65a850b0063960a19c999c4a3a0}{menu\+\_\+calorie} ()
+\item 
+int \hyperlink{interfaccia_8h_a3c64fce0f9c3d2fae65d8067bf885e72}{gestore\+\_\+menu\+\_\+settimanale} ()
+\item 
+int \hyperlink{interfaccia_8h_a0e892819b288b8ae8a006103ec6bb8a9}{menu\+\_\+ricerca} ()
+\item 
+int \hyperlink{interfaccia_8h_aec7687ce69bd5a865340e5011d48b52b}{conta\+\_\+notifiche} ()
+\item 
+int \hyperlink{interfaccia_8h_a1f6c88fb5849cfab36f8621a0187b77c}{visualizza\+\_\+notifiche} ()
+\item 
+int \hyperlink{interfaccia_8h_adc2b2f26b29acaa72891bd39416bec5f}{visualizza\+\_\+voci\+\_\+menu} (int voce)
+\item 
+int \hyperlink{interfaccia_8h_a91dcd548fb79b3dd2e871710a16f6efa}{visualizza\+\_\+crediti} ()
+\item 
+void \hyperlink{interfaccia_8h_a130b6aded4a8d07433980b94390d8613}{riga\+\_\+contorno} (int posizione)
+\item 
+void \hyperlink{interfaccia_8h_a40dc86acaca4220203cfb4d8106fa6bf}{parte\+\_\+inferiore\+\_\+tabella} ()
+\item 
+void \hyperlink{interfaccia_8h_a49194076b43e45701bc44e07e0b343ff}{voci\+\_\+principale} ()
+\item 
+void \hyperlink{interfaccia_8h_a2b77dcb04114586234b5ece38eae04d7}{voci\+\_\+alimenti} ()
+\item 
+void \hyperlink{interfaccia_8h_ac7d83d7d70dee99ec9bcd7e40c5b4e40}{voci\+\_\+ricette} ()
+\item 
+void \hyperlink{interfaccia_8h_a83d146de741cf43f328d2c319017531d}{voci\+\_\+utenti} ()
+\item 
+void \hyperlink{interfaccia_8h_aaec7e51d70c8cd2f6cc2311ed163c078}{voci\+\_\+ricerca} ()
+\item 
+void \hyperlink{interfaccia_8h_a10e9bfba80fd53682ea833ad3a96a463}{voci\+\_\+lista\+\_\+spesa} ()
+\item 
+void \hyperlink{interfaccia_8h_ac0d91a73944238ab0ebde9149b01c283}{voci\+\_\+menu\+\_\+settimanale} ()
+\item 
+void \hyperlink{interfaccia_8h_a666ab0c1dae805e82db0dcad4da7b608}{voci\+\_\+calorie} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Descrizione dettagliata}
+Libreria per l\textquotesingle{}interfaccia utente. 
+
+La libreria \hyperlink{interfaccia_8h}{interfaccia.\+h} è stata implementata per permettere all\textquotesingle{}utente l\textquotesingle{}interazione con il programma attraverso dei menu che mostrano le varie operazioni applicabili per un determinato argomento
+
+\begin{DoxyAuthor}{Autori}
+Alessandro Scarcia, Davide Quatela, Michela Salvemini 
+\end{DoxyAuthor}
+
+
+\subsection{Documentazione delle definizioni}
+\mbox{\Hypertarget{interfaccia_8h_a4990440f894717d34582d67d7c3018ed}\label{interfaccia_8h_a4990440f894717d34582d67d7c3018ed}} 
+\index{interfaccia.\+h@{interfaccia.\+h}!I\+N\+F\+E\+R\+I\+O\+RE@{I\+N\+F\+E\+R\+I\+O\+RE}}
+\index{I\+N\+F\+E\+R\+I\+O\+RE@{I\+N\+F\+E\+R\+I\+O\+RE}!interfaccia.\+h@{interfaccia.\+h}}
+\subsubsection{\texorpdfstring{I\+N\+F\+E\+R\+I\+O\+RE}{INFERIORE}}
+{\footnotesize\ttfamily \#define I\+N\+F\+E\+R\+I\+O\+RE~0}
+
+\mbox{\Hypertarget{interfaccia_8h_a6ac30e0f8fd65f06c0a0ada1e1a05551}\label{interfaccia_8h_a6ac30e0f8fd65f06c0a0ada1e1a05551}} 
+\index{interfaccia.\+h@{interfaccia.\+h}!I\+N\+T\+E\+R\+F\+A\+C\+C\+I\+A\+\_\+\+L\+IB@{I\+N\+T\+E\+R\+F\+A\+C\+C\+I\+A\+\_\+\+L\+IB}}
+\index{I\+N\+T\+E\+R\+F\+A\+C\+C\+I\+A\+\_\+\+L\+IB@{I\+N\+T\+E\+R\+F\+A\+C\+C\+I\+A\+\_\+\+L\+IB}!interfaccia.\+h@{interfaccia.\+h}}
+\subsubsection{\texorpdfstring{I\+N\+T\+E\+R\+F\+A\+C\+C\+I\+A\+\_\+\+L\+IB}{INTERFACCIA\_LIB}}
+{\footnotesize\ttfamily \#define I\+N\+T\+E\+R\+F\+A\+C\+C\+I\+A\+\_\+\+L\+IB}
+
+
+
+libreria che permette la gestione(manipolazione,caricamento ecc) degli alimenti 
+
+libreria che permette la gestione(manipolazione,caricamento ecc) delle ricette libreria che permette la gestione(creazione,modifica ecc) della lista della spesa libreria che permette la gestione(creazione,modifica ecc) dei profili utente libreria che permette la gestione(modifica) del menu settimanale libreria che permette la gestione delle kcal di un utente \mbox{\Hypertarget{interfaccia_8h_af12cbc4b154eb2eefd852623d7806dc8}\label{interfaccia_8h_af12cbc4b154eb2eefd852623d7806dc8}} 
+\index{interfaccia.\+h@{interfaccia.\+h}!M\+A\+T\+H\+\_\+\+L\+IB@{M\+A\+T\+H\+\_\+\+L\+IB}}
+\index{M\+A\+T\+H\+\_\+\+L\+IB@{M\+A\+T\+H\+\_\+\+L\+IB}!interfaccia.\+h@{interfaccia.\+h}}
+\subsubsection{\texorpdfstring{M\+A\+T\+H\+\_\+\+L\+IB}{MATH\_LIB}}
+{\footnotesize\ttfamily \#define M\+A\+T\+H\+\_\+\+L\+IB}
+
+
+
+Inclusione della libreria matematica. 
+
+\mbox{\Hypertarget{interfaccia_8h_a58008f586a40184ff11288391ffb73c0}\label{interfaccia_8h_a58008f586a40184ff11288391ffb73c0}} 
+\index{interfaccia.\+h@{interfaccia.\+h}!M\+A\+X\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+A\+L\+I\+M\+E\+N\+TI@{M\+A\+X\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+A\+L\+I\+M\+E\+N\+TI}}
+\index{M\+A\+X\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+A\+L\+I\+M\+E\+N\+TI@{M\+A\+X\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+A\+L\+I\+M\+E\+N\+TI}!interfaccia.\+h@{interfaccia.\+h}}
+\subsubsection{\texorpdfstring{M\+A\+X\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+A\+L\+I\+M\+E\+N\+TI}{MAX\_SCELTA\_ALIMENTI}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+A\+L\+I\+M\+E\+N\+TI~6}
+
+\mbox{\Hypertarget{interfaccia_8h_a53a186e828d0571002a3425ff64663a9}\label{interfaccia_8h_a53a186e828d0571002a3425ff64663a9}} 
+\index{interfaccia.\+h@{interfaccia.\+h}!M\+A\+X\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+M\+E\+N\+U\+\_\+\+C\+A\+L\+O\+R\+IE@{M\+A\+X\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+M\+E\+N\+U\+\_\+\+C\+A\+L\+O\+R\+IE}}
+\index{M\+A\+X\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+M\+E\+N\+U\+\_\+\+C\+A\+L\+O\+R\+IE@{M\+A\+X\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+M\+E\+N\+U\+\_\+\+C\+A\+L\+O\+R\+IE}!interfaccia.\+h@{interfaccia.\+h}}
+\subsubsection{\texorpdfstring{M\+A\+X\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+M\+E\+N\+U\+\_\+\+C\+A\+L\+O\+R\+IE}{MAX\_SCELTA\_MENU\_CALORIE}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+M\+E\+N\+U\+\_\+\+C\+A\+L\+O\+R\+IE~4}
+
+\mbox{\Hypertarget{interfaccia_8h_a9a24ad19c29c15ed45b6701cf49fed14}\label{interfaccia_8h_a9a24ad19c29c15ed45b6701cf49fed14}} 
+\index{interfaccia.\+h@{interfaccia.\+h}!M\+A\+X\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+M\+E\+N\+U\+\_\+\+S\+ET@{M\+A\+X\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+M\+E\+N\+U\+\_\+\+S\+ET}}
+\index{M\+A\+X\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+M\+E\+N\+U\+\_\+\+S\+ET@{M\+A\+X\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+M\+E\+N\+U\+\_\+\+S\+ET}!interfaccia.\+h@{interfaccia.\+h}}
+\subsubsection{\texorpdfstring{M\+A\+X\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+M\+E\+N\+U\+\_\+\+S\+ET}{MAX\_SCELTA\_MENU\_SET}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+M\+E\+N\+U\+\_\+\+S\+ET~4}
+
+\mbox{\Hypertarget{interfaccia_8h_a28d9ef50c4855bd8bff98ddcf8c6abff}\label{interfaccia_8h_a28d9ef50c4855bd8bff98ddcf8c6abff}} 
+\index{interfaccia.\+h@{interfaccia.\+h}!M\+A\+X\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+P\+R\+I\+N\+C\+I\+P\+A\+LE@{M\+A\+X\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+P\+R\+I\+N\+C\+I\+P\+A\+LE}}
+\index{M\+A\+X\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+P\+R\+I\+N\+C\+I\+P\+A\+LE@{M\+A\+X\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+P\+R\+I\+N\+C\+I\+P\+A\+LE}!interfaccia.\+h@{interfaccia.\+h}}
+\subsubsection{\texorpdfstring{M\+A\+X\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+P\+R\+I\+N\+C\+I\+P\+A\+LE}{MAX\_SCELTA\_PRINCIPALE}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+P\+R\+I\+N\+C\+I\+P\+A\+LE~99}
+
+\mbox{\Hypertarget{interfaccia_8h_a81e401994740157059b2dfbabe71f717}\label{interfaccia_8h_a81e401994740157059b2dfbabe71f717}} 
+\index{interfaccia.\+h@{interfaccia.\+h}!M\+A\+X\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+R\+I\+C\+E\+R\+CA@{M\+A\+X\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+R\+I\+C\+E\+R\+CA}}
+\index{M\+A\+X\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+R\+I\+C\+E\+R\+CA@{M\+A\+X\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+R\+I\+C\+E\+R\+CA}!interfaccia.\+h@{interfaccia.\+h}}
+\subsubsection{\texorpdfstring{M\+A\+X\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+R\+I\+C\+E\+R\+CA}{MAX\_SCELTA\_RICERCA}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+R\+I\+C\+E\+R\+CA~6}
+
+\mbox{\Hypertarget{interfaccia_8h_acbe6650b9b6b3aebdba738fb4581b074}\label{interfaccia_8h_acbe6650b9b6b3aebdba738fb4581b074}} 
+\index{interfaccia.\+h@{interfaccia.\+h}!M\+A\+X\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+R\+I\+C\+E\+T\+TA@{M\+A\+X\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+R\+I\+C\+E\+T\+TA}}
+\index{M\+A\+X\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+R\+I\+C\+E\+T\+TA@{M\+A\+X\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+R\+I\+C\+E\+T\+TA}!interfaccia.\+h@{interfaccia.\+h}}
+\subsubsection{\texorpdfstring{M\+A\+X\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+R\+I\+C\+E\+T\+TA}{MAX\_SCELTA\_RICETTA}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+R\+I\+C\+E\+T\+TA~6}
+
+\mbox{\Hypertarget{interfaccia_8h_a11eeabc01f9a9fa1519bf6df19fb5fff}\label{interfaccia_8h_a11eeabc01f9a9fa1519bf6df19fb5fff}} 
+\index{interfaccia.\+h@{interfaccia.\+h}!M\+A\+X\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+S\+P\+E\+SA@{M\+A\+X\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+S\+P\+E\+SA}}
+\index{M\+A\+X\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+S\+P\+E\+SA@{M\+A\+X\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+S\+P\+E\+SA}!interfaccia.\+h@{interfaccia.\+h}}
+\subsubsection{\texorpdfstring{M\+A\+X\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+S\+P\+E\+SA}{MAX\_SCELTA\_SPESA}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+S\+P\+E\+SA~4}
+
+\mbox{\Hypertarget{interfaccia_8h_a9cac4dcd58150a09062cceb2b5665c45}\label{interfaccia_8h_a9cac4dcd58150a09062cceb2b5665c45}} 
+\index{interfaccia.\+h@{interfaccia.\+h}!M\+A\+X\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+U\+T\+E\+N\+TE@{M\+A\+X\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+U\+T\+E\+N\+TE}}
+\index{M\+A\+X\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+U\+T\+E\+N\+TE@{M\+A\+X\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+U\+T\+E\+N\+TE}!interfaccia.\+h@{interfaccia.\+h}}
+\subsubsection{\texorpdfstring{M\+A\+X\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+U\+T\+E\+N\+TE}{MAX\_SCELTA\_UTENTE}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+U\+T\+E\+N\+TE~4}
+
+\mbox{\Hypertarget{interfaccia_8h_ac25c7040bc3a00f670b23deae4e1f89c}\label{interfaccia_8h_ac25c7040bc3a00f670b23deae4e1f89c}} 
+\index{interfaccia.\+h@{interfaccia.\+h}!M\+E\+N\+U\+\_\+\+A\+L\+I\+M\+E\+N\+TI@{M\+E\+N\+U\+\_\+\+A\+L\+I\+M\+E\+N\+TI}}
+\index{M\+E\+N\+U\+\_\+\+A\+L\+I\+M\+E\+N\+TI@{M\+E\+N\+U\+\_\+\+A\+L\+I\+M\+E\+N\+TI}!interfaccia.\+h@{interfaccia.\+h}}
+\subsubsection{\texorpdfstring{M\+E\+N\+U\+\_\+\+A\+L\+I\+M\+E\+N\+TI}{MENU\_ALIMENTI}}
+{\footnotesize\ttfamily \#define M\+E\+N\+U\+\_\+\+A\+L\+I\+M\+E\+N\+TI~1}
+
+\mbox{\Hypertarget{interfaccia_8h_ad1e0fcaba24069db52d272b24a030d03}\label{interfaccia_8h_ad1e0fcaba24069db52d272b24a030d03}} 
+\index{interfaccia.\+h@{interfaccia.\+h}!M\+E\+N\+U\+\_\+\+C\+A\+L\+O\+R\+IE@{M\+E\+N\+U\+\_\+\+C\+A\+L\+O\+R\+IE}}
+\index{M\+E\+N\+U\+\_\+\+C\+A\+L\+O\+R\+IE@{M\+E\+N\+U\+\_\+\+C\+A\+L\+O\+R\+IE}!interfaccia.\+h@{interfaccia.\+h}}
+\subsubsection{\texorpdfstring{M\+E\+N\+U\+\_\+\+C\+A\+L\+O\+R\+IE}{MENU\_CALORIE}}
+{\footnotesize\ttfamily \#define M\+E\+N\+U\+\_\+\+C\+A\+L\+O\+R\+IE~5}
+
+\mbox{\Hypertarget{interfaccia_8h_a6930909e7c43b228278c29a83d598dd0}\label{interfaccia_8h_a6930909e7c43b228278c29a83d598dd0}} 
+\index{interfaccia.\+h@{interfaccia.\+h}!M\+E\+N\+U\+\_\+\+L\+I\+S\+T\+A\+\_\+\+S\+P\+E\+SA@{M\+E\+N\+U\+\_\+\+L\+I\+S\+T\+A\+\_\+\+S\+P\+E\+SA}}
+\index{M\+E\+N\+U\+\_\+\+L\+I\+S\+T\+A\+\_\+\+S\+P\+E\+SA@{M\+E\+N\+U\+\_\+\+L\+I\+S\+T\+A\+\_\+\+S\+P\+E\+SA}!interfaccia.\+h@{interfaccia.\+h}}
+\subsubsection{\texorpdfstring{M\+E\+N\+U\+\_\+\+L\+I\+S\+T\+A\+\_\+\+S\+P\+E\+SA}{MENU\_LISTA\_SPESA}}
+{\footnotesize\ttfamily \#define M\+E\+N\+U\+\_\+\+L\+I\+S\+T\+A\+\_\+\+S\+P\+E\+SA~6}
+
+\mbox{\Hypertarget{interfaccia_8h_a250010b4515952ebdb6501d5afeba1d1}\label{interfaccia_8h_a250010b4515952ebdb6501d5afeba1d1}} 
+\index{interfaccia.\+h@{interfaccia.\+h}!M\+E\+N\+U\+\_\+\+P\+R\+I\+N\+C\+I\+P\+A\+LE@{M\+E\+N\+U\+\_\+\+P\+R\+I\+N\+C\+I\+P\+A\+LE}}
+\index{M\+E\+N\+U\+\_\+\+P\+R\+I\+N\+C\+I\+P\+A\+LE@{M\+E\+N\+U\+\_\+\+P\+R\+I\+N\+C\+I\+P\+A\+LE}!interfaccia.\+h@{interfaccia.\+h}}
+\subsubsection{\texorpdfstring{M\+E\+N\+U\+\_\+\+P\+R\+I\+N\+C\+I\+P\+A\+LE}{MENU\_PRINCIPALE}}
+{\footnotesize\ttfamily \#define M\+E\+N\+U\+\_\+\+P\+R\+I\+N\+C\+I\+P\+A\+LE~0}
+
+
+
+C\+O\+S\+T\+A\+N\+TI P\+ER LA V\+I\+S\+U\+A\+L\+I\+Z\+Z\+A\+Z\+I\+O\+NE D\+E\+L\+LE V\+O\+CI D\+EL M\+E\+NU. 
+
+\mbox{\Hypertarget{interfaccia_8h_a3930be24bc59270a8692bbdb570ee68f}\label{interfaccia_8h_a3930be24bc59270a8692bbdb570ee68f}} 
+\index{interfaccia.\+h@{interfaccia.\+h}!M\+E\+N\+U\+\_\+\+R\+I\+C\+E\+R\+CA@{M\+E\+N\+U\+\_\+\+R\+I\+C\+E\+R\+CA}}
+\index{M\+E\+N\+U\+\_\+\+R\+I\+C\+E\+R\+CA@{M\+E\+N\+U\+\_\+\+R\+I\+C\+E\+R\+CA}!interfaccia.\+h@{interfaccia.\+h}}
+\subsubsection{\texorpdfstring{M\+E\+N\+U\+\_\+\+R\+I\+C\+E\+R\+CA}{MENU\_RICERCA}}
+{\footnotesize\ttfamily \#define M\+E\+N\+U\+\_\+\+R\+I\+C\+E\+R\+CA~7}
+
+\mbox{\Hypertarget{interfaccia_8h_a94b5d72cc672cd6a059d7505b425bcb7}\label{interfaccia_8h_a94b5d72cc672cd6a059d7505b425bcb7}} 
+\index{interfaccia.\+h@{interfaccia.\+h}!M\+E\+N\+U\+\_\+\+R\+I\+C\+E\+T\+TE@{M\+E\+N\+U\+\_\+\+R\+I\+C\+E\+T\+TE}}
+\index{M\+E\+N\+U\+\_\+\+R\+I\+C\+E\+T\+TE@{M\+E\+N\+U\+\_\+\+R\+I\+C\+E\+T\+TE}!interfaccia.\+h@{interfaccia.\+h}}
+\subsubsection{\texorpdfstring{M\+E\+N\+U\+\_\+\+R\+I\+C\+E\+T\+TE}{MENU\_RICETTE}}
+{\footnotesize\ttfamily \#define M\+E\+N\+U\+\_\+\+R\+I\+C\+E\+T\+TE~2}
+
+\mbox{\Hypertarget{interfaccia_8h_a16139520267780909ac02d8fde3064fc}\label{interfaccia_8h_a16139520267780909ac02d8fde3064fc}} 
+\index{interfaccia.\+h@{interfaccia.\+h}!M\+E\+N\+U\+\_\+\+U\+T\+E\+N\+TI@{M\+E\+N\+U\+\_\+\+U\+T\+E\+N\+TI}}
+\index{M\+E\+N\+U\+\_\+\+U\+T\+E\+N\+TI@{M\+E\+N\+U\+\_\+\+U\+T\+E\+N\+TI}!interfaccia.\+h@{interfaccia.\+h}}
+\subsubsection{\texorpdfstring{M\+E\+N\+U\+\_\+\+U\+T\+E\+N\+TI}{MENU\_UTENTI}}
+{\footnotesize\ttfamily \#define M\+E\+N\+U\+\_\+\+U\+T\+E\+N\+TI~3}
+
+\mbox{\Hypertarget{interfaccia_8h_a622192336538b0bb4e8d4f167e71d58b}\label{interfaccia_8h_a622192336538b0bb4e8d4f167e71d58b}} 
+\index{interfaccia.\+h@{interfaccia.\+h}!M\+I\+N\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+A\+L\+I\+M\+E\+N\+TI@{M\+I\+N\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+A\+L\+I\+M\+E\+N\+TI}}
+\index{M\+I\+N\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+A\+L\+I\+M\+E\+N\+TI@{M\+I\+N\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+A\+L\+I\+M\+E\+N\+TI}!interfaccia.\+h@{interfaccia.\+h}}
+\subsubsection{\texorpdfstring{M\+I\+N\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+A\+L\+I\+M\+E\+N\+TI}{MIN\_SCELTA\_ALIMENTI}}
+{\footnotesize\ttfamily \#define M\+I\+N\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+A\+L\+I\+M\+E\+N\+TI~0}
+
+\mbox{\Hypertarget{interfaccia_8h_a3f55b7176a86044b24c2113a86e6facc}\label{interfaccia_8h_a3f55b7176a86044b24c2113a86e6facc}} 
+\index{interfaccia.\+h@{interfaccia.\+h}!M\+I\+N\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+M\+E\+N\+U\+\_\+\+C\+A\+L\+O\+R\+IE@{M\+I\+N\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+M\+E\+N\+U\+\_\+\+C\+A\+L\+O\+R\+IE}}
+\index{M\+I\+N\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+M\+E\+N\+U\+\_\+\+C\+A\+L\+O\+R\+IE@{M\+I\+N\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+M\+E\+N\+U\+\_\+\+C\+A\+L\+O\+R\+IE}!interfaccia.\+h@{interfaccia.\+h}}
+\subsubsection{\texorpdfstring{M\+I\+N\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+M\+E\+N\+U\+\_\+\+C\+A\+L\+O\+R\+IE}{MIN\_SCELTA\_MENU\_CALORIE}}
+{\footnotesize\ttfamily \#define M\+I\+N\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+M\+E\+N\+U\+\_\+\+C\+A\+L\+O\+R\+IE~0}
+
+\mbox{\Hypertarget{interfaccia_8h_a33bb900eb9675e17f77d77e648c7fe00}\label{interfaccia_8h_a33bb900eb9675e17f77d77e648c7fe00}} 
+\index{interfaccia.\+h@{interfaccia.\+h}!M\+I\+N\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+M\+E\+N\+U\+\_\+\+S\+ET@{M\+I\+N\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+M\+E\+N\+U\+\_\+\+S\+ET}}
+\index{M\+I\+N\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+M\+E\+N\+U\+\_\+\+S\+ET@{M\+I\+N\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+M\+E\+N\+U\+\_\+\+S\+ET}!interfaccia.\+h@{interfaccia.\+h}}
+\subsubsection{\texorpdfstring{M\+I\+N\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+M\+E\+N\+U\+\_\+\+S\+ET}{MIN\_SCELTA\_MENU\_SET}}
+{\footnotesize\ttfamily \#define M\+I\+N\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+M\+E\+N\+U\+\_\+\+S\+ET~0}
+
+\mbox{\Hypertarget{interfaccia_8h_af039d148136a74cfad9baca72cd34357}\label{interfaccia_8h_af039d148136a74cfad9baca72cd34357}} 
+\index{interfaccia.\+h@{interfaccia.\+h}!M\+I\+N\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+P\+R\+I\+N\+C\+I\+P\+A\+LE@{M\+I\+N\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+P\+R\+I\+N\+C\+I\+P\+A\+LE}}
+\index{M\+I\+N\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+P\+R\+I\+N\+C\+I\+P\+A\+LE@{M\+I\+N\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+P\+R\+I\+N\+C\+I\+P\+A\+LE}!interfaccia.\+h@{interfaccia.\+h}}
+\subsubsection{\texorpdfstring{M\+I\+N\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+P\+R\+I\+N\+C\+I\+P\+A\+LE}{MIN\_SCELTA\_PRINCIPALE}}
+{\footnotesize\ttfamily \#define M\+I\+N\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+P\+R\+I\+N\+C\+I\+P\+A\+LE~0}
+
+
+
+C\+O\+S\+T\+A\+N\+TI P\+ER D\+E\+T\+E\+R\+M\+I\+N\+A\+RE IL R\+A\+N\+GE D\+EI V\+A\+L\+O\+RI DI S\+C\+E\+L\+TA N\+EL M\+E\+NU. 
+
+\mbox{\Hypertarget{interfaccia_8h_ac101a183714f4b0780fe6102b60d172e}\label{interfaccia_8h_ac101a183714f4b0780fe6102b60d172e}} 
+\index{interfaccia.\+h@{interfaccia.\+h}!M\+I\+N\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+R\+I\+C\+E\+R\+CA@{M\+I\+N\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+R\+I\+C\+E\+R\+CA}}
+\index{M\+I\+N\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+R\+I\+C\+E\+R\+CA@{M\+I\+N\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+R\+I\+C\+E\+R\+CA}!interfaccia.\+h@{interfaccia.\+h}}
+\subsubsection{\texorpdfstring{M\+I\+N\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+R\+I\+C\+E\+R\+CA}{MIN\_SCELTA\_RICERCA}}
+{\footnotesize\ttfamily \#define M\+I\+N\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+R\+I\+C\+E\+R\+CA~0}
+
+\mbox{\Hypertarget{interfaccia_8h_a089679d174d7513c983dadfbc7a0dbdf}\label{interfaccia_8h_a089679d174d7513c983dadfbc7a0dbdf}} 
+\index{interfaccia.\+h@{interfaccia.\+h}!M\+I\+N\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+R\+I\+C\+E\+T\+TA@{M\+I\+N\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+R\+I\+C\+E\+T\+TA}}
+\index{M\+I\+N\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+R\+I\+C\+E\+T\+TA@{M\+I\+N\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+R\+I\+C\+E\+T\+TA}!interfaccia.\+h@{interfaccia.\+h}}
+\subsubsection{\texorpdfstring{M\+I\+N\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+R\+I\+C\+E\+T\+TA}{MIN\_SCELTA\_RICETTA}}
+{\footnotesize\ttfamily \#define M\+I\+N\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+R\+I\+C\+E\+T\+TA~0}
+
+\mbox{\Hypertarget{interfaccia_8h_afb4f7db26672cd703315fe4b7639910e}\label{interfaccia_8h_afb4f7db26672cd703315fe4b7639910e}} 
+\index{interfaccia.\+h@{interfaccia.\+h}!M\+I\+N\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+S\+P\+E\+SA@{M\+I\+N\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+S\+P\+E\+SA}}
+\index{M\+I\+N\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+S\+P\+E\+SA@{M\+I\+N\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+S\+P\+E\+SA}!interfaccia.\+h@{interfaccia.\+h}}
+\subsubsection{\texorpdfstring{M\+I\+N\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+S\+P\+E\+SA}{MIN\_SCELTA\_SPESA}}
+{\footnotesize\ttfamily \#define M\+I\+N\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+S\+P\+E\+SA~0}
+
+\mbox{\Hypertarget{interfaccia_8h_a1897c2ebecb5b907073bfd4117d6ccac}\label{interfaccia_8h_a1897c2ebecb5b907073bfd4117d6ccac}} 
+\index{interfaccia.\+h@{interfaccia.\+h}!M\+I\+N\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+U\+T\+E\+N\+TE@{M\+I\+N\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+U\+T\+E\+N\+TE}}
+\index{M\+I\+N\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+U\+T\+E\+N\+TE@{M\+I\+N\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+U\+T\+E\+N\+TE}!interfaccia.\+h@{interfaccia.\+h}}
+\subsubsection{\texorpdfstring{M\+I\+N\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+U\+T\+E\+N\+TE}{MIN\_SCELTA\_UTENTE}}
+{\footnotesize\ttfamily \#define M\+I\+N\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+U\+T\+E\+N\+TE~0}
+
+\mbox{\Hypertarget{interfaccia_8h_a2e2a4a7197f7000d904a7fa1ee43d0dc}\label{interfaccia_8h_a2e2a4a7197f7000d904a7fa1ee43d0dc}} 
+\index{interfaccia.\+h@{interfaccia.\+h}!O\+P\+Z\+I\+O\+N\+I\+\_\+\+M\+E\+N\+U\+\_\+\+S\+E\+T\+T\+I\+M\+A\+N\+A\+LE@{O\+P\+Z\+I\+O\+N\+I\+\_\+\+M\+E\+N\+U\+\_\+\+S\+E\+T\+T\+I\+M\+A\+N\+A\+LE}}
+\index{O\+P\+Z\+I\+O\+N\+I\+\_\+\+M\+E\+N\+U\+\_\+\+S\+E\+T\+T\+I\+M\+A\+N\+A\+LE@{O\+P\+Z\+I\+O\+N\+I\+\_\+\+M\+E\+N\+U\+\_\+\+S\+E\+T\+T\+I\+M\+A\+N\+A\+LE}!interfaccia.\+h@{interfaccia.\+h}}
+\subsubsection{\texorpdfstring{O\+P\+Z\+I\+O\+N\+I\+\_\+\+M\+E\+N\+U\+\_\+\+S\+E\+T\+T\+I\+M\+A\+N\+A\+LE}{OPZIONI\_MENU\_SETTIMANALE}}
+{\footnotesize\ttfamily \#define O\+P\+Z\+I\+O\+N\+I\+\_\+\+M\+E\+N\+U\+\_\+\+S\+E\+T\+T\+I\+M\+A\+N\+A\+LE~4}
+
+\mbox{\Hypertarget{interfaccia_8h_a3f71b4ea87bcf3feda424bc285bcef6a}\label{interfaccia_8h_a3f71b4ea87bcf3feda424bc285bcef6a}} 
+\index{interfaccia.\+h@{interfaccia.\+h}!S\+T\+R\+I\+N\+G\+\_\+\+L\+IB@{S\+T\+R\+I\+N\+G\+\_\+\+L\+IB}}
+\index{S\+T\+R\+I\+N\+G\+\_\+\+L\+IB@{S\+T\+R\+I\+N\+G\+\_\+\+L\+IB}!interfaccia.\+h@{interfaccia.\+h}}
+\subsubsection{\texorpdfstring{S\+T\+R\+I\+N\+G\+\_\+\+L\+IB}{STRING\_LIB}}
+{\footnotesize\ttfamily \#define S\+T\+R\+I\+N\+G\+\_\+\+L\+IB}
+
+
+
+Inclusione delle librerie per la manipolazione di stringhe e caratteri. 
+
+\mbox{\Hypertarget{interfaccia_8h_aa7d76397b4fbba32d209e0f193adb141}\label{interfaccia_8h_aa7d76397b4fbba32d209e0f193adb141}} 
+\index{interfaccia.\+h@{interfaccia.\+h}!S\+U\+P\+E\+R\+I\+O\+RE@{S\+U\+P\+E\+R\+I\+O\+RE}}
+\index{S\+U\+P\+E\+R\+I\+O\+RE@{S\+U\+P\+E\+R\+I\+O\+RE}!interfaccia.\+h@{interfaccia.\+h}}
+\subsubsection{\texorpdfstring{S\+U\+P\+E\+R\+I\+O\+RE}{SUPERIORE}}
+{\footnotesize\ttfamily \#define S\+U\+P\+E\+R\+I\+O\+RE~1}
+
+
+
+\subsection{Documentazione delle funzioni}
+\mbox{\Hypertarget{interfaccia_8h_aec7687ce69bd5a865340e5011d48b52b}\label{interfaccia_8h_aec7687ce69bd5a865340e5011d48b52b}} 
+\index{interfaccia.\+h@{interfaccia.\+h}!conta\+\_\+notifiche@{conta\+\_\+notifiche}}
+\index{conta\+\_\+notifiche@{conta\+\_\+notifiche}!interfaccia.\+h@{interfaccia.\+h}}
+\subsubsection{\texorpdfstring{conta\+\_\+notifiche()}{conta\_notifiche()}}
+{\footnotesize\ttfamily int conta\+\_\+notifiche (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+funzione che si occupa di contare le notifiche
+
+\begin{DoxyReturn}{Restituisce}
+
+\end{DoxyReturn}
+Funzione che serve a contare tutte le tipologie di notifiche che vanno mostrate nel menú principale \begin{DoxyPrecond}{Precondizione}
+Nessuna pre condizione particolare 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Il valore restituito deve essere un intero significativo ($>$=0) 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{interfaccia_8h_a3c64fce0f9c3d2fae65d8067bf885e72}\label{interfaccia_8h_a3c64fce0f9c3d2fae65d8067bf885e72}} 
+\index{interfaccia.\+h@{interfaccia.\+h}!gestore\+\_\+menu\+\_\+settimanale@{gestore\+\_\+menu\+\_\+settimanale}}
+\index{gestore\+\_\+menu\+\_\+settimanale@{gestore\+\_\+menu\+\_\+settimanale}!interfaccia.\+h@{interfaccia.\+h}}
+\subsubsection{\texorpdfstring{gestore\+\_\+menu\+\_\+settimanale()}{gestore\_menu\_settimanale()}}
+{\footnotesize\ttfamily int gestore\+\_\+menu\+\_\+settimanale (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+menu che mostra le operazioni che si possono effettuare sulla sezione ricette
+
+\begin{DoxyReturn}{Restituisce}
+
+\end{DoxyReturn}
+Funzione che si occupa di far selezionare all\textquotesingle{}utente le operazioni possibili da effettuare sul menu settimanale. La scelta dell\textquotesingle{}opzione viene fatta attraverso una switch \begin{DoxyPrecond}{Precondizione}
+Nessuna pre condizione particolare 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Il risultato deve essere quello che l\textquotesingle{}opzione scelta si occupa 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{interfaccia_8h_ac388cb8a7bdf8e1134b082f0e319598a}\label{interfaccia_8h_ac388cb8a7bdf8e1134b082f0e319598a}} 
+\index{interfaccia.\+h@{interfaccia.\+h}!input\+\_\+scelta@{input\+\_\+scelta}}
+\index{input\+\_\+scelta@{input\+\_\+scelta}!interfaccia.\+h@{interfaccia.\+h}}
+\subsubsection{\texorpdfstring{input\+\_\+scelta()}{input\_scelta()}}
+{\footnotesize\ttfamily int input\+\_\+scelta (\begin{DoxyParamCaption}\item[{int}]{valore\+\_\+minimo,  }\item[{int}]{valore\+\_\+massimo }\end{DoxyParamCaption})}
+
+funzione che si occupa di controllare se sono stati inseriti effettivamente valori numerici da parte dell\textquotesingle{}utente. Qualora sia stato inserito un valore non valido viene notificato un errore e viene chiesto di reinserire il valore. In caso contrario viene restituito il valore inserito. 
+\begin{DoxyParams}{Parametri}
+{\em valore\+\_\+minimo} & \\
+\hline
+{\em valore\+\_\+massimo} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Restituisce}
+
+\end{DoxyReturn}
+La funzione input scelta si occupa di ricevere in input il comando per accedere ad una determinata voce dei menu. Si e\textquotesingle{} pensato che la scelta essendo un numero avrá anche esso un range. Se la scelta e\textquotesingle{} compresa nel range vuol dire che e\textquotesingle{} accettabile altrimenti verrá scartata e verrá richiesto di reinserire il valore.
+
+\begin{DoxyPrecond}{Precondizione}
+Che vengano passati dei valori significativi di massimo e minimo 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Il valore restituito deve essere un intero 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{interfaccia_8h_a9ab5271ce089740cc81f331e0a145794}\label{interfaccia_8h_a9ab5271ce089740cc81f331e0a145794}} 
+\index{interfaccia.\+h@{interfaccia.\+h}!menu\+\_\+alimenti@{menu\+\_\+alimenti}}
+\index{menu\+\_\+alimenti@{menu\+\_\+alimenti}!interfaccia.\+h@{interfaccia.\+h}}
+\subsubsection{\texorpdfstring{menu\+\_\+alimenti()}{menu\_alimenti()}}
+{\footnotesize\ttfamily int menu\+\_\+alimenti (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+menu che mostra le operazioni che si possono effettuare sulla sezione alimenti
+
+\begin{DoxyReturn}{Restituisce}
+
+\end{DoxyReturn}
+Funzione che si occupa di far selezionare all\textquotesingle{}utente le operazioni possibili da effettuare sui dati di tipo alimenti. La scelta dell\textquotesingle{}opzione viene fatta attraverso una switch \begin{DoxyPrecond}{Precondizione}
+Nessuna pre condizione particolare 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Il risultato deve essere quello che l\textquotesingle{}opzione scelta si occupa 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{interfaccia_8h_accc1f65a850b0063960a19c999c4a3a0}\label{interfaccia_8h_accc1f65a850b0063960a19c999c4a3a0}} 
+\index{interfaccia.\+h@{interfaccia.\+h}!menu\+\_\+calorie@{menu\+\_\+calorie}}
+\index{menu\+\_\+calorie@{menu\+\_\+calorie}!interfaccia.\+h@{interfaccia.\+h}}
+\subsubsection{\texorpdfstring{menu\+\_\+calorie()}{menu\_calorie()}}
+{\footnotesize\ttfamily int menu\+\_\+calorie (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+menu che mostra le operazioni che si possono effettuare sulla sezione ricette
+
+\begin{DoxyReturn}{Restituisce}
+
+\end{DoxyReturn}
+Funzione che si occupa di far selezionare all\textquotesingle{}utente le operazioni possibili da effettuare sul menu calorie. La scelta dell\textquotesingle{}opzione viene fatta attraverso una switch \begin{DoxyPrecond}{Precondizione}
+Nessuna pre condizione particolare 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Il risultato deve essere quello che l\textquotesingle{}opzione scelta si occupa 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{interfaccia_8h_acf439d43d13f11ec13408a768863c535}\label{interfaccia_8h_acf439d43d13f11ec13408a768863c535}} 
+\index{interfaccia.\+h@{interfaccia.\+h}!menu\+\_\+lista\+\_\+spesa@{menu\+\_\+lista\+\_\+spesa}}
+\index{menu\+\_\+lista\+\_\+spesa@{menu\+\_\+lista\+\_\+spesa}!interfaccia.\+h@{interfaccia.\+h}}
+\subsubsection{\texorpdfstring{menu\+\_\+lista\+\_\+spesa()}{menu\_lista\_spesa()}}
+{\footnotesize\ttfamily int menu\+\_\+lista\+\_\+spesa (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+menu che mostra le operazioni che si possono effettuare sulla sezione ricette
+
+\begin{DoxyReturn}{Restituisce}
+
+\end{DoxyReturn}
+Funzione che si occupa di far selezionare all\textquotesingle{}utente le operazioni possibili da effettuare sul menu lista della spesa. La scelta dell\textquotesingle{}opzione viene fatta attraverso una switch \begin{DoxyPrecond}{Precondizione}
+Nessuna pre condizione particolare 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Il risultato deve essere quello che l\textquotesingle{}opzione scelta si occupa 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{interfaccia_8h_ac1eddfc91b94d527351aa53c2c6b9db8}\label{interfaccia_8h_ac1eddfc91b94d527351aa53c2c6b9db8}} 
+\index{interfaccia.\+h@{interfaccia.\+h}!menu\+\_\+principale@{menu\+\_\+principale}}
+\index{menu\+\_\+principale@{menu\+\_\+principale}!interfaccia.\+h@{interfaccia.\+h}}
+\subsubsection{\texorpdfstring{menu\+\_\+principale()}{menu\_principale()}}
+{\footnotesize\ttfamily int menu\+\_\+principale (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+menu che mostra le operazioni che si possono effettuare sulla sezione principale
+
+\begin{DoxyReturn}{Restituisce}
+
+\end{DoxyReturn}
+Funzione che si occupa di far selezionare all\textquotesingle{}utente le operazioni possibili da effettuare sul menu principale. La scelta dell\textquotesingle{}opzione viene fatta attraverso una switch \begin{DoxyPrecond}{Precondizione}
+Nessuna pre condizione particolare 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Il risultato deve essere quello che l\textquotesingle{}opzione scelta si occupa 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{interfaccia_8h_a0e892819b288b8ae8a006103ec6bb8a9}\label{interfaccia_8h_a0e892819b288b8ae8a006103ec6bb8a9}} 
+\index{interfaccia.\+h@{interfaccia.\+h}!menu\+\_\+ricerca@{menu\+\_\+ricerca}}
+\index{menu\+\_\+ricerca@{menu\+\_\+ricerca}!interfaccia.\+h@{interfaccia.\+h}}
+\subsubsection{\texorpdfstring{menu\+\_\+ricerca()}{menu\_ricerca()}}
+{\footnotesize\ttfamily int menu\+\_\+ricerca (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+menu che mostra le operazioni che si possono effettuare sulla sezione di ricerca delle ricette
+
+\begin{DoxyReturn}{Restituisce}
+
+\end{DoxyReturn}
+Funzione che si occupa di passare gli alimenti presenti nel frigo e le ricette salvate nel database e di effettuare ricerche e ordinamenti su tali dati estratti. \begin{DoxyPrecond}{Precondizione}
+Nessuna pre condizione particolare 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Che sia stato mostrato il giusto risultato in ase alla richiesta dell\textquotesingle{}utente 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{interfaccia_8h_a700283b62fd3e1eb14874fdb1c15e538}\label{interfaccia_8h_a700283b62fd3e1eb14874fdb1c15e538}} 
+\index{interfaccia.\+h@{interfaccia.\+h}!menu\+\_\+ricette@{menu\+\_\+ricette}}
+\index{menu\+\_\+ricette@{menu\+\_\+ricette}!interfaccia.\+h@{interfaccia.\+h}}
+\subsubsection{\texorpdfstring{menu\+\_\+ricette()}{menu\_ricette()}}
+{\footnotesize\ttfamily int menu\+\_\+ricette (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+menu che mostra le operazioni che si possono effettuare sulla sezione ricette
+
+\begin{DoxyReturn}{Restituisce}
+
+\end{DoxyReturn}
+Funzione che si occupa di far selezionare all\textquotesingle{}utente le operazioni possibili da effettuare sui dati di tipo ricetta. La scelta dell\textquotesingle{}opzione viene fatta attraverso una switch \begin{DoxyPrecond}{Precondizione}
+Nessuna pre condizione particolare 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Il risultato deve essere quello che l\textquotesingle{}opzione scelta si occupa 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{interfaccia_8h_a08855020533526ba029ac0e92b997e38}\label{interfaccia_8h_a08855020533526ba029ac0e92b997e38}} 
+\index{interfaccia.\+h@{interfaccia.\+h}!menu\+\_\+utenti@{menu\+\_\+utenti}}
+\index{menu\+\_\+utenti@{menu\+\_\+utenti}!interfaccia.\+h@{interfaccia.\+h}}
+\subsubsection{\texorpdfstring{menu\+\_\+utenti()}{menu\_utenti()}}
+{\footnotesize\ttfamily int menu\+\_\+utenti (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+menu che mostra le operazioni che si possono effettuare sulla sezione ricette
+
+\begin{DoxyReturn}{Restituisce}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{interfaccia_8h_a40dc86acaca4220203cfb4d8106fa6bf}\label{interfaccia_8h_a40dc86acaca4220203cfb4d8106fa6bf}} 
+\index{interfaccia.\+h@{interfaccia.\+h}!parte\+\_\+inferiore\+\_\+tabella@{parte\+\_\+inferiore\+\_\+tabella}}
+\index{parte\+\_\+inferiore\+\_\+tabella@{parte\+\_\+inferiore\+\_\+tabella}!interfaccia.\+h@{interfaccia.\+h}}
+\subsubsection{\texorpdfstring{parte\+\_\+inferiore\+\_\+tabella()}{parte\_inferiore\_tabella()}}
+{\footnotesize\ttfamily void parte\+\_\+inferiore\+\_\+tabella (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Funzione che si occupa della visualizzazione della riga inferiore del contorno della schermata
+
+Funzione che si occupa della visualizzazione della riga inferiore del contorno della schermata \begin{DoxyPrecond}{Precondizione}
+Nessuna particolare pre condizione 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Che sia stata visualizzata correttamente la parte la linea di contorno 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{interfaccia_8h_a130b6aded4a8d07433980b94390d8613}\label{interfaccia_8h_a130b6aded4a8d07433980b94390d8613}} 
+\index{interfaccia.\+h@{interfaccia.\+h}!riga\+\_\+contorno@{riga\+\_\+contorno}}
+\index{riga\+\_\+contorno@{riga\+\_\+contorno}!interfaccia.\+h@{interfaccia.\+h}}
+\subsubsection{\texorpdfstring{riga\+\_\+contorno()}{riga\_contorno()}}
+{\footnotesize\ttfamily void riga\+\_\+contorno (\begin{DoxyParamCaption}\item[{int}]{posizione }\end{DoxyParamCaption})}
+
+Funzione che si occupa della visualizzazione del contorno del titolo
+
+Funzione che si occupa della visualizzazione del contorno del titolo \begin{DoxyPrecond}{Precondizione}
+Nessuna particolare pre condizione 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Che sia visualizzata correttamente la linea di contorno in base alla posizione 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{interfaccia_8h_a91dcd548fb79b3dd2e871710a16f6efa}\label{interfaccia_8h_a91dcd548fb79b3dd2e871710a16f6efa}} 
+\index{interfaccia.\+h@{interfaccia.\+h}!visualizza\+\_\+crediti@{visualizza\+\_\+crediti}}
+\index{visualizza\+\_\+crediti@{visualizza\+\_\+crediti}!interfaccia.\+h@{interfaccia.\+h}}
+\subsubsection{\texorpdfstring{visualizza\+\_\+crediti()}{visualizza\_crediti()}}
+{\footnotesize\ttfamily int visualizza\+\_\+crediti (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+funzione che si occupa di...mostrare i creatori del programma
+
+\begin{DoxyReturn}{Restituisce}
+
+\end{DoxyReturn}
+\begin{DoxyPrecond}{Precondizione}
+Nessuna pre condizione particolare 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Il valore restituito deve essere una stringa oppure un puntatore null 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{interfaccia_8h_a1f6c88fb5849cfab36f8621a0187b77c}\label{interfaccia_8h_a1f6c88fb5849cfab36f8621a0187b77c}} 
+\index{interfaccia.\+h@{interfaccia.\+h}!visualizza\+\_\+notifiche@{visualizza\+\_\+notifiche}}
+\index{visualizza\+\_\+notifiche@{visualizza\+\_\+notifiche}!interfaccia.\+h@{interfaccia.\+h}}
+\subsubsection{\texorpdfstring{visualizza\+\_\+notifiche()}{visualizza\_notifiche()}}
+{\footnotesize\ttfamily int visualizza\+\_\+notifiche (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+funzione che si occupa di mostrare le notifiche da segnalare all\textquotesingle{}utente
+
+\begin{DoxyReturn}{Restituisce}
+
+\end{DoxyReturn}
+Funzione che si occupa di mostare le operazioni urgenti che l\textquotesingle{}utente ddeve effettuare. Nel caso in cui il valore delle notifiche sia maggiore di 1 e quindi il contatore degli alimenti scaduti segnala che un alimento o piú sono scaduti occorre chiedere se l\textquotesingle{}utente intende eliminare tali alimenti o tenerli. Nel caso in cui l\textquotesingle{}utente accettasse occorre richiamare la funzione che si occupa dell\textquotesingle{}eliminazione degli alimenti scaduti. In caso non ci siano notifiche da segnalare viene mostrato un messaggio. \begin{DoxyPrecond}{Precondizione}
+Nessuna pre condizione particolare 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Che venga effettuato con successo l\textquotesingle{}eliminazione degli alimenti scaduti in caso di accettazione da parte dell\textquotesingle{}utente 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{interfaccia_8h_adc2b2f26b29acaa72891bd39416bec5f}\label{interfaccia_8h_adc2b2f26b29acaa72891bd39416bec5f}} 
+\index{interfaccia.\+h@{interfaccia.\+h}!visualizza\+\_\+voci\+\_\+menu@{visualizza\+\_\+voci\+\_\+menu}}
+\index{visualizza\+\_\+voci\+\_\+menu@{visualizza\+\_\+voci\+\_\+menu}!interfaccia.\+h@{interfaccia.\+h}}
+\subsubsection{\texorpdfstring{visualizza\+\_\+voci\+\_\+menu()}{visualizza\_voci\_menu()}}
+{\footnotesize\ttfamily int visualizza\+\_\+voci\+\_\+menu (\begin{DoxyParamCaption}\item[{int}]{voce }\end{DoxyParamCaption})}
+
+funzione che si occupa di mostrare le varie opzioni disponibili per un menu in base al valore corrispondente del menu
+
+
+\begin{DoxyParams}{Parametri}
+{\em voce} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Restituisce}
+
+\end{DoxyReturn}
+La funzione visualizza\+\_\+voci\+\_\+menu allggerisce il codice delle funzioni dei menu e si occupa di mostrare opportunatamente le voci appertenenti ad un determinato menu \begin{DoxyPrecond}{Precondizione}
+Che la variabile voce sia un valore significativo 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Che siano state visualizzate le opzioni corrette per ogni menu 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{interfaccia_8h_a2b77dcb04114586234b5ece38eae04d7}\label{interfaccia_8h_a2b77dcb04114586234b5ece38eae04d7}} 
+\index{interfaccia.\+h@{interfaccia.\+h}!voci\+\_\+alimenti@{voci\+\_\+alimenti}}
+\index{voci\+\_\+alimenti@{voci\+\_\+alimenti}!interfaccia.\+h@{interfaccia.\+h}}
+\subsubsection{\texorpdfstring{voci\+\_\+alimenti()}{voci\_alimenti()}}
+{\footnotesize\ttfamily void voci\+\_\+alimenti (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Funzione che si occupa della visualizzazione delle voci del menu alimenti
+
+Funzione che si occupa della visualizzazione delle voci del menu alimenti \begin{DoxyPrecond}{Precondizione}
+Nessuna particolare pre condizione 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Che siano state visualizzate le opzioni corrette per il menu 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{interfaccia_8h_a666ab0c1dae805e82db0dcad4da7b608}\label{interfaccia_8h_a666ab0c1dae805e82db0dcad4da7b608}} 
+\index{interfaccia.\+h@{interfaccia.\+h}!voci\+\_\+calorie@{voci\+\_\+calorie}}
+\index{voci\+\_\+calorie@{voci\+\_\+calorie}!interfaccia.\+h@{interfaccia.\+h}}
+\subsubsection{\texorpdfstring{voci\+\_\+calorie()}{voci\_calorie()}}
+{\footnotesize\ttfamily void voci\+\_\+calorie (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Funzione che si occupa della visualizzazione delle voci del menu calorie
+
+Funzione che si occupa della visualizzazione delle voci del menu calorie \begin{DoxyPrecond}{Precondizione}
+Nessuna particolare pre condizione 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Che siano state visualizzate le opzioni corrette per il menu 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{interfaccia_8h_a10e9bfba80fd53682ea833ad3a96a463}\label{interfaccia_8h_a10e9bfba80fd53682ea833ad3a96a463}} 
+\index{interfaccia.\+h@{interfaccia.\+h}!voci\+\_\+lista\+\_\+spesa@{voci\+\_\+lista\+\_\+spesa}}
+\index{voci\+\_\+lista\+\_\+spesa@{voci\+\_\+lista\+\_\+spesa}!interfaccia.\+h@{interfaccia.\+h}}
+\subsubsection{\texorpdfstring{voci\+\_\+lista\+\_\+spesa()}{voci\_lista\_spesa()}}
+{\footnotesize\ttfamily void voci\+\_\+lista\+\_\+spesa (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Funzione che si occupa della visualizzazione delle voci del menu lista della spesa
+
+Funzione che si occupa della visualizzazione delle voci del menu lista della spesa \begin{DoxyPrecond}{Precondizione}
+Nessuna particolare pre condizione 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Che siano state visualizzate le opzioni corrette per il menu 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{interfaccia_8h_ac0d91a73944238ab0ebde9149b01c283}\label{interfaccia_8h_ac0d91a73944238ab0ebde9149b01c283}} 
+\index{interfaccia.\+h@{interfaccia.\+h}!voci\+\_\+menu\+\_\+settimanale@{voci\+\_\+menu\+\_\+settimanale}}
+\index{voci\+\_\+menu\+\_\+settimanale@{voci\+\_\+menu\+\_\+settimanale}!interfaccia.\+h@{interfaccia.\+h}}
+\subsubsection{\texorpdfstring{voci\+\_\+menu\+\_\+settimanale()}{voci\_menu\_settimanale()}}
+{\footnotesize\ttfamily void voci\+\_\+menu\+\_\+settimanale (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Funzione che si occupa della visualizzazione delle voci del menu settimanale
+
+Funzione che si occupa della visualizzazione delle voci del menu settimanale \begin{DoxyPrecond}{Precondizione}
+Nessuna particolare pre condizione 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Che siano state visualizzate le opzioni corrette per il menu 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{interfaccia_8h_a49194076b43e45701bc44e07e0b343ff}\label{interfaccia_8h_a49194076b43e45701bc44e07e0b343ff}} 
+\index{interfaccia.\+h@{interfaccia.\+h}!voci\+\_\+principale@{voci\+\_\+principale}}
+\index{voci\+\_\+principale@{voci\+\_\+principale}!interfaccia.\+h@{interfaccia.\+h}}
+\subsubsection{\texorpdfstring{voci\+\_\+principale()}{voci\_principale()}}
+{\footnotesize\ttfamily void voci\+\_\+principale (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Funzione che si occupa della visualizzazione delle voci del menu principale
+
+Funzione che si occupa della visualizzazione delle voci del menu principale \begin{DoxyPrecond}{Precondizione}
+Nessuna particolare pre condizione 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Che siano state visualizzate le opzioni corrette per il menu 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{interfaccia_8h_aaec7e51d70c8cd2f6cc2311ed163c078}\label{interfaccia_8h_aaec7e51d70c8cd2f6cc2311ed163c078}} 
+\index{interfaccia.\+h@{interfaccia.\+h}!voci\+\_\+ricerca@{voci\+\_\+ricerca}}
+\index{voci\+\_\+ricerca@{voci\+\_\+ricerca}!interfaccia.\+h@{interfaccia.\+h}}
+\subsubsection{\texorpdfstring{voci\+\_\+ricerca()}{voci\_ricerca()}}
+{\footnotesize\ttfamily void voci\+\_\+ricerca (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Funzione che si occupa della visualizzazione delle voci del menu ricerca
+
+Funzione che si occupa della visualizzazione delle voci del menu ricerca \begin{DoxyPrecond}{Precondizione}
+Nessuna particolare pre condizione 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Che siano state visualizzate le opzioni corrette per il menu 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{interfaccia_8h_ac7d83d7d70dee99ec9bcd7e40c5b4e40}\label{interfaccia_8h_ac7d83d7d70dee99ec9bcd7e40c5b4e40}} 
+\index{interfaccia.\+h@{interfaccia.\+h}!voci\+\_\+ricette@{voci\+\_\+ricette}}
+\index{voci\+\_\+ricette@{voci\+\_\+ricette}!interfaccia.\+h@{interfaccia.\+h}}
+\subsubsection{\texorpdfstring{voci\+\_\+ricette()}{voci\_ricette()}}
+{\footnotesize\ttfamily void voci\+\_\+ricette (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Funzione che si occupa della visualizzazione delle voci del menu ricette
+
+Funzione che si occupa della visualizzazione delle voci del menu ricette \begin{DoxyPrecond}{Precondizione}
+Nessuna particolare pre condizione 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Che siano state visualizzate le opzioni corrette per il menu 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{interfaccia_8h_a83d146de741cf43f328d2c319017531d}\label{interfaccia_8h_a83d146de741cf43f328d2c319017531d}} 
+\index{interfaccia.\+h@{interfaccia.\+h}!voci\+\_\+utenti@{voci\+\_\+utenti}}
+\index{voci\+\_\+utenti@{voci\+\_\+utenti}!interfaccia.\+h@{interfaccia.\+h}}
+\subsubsection{\texorpdfstring{voci\+\_\+utenti()}{voci\_utenti()}}
+{\footnotesize\ttfamily void voci\+\_\+utenti (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Funzione che si occupa della visualizzazione delle voci del menu utenti
+
+Funzione che si occupa della visualizzazione delle voci del menu utenti \begin{DoxyPrecond}{Precondizione}
+Nessuna particolare pre condizione 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Che siano state visualizzate le opzioni corrette per il menu 
+\end{DoxyPostcond}

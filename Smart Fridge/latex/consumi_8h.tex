@@ -1,0 +1,177 @@
+\hypertarget{consumi_8h}{}\section{Riferimenti per il file src/consumi.h}
+\label{consumi_8h}\index{src/consumi.\+h@{src/consumi.\+h}}
+
+
+Libreria per la gestione dei consumi.  
+
+
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$ctype.\+h$>$}\newline
+\subsection*{Strutture dati}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structconsumo}{consumo}
+\end{DoxyCompactItemize}
+\subsection*{Definizioni}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{consumi_8h_af12cbc4b154eb2eefd852623d7806dc8}{M\+A\+T\+H\+\_\+\+L\+IB}
+\begin{DoxyCompactList}\small\item\em Inclusione delle librerie standard. \end{DoxyCompactList}\item 
+\#define \hyperlink{consumi_8h_a3f71b4ea87bcf3feda424bc285bcef6a}{S\+T\+R\+I\+N\+G\+\_\+\+L\+IB}
+\begin{DoxyCompactList}\small\item\em Inclusione delle librerie per la manipolazione di stringhe e caratteri. \end{DoxyCompactList}\item 
+\#define \hyperlink{consumi_8h_ad72a7cf91e9f318c837e053a9aab7d2b}{C\+O\+N\+S\+U\+M\+I\+\_\+\+L\+IB}
+\item 
+\#define \hyperlink{consumi_8h_a12940940977ca94d4abf2f20ee0e344d}{F\+I\+L\+E\+\_\+\+C\+O\+N\+S\+U\+MI}~\char`\"{}../consumi.\+dat\char`\"{}
+\begin{DoxyCompactList}\small\item\em Nomi di file\+: \end{DoxyCompactList}\item 
+\#define \hyperlink{consumi_8h_a065c9cce53ebfc5f0451ab869c0c7931}{F\+L\+A\+G\+\_\+\+R\+I\+C\+E\+T\+TA}~1
+\begin{DoxyCompactList}\small\item\em Flags\+: \end{DoxyCompactList}\item 
+\#define \hyperlink{consumi_8h_a84163089217f3f1f43335de2cb1a0d09}{F\+L\+A\+G\+\_\+\+A\+L\+I\+M\+E\+N\+TO}~0
+\item 
+\#define \hyperlink{consumi_8h_aac906bc404d4143a882b5d18fe2e907e}{L\+U\+N\+G\+\_\+\+N\+O\+M\+E\+\_\+\+P\+R\+O\+D\+O\+T\+TO}~31
+\begin{DoxyCompactList}\small\item\em Lunghezze delle stringhe\+: \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Funzioni}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{consumi_8h_acdbafce324b9b2e475410f0a1466f7e3}{registra\+\_\+consumo} (char $\ast$nome\+\_\+prodotto, short flag\+\_\+prodotto)
+\item 
+int \hyperlink{consumi_8h_a69b1fd4d9d612ca2be764ff97b1d2ce3}{ricerca\+\_\+prod\+\_\+magg\+\_\+cons} (short flag\+\_\+prodotto)
+\end{DoxyCompactItemize}
+
+
+\subsection{Descrizione dettagliata}
+Libreria per la gestione dei consumi. 
+
+La libreria \hyperlink{consumi_8h}{consumi.\+h} è stata implementata per permettere di registrare gli alimenti o le ricette che vengono consumate dagli utenti permettendo di tenere traccia dei prodotti maggiormente consumati
+
+\begin{DoxyAuthor}{Autori}
+Alessandro Scarcia, Davide Quatela, Michela Salvemini 
+\end{DoxyAuthor}
+
+
+\subsection{Documentazione delle definizioni}
+\mbox{\Hypertarget{consumi_8h_ad72a7cf91e9f318c837e053a9aab7d2b}\label{consumi_8h_ad72a7cf91e9f318c837e053a9aab7d2b}} 
+\index{consumi.\+h@{consumi.\+h}!C\+O\+N\+S\+U\+M\+I\+\_\+\+L\+IB@{C\+O\+N\+S\+U\+M\+I\+\_\+\+L\+IB}}
+\index{C\+O\+N\+S\+U\+M\+I\+\_\+\+L\+IB@{C\+O\+N\+S\+U\+M\+I\+\_\+\+L\+IB}!consumi.\+h@{consumi.\+h}}
+\subsubsection{\texorpdfstring{C\+O\+N\+S\+U\+M\+I\+\_\+\+L\+IB}{CONSUMI\_LIB}}
+{\footnotesize\ttfamily \#define C\+O\+N\+S\+U\+M\+I\+\_\+\+L\+IB}
+
+\mbox{\Hypertarget{consumi_8h_a12940940977ca94d4abf2f20ee0e344d}\label{consumi_8h_a12940940977ca94d4abf2f20ee0e344d}} 
+\index{consumi.\+h@{consumi.\+h}!F\+I\+L\+E\+\_\+\+C\+O\+N\+S\+U\+MI@{F\+I\+L\+E\+\_\+\+C\+O\+N\+S\+U\+MI}}
+\index{F\+I\+L\+E\+\_\+\+C\+O\+N\+S\+U\+MI@{F\+I\+L\+E\+\_\+\+C\+O\+N\+S\+U\+MI}!consumi.\+h@{consumi.\+h}}
+\subsubsection{\texorpdfstring{F\+I\+L\+E\+\_\+\+C\+O\+N\+S\+U\+MI}{FILE\_CONSUMI}}
+{\footnotesize\ttfamily \#define F\+I\+L\+E\+\_\+\+C\+O\+N\+S\+U\+MI~\char`\"{}../consumi.\+dat\char`\"{}}
+
+
+
+Nomi di file\+: 
+
+\mbox{\Hypertarget{consumi_8h_a84163089217f3f1f43335de2cb1a0d09}\label{consumi_8h_a84163089217f3f1f43335de2cb1a0d09}} 
+\index{consumi.\+h@{consumi.\+h}!F\+L\+A\+G\+\_\+\+A\+L\+I\+M\+E\+N\+TO@{F\+L\+A\+G\+\_\+\+A\+L\+I\+M\+E\+N\+TO}}
+\index{F\+L\+A\+G\+\_\+\+A\+L\+I\+M\+E\+N\+TO@{F\+L\+A\+G\+\_\+\+A\+L\+I\+M\+E\+N\+TO}!consumi.\+h@{consumi.\+h}}
+\subsubsection{\texorpdfstring{F\+L\+A\+G\+\_\+\+A\+L\+I\+M\+E\+N\+TO}{FLAG\_ALIMENTO}}
+{\footnotesize\ttfamily \#define F\+L\+A\+G\+\_\+\+A\+L\+I\+M\+E\+N\+TO~0}
+
+\mbox{\Hypertarget{consumi_8h_a065c9cce53ebfc5f0451ab869c0c7931}\label{consumi_8h_a065c9cce53ebfc5f0451ab869c0c7931}} 
+\index{consumi.\+h@{consumi.\+h}!F\+L\+A\+G\+\_\+\+R\+I\+C\+E\+T\+TA@{F\+L\+A\+G\+\_\+\+R\+I\+C\+E\+T\+TA}}
+\index{F\+L\+A\+G\+\_\+\+R\+I\+C\+E\+T\+TA@{F\+L\+A\+G\+\_\+\+R\+I\+C\+E\+T\+TA}!consumi.\+h@{consumi.\+h}}
+\subsubsection{\texorpdfstring{F\+L\+A\+G\+\_\+\+R\+I\+C\+E\+T\+TA}{FLAG\_RICETTA}}
+{\footnotesize\ttfamily \#define F\+L\+A\+G\+\_\+\+R\+I\+C\+E\+T\+TA~1}
+
+
+
+Flags\+: 
+
+\mbox{\Hypertarget{consumi_8h_aac906bc404d4143a882b5d18fe2e907e}\label{consumi_8h_aac906bc404d4143a882b5d18fe2e907e}} 
+\index{consumi.\+h@{consumi.\+h}!L\+U\+N\+G\+\_\+\+N\+O\+M\+E\+\_\+\+P\+R\+O\+D\+O\+T\+TO@{L\+U\+N\+G\+\_\+\+N\+O\+M\+E\+\_\+\+P\+R\+O\+D\+O\+T\+TO}}
+\index{L\+U\+N\+G\+\_\+\+N\+O\+M\+E\+\_\+\+P\+R\+O\+D\+O\+T\+TO@{L\+U\+N\+G\+\_\+\+N\+O\+M\+E\+\_\+\+P\+R\+O\+D\+O\+T\+TO}!consumi.\+h@{consumi.\+h}}
+\subsubsection{\texorpdfstring{L\+U\+N\+G\+\_\+\+N\+O\+M\+E\+\_\+\+P\+R\+O\+D\+O\+T\+TO}{LUNG\_NOME\_PRODOTTO}}
+{\footnotesize\ttfamily \#define L\+U\+N\+G\+\_\+\+N\+O\+M\+E\+\_\+\+P\+R\+O\+D\+O\+T\+TO~31}
+
+
+
+Lunghezze delle stringhe\+: 
+
+\mbox{\Hypertarget{consumi_8h_af12cbc4b154eb2eefd852623d7806dc8}\label{consumi_8h_af12cbc4b154eb2eefd852623d7806dc8}} 
+\index{consumi.\+h@{consumi.\+h}!M\+A\+T\+H\+\_\+\+L\+IB@{M\+A\+T\+H\+\_\+\+L\+IB}}
+\index{M\+A\+T\+H\+\_\+\+L\+IB@{M\+A\+T\+H\+\_\+\+L\+IB}!consumi.\+h@{consumi.\+h}}
+\subsubsection{\texorpdfstring{M\+A\+T\+H\+\_\+\+L\+IB}{MATH\_LIB}}
+{\footnotesize\ttfamily \#define M\+A\+T\+H\+\_\+\+L\+IB}
+
+
+
+Inclusione delle librerie standard. 
+
+Inclusione della libreria matematica \mbox{\Hypertarget{consumi_8h_a3f71b4ea87bcf3feda424bc285bcef6a}\label{consumi_8h_a3f71b4ea87bcf3feda424bc285bcef6a}} 
+\index{consumi.\+h@{consumi.\+h}!S\+T\+R\+I\+N\+G\+\_\+\+L\+IB@{S\+T\+R\+I\+N\+G\+\_\+\+L\+IB}}
+\index{S\+T\+R\+I\+N\+G\+\_\+\+L\+IB@{S\+T\+R\+I\+N\+G\+\_\+\+L\+IB}!consumi.\+h@{consumi.\+h}}
+\subsubsection{\texorpdfstring{S\+T\+R\+I\+N\+G\+\_\+\+L\+IB}{STRING\_LIB}}
+{\footnotesize\ttfamily \#define S\+T\+R\+I\+N\+G\+\_\+\+L\+IB}
+
+
+
+Inclusione delle librerie per la manipolazione di stringhe e caratteri. 
+
+
+
+\subsection{Documentazione delle funzioni}
+\mbox{\Hypertarget{consumi_8h_acdbafce324b9b2e475410f0a1466f7e3}\label{consumi_8h_acdbafce324b9b2e475410f0a1466f7e3}} 
+\index{consumi.\+h@{consumi.\+h}!registra\+\_\+consumo@{registra\+\_\+consumo}}
+\index{registra\+\_\+consumo@{registra\+\_\+consumo}!consumi.\+h@{consumi.\+h}}
+\subsubsection{\texorpdfstring{registra\+\_\+consumo()}{registra\_consumo()}}
+{\footnotesize\ttfamily int registra\+\_\+consumo (\begin{DoxyParamCaption}\item[{char $\ast$}]{nome\+\_\+prodotto,  }\item[{short}]{flag\+\_\+prodotto }\end{DoxyParamCaption})}
+
+Funzione che si occupa di memorizzare l\textquotesingle{}incremento del valore frequenza di un prodotto in F\+I\+L\+E\+\_\+\+C\+O\+N\+S\+U\+MI.
+
+
+\begin{DoxyParams}{Parametri}
+{\em nome\+\_\+prodotto} & Nome del prodotto per cui incrementare la frequenza. \\
+\hline
+{\em flag\+\_\+prodotto} & Tipologia di prodotto da registrare.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Restituisce}
+1 In caso successo nella registrazione del consumo. 
+
+0 Se i parametri attuali non sono validi 
+
+-\/1 Se il file non può essere aperto e creato
+\end{DoxyReturn}
+Funzione registra\+\_\+consumo\+: La funzione ha il compito di registrare la consumazione di un prodotto. Ciò significa incrementare il valore di frequenza, nel record corrispondente al prodotto, in F\+I\+L\+E\+\_\+\+C\+O\+N\+S\+U\+MI. A questo scopo, apre il file o lo crea se non esiste. Successivamente effettua una scansione dei record del file. Se individua il record corridpondente al prodotto, memorizza la sua posizione. Se viene memorizzata la posizione del record, viene posizionato il puntatore a quel record e ne viene incrementato il valore di frequenza. Altrimenti viene creato un nuovo record con valore di frequenza pari a 1.
+
+\begin{DoxyPrecond}{Precondizione}
+Il nome del prodotto deve essere una stringa non vuota e non più lunga di L\+U\+N\+G\+\_\+\+N\+O\+M\+E\+\_\+\+P\+R\+O\+D\+O\+T\+TO 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Deve essere controllato il valore di ritorno per verificare l\textquotesingle{}esito della registrazione 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{consumi_8h_a69b1fd4d9d612ca2be764ff97b1d2ce3}\label{consumi_8h_a69b1fd4d9d612ca2be764ff97b1d2ce3}} 
+\index{consumi.\+h@{consumi.\+h}!ricerca\+\_\+prod\+\_\+magg\+\_\+cons@{ricerca\+\_\+prod\+\_\+magg\+\_\+cons}}
+\index{ricerca\+\_\+prod\+\_\+magg\+\_\+cons@{ricerca\+\_\+prod\+\_\+magg\+\_\+cons}!consumi.\+h@{consumi.\+h}}
+\subsubsection{\texorpdfstring{ricerca\+\_\+prod\+\_\+magg\+\_\+cons()}{ricerca\_prod\_magg\_cons()}}
+{\footnotesize\ttfamily int ricerca\+\_\+prod\+\_\+magg\+\_\+cons (\begin{DoxyParamCaption}\item[{short}]{flag\+\_\+prodotto }\end{DoxyParamCaption})}
+
+Funzione che ricerca il prodotto maggiormente consumato, della tipologia ricevuta in ingresso.
+
+
+\begin{DoxyParams}{Parametri}
+{\em flag\+\_\+prodotto} & Tipologia di prodotto da ricercare.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Restituisce}
+1 In caso di successo della ricerca. 
+
+0 Se il parametro non è valido. 
+
+-\/1 Se non è possibile aprire F\+I\+L\+E\+\_\+\+C\+O\+S\+U\+MI.
+\end{DoxyReturn}
+\begin{DoxyPrecond}{Precondizione}
+Il flag deve avere un valore significativo. 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Deve essere controllato l\textquotesingle{}esito della ricerca, per verificare l\textquotesingle{}esito della funzione. 
+\end{DoxyPostcond}

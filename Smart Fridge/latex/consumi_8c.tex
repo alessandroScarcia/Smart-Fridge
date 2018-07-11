@@ -1,0 +1,42 @@
+\hypertarget{consumi_8c}{}\section{Riferimenti per il file src/consumi.c}
+\label{consumi_8c}\index{src/consumi.\+c@{src/consumi.\+c}}
+{\ttfamily \#include \char`\"{}consumi.\+h\char`\"{}}\newline
+\subsection*{Funzioni}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{consumi_8c_acdbafce324b9b2e475410f0a1466f7e3}{registra\+\_\+consumo} (char $\ast$nome\+\_\+prodotto, short flag\+\_\+prodotto)
+\item 
+int \hyperlink{consumi_8c_a69b1fd4d9d612ca2be764ff97b1d2ce3}{ricerca\+\_\+prod\+\_\+magg\+\_\+cons} (short flag\+\_\+prodotto)
+\end{DoxyCompactItemize}
+
+
+\subsection{Descrizione dettagliata}
+Implementazione delle funzioni di cosumi.\+h 
+
+\subsection{Documentazione delle funzioni}
+\mbox{\Hypertarget{consumi_8c_acdbafce324b9b2e475410f0a1466f7e3}\label{consumi_8c_acdbafce324b9b2e475410f0a1466f7e3}} 
+\index{consumi.\+c@{consumi.\+c}!registra\+\_\+consumo@{registra\+\_\+consumo}}
+\index{registra\+\_\+consumo@{registra\+\_\+consumo}!consumi.\+c@{consumi.\+c}}
+\subsubsection{\texorpdfstring{registra\+\_\+consumo()}{registra\_consumo()}}
+{\footnotesize\ttfamily int registra\+\_\+consumo (\begin{DoxyParamCaption}\item[{char $\ast$}]{nome\+\_\+prodotto,  }\item[{short}]{flag\+\_\+prodotto }\end{DoxyParamCaption})}
+
+Funzione registra\+\_\+consumo\+: La funzione ha il compito di registrare la consumazione di un prodotto. Ciò significa incrementare il valore di frequenza, nel record corrispondente al prodotto, in F\+I\+L\+E\+\_\+\+C\+O\+N\+S\+U\+MI. A questo scopo, apre il file o lo crea se non esiste. Successivamente effettua una scansione dei record del file. Se individua il record corridpondente al prodotto, memorizza la sua posizione. Se viene memorizzata la posizione del record, viene posizionato il puntatore a quel record e ne viene incrementato il valore di frequenza. Altrimenti viene creato un nuovo record con valore di frequenza pari a 1.
+
+\begin{DoxyPrecond}{Precondizione}
+Il nome del prodotto deve essere una stringa non vuota e non più lunga di L\+U\+N\+G\+\_\+\+N\+O\+M\+E\+\_\+\+P\+R\+O\+D\+O\+T\+TO 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Deve essere controllato il valore di ritorno per verificare l\textquotesingle{}esito della registrazione 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{consumi_8c_a69b1fd4d9d612ca2be764ff97b1d2ce3}\label{consumi_8c_a69b1fd4d9d612ca2be764ff97b1d2ce3}} 
+\index{consumi.\+c@{consumi.\+c}!ricerca\+\_\+prod\+\_\+magg\+\_\+cons@{ricerca\+\_\+prod\+\_\+magg\+\_\+cons}}
+\index{ricerca\+\_\+prod\+\_\+magg\+\_\+cons@{ricerca\+\_\+prod\+\_\+magg\+\_\+cons}!consumi.\+c@{consumi.\+c}}
+\subsubsection{\texorpdfstring{ricerca\+\_\+prod\+\_\+magg\+\_\+cons()}{ricerca\_prod\_magg\_cons()}}
+{\footnotesize\ttfamily int ricerca\+\_\+prod\+\_\+magg\+\_\+cons (\begin{DoxyParamCaption}\item[{short}]{flag\+\_\+prodotto }\end{DoxyParamCaption})}
+
+\begin{DoxyPrecond}{Precondizione}
+Il flag deve avere un valore significativo. 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Deve essere controllato l\textquotesingle{}esito della ricerca, per verificare l\textquotesingle{}esito della funzione. 
+\end{DoxyPostcond}

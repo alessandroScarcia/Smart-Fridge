@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.13"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Smart Fridge: Riferimenti per il file src/pulizia_flussi.c</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Smart Fridge
+   &#160;<span id="projectnumber">1.0</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generato da Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Cerca');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Cerca');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#func-members">Funzioni</a>  </div>
+  <div class="headertitle">
+<div class="title">Riferimenti per il file pulizia_flussi.c</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;<a class="el" href="pulizia__flussi_8h_source.html">pulizia_flussi.h</a>&quot;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Funzioni</h2></td></tr>
+<tr class="memitem:ae90974f09f8272221a500c021ae9ddc9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pulizia__flussi_8c.html#ae90974f09f8272221a500c021ae9ddc9">pulisci_stdin</a> ()</td></tr>
+<tr class="separator:ae90974f09f8272221a500c021ae9ddc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a53ddb24d51525a4b2b9672c7562a0df6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pulizia__flussi_8c.html#a53ddb24d51525a4b2b9672c7562a0df6">pulisci_riga_flusso</a> (FILE *stream)</td></tr>
+<tr class="separator:a53ddb24d51525a4b2b9672c7562a0df6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Descrizione dettagliata</h2>
+<div class="textblock"><p>Questo file contiene le implementazioni delle funzioni definite all'interno del file "pulizia_flussi.h". </p>
+</div><h2 class="groupheader">Documentazione delle funzioni</h2>
+<a id="a53ddb24d51525a4b2b9672c7562a0df6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a53ddb24d51525a4b2b9672c7562a0df6">&#9670;&nbsp;</a></span>pulisci_riga_flusso()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void pulisci_riga_flusso </td>
+          <td>(</td>
+          <td class="paramtype">FILE *&#160;</td>
+          <td class="paramname"><em>stream</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>La procedura <a class="el" href="pulizia__flussi_8c.html#a53ddb24d51525a4b2b9672c7562a0df6">pulisci_riga_flusso()</a> utilizza la funzione fgetc() per consumare tutti i caratteri presenti in un flusso, puntato dal puntatore a file ricevuto come parametro stream, fino al raggiungimento del primo carattere di newline.</p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">stream</td><td>Flusso nel quale consumare i caratteri. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ae90974f09f8272221a500c021ae9ddc9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae90974f09f8272221a500c021ae9ddc9">&#9670;&nbsp;</a></span>pulisci_stdin()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int pulisci_stdin </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>La funzione <a class="el" href="pulizia__flussi_8c.html#ae90974f09f8272221a500c021ae9ddc9">pulisci_stdin()</a> utilizza la funzione getchar() per consumare tutti i caratteri presenti nel flusso stdin, fino al raggiungimento di EOF.</p>
+<dl class="section post"><dt>Postcondizione</dt><dd>Il valore di ritorno deve essere controllato per verificare se è stata necessaria la pulizia. </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generato da &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.13
+</small></address>
+</body>
+</html>
