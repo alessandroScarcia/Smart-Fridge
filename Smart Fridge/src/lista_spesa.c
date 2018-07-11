@@ -242,7 +242,7 @@ int generatore_spesa_personale() {
 	}
 
 	//generazione del nome del file che ospiterá la spesa personale
-	char nome_file[LUNG_NOME_FILE_RICETTE] = PREFIX_FILE_SPESA;
+	char nome_file[LUNG_NOME_FILE_SPESA] = PREFIX_FILE_SPESA;
 	strcat(nome_file, u.nickname);
 	strcat(nome_file, SUFFIX_FILE_SPESA);
 
