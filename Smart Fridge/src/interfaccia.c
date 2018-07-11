@@ -35,6 +35,10 @@ int input_scelta(int valore_minimo, int valore_massimo) {
 }
 
 
+/**Funzione che si occupa della visualizzazione del contorno del titolo
+ * @pre  Nessuna particolare pre condizione
+ * @post Che sia visualizzata correttamente la linea di contorno in base alla posizione
+ */
 void riga_contorno(int posizione){
 	if(posizione==SUPERIORE){
 		printf("%c",201);
@@ -54,7 +58,10 @@ void riga_contorno(int posizione){
 	}
 }
 
-
+/**Funzione che si occupa della visualizzazione della riga inferiore del contorno della schermata
+ * @pre  Nessuna particolare pre condizione
+ * @post Che sia stata visualizzata correttamente la parte la linea di contorno
+ */
 void parte_inferiore_tabella(){
 	printf("%c                                                                                          %c\n", 179, 179);
 	printf("%c",192);
@@ -66,6 +73,10 @@ void parte_inferiore_tabella(){
 
 
 
+/**Funzione che si occupa della visualizzazione delle voci del menu principale
+ * @pre  Nessuna particolare pre condizione
+ * @post Che siano state visualizzate le opzioni corrette per il menu
+ */
 void voci_principale(){
 	if(conta_notifiche()>0){
 		printf(" ##############################\n"
@@ -95,7 +106,10 @@ void voci_principale(){
 
 
 
-
+/**Funzione che si occupa della visualizzazione delle voci del menu alimenti
+ * @pre  Nessuna particolare pre condizione
+ * @post Che siano state visualizzate le opzioni corrette per il menu
+ */
 void voci_alimenti(){
 	riga_contorno(SUPERIORE);
 	printf("%c                                     MENU ALIMENTI                                        %c\n", 186,186);
@@ -113,7 +127,10 @@ void voci_alimenti(){
 }
 
 
-
+/**Funzione che si occupa della visualizzazione delle voci del menu ricette
+ * @pre  Nessuna particolare pre condizione
+ * @post Che siano state visualizzate le opzioni corrette per il menu
+ */
 void voci_ricette(){
 	riga_contorno(SUPERIORE);
 	printf("%c                                     MENU RICETTE                                         %c\n", 186,186);
@@ -131,7 +148,10 @@ void voci_ricette(){
 
 
 
-
+/**Funzione che si occupa della visualizzazione delle voci del menu utenti
+ * @pre  Nessuna particolare pre condizione
+ * @post Che siano state visualizzate le opzioni corrette per il menu
+ */
 void voci_utenti(){
 	riga_contorno(SUPERIORE);
 	printf("%c                                     MENU UTENTE                                          %c\n", 186,186);
@@ -147,6 +167,10 @@ void voci_utenti(){
 }
 
 
+/**Funzione che si occupa della visualizzazione delle voci del menu ricerca
+ * @pre  Nessuna particolare pre condizione
+ * @post Che siano state visualizzate le opzioni corrette per il menu
+ */
 void voci_ricerca(){
 	riga_contorno(SUPERIORE);
 	printf("%c                                     MENU RICERCA                                         %c\n", 186,186);
@@ -165,7 +189,10 @@ void voci_ricerca(){
 
 
 
-
+/**Funzione che si occupa della visualizzazione delle voci del menu lista della spesa
+ * @pre  Nessuna particolare pre condizione
+ * @post Che siano state visualizzate le opzioni corrette per il menu
+ */
 void voci_lista_spesa(){
 	riga_contorno(SUPERIORE);
 	printf("%c                                     MENU LISTA DELLA SPESA                               %c\n", 186,186);
@@ -182,7 +209,10 @@ void voci_lista_spesa(){
 
 
 
-
+/**Funzione che si occupa della visualizzazione delle voci del menu settimanale
+ * @pre  Nessuna particolare pre condizione
+ * @post Che siano state visualizzate le opzioni corrette per il menu
+ */
 void voci_menu_settimanale(){
 	riga_contorno(SUPERIORE);
 	printf("%c                                     GESTIONE MENU SETTIMANALE                            %c\n", 186,186);
@@ -197,8 +227,10 @@ void voci_menu_settimanale(){
 
 
 
-
-
+/**Funzione che si occupa della visualizzazione delle voci del menu calorie
+ * @pre  Nessuna particolare pre condizione
+ * @post Che siano state visualizzate le opzioni corrette per il menu
+ */
 void voci_calorie(){
 	riga_contorno(SUPERIORE);
 	printf("%c                                     GESTIONE MENU CALORIE                                %c\n", 186,186);
@@ -300,7 +332,11 @@ int conta_notifiche (){
 
 
 
-
+/**Funzione che si occupa di far selezionare all'utente le operazioni possibili da effettuare sul menu calorie. La scelta dell'opzione
+ * viene fatta attraverso una switch
+ * @pre  Nessuna pre condizione particolare
+ * @post Il risultato deve essere quello che l'opzione scelta si occupa
+ */
 int menu_calorie(){
 			int scelta; //memorizza la scelta effettuata dall'utente
 
@@ -354,10 +390,13 @@ int menu_calorie(){
 }
 
 
-
+/**Funzione che si occupa di far selezionare all'utente le operazioni possibili da effettuare sul menu lista della spesa. La scelta dell'opzione
+ * viene fatta attraverso una switch
+ * @pre  Nessuna pre condizione particolare
+ * @post Il risultato deve essere quello che l'opzione scelta si occupa
+ */
 int menu_lista_spesa(){
 			int scelta; //memorizza la scelta effettuata dall'utente
-			utente u;
 
 			visualizza_voci_menu(MENU_LISTA_SPESA);
 			printf("Inserisci comando ~ ");
@@ -408,7 +447,11 @@ int menu_lista_spesa(){
 
 
 
-
+/**Funzione che si occupa di far selezionare all'utente le operazioni possibili da effettuare sul menu settimanale. La scelta dell'opzione
+ * viene fatta attraverso una switch
+ * @pre  Nessuna pre condizione particolare
+ * @post Il risultato deve essere quello che l'opzione scelta si occupa
+ */
 int gestore_menu_settimanale(){
 			int scelta; //memorizza la scelta effettuata dall'utente
 			visualizza_voci_menu(OPZIONI_MENU_SETTIMANALE);
@@ -429,14 +472,7 @@ int gestore_menu_settimanale(){
 					break;
 
 				case 2:
-					//autenticazione(con controllo su esito) dell'utente
-					if(autenticazione(&u)){
-						visualizza_database_menu(u.nickname);
-					}else{
-						printf("Operazione di utenticazione fallita");
-						return -1;
-					}
-
+					gestore_visualizzazione_menu();
 					break;
 
 				default:

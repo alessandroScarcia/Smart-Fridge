@@ -191,6 +191,54 @@ int visualizza_voci_menu(int voce);
  */
 int visualizza_crediti();
 
+/**
+ * Funzione che si occupa della visualizzazione del contorno del titolo
+ */
+void riga_contorno(int posizione);
 
+/**
+ * Funzione che si occupa della visualizzazione della riga inferiore del contorno della schermata
+ */
+void parte_inferiore_tabella();
+
+/**
+ * Funzione che si occupa della visualizzazione delle voci del menu principale
+ */
+void voci_principale();
+
+/**
+ * Funzione che si occupa della visualizzazione delle voci del menu alimenti
+ */
+void voci_alimenti();
+
+/**
+ * Funzione che si occupa della visualizzazione delle voci del menu ricette
+ */
+void voci_ricette();
+
+/**
+ * Funzione che si occupa della visualizzazione delle voci del menu utenti
+ */
+void voci_utenti();
+
+/**
+ * Funzione che si occupa della visualizzazione delle voci del menu ricerca
+ */
+void voci_ricerca();
+
+/**
+ * /**Funzione che si occupa della visualizzazione delle voci del menu lista della spesa
+ */
+void voci_lista_spesa();
+
+/**
+ * Funzione che si occupa della visualizzazione delle voci del menu settimanale
+ */
+void voci_menu_settimanale();
+
+/**
+ * Funzione che si occupa della visualizzazione delle voci del menu calorie
+ */
+void voci_calorie();
 
 #endif
