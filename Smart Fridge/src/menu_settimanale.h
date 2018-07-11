@@ -100,18 +100,20 @@ typedef struct {
 /**
  * @typedef giorno
  *
- * Il tipo di dato "giorno" serve a memorizzare il cibo che l'utente si impegna a cosumare durante un dato giorno della settimana.
- * E' basato su di una struct i cui membri sono: giorno e pasto.
+ * Il tipo di dato "giorno" serve a memorizzare il cibo che l'utente si impegna a consumare durante un dato giorno della settimana.
+ * E' basato su di una struct i cui membri sono: giorno, pasto e kcal.
+ * Giorno indica il giorno della settimana.
  * Pasto è un dato strutturato di tipo "pasto".
+ * kcal indica le kcal della giornata.
  */
 
 typedef struct {
 	int kcal;
 	char nome_giorno[LUNG_GIORNO];
 	pasto pasti[NUM_PASTI];
-} giorno; //cambio nome
+} giorno;
 
-#endif
+
 /**
  * La funzione crea_nome_file_menu() si occupa di concatenare delle stringhe con il nickname passato
  * in ingresso per poi restituire tale risultato
@@ -126,7 +128,7 @@ char* crea_nome_file_menu(const char* nickname);
  * La funzione inizializzazione() chiama una serie di funzioni utili ad un inizializzazione di un vettore di 7
  * struct di tipo giorno, ognuna delle quali rappresenta un giorno della settimana
  *
- * @param no
+ * @param nome_utente      stringa da cui viene generato il nome file da inizializzare
  */
 int inizializzazione (const char* nome_utente);
 
@@ -135,6 +137,7 @@ int inizializzazione (const char* nome_utente);
  * ad una variabile di tipo giorno e la sua posizione nel vettore creato nella funzione inizializzazione ().
  * La funzione assegnerà alla variabile giorno appartenente alla struct il nome di un giorno della settimana,
  * scegliendo tale nome sulla base della sua posizione nel vettore di struct a cui appartire.
+ * Inoltre, imposta a zero le kcal della giornata.
  *
  * @param menu varibile da modificare, indice variabile per la scelta della modifica da effetuare
  * @return 0 se l'operazione va a buon fine
@@ -153,7 +156,7 @@ int inizializzazione_giorno (giorno* giornata, int indice);
 int inizializzazione_pasti (giorno* giornata);
 
 /**
- * La funzione inizializzazione_pasti() riceve in ingresso un puntatore
+ * La funzione inizializzazione_alimenti() riceve in ingresso un puntatore
  * ad una variabile di tipo giorno e l'indice del vettore della variabile al suo interno "pasto".
  * La funzione assegnerà alla variabile alimento, appartenente alla struct pasto, una stringa vuota al
  * nome_cibo, un flag impostato a -1 e una quantità pari a 0.
@@ -171,7 +174,7 @@ int inizializzazione_alimenti (giorno* giornata, short int num_pasto);
  * @param vettore menu da scrivere su file.
  * @return 0 se l'operazione va a buon fine
  */
-int inizializzazione_file_menu (const char* nomefile, giorno* menu );
+int inizializzazione_file_menu (const char* nome_utente, giorno* menu );
 
 
 
@@ -185,25 +188,61 @@ int inizializzazione_file_menu (const char* nomefile, giorno* menu );
  */
 int visualizza_database_menu (char nome_utente[]);
 
-
+/**
+ * La funzione esiste_menu() riceve in ingresso il nome dell'utente
+ * La funzione verificherà l'esistenza del menu dell'utente il cui nome è passato in ingrsso
+ *
+ * @param nicknae per la generazione del nome file da controllare
+ * @return 0 se il file non esiste, 1 se esiste, -1 se il nickname non è idoneo
+ */
 int esiste_menu(char* nickname);
 
-
+/**
+ * La funzione input_kcal_giornata() permette l'input delle kcal di una giornata.
+ *
+ * @param no
+ * @return le kcal inserite dall'utente
+ */
 int input_kcal_giornata();
 
-
+/**
+ * La funzione input_numero_pasto() permette la selezione del pasto, ritornando tale valore.
+ *
+ * @param no
+ * @return la selezione effettuata
+ */
 int input_numero_pasto();
 
-
+/**
+ * La funzione input_numero_giorno() permette la selezione del giorno che si intende modificare.
+ *
+ * @param no
+ * @return la selezione effettuata
+ */
 int input_numero_giorno();
 
-
+/**
+ * La funzione input_nome_cibo() permette l'input da tastiera del nome del cibo da parte dell'utente.
+ *
+ * @param no
+ * @return la stringa inserita da tastiera
+ */
 char* input_nome_cibo();
 
-
+/**
+ * La funzione input_quantita_cibo() permette l'input da tastiera della quantità del cibo, ritornando quest'ultima.
+ *
+ * @param no
+ * @return la stringa inserita da tastiera
+ */
 char* input_quantita_cibo();
 
-
+/**
+ * La funzione input_flag_cibo() permette l'input da tastiera del flag corrispondente alla ricetto o all'alimento.
+ *
+ * @param no
+ * @return la stringa inserita da tastiera
+ */
 int input_flag_cibo();
 
 
@@ -288,3 +327,12 @@ int elimina_file_menu(char nome_file[LUNG_NOME_FILE_MENU]);
 
 int gestore_visualizzazione_menu ();
 
+/**
+ * La procedura scrivi_menu() riceve in ingresso un vettore di cibi e confronta ciasciuna posizone per trascinsare
+ * nelle posizioni più avanti quelli con nome diverso da stringa vuota.
+ *
+ * @param cibi puntatore a vettore di tipo char da analizzate
+ *
+ */
+void ordina_cibi_pasto(cibo* cibi);
+#endif

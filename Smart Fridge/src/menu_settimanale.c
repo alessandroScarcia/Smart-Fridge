@@ -99,13 +99,15 @@ int inizializzazione(const char* nome_utente) {
  *
  * La funzione ha il compito di assegnare alla variabile giorno appartenente alla struct passatagli il nome di un giorno della settimana,
  * scegliendo tale nome sulla base della sua posizione nel vettore di struct a cui appartire. Tale posizione gli è passata dalla funzunzione
- * chiamante
+ * chiamante. Inoltre imposta le kcal della giornata a 0.
  *
  * A tal scopo esegue un controllo sull'indice passatogli per l'identificazione della sua possizione nel vettore a cui appartiene.
  * In base al suo valore, verrà chiamata una funzione che copierà nella variabile di tipo stringa "giorno" una stringa corrispondente
  * al nome di uno dei giorni della settimana.
  *
- * @pre Non vi sono specifiche pre-condizioni per la funzione
+ *
+ *
+ * @pre l'indice deve essere compreso tra 0 e 6
  * @post Il valore restituito rappresenta l'esito della funzione.
  *
  */
@@ -208,7 +210,7 @@ int inizializzazione_pasti(giorno* menu) {
  * Al tal scopo viene  inizializzato un contattore che sarà utilizzato in un ciclo che permetterà di scorrere per il vettore alimento.
  * Fermi su un dato elemento del vettore, verrà effetuato l'accesso e la modifica di ogni suo sotto-elemento.
  *
- * @pre Non vi sono specifiche pre-condizioni per la funzione
+ * @pre num_pasto deve essere compreso tra 0 e 4
  * @post Il valore restituito rappresenta l'esito della funzione.
  *
  */
@@ -262,16 +264,29 @@ int inizializzazione_file_menu(const char* nome_utente, giorno* menu) {
 
 }
 
-
+/**
+ * Funzione esiste_menu ():
+ *
+ * La funzione ha il compito di controllare che il file menu, legato all'utente il cui nicknama è passato in ingresso, esista.
+ *
+ * Al tal scopo viene  effettuato un controllo sul nickname passato in ingresso, per assicurarsi che tale nickname sia idoneo.
+ * Sucessivamente, viene tentata l'apertura del file. In base alla successo dell'operazione, viene restuituito un valore
+ * opportuno dalla funzione.
+ *
+ * @pre Non vi sono specifiche pre-condizioni per la funzione
+ * @post Il valore restituito rappresenta l'esito della funzione.
+ *
+ */
 int esiste_menu(char* nome_utente){
 	int lung_nome_utente = strlen(nome_utente);
 
+	//controllo sul nome utente
 	if(lung_nome_utente < MIN_LUNG_NICKNAME || lung_nome_utente > MAX_LUNG_NICKNAME - 1){
 		return -1;
 	}else{
 		FILE* stream = NULL;
 		char* nome_file = crea_nome_file_menu(nome_utente);
-
+		//apertura file
 		if((stream = fopen(nome_file, "rb")) == NULL){
 			return 0;
 		}else{
@@ -281,10 +296,22 @@ int esiste_menu(char* nome_utente){
 	}
 }
 
-
+/**
+ * Funzione input_kcal_giornata ():
+ *
+ * La funzione ha il compito di permettere l'input da parte dell'utente delle calorie della gionata di riferimento.
+ *
+ * Al tal scopo viene  implementato un do while, che ripete la richiesta di input fino a quando l'input non risulti
+ * idoneo. La funzione ritornerà il valore inserito dall'utente.
+ *
+ * @pre Non vi sono specifiche pre-condizioni per la funzione
+ * @post Il valore restituito rappresenta l'input dato.
+ *
+ */
 int input_kcal_giornata(){
 	int esito_input;
 	int esito_controllo;
+
 	int kcal_giornata;
 
 	do {
@@ -338,7 +365,18 @@ int input_numero_giorno(){
 	return num_giorno;
 }
 
-
+/**
+ * Funzione input_numero_pasto ():
+ *
+ * La funzione ha il compito di permettere la selezione di uno dei pasti della giornata presa in esame, restituiendo tale valore.
+ *
+ * Al tal scopo viene  implementato un do while, che ripete la richiesta di input fino a quando l'input non risulti
+ * idoneo. La funzione ritornerà il valore inserito dall'utente.
+ *
+ * @pre Non vi sono specifiche pre-condizioni per la funzione
+ * @post Il valore restituito rappresenta l'input dato.
+ *
+ */
 int input_numero_pasto(){
 	int esito_input;
 	int esito_controllo;
@@ -368,6 +406,19 @@ int input_numero_pasto(){
 }
 
 
+/**
+ * Funzione input_nome_cibo ():
+ *
+ * La funzione ha il compito di permettere all'utente di inserire il nome di un cibo, ritornando quest'ultimo.
+ *
+ * Al tal scopo viene  allocata una parte di memoria al vettore che conterrà il nome del cibo
+ * inoltre viene implementato un do while, che ripete la richiesta di input fino a quando l'input non risulti
+ * idoneo. La funzione ritornerà la stringa inserita dall'utente
+ *
+ * @pre Non vi sono specifiche pre-condizioni per la funzione
+ * @post Il valore restituito rappresenta l'input dato.
+ *
+ */
 char* input_nome_cibo(){
 	int esito_input;
 	char* nome_cibo = (char*) calloc(LUNG_CIBO, sizeof(char));
@@ -375,7 +426,7 @@ char* input_nome_cibo(){
 	do {
 
 		printf("Inserisci il nome del cibo:\n~");
-		esito_input = scanf("%40[^\n]", nome_cibo); //Scelta e memorizzazione della posizione della struct
+		esito_input = scanf("%40[^\n]", nome_cibo);
 		if(pulisci_stdin() == 1){
 			esito_input = 0;
 		}
@@ -389,7 +440,19 @@ char* input_nome_cibo(){
 	return nome_cibo;
 }
 
-
+/**
+ * Funzione input_quantita_cibo ():
+ *
+ * La funzione ha il compito di permettere all'utente di inserire la quantita del cibo,
+ *
+ * Al tal scopo viene allocata una parte di memoria per il contenimento della quantita
+ * inoltre, viene  implementato un do while, che ripete la richiesta di input fino a quando l'input non risulti
+ * idoneo. La funzione ritornerà la stringa inserita dall'utente
+ *
+ * @pre Non vi sono specifiche pre-condizioni per la funzione
+ * @post Il valore restituito rappresenta l'input dato.
+ *
+ */
 char* input_quantita_cibo(){
 	int esito_input;
 	char* quantita = (char*) calloc(LUNG_QUANTITA, sizeof(char));
@@ -412,7 +475,20 @@ char* input_quantita_cibo(){
 }
 
 
-
+/**
+ * Funzione input_flag_cibo ():
+ *
+ * La funzione ha il compito di permettere all'utente di inserire il flag corrispondente a ciò che sta inserendo:
+ * 0 per un alimento
+ * 1 per la ricetta
+ *
+ * Al tal scopo viene  implementato un do while, che ripete la richiesta di input fino a quando l'input non risulti
+ * idoneo. La funzione ritornerà la stringa inserita dall'utente
+ *
+ * @pre Non vi sono specifiche pre-condizioni per la funzione
+ * @post Il valore restituito rappresenta l'input dato.
+ *
+ */
 int input_flag_cibo(){
 	int esito_input;
 	int esito_controllo;
@@ -444,13 +520,13 @@ int input_flag_cibo(){
 /**
  * Funzione visualizza_database_menu ():
  *
- * La funzione ha il compito di aprire un file, il cui nome verrà generato grazie al paramentro in ingresso nome_utente ed una serie di concatenazioni
- * con nomefile, e leggere il suo contenuto fino al raggiungimento della fine del file.
+ * La funzione ha il compito di aprire un file, il cui nome verrà generato grazie al paramentro in ingresso nome_utente ed il richiamo
+ * ad una funzione che si occupa della sua generazione, e leggere il suo contenuto fino al raggiungimento della fine del file.
  * Tale lettura sarà possibile grazie alla funzione fread che momerizzerà ciò che legge in menu e
  * passerà esso ad una funzione che si occuperà della stampa su schermo.
  *
  *
- * @pre Non vi sono specifiche pre-condizioni per la funzione
+ * @pre Nome utente non vuoto
  * @post Il valore restituito rappresenta l'esito della funzione.
  *
  */
@@ -483,7 +559,19 @@ int visualizza_database_menu(char nome_utente[]) {
 	return 1;
 }
 
-
+/**
+ * Procedura ordina_cibi_pasto ():
+ *
+ * La funzione ha il compito di ordinare il vettore di cibi che riceve in ingresso mettendo nelle prime posizioni i cibi con nome diverso
+ * da stringa vuota.
+ *
+ * A tale scopo viene implementato un for che scorre nel vettore e controlla che la stringa del nome sia vuota, se vuota, viene scambiata con quella
+ * in posizione inferiore.
+ *
+ *
+ * @pre non ci sono specifiche pre condizioni
+ *
+ */
 void ordina_cibi_pasto(cibo* cibi){
 	cibo tmp;
 
@@ -507,12 +595,11 @@ void ordina_cibi_pasto(cibo* cibi){
  *
  * Al tal scopo viene crata una struct di tipo utente per permettere l'autentificazione dell'utente, se essa va a buon fine, sarà possibile scegliere
  * il giorno ed estrarre tale giorno dal file attraverso la funzione estrazione_struct. Verrà stampato su schermo il menu estratto grazie alla procedura
- * stampa_menu ed a questo punto verrà chiesto quale pasto si intende modificare (colazione, spuntino di metà mattina, ecc). Memorizzata la risposta
- * inserita da tastiera, verrà decrementata tale risposta (il numero corrispodente alla risposta permette l'accesso all'array pasto, che però parte da
- * 0 e quindi richiede necessariamente il decremento di tale risposta che riceve numeri da 1 a 5).
+ * stampa_menu ed a questo punto viene richiamata una funzione di selezione del pasto ed un'altra per la selezione dell'alimento.
  * A questo punto verrà chiamata una funzione che interviene sulla modifica del singolo alimento, fatto ciò la procedura scrivi_menu memorizzerà su file
  * il nuovo menu.
  * In fine, verrà visualizzato il database del menu settimanale dell'utente per intero.
+ * Verrà richiesto se si desidera modificare altro, se affermativo verranno ripetute la procedura si selezione e di modifica altrimenti la funzione terminerà.
  *
  * @pre Non vi sono specifiche pre-condizioni per la funzione
  * @post Il valore restituito rappresenta l'esito della funzione.
@@ -602,13 +689,17 @@ void modifica_menu() {
 }
 
 /**
- * Funzione scelta_alimenti ():
+ * Procedura modifica_alimenti_pasto ():
  *
- * La funzione ha il compito di modificare un singolo alimento su richiesta dell'utente
+ * La procedura ha il compito di modificare un singolo alimento su richiesta dell'utente
  *
- * Al tal scopo viene riesco all'utente di decidere quale degli alimenti presenti modificare, sucessivamente di inserire un flag di riferimento
- * per distinguere l'inserimento di un singolo alimento dall'inserimento di una ricetta.
- * In fine, viene richiesto il nome di tale alimento/ricetta.
+ * Al tal scopo viene fatto un controllo su ognuno degli aliemnti presenti nel pasto corrispondente all'indice passato in ingresso,
+ * se la stringa è diversa dalla stringa vuota, un contatore verrà aumentato di uno.
+ * Fatto tutti i confronti, se il contatore è minore del numero degli alimenti, verrà richiesto se si desidera modificare uno di quelli gia
+ * esistenti o di aggiungerne uno nuovo. Se si scegli di inserire uno nuovo, si effettua una richiesta di tale input e verrà memorizzata nella
+ * prima posizione disponibile nel vettore degli alimento, altrimenti verrà modifcato il cibo selezionato. Vengono oridinati i cibi.
+ * Fatto ciò, viene richiesto se si desidera modificare altro in relazione a questo pasto, se si vengono effettuate tutte le operazioni di scelta
+ * e di modifca sopracitate, altrimenti la funzione si conclude.
  *
  * @pre Non vi sono specifiche pre-condizioni per la funzione
  * @post Il valore restituito rappresenta l'esito della funzione.
@@ -620,6 +711,7 @@ void modifica_alimenti_pasto(giorno* giornata, short int num_pasto) {
 	int scelta;
 	short num_cibi = 0;
 
+	//controllo che il nome dei cibi sia diverso da stringa vuota ed incremento il contatore nel caso così fosse
 	for(int i = 0; i < NUM_CIBI; i++){
 		if(strcmp(giornata->pasti[num_pasto].cibi[i].nome_cibo, "") != 0){
 			num_cibi++;
@@ -627,7 +719,8 @@ void modifica_alimenti_pasto(giorno* giornata, short int num_pasto) {
 	}
 
 	do{
-
+		//se ci sono nomi cibi con stringa vuota do la possibilità di modifcare quelli già esistenti e di aggiungere nelle
+		//posizioni con stringa vuota nuovi alimenti
 		if(num_cibi > 0 && num_cibi < NUM_CIBI){
 
 			do {
@@ -656,12 +749,14 @@ void modifica_alimenti_pasto(giorno* giornata, short int num_pasto) {
 			}
 		}
 
+		//scrivo in una dei cibi con nome con stringa vuota
 		if(scelta == 0){
 
 			puts("Aggiungi un nuovo cibo:\n");
 
 			giornata->pasti[num_pasto].cibi[num_cibi].flag = input_flag_cibo();
 
+			//controllo che il nome non sia già presente nel pasto
 			do {
 				strcpy(giornata->pasti[num_pasto].cibi[num_cibi].nome_cibo, input_nome_cibo());
 
@@ -675,21 +770,22 @@ void modifica_alimenti_pasto(giorno* giornata, short int num_pasto) {
 						esito_input = 1;
 					}
 				}
-
+				//se è presente faccio ripetere l'input
 				if(esito_input == 0){
 					puts("Nome cibo già presente nel pasto. Inserirne uno diverso.");
 				}
 			} while (esito_input == 0);
-
+			//se la quantità non è idonea, non salvo il cibo inserito
 			strcpy(giornata->pasti[num_pasto].cibi[num_cibi].quantita, input_quantita_cibo());
 
 			if(strcmp(giornata->pasti[num_pasto].cibi[num_cibi].quantita, "null") == 0){
 				strcpy(giornata->pasti[num_pasto].cibi[num_cibi].nome_cibo, "");
 				puts("Nuovo cibo non inserito.");
 			}else{
-				num_cibi++;
+				num_cibi++; //incremento il contatore per segnalare che un alimento è stato aggiunto e che non fa più
+				            // parte degli alimenti con stringa vuota
 			}
-
+			//se si scegli di modifcare un cibo già esistente
 		}else if(scelta == 1){
 			int indice_cibo_scelto = 0;
 			char nome_cibo[LUNG_CIBO];
@@ -698,7 +794,7 @@ void modifica_alimenti_pasto(giorno* giornata, short int num_pasto) {
 
 			do {
 				strcpy(nome_cibo, input_nome_cibo());
-
+				//controllo se il cibo è gia presente
 				for(int i = 0; i < num_cibi; i++){
 					if(strcmp(giornata->pasti[num_pasto].cibi[i].nome_cibo, nome_cibo) != 0){
 						esito_input = 0;
@@ -715,15 +811,17 @@ void modifica_alimenti_pasto(giorno* giornata, short int num_pasto) {
 			} while (esito_input == 0);
 
 			strcpy(giornata->pasti[num_pasto].cibi[indice_cibo_scelto].quantita, input_quantita_cibo());
-
+			//se la quantità è uguale a null, il cibo viene eliminato
 			if(strcmp(giornata->pasti[num_pasto].cibi[indice_cibo_scelto].quantita, "null") == 0){
 				strcpy(giornata->pasti[num_pasto].cibi[indice_cibo_scelto].nome_cibo, "");
 				puts("Cibo eliminato.");
-
+				//ordino il vettore
 				ordina_cibi_pasto(giornata->pasti[num_pasto].cibi);
 			}
 		}
 
+
+		//verifico se l'utente vuole o non vuole modifcare altro in relazione con questo pasto
 		do{
 			printf("Inserire:\n\t[1] per effettuare nuove operazioni su questo pasto\n\t[0] per terminare le modifiche su questo pasto\n~");
 			esito_input = scanf("%d", &scelta);
@@ -752,7 +850,7 @@ void modifica_alimenti_pasto(giorno* giornata, short int num_pasto) {
  * La funzione ha il compito di estrarre dal file menu di un utente la struct all'n-esima posizione.
  *
  * Al tal scopo viene riesco passata alla funzione un puntatore a menu, dove verrà memorizzata la struct estratta. Il nome_utente servirà per
- * generare il nome del file corrispondente al menu dell'utente. Fatto ciò, verrà a aperto il file, estratta la struct alla posizione indicata da n
+ * generare il nome del file corrispondente al menu dell'utente. Fatto ciò, verrà a aperto il file, estratta la struct alla posizione indicata da num_giorno
  * e momorizzata in menu. Il file viene chiuso e la funzione termina.
  *
  * @pre Non vi sono specifiche pre-condizioni per la funzione
@@ -785,7 +883,19 @@ int estrai_giorno(giorno* giornata, char* nome_utente, int num_giorno) {
 	}
 }
 
-
+/**
+ * Funzione estrai_kcal_menu ():
+ *
+ * La funzione ha il compito di estrarre dal file menu le kcal del giorno indicato da num_giorno.
+ *
+ * Al tal scopo viene riesco passata alla funzione il nome utente per la generazione del nome file, un puntatore a kcal dove verranno memorizzate le kcal
+ * estratte ed il num_giorno. Effettuato un controllo sul num_giorno, viene aperto il file dopo la creazione del suo nome e letta la struct
+ * corrispondente, momorizzando in kcal le kcal lette del giorno estratto.
+ *
+ * @pre Non vi sono specifiche pre-condizioni per la funzione
+ * @post Il valore restituito rappresenta l'esito della funzione.
+ *
+ */
 int estrai_kcal_menu(int* kcal, char* nome_utente, int num_giorno){
 	if(num_giorno < 0 || num_giorno > NUM_GIORNI - 1){
 		return -1;
@@ -806,6 +916,7 @@ int estrai_kcal_menu(int* kcal, char* nome_utente, int num_giorno){
 		fseek(stream, num_giorno * sizeof(giorno), SEEK_SET); //posiziono il puntatore all'num_giorno-esima posizione
 		fread(&giornata, sizeof(giorno), 1, stream);
 
+		//memorizzo le kcal della giornata estratta
 		*kcal = giornata.kcal;
 
 		fclose(stream);
@@ -817,13 +928,13 @@ int estrai_kcal_menu(int* kcal, char* nome_utente, int num_giorno){
 /**
  * Procedura scrivi_menu ():
  *
- * La procedura ha il compito di scrivere su file il dato strutturato menu passatogli in ingresso all'i-esima posizione.
+ * La procedura ha il compito di scrivere su file il dato strutturato menu passatogli in ingresso al num_esima-esima posizione.
  *
- * Al tal scopo viene generato il nome del file attraverso una serie di concanetazioni che includono nome_utente passatogli in ingresso.
- * fatto ciò viene aperto il file, posizionato il puntatore all'i-esima posizione e scritto menu in tale posizione.
+ * Al tal scopo viene generato il nome del file attraverso nome_utente passatogli in ingresso.
+ * fatto ciò viene aperto il file, posizionato il puntatore alla num_giorno-esima posizione e scritto menu in tale posizione.
  *
  * @pre Non vi sono specifiche pre-condizioni per la funzione
- * @post no
+ * @post esito della funzione
  *
  */
 int scrivi_giorno(giorno* giornata, char* nome_utente, int num_giorno) {
@@ -873,12 +984,15 @@ void stampa_giorno(giorno* giornata) {
 	printf(
 			"*********************************************************************************************************\n");
 	printf("%s kcal: ", giornata->nome_giorno);
+
+	//se non ci sono le kcal della giornata
 	if(giornata->kcal == 0){
 		puts("Non ancora assegnate.");
 	}else{
+		//se ci sono le kcal per la giornata
 		printf("%d\n", giornata->kcal);
 	}
-
+	//stampo struct passata in ingresso
 	for (int i = 0; i < NUM_PASTI; i++) {
 		num_cibi_letti = 0;
 
@@ -886,13 +1000,16 @@ void stampa_giorno(giorno* giornata) {
 
 		for (int j = 0; j < NUM_PASTI - 1; j++) {
 
+			//se la stringa non è vuota la stampa
 			if(strcmp(giornata->pasti[i].cibi[j].nome_cibo, "") != 0){
 				printf("\t- %s %s\n", giornata->pasti[i].cibi[j].nome_cibo, giornata->pasti[i].cibi[j].quantita);
+				//incremento il contatore nei cibi con nome diverso da stringa vuota
 				num_cibi_letti++;
 			}
 
 		}
 
+		//stampa in caso non ci siano nomi dei bici diversi da stringa vuota
 		if(num_cibi_letti == 0){
 			printf("\t- Nessun cibo.\n");
 		}
@@ -901,6 +1018,19 @@ void stampa_giorno(giorno* giornata) {
 			"*********************************************************************************************************\n");
 }
 
+
+/**
+ * Funzione gestore_visualizzazione_menu ():
+ *
+ * La funzione ha gestire la visualizzazione del menu.
+ *
+ * Al tal scopo vengono effettuato un controllo sulla possibilita dell'utente di accedere a tali informazioni, attraverso l'autenticazione.
+ * se l'autenticazione va a buon fini, i diritti di tale utente alla visualizzazione sono idenei, altrimenti non viene stampato.
+ *
+ * @pre Non vi sono specifiche pre-condizioni per la funzione
+ * @post esito della funzione
+ *
+ */
 int gestore_visualizzazione_menu (){
 	utente u;
 	if(autenticazione(&u)){
