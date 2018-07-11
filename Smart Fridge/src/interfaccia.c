@@ -402,9 +402,9 @@ int menu_lista_spesa(){
 					}
 
 					//generazione del nome del file che ospiterá la spesa personale
-					char nome_file[LUNG_NOME_FILE_RICETTE] = PRIMA_PARTE_NOMEFILE;
+					char nome_file[LUNG_NOME_FILE_RICETTE] = PREFIX_FILE_SPESA;
 					strcat(nome_file, u.nickname);
-					strcat(nome_file, FORM_FILE_SPESA);
+					strcat(nome_file, SUFFIX_FILE_SPESA);
 					visualizza_lista_spesa(nome_file);
 					break;
 

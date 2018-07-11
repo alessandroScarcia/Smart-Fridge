@@ -8,14 +8,18 @@
 
 
 #include "alimenti.h"
+
 #include "date.h"
+
 #include "ricette.h"
+
 #include "lista_spesa.h"
+
 #include "utenti.h"
+
 #include "menu_settimanale.h"
+
 #include "calorie.h"
-
-
 
 #define LUNG_SCELTA 2//lunghezza della stringa che accoglierá la scelta inserita dall'utente
 
