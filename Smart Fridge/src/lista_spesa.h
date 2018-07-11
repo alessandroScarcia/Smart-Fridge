@@ -86,4 +86,11 @@ int generatore_spesa_personale();
  */
 int visualizza_lista_spesa(char nome_file[LUNG_NOME_FILE_SPESA]);
 
+
+/** Funzione che provvede a visualizzare gli alimenti che devono essere comprati dal file della lista personale.
+ *
+ * @return 1
+ * @return -1
+ */
+int visualizzazione_personale();
 #endif

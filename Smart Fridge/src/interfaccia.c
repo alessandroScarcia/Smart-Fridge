@@ -384,18 +384,7 @@ int menu_lista_spesa(){
 					break;
 
 				case 4:
-
-					//autenticazione(con controllo su esito) dell'utente
-					if (autenticazione(&u) == -1){
-						printf("Operazione di utenticazione fallita");
-						return -1;
-					}
-
-					//generazione del nome del file che ospiterá la spesa personale
-					char nome_file[LUNG_NOME_FILE_RICETTE] = PREFIX_FILE_SPESA;
-					strcat(nome_file, u.nickname);
-					strcat(nome_file, SUFFIX_FILE_SPESA);
-					visualizza_lista_spesa(nome_file);
+					visualizzazione_personale();
 					break;
 
 				default:

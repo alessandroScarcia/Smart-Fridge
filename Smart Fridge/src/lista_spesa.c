@@ -68,7 +68,23 @@ int aggiorna_lista_spesa(char nome_alimento[LUNG_NOME_ALIMENTO],char nome_file[L
 }
 
 
+int visualizzazione_personale(){
+	utente u;
 
+	//autenticazione(con controllo su esito) dell'utente
+	if (autenticazione(&u) == -1){
+		printf("Operazione di utenticazione fallita\n");
+		return -1;
+	}
+
+	//generazione del nome del file che ospiterá la spesa personale
+	char nome_file[LUNG_NOME_FILE_RICETTE] = PREFIX_FILE_SPESA;
+	strcat(nome_file, u.nickname);
+	strcat(nome_file, SUFFIX_FILE_SPESA);
+	visualizza_lista_spesa(nome_file);
+
+	return 1;
+}
 
 
 /**
