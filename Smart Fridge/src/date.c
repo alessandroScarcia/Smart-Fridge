@@ -1,7 +1,5 @@
-// Implementazione delle funzioni della libreria date.h
-
+/// Implementazione delle funzioni della libreria date.h
 #include "date.h"
-
 /**
  * Funzione controlla_data(data d):
  *
