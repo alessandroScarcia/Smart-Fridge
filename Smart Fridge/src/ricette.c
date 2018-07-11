@@ -992,6 +992,11 @@ int inizializza_ricette_preparabili(int num_ricette, char* ricette_preparabili[n
  */
 int ordina_ricette_kcal(ricetta* ricette_database, int num_ricette){
 
+	if(num_ricette == 0){
+		puts("Non sono ancora state memorizzate delle ricette.");
+		return 0;
+	}
+
 	ricetta x ;//struct di appoggio per scambiare 2 righe
 
 	for (int gap = num_ricette/2; gap > 0; gap /= 2){
