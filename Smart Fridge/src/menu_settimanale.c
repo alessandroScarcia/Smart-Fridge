@@ -907,7 +907,7 @@ int gestore_visualizzazione_menu (){
 		visualizza_database_menu(u.nickname);
 	}else{
 		printf("Operazione di utenticazione fallita");
-		return -1;
+		return 0;
 	}
 
 	return 1;

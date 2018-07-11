@@ -111,6 +111,7 @@ typedef struct {
 	pasto pasti[NUM_PASTI];
 } giorno; //cambio nome
 
+#endif
 /**
  * La funzione crea_nome_file_menu() si occupa di concatenare delle stringhe con il nickname passato
  * in ingresso per poi restituire tale risultato
@@ -286,4 +287,4 @@ int scrivi_giorno (giorno* giornata, char* nome_utente, int i);
 int elimina_file_menu(char nome_file[LUNG_NOME_FILE_MENU]);
 
 int gestore_visualizzazione_menu ();
-#endif
+
