@@ -1,5 +1,5 @@
 /**
- * @file date.h
+ * @file interfaccia.h
  *
  * @brief Libreria per l'interfaccia utente.
  *
@@ -9,6 +9,27 @@
  *
  * @authors Alessandro Scarcia, Davide Quatela, Michela Salvemini
  */
+
+#ifndef STD_LIB
+#define STD_LIB
+	#include <stdbool.h>
+	#include <stdio.h>
+	#include <stdlib.h>
+	#include <time.h>
+#endif
+
+///Inclusione della libreria matematica
+#ifndef MATH_LIB
+#define MATH_LIB
+	#include <math.h>
+#endif
+
+/// Inclusione delle librerie per la manipolazione di stringhe e caratteri
+#ifndef STRING_LIB
+#define STRING_LIB
+	#include <string.h>
+	#include <ctype.h>
+#endif
 
 
 #include "alimenti.h"
@@ -24,6 +45,11 @@
 #include "menu_settimanale.h"
 
 #include "calorie.h"
+
+
+
+#ifndef INTERFACCIA_LIB
+#define INTERFACCIA_LIB
 
 #define LUNG_SCELTA 2//lunghezza della stringa che accoglierá la scelta inserita dall'utente
 
@@ -167,4 +193,4 @@ int visualizza_crediti();
 
 
 
-int menu_calorie();
+#endif
