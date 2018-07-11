@@ -1,3 +1,14 @@
+/**
+ * @file consumi.h
+ *
+ * @brief Libreria per la gestione dei consumi.
+ *
+ * La libreria consumi.h è stata implementata per permettere di registrare
+ * gli alimenti o le ricette che vengono consumate dagli utenti permettendo
+ * di tenere traccia dei prodotti maggiormente consumati
+ *
+ * @authors Alessandro Scarcia, Davide Quatela, Michela Salvemini
+ */
 
 /// Inclusione delle librerie standard
 #ifndef STD_LIB

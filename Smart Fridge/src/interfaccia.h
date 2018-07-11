@@ -1,21 +1,29 @@
 /**
- * menu_alimenti.h
+ * @file date.h
  *
- *  Created on: 27 apr 2018
- *      Author: david
+ * @brief Libreria per l'interfaccia utente.
+ *
+ * La libreria interfaccia.h è stata implementata per permettere all'utente
+ * l'interazione con il programma attraverso dei menu che mostrano le varie
+ * operazioni applicabili per un determinato argomento
+ *
+ * @authors Alessandro Scarcia, Davide Quatela, Michela Salvemini
  */
 
 
-
 #include "alimenti.h"
+
 #include "date.h"
+
 #include "ricette.h"
+
 #include "lista_spesa.h"
+
 #include "utenti.h"
+
 #include "menu_settimanale.h"
+
 #include "calorie.h"
-
-
 
 #define LUNG_SCELTA 2//lunghezza della stringa che accoglierá la scelta inserita dall'utente
 

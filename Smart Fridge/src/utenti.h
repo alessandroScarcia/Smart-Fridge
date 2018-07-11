@@ -1,9 +1,16 @@
-/*
- * utenti.h
+/**
+ * @file utenti.h
  *
- *  Created on: 10 mag 2018
- *      Author: Michela
+ * @brief Libreria per la gestione degli utenti.
+ *
+ * La libreria utenti.h è stata implementata per permettere la gestione
+ * degli utenti che usufruiscono  dei servizi messi a disposizione dall'elettrodomestico.
+ * Avendo un profilo sará poi possibile infatti creare il proprio menu settimanale e tenere
+ * traccia delle proprie assunzioni giornaliere dopo aver effettuato l'operazione di autenticazione
+ *
+ * @authors Alessandro Scarcia, Davide Quatela, Michela Salvemini
  */
+
 
 /// Inclusione delle librerie standard
 #ifndef STD_LIB

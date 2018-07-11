@@ -1,9 +1,15 @@
-/*
- * calorie.h
+/**
+ * @file calorie.h
  *
- *  Created on: 20 giu 2018
- *      Author:ciaone
+ * @brief Libreria per la gestione delle calorie.
+ *
+ * La libreria calorie.h è stata implementata per permettere all'utente
+ * la gestione delle proprie assunzioni con il corrispettivo valore
+ * calorico.
+ *
+ * @authors Alessandro Scarcia, Davide Quatela, Michela Salvemini
  */
+
 #ifndef STD_LIB
 #define STD_LIB
 	#include <stdbool.h>
