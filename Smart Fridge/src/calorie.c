@@ -208,11 +208,6 @@ int aggiorno_database_calorie(char nome_consumo[], int flag_consumo, float quant
 		return 0;
 	}
 
-	// Generazione del nome del file
-	char nome_file[LUNG_FILE_ASSUNZIONI] = PREFIX_FILE_ASSUNZIONI;
-	strcat(nome_file, nickname);
-	strcat(nome_file, SUFFIX_FILE_ASSUNZIONI);
-
 	assunzione cibo;
 
 	strcpy(cibo.nome, nome_consumo);
@@ -308,7 +303,7 @@ int inizializza_file_assunzione(char nickname[]) {
  */
 
 int stampa_database_assunzioni() {
-
+	int num_assunzioni = 0;
 	utente persona;
 
 	if (autenticazione(&persona) == 1) {
@@ -338,9 +333,14 @@ int stampa_database_assunzioni() {
 
 		while (fread(&cibo, sizeof(assunzione), 1, f) > 0) {
 			if (cibo.kcal != 0){
-			       printf("Nome: %s\nQuantita': %.2f\nkcal: %hu\n\n", cibo.nome,
-					cibo.quantita, cibo.kcal);
+				num_assunzioni++;
+			    printf("Nome: %s\nQuantita': %.2f\nkcal: %hu\n\n", cibo.nome,
+				cibo.quantita, cibo.kcal);
 			}
+		}
+
+		if(num_assunzioni == 0){
+			puts("Non sono ancora state registrate assunzioni.");
 		}
 
 		fclose(f);
@@ -641,9 +641,9 @@ void istogrami (){
 
 	if (autenticazione(&persona)== 1){
 
-		char nome_file[LUNG_FILE_ASSUNZIONI] = "../assunzioni_";
+		char nome_file[LUNG_FILE_ASSUNZIONI] = PREFIX_FILE_ASSUNZIONI;
 		strcat(nome_file, persona.nickname);
-		strcat(nome_file, ".dat");
+		strcat(nome_file, SUFFIX_FILE_ASSUNZIONI);
 
 		int kcal_giornaliere;
 

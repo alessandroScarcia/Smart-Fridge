@@ -138,6 +138,7 @@ int prepara_ricetta(char* nome_ricetta, int dosi_ricetta){
 	}
 
 	if((stream = fopen(FILE_DATABASE_RICETTE, "rb")) == NULL){
+		puts("Non ancora sono state memorizzate ricette.");
 		return 0;
 	}else{
 		while(fread(&ricetta_letta, sizeof(ricetta), 1, stream) > 0){
@@ -1289,6 +1290,7 @@ int lettura_nuove_ricette(){
 
 	// tentativo di apertura della spesa in lettura
 	if((stream = fopen(FILE_NUOVE_RICETTE, "r")) == NULL){
+		puts("Non è possibile aprire il file 'nuove_ricette.csv'.");
 		return -1; // se il file non può essere aperto viene ritornato il valore -1
 	}else{
 		// estrazione di ogni riga del file (riga == 1 alimento)

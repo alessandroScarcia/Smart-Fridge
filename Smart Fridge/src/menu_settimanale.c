@@ -456,6 +456,11 @@ int input_flag_cibo(){
  */
 int visualizza_database_menu(char nome_utente[]) {
 
+	if(esiste_nickname(nome_utente) == 0){
+		puts("Il nome utente ricevuto non è valido.");
+		return 0;
+	}
+
 	//Genero il nome del file
 	char* nomefile = crea_nome_file_menu(nome_utente);
 
@@ -463,7 +468,7 @@ int visualizza_database_menu(char nome_utente[]) {
 	FILE* f;
 
 	if ((f = fopen(nomefile, "rb")) == NULL) { //Se il file non viene aperto
-		printf("\nImpossibile aprire il file\n");
+		printf("Non è possibile aprire il file '%s'.", nomefile);
 		return 1;
 	}
 
@@ -686,7 +691,7 @@ void modifica_alimenti_pasto(giorno* giornata, short int num_pasto) {
 			}
 
 		}else if(scelta == 1){
-			int indice_cibo_scelto;
+			int indice_cibo_scelto = 0;
 			char nome_cibo[LUNG_CIBO];
 
 			puts("Modifica un cibo:\n");

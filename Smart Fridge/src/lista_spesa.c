@@ -91,7 +91,7 @@ int visualizza_lista_spesa(char nome_file[LUNG_NOME_FILE_SPESA]) {
 
 	if ((stream = fopen(nome_file, "r")) == NULL) {
 
-		puts("\n*ERRORE: Lista della spesa non accessibile*\n");
+		puts("Non è possibile aprire il file.");
 
 		return -1;
 
