@@ -1,15 +1,20 @@
 /*
- * Caso di studio: Smart Fridge.
+ ============================================================================
+ Name        : Smart.c
+ Author      : 
+ Version     :
+ Copyright   : Your copyright notice
+ Description : Hello World in C, Ansi-style
+ ============================================================================
  */
 
-#include "menu.h"
+#include "interfaccia.h"
 
 
 int main(){
 
-		menu_alimenti();//richiamo il menu degli alimenti
 
-		// test 1
+		menu_principale();//richiamo il menu degli alimenti
 
 		return 0;
 
