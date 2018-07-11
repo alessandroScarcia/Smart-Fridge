@@ -15,7 +15,6 @@
 #ifndef LISTA_SPESA_LIB
 #define LISTA_SPESA_LIB
 
-
 #include "menu_settimanale.h"
 
 #include "ricette.h"
