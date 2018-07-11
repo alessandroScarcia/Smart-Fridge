@@ -9,7 +9,6 @@
  *
  * @authors Alessandro Scarcia, Davide Quatela, Michela Salvemini
  */
-
 #ifndef STD_LIB
 #define STD_LIB
 	#include <stdbool.h>
@@ -31,43 +30,37 @@
 	#include <ctype.h>
 #endif
 
-
-
 #ifndef CALORIE_LIB
 #define CALORIE_LIB
 
-#ifndef UTENTI_LIB
+/// Inclusione della libreria per la gestione degli utenti
 #include "utenti.h"
-#endif
 
 /// Inclusione della libreria per la gestione delle date
-
 #include "date.h"
 
-
-
 /// Inclusione della libreria per la gestione dei consumi
-
 #include "menu_settimanale.h"
 
+/// Inclusione della libreria per la pulizia dei flussi di input
+#include "pulizia_flussi.h"
+
+/// Inclusione della libreria per la gestione delle ricette
+#include "ricette.h"
 
 #define FLAG_INPUT_LIBERO  3
 #define  KCAL_MEDIE_GIORNALIERE 2000
 #define CAMPIONE_ISTOGRAMMI 200
 
+/// Costanti per i nome del file assunzione
+#define PREFIX_FILE_ASSUNZIONI "../assunzioni_"		/// Parte iniziale del nome di un file assunzioni
+#define SUFFIX_FILE_ASSUNZIONI ".dat"				/// Parte finale del nome di un file assunzioni
+#define LUNG_FILE_ASSUNZIONI 50						/// Lunghezza massima in caratteri del nome del file assunzioni
 
-/// Inclusione della libreria per la pulizia dei flussi di input
+#define LUNG_NOME_ASSUNZIONE 21						/// Lunghezza massima in caratteri del nome di un assunzione
 
-#include "pulizia_flussi.h"
-
-/// Inclusione della libreria per la gestione delle ricette
-#ifndef RICETTE_LIB
-#include "ricette.h"
-#endif
-
-
-#define LUNG_FILE_CALORIE 50
-#define LUNG_NOME_ASSUNZIONE 50
+#define MIN_KCAL 0									/// Valore minimo per le kcal usate nel calcolo relativo ad un assunzione
+#define MAX_KCAL 5000								/// Valore minimo per le kcal usate nel calcolo relativo ad un assunzione
 
 typedef struct{
 	char nome[LUNG_NOME_ASSUNZIONE];
@@ -76,6 +69,24 @@ typedef struct{
 	int flag;
 } assunzione;
 
+
+/**
+ * Questa funzione ha il compito di richiedere all'utente di inserire il nome relativo ad un assunzione.
+ * Il valore inserito dall'utente viene controllato, verificando che sia della lunghezza massima stabilita.
+ * Se corretto, viene restituito il puntatore alla stringa del nome inserito.
+ *
+ * @return puntatore alla stringa inserita dall'utente
+ */
+char* input_nome_assunzione();
+
+/**
+ * Questa funzione ha il compito di richiedere all'utente il valore di kcal relative ad un assunzione libera.
+ * Ilvalore viene inserito, controllando che sia significativo nel formato e nel valore.
+ * Se corretto, lo stesso viene restituito.
+ *
+ * @return kcal inserite dall'utente
+ */
+unsigned short int input_kcal_libere();
 
 
 /**Questa funzione ha il compito di popolare una struct di tipo assunzione passatagli in ingresso, con i dati
@@ -87,7 +98,7 @@ typedef struct{
  * @param cibo			    struct che conterrà il nome, la quantità e le calorie dell'alimento assunto dall'utente
  *
  * @return -1				se l'utente vuole smettere di inserire alimenti
- * @return 0				se tutto avviene in modo corretto
+ * @return 1				se tutto avviene in modo corretto
  *
  */
 int input_alimento_consumato ();
@@ -101,6 +112,7 @@ int input_alimento_consumato ();
  * @param kcal				numero intero corrispondente alle kcal per un dato campione
  * @param campione			numero intero che rappresenta la quantità corrispondente alle kcal
  *
+ * @return 0 se i dati inseriti non sono validi
  * @return risultato_kcal	kcal per il quantitativo inserito
  */
 unsigned short int calcolo_kcal(unsigned short int kcal, int campione, float q_consumata);
@@ -113,7 +125,7 @@ unsigned short int calcolo_kcal(unsigned short int kcal, int campione, float q_c
  * @param nickname			nome con cui creare il nome del file su cui scrivere
  *
  *@return -1 				se il file non esiste e non è possibile crearne uno
- *@return  0				se la funzione riesce a svolgere il suo compito
+ *@return  1				se la funzione riesce a svolgere il suo compito
  */
 int aggiorno_database_calorie(char nome_consumo[], int flag_consumo, float quantita_consumo, char nickname[]);
 
@@ -133,9 +145,9 @@ int inizializza_file_assunzione(char nickname[]);
  * due date passategli in ingresso. Se la funzione restituisce zero, si procede all'input dell'alimento consumato,
  * altrimenti viene resettato il file e scritta la nuova data, solo dopo si procede all'input degli alimenti.
  *
- *@return 1 				se l'autenticazione non ha successo
+ *@return 0 				se l'autenticazione non ha successo
  *@return -1 				se non riesce ad aprire e creare il file
- *@return 0					se la funzione riesce a svolgere il suo compito
+ *@return 1					se la funzione riesce a svolgere il suo compito
  */
 int apertura_file_assunzioni();
 
@@ -143,7 +155,7 @@ int apertura_file_assunzioni();
  * stampandoli su schermo.
  *
  *@return -1 				se non riesce ad aprire e creare il file
- *@return 0					se la funzione riesce a svolgere il suo compito
+ *@return 1					se la funzione riesce a svolgere il suo compito
  */
 int stampa_database_assunzioni ();
 
@@ -154,22 +166,22 @@ int stampa_database_assunzioni ();
  * @param nomefile			stringa utile all'apertura del file
  *
  *@return -1 				se non riesce ad aprire e creare il file
- *@return 0					se la funzione riesce a svolgere il suo compito
+ *@return 1					se la funzione riesce a svolgere il suo compito
  */
 unsigned short calcolo_kcal_totali(char* nomefile);
 
 /**La funzione creazione_assunzioni() ha il compito di creare il file assunzioni.
  *
  *
- *@return 1				    se l'autenticazione non va a buon fine
- *@return 0					se la funzione riesce a svolgere il suo compito
+ *@return 0				    se l'autenticazione non va a buon fine
+ *@return 1					se la funzione riesce a svolgere il suo compito
  */
 int creazione_assunzioni ();
 
 /**La funzione modifica_assunzione() ha il compito di modifcare una delle struct presenti nel file, su richiesta dell'utente.
  *
- *@return 1 				se non riesce ad aprire il file o se l'autenticazione fallisce
- *@return 0					se la funzione riesce ad effetturare la modifica correttamente
+ *@return 0 				se non riesce ad aprire il file o se l'autenticazione fallisce
+ *@return 1					se la funzione riesce ad effetturare la modifica correttamente
  */
 
 int modifica_assunzione ();
@@ -194,7 +206,7 @@ short int ricerca_assunzione_database (assunzione* nuova_assunzione, char nickna
  *@param nickname			variabile per l'apertura del file corrispondente all'utente
  *@param cibo				struct da scrivere su file
  *
- *@return 0					se il file viene aggiornato correttamente
+ *@return 1					se il file viene aggiornato correttamente
  */
 int scrittura_diretta_assunzione (assunzione* cibo, char nickname[]);
 
@@ -204,4 +216,4 @@ int scrittura_diretta_assunzione (assunzione* cibo, char nickname[]);
  */
 void istogrami ();
 
-#endif/* CALORIE_H_ */
+#endif

@@ -8,6 +8,78 @@
 #include "calorie.h"
 
 /**
+ * Funzione input_nome_assunzione()
+ *
+ * La funzione ha il compito di richiedere l'input all'utente del nome di un assunzione.
+ * Il valore inserito deve esere una stringa, di massimo 20 caratteri. Se non viene rispettato
+ * questo limite l'inserimento è considerato non valido.
+ *
+ * L'input viene iterato fino a quanndo il valore inserito non è valido.
+ *
+ * @pre Non ci sono pre condizioni
+ *
+ * @post Il valore di ritorno deve essere ricevuto in una variabile con adeguato tipo
+ */
+char* input_nome_assunzione(){
+	// variabile per memorizzare l'esito dell'input
+	int esito_input;
+	// variabile nel quale ricevere la stringa inserita dall'utente
+	char* nome_assunzione = (char *) calloc(LUNG_NOME_ASSUNZIONE, sizeof(char));
+
+	do{
+		printf("Inserire il nome dell'assunzione[max. 20 caratteri]:\n~");
+		esito_input = scanf("%20s", nome_assunzione);
+		if(pulisci_stdin() == 1){
+			esito_input = 0;
+		}
+
+		if(esito_input != 1){
+			puts("Inserimento non valido. Ripeterlo.");
+		}
+	}while(esito_input != 1);
+
+	return nome_assunzione;
+}
+
+/**
+ * Funzione input_kcal_libere()
+ *
+ * La funzione ha il compito di richiedere l'input all'utente delle calorie
+ * relative ad un assunzione libera. Tale inserimento deve essere un valore short int,
+ * e deve essere rispettare i limiti di MIN_KCAL e MAX_KCAL.
+ * L'input viene iterato fino a quanndo il valore inserito non è valido.
+ *
+ * @pre Non ci sono pre condizioni
+ *
+ * @post Il valore di ritorno deve essere ricevuto in una variabile con adeguato tipo
+ */
+unsigned short int input_kcal_libere(){
+	unsigned short int kcal; // variabile nellaquale ricevere l'input dell'utente
+	int esito_input; // variabileper memorizzare l'esito dell'input
+	int esito_controllo; // variabile per memorizzare l'esito del controllo sul valore
+
+	do{
+		printf("Inserire le calorie dell'assunzione:\n~");
+		esito_input = scanf("%hu", &kcal);
+		if(pulisci_stdin() == 1){
+			esito_input = 0;
+		}
+
+		if(kcal < MIN_KCAL || kcal > MAX_KCAL){
+			esito_controllo = 0;
+		}else{
+			esito_controllo = 1;
+		}
+
+		if(esito_input != 1 || esito_controllo != 1){
+			puts("Inserimento non valido. Ripeterlo.");
+		}
+	}while(esito_input != 1 || esito_controllo != 1);
+
+	return kcal;
+}
+
+/**
  * Funzione input_alimento_consumato ():
  *
  * La funzione ha il compito di prendere in input da tastiera un alimento/ricetta non presente nel database, per memorizzarlo
@@ -26,54 +98,33 @@
  */
 int input_alimento_consumato() {
 
-	utente persona;
+	utente persona; // Variabile utilizzata per effettuare l'autenticazione dell'utente
 
+	// Autenticazione dell'utente
 	if (autenticazione(&persona)==1){
 
-		assunzione cibo;
-
-		int esito_input; //variabile per il controllo dell'input
+		assunzione cibo; // variabile utilizzata per scrivere la nuova assunzione
 
 		cibo.flag=FLAG_INPUT_LIBERO; //Valore che identifica un alimento/ricetta non presente nei database dello smart fridge
 
 		cibo.quantita=0; //Quantità non necessaria
 
-        do {
-			printf("\nInserire il nome di cio' che hai assunto\n>");
-			scanf("%20[a-zA-Z]", cibo.nome);
+        strcpy(cibo.nome, input_nome_assunzione());
 
-			//controllo input
-			if(pulisci_stdin() == 1){
-				esito_input = 0;
-			}
+        do{
+        	cibo.kcal = input_kcal_libere();
 
-			if(esito_input == 0){
-
-				puts("Inserimento non valido. Ripeterlo.");
-			}
-		}while (esito_input == 0);
-
-		do {
-			printf("\nInserire calorie\n>");
-			scanf("%hu", &cibo.kcal);
-
-			if(pulisci_stdin() == 1){
-					esito_input = 0;
-			}
-
-			if(esito_input == 0){
-				puts("Inserimento non valido. Ripeterlo.");
-			}
-		}while (esito_input == 0);
-
-
+        	if(cibo.kcal == 0){
+        		puts("Inserimento non valido. Ripeterlo.");
+        	}
+        }while(cibo.kcal == 0);
 
 		scrittura_diretta_assunzione (&cibo, persona.nickname);
 
-		return 0;
+		return 1;
 	}
 
-	return 1;
+	return 0;
 
 }
 
@@ -87,19 +138,30 @@ int input_alimento_consumato() {
  * A tal scopo utilizzera le variabile di ingresso kcal e campione, dove kcal sta per il valore calorico del campione ricevuto
  * e la quantità.
  *
- * @pre Il campione non può essere pari a 0
+ * @pre Il campione non può essere pari a 0, kcal non può essere negativo
  * @post Il valore restituito rappresenta l'apporto calorico calcolato.
  *
  */
 
 unsigned short int calcolo_kcal(unsigned short int kcal, int campione, float q_consumata) {
+	unsigned short int risultato_kcal;
+
+	// Controlli sui valori ricevuti
+	if(kcal < MIN_KCAL_CAMPIONE || kcal > MAX_KCAL_CAMPIONE){
+		return 0;
+	}
+
+	if(campione != CAMPIONE_G
+		&& campione != CAMPIONE_PZ
+		&& campione != CAMPIONE_ML){
+		return 0;
+	}
 
 	if (q_consumata==0){
 		return 0; //se la quantità è nulla, ritorno zero
 	}
 
-	unsigned short int risultato_kcal;
-
+	// Calcolo delle calorie
 	risultato_kcal = (q_consumata * kcal) / campione;
 
 	return risultato_kcal;
@@ -113,13 +175,14 @@ unsigned short int calcolo_kcal(unsigned short int kcal, int campione, float q_c
  * dati passati in ingresso alla stessa.
  *
  * A tal scopo, dopo aver creato la struct di tipo assunzioni denominata cibo, copierà il nome_consumo passato in ingresso
- * nel campo della struct denominato nome. Imposterà il flag con quello passatogli in gresso e farà altrettanto con la quantità.
+ * nel campo della struct denominato nome. Imposterà il flag con quello passatogli in ingresso e farà altrettanto con la quantità.
  * Fatto ciò, controllerà il flag. Se il flag identifica una ricetta, verrano create due variabile di tipo int (kcal_ricetta e
  * dosi_ricetta) utilizzate in combinazione con una funzione in moda da poter estrarre da un database di ricette
  * le kcal per un tot di dosi. Grazie a queste informazioni sarà possibile calcolare le kcal per il quantitativo assunto
  * dall'utente tramite una funzione.
- * Stesso lavoro verrà fatto in caso di un flag che identifiche un alimento. Infatti, verrà usanta una funzione diversa
+ * Stesso lavoro verrà fatto in caso di un flag che identifiche un alimento. Infatti, verrà usata una funzione diversa
  * per estrarre da un database apposito l'alimento che verrà memorizzato in una struct creata appositamente.
+ *
  * In fine, rimpita la struct cibo, verrà passata ad una funzione di scrittura su file.
  *
  * @pre Nome_consumo non può essere vuoto, flag_consumo può assumero solo i valori 1 o 0, il nickname deve appartenere
@@ -131,37 +194,59 @@ unsigned short int calcolo_kcal(unsigned short int kcal, int campione, float q_c
 
 int aggiorno_database_calorie(char nome_consumo[], int flag_consumo, float quantita_consumo, char nickname[]) {
 
-	char nome_file[LUNG_FILE_CALORIE] = "../assunzioni_";
+	// Controlli sui dati ricevuti in ingresso
+	if(esiste_nickname(nickname) != 1){
+		return 0;
+	}
+
+	if(flag_consumo != FLAG_ALIMENTO && flag_consumo != FLAG_RICETTA){
+		return 0;
+	}
+
+	int l_nickname = strlen(nickname);
+	if(l_nickname < MIN_LUNG_NICKNAME || l_nickname > MAX_LUNG_NICKNAME){
+		return 0;
+	}
+
+	// Generazione del nome del file
+	char nome_file[LUNG_FILE_ASSUNZIONI] = PREFIX_FILE_ASSUNZIONI;
 	strcat(nome_file, nickname);
-	strcat(nome_file, ".dat");
+	strcat(nome_file, SUFFIX_FILE_ASSUNZIONI);
 
 	assunzione cibo;
 
-
 	strcpy(cibo.nome, nome_consumo);
-	cibo.flag=flag_consumo;
-	cibo.quantita=quantita_consumo;
+	cibo.flag = flag_consumo;
+	cibo.quantita = quantita_consumo;
 
+	// Costruzione del dato da inserire nel database assunzioni
 	if (cibo.flag==FLAG_RICETTA){
 
 	  int  kcal_ricetta;
 	  int dosi_ricetta;
-	  estrai_kcal_ricetta(cibo.nome, &kcal_ricetta, &dosi_ricetta);
-	  cibo.kcal=calcolo_kcal(kcal_ricetta, dosi_ricetta, cibo.quantita);
+
+	  // Estrazione delle kcal della ricetta
+	  if(estrai_kcal_ricetta(cibo.nome, &kcal_ricetta, &dosi_ricetta) != 0){
+		  // Se non è possibile individuare la ricetta, viene ritornato -1
+		  return -1;
+	  }
+	  cibo.kcal = calcolo_kcal(kcal_ricetta, dosi_ricetta, cibo.quantita);
 
 	} else if (cibo.flag==FLAG_ALIMENTO) {
 
 		alimento_database ricerca_a;
-		ricerca_alimento_database(cibo.nome, &ricerca_a);
+		// Estrazione delle info sull'alimento consumato
+		if(ricerca_alimento_database(cibo.nome, &ricerca_a) != 1){
+			// Se non è possibile estrarre l'alimento, viene ritornato -1
+			return -1;
+		}
 		cibo.kcal=calcolo_kcal(ricerca_a.kcal, ricerca_a.campione_kcal, cibo.quantita);
 
 	}
 
 	scrittura_diretta_assunzione (&cibo, nickname);
 
-
-
-	return 0;
+	return 1;
 }
 
 
@@ -182,13 +267,17 @@ int inizializza_file_assunzione(char nickname[]) {
 
 	data data_attuale = data_odierna();
 
-	char nome_file[LUNG_FILE_CALORIE] = "../assunzioni_";
+	if(esiste_nickname(nickname) != 1){
+		return 0;
+	}
+
+	char nome_file[LUNG_FILE_ASSUNZIONI] = PREFIX_FILE_ASSUNZIONI;
 	strcat(nome_file, nickname);
-	strcat(nome_file, ".dat");
+	strcat(nome_file, SUFFIX_FILE_ASSUNZIONI);
 
 	FILE* f;
 
-	if ((f = fopen(nome_file, "wb"))==NULL){
+	if ((f = fopen(nome_file, "wb")) == NULL){
 		return -1;
 	}
 
@@ -228,14 +317,14 @@ int stampa_database_assunzioni() {
 		assunzione cibo;
 
 		//Creazione del nome file da aprire
-		char nome_file[LUNG_FILE_CALORIE] = "../assunzioni_";
+		char nome_file[LUNG_FILE_ASSUNZIONI] = PREFIX_FILE_ASSUNZIONI;
 		strcat(nome_file, persona.nickname);
-		strcat(nome_file, ".dat");
+		strcat(nome_file, SUFFIX_FILE_ASSUNZIONI);
 
 		FILE* f;
 
 		if((f = fopen(nome_file, "rb+"))==NULL){
-			if(inizializza_file_assunzione(persona.nickname)==-1) { //creazione e scrittura della data in caso il file non esistesse
+			if(inizializza_file_assunzione(persona.nickname) != 1) { //creazione e scrittura della data in caso il file non esistesse
 				return -1;
 			}
 		}
@@ -289,10 +378,10 @@ unsigned short calcolo_kcal_totali(char* nomefile) {
 	assunzione cibo;
 	unsigned short tot_kcal=0;
 
-	if((f = fopen(nomefile, "rb+"))==NULL){
-
-		if(inizializza_file_assunzione (nomefile)==-1) {
-					return -1;
+	// Apertura del file contenente le assunzioni di un utente
+	if((f = fopen(nomefile, "rb"))==NULL){
+		if(inizializza_file_assunzione (nomefile) == 1) {
+			return -1;
 		}
 	}
 
@@ -329,32 +418,24 @@ unsigned short calcolo_kcal_totali(char* nomefile) {
  */
 int modifica_assunzione (){
 
-	utente persona;
+	utente persona;	// Variabile di tipo utente utilizzata per l'autenticazione prima della modifica
 
+	// // Tentativo di autenticazione
 	if(autenticazione(&persona) == 1){
 
 		FILE* stream;
 
-		char nome_file[LUNG_FILE_CALORIE] = "../assunzioni_";
+		// generazione del nome del file
+		char nome_file[LUNG_FILE_ASSUNZIONI] = PREFIX_FILE_ASSUNZIONI;
 		strcat(nome_file, persona.nickname);
-		strcat(nome_file, ".dat");
+		strcat(nome_file, SUFFIX_FILE_ASSUNZIONI);
 
 		assunzione nuova_assunzione;
-		short int posizione; //varibile per memorizzare la posizione dove scrivere il nuovo record
+		short int posizione; 			//varibile per memorizzare la posizione dove scrivere il nuovo record
 		int esito_input;
 
 
-		do {
-			printf("Inserisci il nome del cosumo da modificare\n>");
-			scanf("%20[a-zA-Z]", nuova_assunzione.nome);
-			if(pulisci_stdin() == 1){
-				esito_input = 0;
-			}
-
-			if(esito_input == 0){
-				puts("Inserimento non valido. Ripeterlo.");
-			}
-		}while (esito_input == 0);
+		strcpy(nuova_assunzione.nome, input_nome_assunzione());
 
 
 		posizione=ricerca_assunzione_database (&nuova_assunzione, persona.nickname);
@@ -366,9 +447,13 @@ int modifica_assunzione (){
 		}
 
 		if (nuova_assunzione.flag==FLAG_INPUT_LIBERO){
+			puts("Il valore 0 può essere utilizzato per rimuovere l'assunzione.");
+			nuova_assunzione.kcal = input_kcal_libere();
+		} else {
+
 			do {
-				printf("\nInserire le nuove kcal (0 per elimanare il consumo)\n>");
-				scanf("%hu", &nuova_assunzione.kcal);
+				printf("Inserire la nuova quantita' (0 per elimare il consumo):\n~");
+				esito_input = scanf("%f", &nuova_assunzione.quantita);
 				if(pulisci_stdin() == 1){
 					esito_input = 0;
 				}
@@ -377,61 +462,52 @@ int modifica_assunzione (){
 					puts("Inserimento non valido. Ripeterlo.");
 				}
 			}while (esito_input == 0);
-		} else {
 
-				do {
-					printf("Inserire nuova quantita' (0 per elimare il consumo)\n>");
-				    scanf("%f", &nuova_assunzione.quantita);
-				    if(pulisci_stdin() == 1){
-						esito_input = 0;
-					}
+			if (nuova_assunzione.flag==FLAG_RICETTA){
 
-					if(esito_input == 0){
-						puts("Inserimento non valido. Ripeterlo.");
-					}
-				}while (esito_input == 0);
+			  int  kcal_ricetta;
+			  int dosi_ricetta;
 
-				if (nuova_assunzione.flag==FLAG_RICETTA){
+			  // Estrazione delle kcal della ricetta
+			  if(estrai_kcal_ricetta(nuova_assunzione.nome, &kcal_ricetta, &dosi_ricetta) != 0){
+				  // Se non è possibile individuare la ricetta, viene ritornato -1
+				  return -1;
+			  }
+			  nuova_assunzione.kcal=calcolo_kcal(kcal_ricetta, dosi_ricetta, nuova_assunzione.quantita);
 
-						  int  kcal_ricetta;
-						  int dosi_ricetta;
+			} else if (nuova_assunzione.flag==FLAG_ALIMENTO){
 
-						  estrai_kcal_ricetta(nuova_assunzione.nome, &kcal_ricetta, &dosi_ricetta);
+				alimento_database a;
 
-						  nuova_assunzione.kcal=calcolo_kcal(kcal_ricetta, dosi_ricetta, nuova_assunzione.quantita);
+				// Estrazione delle info sull'alimento consumato
+				if(ricerca_alimento_database(nuova_assunzione.nome, &a) != 1){
+					// Se non è possibile estrarre l'alimento, viene ritornato -1
+					return -1;
+				}
+				nuova_assunzione.kcal=calcolo_kcal(a.kcal, a.campione_kcal, nuova_assunzione.quantita);
 
-					} else if (nuova_assunzione.flag==FLAG_ALIMENTO){
+			}
 
-						alimento_database a;
-
-						ricerca_alimento_database (nuova_assunzione.nome, &a);
-
-						nuova_assunzione.kcal=calcolo_kcal(a.kcal, a.campione_kcal, nuova_assunzione.quantita);
-
-					}
-
-		 }
-
+		}
 
 		if(nuova_assunzione.flag==FLAG_INPUT_LIBERO && nuova_assunzione.kcal==0){
 			strcpy(nuova_assunzione.nome,"");
 		}
 
-		if((stream = fopen(nome_file, "rb+"))==NULL){
-
-			printf("Errore\n");
-			return 1;
-
+		if((stream = fopen(nome_file, "rb+")) == NULL){
+			puts("Errore nell'apertura del file assunzioni.");
+			return -1;
 		}
 
 
 		fseek(stream, sizeof(data)+posizione*sizeof(assunzione)-sizeof(assunzione), SEEK_SET);
 		fwrite(&nuova_assunzione, sizeof(assunzione), 1, stream);
+
 		fclose(stream);
-		return 0;
+		return 1;
 
 	} else {
-		return 1;
+		return 0;
 	}
 }
 
@@ -458,9 +534,9 @@ short int ricerca_assunzione_database (assunzione* nuova_assunzione, char nickna
 
 	abbassa_maiuscole (nuova_assunzione->nome);
 
-	char nome_file[LUNG_FILE_CALORIE] = "../assunzioni_";
+	char nome_file[LUNG_FILE_ASSUNZIONI] = PREFIX_FILE_ASSUNZIONI;
 	strcat(nome_file, nickname);
-	strcat(nome_file, ".dat");
+	strcat(nome_file, SUFFIX_FILE_ASSUNZIONI);
 
 	FILE* f;
 
@@ -483,8 +559,7 @@ short int ricerca_assunzione_database (assunzione* nuova_assunzione, char nickna
 		}
 	}
 	fclose (f);
-
-	return 0;
+	return 1;
 }
 
 
@@ -504,32 +579,33 @@ short int ricerca_assunzione_database (assunzione* nuova_assunzione, char nickna
  */
 int scrittura_diretta_assunzione (assunzione* cibo, char nickname[]){
 
-	char nome_file[LUNG_FILE_CALORIE] = "../assunzioni_";
+	if(esiste_nickname(nickname) != 1){
+		return 0;
+	}
+
+	char nome_file[LUNG_FILE_ASSUNZIONI] = PREFIX_FILE_ASSUNZIONI;
 	strcat(nome_file, nickname);
-	strcat(nome_file, ".dat");
+	strcat(nome_file, SUFFIX_FILE_ASSUNZIONI);
 
 	FILE* stream;
 	data controllo_data;
-	int differenza;
 
 	if((stream = fopen(nome_file, "rb+"))==NULL){
-			inizializza_file_assunzione(nickname);
+		inizializza_file_assunzione(nickname);
 	}
 
 	fseek(stream, 0, SEEK_SET);
 	fread(&controllo_data, sizeof(data), 1, stream);
 
-	diff_date(&differenza, controllo_data, data_odierna());
 
-	if (differenza != 0) {
-		//reset
-		inizializza_file_assunzione(nickname);
+	if (confronta_date(controllo_data, data_odierna()) == PRIMA_DATA_ANTECEDENTE) {
+		if(inizializza_file_assunzione(nickname) != 1){
+			return -1;
+		}
 	}
-
 
 	fseek(stream, 0, SEEK_END);
 	fwrite(cibo, sizeof(assunzione), 1, stream);
-
 
 	if(strcmp(cibo->nome,"") != 0){
 		printf("%s scritto correttamente in %s\n", cibo->nome, nome_file);
@@ -565,7 +641,7 @@ void istogrami (){
 
 	if (autenticazione(&persona)== 1){
 
-		char nome_file[LUNG_FILE_CALORIE] = "../assunzioni_";
+		char nome_file[LUNG_FILE_ASSUNZIONI] = "../assunzioni_";
 		strcat(nome_file, persona.nickname);
 		strcat(nome_file, ".dat");
 
@@ -573,21 +649,21 @@ void istogrami (){
 
 		estrai_kcal_menu(&kcal_giornaliere, persona.nickname, giorno_odierno());
 
-		 printf("Assunzioni persona media: 2000 kcal: ");
-		 for (int i=0; i<KCAL_MEDIE_GIORNALIERE; i+=CAMPIONE_ISTOGRAMMI){
-			 printf("%c", 219);
-		 }
-		 printf("\nIl tuo obiettivo: %d", kcal_giornaliere);
-		 for (int i=0; i < kcal_giornaliere; i+=CAMPIONE_ISTOGRAMMI){
-			 printf("%c", 219);
-		 }
-		 printf("\nIl tuo stato attuale:                ");
-		 kcal_totali=calcolo_kcal_totali(nome_file);
+		printf("Assunzioni persona media: 2000 kcal: ");
+		for (int i=0; i<KCAL_MEDIE_GIORNALIERE; i+=CAMPIONE_ISTOGRAMMI){
+			printf("%c", 219);
+		}
+		printf("\n\nIl tuo obiettivo: %d", kcal_giornaliere);
+		for (int i=0; i < kcal_giornaliere; i+=CAMPIONE_ISTOGRAMMI){
+			printf("%c", 219);
+		}
+		printf("\n\nIl tuo stato attuale:                ");
+		kcal_totali=calcolo_kcal_totali(nome_file);
 
-		 for (int i=0; i < kcal_totali; i+=CAMPIONE_ISTOGRAMMI){
-		 	 printf("%c", 219);
-		 }
-		 printf("\nCalorie assunte in totale: %d\n", kcal_totali);
+		for (int i=0; i < kcal_totali; i+=CAMPIONE_ISTOGRAMMI){
+			printf("%c", 219);
+		}
+		printf("\nCalorie assunte in totale: %d\n", kcal_totali);
 
 	}
 
