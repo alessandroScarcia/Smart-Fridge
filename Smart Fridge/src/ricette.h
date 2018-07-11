@@ -67,8 +67,7 @@
 #define LUNG_COMPLESSITA 21
 #define LUNG_TUPLA_RICETTE 1000//lunghezza della tupla ossia una riga quanto deve essere grande
 #define LUNG_STR_LAVORO_RIC 100 //lunghezza della stringa che verrá utilizzata in varie funzioni per effettuare split o altre operazioni su stringhe
-#define LUNG_NOME_FILE_RICETTE 100 //lunghezza da riservare al nome del file
-#define LUNG_PRODOTTO 50
+
 
 	//NUMERO DI ELEMENTI DI ARRAY/MATRICI ECC
 #define MAX_INGREDIENTI 20
@@ -94,8 +93,8 @@
 
 
 // Nomi dei file utilizzati:
-#define FILE_DATABASE_RICETTE "../database_ricette.csv"
-#define FILE_NUOVE_RICETTE "../nuove_ricette.csv"
+#define FILE_DATABASE_RICETTE "../database_ricette.csv" //file di memorizzione delle ricette prese in input
+#define FILE_NUOVE_RICETTE "../nuove_ricette.csv" //file di estrazione delle ricette
 
 
 
