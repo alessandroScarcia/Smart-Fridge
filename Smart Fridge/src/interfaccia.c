@@ -1,14 +1,4 @@
-/*
- * menu.c
- *
- *  Created on: 27 apr 2018
- *      Author: david
- */
-
-
 #include "interfaccia.h"
-
-
 
 /**
  * La funzione input scelta si occupa di ricevere in input il comando per accedere ad una determinata voce dei menu. Si e' pensato che la scelta
