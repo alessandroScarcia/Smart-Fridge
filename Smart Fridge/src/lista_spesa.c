@@ -87,7 +87,7 @@ int aggiorna_lista_spesa(char nome_alimento[LUNG_NOME_ALIMENTO],char nome_file[L
  * @pre		Il nome del file deve essere significativo(il file deve esistere e deve possedere almeno un alimento)
  * @post	Deve essere stampato almeno un alimento
  */
-int visualizza_lista_spesa(char nome_file[LUNG_NOME_FILE_RICETTE]) {
+int visualizza_lista_spesa(char nome_file[LUNG_NOME_FILE_SPESA]) {
 
 	FILE *stream = NULL;
 	char nome_alimento[LUNG_NOME_ALIMENTO + 1];

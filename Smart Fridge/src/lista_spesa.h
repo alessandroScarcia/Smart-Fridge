@@ -1,9 +1,16 @@
-/*
- * lista_spesa.h
+/**
+ * @file lista_spesa.h
  *
- *  Created on: 18 giu 2018
- *      Author: david
+ * @brief Libreria per la gestione della lista della spesa.
+ *
+ * La libreria lista_spesa.h è stata implementata per permettere all'utente
+ * di generare dei promemoria sulla lista degli alimenti da comprare.
+ * La libreria permette sia la gestione della lista personale di un utente
+ * che di quella globale
+ *
+ * @authors Alessandro Scarcia, Davide Quatela, Michela Salvemini
  */
+
 
 #ifndef LISTA_SPESA_LIB
 #define LISTA_SPESA_LIB

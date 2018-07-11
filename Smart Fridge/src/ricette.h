@@ -1,9 +1,21 @@
-/*
- * file_ricette_operation.h
+/**
+ * @file date.h
  *
- *  Created on: 16 mag 2018
- *      Author: david
+ * @brief Libreria per la gestione delle ricette.
+ *
+* La libreria ricette.h è stata implementata per permettere la gestione delle ricette,
+ * quindi le operazioni necessarie ai controlli, la manipolazione, il caricamento e il salvataggio
+ * di informazioni legate alle ricette.
+ * La gestione delle ricette in generale avviene tramite tre file: "nuove_ricette.csv", "database_ricette.csv".
+ *  Rispettivamente sono utilizzati per: caricare nuove ricette per aggiungerle al database,
+ * memorizzare le ricette in maniera da poterle consultare in qualsiasi momento o in alterniativa effettuare ricerche
+ * mirate su quelle che é possibile preparare con gli alimenti disponibili.
+ *
+ *
+ * @authors Alessandro Scarcia, Davide Quatela, Michela Salvemini
  */
+
+
 	//**********************************LIBRERIE INCLUSE***********************************
 /// Inclusione delle librerie standard.
 #ifndef STD_LIB
