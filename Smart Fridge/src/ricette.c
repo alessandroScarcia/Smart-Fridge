@@ -138,6 +138,7 @@ int prepara_ricetta(char* nome_ricetta, int dosi_ricetta){
 	}
 
 	if((stream = fopen(FILE_DATABASE_RICETTE, "rb")) == NULL){
+		puts("Non ancora sono state memorizzate ricette.");
 		return 0;
 	}else{
 		while(fread(&ricetta_letta, sizeof(ricetta), 1, stream) > 0){
@@ -991,6 +992,11 @@ int inizializza_ricette_preparabili(int num_ricette, char* ricette_preparabili[n
  */
 int ordina_ricette_kcal(ricetta* ricette_database, int num_ricette){
 
+	if(num_ricette == 0){
+		puts("Non sono ancora state memorizzate delle ricette.");
+		return 0;
+	}
+
 	ricetta x ;//struct di appoggio per scambiare 2 righe
 
 	for (int gap = num_ricette/2; gap > 0; gap /= 2){
@@ -1030,7 +1036,12 @@ int ricette_alimenti_in_scadenza(alimento_frigo* alimenti_frigo, int num_aliment
 
 	ordina_alimenti_scadenza(alimenti_frigo, num_alimenti);
 
-	printf("Gli alimenti che stanno per scadere sono: %s e %s\n",alimenti_frigo[0].nome,alimenti_frigo[1].nome);
+	if(num_alimenti == 0){
+		puts("Non ci sono alimenti scaduti nel frigo.");
+		return 0;
+	}else{
+		printf("Gli alimenti che stanno per scadere sono: %s e %s\n",alimenti_frigo[0].nome,alimenti_frigo[1].nome);
+	}
 
 	for(int i=0;i<NUM_ALIM_SUGG_SCAD;i++){
 		strcpy(alimenti_in_scadenza[i],alimenti_frigo[i].nome);
@@ -1289,6 +1300,7 @@ int lettura_nuove_ricette(){
 
 	// tentativo di apertura della spesa in lettura
 	if((stream = fopen(FILE_NUOVE_RICETTE, "r")) == NULL){
+		puts("Non è possibile aprire il file 'nuove_ricette.csv'.");
 		return -1; // se il file non può essere aperto viene ritornato il valore -1
 	}else{
 		// estrazione di ogni riga del file (riga == 1 alimento)

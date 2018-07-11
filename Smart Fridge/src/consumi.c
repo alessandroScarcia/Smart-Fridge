@@ -69,7 +69,8 @@ int ricerca_prod_magg_cons(short flag_prodotto){
 	char prod_magg_cons[LUNG_NOME_PRODOTTO];
 
 
-	if((stream = fopen(FILE_CONSUMI, "rb+")) == NULL){
+	if((stream = fopen(FILE_CONSUMI, "rb")) == NULL){
+		puts("Non sono mai stati effettuati consumi.");
 		return 0;
 	}else{
 		while(fread(&prodotto_consumo, sizeof(consumo), 1, stream) > 0){//leggi fino a quando é presente una riga

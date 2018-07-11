@@ -453,7 +453,5 @@ data input_data(){
 		}
 	}while(esito_input < NUM_CAMPI_DATA || controlla_data(data_inserita) == 0);
 
-	puts("Data inserita significativa.");
-
 	return data_inserita;
 }

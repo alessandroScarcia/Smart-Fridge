@@ -1,9 +1,4 @@
-/*
- * utenti.c
- *
- *  Created on: 10 mag 2018
- *      Author: Michela
- */
+
 #include "utenti.h"
 
 /**
@@ -186,7 +181,7 @@ char* input_password(){
 char* genera_password(){
 	char* password = (char*) calloc(LUNG_PASSWORD, sizeof(char));
 	char tipo_char;
-	char generazione_char;
+	char generazione_char = 0;
 
 	for(int i = 0; i < LUNG_PASSWORD - 1; i++){
 		tipo_char = rand() % NUM_TIPI_CHAR + 1;
@@ -794,6 +789,7 @@ int visualizza_database_utenti(){
 	utente u;
 
 	if((stream = fopen(FILE_DATABASE_UTENTI, "rb")) == NULL){
+		puts("Non è possibile aprire il file 'database_utenti.dat'.");
 		return 0;
 	}else{
 		puts("DATABASE UTENTI:");
@@ -971,63 +967,6 @@ void output_utente(const utente u){
 
 	output_preferenze(u);
 }
-
-
-/*Sommario: Funzione che stampa le varie operazione che si possono effettuare, leggerà la risposa inserita da tastiera ed in base al
- * numero inserito, verrà chiamata una funzione opportuna;
-paramentri: i è un indice da passare che servirà per il salvataggio dell'utente, corrisponde all'ultimo indice assegnato ad un utente
-
-int menu_database_utenti (int i){
-
-	int esito_input;
-	int esito_controllo;
-	int scelta;
-
-	do {
-		do {
-			printf("Inserisci:"
-					"\n\t[1] per creare nuovi utenti"
-					"\n\t[2] per modificare il tuo profilo"
-					"\n\t[3] per visualizzare tutti gli utenti"
-					"\n\t[0] per uscire dal menu utenti"
-					"\n~");
-			esito_input = scanf("%d", &scelta);
-			if(pulisci_stdin() == 1){
-				esito_input = 0;
-			}
-
-			if(scelta < 0 || scelta > 3){
-				esito_controllo = 0;
-			}else{
-				esito_controllo = 1;
-			}
-
-			if(esito_input != 1 || esito_controllo != 1){
-				puts("Inserimento non valido. Ripeterlo.");
-			}
-		} while (esito_input != 1 || esito_controllo != 1);
-
-		switch(scelta) {
-
-		case 1:
-			crea_utenti();
-			break;
-		case 2:
-			gestore_modifiche();
-			break;
-		case 3:
-			visualizza_database_utenti();
-			break;
-		default:
-			break;
-		}
-
-	} while (scelta != 0);
-
-	return 1;
-}
-
- */
 
 /**
  * Funzione conta_utenti ():

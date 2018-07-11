@@ -16,25 +16,22 @@ int ordina_alimenti_scadenza(alimento_frigo* alimenti_frigo, int  num_alimenti){
 
 	for (int gap = num_alimenti/2; gap > 0; gap /= 2){
 
-		        for (int i = gap; i < num_alimenti; i++){
+		for (int i = gap; i < num_alimenti; i++){
 
-					// salva il corrente elemento puntato da i in tmp
-		        	tmp = alimenti_frigo[i];
+			// salva il corrente elemento puntato da i in tmp
+			tmp = alimenti_frigo[i];
 
-		            //sposta i precedenti elementi fino alla corretta locazione di alimenti_frigo[i] e' 	trovata
-		        	int j;
-		        	// diff_date(differenza,alimenti_frigo[j - gap].scadenza, data_odierna()) > diff_date(differenza,tmp.scadenza,data_odierna())
-		            for (j = i; j >= gap && confronta_date(alimenti_frigo[j - gap].scadenza, tmp.scadenza) == SECONDA_DATA_ANTECEDENTE; j -= gap){
-		            	alimenti_frigo[j] = alimenti_frigo[j - gap];
-		            }
-		            //  inserisci tmp (l'originale alimenti_frigo[i]) nella sua corretta locazione
-		            alimenti_frigo[j] = tmp;
-		        }
-		    }
+			//sposta i precedenti elementi fino alla corretta locazione di alimenti_frigo[i] e' 	trovata
+			int j;
+			// diff_date(differenza,alimenti_frigo[j - gap].scadenza, data_odierna()) > diff_date(differenza,tmp.scadenza,data_odierna())
+			for (j = i; j >= gap && confronta_date(alimenti_frigo[j - gap].scadenza, tmp.scadenza) == SECONDA_DATA_ANTECEDENTE; j -= gap){
+				alimenti_frigo[j] = alimenti_frigo[j - gap];
+			}
+			//  inserisci tmp (l'originale alimenti_frigo[i]) nella sua corretta locazione
+			alimenti_frigo[j] = tmp;
+		}
+	}
 
-		/* DEBUG: for (int i=0; i < num_alimenti; i++){
-				printf("%s %d/%d/%d\n", alimenti_frigo[i].nome_alimento, alimenti_frigo[i].scadenza.giorno,alimenti_frigo[i].scadenza.mese,alimenti_frigo[i].scadenza.anno);
-		 }*/
 	printf("Ordinamento per scadenza effettuato con successo...ora puoi preparare una ricetta ottimizzata\n");
 	return 1;
 
@@ -75,25 +72,25 @@ int conta_alimenti_database(){
  * @post Il valore restituito deve essere un intero significativo (>=0)
  */
 int conta_alimenti_frigo(){
-		FILE* stream = NULL;					// Puntatore a FILE_FRIGO
-		alimento_frigo info_alimento;			// genero una struct di riferimento che mi permette di scorrere all'interno del file di tipo binario
+	FILE* stream = NULL;					// Puntatore a FILE_FRIGO
+	alimento_frigo info_alimento;			// genero una struct di riferimento che mi permette di scorrere all'interno del file di tipo binario
 
-		int num_alimenti = 0;	// Numero di alimenti presenti nel frigo
+	int num_alimenti = 0;	// Numero di alimenti presenti nel frigo
 
-		// Apertura di FILE_FRIGO
-		if((stream = fopen(FILE_FRIGO, "rb")) == NULL){
-			return num_alimenti; // Se il file non può essere aperto, viene ritornato 0
-		}else{
-			// Viene attraversato il contenuto del frigo, aumentando il numero di alimenti quando l'alimento letto ha nome diverso da stringa vuota
-			while(fread(&info_alimento, sizeof(info_alimento), 1, stream) > 0){
-				if(strcmp(info_alimento.nome, "") != 0)
-					num_alimenti++; // Incremento il contatore del numero di alimenti
+	// Apertura di FILE_FRIGO
+	if((stream = fopen(FILE_FRIGO, "rb")) == NULL){
+		return num_alimenti; // Se il file non può essere aperto, viene ritornato 0
+	}else{
+		// Viene attraversato il contenuto del frigo, aumentando il numero di alimenti quando l'alimento letto ha nome diverso da stringa vuota
+		while(fread(&info_alimento, sizeof(info_alimento), 1, stream) > 0){
+			if(strcmp(info_alimento.nome, "") != 0)
+				num_alimenti++; // Incremento il contatore del numero di alimenti
 
-			}
 		}
+	}
 
-		fclose(stream);
-		return num_alimenti;
+	fclose(stream);
+	return num_alimenti;
 }
 
 
@@ -179,7 +176,7 @@ int eliminazione_alimenti_scaduti(){
 
 	// Apertura del file in lettura e aggiornamento binario
 	if((stream = fopen(FILE_FRIGO, "rb+")) == NULL){
-		return 0; // Se non può essere apertoil file viene ritornato 0
+		return 0; // Se non può essere aperto il file viene ritornato 0
 	}else{
 		data_esecuzione = data_odierna(); // Estrazione della data al momento di esecuzione
 
@@ -958,6 +955,7 @@ int carica_spesa(){
 
 	// tentativo di apertura della spesa in lettura
 	if((stream = fopen(FILE_SPESA, "r")) == NULL){
+		puts("Non esiste il file 'spesa_effettuata.csv' .");
 		return -1; // se il file non può essere aperto viene ritornato il valore -1
 	}else{
 		// estrazione di ogni riga del file (riga == 1 alimento)
@@ -1503,6 +1501,7 @@ int modifica_soglia_spesa(){
 	int soglia_spesa;
 
 	if((stream = fopen(FILE_DATABASE_ALIMENTI, "rb+")) == NULL){
+		puts("Non è possibile aprire 'database_alimenti.dat'.");
 		return 0;
 	}else{
 		num_alimenti_database = visualizza_database_alimenti(); //vengono visualizzati gli alimenti e viene assegnato il numero di tali alimenti
@@ -1576,6 +1575,7 @@ int modifica_kcal(){
 	int kcal;
 
 	if((stream = fopen(FILE_DATABASE_ALIMENTI, "rb+")) == NULL){
+		puts("Non è possibile aprire 'database_alimenti.dat'.");
 		return 0;
 	}else{
 		num_alimenti_database = visualizza_database_alimenti();//vengono visualizzati gli alimenti e viene assegnato il numero di tali alimenti
