@@ -74,9 +74,6 @@ char* input_nickname(){
 		//acquisizione della lunghezza effettiva del nickname inserito
 		lung_nickname = strlen(nickname);
 
-		//controllo se già esiste un utente con tale nickname
-		esito_controllo = esiste_nickname(nickname);
-
 		if(lung_nickname < MIN_LUNG_NICKNAME || lung_nickname > MAX_LUNG_NICKNAME - 1){
 			esito_controllo = 0;
 		}else{
@@ -704,7 +701,8 @@ int gestore_modifiche(){
 	int scelta;
 
 	if((stream = fopen(FILE_DATABASE_UTENTI, "rb+")) == NULL){
-		return 0;
+		puts("Non è possibile aprire il file 'database_utenti.dat'.");
+		return -1;
 	}else{
 		printf("Effettuare l'accesso ad un utente per modificarlo:\n");
 		esito_controllo = autenticazione(&utente_modificato);
@@ -749,14 +747,25 @@ int gestore_modifiche(){
 			//Controllo della scelta e richiamo alle funzioni di modifca in base ad essa
 			switch(scelta){
 			case CAMPO_NICKNAME:
-				strcpy(utente_modificato.nickname, input_nickname());
+				do{
+					strcpy(utente_modificato.nickname, input_nickname());
+
+					if(esiste_nickname(utente_modificato.nickname) == 0){
+						esito_controllo = 1;
+					}else{
+						esito_controllo = 0;
+					}
+				}while(esito_controllo != 1);
+
 				break;
 			case CAMPO_PASSWORD:
 				strcpy(utente_modificato.password, input_password());
 				break;
+
 			case CAMPO_PREFERENZE:
 				modifica_preferenze(&utente_modificato);
 				break;
+
 			default:
 				break;
 			}

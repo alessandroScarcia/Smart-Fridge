@@ -32,43 +32,52 @@
 #ifndef UTENTI_LIB
 #define UTENTI_LIB
 
+/// Inclusione della libreria per la gestione del menu_settimanale
 #include "menu_settimanale.h"
 
+/// Inclusione della libreria per la gestione degli alimenti
 #include "alimenti.h"
 
+/// Inclusione della libreria per la pulizia dei flussi di input
 #include "pulizia_flussi.h"
 
-#define MAX_UTENTI 6
+/// Limiti e valori per determinati elementi:
+#define MAX_UTENTI 6							/// Numero massimo di utenti memorizzabili
+#define NUM_TIPI_CHAR 4							/// Numero di tipi di caratteri utilizzati per la generazione casuale
+#define CHAR_SIMBOLO 1							/// Valore per la generazione di un simbolo
+#define CHAR_CIFRA 2							/// Valore per la generazione di una cifre
+#define CHAR_MAIUSCOLA 3						/// Valore per la generazione di una lettere maiuscola
+#define CHAR_MINUSCOLA 4						/// Valore per la generazione di una lettera minuscola
+#define MIN_ASCII_SIMBOLO 33					/// Valore minimo, nella tabella ASCII, per la generazione di un simbolo
+#define MAX_ASCII_SIMBOLO 47					/// Valore massumo, nella tabella ASCII, per la generazione di un simbolo
+#define MIN_ASCII_CIFRA 48						/// Valore minimo, nella tabella ASCII, per la generazionedi una cifra
+#define MAX_ASCII_CIFRA 57						/// Valore massumo, nella tabella ASCII, per la generazione di una cifra
+#define MIN_ASCII_MAIUSCOLA 66					/// Valore minimo, nella tabella ASCII, per la generazione di una lettera maiuscola
+#define MAX_ASCII_MAIUSCOLA 90					/// Valore massumo, nella tabella ASCII, per la generazione di una lettera maiuscola
+#define MIN_ASCII_MINUSCOLA 97					/// Valore minimo, nella tabella ASCII, per la generazione di una lettera minuscola
+#define MAX_ASCII_MINUSCOLA 122					/// Valore massumo, nella tabella ASCII, per la generazione di una lettera minuscola
+#define NUM_PREFERENZE 3 						/// Numero di preferenze alimentari per ogni utente
+#define GEN_AUTOMATICA 1						/// Valore per selezionare la generaizone automatica
+#define GEN_MANUALE 2							/// Valore per selezionare la generaizone manuale
+#define CAMPO_NICKNAME 1						/// Valore per selezionare il campo nickname
+#define CAMPO_PASSWORD 2						/// Valore per selezionare il campo password
+#define CAMPO_PREFERENZE 3						/// Valore per selezionare il campo preferenze
 
-#define MIN_LUNG_NICKNAME 3							/// Lunghezza minima in caratteri per il nickname di un utente (escluso il terminatore '\0')
-#define MAX_LUNG_NICKNAME 16 						/// Lunghezza massima in caratteri per il nickname di un utente (compreso il terminatore '\0')
-#define NUM_PREFERENZE 3 							/// Numero di preferenze alimentari per ogni utente
-#define LUNG_PREFERENZA 21 							/// Lunghezza massima in caratteri per la preferenza alimentare di ogni utente
-#define LUNG_PASSWORD 9 							/// Lunghezza massima in caratteri per la password di ogni utente
+/// Lunghezze di stringhe:
+#define MIN_LUNG_NICKNAME 3						/// Lunghezza minima in caratteri per il nickname di un utente (escluso il terminatore '\0')
+#define MAX_LUNG_NICKNAME 16 					/// Lunghezza massima in caratteri per il nickname di un utente (compreso il terminatore '\0')
+#define LUNG_PREFERENZA 21 						/// Lunghezza massima in caratteri per la preferenza alimentare di ogni utente
+#define LUNG_PASSWORD 9 						/// Lunghezza massima in caratteri per la password di ogni utente
 
-#define GEN_AUTOMATICA 1
-#define GEN_MANUALE 2
+/// Nome di file
+#define FILE_DATABASE_UTENTI "database_utenti.dat"	/// Nome del file contenente le informazioni degli utenti memorizzati
 
-#define CAMPO_NICKNAME 1
-#define CAMPO_PASSWORD 2
-#define CAMPO_PREFERENZE 3
-
-#define NUM_TIPI_CHAR 4
-#define CHAR_SIMBOLO 1
-#define CHAR_CIFRA 2
-#define CHAR_MAIUSCOLA 3
-#define CHAR_MINUSCOLA 4
-#define MIN_ASCII_SIMBOLO 33
-#define MAX_ASCII_SIMBOLO 47
-#define MIN_ASCII_CIFRA 48
-#define MAX_ASCII_CIFRA 57
-#define MIN_ASCII_MAIUSCOLA 66
-#define MAX_ASCII_MAIUSCOLA 90
-#define MIN_ASCII_MINUSCOLA 97
-#define MAX_ASCII_MINUSCOLA 122
-
-#define FILE_DATABASE_UTENTI "database_utenti.dat"
-
+/**
+ * @typedef utente
+ *
+ * Tipo utilizzato per la memorizzazione delle informazioni degli utenti. Ogni utente è caratterizzato
+ * da un nickname, una password con cui autenticarsi e un numero prefissato di preferenze alimentari.
+ */
 typedef struct{
 	char nickname[MAX_LUNG_NICKNAME];
     char password[LUNG_PASSWORD];
@@ -87,16 +96,11 @@ typedef struct{
  */
 int esiste_nickname(const char* nickname);
 
-
 /**
- * La funzione input_nickname() permette di richiedere l'inserimento di un
- * nickname destinato ad un nuovo utente.
+ * Funzione utilizzata per effettuare l'input di un nome utente.
  *
- * @return Stringa corrispondente al nickname inserito.
+ * @return Puntatore alla stringa inserita dall'utente.
  */
-char* input_nuovo_nickname();
-
-
 char* input_nickname();
 
 
@@ -153,7 +157,7 @@ int input_preferenza(char* preferenza);
  *
  * @return Valori inseriti del nuovo utente.
  */
-utente input_utente(); //salva le struct di tipo utente su un file .cvs
+utente input_utente();
 
 
 /**
@@ -188,17 +192,31 @@ int salva_n_utenti(utente* utenti, int n);
 
 
 /**
- * La procedura crea_utente() permette la creazione di n nuovi utenti.
+ * Funzione utilizzata per la generazione di utenti.
+ *
+ * @return 1 Se la creazione avviene con successo.
+ * @return 0 Se non è possibile effettuare la creazione.
+ * @return -1 Se non possono essere salvati i dati creati.
  */
 int crea_utenti();
 
 
+/**
+ * Procedura utilizzata per modificare i valori delle preferenze alimentari
+ * di un utente.
+ *
+ * @param u Dati dell'utente su cui effettuare la modifica.
+ */
 void modifica_preferenze(utente* u);
 
 
 /**
  * La funzione gestore_modifiche() permette di far effettuare l'accesso ad utente per modificare
  * i propri dati.
+ *
+ * @return 1 Se la modifica va a buon fine.
+ * @return 0 Se la modifica viene annullata.
+ * @return -1 Se non è possibile aprire il file.
  */
 int gestore_modifiche();
 
@@ -228,15 +246,28 @@ void output_utente(const utente u);
 int output_preferenze(const utente u);
 
 
-int visualizza_database_utenti(); //visualizza il contenuto di un file
+/**
+ * Funzione per la visualizzazione del database utenti.
+ *
+ * @return 1 Se la visualizzazione va a buon fine.
+ * @return 0 Se il file non può essere aperto.
+ */
+int visualizza_database_utenti();
 
-
-int menu_database_utenti (int i); //Stampa su schermo un messaggio e permette di scegliere tra diverse opzioni, chiamando funzioni oppurtune alla scelta acquisita da tastiera
-
-
+/**
+ * Funzione per effettuare il conteggio degli utenti memorizzati.
+ *
+ * @return Numero di utenti memorizzati
+ */
 int conta_utenti();
 
-
+/**
+ * Funzione per effettuare l'eliminazione di un utente.
+ *
+ * @return -1 Se non è possibile aprire il file.
+ * @return 0 Se viene annullata l'eliminazione.
+ * @return 1 Se l'aliminazione va a buon fine.
+ */
 int elimina_utente();
 
 #endif
