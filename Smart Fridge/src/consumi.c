@@ -1,6 +1,5 @@
-#ifndef CONSUMI_LIB
 #include "consumi.h"
-#endif
+
 /**
  *La funzione registra_consumi riceve in ingresso il nome di un prodotto dove per prodotto intendiamo il nome di una ricetta o di un alimento e
  *un flag dove 0 indica che siamo in presenza di un alimento e 1 che indica che siamo in presenza di una ricetta. Inizialmente viene fatto un check

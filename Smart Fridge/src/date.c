@@ -1,7 +1,5 @@
-// Implementazione delle funzioni della libreria date.h
-
+/// Implementazione delle funzioni della libreria date.h
 #include "date.h"
-
 /**
  * Funzione controlla_data(data d):
  *
@@ -230,7 +228,7 @@ int diff_date(int* differenza, data d1, data d2){
  *
  */
 int confronta_date(data d1, data d2){
-	int differenza_date; // Variabile per memorizzare la differenza di giorni fra le due date
+	int differenza_date = 0; // Variabile per memorizzare la differenza di giorni fra le due date
 
 	// Verifica della validità delle date
 	if (controlla_data(d1) == 0 || controlla_data(d2) == 0)

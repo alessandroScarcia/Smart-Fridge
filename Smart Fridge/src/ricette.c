@@ -1,38 +1,7 @@
-/*
- * file_ricette_operation.c
- *
- *  Created on: 16 mag 2018
- *      Author: david
- */
+
 #include "ricette.h"
 
 
-/*
- * Modifica la prima funzione in base alle modifiche che hai apportato a riduci quantitá alimenti
- * PREPARA RICETTE: controlli su apertura file del frigo, inserimento di un valido id e possibilitá di effetuare una differenza tra le quantitá disponibili nel frigo e quelle espresse
- * dagli ingredienti delle ricette. Controllo anche su effettiva scrittura e opportuno richiamo alla funzione dei consumi che sta in fondo alla funzione
- * FUNZIONE input_x: tutte le funzioni precedute dalla paraola input devono essere controllate con un classico controllo sulle stringhe e interi e sulla accettibilitá dei valori. Solo per l'input ingrediente magari va prestata
- *  piú attenzione per il formato
- *  FUNZIONE modifica_ricetta(): controllo apertura file e presenza di valori, controllo su id inserito, controllo su campo inserito, controllo su successo modifica
- * FUNZIONE elimina_ricetta(): controllo su file(i soliti) e su id correttamente inserito
- * FUNZIONE visualizza_ricetta():dai un'occhiata e aggiusta la visualizzazione se non ti garba
- * FUNZIONE visualizza_database_ricette: controllo su parametri in ingresso, su apertura file  e sullo stile della funzione
- * FUNZIONE lettura_database_ricette: dovrebbe essere passato un valore pulito quindi gli unici controlli sono su file e su effettiva scrittura
- * FUNZIONE conta_righe_database_ricette:controlli su file
- * FUNZIONE inizializza_ricette_preparabili:non penso ci siano controlli
- * FUNZIONE ordina_ric_kcal: controllo su stile e...non penso ci siano controlli di rilevanza
- * FUNZIONE  registra_consumi: controllo su parametri passati e controllo su file(scrittura,lettura)
- * FUNZIONE ricerca_prod_magg_cons: controlli su file e controllo corretta restituzione di un valore
- *  FUNZIONE ricette_alimenti_in_scadenza: controllo su parametri passati alle altre funzioni e nessun tipo di controllo. Questa funzione e' una sorta di ponte che ho evitato di mettere tutto nella switch del menu di ricerca
- * FUNZIONE inserimento_manuale_ingredienti: controllo  su valori inseriti dall'utente
- * FUNZIONE suggerimento_ricetta_manuale: controllo su file e su corretto inserimento id(la struttura della funzione non ti piacerá, e ci terrei che la modificassi in quanto funziona ma non e' carina)
- * FUNZIONE suggerimento_ricetta_automatico: controllo su file e su corretto inserimento id(la struttura della funzione non ti piacerá, e ci terrei che la modificassi in quanto funziona ma non e' carina). Ë uguale alla precedente solo che
- * cambia leggermente dal punto di vista strutturale.
- *FUNZIONE conta_kcal_ricetta: controllo su effettiva presenza dei dati degli ingredienti all'interno del file del database degli alimenti
- *
- */
-
-//NUOVA FUNZIONE
 
 
 int esiste_ricetta(char* nome_ricetta){
@@ -159,7 +128,6 @@ int conta_ricette_preparabili(){
 
 
 
-//MODIFICA IN BASE A RIDUCI QUANTITÄ
 int prepara_ricetta(char* nome_ricetta, int dosi_ricetta){
 	FILE* stream = NULL;
 	ricetta ricetta_letta;

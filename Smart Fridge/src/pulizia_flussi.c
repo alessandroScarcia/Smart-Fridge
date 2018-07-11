@@ -4,9 +4,7 @@
  * Questo file contiene le implementazioni delle funzioni definite all'interno del file
  * "pulizia_flussi.h".
  */
-
 #include "pulizia_flussi.h"
-
 
 /**
  * La funzione pulisci_stdin() utilizza la funzione getchar() per consumare

@@ -161,8 +161,11 @@ char* input_password(){
 			esito_controllo = 1;
 		}
 
-		if(esito_input != 1 || esito_controllo != 1){
+		if(esito_input != 1){
 			puts("Inserimento non valido. Ripeterlo.\n");
+		}else if(esito_controllo != 1){
+			puts("Sono stati inseriti meno di 8 caratteri.\n"
+					"La password deve necessariamente essere di 8 caratteri.\nRipetere l'inserimento.");
 		}
 	}while(esito_input != 1 || esito_controllo != 1);
 	return password;
@@ -858,9 +861,12 @@ int autenticazione(utente* u){
 			if(esito_controllo != 1){
 				puts("Il nickname inserieto non appartiene a nessun utente.");
 			}else{
+				fseek(stream, 0, SEEK_SET);
 				// Se il nickname è valido, va cercato l'utente identificato dallo stesso
 				do{
+
 					fread(&utente_letto, sizeof(utente), 1, stream);
+
 				}while(strcmp(utente_letto.nickname, nickname) != 0);
 
 				// Confronto fra la password inserita per accedere e quella dell'account memorizzato
@@ -868,6 +874,8 @@ int autenticazione(utente* u){
 					// Se non coincidono viene mostrato l'errore
 					puts("La password inserita non è corretta.");
 					esito_controllo = 0;
+				}else{
+					esito_controllo = 1;
 				}
 			}
 
@@ -890,6 +898,7 @@ int autenticazione(utente* u){
 						puts("Inserimento non valido. Ripeterlo.");
 					}
 				}while(esito_input != 1);
+
 			}else{
 				// Se l'accesso avviene correttamente, impostiamo scelta a zero così da uscire dal while
 				scelta = 0;

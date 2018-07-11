@@ -1,9 +1,3 @@
-/*
- * lista_spesa.c
- *
- *  Created on: 18 giu 2018
- *      Author: david
- */
 
 #include "lista_spesa.h"
 
