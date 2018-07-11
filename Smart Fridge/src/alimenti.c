@@ -1,11 +1,4 @@
-#ifndef ALIMENTI_LIB
 #include "alimenti.h"
-#endif
-
-//NUOVE FUNZIONI ALIMENTI
-
-//esci la funzione che fa l'input al nome alimento
-
 
 /**
  * La funzione, avendo in ingresso gli alimenti del frigo con il relativo numero, si occupa di riordinare tali alimenti, o meglio l'array di struct che li contiene, in base
@@ -507,7 +500,7 @@ data input_data_scadenza(){
 int input_kcal(char *nome_alimento, int campione_kcal, char *unita_misura){
 	float kcal;
 	int esito_input;
-
+	int esito_controllo;
 
 // Ciclo per la ripetizione dell'inserimento fino a riceverlo significativo
 	do{
@@ -517,10 +510,16 @@ int input_kcal(char *nome_alimento, int campione_kcal, char *unita_misura){
 			esito_input = 0;
 		}
 
-		if(esito_input != 1){
+		if(kcal < MIN_KCAL_CAMPIONE || kcal > MAX_KCAL_CAMPIONE){
+			esito_controllo = 0;
+		}else{
+			esito_controllo = 1;
+		}
+
+		if(esito_input != 1 || esito_controllo != 1){
 			puts("Inserimento non valido. Ripeterlo.");
 		}
-	}while(esito_input != 1);
+	}while(esito_input != 1 || esito_controllo != 1);
 
 	return kcal;
 }

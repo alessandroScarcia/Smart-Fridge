@@ -19,8 +19,8 @@
 #define LISTA_SPESA_GLOBALE "../lista_spesa.txt"   //directory in cui trovare il file della spesa globale
 
 //NOTA: il file della lista della spesa personale sará sempre nel seguente formato :   ../spesa_nickname.txt
-#define PRIMA_PARTE_NOMEFILE "../spesa_"		   //prima parte nel nome file della lista personale
-#define FORM_FILE_SPESA ".txt"					   //formato del file della lista personale
+#define PREFIX_FILE_SPESA "../spesa_"		   //prima parte nel nome file della lista personale
+#define SUFFIX_FILE_SPESA ".txt"					   //formato del file della lista personale
 #define LUNG_NOME_FILE_SPESA 30
 
 /**Funzione che provvede a scrivere su file(il nome é specificato dal parametro in ingresso) il nome dell'alimento che passiamo alla funzione.

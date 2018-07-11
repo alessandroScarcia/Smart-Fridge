@@ -51,17 +51,14 @@
 #endif
 
 /// Inclusione della libreria per la gestione delle date
-
 #include "date.h"
 
 
 /// Inclusione della libreria per la gestione dei consumi
-
 #include "consumi.h"
 
 
 /// Inclusione della libreria per la pulizia dei flussi di input
-
 #include "pulizia_flussi.h"
 
 
@@ -111,7 +108,8 @@
 #define MAX_QUANTITA_PZ 100				/// Limite superiore pezzi
 #define MAX_ALIM_SUGG 5					/// Limite degli alimenti che possono essere inseriti manualmente dall'utente per la ricerca di una ricetta
 #define FLAG_ALIMENTO 0					/// valore che ci permette di capire se il prodotto consumato é un alimento
-
+#define MIN_KCAL_CAMPIONE 0				/// valore minimo per le kcal relative ad un campione di un alimento
+#define MAX_KCAL_CAMPIONE 2000			/// valore massimo per le kcal relative ad un campione di un alimento
 
 ///**********************************DEFINIZIONI DI STRUCT***********************************
 
