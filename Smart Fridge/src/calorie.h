@@ -62,6 +62,13 @@
 #define MIN_KCAL 0									/// Valore minimo per le kcal usate nel calcolo relativo ad un assunzione
 #define MAX_KCAL 5000								/// Valore minimo per le kcal usate nel calcolo relativo ad un assunzione
 
+/**
+ * @typedef assunzione
+ *
+ * Il tipo di dato "assunzione" serve a memorizzare un assunzione della giornata corrente di un utente.
+ *  E' basato su di una struct i cui membri sono: nome, quantita, kcal, e flag (per identificare se si tratta di una ricetta o aliment).
+ *
+ */
 typedef struct{
 	char nome[LUNG_NOME_ASSUNZIONE];
 	float quantita;
