@@ -74,7 +74,7 @@
  *
  * Il tipo di dato "cibo" serve a memorizzare una ricetta o un singolo alimento.
  *  E' basato su di una struct i cui membri sono: nome_cibo, flag (viene impostato a zero
- *  se si tratta di un aliento singolo, ad 1 se si tratta di una ricetta) e quantità.
+ *  se si tratta di un alimento singolo, ad 1 se si tratta di una ricetta) e quantità.
  *
  */
 
@@ -111,13 +111,18 @@ typedef struct {
 	pasto pasti[NUM_PASTI];
 } giorno; //cambio nome
 
-
+/**
+ * La funzione crea_nome_file_menu() si occupa di concatenare delle stringhe con il nickname passato
+ * in ingresso per poi restituire tale risultato
+ *
+ * @param nickname 			nome dell'utente per la generazione del nome del file
+ */
 
 char* crea_nome_file_menu(const char* nickname);
 
 
 /**
- * La procedura inizializzazione() chiama una serie di funzioni utili ad un inizializzazione di un vettore di 7
+ * La funzione inizializzazione() chiama una serie di funzioni utili ad un inizializzazione di un vettore di 7
  * struct di tipo giorno, ognuna delle quali rappresenta un giorno della settimana
  *
  * @param no
@@ -177,7 +182,7 @@ int inizializzazione_file_menu (const char* nomefile, giorno* menu );
  * @param vettore nomefile per aprire il file.
  * @return 0 se l'operazione va a buon fine
  */
-int visualizza_database_menu (char nomefile[]);
+int visualizza_database_menu (char nome_utente[]);
 
 
 int esiste_menu(char* nickname);
@@ -279,4 +284,6 @@ int scrivi_giorno (giorno* giornata, char* nome_utente, int i);
 
 
 int elimina_file_menu(char nome_file[LUNG_NOME_FILE_MENU]);
+
+int gestore_visualizzazione_menu ();
 #endif
