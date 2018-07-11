@@ -26,11 +26,11 @@
 	#include <math.h>
 #endif
 
-/// Inclusione della libreria per la pulizia dei flussi di input
-#include "pulizia_flussi.h"
-
 #ifndef DATE_LIB
 #define DATE_LIB
+
+/// Inclusione della libreria per la pulizia dei flussi di input
+#include "pulizia_flussi.h"
 
 /// DEFINIZIONE DELLE COSTANTI SIMBOLICHE.
 
