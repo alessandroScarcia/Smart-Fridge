@@ -32,27 +32,22 @@
 #endif
 
 
-#include "alimenti.h"
+#include "alimenti.h"      ///libreria che permette la gestione(manipolazione,caricamento ecc) degli alimenti
 
-#include "date.h"
+#include "ricette.h"      ///libreria che permette la gestione(manipolazione,caricamento ecc) delle ricette
 
-#include "ricette.h"
+#include "lista_spesa.h" ///libreria che permette la gestione(creazione,modifica ecc) della lista della spesa
 
-#include "lista_spesa.h"
+#include "utenti.h"     ///libreria che permette la gestione(creazione,modifica ecc) dei profili utente
 
-#include "utenti.h"
+#include "menu_settimanale.h"  ///libreria che permette la gestione(modifica) del menu settimanale
 
-#include "menu_settimanale.h"
-
-#include "calorie.h"
+#include "calorie.h"		///libreria che permette la gestione delle kcal di un utente
 
 
 
 #ifndef INTERFACCIA_LIB
 #define INTERFACCIA_LIB
-
-#define LUNG_SCELTA 2//lunghezza della stringa che accoglierá la scelta inserita dall'utente
-
 
 ///COSTANTI PER LA VISUALIZZAZIONE DELLE VOCI DEL MENU
 #define MENU_PRINCIPALE 0
@@ -227,7 +222,7 @@ void voci_utenti();
 void voci_ricerca();
 
 /**
- * /**Funzione che si occupa della visualizzazione delle voci del menu lista della spesa
+ * Funzione che si occupa della visualizzazione delle voci del menu lista della spesa
  */
 void voci_lista_spesa();
 

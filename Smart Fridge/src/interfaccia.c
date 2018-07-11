@@ -1,5 +1,6 @@
 #include "interfaccia.h"
 
+
 /**
  * La funzione input scelta si occupa di ricevere in input il comando per accedere ad una determinata voce dei menu. Si e' pensato che la scelta
  * essendo un numero avrá anche esso un range. Se la scelta e' compresa nel range vuol dire che e' accettabile altrimenti verrá scartata e verrá
@@ -455,7 +456,7 @@ int menu_lista_spesa(){
 int gestore_menu_settimanale(){
 			int scelta; //memorizza la scelta effettuata dall'utente
 			visualizza_voci_menu(OPZIONI_MENU_SETTIMANALE);
-			utente u;
+
 			printf("Inserisci comando ~ ");
 
 			do{//ripeti fino a quando...
