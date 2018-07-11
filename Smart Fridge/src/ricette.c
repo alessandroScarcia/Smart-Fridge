@@ -1036,7 +1036,12 @@ int ricette_alimenti_in_scadenza(alimento_frigo* alimenti_frigo, int num_aliment
 
 	ordina_alimenti_scadenza(alimenti_frigo, num_alimenti);
 
-	printf("Gli alimenti che stanno per scadere sono: %s e %s\n",alimenti_frigo[0].nome,alimenti_frigo[1].nome);
+	if(num_alimenti == 0){
+		puts("Non ci sono alimenti scaduti nel frigo.");
+		return 0;
+	}else{
+		printf("Gli alimenti che stanno per scadere sono: %s e %s\n",alimenti_frigo[0].nome,alimenti_frigo[1].nome);
+	}
 
 	for(int i=0;i<NUM_ALIM_SUGG_SCAD;i++){
 		strcpy(alimenti_in_scadenza[i],alimenti_frigo[i].nome);
