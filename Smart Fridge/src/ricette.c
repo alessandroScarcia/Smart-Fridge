@@ -3,20 +3,31 @@
 
 
 
-
+/**Funzione che si occupa di verificare l'esistenza di una ricetta nel database
+ *
+ * Il funzionamento é basato, in primo luogo sulla ricezione come parametro di ingresso del nome della ricetta su cui effettuare la ricerca.
+ * Una volta assicurata la corretta apertura del file del database si puó effettuare la ricerca di tale ricetta ed eventualmente aggiornare il flag di
+ * presenza che verrá poi restituito dalla funzione.
+ *
+ * @pre		Il nome del file della ricetta non deve essere vuoto
+ * @post	Nessuna particolare post condizione
+ */
 int esiste_ricetta(char* nome_ricetta){
 	FILE* stream = NULL;
 	ricetta ricetta_letta;
 	char flag_esistenza = 0;
 
+	//tentativo di apertura del file
 	if((stream = fopen(FILE_DATABASE_RICETTE, "rb+")) == NULL){
 		return flag_esistenza;
 	}else{
+		//estrazione delle righe presenti all'interno del file
 		while(fread(&ricetta_letta, sizeof(ricetta), 1, stream) > 0){
 			if(feof(stream) != 0){
 				break;
 			}
-
+			//confronto tra il nome della ricetta estratta e il nome della ricetta di cui si vuole provare l'esistenza
+			//in caso affermativo viene aggiornato il flag
 			if(strcmp(ricetta_letta.nome_ricetta, nome_ricetta) == 0){
 				flag_esistenza = 1;
 				break;
@@ -61,10 +72,11 @@ int estrazione_ingredienti(char nome_ricetta[LUNG_NOME_RICETTA], ingrediente* in
 			do {
 
 				//il controllo sul nome ci aiuta a capire quando stiamo controllando l'ingrediente successivo all'ultimo che e' una stringa vuota
-				if (strcmp(analisi_ricetta.ingredienti[indice_ingrediente].nome , "") != 0) { //se l'ingrediente e' significativo allora...
+				if (strcmp(analisi_ricetta.ingredienti[indice_ingrediente].nome , "") != 0) {
+					//se l'ingrediente e' significativo allora memorizza il nome e ingrementa il contatore degli ingredienti
 					strcpy(ingredienti[indice_ingrediente].nome , analisi_ricetta.ingredienti[indice_ingrediente].nome);
 					indice_ingrediente++;
-				} else { //...altrimenti esci dal ciclo
+				} else { //altrimenti esci dal ciclo
 					break;
 				}
 
@@ -80,6 +92,16 @@ int estrazione_ingredienti(char nome_ricetta[LUNG_NOME_RICETTA], ingrediente* in
 }
 
 
+/**Funzione che si occupa di contare le ricette salvate nel database che possono risultare preparabili.
+ *
+ * La funzione serve principalmente per creare una struct(utilizzata esternamente)su misura che conterrá le ricette che si possono preparare
+ * in base agli ingredienti a disposizione. Qualora siano presenti ricette all'interno del database viene effettuato un confronto tra gli ingredienti
+ * delle ricette e gli alimenti presenti nel frigo. Nel momento in cui gli ingredienti di una ricetta risultano presenti e disponibili all'interno del
+ * frigo, quella ricetta risulta candidata per essere preparata e pertanto viene incrementato il contatore delle ricette preparabili
+ *
+ * @pre		Nessuna particolare pre condizione
+ * @post	Nessuna particolare post condizione
+ */
 int conta_ricette_preparabili(){
 	char flag_preparazione;								// Flag per memorizzare se una ricetta è preparabile
 	int num_ricette_preparabili = 0;					// Numero di ricette preparabili
@@ -127,7 +149,18 @@ int conta_ricette_preparabili(){
 
 
 
-
+/**Funzione che effettua la riduzione automatica degli alimenti del frigo che risultano essere ingredienti di una ricetta.
+ *
+ *
+ * Tale funzione occupandosi della riduzione automatica degli alimenti in base al nome della ricetta che passiamo come parametro, si avvale di un'altra
+ * funzione(presente in alimenti ) chiamata riduci alimento, a cui viene passato il nome dell'ingrediente e la relativa quantitá da ridurre per la
+ * preparazione. Ovviamente la preparazione della ricetta viene fatta tenendo conto anche delle dosi che l'utente ha inserito per la preparazione
+ * (anche esso passato come parametro di ingresso alla funzione). Qualora sia possibile estrarre e di conseguenza effettuare la riduzione di tutti
+ * gli ingredienti la ricetta puó essere memorizzata tra i consumi globali.
+ *
+ * @pre		Il nome della ricetta (sebbene sia presente il controllo) non deve essere una stringa vuota e le dosi devono avere un valore significativo
+ * @post	Qualora sia possibile preparare la ricette la riduzione degli alimenti deve essere stata effettuata con successo.
+ */
 int prepara_ricetta(char* nome_ricetta, int dosi_ricetta){
 	FILE* stream = NULL;
 	ricetta ricetta_letta;
@@ -141,6 +174,7 @@ int prepara_ricetta(char* nome_ricetta, int dosi_ricetta){
 		puts("Non ancora sono state memorizzate ricette.");
 		return 0;
 	}else{
+		//controllo per verificare l'esistenza della ricetta all'interno del database
 		while(fread(&ricetta_letta, sizeof(ricetta), 1, stream) > 0){
 			if(strcmp(ricetta_letta.nome_ricetta, nome_ricetta) == 0){
 				break;
@@ -149,6 +183,7 @@ int prepara_ricetta(char* nome_ricetta, int dosi_ricetta){
 
 		flag_preparazione = 1;
 
+		//check sulla disponibilitá degli ingredienti all'interno del frigo
 		for(int i = 0; i < MAX_INGREDIENTI; i++){
 			if(strcmp(ricetta_letta.ingredienti[i].nome, "") != 0){
 				if(ricetta_letta.ingredienti[i].quantita > quantita_alimento(ricetta_letta.ingredienti[i].nome)){
@@ -159,6 +194,7 @@ int prepara_ricetta(char* nome_ricetta, int dosi_ricetta){
 			}
 		}
 
+		//riduzione effettiva degli alimenti che risultano ingredienti della ricetta preparabile
 		if(flag_preparazione == 1){
 			for(int i = 0; i < MAX_INGREDIENTI; i++){
 				if(strcmp(ricetta_letta.ingredienti[i].nome, "") != 0){
@@ -168,6 +204,7 @@ int prepara_ricetta(char* nome_ricetta, int dosi_ricetta){
 				}
 			}
 
+			//registrazione del consumo e restituzione del controllo della funzione
 			registra_consumo(nome_ricetta, FLAG_RICETTA);
 			fclose(stream);
 			return 1;
@@ -178,16 +215,30 @@ int prepara_ricetta(char* nome_ricetta, int dosi_ricetta){
 }
 
 
-
+/**Funzione che si occupa della memorizzazione di una ricetta tra le assunzioni di uno specifico utente oppure della preparazione anonima di una ricetta
+ *
+ *
+ * Per gestione della preparazione di una ricetta si intende la possibilitá di permettere all'utente di memorizzare una ricetta che vuole preparare
+ * tra le assunzioni giornaliere. In questa maniera si permette di tenere traccia delle proprie calorie anche attraverso il consumo di un alimento
+ * piú complesso che in questo caso puó risultare come ricetta. Ovviamente per poter memorizzare tale assunzione(se possbile prepararla in base alla
+ * disponibilitá degli ingredienti) occorre effettuare l'operazione di autenticazione e richiedere le dosi da riservare per quella ricetta.
+ * Qualora sia possibile o meno preparare una ricetta viene richiesto se si vuole rieffettuare l'operazione di preparazione.
+ *
+ * Nell'ipotesi in cui l'utente non voglia memorizzare la ricetta tra le proprie assunzioni puó effettuare la preparazione della ricetta in maniera
+ * del tutto anonima
+ *
+ * @pre		Nessuna particolare pre condizione
+ * @post	Qualora sia possibile preparare la ricetta occorre memorizzare tale assunzione richiamando l'opportuna funzione
+ */
 void gestore_prepara_ricetta(){
-	int esito_input;
-	int esito_controllo;
-	int scelta;
-	int esito_autenticazione;
-	int esito_preparazione;
+	int esito_input;			//variabile che si occupa di controllare la validitá dell'input
+	int esito_controllo;		//esito sulla validitá del controllo
+	int scelta;					//variabile che accoglie la scelta effettuata dall'utente
+	int esito_autenticazione;	//variabile che memorizza l'esito dell'autenticazione e permette cosí di capire a chi asseggnare l'assunzione
+	int esito_preparazione;		//variabile che permette di capire se una ricetta é preparabile o meno
 	utente utente_autenticato;
 	char nome_ricetta[LUNG_NOME_RICETTA];
-	int dosi_ricetta;
+	int dosi_ricetta;			//variabile che accoglie le dosi della ricetta
 
 	puts("PREPARAZIONE RICETTA:");
 
@@ -195,6 +246,8 @@ void gestore_prepara_ricetta(){
 		printf("Inserire:\n"
 				"[1] per autenticarsi e inserire le calorie nella propria giornata\n"
 				"[0] per preparare la ricetta in anonimo\n>");
+
+		//controllo sull'input inserito dall'utente
 		esito_input = scanf("%d", &scelta);
 		if(pulisci_stdin() == 1){
 			esito_input = 0;
@@ -211,6 +264,7 @@ void gestore_prepara_ricetta(){
 		}
 	} while (esito_input == 0 || esito_controllo == 0);
 
+	//qualora l'utente abbia deciso di memorizzare la ricetta tra le assunzioni viene effettuata la fase di autenticazione con relativo controllo
 	if(scelta == 1){
 		esito_autenticazione = autenticazione(&utente_autenticato);
 		if(esito_autenticazione == 0){
@@ -219,6 +273,7 @@ void gestore_prepara_ricetta(){
 	}
 
 	do {
+		//se é possibile preparare una ricetta con gli ingredienti dispoibili viene effettuata la preparazione
 		esito_preparazione=suggerimento_ricetta_automatico();
 
 		if(esito_preparazione==-1){
@@ -230,6 +285,10 @@ void gestore_prepara_ricetta(){
 		dosi_ricetta = input_dosi_ricetta();
 
 		esito_preparazione=prepara_ricetta(nome_ricetta, dosi_ricetta);
+
+		//se la preparazione non va a buon fine viene mostrato un mess di errore e viene chiesto se si vuole rieffettuare l'operazione di preparazione
+
+
 		if(esito_preparazione == 0){
 			esito_preparazione = 0;
 			puts("Non è possibile preparare la ricetta scelta.");
@@ -259,6 +318,7 @@ void gestore_prepara_ricetta(){
 			}
 
 		}else{
+			//se l'autenticazione é andata a buon fine viene aggiornato il database delle calorie con la ricetta che si é preparata
 			if(esito_autenticazione == 1){
 				// calorie alla giornata dell'utente
 				aggiorno_database_calorie(nome_ricetta, FLAG_RICETTA, dosi_ricetta, utente_autenticato.nickname);
@@ -382,6 +442,7 @@ char* input_nome_ricetta(){
  */
 char* input_tempo_preparazione(){
 	int esito_input;
+	// Stringa da restituire contenente il tempo di preparazione della ricetta
 	char* tempo_preparazione=(char*) calloc(LUNG_TEMPO_PREPARAZIONE, sizeof(char));
 
 	do {
@@ -406,6 +467,7 @@ char* input_tempo_preparazione(){
  */
 char* input_complessita_ricetta(){
 	int esito_input;
+	// Stringa da restituire contenente la complessitá della ricetta
 	char* complessita=(char*) calloc(LUNG_COMPLESSITA, sizeof(char));
 
 	do {
@@ -425,6 +487,11 @@ char* input_complessita_ricetta(){
 
 /**
  * Funzione che dopo aver allocato una stringa di una determinata lunghezza, si occupa di ricevere in input la preparazione della ricetta
+ *
+ * La preparazione essendo un'unica stringa deve poter permettere all'utente (in fase di visualizzazione) di mostrare le varie fasi della preparazione
+ * in maniera piú ordinata. A tale scopo é stato previsto che l'utente inserisca le varie fasi singolarmente per poi affiancare una volta terminato
+ * l'inserimento il carattere delimitatore per poi effettuare lo split tra le varie fasi.
+ *
  * @pre		Nessuna pre condizione particolare
  * @post	Deve essere restituita una stringa con almeno un carattere
  */
@@ -432,17 +499,22 @@ char* input_preparazione_ricetta(){
 	int esito_input;
 	int esito_controllo;
 	int scelta;
-	char s[LUNG_PREPARAZIONE];
+	char s[LUNG_PREPARAZIONE]; //stringa che accoglierá la fase inserita dall'utente
+	// Stringa da restituire contenente la preparazione della ricetta
 	char* preparazione = (char*) calloc(LUNG_PREPARAZIONE, sizeof(char));
+	int num_fasi=0;
 
 	do {
-		printf("Inserire una fase della preparazione, premendo invio per confermare l'inserimento.\n[max. %d caratteri]:\n>", LUNG_PREPARAZIONE - strlen(s) - 1);
+		//input della fase della preparazione con visualizzazione dei caratteri
+		printf("Inserire una fase della preparazione, premendo invio per confermare l'inserimento.\n[max. %d caratteri]:\n>", LUNG_PREPARAZIONE - strlen(preparazione) - 1);
 		esito_input = scanf("%500[^\n]", s);
 		if(pulisci_stdin() == 1){
 			esito_input = 0;
 		}else if(strlen(preparazione) + strlen(s) > LUNG_PREPARAZIONE - 1){
 			esito_input = 0;
 		}
+
+		num_fasi++;
 
 		if(esito_input == 0){
 			puts("Inserimento non valido. Ripeterlo.");
@@ -473,21 +545,24 @@ char* input_preparazione_ricetta(){
 				strcat(preparazione, " - ");
 			}
 		}
-	} while (esito_input == 0 || scelta == 1);
+	} while (esito_input == 0 || scelta == 1 || num_fasi == MAX_NUM_FASI );
 
+	printf("%s", preparazione);
 	return preparazione;
 }
 
 /**
- * Funzione che dopo aver allocato una stringa di una determinata lunghezza, si occupa di ricevere in input l'ingrediente x della ricetta. Ovviamente in questo caso sono ammessi
- * gli spazi in quanto sappiamo che il formato dell'ingrediente e' :  quantitá  unitá_di_misura nome_ingrediente
+ * Funzione che dopo aver allocato una stringa di una determinata lunghezza, si occupa di ricevere in input l'ingrediente x della ricetta.
+ * Ovviamente in questo caso sono ammessi gli spazi in quanto sappiamo che il formato dell'ingrediente e' :  quantitá  unitá_di_misura nome_ingrediente
  * @pre		Nessuna pre condizione particolare
  * @post	Deve essere restituita una stringa con almeno un carattere
  */
 char* input_ingredienti_ricetta(){
 	int esito_input;
+	// Stringa da restituire contenente il nome di un ingrediente della ricetta x
 	char* ingrediente = (char*) calloc(LUNG_STR_LAVORO_RIC, sizeof(char));
 
+	//controllo sulla validitá dell'input
 	do {
 		printf("Inserisci il nuovo ingrediente (\"null\" per terminare l'inserimento):\n>");
 		esito_input = scanf ("%[^\n]", ingrediente);
@@ -505,6 +580,7 @@ char* input_ingredienti_ricetta(){
 
 /**
  ** Funzione che  si occupa di ricevere in input il numero di porzioni della ricetta
+ **
  * @pre		Nessuna pre condizione particolare
  * @post	Deve essere restituita una stringa con almeno un carattere
  */
@@ -513,6 +589,7 @@ int input_dosi_ricetta(){
 	int esito_controllo;
 	int dosi;
 
+	//controllo sull'input delle dosi della ricetta
 	do {
 		printf("Inserisci le dosi per la ricetta:\n>");
 		esito_input = scanf ("%d", &dosi);
@@ -520,6 +597,7 @@ int input_dosi_ricetta(){
 			esito_input = 0;
 		}
 
+		//se il numero di dosi non rientra nel range il controllo va posto negativo
 		if(dosi < MIN_DOSI || dosi > MAX_DOSI){
 			esito_controllo = 0;
 		}else{
@@ -535,11 +613,18 @@ int input_dosi_ricetta(){
 }
 
 
+/**
+ ** Funzione che  si occupa di ricevere in input il l'id della ricetta
+ **
+ * @pre		L'id massimo deve essere positivo
+ * @post	Deve essere restituito un id >=0
+ */
 int input_id_ricetta(int max_id){
 	int id;
 	int esito_input;
 	int esito_controllo;
 
+	//inserimento e controllo sull'input delle dosi della ricetta
 	do{
 		printf("Inserire l'id della ricetta da selezionare [1 - %d]:\n>", max_id);
 		esito_input = scanf("%d", &id);
@@ -547,6 +632,7 @@ int input_id_ricetta(int max_id){
 			esito_input = 0;
 		}
 
+		//se l'id non é un numero significativo viene posto il controllo a 0
 		if(id < 1 || id > max_id){
 			esito_controllo = 0;
 		}else{
@@ -677,6 +763,8 @@ int modifica_ricetta(){
 								ricetta_scelta.ingredienti[indice_ingredienti].nome);
 
 
+						//se l'alimento ha una unitá di misura valida viene effettuato il controllo se l'alimento é presente giá nel database
+						//in maniera tale da considerarlo giá conosciuto. Qualora sia sconosciuto viene controllata la quantitá
 						if(controlla_unita_misura(ricetta_scelta.ingredienti[indice_ingredienti].unita_misura) == 0){
 							esito_lettura = 0;
 						}else{
@@ -864,6 +952,7 @@ int visualizza_database_ricette(int vista){
 				break;
 			}
 
+			//se la riga non é "inizializzata ma possiede un ingrediente"
 			if(strcmp(ricetta_letta.nome_ricetta, "") != 0){
 
 				num_ricette_lette++;
@@ -885,6 +974,7 @@ int visualizza_database_ricette(int vista){
 		}
 	}
 
+	//controllo per vedere se sono state lette ricette
 	if(num_ricette_lette == 0){
 		puts("Non sono state ancora memorizzate delle ricette.");
 	}
@@ -908,10 +998,11 @@ int lettura_database_ricette(ricetta* ricette_database){
 	ricetta ricetta_letta;
 	int num_ricette_lette = 0;
 
+
 	if((stream = fopen(FILE_DATABASE_RICETTE, "rb+")) == NULL){
 		return -1;
 	}else{
-
+		//qualora sia possibile aprire il database delle ricette devono essere estratte le varie ricette significative ed assegnate all'array di struct
 		while(fread(&ricetta_letta, sizeof(ricetta), 1, stream)>0){
 
 			if(feof(stream) != 0){
@@ -1071,6 +1162,7 @@ int inserimento_manuale_ingredienti(char nome_ingredienti[MAX_ALIM_SUGG][LUNG_NO
 
 		printf("%d.", num_alimenti_inseriti+1);
 
+		//la fgets ci aiuta a capire quando é stato inserito ctrl+z e considerarlo un diretto EOF
 		if(gets(nome_ingredienti[num_alimenti_inseriti])==NULL){
 			break;
 		}else if(strlen(nome_ingredienti[num_alimenti_inseriti]) > LUNG_NOME_ALIMENTO){
@@ -1079,6 +1171,8 @@ int inserimento_manuale_ingredienti(char nome_ingredienti[MAX_ALIM_SUGG][LUNG_NO
 			esito_input = 1;
 		}
 
+		//qualora l'input non sia andato a buon fine viene chiesto di rieffettuarlo. In caso contrario viene incrementato il contatore
+		//degli alimenti inseriti
 		if(esito_input == 0){
 			puts("Inserimento non valido. Ripeterlo.");
 		}else{
@@ -1189,8 +1283,10 @@ int suggerimento_ricetta_automatico(){
 	ricetta ricette_database[num_ricette];
 	lettura_database_ricette(ricette_database);
 
+	//per il numero di ricette presenti nel database vengono...
 	for(int i=0; i < num_ricette; i++){
 		flag_preparazione = 1;
+		//...confrontati tutti gli ingredienti per vedere se sono disponibili all'interno del frigo
 		for(int j = 0; j < MAX_INGREDIENTI; j++){
 			if(strcmp(ricette_database[i].ingredienti[j].nome, "") != 0){
 				if(ricette_database[i].ingredienti[j].quantita > quantita_alimento(ricette_database[i].ingredienti[j].nome)){
@@ -1201,16 +1297,19 @@ int suggerimento_ricetta_automatico(){
 			}
 		}
 
+		//qualora il flag della preparazione sia rimasto a 1 vuol dire che la ricetta é da considerarsi preparabile
 		if(flag_preparazione == 1){
 			ricette_preparabili[indice_ric_prep] = ricette_database[i];
 			indice_ric_prep++;
 		}
 	}
 
+	//qualora nessuna ricetta sia preparabile occorre notificare un messaggio
 	if(indice_ric_prep == 0){
 			printf("Non c'e' alcuna ricetta che puoi preparare con gli alimenti attuali. Fai la spesa\n");
 			return -1;
 	}else{
+		//visualizzazione delle ricette che é possibile preparare
 		for(int i=0; i < indice_ric_prep; i++){
 			visualizza_ricetta(ricette_preparabili[i], VISTA_MINIMIZZATA);
 		}
@@ -1409,7 +1508,14 @@ int lettura_nuove_ricette(){
 }
 
 
-
+/**Funzione che si occupa di memorizzare le kcal e le dosi di una ricetta conosciuta.
+ *
+ *
+ *All'interno della funzione é stato previsto di scorrere il database delle ricette per trovare la ricetta da cui estrarre le informazioni richieste
+ *
+ * @pre		Il nome della ricetta deve possedere almeno un carattere
+ * @post	Deve essere state memorizzate correttamente le kcal e le dosi
+ */
 int estrai_kcal_ricetta(char* nome_ricetta, int* kcal, int* dosi){
 	FILE* stream = NULL;
 	ricetta ricetta_letta;
@@ -1421,6 +1527,7 @@ int estrai_kcal_ricetta(char* nome_ricetta, int* kcal, int* dosi){
 	if((stream = fopen(FILE_DATABASE_RICETTE, "rb")) == NULL){
 		return 0;
 	}else{
+		//ciclo che scorre il database delle ricette per poter trovare la ricetta da cui estrarre kcal e dosi
 		while(fread(&ricetta_letta, sizeof(ricetta), 1, stream) > 0){
 			if(strcmp(ricetta_letta.nome_ricetta, nome_ricetta) == 0){
 				*kcal = ricetta_letta.kcal_ricetta;

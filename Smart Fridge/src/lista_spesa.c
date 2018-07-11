@@ -68,9 +68,13 @@ int aggiorna_lista_spesa(char nome_alimento[LUNG_NOME_ALIMENTO],char nome_file[L
 }
 
 
+/** Funzione che si occupa di effettuare l'autenticazione dell'utente per poter poi poter mostrare la lista della spesa personale
+ *
+ * @pre		Nessuna particolare pre condizione
+ * @post	nessuna particolare post condizione
+ */
 int visualizzazione_personale(){
 	utente u;
-
 	//autenticazione(con controllo su esito) dell'utente
 	if (autenticazione(&u) == -1){
 		printf("Operazione di utenticazione fallita\n");
@@ -85,6 +89,7 @@ int visualizzazione_personale(){
 
 	return 1;
 }
+
 
 
 /**

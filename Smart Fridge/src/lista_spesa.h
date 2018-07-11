@@ -15,11 +15,13 @@
 #ifndef LISTA_SPESA_LIB
 #define LISTA_SPESA_LIB
 
-#include "menu_settimanale.h"
+#include "menu_settimanale.h" ///libreria che permette la gestione(modifica) del menu settimanale
 
-#include "ricette.h"
 
-#include "alimenti.h"
+#include "ricette.h"          ///libreria che permette la gestione(manipolazione,caricamento ecc) delle ricette
+
+
+#include "alimenti.h"		 ///libreria che permette la gestione(manipolazione,caricamento ecc) degli alimenti
 
 
 #define LISTA_SPESA_GLOBALE "../lista_spesa.txt"   //directory in cui trovare il file della spesa globale
