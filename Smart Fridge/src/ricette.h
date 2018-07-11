@@ -1,5 +1,5 @@
 /**
- * @file date.h
+ * @file ricette.h
  *
  * @brief Libreria per la gestione delle ricette.
  *
