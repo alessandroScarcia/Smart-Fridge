@@ -597,7 +597,7 @@ int scrittura_diretta_assunzione (assunzione* cibo, char nickname[]){
 	fseek(stream, 0, SEEK_SET);
 	fread(&controllo_data, sizeof(data), 1, stream);
 
-
+	//controllo che la data scritta su file corrisponda a quella odierta, altrimenti resetto il file
 	if (confronta_date(controllo_data, data_odierna()) == PRIMA_DATA_ANTECEDENTE) {
 		if(inizializza_file_assunzione(nickname) != 1){
 			return -1;
@@ -647,16 +647,21 @@ void istogrami (){
 
 		int kcal_giornaliere;
 
+		//estraggo le kcal dal menu della giornata di oggi (il giorno della settimana lo ricevo da una funzione)
 		estrai_kcal_menu(&kcal_giornaliere, persona.nickname, giorno_odierno());
 
 		printf("Assunzioni persona media: 2000 kcal: ");
 		for (int i=0; i<KCAL_MEDIE_GIORNALIERE; i+=CAMPIONE_ISTOGRAMMI){
 			printf("%c", 219);
 		}
+
+		//stampo l'istogramma con le kcal estratte dal menu
 		printf("\n\nIl tuo obiettivo: %d", kcal_giornaliere);
 		for (int i=0; i < kcal_giornaliere; i+=CAMPIONE_ISTOGRAMMI){
 			printf("%c", 219);
 		}
+
+		//Stampo l'istogramma relativo a quelle registrate nel file assunzioni
 		printf("\n\nIl tuo stato attuale:                ");
 		kcal_totali=calcolo_kcal_totali(nome_file);
 
