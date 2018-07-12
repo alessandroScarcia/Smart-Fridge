@@ -33,9 +33,9 @@
 	#include <ctype.h>
 #endif
 
-#include "lista_spesa.h"
-
 #include "calorie.h"
+
+#include "lista_spesa.h"
 
 #include "alimenti.h"
 
