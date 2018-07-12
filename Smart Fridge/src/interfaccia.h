@@ -54,45 +54,45 @@
 
 
 ///COSTANTI PER LA VISUALIZZAZIONE DELLE VOCI DEL MENU
-#define MENU_PRINCIPALE 0
-#define MENU_ALIMENTI 1
-#define MENU_RICETTE 2
-#define MENU_UTENTI 3
-#define OPZIONI_MENU_SETTIMANALE 4
-#define MENU_CALORIE 5
-#define MENU_LISTA_SPESA 6
-#define MENU_RICERCA 7
+#define MENU_PRINCIPALE 0						///flag rappresentate il menu principale e permetterne la stampa
+#define MENU_ALIMENTI 1							/// flag rappresentate il menu alimenti e permetterne la stampa
+#define MENU_RICETTE 2						   /// flag rappresentate il menu ricette e permetterne la stampa
+#define MENU_UTENTI 3							/// flag rappresentate il menu utenti e permetterne la stampa
+#define OPZIONI_MENU_SETTIMANALE 4              ///  flag rappresentate il menu settimanale e permetterne la stampa
+#define MENU_CALORIE 5       					/// flag rappresentate il menu calorie e permetterne la stampa
+#define MENU_LISTA_SPESA 6   					///  flag rappresentate il menu lista spesa e permetterne la stampa
+#define MENU_RICERCA 7							/// flag rappresentate il menu ricercae permetterne la stampa
 
 
 
-#define CONTORNO_SUPERIORE 1
-#define CONTORNO_INFERIORE 0
+#define CONTORNO_SUPERIORE 1					/// flag che rappresentala riga superiore che deve essere visualizzata durante la visualizzazione della schermata dei menu
+#define CONTORNO_INFERIORE 0					/// flag che rappresentala riga inferiore che deve essere visualizzata durante la visualizzazione della schermata dei menu
 
 
 ///COSTANTI PER DETERMINARE IL RANGE DEI VALORI DI SCELTA NEL MENU
-#define MIN_SCELTA_PRINCIPALE 0
-#define MAX_SCELTA_PRINCIPALE 99
+#define MIN_SCELTA_PRINCIPALE 0					/// scelta minima che l’utente può effettuare in menu principale
+#define MAX_SCELTA_PRINCIPALE 99				///scelta massima che l’utente può effettuare in menu principale
 
-#define MIN_SCELTA_RICETTA 0
-#define MAX_SCELTA_RICETTA 6
+#define MIN_SCELTA_RICETTA 0					///scelta minima che l’utente può effettuare in menu ricetta
+#define MAX_SCELTA_RICETTA 6					/// scelta massima che l’utente può effettuare in menu ricetta
 
-#define MIN_SCELTA_UTENTE 0
-#define MAX_SCELTA_UTENTE 4
+#define MIN_SCELTA_UTENTE 0						/// scelta minima che l’utente può effettuare in menu utente
+#define MAX_SCELTA_UTENTE 4						///  scelta massima che l’utente può effettuare in menu utente
 
-#define MIN_SCELTA_ALIMENTI 0
-#define MAX_SCELTA_ALIMENTI 6
+#define MIN_SCELTA_ALIMENTI 0					/// scelta minima che l’utente può effettuare in menu alimenti
+#define MAX_SCELTA_ALIMENTI 6					///	scelta massima che l’utente può effettuare in menu alimenti
 
-#define MIN_SCELTA_RICERCA 0
-#define MAX_SCELTA_RICERCA 6
+#define MIN_SCELTA_RICERCA 0					/// scelta minima che l’utente può effettuare in menu ricerca
+#define MAX_SCELTA_RICERCA 6					/// scelta massima che l’utente può effettuare in menu ricerca
 
-#define MIN_SCELTA_SPESA 0
-#define MAX_SCELTA_SPESA 4
+#define MIN_SCELTA_SPESA 0						/// scelta minima che l’utente può effettuare in menu spesa
+#define MAX_SCELTA_SPESA 4						///  scelta massima che l’utente può effettuare in menu spesa
 
-#define MIN_SCELTA_MENU_SET 0
-#define MAX_SCELTA_MENU_SET  4
+#define MIN_SCELTA_MENU_SET 0					/// scelta minima che l’utente può effettuare in menu settimanale
+#define MAX_SCELTA_MENU_SET  4					/// scelta massima che l’utente può effettuare in menu settimanale
 
-#define MIN_SCELTA_MENU_CALORIE 0
-#define MAX_SCELTA_MENU_CALORIE  4
+#define MIN_SCELTA_MENU_CALORIE 0				/// scelta minima che l’utente può effettuare in menu calorie
+#define MAX_SCELTA_MENU_CALORIE  4				/// scelta massima che l’utente può effettuare in menu calorie
 
 
 
