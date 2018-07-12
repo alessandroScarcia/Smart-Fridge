@@ -57,7 +57,7 @@
 #define LUNG_PASTO 10						/// lunghezza massima che la stringa contenente il nome del pasto del giorno può assumere
 #define LUNG_NOME_FILE_MENU 30				/// lunghezza massima che la stringa contenente il nome del file menu personale può assumere
 
-#define FILE_MENU "menu_"
+#define FILE_MENU "../menu_"
 
 
 

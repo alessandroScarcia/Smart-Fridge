@@ -64,7 +64,7 @@
 #define LUNG_PASSWORD 9 						/// Lunghezza massima in caratteri per la password di ogni utente
 
 /// Nome di file
-#define FILE_DATABASE_UTENTI "database_utenti.dat"	/// Nome del file contenente le informazioni degli utenti memorizzati
+#define FILE_DATABASE_UTENTI "../database_utenti.dat"	/// Nome del file contenente le informazioni degli utenti memorizzati
 
 /**
  * @typedef utente
