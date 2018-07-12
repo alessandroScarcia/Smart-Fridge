@@ -65,9 +65,9 @@
 #define NUM_CAMPI_ALIMENTO_FRIGO 6 		///numero di colonne che possiede il file contenente i dati degli alimenti comprati
 
 /// Nomi dei file utilizzati:
-#define FILE_SPESA "../spesa_effettuata.csv"
-#define FILE_FRIGO "../alimenti_frigo.dat"
-#define FILE_DATABASE_ALIMENTI "../database_alimenti.dat"
+#define FILE_SPESA "../spesa_effettuata.csv"    /// costante contenente il nome del file spesa
+#define FILE_FRIGO "../alimenti_frigo.dat"		/// costante contenente il nome del file con gli alimenti del frigo
+#define FILE_DATABASE_ALIMENTI "../database_alimenti.dat"  ///costante contenente il nome del file del database degli alimenti
 
 /// Unità di misura significative:
 #define UNITA_KG "kg"					/// Unità di misura dei chilogrammi
@@ -86,8 +86,8 @@
 #define L_TO_ML 1000					/// Converzione da litri a millilitri
 
 /// Limiti/soglie per determinati valori
-#define OPZIONE_MINIMA 0 				///ALE: utilizza questa per controllare la scelta minima del menu
-#define OPZIONE_MASSIMA 2 				///ALE: utilizza questa per controllare la scelta massima del menu
+#define OPZIONE_MINIMA 0 				/// numero corrispondente alla scelta minima del menu
+#define OPZIONE_MASSIMA 2 				/// numero corrispondente alla scelta massima del menu
 #define MIN_ID_ALIMENTO 1				/// Valore minimo per l'id degli alimenti
 #define SOGLIA_PERC 20 					///la percentuale di riferimento al di sotto della quale un alimento sta finendo
 #define	MIN_QUANTITA 1					/// Limiti per le quantità degli alimenti inseriti in relazione all'unità di misura
@@ -100,24 +100,44 @@
 
 ///**********************************DEFINIZIONI DI STRUCT***********************************
 
-///Questa struttura é utilizzata per i file binari per a memorizzazione dei dati relativi ad un alimento
+/**
+ * @typedef alimento_database
+ *
+ * Il tipo di dato "alimento_database" serve a memorizzare le caratteristiche di un alimento.
+ *  E' basato su di una struct i cui membri sono: nome, campione_kcal, soglia_spesa,
+ *  unita_misura e kcal
+ *
+ */
 typedef struct {
-	char nome[LUNG_NOME_ALIMENTO];
-	int campione_kcal;
-	float soglia_spesa;
-	char unita_misura[LUNG_UNITA_MISURA];
-	unsigned short int kcal;
+	char nome[LUNG_NOME_ALIMENTO];         /// stringa contenente il nome dell'alimento
+	int campione_kcal;				       /// campione (quantita) a cui corrispondono le kcal
+	float soglia_spesa;				       /// soglia (quantitativo) al di sotto del quale deve essere inserirto nella lista spesa
+	char unita_misura[LUNG_UNITA_MISURA];  /// unita di misura dell'alimento
+	unsigned short int kcal;				/// kcal totali per la quantita campione
 }alimento_database;
 
-///Questa struttura é utilizzata per il file ad accesso sequenziale degli alimenti comprati
+/**
+ * @typedef alimento_frigo
+ *
+ * Il tipo di dato "alimento_frigo" serve a memorizzare le caratteristiche degli alimenti all'interno del frigo.
+ *  E' basato su di una struct i cui membri sono: nome, quantita, unita_misura e scadenza
+ *
+ */
 typedef struct{
-	char nome[LUNG_NOME_ALIMENTO];
-	float quantita;
-	char unita_misura[LUNG_UNITA_MISURA];
-	data scadenza;
+	char nome[LUNG_NOME_ALIMENTO];  ///stringa contenente il nome dell'alimento da registrare nel file binario contenente il contenuto del frigo
+	float quantita;					/// quantita contenuta nel frigo
+	char unita_misura[LUNG_UNITA_MISURA]; ///unita di misura dell'alimento
+	data scadenza;							///data di scadenza
 }alimento_frigo;
 
-
+/**
+ * Funzione che si occupa di estrarre la soglia di un alimento presente nel database. Qualora sia possibile accedere al file viene fatto
+ * controllo su tutto il database fino a quando non si trova l'alimento con il nome che abbiamo passato come parametro.
+ * Una volta trovato viene restituita tale soglia.
+ *
+ * @param nome_alimento da cercare nel database
+ * @return soglia_alimento
+ */
 float soglia_alimento(const char* nome_alimento);
 
 
@@ -315,7 +335,8 @@ int input_id_alimento(int num_alimenti_frigo);
 int ricerca_alimento_database(char *nome_alimento, alimento_database *alimento_estratto);
 
 
-/**La funzione aggiorna_database permette al programma(o al frigo se vogliamo avere una visione piú realistica del prodotto)
+/**
+ * La funzione aggiorna_database permette al programma(o al frigo se vogliamo avere una visione piú realistica del prodotto)
  * di "imparare" gli alimenti che l'utente consuma. Una volta memorizzati i dati dell'alimento quali kcal e campione di riferimento
  * sará piú semplice ed efficace gestire le abitudini dell'utente riguardo il consumo di kcal e la generazione di ricette con
  * un valore nutrizionale reale. Ovviamente la funzione deve conoscere gli alimenti che abbiamo inserito nel frigo e il relativo numero.
@@ -328,7 +349,8 @@ int ricerca_alimento_database(char *nome_alimento, alimento_database *alimento_e
 int aggiorna_database(char* nome_alimento, char* unita_misura);
 
 
-/**La funzione aggiorna_frigo una volta conosciuti il numero di alimenti da caricare e i dati a riguardo effettua la memorizzazione dei nuovi alimenti comprati
+/**
+ * La funzione aggiorna_frigo una volta conosciuti il numero di alimenti da caricare e i dati a riguardo effettua la memorizzazione dei nuovi alimenti comprati
  * all'interno del file alimenti_frigo. La scrittura nel file in questo caso é ottimizzata in quanto si é previsto che, qualora ci siano righe inizializzate
  * ottenute dalla cancellazione di alimenti che non sono piú presenti nel frigo, esse vengano riutilizzate per una nuova memorizzazione. In questa maniera
  * evitiamo algoritmi di compattamento delle righe "piene"
@@ -338,14 +360,16 @@ int aggiorna_database(char* nome_alimento, char* unita_misura);
 int aggiorna_frigo(alimento_frigo alimento);
 
 
-/**La funzione visualizza_database apre in lettura il file database_alimenti e ne mostra il contenuto. Questa funzione puó tornare utile non
+/**
+ * La funzione visualizza_database apre in lettura il file database_alimenti e ne mostra il contenuto. Questa funzione puó tornare utile non
  * solo all'utente ma anche al programmatore in fase di Debug
  * @param
  * @return 1 				se l'aggiornamento é terminato con successo */
 int  visualizza_database_alimenti();
 
 
-/**La funzione visualizza_frigo oltre ad essere una funzione a se stante che permette di visualizzare il contenuto del frigo(del file alimenti_frigo.csv)
+/**
+ * La funzione visualizza_frigo oltre ad essere una funzione a se stante che permette di visualizzare il contenuto del frigo(del file alimenti_frigo.csv)
  * serve nella fase di riduzione della quantitá di un alimento. Avendo una lista a portata di mano con tanto di indice per ogni alimento
  * permettiamo all'utente di risparmiare tempo e di avere un quadro semplificato del contenuto del frigo
  * @param
@@ -353,25 +377,29 @@ int  visualizza_database_alimenti();
 int visualizza_frigo();
 
 
-/***Funzione che si occupa di estrarre la quantitá di un alimento presente nel frigo.
+/**
+ * Funzione che si occupa di estrarre la quantitá di un alimento presente nel frigo.
  * @param nome_alimento 	Nome dell'alimento da inserire da cui estrarre la quantitá
  * @return quantita_alimento 	quantitá dell'alimento presente nel frigo
  */
 float quantita_alimento(const char* nome_alimento);
 
-/**Funzione che si occupa di ridurre la quantità di un certo alimento presente nel frigo.
+/**
+ * Funzione che si occupa di ridurre la quantità di un certo alimento presente nel frigo.
  * @param nome_alimento 	Nome dell'alimento da inserire da cui ridurre la quantitá
  * @return 1 	            se la quantitá dell'alimento presente nel frigo é stata correttamente ridotta
  */
 int riduci_alimento(const char* nome_alimento, float riduzione);
 
-/**Funzione che si occupa di gestire l'operazione di riduzione di un alimento permettendo all'utente di registrare tale consumo.
+/**
+ * Funzione che si occupa di gestire l'operazione di riduzione di un alimento permettendo all'utente di registrare tale consumo.
  *
  * @return 1 				se l'aggiornamento é terminato con successo */
 int gestore_riduzione_alimenti();
 
 
-/**La procedura lettura file si occupa principalmente di prelevare i dati da un file che chiameremo spesa_effettuata.csv
+/**
+ * La procedura lettura file si occupa principalmente di prelevare i dati da un file che chiameremo spesa_effettuata.csv
  * per poi inserirli di volta in volta all'interno di una struct realizzata su misura. Ovviamente i dati verranno inseriti
  * per ogni alimento(riga se vogliamo definirlo piú banalmente) che verrá estratto dal file. */
 int carica_spesa();
