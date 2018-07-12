@@ -34,9 +34,9 @@
 	#include <ctype.h>
 #endif
 
-#define FLAG_INPUT_LIBERO  3
-#define KCAL_MEDIE_GIORNALIERE 2000
-#define CAMPIONE_ISTOGRAMMI 200
+#define FLAG_INPUT_LIBERO  3 					///  flag che identifica che l’assunzione è frutto di un input libero, ovvero che non è ne un alimento, ne una ricetta presente nei database
+#define KCAL_MEDIE_GIORNALIERE 2000				///  kcal medie giornaliere che un utente dovrebbe assumere
+#define CAMPIONE_ISTOGRAMMI 200					///  kcal a cui equivale un * negli istogrammi
 
 /// Costanti per i nome del file assunzione
 #define PREFIX_FILE_ASSUNZIONI "../assunzioni_"		/// Parte iniziale del nome di un file assunzioni
@@ -63,10 +63,10 @@
  *
  */
 typedef struct{
-	char nome[LUNG_NOME_ASSUNZIONE];
-	float quantita;
-	unsigned short int kcal;
-	int flag;
+	char nome[LUNG_NOME_ASSUNZIONE];   ///stringa che contiene il nome dell'assunzione
+	float quantita;						/// quantità assunta
+	unsigned short int kcal;			/// kcal per la quantita assunta
+	int flag;							/// flag che indica se è una ricetta, un input libero o un alimento
 } assunzione;
 
 

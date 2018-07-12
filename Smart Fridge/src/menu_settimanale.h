@@ -44,18 +44,18 @@
 
 
 /// Numero di elementi di determinati oggetti:
-#define NUM_CIBI 5
-#define NUM_PASTI 5
-#define NUM_GIORNI 7
-#define MIN_KCAL_GIORNATA 1800
-#define MAX_KCAL_GIORNATA 5000
+#define NUM_CIBI 5							/// numero massimo di cibi che l’utente può inserire per pasto
+#define NUM_PASTI 5							///	numero dei pasti per ogni giorno pasto
+#define NUM_GIORNI 7						/// numero dei  giorni della settimana
+#define MIN_KCAL_GIORNATA 1800				/// kcal minime che un utente deve assumere per ogni giorno
+#define MAX_KCAL_GIORNATA 5000				/// kcal massimo che un utente può assumere per ogni giorno
 
 /// Lunghezze delle stringhe:
-#define LUNG_GIORNO 15
-#define LUNG_CIBO 41
-#define LUNG_QUANTITA 11
-#define LUNG_PASTO 10
-#define LUNG_NOME_FILE_MENU 30
+#define LUNG_GIORNO 15						/// lunghezza massima che la stringa contenente il nome del giorno della settimana può assumere
+#define LUNG_CIBO 41						/// lunghezza massima che la stringa contenente il nome del cibo può assumere
+#define LUNG_QUANTITA 11					/// lunghezza massima che la stringa contenente la quantità di un cibo
+#define LUNG_PASTO 10						/// lunghezza massima che la stringa contenente il nome del pasto del giorno può assumere
+#define LUNG_NOME_FILE_MENU 30				/// lunghezza massima che la stringa contenente il nome del file menu personale può assumere
 
 #define FILE_MENU "menu_"
 
