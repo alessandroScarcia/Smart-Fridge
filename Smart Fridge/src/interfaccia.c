@@ -41,7 +41,7 @@ int input_scelta(int valore_minimo, int valore_massimo) {
  * @post Che sia visualizzata correttamente la linea di contorno in base alla posizione
  */
 void riga_contorno(int posizione){
-	if(posizione==SUPERIORE){
+	if(posizione==CONTORNO_SUPERIORE){
 		printf("%c",201);
 	}else{
 		printf("%c",200);
@@ -52,7 +52,7 @@ void riga_contorno(int posizione){
 		printf("%c",205);
 	}
 
-	if(posizione==SUPERIORE){
+	if(posizione==CONTORNO_SUPERIORE){
 		printf("%c\n",187);
 	}else{
 		printf("%c\n",188);
@@ -85,9 +85,9 @@ void voci_principale(){
 		" ############################## \n");
 	}
 
-	riga_contorno(SUPERIORE);
+	riga_contorno(CONTORNO_SUPERIORE);
 	printf("%c                                     MENU PRINCIPALE                                      %c\n", 186,186);
-	riga_contorno(INFERIORE);
+	riga_contorno(CONTORNO_INFERIORE);
 	printf("%c                                                                                          %c\n", 179, 179);
 	printf("%c [1] per accedere al menu alimenti                                                        %c\n", 179, 179);
 	printf("%c [2] per accedere al menu ricette                                                         %c\n", 179, 179);
@@ -112,9 +112,9 @@ void voci_principale(){
  * @post Che siano state visualizzate le opzioni corrette per il menu
  */
 void voci_alimenti(){
-	riga_contorno(SUPERIORE);
+	riga_contorno(CONTORNO_SUPERIORE);
 	printf("%c                                     MENU ALIMENTI                                        %c\n", 186,186);
-	riga_contorno(INFERIORE);
+	riga_contorno(CONTORNO_INFERIORE);
 	printf("%c                                                                                          %c\n", 179, 179);
 	printf("%c [1] caricamento spesa                                                                    %c\n", 179, 179);
 	printf("%c [2] per visualizzare alimenti attualmente nel frigo                                      %c\n", 179, 179);
@@ -133,9 +133,9 @@ void voci_alimenti(){
  * @post Che siano state visualizzate le opzioni corrette per il menu
  */
 void voci_ricette(){
-	riga_contorno(SUPERIORE);
+	riga_contorno(CONTORNO_SUPERIORE);
 	printf("%c                                     MENU RICETTE                                         %c\n", 186,186);
-	riga_contorno(INFERIORE);
+	riga_contorno(CONTORNO_INFERIORE);
 	printf("%c                                                                                          %c\n", 179, 179);
 	printf("%c[1] per aggiungere nuove ricette                                                          %c\n", 179, 179);
 	printf("%c[2] per visualizzare ricette                                                              %c\n", 179, 179);
@@ -154,9 +154,9 @@ void voci_ricette(){
  * @post Che siano state visualizzate le opzioni corrette per il menu
  */
 void voci_utenti(){
-	riga_contorno(SUPERIORE);
+	riga_contorno(CONTORNO_SUPERIORE);
 	printf("%c                                     MENU UTENTE                                          %c\n", 186,186);
-	riga_contorno(INFERIORE);
+	riga_contorno(CONTORNO_INFERIORE);
 	printf("%c                                                                                          %c\n", 179, 179);
 	printf("%c[1] per creare nuovi utenti                                                               %c\n", 179, 179);
 	printf("%c[2] per visualizzare tutti gli utenti                                                     %c\n", 179, 179);
@@ -173,9 +173,9 @@ void voci_utenti(){
  * @post Che siano state visualizzate le opzioni corrette per il menu
  */
 void voci_ricerca(){
-	riga_contorno(SUPERIORE);
+	riga_contorno(CONTORNO_SUPERIORE);
 	printf("%c                                     MENU RICERCA                                         %c\n", 186,186);
-	riga_contorno(INFERIORE);
+	riga_contorno(CONTORNO_INFERIORE);
 	printf("%c                                                                                          %c\n", 179, 179);
 	printf("%c[1] visualizza alimenti piu' consumati                                                    %c\n", 179, 179);
 	printf("%c[2] visualizza ricette  piu' consumate                                                    %c\n", 179, 179);
@@ -195,9 +195,9 @@ void voci_ricerca(){
  * @post Che siano state visualizzate le opzioni corrette per il menu
  */
 void voci_lista_spesa(){
-	riga_contorno(SUPERIORE);
+	riga_contorno(CONTORNO_SUPERIORE);
 	printf("%c                                     MENU LISTA DELLA SPESA                               %c\n", 186,186);
-	riga_contorno(INFERIORE);
+	riga_contorno(CONTORNO_INFERIORE);
 	printf("%c                                                                                          %c\n", 179, 179);
 	printf("%c[1] per generare lista della spesa globale                                                %c\n", 179, 179);
 	printf("%c[2] per visualizzare lista della spesa globale                                            %c\n", 179, 179);
@@ -215,9 +215,9 @@ void voci_lista_spesa(){
  * @post Che siano state visualizzate le opzioni corrette per il menu
  */
 void voci_menu_settimanale(){
-	riga_contorno(SUPERIORE);
+	riga_contorno(CONTORNO_SUPERIORE);
 	printf("%c                                     GESTIONE MENU SETTIMANALE                            %c\n", 186,186);
-	riga_contorno(INFERIORE);
+	riga_contorno(CONTORNO_INFERIORE);
 	printf("%c                                                                                          %c\n", 179, 179);
 	printf("%c[1] per modificare menu personale                                                         %c\n", 179, 179);
 	printf("%c[2] per visualizzare menu personale                                                       %c\n", 179, 179);
@@ -233,9 +233,9 @@ void voci_menu_settimanale(){
  * @post Che siano state visualizzate le opzioni corrette per il menu
  */
 void voci_calorie(){
-	riga_contorno(SUPERIORE);
+	riga_contorno(CONTORNO_SUPERIORE);
 	printf("%c                                     GESTIONE MENU CALORIE                                %c\n", 186,186);
-	riga_contorno(INFERIORE);
+	riga_contorno(CONTORNO_INFERIORE);
 	printf("%c                                                                                          %c\n", 179, 179);
 	printf("%c[1] inserire assunzione anonima                                                           %c\n", 179, 179);
 	printf("%c[2] per visualizzare le proprie assunzioni                                                %c\n", 179, 179);
