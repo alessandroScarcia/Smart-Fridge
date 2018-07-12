@@ -1,5 +1,6 @@
 #include "alimenti.h"
 
+
 /**
  * La funzione, avendo in ingresso gli alimenti del frigo con il relativo numero, si occupa di riordinare tali alimenti, o meglio l'array di struct che li contiene, in base
  * alla data di scadenza. L'ordinamento e' effettuato attraverso l'algoritmo shell sort in quanto risultava quello piú semplice ed efficace da implementare dato il quantitativo
