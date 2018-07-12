@@ -1,4 +1,3 @@
-
 #include "lista_spesa.h"
 
 /**
