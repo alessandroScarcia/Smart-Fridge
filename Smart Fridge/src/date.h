@@ -10,7 +10,8 @@
  *
  * @authors Alessandro Scarcia, Davide Quatela, Michela Salvemini
  */
-#pragma once
+#ifndef DATE_LIB
+#define DATE_LIB
 
 /// Inclusione delle librerie standard
 #ifndef STD_LIB
@@ -27,7 +28,9 @@
 	#include <math.h>
 #endif
 
+#ifndef PULIZIA_FLUSSI_LIB
 #include "pulizia_flussi.h"
+#endif
 
 /// DEFINIZIONE DELLE COSTANTI SIMBOLICHE.
 
@@ -186,4 +189,4 @@ data shift_data_odierna(short valore_shift);
  */
 data input_data();
 
-
+#endif

@@ -10,7 +10,8 @@
  * @authors Alessandro Scarcia, Davide Quatela, Michela Salvemini
  */
 
-#pragma once
+#ifndef CONSUMI_LIB
+#define CONSUMI_LIB
 
 /// Inclusione delle librerie standard
 #ifndef STD_LIB
@@ -83,3 +84,4 @@ int registra_consumo(char* nome_prodotto, short flag_prodotto);
  */
 int ricerca_prod_magg_cons(short flag_prodotto);
 
+#endif

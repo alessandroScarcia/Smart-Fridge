@@ -16,7 +16,8 @@
  * @authors Davide Quatela, Alessandro Scarcia, Michela Salvemini
  */
 
-#pragma once
+#ifndef ALIMENTI_LIB
+#define ALIMENTI_LIB
 
 /// Inclusione delle librerie standard
 #ifndef STD_LIB
@@ -40,13 +41,15 @@
 	#include <ctype.h>
 #endif
 
-#include "consumi.h"
+#include "pulizia_flussi.h"
 
 #include "date.h"
 
+#include "consumi.h"
+
+#include "calorie.h"
+
 #include "utenti.h"
-
-
 
 /// DEFINIZIONE DELLE COSTANTI SIMBOLICHE.
 
@@ -91,7 +94,6 @@
 #define MAX_QUANTITA_G 10000			/// Limite superiore grammi
 #define MAX_QUANTITA_ML 10000			/// limite superiore millilitri
 #define MAX_QUANTITA_PZ 100				/// Limite superiore pezzi
-#define MAX_ALIM_SUGG 5					/// Limite degli alimenti che possono essere inseriti manualmente dall'utente per la ricerca di una ricetta
 #define FLAG_ALIMENTO 0					/// valore che ci permette di capire se il prodotto consumato é un alimento
 #define MIN_KCAL_CAMPIONE 0				/// valore minimo per le kcal relative ad un campione di un alimento
 #define MAX_KCAL_CAMPIONE 2000			/// valore massimo per le kcal relative ad un campione di un alimento
@@ -437,3 +439,4 @@ int modifica_kcal();
  */
 int alimento_casuale(char* nome_alimento);
 
+#endif

@@ -559,15 +559,13 @@ int menu_utente(){
  */
 int menu_ricerca(){
 	int scelta;
-	char nome_alimenti[MAX_ALIM_SUGG][LUNG_NOME_ALIMENTO];
+	char nomi_ingredienti[MAX_INGRD_SUGG][LUNG_NOME_ALIMENTO];
 
 	int num_ricette=conta_ricette_database();
 	ricetta ricette_database[num_ricette];
 	lettura_database_ricette(ricette_database);
 
-	int num_alimenti=conta_alimenti_frigo();
-	alimento_frigo alimenti_frigo[num_alimenti];
-	leggi_frigo(alimenti_frigo);
+	int num_alimenti;
 
 	visualizza_voci_menu(MENU_RICERCA);
 	printf("Inserisci comando ~ ");
@@ -591,14 +589,14 @@ int menu_ricerca(){
 						ordina_ricette_kcal(ricette_database,num_ricette);
 						break;
 					case 4:
-						suggerimento_ricetta_automatico(alimenti_frigo,num_alimenti);
+						suggerimento_ricetta_automatico();
 						break;
 					case 5:
-						num_alimenti=inserimento_manuale_ingredienti(nome_alimenti);
-						suggerimento_ricetta_manuale(num_alimenti, nome_alimenti);
+						num_alimenti=inserimento_manuale_ingredienti(nomi_ingredienti);
+						suggerimento_ricetta_manuale(num_alimenti, nomi_ingredienti);
 						break;
 					case 6:
-						ricette_alimenti_in_scadenza(alimenti_frigo,num_alimenti);
+						ricette_alimenti_in_scadenza();
 						break;
 
 					default:

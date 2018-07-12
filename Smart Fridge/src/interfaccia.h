@@ -10,7 +10,8 @@
  * @authors Alessandro Scarcia, Davide Quatela, Michela Salvemini
  */
 
-#pragma once
+#ifndef INTERFACCIA_LIB
+#define INTERFACCIA_LIB
 
 #ifndef STD_LIB
 #define STD_LIB
@@ -33,13 +34,24 @@
 	#include <ctype.h>
 #endif
 
+#include "pulizia_flussi.h"
+
+#include "alimenti.h"
+
+#include "ricette.h"
+
+#include "utenti.h"
+
+#include "menu_settimanale.h"
+
+
 #include "calorie.h"
 
 #include "lista_spesa.h"
 
-#include "alimenti.h"
+#include "consumi.h"
 
-#include "pulizia_flussi.h"
+
 
 ///COSTANTI PER LA VISUALIZZAZIONE DELLE VOCI DEL MENU
 #define MENU_PRINCIPALE 0
@@ -228,3 +240,4 @@ void voci_menu_settimanale();
  */
 void voci_calorie();
 
+#endif

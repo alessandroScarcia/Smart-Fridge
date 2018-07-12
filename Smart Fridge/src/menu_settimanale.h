@@ -12,7 +12,8 @@
  *
  * @authors Alessandro Scarcia, Davide Quatela, Michela Salvemini
  */
-#pragma once
+#ifndef MENU_SETTIMANALE_LIB
+#define MENU_SETTIMANALE_LIB
 
 /// Inclusione delle librerie standard
 #ifndef STD_LIB
@@ -37,6 +38,7 @@
 #endif
 
 #include "utenti.h"
+
 
 /// DEFINIZIONE DELLE COSTANTI SIMBOLICHE.
 
@@ -311,3 +313,4 @@ int gestore_visualizzazione_menu ();
  */
 void ordina_cibi_pasto(cibo* cibi);
 
+#endif

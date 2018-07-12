@@ -1120,9 +1120,13 @@ int ordina_ricette_kcal(ricetta* ricette_database, int num_ricette){
  * @pre		La listadegli alimenti deve possedere almeno un alimento e il numero  di alimenti deve essere un valore significativo
  * @post	Deve essere terminata con successo la ricerca
  */
-int ricette_alimenti_in_scadenza(alimento_frigo* alimenti_frigo, int num_alimenti){
+int ricette_alimenti_in_scadenza(){
 
-	char alimenti_in_scadenza[MAX_ALIM_SUGG][LUNG_NOME_ALIMENTO];
+	int num_alimenti=conta_alimenti_frigo();
+	alimento_frigo alimenti_frigo[num_alimenti];
+	leggi_frigo(alimenti_frigo);
+
+	char alimenti_in_scadenza[MAX_INGRD_SUGG][LUNG_INGREDIENTE];
 
 	ordina_alimenti_scadenza(alimenti_frigo, num_alimenti);
 
@@ -1148,13 +1152,13 @@ int ricette_alimenti_in_scadenza(alimento_frigo* alimenti_frigo, int num_aliment
  * @pre		Deve essere passata una matrice vuota
  * @post	Deve essere stato inserito almeno un alimento
  */
-int inserimento_manuale_ingredienti(char nome_ingredienti[MAX_ALIM_SUGG][LUNG_NOME_ALIMENTO]){
+int inserimento_manuale_ingredienti(char nome_ingredienti[MAX_INGRD_SUGG][LUNG_INGREDIENTE]){
 	int num_alimenti_inseriti = 0;
 	int esito_input = 0;
 	printf("Cercare una ricetta in base agli ingredienti e' semplice. \n"
 			"1.Inserisci il nome dell'ingrediente con cui vuoi realizzare una tua ricetta\n"
 			"2.Decidi se continuare o meno con l'inserimento  (premi ctrl+z per terminare)\n"
-			"Ti ricordiamo che potrai inserire fino ad un massimo di %d ingredienti\n\n",MAX_ALIM_SUGG );
+			"Ti ricordiamo che potrai inserire fino ad un massimo di %d ingredienti\n\n",MAX_INGRD_SUGG );
 
 	printf("Inserisci nome ingrediente su cui effettuare la ricerca\n");
 	do{
@@ -1180,7 +1184,7 @@ int inserimento_manuale_ingredienti(char nome_ingredienti[MAX_ALIM_SUGG][LUNG_NO
 
 
 		printf("Inserisci prossimo ingrediente (o termina con ctrl+z)\n");
-	}while(esito_input != 1 || num_alimenti_inseriti < MAX_ALIM_SUGG);
+	}while(esito_input != 1 || num_alimenti_inseriti < MAX_INGRD_SUGG);
 
 
 	return num_alimenti_inseriti;
@@ -1199,7 +1203,7 @@ int inserimento_manuale_ingredienti(char nome_ingredienti[MAX_ALIM_SUGG][LUNG_NO
  * @pre		Deve essere passato almeno un alimento e quindi il numero di alimenti deve essere anch'esso un valore significativo
  * @post	Deve essere stato mostrato un messaggio in base all'esito della ricerca
  */
-int suggerimento_ricetta_manuale(int num_alimenti_sugg, char nome_ingredienti[MAX_ALIM_SUGG][LUNG_NOME_ALIMENTO]){
+int suggerimento_ricetta_manuale(int num_alimenti_sugg, char nome_ingredienti[MAX_INGRD_SUGG][LUNG_INGREDIENTE]){
 	int num_ricette = conta_ricette_database();
 	int presenza_alimento=0; // serve a capire se un ingrediente e' presente o meno nella ricetta
 	int indice_ingrediente=0; // serve a scandire i vari ingredienti della ricetta

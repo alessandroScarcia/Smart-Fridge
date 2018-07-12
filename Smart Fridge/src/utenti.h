@@ -11,7 +11,9 @@
  * @authors Alessandro Scarcia, Davide Quatela, Michela Salvemini
  */
 
-#pragma once
+
+#ifndef UTENTI_LIB
+#define UTENTI_LIB
 
 /// Inclusione delle librerie standard
 #ifndef STD_LIB
@@ -32,8 +34,6 @@
 #include "alimenti.h"
 
 #include "menu_settimanale.h"
-
-#include "pulizia_flussi.h"
 
 /// Limiti e valori per determinati elementi:
 #define MAX_UTENTI 6							/// Numero massimo di utenti memorizzabili
@@ -264,3 +264,4 @@ int conta_utenti();
  */
 int elimina_utente();
 
+#endif

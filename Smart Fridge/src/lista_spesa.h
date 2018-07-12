@@ -11,7 +11,8 @@
  * @authors Alessandro Scarcia, Davide Quatela, Michela Salvemini
  */
 
-#pragma once
+#ifndef LISTA_SPESA_LIB
+#define LISTA_SPESA_LIB
 
 #ifndef STD_LIB
 #define STD_LIB
@@ -28,13 +29,13 @@
 	#include <ctype.h>
 #endif
 
-#include "alimenti.h"
-
 #include "utenti.h"
 
-#include "menu_settimanale.h"
-
 #include "ricette.h"
+
+#include "alimenti.h"
+
+#include "menu_settimanale.h"
 
 #define LISTA_SPESA_GLOBALE "../lista_spesa.txt"   //directory in cui trovare il file della spesa globale
 
@@ -107,3 +108,5 @@ int visualizza_lista_spesa(char nome_file[LUNG_NOME_FILE_SPESA]);
  * @return -1
  */
 int visualizzazione_personale();
+
+#endif

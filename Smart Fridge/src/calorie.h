@@ -10,7 +10,8 @@
  * @authors Alessandro Scarcia, Davide Quatela, Michela Salvemini
  */
 
-#pragma once
+#ifndef CALORIE_LIB
+#define CALORIE_LIB
 
 #ifndef STD_LIB
 #define STD_LIB
@@ -33,25 +34,6 @@
 	#include <ctype.h>
 #endif
 
-
-#include "alimenti.h"
-
-/// Inclusione della libreria per la gestione delle ricette
-#include "ricette.h"
-
-/// Inclusione della libreria per la gestione degli utenti
-#include "utenti.h"
-
-/// Inclusione della libreria per la gestione delle date
-#include "date.h"
-
-/// Inclusione della libreria per la gestione dei consumi
-#include "menu_settimanale.h"
-
-/// Inclusione della libreria per la pulizia dei flussi di input
-#include "pulizia_flussi.h"
-
-
 #define FLAG_INPUT_LIBERO  3
 #define KCAL_MEDIE_GIORNALIERE 2000
 #define CAMPIONE_ISTOGRAMMI 200
@@ -65,6 +47,13 @@
 
 #define MIN_KCAL 0									/// Valore minimo per le kcal usate nel calcolo relativo ad un assunzione
 #define MAX_KCAL 5000								/// Valore minimo per le kcal usate nel calcolo relativo ad un assunzione
+
+#include "pulizia_flussi.h"
+
+#include "alimenti.h"
+
+#include "ricette.h"
+
 
 /**
  * @typedef assunzione
@@ -227,4 +216,4 @@ int scrittura_diretta_assunzione (assunzione* cibo, char nickname[]);
  */
 void istogrami ();
 
-
+#endif

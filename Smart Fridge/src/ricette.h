@@ -15,7 +15,9 @@
  * @authors Alessandro Scarcia, Davide Quatela, Michela Salvemini
  */
 
-#pragma once
+
+#ifndef RICETTE_LIB
+#define RICETTE_LIB
 
 /// Inclusione delle librerie standard.
 #ifndef STD_LIB
@@ -33,24 +35,29 @@
 	#include <ctype.h>
 #endif
 
-#include "calorie.h"
+#include "consumi.h"
 
 #include "alimenti.h"
+
+#include "calorie.h"
+
+#include "utenti.h"
 
 
 	//***************************DEFINIZIONI DI COSTANTI***********************************
 
 	//LUNGHEZZE DI STRINGHE
 #define LUNG_NOME_RICETTA 21			/// Lunghezza in caratteri per la stringa del nome di una ricetta + carattere terminatore
-#define LUNG_INGREDIENTE 20
+#define LUNG_INGREDIENTE 21
 #define LUNG_TEMPO_PREPARAZIONE 21
 #define LUNG_PREPARAZIONE 501
 #define LUNG_COMPLESSITA 21
 #define LUNG_TUPLA_RICETTE 1000//lunghezza della tupla ossia una riga quanto deve essere grande
 #define LUNG_STR_LAVORO_RIC 100 //lunghezza della stringa che verrá utilizzata in varie funzioni per effettuare split o altre operazioni su stringhe
-
+#define LUNG_UNITA_INGR 6
 
 	//NUMERO DI ELEMENTI DI ARRAY/MATRICI ECC
+#define MAX_INGRD_SUGG 5					/// Limite degli alimenti che possono essere inseriti manualmente dall'utente per la ricerca di una ricetta
 #define MAX_INGREDIENTI 20
 #define MAX_NUM_FASI 20
 #define MIN_DOSI 1
@@ -78,7 +85,6 @@
 #define FILE_NUOVE_RICETTE "../nuove_ricette.csv" //file di estrazione delle ricette
 
 
-
 //COSTANTI PER LA VISUALIZZAZIONE
 #define MOSTRA_DATABASE "" 	   	//per mostrare l'intero database basta passare una stringa vuota alla funzione visualziza database
 #define VISTA_TOTALE 0  	   	//ci permette di vedere tutte le informazioni riguardante/i la/e ricetta/e
@@ -89,7 +95,7 @@
 typedef struct {
 	char nome[LUNG_INGREDIENTE];
 	float quantita;
-	char unita_misura[LUNG_UNITA_MISURA];
+	char unita_misura[LUNG_UNITA_INGR];
 }ingrediente;
 
 
@@ -220,7 +226,7 @@ int suggerimento_ricetta_automatico();
  * @param nome_alimenti		nome degli alimenti su cui effettuare a ricerca della ricetta
  * @return 1				in caso di successo nella visualizzazione di un suggerimento
  */
-int suggerimento_ricetta_manuale(int num_alimenti, char nome_alimenti[MAX_ALIM_SUGG][LUNG_NOME_ALIMENTO]);
+int suggerimento_ricetta_manuale(int num_alimenti, char nome_ingredienti[MAX_INGRD_SUGG][LUNG_INGREDIENTE]);
 
 
 
@@ -273,7 +279,7 @@ int lettura_database_ricette(ricetta* ricette_database);
  * @param num_alimenti		numero di alimenti presenti nel frigo
  * @return 1				in caso di successo
  */
-int ricette_alimenti_in_scadenza(alimento_frigo* alimenti_frigo, int num_alimenti);
+int ricette_alimenti_in_scadenza();
 
 
 
@@ -283,7 +289,7 @@ int ricette_alimenti_in_scadenza(alimento_frigo* alimenti_frigo, int num_aliment
  * @param nome_alimenti				matrice che conterrá i nomi degli ingredienti su cui effettuare la ricerca della ricetta
  * @return num_alimenti_inseriti++	indice incrementato che corrisponde al numero effettivo di ingredienti inseriti dall'utente
  */
-int inserimento_manuale_ingredienti(char nome_alimenti[MAX_ALIM_SUGG][LUNG_NOME_ALIMENTO]);
+int inserimento_manuale_ingredienti(char nome_alimenti[MAX_INGRD_SUGG][LUNG_INGREDIENTE]);
 
 
 
@@ -352,3 +358,4 @@ char* input_nome_ricetta();
 
 int input_id_ricetta(int max_id);
 
+#endif

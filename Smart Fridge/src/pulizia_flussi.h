@@ -8,7 +8,8 @@
  * alla presenza di input non consumato.
  */
 
-#pragma once
+#ifndef PULIZIA_FLUSSI_LIB
+#define PULIZIA_FLUSSI_LIB
 
 // Inclusione delle librerie standard
 #ifndef STD_LIB
@@ -34,3 +35,5 @@ int pulisci_stdin();
  * consumato da una riga di un file (fino al primo carattere di new line).
  */
 void pulisci_riga_flusso(FILE* stream);
+
+#endif
