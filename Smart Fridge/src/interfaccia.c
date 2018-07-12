@@ -10,6 +10,15 @@
  * @post Il valore restituito deve essere un intero
  */
 int input_scelta(int valore_minimo, int valore_massimo) {
+	// Controlli sui valori attuali
+	if(valore_minimo >= valore_massimo){
+		return -1;
+	}
+
+	if(valore_minimo < 0 || valore_massimo < 0){
+		return -1;
+	}
+
 	int esito_input;
 	int esito_controllo;
 	int scelta;
@@ -32,7 +41,7 @@ int input_scelta(int valore_minimo, int valore_massimo) {
 	} while (esito_input != 1 || esito_controllo != 1);
 
 
-	return scelta;//restituisci il numero che e' stato inserit
+	return scelta;
 }
 
 
