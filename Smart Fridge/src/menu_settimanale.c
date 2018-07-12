@@ -546,7 +546,7 @@ int visualizza_database_menu(char nome_utente[]) {
 
 	if ((f = fopen(nomefile, "rb")) == NULL) { //Se il file non viene aperto
 		printf("Non è possibile aprire il file '%s'.", nomefile);
-		return 1;
+		return -1;
 	}
 
 	while (fread(&giornata, sizeof(giorno), 1, f) > 0) {
