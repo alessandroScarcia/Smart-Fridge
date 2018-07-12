@@ -53,9 +53,9 @@
  * il tipo del prodotto, frequenza delle consumazioni del prodotto.
  */
 typedef struct{
-	char nome_prodotto[LUNG_NOME_PRODOTTO];
-	short flag_prodotto;
-	int frequenza;
+	char nome_prodotto[LUNG_NOME_PRODOTTO];   ///stringa contenente il nome di ciò che è stato consumato
+	short flag_prodotto;					 /// flag che indica se è una ricetto o un alimento
+	int frequenza;							/// frequenza con cui viene consumato
 }consumo;
 
 /**
