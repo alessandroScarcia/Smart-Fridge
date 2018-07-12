@@ -12,6 +12,11 @@
  */
 int ordina_alimenti_scadenza(alimento_frigo* alimenti_frigo, int  num_alimenti){
 
+	// Contolli sui parametri attuali
+	if(num_alimenti <= 0){
+		return 0;
+	}
+
 	alimento_frigo tmp; // Variabile si sostegno per effettuare gli scambi fra alimenti
 
 	for (int gap = num_alimenti/2; gap > 0; gap /= 2){

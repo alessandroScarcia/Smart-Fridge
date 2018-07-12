@@ -33,13 +33,13 @@
 	#include <ctype.h>
 #endif
 
-#include "alimenti.h"
-
-#include "pulizia_flussi.h"
+#include "lista_spesa.h"
 
 #include "calorie.h"
 
-#include "lista_spesa.h"
+#include "alimenti.h"
+
+#include "pulizia_flussi.h"
 
 ///COSTANTI PER LA VISUALIZZAZIONE DELLE VOCI DEL MENU
 #define MENU_PRINCIPALE 0
