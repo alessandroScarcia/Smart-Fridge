@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['opzioni_5fmenu_5fsettimanale',['OPZIONI_MENU_SETTIMANALE',['../interfaccia_8h.html#a2e2a4a7197f7000d904a7fa1ee43d0dc',1,'interfaccia.h']]]
+  ['prefix_5ffile_5fassunzioni',['PREFIX_FILE_ASSUNZIONI',['../calorie_8h.html#a351b8e2ce32a54884e97ea4de537787c',1,'calorie.h']]],
+  ['prefix_5ffile_5fspesa',['PREFIX_FILE_SPESA',['../lista__spesa_8h.html#a0884003ceaf84f851fea4d5507dc88c3',1,'lista_spesa.h']]],
+  ['prima_5fdata_5fantecedente',['PRIMA_DATA_ANTECEDENTE',['../date_8h.html#acbe34cf265fe76649e7705fd31bb77d3',1,'date.h']]]
 ];

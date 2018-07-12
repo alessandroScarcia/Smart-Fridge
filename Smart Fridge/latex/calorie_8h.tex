@@ -5,10 +5,8 @@
 Libreria per la gestione delle calorie.  
 
 
-{\ttfamily \#include \char`\"{}utenti.\+h\char`\"{}}\newline
-{\ttfamily \#include \char`\"{}date.\+h\char`\"{}}\newline
-{\ttfamily \#include \char`\"{}menu\+\_\+settimanale.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}pulizia\+\_\+flussi.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}alimenti.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}ricette.\+h\char`\"{}}\newline
 {\ttfamily \#include $<$stdbool.\+h$>$}\newline
 {\ttfamily \#include $<$stdio.\+h$>$}\newline
@@ -17,22 +15,26 @@ Libreria per la gestione delle calorie.
 {\ttfamily \#include $<$math.\+h$>$}\newline
 {\ttfamily \#include $<$string.\+h$>$}\newline
 {\ttfamily \#include $<$ctype.\+h$>$}\newline
+Grafo delle dipendenze di inclusione per calorie.\+h\+:
+% FIG 0
+Questo grafo mostra quali altri file includono direttamente o indirettamente questo file\+:
+% FIG 1
 \subsection*{Strutture dati}
 \begin{DoxyCompactItemize}
 \item 
-struct \hyperlink{structassunzione}{assunzione}
+struct \hyperlink{structstruct__assunzione}{struct\+\_\+assunzione}
 \end{DoxyCompactItemize}
 \subsection*{Definizioni}
 \begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{calorie_8h_a35ccef9eff6efbd8187c83e45458040d}{S\+T\+D\+\_\+\+L\+IB}
 \item 
 \#define \hyperlink{calorie_8h_af12cbc4b154eb2eefd852623d7806dc8}{M\+A\+T\+H\+\_\+\+L\+IB}
 \item 
 \#define \hyperlink{calorie_8h_a3f71b4ea87bcf3feda424bc285bcef6a}{S\+T\+R\+I\+N\+G\+\_\+\+L\+IB}
 \item 
-\#define \hyperlink{calorie_8h_a44025ea4cc36c9e7271dde01e93673d8}{C\+A\+L\+O\+R\+I\+E\+\_\+\+L\+IB}
-\item 
 \#define \hyperlink{calorie_8h_abe1a32b87158cd81b0a00ffd27bd03a2}{F\+L\+A\+G\+\_\+\+I\+N\+P\+U\+T\+\_\+\+L\+I\+B\+E\+RO}~3
-\begin{DoxyCompactList}\small\item\em Inclusione della libreria per la gestione degli utenti. \end{DoxyCompactList}\item 
+\item 
 \#define \hyperlink{calorie_8h_a6dc22caac0814a91c4f374f1a0ae5392}{K\+C\+A\+L\+\_\+\+M\+E\+D\+I\+E\+\_\+\+G\+I\+O\+R\+N\+A\+L\+I\+E\+RE}~2000
 \item 
 \#define \hyperlink{calorie_8h_a9d99561fd63cbd4f33338d6a7fefa071}{C\+A\+M\+P\+I\+O\+N\+E\+\_\+\+I\+S\+T\+O\+G\+R\+A\+M\+MI}~200
@@ -48,6 +50,11 @@ struct \hyperlink{structassunzione}{assunzione}
 \#define \hyperlink{calorie_8h_a3cf3c52d50488687fccc8871298b8f4d}{M\+I\+N\+\_\+\+K\+C\+AL}~0
 \item 
 \#define \hyperlink{calorie_8h_a69b0cf4ad457cc9a0fddbdccbc58bfa8}{M\+A\+X\+\_\+\+K\+C\+AL}~5000
+\end{DoxyCompactItemize}
+\subsection*{Ridefinizioni di tipo (typedef)}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \hyperlink{structstruct__assunzione}{struct\+\_\+assunzione} \hyperlink{calorie_8h_a45f20846bb3b7744013fa0667f22d0c3}{assunzione}
 \end{DoxyCompactItemize}
 \subsection*{Funzioni}
 \begin{DoxyCompactItemize}
@@ -74,9 +81,9 @@ int \hyperlink{calorie_8h_ae58e1b9cadf3906f02861f7850377de6}{creazione\+\_\+assu
 \item 
 int \hyperlink{calorie_8h_aacf26004c17e4042071db3f0bc51727c}{modifica\+\_\+assunzione} ()
 \item 
-short int \hyperlink{calorie_8h_aa9581b3482b7025bf2a7b2fbd15f60e2}{ricerca\+\_\+assunzione\+\_\+database} (\hyperlink{structassunzione}{assunzione} $\ast$nuova\+\_\+assunzione, char nickname\mbox{[}$\,$\mbox{]})
+short int \hyperlink{calorie_8h_aa9581b3482b7025bf2a7b2fbd15f60e2}{ricerca\+\_\+assunzione\+\_\+database} (\hyperlink{calorie_8h_a45f20846bb3b7744013fa0667f22d0c3}{assunzione} $\ast$nuova\+\_\+assunzione, char nickname\mbox{[}$\,$\mbox{]})
 \item 
-int \hyperlink{calorie_8h_a1d6ede62ed123e9bec97f4b7941bffb4}{scrittura\+\_\+diretta\+\_\+assunzione} (\hyperlink{structassunzione}{assunzione} $\ast$\hyperlink{structcibo}{cibo}, char nickname\mbox{[}$\,$\mbox{]})
+int \hyperlink{calorie_8h_a1d6ede62ed123e9bec97f4b7941bffb4}{scrittura\+\_\+diretta\+\_\+assunzione} (\hyperlink{calorie_8h_a45f20846bb3b7744013fa0667f22d0c3}{assunzione} $\ast$\hyperlink{menu__settimanale_8h_ad59bf52977c02589a75aeab3b2358b68}{cibo}, char nickname\mbox{[}$\,$\mbox{]})
 \item 
 void \hyperlink{calorie_8h_a5749b56f193b104db97c500a51f4eb10}{istogrami} ()
 \end{DoxyCompactItemize}
@@ -93,12 +100,6 @@ Alessandro Scarcia, Davide Quatela, Michela Salvemini
 
 
 \subsection{Documentazione delle definizioni}
-\mbox{\Hypertarget{calorie_8h_a44025ea4cc36c9e7271dde01e93673d8}\label{calorie_8h_a44025ea4cc36c9e7271dde01e93673d8}} 
-\index{calorie.\+h@{calorie.\+h}!C\+A\+L\+O\+R\+I\+E\+\_\+\+L\+IB@{C\+A\+L\+O\+R\+I\+E\+\_\+\+L\+IB}}
-\index{C\+A\+L\+O\+R\+I\+E\+\_\+\+L\+IB@{C\+A\+L\+O\+R\+I\+E\+\_\+\+L\+IB}!calorie.\+h@{calorie.\+h}}
-\subsubsection{\texorpdfstring{C\+A\+L\+O\+R\+I\+E\+\_\+\+L\+IB}{CALORIE\_LIB}}
-{\footnotesize\ttfamily \#define C\+A\+L\+O\+R\+I\+E\+\_\+\+L\+IB}
-
 \mbox{\Hypertarget{calorie_8h_a9d99561fd63cbd4f33338d6a7fefa071}\label{calorie_8h_a9d99561fd63cbd4f33338d6a7fefa071}} 
 \index{calorie.\+h@{calorie.\+h}!C\+A\+M\+P\+I\+O\+N\+E\+\_\+\+I\+S\+T\+O\+G\+R\+A\+M\+MI@{C\+A\+M\+P\+I\+O\+N\+E\+\_\+\+I\+S\+T\+O\+G\+R\+A\+M\+MI}}
 \index{C\+A\+M\+P\+I\+O\+N\+E\+\_\+\+I\+S\+T\+O\+G\+R\+A\+M\+MI@{C\+A\+M\+P\+I\+O\+N\+E\+\_\+\+I\+S\+T\+O\+G\+R\+A\+M\+MI}!calorie.\+h@{calorie.\+h}}
@@ -111,11 +112,7 @@ Alessandro Scarcia, Davide Quatela, Michela Salvemini
 \subsubsection{\texorpdfstring{F\+L\+A\+G\+\_\+\+I\+N\+P\+U\+T\+\_\+\+L\+I\+B\+E\+RO}{FLAG\_INPUT\_LIBERO}}
 {\footnotesize\ttfamily \#define F\+L\+A\+G\+\_\+\+I\+N\+P\+U\+T\+\_\+\+L\+I\+B\+E\+RO~3}
 
-
-
-Inclusione della libreria per la gestione degli utenti. 
-
-Inclusione della libreria per la gestione delle date Inclusione della libreria per la gestione dei consumi Inclusione della libreria per la pulizia dei flussi di input Inclusione della libreria per la gestione delle ricette \mbox{\Hypertarget{calorie_8h_a6dc22caac0814a91c4f374f1a0ae5392}\label{calorie_8h_a6dc22caac0814a91c4f374f1a0ae5392}} 
+\mbox{\Hypertarget{calorie_8h_a6dc22caac0814a91c4f374f1a0ae5392}\label{calorie_8h_a6dc22caac0814a91c4f374f1a0ae5392}} 
 \index{calorie.\+h@{calorie.\+h}!K\+C\+A\+L\+\_\+\+M\+E\+D\+I\+E\+\_\+\+G\+I\+O\+R\+N\+A\+L\+I\+E\+RE@{K\+C\+A\+L\+\_\+\+M\+E\+D\+I\+E\+\_\+\+G\+I\+O\+R\+N\+A\+L\+I\+E\+RE}}
 \index{K\+C\+A\+L\+\_\+\+M\+E\+D\+I\+E\+\_\+\+G\+I\+O\+R\+N\+A\+L\+I\+E\+RE@{K\+C\+A\+L\+\_\+\+M\+E\+D\+I\+E\+\_\+\+G\+I\+O\+R\+N\+A\+L\+I\+E\+RE}!calorie.\+h@{calorie.\+h}}
 \subsubsection{\texorpdfstring{K\+C\+A\+L\+\_\+\+M\+E\+D\+I\+E\+\_\+\+G\+I\+O\+R\+N\+A\+L\+I\+E\+RE}{KCAL\_MEDIE\_GIORNALIERE}}
@@ -161,6 +158,12 @@ Inclusione della libreria per la gestione delle date Inclusione della libreria p
 
 Costanti per i nome del file assunzione. 
 
+\mbox{\Hypertarget{calorie_8h_a35ccef9eff6efbd8187c83e45458040d}\label{calorie_8h_a35ccef9eff6efbd8187c83e45458040d}} 
+\index{calorie.\+h@{calorie.\+h}!S\+T\+D\+\_\+\+L\+IB@{S\+T\+D\+\_\+\+L\+IB}}
+\index{S\+T\+D\+\_\+\+L\+IB@{S\+T\+D\+\_\+\+L\+IB}!calorie.\+h@{calorie.\+h}}
+\subsubsection{\texorpdfstring{S\+T\+D\+\_\+\+L\+IB}{STD\_LIB}}
+{\footnotesize\ttfamily \#define S\+T\+D\+\_\+\+L\+IB}
+
 \mbox{\Hypertarget{calorie_8h_a3f71b4ea87bcf3feda424bc285bcef6a}\label{calorie_8h_a3f71b4ea87bcf3feda424bc285bcef6a}} 
 \index{calorie.\+h@{calorie.\+h}!S\+T\+R\+I\+N\+G\+\_\+\+L\+IB@{S\+T\+R\+I\+N\+G\+\_\+\+L\+IB}}
 \index{S\+T\+R\+I\+N\+G\+\_\+\+L\+IB@{S\+T\+R\+I\+N\+G\+\_\+\+L\+IB}!calorie.\+h@{calorie.\+h}}
@@ -175,6 +178,15 @@ Costanti per i nome del file assunzione.
 
 
 
+\subsection{Documentazione delle ridefinizioni di tipo (typedef)}
+\mbox{\Hypertarget{calorie_8h_a45f20846bb3b7744013fa0667f22d0c3}\label{calorie_8h_a45f20846bb3b7744013fa0667f22d0c3}} 
+\index{calorie.\+h@{calorie.\+h}!assunzione@{assunzione}}
+\index{assunzione@{assunzione}!calorie.\+h@{calorie.\+h}}
+\subsubsection{\texorpdfstring{assunzione}{assunzione}}
+{\footnotesize\ttfamily \hyperlink{calorie_8h_a45f20846bb3b7744013fa0667f22d0c3}{assunzione}}
+
+Il tipo di dato \char`\"{}assunzione\char`\"{} serve a memorizzare un assunzione della giornata corrente di un utente. E\textquotesingle{} basato su di una struct i cui membri sono\+: nome, quantita, kcal, e flag (per identificare se si tratta di una ricetta o aliment). 
+
 \subsection{Documentazione delle funzioni}
 \mbox{\Hypertarget{calorie_8h_aad23ab12f44405ba4e09e437a448d0b1}\label{calorie_8h_aad23ab12f44405ba4e09e437a448d0b1}} 
 \index{calorie.\+h@{calorie.\+h}!aggiorno\+\_\+database\+\_\+calorie@{aggiorno\+\_\+database\+\_\+calorie}}
@@ -186,9 +198,13 @@ La funzione \hyperlink{calorie_8c_aad23ab12f44405ba4e09e437a448d0b1}{aggiorno\+\
 
 
 \begin{DoxyParams}{Parametri}
-{\em cibo} & struct da scrivere su file \\
+{\em nome\+\_\+consumo} & nome dell\textquotesingle{}alimento consumato \\
 \hline
-{\em nickname} & nome con cui creare il nome del file su cui scrivere\\
+{\em nickname} & nome con cui creare il nome del file su cui scrivere \\
+\hline
+{\em flag\+\_\+consumo} & flag che indica se si tratta di un alimento, una ricetta o un input libero \\
+\hline
+{\em quantita\+\_\+consumo} & quantita consumata\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Restituisce}
@@ -237,7 +253,9 @@ La funzione calcolo\+\_\+kcal\+\_\+alimento() ha il compito di calcolare le kcal
 \begin{DoxyParams}{Parametri}
 {\em kcal} & numero intero corrispondente alle kcal per un dato campione \\
 \hline
-{\em campione} & numero intero che rappresenta la quantità corrispondente alle kcal\\
+{\em campione} & numero intero che rappresenta la quantità corrispondente alle kcal \\
+\hline
+{\em q\+\_\+consumata} & numero corrispondente alla quantita consumata effettivamente\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Restituisce}
@@ -338,11 +356,6 @@ Il valore restituito rappresenta l\textquotesingle{}esito della funzione.
 
 Questa funzione ha il compito di popolare una struct di tipo assunzione passatagli in ingresso, con i dati inseriti dal\textquotesingle{}utente. Per fare ciò chiede all\textquotesingle{}utente di inserire 0 se ha intenzione di inserire un alimento oppure 1 se si tratta di una ricetta. Fatta tale distinzione, vengono chiamate opportune funzioni per l\textquotesingle{}estrazione dal database del tipo di dato che si deve gestire, permettendo il popolamento della struct passata in ingresso.
 
-
-\begin{DoxyParams}{Parametri}
-{\em cibo} & struct che conterrà il nome, la quantità e le calorie dell\textquotesingle{}alimento assunto dall\textquotesingle{}utente\\
-\hline
-\end{DoxyParams}
 \begin{DoxyReturn}{Restituisce}
 -\/1 se l\textquotesingle{}utente vuole smettere di inserire alimenti 
 
@@ -451,13 +464,13 @@ Il valore restituito indica l\textquotesingle{}esito della funzione.
 \index{calorie.\+h@{calorie.\+h}!ricerca\+\_\+assunzione\+\_\+database@{ricerca\+\_\+assunzione\+\_\+database}}
 \index{ricerca\+\_\+assunzione\+\_\+database@{ricerca\+\_\+assunzione\+\_\+database}!calorie.\+h@{calorie.\+h}}
 \subsubsection{\texorpdfstring{ricerca\+\_\+assunzione\+\_\+database()}{ricerca\_assunzione\_database()}}
-{\footnotesize\ttfamily short int ricerca\+\_\+assunzione\+\_\+database (\begin{DoxyParamCaption}\item[{\hyperlink{structassunzione}{assunzione} $\ast$}]{nuova\+\_\+assunzione,  }\item[{char}]{nickname\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily short int ricerca\+\_\+assunzione\+\_\+database (\begin{DoxyParamCaption}\item[{\hyperlink{calorie_8h_a45f20846bb3b7744013fa0667f22d0c3}{assunzione} $\ast$}]{nuova\+\_\+assunzione,  }\item[{char}]{nickname\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
 
-La funzione \hyperlink{calorie_8c_aa9581b3482b7025bf2a7b2fbd15f60e2}{ricerca\+\_\+assunzione\+\_\+database()} ha il compito di aprire il file assunzioni legato all\textquotesingle{}utente il cui nome gli viene passato in ingresso, cercare nel file una struct di tipo assunzione che abbia la stringa nome uguale alla varibile nome passata in ingresso. Se la trova, ritorna la sua posizioen nel file.
+La funzione \hyperlink{calorie_8c_aa9581b3482b7025bf2a7b2fbd15f60e2}{ricerca\+\_\+assunzione\+\_\+database()} ha il compito di aprire il file assunzioni legato all\textquotesingle{}utente il cui nome gli viene passato in ingresso grazie alla struct assunzione, cercare nel file una struct di tipo assunzione che abbia la stringa nome uguale alla varibile nome passata in ingresso. Se la trova, ritorna la sua posizioen nel file.
 
 
 \begin{DoxyParams}{Parametri}
-{\em nome} & variabile per la ricerca nel file \\
+{\em nuova\+\_\+assunzione} & struct dove viene inserita la struct se trovata \\
 \hline
 {\em nickname} & variabile per aprire il file legato all\textquotesingle{}utente\\
 \hline
@@ -483,7 +496,7 @@ Il valore restituito indica l\textquotesingle{}esito della funzione o la posizio
 \index{calorie.\+h@{calorie.\+h}!scrittura\+\_\+diretta\+\_\+assunzione@{scrittura\+\_\+diretta\+\_\+assunzione}}
 \index{scrittura\+\_\+diretta\+\_\+assunzione@{scrittura\+\_\+diretta\+\_\+assunzione}!calorie.\+h@{calorie.\+h}}
 \subsubsection{\texorpdfstring{scrittura\+\_\+diretta\+\_\+assunzione()}{scrittura\_diretta\_assunzione()}}
-{\footnotesize\ttfamily int scrittura\+\_\+diretta\+\_\+assunzione (\begin{DoxyParamCaption}\item[{\hyperlink{structassunzione}{assunzione} $\ast$}]{cibo,  }\item[{char}]{nickname\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int scrittura\+\_\+diretta\+\_\+assunzione (\begin{DoxyParamCaption}\item[{\hyperlink{calorie_8h_a45f20846bb3b7744013fa0667f22d0c3}{assunzione} $\ast$}]{cibo,  }\item[{char}]{nickname\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
 
 La funzione \hyperlink{calorie_8c_a1d6ede62ed123e9bec97f4b7941bffb4}{scrittura\+\_\+diretta\+\_\+assunzione()} ha il compito di scrivere sul file corrispondente all\textquotesingle{}utente il quale nickname viene passato in ingresso, la struct pasastagli in ingresso.
 

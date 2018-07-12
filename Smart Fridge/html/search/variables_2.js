@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['dosi',['dosi',['../structricetta.html#abbc9584ea1555c9642adbe72ffb2f9bd',1,'ricetta']]]
+  ['dosi',['dosi',['../structstruct__ricette.html#ae15dad82daccca09edd16a37af100cce',1,'struct_ricette']]]
 ];

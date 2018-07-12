@@ -4,23 +4,27 @@
 
 {\ttfamily \#include $<$ricette.\+h$>$}
 
+
+
+Diagramma di collaborazione per ricetta\+:
+% FIG 0
 \subsection*{Campi}
 \begin{DoxyCompactItemize}
 \item 
 char \hyperlink{structricetta_a40bb51c26dc338c485cc655bea2c2ca5}{nome\+\_\+ricetta} \mbox{[}\hyperlink{ricette_8h_aacd065596f33b6510fa58f8ba4dea542}{L\+U\+N\+G\+\_\+\+N\+O\+M\+E\+\_\+\+R\+I\+C\+E\+T\+TA}\mbox{]}
 \item 
 \hyperlink{structingrediente}{ingrediente} \hyperlink{structricetta_ac8567e615af6b01c27b2aea1fc81c50f}{ingredienti} \mbox{[}\hyperlink{ricette_8h_a3f37fa2abc5ee352f9a922ef72b80116}{M\+A\+X\+\_\+\+I\+N\+G\+R\+E\+D\+I\+E\+N\+TI}\mbox{]}
-\item 
+\begin{DoxyCompactList}\small\item\em stringa contenente il nome assegnato alla ricetta \end{DoxyCompactList}\item 
 char \hyperlink{structricetta_aa7c5427cccd26a39a8c7a34050eea6be}{tempo\+\_\+preparazione} \mbox{[}\hyperlink{ricette_8h_a711f3911a37877bbfa09796364e391ab}{L\+U\+N\+G\+\_\+\+T\+E\+M\+P\+O\+\_\+\+P\+R\+E\+P\+A\+R\+A\+Z\+I\+O\+NE}\mbox{]}
-\item 
+\begin{DoxyCompactList}\small\item\em vettore di tipo ingredienti per la memorizzazione degli ingredienti utili alla preparzione della ricetta \end{DoxyCompactList}\item 
 char \hyperlink{structricetta_a8c769fcee937b4b060b796a2ae2c1086}{preparazione} \mbox{[}\hyperlink{ricette_8h_abdbfa8d79884434777eae730867d54cd}{L\+U\+N\+G\+\_\+\+P\+R\+E\+P\+A\+R\+A\+Z\+I\+O\+NE}\mbox{]}
-\item 
+\begin{DoxyCompactList}\small\item\em vettore contenente il tempo di preparazione di una ricetta \end{DoxyCompactList}\item 
 char \hyperlink{structricetta_ad991258e93efcc820a11f9a1a2e0f079}{complessita} \mbox{[}\hyperlink{ricette_8h_afdcfe3df8eca40e79c8d2854a52acbb0}{L\+U\+N\+G\+\_\+\+C\+O\+M\+P\+L\+E\+S\+S\+I\+TA}\mbox{]}
-\item 
+\begin{DoxyCompactList}\small\item\em azioni da eseguire per preparare la ricetta \end{DoxyCompactList}\item 
 int \hyperlink{structricetta_abdd39d8054927daf2a648aef9aea1909}{kcal\+\_\+ricetta}
-\item 
+\begin{DoxyCompactList}\small\item\em complessità della ricetta (bassa, alta, ...) \end{DoxyCompactList}\item 
 int \hyperlink{structricetta_abbc9584ea1555c9642adbe72ffb2f9bd}{dosi}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em kcal totoali della ricetta in relazione agli ingredienti e alle loro quantità \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Documentazione dei campi}
@@ -30,11 +34,19 @@ int \hyperlink{structricetta_abbc9584ea1555c9642adbe72ffb2f9bd}{dosi}
 \subsubsection{\texorpdfstring{complessita}{complessita}}
 {\footnotesize\ttfamily char ricetta\+::complessita\mbox{[}\hyperlink{ricette_8h_afdcfe3df8eca40e79c8d2854a52acbb0}{L\+U\+N\+G\+\_\+\+C\+O\+M\+P\+L\+E\+S\+S\+I\+TA}\mbox{]}}
 
+
+
+azioni da eseguire per preparare la ricetta 
+
 \mbox{\Hypertarget{structricetta_abbc9584ea1555c9642adbe72ffb2f9bd}\label{structricetta_abbc9584ea1555c9642adbe72ffb2f9bd}} 
 \index{ricetta@{ricetta}!dosi@{dosi}}
 \index{dosi@{dosi}!ricetta@{ricetta}}
 \subsubsection{\texorpdfstring{dosi}{dosi}}
 {\footnotesize\ttfamily int ricetta\+::dosi}
+
+
+
+kcal totoali della ricetta in relazione agli ingredienti e alle loro quantità 
 
 \mbox{\Hypertarget{structricetta_ac8567e615af6b01c27b2aea1fc81c50f}\label{structricetta_ac8567e615af6b01c27b2aea1fc81c50f}} 
 \index{ricetta@{ricetta}!ingredienti@{ingredienti}}
@@ -42,11 +54,19 @@ int \hyperlink{structricetta_abbc9584ea1555c9642adbe72ffb2f9bd}{dosi}
 \subsubsection{\texorpdfstring{ingredienti}{ingredienti}}
 {\footnotesize\ttfamily \hyperlink{structingrediente}{ingrediente} ricetta\+::ingredienti\mbox{[}\hyperlink{ricette_8h_a3f37fa2abc5ee352f9a922ef72b80116}{M\+A\+X\+\_\+\+I\+N\+G\+R\+E\+D\+I\+E\+N\+TI}\mbox{]}}
 
+
+
+stringa contenente il nome assegnato alla ricetta 
+
 \mbox{\Hypertarget{structricetta_abdd39d8054927daf2a648aef9aea1909}\label{structricetta_abdd39d8054927daf2a648aef9aea1909}} 
 \index{ricetta@{ricetta}!kcal\+\_\+ricetta@{kcal\+\_\+ricetta}}
 \index{kcal\+\_\+ricetta@{kcal\+\_\+ricetta}!ricetta@{ricetta}}
 \subsubsection{\texorpdfstring{kcal\+\_\+ricetta}{kcal\_ricetta}}
 {\footnotesize\ttfamily int ricetta\+::kcal\+\_\+ricetta}
+
+
+
+complessità della ricetta (bassa, alta, ...) 
 
 \mbox{\Hypertarget{structricetta_a40bb51c26dc338c485cc655bea2c2ca5}\label{structricetta_a40bb51c26dc338c485cc655bea2c2ca5}} 
 \index{ricetta@{ricetta}!nome\+\_\+ricetta@{nome\+\_\+ricetta}}
@@ -60,11 +80,19 @@ int \hyperlink{structricetta_abbc9584ea1555c9642adbe72ffb2f9bd}{dosi}
 \subsubsection{\texorpdfstring{preparazione}{preparazione}}
 {\footnotesize\ttfamily char ricetta\+::preparazione\mbox{[}\hyperlink{ricette_8h_abdbfa8d79884434777eae730867d54cd}{L\+U\+N\+G\+\_\+\+P\+R\+E\+P\+A\+R\+A\+Z\+I\+O\+NE}\mbox{]}}
 
+
+
+vettore contenente il tempo di preparazione di una ricetta 
+
 \mbox{\Hypertarget{structricetta_aa7c5427cccd26a39a8c7a34050eea6be}\label{structricetta_aa7c5427cccd26a39a8c7a34050eea6be}} 
 \index{ricetta@{ricetta}!tempo\+\_\+preparazione@{tempo\+\_\+preparazione}}
 \index{tempo\+\_\+preparazione@{tempo\+\_\+preparazione}!ricetta@{ricetta}}
 \subsubsection{\texorpdfstring{tempo\+\_\+preparazione}{tempo\_preparazione}}
 {\footnotesize\ttfamily char ricetta\+::tempo\+\_\+preparazione\mbox{[}\hyperlink{ricette_8h_a711f3911a37877bbfa09796364e391ab}{L\+U\+N\+G\+\_\+\+T\+E\+M\+P\+O\+\_\+\+P\+R\+E\+P\+A\+R\+A\+Z\+I\+O\+NE}\mbox{]}}
+
+
+
+vettore di tipo ingredienti per la memorizzazione degli ingredienti utili alla preparzione della ricetta 
 
 
 

@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['password',['password',['../structutente.html#a527bf8e8c1c3c8738708d42737b4189f',1,'utente']]],
-  ['pasti',['pasti',['../structgiorno.html#a965ec0d1d5f6c22b57f8a94932350887',1,'giorno']]],
-  ['preferenze',['preferenze',['../structutente.html#a249611b72057202c1a4b7a76007e48be',1,'utente']]],
-  ['preparazione',['preparazione',['../structricetta.html#a8c769fcee937b4b060b796a2ae2c1086',1,'ricetta']]]
+  ['password',['password',['../structstruct__utente.html#a14abeb6ac451fba14a8ea8c59df671ca',1,'struct_utente']]],
+  ['pasti',['pasti',['../structstruct__giorno.html#a89202927f5dc2d5ba6ca5d58431bdff5',1,'struct_giorno']]],
+  ['preferenze',['preferenze',['../structstruct__utente.html#aa4baca77ad55655cb4fe134c6074e6a7',1,'struct_utente']]],
+  ['preparazione',['preparazione',['../structstruct__ricette.html#ad17c0c62167b68be06d5d0356f79e9f4',1,'struct_ricette']]]
 ];

@@ -108,7 +108,7 @@
  *  unita_misura e kcal
  *
  */
-typedef struct {
+typedef struct struct_alimento_database {
 	char nome[LUNG_NOME_ALIMENTO];         /// stringa contenente il nome dell'alimento
 	int campione_kcal;				       /// campione (quantita) a cui corrispondono le kcal
 	float soglia_spesa;				       /// soglia (quantitativo) al di sotto del quale deve essere inserirto nella lista spesa
@@ -123,7 +123,7 @@ typedef struct {
  *  E' basato su di una struct i cui membri sono: nome, quantita, unita_misura e scadenza
  *
  */
-typedef struct{
+typedef struct struct_alimento_frigo{
 	char nome[LUNG_NOME_ALIMENTO];  ///stringa contenente il nome dell'alimento da registrare nel file binario contenente il contenuto del frigo
 	float quantita;					/// quantita contenuta nel frigo
 	char unita_misura[LUNG_UNITA_MISURA]; ///unita di misura dell'alimento
@@ -228,7 +228,7 @@ char* input_nome_alimento();
  * La funzione controlla_unita_misura() determina se l'unità di misura ricevuta
  * è significativa o no.
  *
- * @param s Stringa contenente l'unità di misura da controllare
+ * @param unita_misura Stringa contenente l'unità di misura da controllare
  * @return 1 se l'unita di misura è valida
  * @return 0 se l'unita di misura non è valida
  */
@@ -262,10 +262,11 @@ int controlla_data_scadenza(data scadenza);
 
 /**
  * La funzione converti_unita_misura() permette di convertire una quantita
- * dalla sua unità di misura in una
+ * dalla sua unità di misura in una compatibile con una del database
  *
- * @param s
- * @return
+ * @param unita_misura unita da convertire
+ * @param quantita è la quantita che deve essere convertita
+ * @return esito della funzione
  */
 int converti_quantita(float *quantita, char *unita_misura);
 
@@ -363,7 +364,6 @@ int aggiorna_frigo(alimento_frigo alimento);
 /**
  * La funzione visualizza_database apre in lettura il file database_alimenti e ne mostra il contenuto. Questa funzione puó tornare utile non
  * solo all'utente ma anche al programmatore in fase di Debug
- * @param
  * @return 1 				se l'aggiornamento é terminato con successo */
 int  visualizza_database_alimenti();
 
@@ -372,7 +372,6 @@ int  visualizza_database_alimenti();
  * La funzione visualizza_frigo oltre ad essere una funzione a se stante che permette di visualizzare il contenuto del frigo(del file alimenti_frigo.csv)
  * serve nella fase di riduzione della quantitá di un alimento. Avendo una lista a portata di mano con tanto di indice per ogni alimento
  * permettiamo all'utente di risparmiare tempo e di avere un quadro semplificato del contenuto del frigo
- * @param
  * @return 1 				se l'aggiornamento é terminato con successo */
 int visualizza_frigo();
 
@@ -387,6 +386,7 @@ float quantita_alimento(const char* nome_alimento);
 /**
  * Funzione che si occupa di ridurre la quantità di un certo alimento presente nel frigo.
  * @param nome_alimento 	Nome dell'alimento da inserire da cui ridurre la quantitá
+ * @param riduzione			quantita da ridurre
  * @return 1 	            se la quantitá dell'alimento presente nel frigo é stata correttamente ridotta
  */
 int riduci_alimento(const char* nome_alimento, float riduzione);

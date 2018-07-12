@@ -12,21 +12,27 @@ Libreria per l\textquotesingle{}interfaccia utente.
 {\ttfamily \#include $<$math.\+h$>$}\newline
 {\ttfamily \#include $<$string.\+h$>$}\newline
 {\ttfamily \#include $<$ctype.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}pulizia\+\_\+flussi.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}alimenti.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}ricette.\+h\char`\"{}}\newline
-{\ttfamily \#include \char`\"{}lista\+\_\+spesa.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}utenti.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}menu\+\_\+settimanale.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}calorie.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}lista\+\_\+spesa.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}consumi.\+h\char`\"{}}\newline
+Grafo delle dipendenze di inclusione per interfaccia.\+h\+:
+% FIG 0
+Questo grafo mostra quali altri file includono direttamente o indirettamente questo file\+:
+% FIG 1
 \subsection*{Definizioni}
 \begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{interfaccia_8h_a35ccef9eff6efbd8187c83e45458040d}{S\+T\+D\+\_\+\+L\+IB}
 \item 
 \#define \hyperlink{interfaccia_8h_af12cbc4b154eb2eefd852623d7806dc8}{M\+A\+T\+H\+\_\+\+L\+IB}
 \begin{DoxyCompactList}\small\item\em Inclusione della libreria matematica. \end{DoxyCompactList}\item 
 \#define \hyperlink{interfaccia_8h_a3f71b4ea87bcf3feda424bc285bcef6a}{S\+T\+R\+I\+N\+G\+\_\+\+L\+IB}
 \begin{DoxyCompactList}\small\item\em Inclusione delle librerie per la manipolazione di stringhe e caratteri. \end{DoxyCompactList}\item 
-\#define \hyperlink{interfaccia_8h_a6ac30e0f8fd65f06c0a0ada1e1a05551}{I\+N\+T\+E\+R\+F\+A\+C\+C\+I\+A\+\_\+\+L\+IB}
-\begin{DoxyCompactList}\small\item\em libreria che permette la gestione(manipolazione,caricamento ecc) degli alimenti \end{DoxyCompactList}\item 
 \#define \hyperlink{interfaccia_8h_a250010b4515952ebdb6501d5afeba1d1}{M\+E\+N\+U\+\_\+\+P\+R\+I\+N\+C\+I\+P\+A\+LE}~0
 \begin{DoxyCompactList}\small\item\em C\+O\+S\+T\+A\+N\+TI P\+ER LA V\+I\+S\+U\+A\+L\+I\+Z\+Z\+A\+Z\+I\+O\+NE D\+E\+L\+LE V\+O\+CI D\+EL M\+E\+NU. \end{DoxyCompactList}\item 
 \#define \hyperlink{interfaccia_8h_ac25c7040bc3a00f670b23deae4e1f89c}{M\+E\+N\+U\+\_\+\+A\+L\+I\+M\+E\+N\+TI}~1
@@ -43,9 +49,9 @@ Libreria per l\textquotesingle{}interfaccia utente.
 \item 
 \#define \hyperlink{interfaccia_8h_a3930be24bc59270a8692bbdb570ee68f}{M\+E\+N\+U\+\_\+\+R\+I\+C\+E\+R\+CA}~7
 \item 
-\#define \hyperlink{interfaccia_8h_aa7d76397b4fbba32d209e0f193adb141}{S\+U\+P\+E\+R\+I\+O\+RE}~1
+\#define \hyperlink{interfaccia_8h_a9a4438d596a589c9631a94ee36e789c1}{C\+O\+N\+T\+O\+R\+N\+O\+\_\+\+S\+U\+P\+E\+R\+I\+O\+RE}~1
 \item 
-\#define \hyperlink{interfaccia_8h_a4990440f894717d34582d67d7c3018ed}{I\+N\+F\+E\+R\+I\+O\+RE}~0
+\#define \hyperlink{interfaccia_8h_a4ac0cb1780c909c98324c086dffa3d99}{C\+O\+N\+T\+O\+R\+N\+O\+\_\+\+I\+N\+F\+E\+R\+I\+O\+RE}~0
 \item 
 \#define \hyperlink{interfaccia_8h_af039d148136a74cfad9baca72cd34357}{M\+I\+N\+\_\+\+S\+C\+E\+L\+T\+A\+\_\+\+P\+R\+I\+N\+C\+I\+P\+A\+LE}~0
 \begin{DoxyCompactList}\small\item\em C\+O\+S\+T\+A\+N\+TI P\+ER D\+E\+T\+E\+R\+M\+I\+N\+A\+RE IL R\+A\+N\+GE D\+EI V\+A\+L\+O\+RI DI S\+C\+E\+L\+TA N\+EL M\+E\+NU. \end{DoxyCompactList}\item 
@@ -141,23 +147,19 @@ Alessandro Scarcia, Davide Quatela, Michela Salvemini
 
 
 \subsection{Documentazione delle definizioni}
-\mbox{\Hypertarget{interfaccia_8h_a4990440f894717d34582d67d7c3018ed}\label{interfaccia_8h_a4990440f894717d34582d67d7c3018ed}} 
-\index{interfaccia.\+h@{interfaccia.\+h}!I\+N\+F\+E\+R\+I\+O\+RE@{I\+N\+F\+E\+R\+I\+O\+RE}}
-\index{I\+N\+F\+E\+R\+I\+O\+RE@{I\+N\+F\+E\+R\+I\+O\+RE}!interfaccia.\+h@{interfaccia.\+h}}
-\subsubsection{\texorpdfstring{I\+N\+F\+E\+R\+I\+O\+RE}{INFERIORE}}
-{\footnotesize\ttfamily \#define I\+N\+F\+E\+R\+I\+O\+RE~0}
+\mbox{\Hypertarget{interfaccia_8h_a4ac0cb1780c909c98324c086dffa3d99}\label{interfaccia_8h_a4ac0cb1780c909c98324c086dffa3d99}} 
+\index{interfaccia.\+h@{interfaccia.\+h}!C\+O\+N\+T\+O\+R\+N\+O\+\_\+\+I\+N\+F\+E\+R\+I\+O\+RE@{C\+O\+N\+T\+O\+R\+N\+O\+\_\+\+I\+N\+F\+E\+R\+I\+O\+RE}}
+\index{C\+O\+N\+T\+O\+R\+N\+O\+\_\+\+I\+N\+F\+E\+R\+I\+O\+RE@{C\+O\+N\+T\+O\+R\+N\+O\+\_\+\+I\+N\+F\+E\+R\+I\+O\+RE}!interfaccia.\+h@{interfaccia.\+h}}
+\subsubsection{\texorpdfstring{C\+O\+N\+T\+O\+R\+N\+O\+\_\+\+I\+N\+F\+E\+R\+I\+O\+RE}{CONTORNO\_INFERIORE}}
+{\footnotesize\ttfamily \#define C\+O\+N\+T\+O\+R\+N\+O\+\_\+\+I\+N\+F\+E\+R\+I\+O\+RE~0}
 
-\mbox{\Hypertarget{interfaccia_8h_a6ac30e0f8fd65f06c0a0ada1e1a05551}\label{interfaccia_8h_a6ac30e0f8fd65f06c0a0ada1e1a05551}} 
-\index{interfaccia.\+h@{interfaccia.\+h}!I\+N\+T\+E\+R\+F\+A\+C\+C\+I\+A\+\_\+\+L\+IB@{I\+N\+T\+E\+R\+F\+A\+C\+C\+I\+A\+\_\+\+L\+IB}}
-\index{I\+N\+T\+E\+R\+F\+A\+C\+C\+I\+A\+\_\+\+L\+IB@{I\+N\+T\+E\+R\+F\+A\+C\+C\+I\+A\+\_\+\+L\+IB}!interfaccia.\+h@{interfaccia.\+h}}
-\subsubsection{\texorpdfstring{I\+N\+T\+E\+R\+F\+A\+C\+C\+I\+A\+\_\+\+L\+IB}{INTERFACCIA\_LIB}}
-{\footnotesize\ttfamily \#define I\+N\+T\+E\+R\+F\+A\+C\+C\+I\+A\+\_\+\+L\+IB}
+\mbox{\Hypertarget{interfaccia_8h_a9a4438d596a589c9631a94ee36e789c1}\label{interfaccia_8h_a9a4438d596a589c9631a94ee36e789c1}} 
+\index{interfaccia.\+h@{interfaccia.\+h}!C\+O\+N\+T\+O\+R\+N\+O\+\_\+\+S\+U\+P\+E\+R\+I\+O\+RE@{C\+O\+N\+T\+O\+R\+N\+O\+\_\+\+S\+U\+P\+E\+R\+I\+O\+RE}}
+\index{C\+O\+N\+T\+O\+R\+N\+O\+\_\+\+S\+U\+P\+E\+R\+I\+O\+RE@{C\+O\+N\+T\+O\+R\+N\+O\+\_\+\+S\+U\+P\+E\+R\+I\+O\+RE}!interfaccia.\+h@{interfaccia.\+h}}
+\subsubsection{\texorpdfstring{C\+O\+N\+T\+O\+R\+N\+O\+\_\+\+S\+U\+P\+E\+R\+I\+O\+RE}{CONTORNO\_SUPERIORE}}
+{\footnotesize\ttfamily \#define C\+O\+N\+T\+O\+R\+N\+O\+\_\+\+S\+U\+P\+E\+R\+I\+O\+RE~1}
 
-
-
-libreria che permette la gestione(manipolazione,caricamento ecc) degli alimenti 
-
-libreria che permette la gestione(manipolazione,caricamento ecc) delle ricette libreria che permette la gestione(creazione,modifica ecc) della lista della spesa libreria che permette la gestione(creazione,modifica ecc) dei profili utente libreria che permette la gestione(modifica) del menu settimanale libreria che permette la gestione delle kcal di un utente \mbox{\Hypertarget{interfaccia_8h_af12cbc4b154eb2eefd852623d7806dc8}\label{interfaccia_8h_af12cbc4b154eb2eefd852623d7806dc8}} 
+\mbox{\Hypertarget{interfaccia_8h_af12cbc4b154eb2eefd852623d7806dc8}\label{interfaccia_8h_af12cbc4b154eb2eefd852623d7806dc8}} 
 \index{interfaccia.\+h@{interfaccia.\+h}!M\+A\+T\+H\+\_\+\+L\+IB@{M\+A\+T\+H\+\_\+\+L\+IB}}
 \index{M\+A\+T\+H\+\_\+\+L\+IB@{M\+A\+T\+H\+\_\+\+L\+IB}!interfaccia.\+h@{interfaccia.\+h}}
 \subsubsection{\texorpdfstring{M\+A\+T\+H\+\_\+\+L\+IB}{MATH\_LIB}}
@@ -319,6 +321,12 @@ C\+O\+S\+T\+A\+N\+TI P\+ER D\+E\+T\+E\+R\+M\+I\+N\+A\+RE IL R\+A\+N\+GE D\+EI V\
 \subsubsection{\texorpdfstring{O\+P\+Z\+I\+O\+N\+I\+\_\+\+M\+E\+N\+U\+\_\+\+S\+E\+T\+T\+I\+M\+A\+N\+A\+LE}{OPZIONI\_MENU\_SETTIMANALE}}
 {\footnotesize\ttfamily \#define O\+P\+Z\+I\+O\+N\+I\+\_\+\+M\+E\+N\+U\+\_\+\+S\+E\+T\+T\+I\+M\+A\+N\+A\+LE~4}
 
+\mbox{\Hypertarget{interfaccia_8h_a35ccef9eff6efbd8187c83e45458040d}\label{interfaccia_8h_a35ccef9eff6efbd8187c83e45458040d}} 
+\index{interfaccia.\+h@{interfaccia.\+h}!S\+T\+D\+\_\+\+L\+IB@{S\+T\+D\+\_\+\+L\+IB}}
+\index{S\+T\+D\+\_\+\+L\+IB@{S\+T\+D\+\_\+\+L\+IB}!interfaccia.\+h@{interfaccia.\+h}}
+\subsubsection{\texorpdfstring{S\+T\+D\+\_\+\+L\+IB}{STD\_LIB}}
+{\footnotesize\ttfamily \#define S\+T\+D\+\_\+\+L\+IB}
+
 \mbox{\Hypertarget{interfaccia_8h_a3f71b4ea87bcf3feda424bc285bcef6a}\label{interfaccia_8h_a3f71b4ea87bcf3feda424bc285bcef6a}} 
 \index{interfaccia.\+h@{interfaccia.\+h}!S\+T\+R\+I\+N\+G\+\_\+\+L\+IB@{S\+T\+R\+I\+N\+G\+\_\+\+L\+IB}}
 \index{S\+T\+R\+I\+N\+G\+\_\+\+L\+IB@{S\+T\+R\+I\+N\+G\+\_\+\+L\+IB}!interfaccia.\+h@{interfaccia.\+h}}
@@ -328,12 +336,6 @@ C\+O\+S\+T\+A\+N\+TI P\+ER D\+E\+T\+E\+R\+M\+I\+N\+A\+RE IL R\+A\+N\+GE D\+EI V\
 
 
 Inclusione delle librerie per la manipolazione di stringhe e caratteri. 
-
-\mbox{\Hypertarget{interfaccia_8h_aa7d76397b4fbba32d209e0f193adb141}\label{interfaccia_8h_aa7d76397b4fbba32d209e0f193adb141}} 
-\index{interfaccia.\+h@{interfaccia.\+h}!S\+U\+P\+E\+R\+I\+O\+RE@{S\+U\+P\+E\+R\+I\+O\+RE}}
-\index{S\+U\+P\+E\+R\+I\+O\+RE@{S\+U\+P\+E\+R\+I\+O\+RE}!interfaccia.\+h@{interfaccia.\+h}}
-\subsubsection{\texorpdfstring{S\+U\+P\+E\+R\+I\+O\+RE}{SUPERIORE}}
-{\footnotesize\ttfamily \#define S\+U\+P\+E\+R\+I\+O\+RE~1}
 
 
 

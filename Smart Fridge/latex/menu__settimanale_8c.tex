@@ -1,6 +1,8 @@
 \hypertarget{menu__settimanale_8c}{}\section{Riferimenti per il file src/menu\+\_\+settimanale.c}
 \label{menu__settimanale_8c}\index{src/menu\+\_\+settimanale.\+c@{src/menu\+\_\+settimanale.\+c}}
 {\ttfamily \#include \char`\"{}menu\+\_\+settimanale.\+h\char`\"{}}\newline
+Grafo delle dipendenze di inclusione per menu\+\_\+settimanale.\+c\+:
+% FIG 0
 \subsection*{Funzioni}
 \begin{DoxyCompactItemize}
 \item 
@@ -10,13 +12,13 @@ int \hyperlink{menu__settimanale_8c_a467dbcb128bae6708636bff1591039a9}{elimina\+
 \item 
 int \hyperlink{menu__settimanale_8c_a8b4902288f5f6678196832d37810471f}{inizializzazione} (const char $\ast$nome\+\_\+utente)
 \item 
-int \hyperlink{menu__settimanale_8c_a0030695e2bd26480f4dbc85581715212}{inizializzazione\+\_\+giorno} (\hyperlink{structgiorno}{giorno} $\ast$giornata, int num\+\_\+giorno)
+int \hyperlink{menu__settimanale_8c_a0030695e2bd26480f4dbc85581715212}{inizializzazione\+\_\+giorno} (\hyperlink{menu__settimanale_8h_aa16f54fedd90dabbd71b25791c01f6d4}{giorno} $\ast$giornata, int num\+\_\+giorno)
 \item 
-int \hyperlink{menu__settimanale_8c_ae6a312a53a2bba5ef70500eae5fbe223}{inizializzazione\+\_\+pasti} (\hyperlink{structgiorno}{giorno} $\ast$menu)
+int \hyperlink{menu__settimanale_8c_ae6a312a53a2bba5ef70500eae5fbe223}{inizializzazione\+\_\+pasti} (\hyperlink{menu__settimanale_8h_aa16f54fedd90dabbd71b25791c01f6d4}{giorno} $\ast$menu)
 \item 
-int \hyperlink{menu__settimanale_8c_a32d3fc0148c715a94428146288965657}{inizializzazione\+\_\+alimenti} (\hyperlink{structgiorno}{giorno} $\ast$giornata, short int num\+\_\+pasto)
+int \hyperlink{menu__settimanale_8c_a32d3fc0148c715a94428146288965657}{inizializzazione\+\_\+alimenti} (\hyperlink{menu__settimanale_8h_aa16f54fedd90dabbd71b25791c01f6d4}{giorno} $\ast$giornata, short int num\+\_\+pasto)
 \item 
-int \hyperlink{menu__settimanale_8c_aa8f6a45c6ced4ee1d20f9b134c3df232}{inizializzazione\+\_\+file\+\_\+menu} (const char $\ast$nome\+\_\+utente, \hyperlink{structgiorno}{giorno} $\ast$menu)
+int \hyperlink{menu__settimanale_8c_aa8f6a45c6ced4ee1d20f9b134c3df232}{inizializzazione\+\_\+file\+\_\+menu} (const char $\ast$nome\+\_\+utente, \hyperlink{menu__settimanale_8h_aa16f54fedd90dabbd71b25791c01f6d4}{giorno} $\ast$menu)
 \item 
 int \hyperlink{menu__settimanale_8c_ae55cb351b09d018f639cbfc23c0472a4}{esiste\+\_\+menu} (char $\ast$nome\+\_\+utente)
 \item 
@@ -34,19 +36,19 @@ int \hyperlink{menu__settimanale_8c_a546eb5450653d379584ad80e7f26c6f2}{input\+\_
 \item 
 int \hyperlink{menu__settimanale_8c_ac87b9a3be1141a92c93445fbc0d0d007}{visualizza\+\_\+database\+\_\+menu} (char nome\+\_\+utente\mbox{[}$\,$\mbox{]})
 \item 
-void \hyperlink{menu__settimanale_8c_a477d22c681e4242bda51b532d3eb907c}{ordina\+\_\+cibi\+\_\+pasto} (\hyperlink{structcibo}{cibo} $\ast$cibi)
+void \hyperlink{menu__settimanale_8c_a477d22c681e4242bda51b532d3eb907c}{ordina\+\_\+cibi\+\_\+pasto} (\hyperlink{menu__settimanale_8h_ad59bf52977c02589a75aeab3b2358b68}{cibo} $\ast$cibi)
 \item 
 void \hyperlink{menu__settimanale_8c_af8de95a0beb9c951ba8ce53ff397f3fd}{modifica\+\_\+menu} ()
 \item 
-void \hyperlink{menu__settimanale_8c_ab695abcc63bcb59c1d175f3d339e15e4}{modifica\+\_\+alimenti\+\_\+pasto} (\hyperlink{structgiorno}{giorno} $\ast$giornata, short int num\+\_\+pasto)
+void \hyperlink{menu__settimanale_8c_ab695abcc63bcb59c1d175f3d339e15e4}{modifica\+\_\+alimenti\+\_\+pasto} (\hyperlink{menu__settimanale_8h_aa16f54fedd90dabbd71b25791c01f6d4}{giorno} $\ast$giornata, short int num\+\_\+pasto)
 \item 
-int \hyperlink{menu__settimanale_8c_a5107ef0178e2458422fa8b1eba8e0bd2}{estrai\+\_\+giorno} (\hyperlink{structgiorno}{giorno} $\ast$giornata, char $\ast$nome\+\_\+utente, int num\+\_\+giorno)
+int \hyperlink{menu__settimanale_8c_a5107ef0178e2458422fa8b1eba8e0bd2}{estrai\+\_\+giorno} (\hyperlink{menu__settimanale_8h_aa16f54fedd90dabbd71b25791c01f6d4}{giorno} $\ast$giornata, char $\ast$nome\+\_\+utente, int num\+\_\+giorno)
 \item 
 int \hyperlink{menu__settimanale_8c_adfd16498a0f8f48ef86962623463589e}{estrai\+\_\+kcal\+\_\+menu} (int $\ast$kcal, char $\ast$nome\+\_\+utente, int num\+\_\+giorno)
 \item 
-int \hyperlink{menu__settimanale_8c_a51eeb7933598c940d7590eb6737108a0}{scrivi\+\_\+giorno} (\hyperlink{structgiorno}{giorno} $\ast$giornata, char $\ast$nome\+\_\+utente, int num\+\_\+giorno)
+int \hyperlink{menu__settimanale_8c_a51eeb7933598c940d7590eb6737108a0}{scrivi\+\_\+giorno} (\hyperlink{menu__settimanale_8h_aa16f54fedd90dabbd71b25791c01f6d4}{giorno} $\ast$giornata, char $\ast$nome\+\_\+utente, int num\+\_\+giorno)
 \item 
-void \hyperlink{menu__settimanale_8c_a139f0f490f4bd9860fc4253d84e88ce9}{stampa\+\_\+giorno} (\hyperlink{structgiorno}{giorno} $\ast$giornata)
+void \hyperlink{menu__settimanale_8c_a139f0f490f4bd9860fc4253d84e88ce9}{stampa\+\_\+giorno} (\hyperlink{menu__settimanale_8h_aa16f54fedd90dabbd71b25791c01f6d4}{giorno} $\ast$giornata)
 \item 
 int \hyperlink{menu__settimanale_8c_a8a9c73c2d0c13b4b96a2550db2528d46}{gestore\+\_\+visualizzazione\+\_\+menu} ()
 \end{DoxyCompactItemize}
@@ -102,7 +104,7 @@ Il valore restituito rappresenta l\textquotesingle{}esito della funzione.
 \index{menu\+\_\+settimanale.\+c@{menu\+\_\+settimanale.\+c}!estrai\+\_\+giorno@{estrai\+\_\+giorno}}
 \index{estrai\+\_\+giorno@{estrai\+\_\+giorno}!menu\+\_\+settimanale.\+c@{menu\+\_\+settimanale.\+c}}
 \subsubsection{\texorpdfstring{estrai\+\_\+giorno()}{estrai\_giorno()}}
-{\footnotesize\ttfamily int estrai\+\_\+giorno (\begin{DoxyParamCaption}\item[{\hyperlink{structgiorno}{giorno} $\ast$}]{giornata,  }\item[{char $\ast$}]{nome\+\_\+utente,  }\item[{int}]{num\+\_\+giorno }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int estrai\+\_\+giorno (\begin{DoxyParamCaption}\item[{\hyperlink{menu__settimanale_8h_aa16f54fedd90dabbd71b25791c01f6d4}{giorno} $\ast$}]{giornata,  }\item[{char $\ast$}]{nome\+\_\+utente,  }\item[{int}]{num\+\_\+giorno }\end{DoxyParamCaption})}
 
 Funzione estrai\+\_\+giorno ()\+:
 
@@ -176,7 +178,7 @@ Il valore restituito rappresenta l\textquotesingle{}esito della precedura.
 \index{menu\+\_\+settimanale.\+c@{menu\+\_\+settimanale.\+c}!inizializzazione\+\_\+alimenti@{inizializzazione\+\_\+alimenti}}
 \index{inizializzazione\+\_\+alimenti@{inizializzazione\+\_\+alimenti}!menu\+\_\+settimanale.\+c@{menu\+\_\+settimanale.\+c}}
 \subsubsection{\texorpdfstring{inizializzazione\+\_\+alimenti()}{inizializzazione\_alimenti()}}
-{\footnotesize\ttfamily int inizializzazione\+\_\+alimenti (\begin{DoxyParamCaption}\item[{\hyperlink{structgiorno}{giorno} $\ast$}]{giornata,  }\item[{short int}]{num\+\_\+pasto }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int inizializzazione\+\_\+alimenti (\begin{DoxyParamCaption}\item[{\hyperlink{menu__settimanale_8h_aa16f54fedd90dabbd71b25791c01f6d4}{giorno} $\ast$}]{giornata,  }\item[{short int}]{num\+\_\+pasto }\end{DoxyParamCaption})}
 
 Funzione inizializzazione\+\_\+alimenti ()\+:
 
@@ -194,7 +196,7 @@ Il valore restituito rappresenta l\textquotesingle{}esito della funzione.
 \index{menu\+\_\+settimanale.\+c@{menu\+\_\+settimanale.\+c}!inizializzazione\+\_\+file\+\_\+menu@{inizializzazione\+\_\+file\+\_\+menu}}
 \index{inizializzazione\+\_\+file\+\_\+menu@{inizializzazione\+\_\+file\+\_\+menu}!menu\+\_\+settimanale.\+c@{menu\+\_\+settimanale.\+c}}
 \subsubsection{\texorpdfstring{inizializzazione\+\_\+file\+\_\+menu()}{inizializzazione\_file\_menu()}}
-{\footnotesize\ttfamily int inizializzazione\+\_\+file\+\_\+menu (\begin{DoxyParamCaption}\item[{const char $\ast$}]{nome\+\_\+utente,  }\item[{\hyperlink{structgiorno}{giorno} $\ast$}]{menu }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int inizializzazione\+\_\+file\+\_\+menu (\begin{DoxyParamCaption}\item[{const char $\ast$}]{nome\+\_\+utente,  }\item[{\hyperlink{menu__settimanale_8h_aa16f54fedd90dabbd71b25791c01f6d4}{giorno} $\ast$}]{menu }\end{DoxyParamCaption})}
 
 Funzione inizializzazione\+\_\+file\+\_\+menu ()\+:
 
@@ -212,7 +214,7 @@ Il valore restituito rappresenta l\textquotesingle{}esito della funzione.
 \index{menu\+\_\+settimanale.\+c@{menu\+\_\+settimanale.\+c}!inizializzazione\+\_\+giorno@{inizializzazione\+\_\+giorno}}
 \index{inizializzazione\+\_\+giorno@{inizializzazione\+\_\+giorno}!menu\+\_\+settimanale.\+c@{menu\+\_\+settimanale.\+c}}
 \subsubsection{\texorpdfstring{inizializzazione\+\_\+giorno()}{inizializzazione\_giorno()}}
-{\footnotesize\ttfamily int inizializzazione\+\_\+giorno (\begin{DoxyParamCaption}\item[{\hyperlink{structgiorno}{giorno} $\ast$}]{giornata,  }\item[{int}]{num\+\_\+giorno }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int inizializzazione\+\_\+giorno (\begin{DoxyParamCaption}\item[{\hyperlink{menu__settimanale_8h_aa16f54fedd90dabbd71b25791c01f6d4}{giorno} $\ast$}]{giornata,  }\item[{int}]{num\+\_\+giorno }\end{DoxyParamCaption})}
 
 Funzione inizializzazione\+\_\+giorno ()\+:
 
@@ -230,7 +232,7 @@ Il valore restituito rappresenta l\textquotesingle{}esito della funzione.
 \index{menu\+\_\+settimanale.\+c@{menu\+\_\+settimanale.\+c}!inizializzazione\+\_\+pasti@{inizializzazione\+\_\+pasti}}
 \index{inizializzazione\+\_\+pasti@{inizializzazione\+\_\+pasti}!menu\+\_\+settimanale.\+c@{menu\+\_\+settimanale.\+c}}
 \subsubsection{\texorpdfstring{inizializzazione\+\_\+pasti()}{inizializzazione\_pasti()}}
-{\footnotesize\ttfamily int inizializzazione\+\_\+pasti (\begin{DoxyParamCaption}\item[{\hyperlink{structgiorno}{giorno} $\ast$}]{menu }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int inizializzazione\+\_\+pasti (\begin{DoxyParamCaption}\item[{\hyperlink{menu__settimanale_8h_aa16f54fedd90dabbd71b25791c01f6d4}{giorno} $\ast$}]{menu }\end{DoxyParamCaption})}
 
 Funzione inizializzazione\+\_\+pasti ()\+:
 
@@ -306,11 +308,6 @@ Il valore restituito rappresenta l\textquotesingle{}input dato.
 
 La funzione \hyperlink{menu__settimanale_8h_a1e972b18beb4a73f0033ebea99cb2320}{input\+\_\+numero\+\_\+giorno()} permette la selezione del giorno che si intende modificare.
 
-
-\begin{DoxyParams}{Parametri}
-{\em no} & \\
-\hline
-\end{DoxyParams}
 \begin{DoxyReturn}{Restituisce}
 la selezione effettuata 
 \end{DoxyReturn}
@@ -354,7 +351,7 @@ Il valore restituito rappresenta l\textquotesingle{}input dato.
 \index{menu\+\_\+settimanale.\+c@{menu\+\_\+settimanale.\+c}!modifica\+\_\+alimenti\+\_\+pasto@{modifica\+\_\+alimenti\+\_\+pasto}}
 \index{modifica\+\_\+alimenti\+\_\+pasto@{modifica\+\_\+alimenti\+\_\+pasto}!menu\+\_\+settimanale.\+c@{menu\+\_\+settimanale.\+c}}
 \subsubsection{\texorpdfstring{modifica\+\_\+alimenti\+\_\+pasto()}{modifica\_alimenti\_pasto()}}
-{\footnotesize\ttfamily void modifica\+\_\+alimenti\+\_\+pasto (\begin{DoxyParamCaption}\item[{\hyperlink{structgiorno}{giorno} $\ast$}]{giornata,  }\item[{short int}]{num\+\_\+pasto }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void modifica\+\_\+alimenti\+\_\+pasto (\begin{DoxyParamCaption}\item[{\hyperlink{menu__settimanale_8h_aa16f54fedd90dabbd71b25791c01f6d4}{giorno} $\ast$}]{giornata,  }\item[{short int}]{num\+\_\+pasto }\end{DoxyParamCaption})}
 
 Procedura modifica\+\_\+alimenti\+\_\+pasto ()\+:
 
@@ -390,7 +387,7 @@ Il valore restituito rappresenta l\textquotesingle{}esito della funzione.
 \index{menu\+\_\+settimanale.\+c@{menu\+\_\+settimanale.\+c}!ordina\+\_\+cibi\+\_\+pasto@{ordina\+\_\+cibi\+\_\+pasto}}
 \index{ordina\+\_\+cibi\+\_\+pasto@{ordina\+\_\+cibi\+\_\+pasto}!menu\+\_\+settimanale.\+c@{menu\+\_\+settimanale.\+c}}
 \subsubsection{\texorpdfstring{ordina\+\_\+cibi\+\_\+pasto()}{ordina\_cibi\_pasto()}}
-{\footnotesize\ttfamily void ordina\+\_\+cibi\+\_\+pasto (\begin{DoxyParamCaption}\item[{\hyperlink{structcibo}{cibo} $\ast$}]{cibi }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void ordina\+\_\+cibi\+\_\+pasto (\begin{DoxyParamCaption}\item[{\hyperlink{menu__settimanale_8h_ad59bf52977c02589a75aeab3b2358b68}{cibo} $\ast$}]{cibi }\end{DoxyParamCaption})}
 
 Procedura ordina\+\_\+cibi\+\_\+pasto ()\+:
 
@@ -405,7 +402,7 @@ non ci sono specifiche pre condizioni
 \index{menu\+\_\+settimanale.\+c@{menu\+\_\+settimanale.\+c}!scrivi\+\_\+giorno@{scrivi\+\_\+giorno}}
 \index{scrivi\+\_\+giorno@{scrivi\+\_\+giorno}!menu\+\_\+settimanale.\+c@{menu\+\_\+settimanale.\+c}}
 \subsubsection{\texorpdfstring{scrivi\+\_\+giorno()}{scrivi\_giorno()}}
-{\footnotesize\ttfamily int scrivi\+\_\+giorno (\begin{DoxyParamCaption}\item[{\hyperlink{structgiorno}{giorno} $\ast$}]{giornata,  }\item[{char $\ast$}]{nome\+\_\+utente,  }\item[{int}]{num\+\_\+giorno }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int scrivi\+\_\+giorno (\begin{DoxyParamCaption}\item[{\hyperlink{menu__settimanale_8h_aa16f54fedd90dabbd71b25791c01f6d4}{giorno} $\ast$}]{giornata,  }\item[{char $\ast$}]{nome\+\_\+utente,  }\item[{int}]{num\+\_\+giorno }\end{DoxyParamCaption})}
 
 Procedura scrivi\+\_\+menu ()\+:
 
@@ -423,7 +420,7 @@ esito della funzione
 \index{menu\+\_\+settimanale.\+c@{menu\+\_\+settimanale.\+c}!stampa\+\_\+giorno@{stampa\+\_\+giorno}}
 \index{stampa\+\_\+giorno@{stampa\+\_\+giorno}!menu\+\_\+settimanale.\+c@{menu\+\_\+settimanale.\+c}}
 \subsubsection{\texorpdfstring{stampa\+\_\+giorno()}{stampa\_giorno()}}
-{\footnotesize\ttfamily void stampa\+\_\+giorno (\begin{DoxyParamCaption}\item[{\hyperlink{structgiorno}{giorno} $\ast$}]{giornata }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void stampa\+\_\+giorno (\begin{DoxyParamCaption}\item[{\hyperlink{menu__settimanale_8h_aa16f54fedd90dabbd71b25791c01f6d4}{giorno} $\ast$}]{giornata }\end{DoxyParamCaption})}
 
 Procedura stampa\+\_\+menu ()\+:
 

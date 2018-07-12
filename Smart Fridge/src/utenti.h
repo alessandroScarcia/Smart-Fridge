@@ -72,7 +72,7 @@
  * Tipo utilizzato per la memorizzazione delle informazioni degli utenti. Ogni utente è caratterizzato
  * da un nickname, una password con cui autenticarsi e un numero prefissato di preferenze alimentari.
  */
-typedef struct{
+typedef struct struct_utente{
 	char nickname[MAX_LUNG_NICKNAME];
     char password[LUNG_PASSWORD];
     char preferenze[NUM_PREFERENZE][LUNG_PREFERENZA]; //per preferenza si intende una preferenza di tipo alimentare (es: cioccolato, latte, etc..)
@@ -111,7 +111,6 @@ char* genera_nickname();
  * La funzione genera_password(int livello_sicurezza) permette la generazione di
  * una password con livello di sicurezza pari a quello inserito.
  *
- * @param livello_sicurezza Livello di sicurezza della password da generare.
  * @return Stringa corrispondente alla password generata.
  */
 char* genera_password();
@@ -217,7 +216,7 @@ int gestore_modifiche();
 /**
  * La funzione autenticazione() permette di effettuare l'autenticazione di un utente.
  *
- * @param password Password dell'utente da identificare.
+ * @param u struct dove vengono memorizzati i dati dell'utente auteticato
  * @return 1 se l'autenticazione avviene.
  * @return 0 se non avviene l'autenticazione.
  */

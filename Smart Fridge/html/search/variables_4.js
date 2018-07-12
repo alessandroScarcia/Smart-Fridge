@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['giorno',['giorno',['../structdata.html#a7744504762d70b21c2dbc203073f37cb',1,'data']]]
+  ['giorno',['giorno',['../structstruct__data.html#ac1fcee81be6cd7637861ae379b38de4d',1,'struct_data']]]
 ];

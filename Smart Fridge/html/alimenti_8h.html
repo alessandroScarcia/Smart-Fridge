@@ -64,7 +64,10 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#define-members">Definizioni</a>  </div>
+<a href="#nested-classes">Strutture dati</a> &#124;
+<a href="#define-members">Definizioni</a> &#124;
+<a href="#typedef-members">Ridefinizioni di tipo (typedef)</a> &#124;
+<a href="#func-members">Funzioni</a>  </div>
   <div class="headertitle">
 <div class="title">Riferimenti per il file alimenti.h</div>  </div>
 </div><!--header-->
@@ -79,27 +82,405 @@ $(function() {
 <code>#include &lt;math.h&gt;</code><br />
 <code>#include &lt;string.h&gt;</code><br />
 <code>#include &lt;ctype.h&gt;</code><br />
-<code>#include &quot;<a class="el" href="calorie_8h_source.html">calorie.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="pulizia__flussi_8h_source.html">pulizia_flussi.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="date_8h_source.html">date.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="consumi_8h_source.html">consumi.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="pulizia__flussi_8h_source.html">pulizia_flussi.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="calorie_8h_source.html">calorie.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="utenti_8h_source.html">utenti.h</a>&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Grafo delle dipendenze di inclusione per alimenti.h:</div>
+<div class="dyncontent">
+<div class="center"><img src="alimenti_8h__incl.png" border="0" usemap="#src_2alimenti_8h" alt=""/></div>
+<!-- MAP 0 -->
+</div>
+</div><div class="textblock"><div class="dynheader">
+Questo grafo mostra quali altri file includono direttamente o indirettamente questo file:</div>
+<div class="dyncontent">
+<div class="center"><img src="alimenti_8h__dep__incl.png" border="0" usemap="#src_2alimenti_8hdep" alt=""/></div>
+<!-- MAP 1 -->
+</div>
 </div>
 <p><a href="alimenti_8h_source.html">Vai al codice sorgente di questo file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Strutture dati</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structstruct__alimento__database.html">struct_alimento_database</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structstruct__alimento__frigo.html">struct_alimento_frigo</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Definizioni</h2></td></tr>
+<tr class="memitem:a35ccef9eff6efbd8187c83e45458040d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alimenti_8h.html#a35ccef9eff6efbd8187c83e45458040d">STD_LIB</a></td></tr>
+<tr class="memdesc:a35ccef9eff6efbd8187c83e45458040d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inclusione delle librerie standard.  <a href="#a35ccef9eff6efbd8187c83e45458040d">Continua...</a><br /></td></tr>
+<tr class="separator:a35ccef9eff6efbd8187c83e45458040d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af12cbc4b154eb2eefd852623d7806dc8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alimenti_8h.html#af12cbc4b154eb2eefd852623d7806dc8">MATH_LIB</a></td></tr>
-<tr class="memdesc:af12cbc4b154eb2eefd852623d7806dc8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inclusione delle librerie standard.  <a href="#af12cbc4b154eb2eefd852623d7806dc8">Continua...</a><br /></td></tr>
+<tr class="memdesc:af12cbc4b154eb2eefd852623d7806dc8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inclusione della libreria matematica.  <a href="#af12cbc4b154eb2eefd852623d7806dc8">Continua...</a><br /></td></tr>
 <tr class="separator:af12cbc4b154eb2eefd852623d7806dc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3f71b4ea87bcf3feda424bc285bcef6a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alimenti_8h.html#a3f71b4ea87bcf3feda424bc285bcef6a">STRING_LIB</a></td></tr>
 <tr class="memdesc:a3f71b4ea87bcf3feda424bc285bcef6a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inclusione delle librerie per la manipolazione di stringhe e caratteri.  <a href="#a3f71b4ea87bcf3feda424bc285bcef6a">Continua...</a><br /></td></tr>
 <tr class="separator:a3f71b4ea87bcf3feda424bc285bcef6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af503a16b1a63b47d6a5b2edd94b5caf2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alimenti_8h.html#af503a16b1a63b47d6a5b2edd94b5caf2">LUNG_NOME_ALIMENTO</a>&#160;&#160;&#160;21</td></tr>
+<tr class="memdesc:af503a16b1a63b47d6a5b2edd94b5caf2"><td class="mdescLeft">&#160;</td><td class="mdescRight">DEFINIZIONE DELLE COSTANTI SIMBOLICHE.  <a href="#af503a16b1a63b47d6a5b2edd94b5caf2">Continua...</a><br /></td></tr>
+<tr class="separator:af503a16b1a63b47d6a5b2edd94b5caf2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9218c8721d2db79232fc0c20120c55ed"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alimenti_8h.html#a9218c8721d2db79232fc0c20120c55ed">LUNG_CAMPIONE</a>&#160;&#160;&#160;11</td></tr>
+<tr class="separator:a9218c8721d2db79232fc0c20120c55ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa528c9d358db714b9d4ba90c584e691"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alimenti_8h.html#aaa528c9d358db714b9d4ba90c584e691">LUNG_SOGLIA</a>&#160;&#160;&#160;11</td></tr>
+<tr class="separator:aaa528c9d358db714b9d4ba90c584e691"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade0f1f034a3ec6c04b8e29f4730db983"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alimenti_8h.html#ade0f1f034a3ec6c04b8e29f4730db983">LUNG_UNITA_MISURA</a>&#160;&#160;&#160;6</td></tr>
+<tr class="separator:ade0f1f034a3ec6c04b8e29f4730db983"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af6bb67e192de9824e7d195f94a8ca0b3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alimenti_8h.html#af6bb67e192de9824e7d195f94a8ca0b3">LUNG_RIGA_FGETS</a>&#160;&#160;&#160;100</td></tr>
+<tr class="separator:af6bb67e192de9824e7d195f94a8ca0b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0cc4e1247806d4bbf1872a63a90c87d9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alimenti_8h.html#a0cc4e1247806d4bbf1872a63a90c87d9">NUM_CAMPIONI</a>&#160;&#160;&#160;3</td></tr>
+<tr class="memdesc:a0cc4e1247806d4bbf1872a63a90c87d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Numero di membri che compongono determinati elementi:  <a href="#a0cc4e1247806d4bbf1872a63a90c87d9">Continua...</a><br /></td></tr>
+<tr class="separator:a0cc4e1247806d4bbf1872a63a90c87d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a81dff5df7587745355c4615ed6b9584f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alimenti_8h.html#a81dff5df7587745355c4615ed6b9584f">NUM_CAMPI_ALIMENTO_FRIGO</a>&#160;&#160;&#160;6</td></tr>
+<tr class="separator:a81dff5df7587745355c4615ed6b9584f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d1f00651ad4689413217473d8ae06af"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alimenti_8h.html#a1d1f00651ad4689413217473d8ae06af">FILE_SPESA</a>&#160;&#160;&#160;&quot;../spesa_effettuata.csv&quot;</td></tr>
+<tr class="memdesc:a1d1f00651ad4689413217473d8ae06af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Nomi dei file utilizzati:  <a href="#a1d1f00651ad4689413217473d8ae06af">Continua...</a><br /></td></tr>
+<tr class="separator:a1d1f00651ad4689413217473d8ae06af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3398a06b91d4f21f94e372556c59992f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alimenti_8h.html#a3398a06b91d4f21f94e372556c59992f">FILE_FRIGO</a>&#160;&#160;&#160;&quot;../alimenti_frigo.dat&quot;</td></tr>
+<tr class="separator:a3398a06b91d4f21f94e372556c59992f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:accebaca119cb95a7ffb2c0dd15d7dbfe"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alimenti_8h.html#accebaca119cb95a7ffb2c0dd15d7dbfe">FILE_DATABASE_ALIMENTI</a>&#160;&#160;&#160;&quot;../database_alimenti.dat&quot;</td></tr>
+<tr class="separator:accebaca119cb95a7ffb2c0dd15d7dbfe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ddf7e4b876fcb390604fc967331c167"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alimenti_8h.html#a7ddf7e4b876fcb390604fc967331c167">UNITA_KG</a>&#160;&#160;&#160;&quot;kg&quot;</td></tr>
+<tr class="memdesc:a7ddf7e4b876fcb390604fc967331c167"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unità di misura significative:  <a href="#a7ddf7e4b876fcb390604fc967331c167">Continua...</a><br /></td></tr>
+<tr class="separator:a7ddf7e4b876fcb390604fc967331c167"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a47cb950f96c88d01d3d1389dc47598b8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alimenti_8h.html#a47cb950f96c88d01d3d1389dc47598b8">UNITA_G</a>&#160;&#160;&#160;&quot;g&quot;</td></tr>
+<tr class="separator:a47cb950f96c88d01d3d1389dc47598b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b6ba20c1e85a00f205d70a0a6e62bb8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alimenti_8h.html#a2b6ba20c1e85a00f205d70a0a6e62bb8">UNITA_L</a>&#160;&#160;&#160;&quot;l&quot;</td></tr>
+<tr class="separator:a2b6ba20c1e85a00f205d70a0a6e62bb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a70433b662184b15f84cc23d957b1eda0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alimenti_8h.html#a70433b662184b15f84cc23d957b1eda0">UNITA_ML</a>&#160;&#160;&#160;&quot;ml&quot;</td></tr>
+<tr class="separator:a70433b662184b15f84cc23d957b1eda0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e5864a59b48a9410d0ce52c21de5e84"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alimenti_8h.html#a7e5864a59b48a9410d0ce52c21de5e84">UNITA_PZ</a>&#160;&#160;&#160;&quot;pz&quot;</td></tr>
+<tr class="separator:a7e5864a59b48a9410d0ce52c21de5e84"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37a413454f97e6e1f8ee250c2b0e9156"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alimenti_8h.html#a37a413454f97e6e1f8ee250c2b0e9156">CAMPIONE_G</a>&#160;&#160;&#160;100</td></tr>
+<tr class="memdesc:a37a413454f97e6e1f8ee250c2b0e9156"><td class="mdescLeft">&#160;</td><td class="mdescRight">Campioni di quantità per il calcolo delle calorie.  <a href="#a37a413454f97e6e1f8ee250c2b0e9156">Continua...</a><br /></td></tr>
+<tr class="separator:a37a413454f97e6e1f8ee250c2b0e9156"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abc18430b8486804e138e80d61fc4369b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alimenti_8h.html#abc18430b8486804e138e80d61fc4369b">CAMPIONE_ML</a>&#160;&#160;&#160;100</td></tr>
+<tr class="separator:abc18430b8486804e138e80d61fc4369b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad995123e1e7a2dc3e0ec244f90b81102"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alimenti_8h.html#ad995123e1e7a2dc3e0ec244f90b81102">CAMPIONE_PZ</a>&#160;&#160;&#160;1</td></tr>
+<tr class="separator:ad995123e1e7a2dc3e0ec244f90b81102"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d71a065a31669e5a98e2625a583d92b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alimenti_8h.html#a6d71a065a31669e5a98e2625a583d92b">KG_TO_G</a>&#160;&#160;&#160;1000</td></tr>
+<tr class="memdesc:a6d71a065a31669e5a98e2625a583d92b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fattori di conversione delle unità di misura.  <a href="#a6d71a065a31669e5a98e2625a583d92b">Continua...</a><br /></td></tr>
+<tr class="separator:a6d71a065a31669e5a98e2625a583d92b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a61a049b2c0d4471bc2fc56062d41f49c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alimenti_8h.html#a61a049b2c0d4471bc2fc56062d41f49c">L_TO_ML</a>&#160;&#160;&#160;1000</td></tr>
+<tr class="separator:a61a049b2c0d4471bc2fc56062d41f49c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1fa731c981fa5a5631e8fa878c6813d2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alimenti_8h.html#a1fa731c981fa5a5631e8fa878c6813d2">OPZIONE_MINIMA</a>&#160;&#160;&#160;0</td></tr>
+<tr class="memdesc:a1fa731c981fa5a5631e8fa878c6813d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Limiti/soglie per determinati valori.  <a href="#a1fa731c981fa5a5631e8fa878c6813d2">Continua...</a><br /></td></tr>
+<tr class="separator:a1fa731c981fa5a5631e8fa878c6813d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a42848758c2184c73c7057e7c6a597c8b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alimenti_8h.html#a42848758c2184c73c7057e7c6a597c8b">OPZIONE_MASSIMA</a>&#160;&#160;&#160;2</td></tr>
+<tr class="separator:a42848758c2184c73c7057e7c6a597c8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67438fad8c5acad08d9a8b4d66a2d645"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alimenti_8h.html#a67438fad8c5acad08d9a8b4d66a2d645">MIN_ID_ALIMENTO</a>&#160;&#160;&#160;1</td></tr>
+<tr class="separator:a67438fad8c5acad08d9a8b4d66a2d645"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1be1e3008fee9f7d27e75461ef4da329"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alimenti_8h.html#a1be1e3008fee9f7d27e75461ef4da329">SOGLIA_PERC</a>&#160;&#160;&#160;20</td></tr>
+<tr class="separator:a1be1e3008fee9f7d27e75461ef4da329"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad56a710909e5eaeb9f6aa67e371a7363"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alimenti_8h.html#ad56a710909e5eaeb9f6aa67e371a7363">MIN_QUANTITA</a>&#160;&#160;&#160;1</td></tr>
+<tr class="separator:ad56a710909e5eaeb9f6aa67e371a7363"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a518ee9bec3c49a27db97b470497931a3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alimenti_8h.html#a518ee9bec3c49a27db97b470497931a3">MAX_QUANTITA_G</a>&#160;&#160;&#160;10000</td></tr>
+<tr class="separator:a518ee9bec3c49a27db97b470497931a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a068a0374b9f03a836a1d393f3adfe5d1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alimenti_8h.html#a068a0374b9f03a836a1d393f3adfe5d1">MAX_QUANTITA_ML</a>&#160;&#160;&#160;10000</td></tr>
+<tr class="separator:a068a0374b9f03a836a1d393f3adfe5d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c5281454e6f977e2fc371d1be8424da"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alimenti_8h.html#a0c5281454e6f977e2fc371d1be8424da">MAX_QUANTITA_PZ</a>&#160;&#160;&#160;100</td></tr>
+<tr class="separator:a0c5281454e6f977e2fc371d1be8424da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a84163089217f3f1f43335de2cb1a0d09"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alimenti_8h.html#a84163089217f3f1f43335de2cb1a0d09">FLAG_ALIMENTO</a>&#160;&#160;&#160;0</td></tr>
+<tr class="separator:a84163089217f3f1f43335de2cb1a0d09"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac2de38ca253a313c1a45b83cb7b97553"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alimenti_8h.html#ac2de38ca253a313c1a45b83cb7b97553">MIN_KCAL_CAMPIONE</a>&#160;&#160;&#160;0</td></tr>
+<tr class="separator:ac2de38ca253a313c1a45b83cb7b97553"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab53d62054c7546f2a059de79f65fc0d4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alimenti_8h.html#ab53d62054c7546f2a059de79f65fc0d4">MAX_KCAL_CAMPIONE</a>&#160;&#160;&#160;2000</td></tr>
+<tr class="separator:ab53d62054c7546f2a059de79f65fc0d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Ridefinizioni di tipo (typedef)</h2></td></tr>
+<tr class="memitem:a1aedc7d578a0b290fdbbd4908eabf1a9"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structstruct__alimento__database.html">struct_alimento_database</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alimenti_8h.html#a1aedc7d578a0b290fdbbd4908eabf1a9">alimento_database</a></td></tr>
+<tr class="memdesc:a1aedc7d578a0b290fdbbd4908eabf1a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">**********************************DEFINIZIONI DI STRUCT***********************************  <a href="#a1aedc7d578a0b290fdbbd4908eabf1a9">Continua...</a><br /></td></tr>
+<tr class="separator:a1aedc7d578a0b290fdbbd4908eabf1a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b5bea5ca477b139eaa23e140a44b1ad"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structstruct__alimento__frigo.html">struct_alimento_frigo</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alimenti_8h.html#a3b5bea5ca477b139eaa23e140a44b1ad">alimento_frigo</a></td></tr>
+<tr class="separator:a3b5bea5ca477b139eaa23e140a44b1ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Funzioni</h2></td></tr>
+<tr class="memitem:a4edc6c745b913cc49bebca4fbeb120a4"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alimenti_8h.html#a4edc6c745b913cc49bebca4fbeb120a4">soglia_alimento</a> (const char *nome_alimento)</td></tr>
+<tr class="separator:a4edc6c745b913cc49bebca4fbeb120a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76fba08fd840b7551099f78d86bdc2ba"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alimenti_8h.html#a76fba08fd840b7551099f78d86bdc2ba">ordina_alimenti_scadenza</a> (<a class="el" href="alimenti_8h.html#a3b5bea5ca477b139eaa23e140a44b1ad">alimento_frigo</a> *alimenti_frigo, int num_alimenti)</td></tr>
+<tr class="separator:a76fba08fd840b7551099f78d86bdc2ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a48140282564e569e63f28487280b22"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alimenti_8h.html#a4a48140282564e569e63f28487280b22">conta_alimenti_database</a> ()</td></tr>
+<tr class="separator:a4a48140282564e569e63f28487280b22"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67bbe407f5fd6b977dcb6b79a7876706"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alimenti_8h.html#a67bbe407f5fd6b977dcb6b79a7876706">leggi_database_alimenti</a> (<a class="el" href="alimenti_8h.html#a1aedc7d578a0b290fdbbd4908eabf1a9">alimento_database</a> *lista_alimenti)</td></tr>
+<tr class="separator:a67bbe407f5fd6b977dcb6b79a7876706"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab492c9e27379bb529f377cb4ebea2c4f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alimenti_8h.html#ab492c9e27379bb529f377cb4ebea2c4f">leggi_frigo</a> (<a class="el" href="alimenti_8h.html#a3b5bea5ca477b139eaa23e140a44b1ad">alimento_frigo</a> *lista_frigo)</td></tr>
+<tr class="separator:ab492c9e27379bb529f377cb4ebea2c4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e58155378ed579f3a7522f5cb1c4c2b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alimenti_8h.html#a4e58155378ed579f3a7522f5cb1c4c2b">eliminazione_alimenti_scaduti</a> ()</td></tr>
+<tr class="separator:a4e58155378ed579f3a7522f5cb1c4c2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac82ac376565079ae0b252f68b2319141"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alimenti_8h.html#ac82ac376565079ae0b252f68b2319141">conta_alimenti_frigo</a> ()</td></tr>
+<tr class="separator:ac82ac376565079ae0b252f68b2319141"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a111ccfa275bbf6900ff8be3a5bcbbf0e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alimenti_8h.html#a111ccfa275bbf6900ff8be3a5bcbbf0e">visualizza_alimenti_scaduti</a> ()</td></tr>
+<tr class="separator:a111ccfa275bbf6900ff8be3a5bcbbf0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac1e62614a40a976a0ad88d6d6f2a378a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alimenti_8h.html#ac1e62614a40a976a0ad88d6d6f2a378a">conta_alimenti_scaduti</a> ()</td></tr>
+<tr class="separator:ac1e62614a40a976a0ad88d6d6f2a378a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d78e20b88829b25dd068ebb8c0af9e3"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alimenti_8h.html#a2d78e20b88829b25dd068ebb8c0af9e3">input_nome_alimento</a> ()</td></tr>
+<tr class="separator:a2d78e20b88829b25dd068ebb8c0af9e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc15d64ef9844ae6864d294e56083aae"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alimenti_8h.html#acc15d64ef9844ae6864d294e56083aae">controlla_unita_misura</a> (char *unita_misura)</td></tr>
+<tr class="separator:acc15d64ef9844ae6864d294e56083aae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5179ebddb2472260a288b07b8cecd39d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alimenti_8h.html#a5179ebddb2472260a288b07b8cecd39d">controlla_quantita</a> (float quantita, char *unita_misura)</td></tr>
+<tr class="separator:a5179ebddb2472260a288b07b8cecd39d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae26ffd217899b22dc2c6f852f39cd0ef"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alimenti_8h.html#ae26ffd217899b22dc2c6f852f39cd0ef">controlla_data_scadenza</a> (<a class="el" href="date_8h.html#a511ae0b1c13f95e5f08f1a0dd3da3d93">data</a> scadenza)</td></tr>
+<tr class="separator:ae26ffd217899b22dc2c6f852f39cd0ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a169b1d39154c4ed8c8a22a994bceafe6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alimenti_8h.html#a169b1d39154c4ed8c8a22a994bceafe6">converti_quantita</a> (float *quantita, char *unita_misura)</td></tr>
+<tr class="separator:a169b1d39154c4ed8c8a22a994bceafe6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a16a5fc5fce56b19f1b10d024031dd8ec"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alimenti_8h.html#a16a5fc5fce56b19f1b10d024031dd8ec">abbassa_maiuscole</a> (char *s)</td></tr>
+<tr class="separator:a16a5fc5fce56b19f1b10d024031dd8ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2116d71c41eefee79559a9c546be6001"><td class="memItemLeft" align="right" valign="top"><a class="el" href="alimenti_8h.html#a3b5bea5ca477b139eaa23e140a44b1ad">alimento_frigo</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alimenti_8h.html#a2116d71c41eefee79559a9c546be6001">input_alimento_frigo</a> ()</td></tr>
+<tr class="separator:a2116d71c41eefee79559a9c546be6001"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ae2adf954807832704a0ac66fc3114e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alimenti_8h.html#a1ae2adf954807832704a0ac66fc3114e">input_unita_misura</a> (char *unita_misura)</td></tr>
+<tr class="separator:a1ae2adf954807832704a0ac66fc3114e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a30d59e411dff5377698b27e2023332b2"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alimenti_8h.html#a30d59e411dff5377698b27e2023332b2">input_quantita</a> (char *unita_misura)</td></tr>
+<tr class="separator:a30d59e411dff5377698b27e2023332b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37711f116538cb8d2bb45055cc05cc03"><td class="memItemLeft" align="right" valign="top"><a class="el" href="date_8h.html#a511ae0b1c13f95e5f08f1a0dd3da3d93">data</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alimenti_8h.html#a37711f116538cb8d2bb45055cc05cc03">input_data_scadenza</a> ()</td></tr>
+<tr class="separator:a37711f116538cb8d2bb45055cc05cc03"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9cc3be659ace50533665db7d20c5d371"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alimenti_8h.html#a9cc3be659ace50533665db7d20c5d371">input_id_alimento</a> (int num_alimenti_frigo)</td></tr>
+<tr class="separator:a9cc3be659ace50533665db7d20c5d371"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f97038584db54035b56e78d47d59351"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alimenti_8h.html#a6f97038584db54035b56e78d47d59351">ricerca_alimento_database</a> (char *nome_alimento, <a class="el" href="alimenti_8h.html#a1aedc7d578a0b290fdbbd4908eabf1a9">alimento_database</a> *alimento_estratto)</td></tr>
+<tr class="separator:a6f97038584db54035b56e78d47d59351"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae5a3a70c8f5da92592d398e86eedb8d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alimenti_8h.html#aae5a3a70c8f5da92592d398e86eedb8d">aggiorna_database</a> (char *nome_alimento, char *unita_misura)</td></tr>
+<tr class="separator:aae5a3a70c8f5da92592d398e86eedb8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a837352026b4e0658a1c14a82a2576a3a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alimenti_8h.html#a837352026b4e0658a1c14a82a2576a3a">aggiorna_frigo</a> (<a class="el" href="alimenti_8h.html#a3b5bea5ca477b139eaa23e140a44b1ad">alimento_frigo</a> alimento)</td></tr>
+<tr class="separator:a837352026b4e0658a1c14a82a2576a3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c0fa2a8781ef98329c8ec90b786b32e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alimenti_8h.html#a7c0fa2a8781ef98329c8ec90b786b32e">visualizza_database_alimenti</a> ()</td></tr>
+<tr class="separator:a7c0fa2a8781ef98329c8ec90b786b32e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8e899f0e94ad5546a4deb9bb5ab7a5d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alimenti_8h.html#ae8e899f0e94ad5546a4deb9bb5ab7a5d">visualizza_frigo</a> ()</td></tr>
+<tr class="separator:ae8e899f0e94ad5546a4deb9bb5ab7a5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae2e2231830248242861a5076b7a7aa43"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alimenti_8h.html#ae2e2231830248242861a5076b7a7aa43">quantita_alimento</a> (const char *nome_alimento)</td></tr>
+<tr class="separator:ae2e2231830248242861a5076b7a7aa43"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6049138f96dfd2b8a0c71fe63aa9db48"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alimenti_8h.html#a6049138f96dfd2b8a0c71fe63aa9db48">riduci_alimento</a> (const char *nome_alimento, float riduzione)</td></tr>
+<tr class="separator:a6049138f96dfd2b8a0c71fe63aa9db48"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea7db82cac7bb7644fe45068440a3a0d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alimenti_8h.html#aea7db82cac7bb7644fe45068440a3a0d">gestore_riduzione_alimenti</a> ()</td></tr>
+<tr class="separator:aea7db82cac7bb7644fe45068440a3a0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a505c9890fb3657c8c6bd749fb0eacf2b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alimenti_8h.html#a505c9890fb3657c8c6bd749fb0eacf2b">carica_spesa</a> ()</td></tr>
+<tr class="separator:a505c9890fb3657c8c6bd749fb0eacf2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a492d6cd6c4c6b199c70c477c50c0341f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alimenti_8h.html#a492d6cd6c4c6b199c70c477c50c0341f">input_kcal</a> (char *nome_alimento, int campione_kcal, char *unita_misura)</td></tr>
+<tr class="separator:a492d6cd6c4c6b199c70c477c50c0341f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afccdebc24ed8c54e73079305e3adbf61"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alimenti_8h.html#afccdebc24ed8c54e73079305e3adbf61">calcola_campione_kcal</a> (char *unita_misura)</td></tr>
+<tr class="separator:afccdebc24ed8c54e73079305e3adbf61"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a27d247abb28988b7f59e457175a960f0"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alimenti_8h.html#a27d247abb28988b7f59e457175a960f0">input_soglia_spesa</a> (char *nome_alimento, char *unita_misura)</td></tr>
+<tr class="separator:a27d247abb28988b7f59e457175a960f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a816367a66baefe718e880eff78ba73d4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alimenti_8h.html#a816367a66baefe718e880eff78ba73d4">modifica_soglia_spesa</a> ()</td></tr>
+<tr class="separator:a816367a66baefe718e880eff78ba73d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ac393ba9c4d8b07435125faec7e37ce"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alimenti_8h.html#a8ac393ba9c4d8b07435125faec7e37ce">modifica_kcal</a> ()</td></tr>
+<tr class="separator:a8ac393ba9c4d8b07435125faec7e37ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0b56a2c98063ce36213b0014ecf5a3e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alimenti_8h.html#ac0b56a2c98063ce36213b0014ecf5a3e">alimento_casuale</a> (char *nome_alimento)</td></tr>
+<tr class="separator:ac0b56a2c98063ce36213b0014ecf5a3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Descrizione dettagliata</h2>
 <div class="textblock"><p>Libreria per la gestione degli alimenti. </p>
 <p>La libreria <a class="el" href="alimenti_8h.html" title="Libreria per la gestione degli alimenti. ">alimenti.h</a> è stata implementare per permettere la gestione degli alimenti, quindi le operazioni necessarie ai controlli, la manipolazione, il caricamento e il salvataggio di informazioni legate agli alimenti. La gestione degli alimenti in generale avviene tramite tre file: "spesa_effettuata.csv", "alimenti_frigo.dat" e "database_alimenti.dat". Rispettivamente sono utilizzati per: caricare nuovi alimenti per aggiungerli al contenuto del frigo, memorizzare gli alimenti contenuti nel frigo con relativa quantità e data di scadenza, memorizzare informazioni relative agli alimenti conosciuti dal frigocome kcal per campione di alimento, unità di misura per la quantità dell'alimento e soglia al di sotto del quale l'alimento deve essere inserito nella generazione della lista della spesa.</p>
 <dl class="section author"><dt>Autori</dt><dd>Davide Quatela, Alessandro Scarcia, Michela Salvemini </dd></dl>
 </div><h2 class="groupheader">Documentazione delle definizioni</h2>
+<a id="a37a413454f97e6e1f8ee250c2b0e9156"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a37a413454f97e6e1f8ee250c2b0e9156">&#9670;&nbsp;</a></span>CAMPIONE_G</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CAMPIONE_G&#160;&#160;&#160;100</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Campioni di quantità per il calcolo delle calorie. </p>
+
+</div>
+</div>
+<a id="abc18430b8486804e138e80d61fc4369b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abc18430b8486804e138e80d61fc4369b">&#9670;&nbsp;</a></span>CAMPIONE_ML</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CAMPIONE_ML&#160;&#160;&#160;100</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad995123e1e7a2dc3e0ec244f90b81102"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad995123e1e7a2dc3e0ec244f90b81102">&#9670;&nbsp;</a></span>CAMPIONE_PZ</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CAMPIONE_PZ&#160;&#160;&#160;1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="accebaca119cb95a7ffb2c0dd15d7dbfe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#accebaca119cb95a7ffb2c0dd15d7dbfe">&#9670;&nbsp;</a></span>FILE_DATABASE_ALIMENTI</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define FILE_DATABASE_ALIMENTI&#160;&#160;&#160;&quot;../database_alimenti.dat&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3398a06b91d4f21f94e372556c59992f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3398a06b91d4f21f94e372556c59992f">&#9670;&nbsp;</a></span>FILE_FRIGO</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define FILE_FRIGO&#160;&#160;&#160;&quot;../alimenti_frigo.dat&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1d1f00651ad4689413217473d8ae06af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d1f00651ad4689413217473d8ae06af">&#9670;&nbsp;</a></span>FILE_SPESA</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define FILE_SPESA&#160;&#160;&#160;&quot;../spesa_effettuata.csv&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Nomi dei file utilizzati: </p>
+
+</div>
+</div>
+<a id="a84163089217f3f1f43335de2cb1a0d09"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a84163089217f3f1f43335de2cb1a0d09">&#9670;&nbsp;</a></span>FLAG_ALIMENTO</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define FLAG_ALIMENTO&#160;&#160;&#160;0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6d71a065a31669e5a98e2625a583d92b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d71a065a31669e5a98e2625a583d92b">&#9670;&nbsp;</a></span>KG_TO_G</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define KG_TO_G&#160;&#160;&#160;1000</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fattori di conversione delle unità di misura. </p>
+
+</div>
+</div>
+<a id="a61a049b2c0d4471bc2fc56062d41f49c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a61a049b2c0d4471bc2fc56062d41f49c">&#9670;&nbsp;</a></span>L_TO_ML</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define L_TO_ML&#160;&#160;&#160;1000</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9218c8721d2db79232fc0c20120c55ed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9218c8721d2db79232fc0c20120c55ed">&#9670;&nbsp;</a></span>LUNG_CAMPIONE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define LUNG_CAMPIONE&#160;&#160;&#160;11</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af503a16b1a63b47d6a5b2edd94b5caf2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af503a16b1a63b47d6a5b2edd94b5caf2">&#9670;&nbsp;</a></span>LUNG_NOME_ALIMENTO</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define LUNG_NOME_ALIMENTO&#160;&#160;&#160;21</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>DEFINIZIONE DELLE COSTANTI SIMBOLICHE. </p>
+<p>Lunghezze delle stringhe: </p>
+
+</div>
+</div>
+<a id="af6bb67e192de9824e7d195f94a8ca0b3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af6bb67e192de9824e7d195f94a8ca0b3">&#9670;&nbsp;</a></span>LUNG_RIGA_FGETS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define LUNG_RIGA_FGETS&#160;&#160;&#160;100</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aaa528c9d358db714b9d4ba90c584e691"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa528c9d358db714b9d4ba90c584e691">&#9670;&nbsp;</a></span>LUNG_SOGLIA</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define LUNG_SOGLIA&#160;&#160;&#160;11</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ade0f1f034a3ec6c04b8e29f4730db983"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ade0f1f034a3ec6c04b8e29f4730db983">&#9670;&nbsp;</a></span>LUNG_UNITA_MISURA</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define LUNG_UNITA_MISURA&#160;&#160;&#160;6</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="af12cbc4b154eb2eefd852623d7806dc8"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af12cbc4b154eb2eefd852623d7806dc8">&#9670;&nbsp;</a></span>MATH_LIB</h2>
 
@@ -112,8 +493,195 @@ Definizioni</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Inclusione della libreria matematica. </p>
+
+</div>
+</div>
+<a id="ab53d62054c7546f2a059de79f65fc0d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab53d62054c7546f2a059de79f65fc0d4">&#9670;&nbsp;</a></span>MAX_KCAL_CAMPIONE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX_KCAL_CAMPIONE&#160;&#160;&#160;2000</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a518ee9bec3c49a27db97b470497931a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a518ee9bec3c49a27db97b470497931a3">&#9670;&nbsp;</a></span>MAX_QUANTITA_G</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX_QUANTITA_G&#160;&#160;&#160;10000</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a068a0374b9f03a836a1d393f3adfe5d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a068a0374b9f03a836a1d393f3adfe5d1">&#9670;&nbsp;</a></span>MAX_QUANTITA_ML</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX_QUANTITA_ML&#160;&#160;&#160;10000</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0c5281454e6f977e2fc371d1be8424da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c5281454e6f977e2fc371d1be8424da">&#9670;&nbsp;</a></span>MAX_QUANTITA_PZ</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX_QUANTITA_PZ&#160;&#160;&#160;100</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a67438fad8c5acad08d9a8b4d66a2d645"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a67438fad8c5acad08d9a8b4d66a2d645">&#9670;&nbsp;</a></span>MIN_ID_ALIMENTO</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MIN_ID_ALIMENTO&#160;&#160;&#160;1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac2de38ca253a313c1a45b83cb7b97553"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac2de38ca253a313c1a45b83cb7b97553">&#9670;&nbsp;</a></span>MIN_KCAL_CAMPIONE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MIN_KCAL_CAMPIONE&#160;&#160;&#160;0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad56a710909e5eaeb9f6aa67e371a7363"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad56a710909e5eaeb9f6aa67e371a7363">&#9670;&nbsp;</a></span>MIN_QUANTITA</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MIN_QUANTITA&#160;&#160;&#160;1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a81dff5df7587745355c4615ed6b9584f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a81dff5df7587745355c4615ed6b9584f">&#9670;&nbsp;</a></span>NUM_CAMPI_ALIMENTO_FRIGO</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define NUM_CAMPI_ALIMENTO_FRIGO&#160;&#160;&#160;6</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0cc4e1247806d4bbf1872a63a90c87d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0cc4e1247806d4bbf1872a63a90c87d9">&#9670;&nbsp;</a></span>NUM_CAMPIONI</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define NUM_CAMPIONI&#160;&#160;&#160;3</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Numero di membri che compongono determinati elementi: </p>
+
+</div>
+</div>
+<a id="a42848758c2184c73c7057e7c6a597c8b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a42848758c2184c73c7057e7c6a597c8b">&#9670;&nbsp;</a></span>OPZIONE_MASSIMA</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define OPZIONE_MASSIMA&#160;&#160;&#160;2</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1fa731c981fa5a5631e8fa878c6813d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1fa731c981fa5a5631e8fa878c6813d2">&#9670;&nbsp;</a></span>OPZIONE_MINIMA</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define OPZIONE_MINIMA&#160;&#160;&#160;0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Limiti/soglie per determinati valori. </p>
+
+</div>
+</div>
+<a id="a1be1e3008fee9f7d27e75461ef4da329"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1be1e3008fee9f7d27e75461ef4da329">&#9670;&nbsp;</a></span>SOGLIA_PERC</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SOGLIA_PERC&#160;&#160;&#160;20</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a35ccef9eff6efbd8187c83e45458040d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a35ccef9eff6efbd8187c83e45458040d">&#9670;&nbsp;</a></span>STD_LIB</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define STD_LIB</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
 <p>Inclusione delle librerie standard. </p>
-<p>Inclusione della libreria matematica </p>
 
 </div>
 </div>
@@ -130,6 +698,1132 @@ Definizioni</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Inclusione delle librerie per la manipolazione di stringhe e caratteri. </p>
+
+</div>
+</div>
+<a id="a47cb950f96c88d01d3d1389dc47598b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a47cb950f96c88d01d3d1389dc47598b8">&#9670;&nbsp;</a></span>UNITA_G</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define UNITA_G&#160;&#160;&#160;&quot;g&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7ddf7e4b876fcb390604fc967331c167"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ddf7e4b876fcb390604fc967331c167">&#9670;&nbsp;</a></span>UNITA_KG</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define UNITA_KG&#160;&#160;&#160;&quot;kg&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Unità di misura significative: </p>
+
+</div>
+</div>
+<a id="a2b6ba20c1e85a00f205d70a0a6e62bb8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b6ba20c1e85a00f205d70a0a6e62bb8">&#9670;&nbsp;</a></span>UNITA_L</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define UNITA_L&#160;&#160;&#160;&quot;l&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a70433b662184b15f84cc23d957b1eda0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a70433b662184b15f84cc23d957b1eda0">&#9670;&nbsp;</a></span>UNITA_ML</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define UNITA_ML&#160;&#160;&#160;&quot;ml&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7e5864a59b48a9410d0ce52c21de5e84"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e5864a59b48a9410d0ce52c21de5e84">&#9670;&nbsp;</a></span>UNITA_PZ</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define UNITA_PZ&#160;&#160;&#160;&quot;pz&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Documentazione delle ridefinizioni di tipo (typedef)</h2>
+<a id="a1aedc7d578a0b290fdbbd4908eabf1a9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1aedc7d578a0b290fdbbd4908eabf1a9">&#9670;&nbsp;</a></span>alimento_database</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="alimenti_8h.html#a1aedc7d578a0b290fdbbd4908eabf1a9">alimento_database</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>**********************************DEFINIZIONI DI STRUCT*********************************** </p>
+<p>Il tipo di dato "alimento_database" serve a memorizzare le caratteristiche di un alimento. E' basato su di una struct i cui membri sono: nome, campione_kcal, soglia_spesa, unita_misura e kcal </p>
+
+</div>
+</div>
+<a id="a3b5bea5ca477b139eaa23e140a44b1ad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b5bea5ca477b139eaa23e140a44b1ad">&#9670;&nbsp;</a></span>alimento_frigo</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="alimenti_8h.html#a3b5bea5ca477b139eaa23e140a44b1ad">alimento_frigo</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Il tipo di dato "alimento_frigo" serve a memorizzare le caratteristiche degli alimenti all'interno del frigo. E' basato su di una struct i cui membri sono: nome, quantita, unita_misura e scadenza </p>
+
+</div>
+</div>
+<h2 class="groupheader">Documentazione delle funzioni</h2>
+<a id="a16a5fc5fce56b19f1b10d024031dd8ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a16a5fc5fce56b19f1b10d024031dd8ec">&#9670;&nbsp;</a></span>abbassa_maiuscole()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void abbassa_maiuscole </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>s</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>La funzione abbassa_maiuscole, riceve una stringa e ne converte le lettere maiuscole in essa contenute in lettere minuscole.</p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">s</td><td>Stringa in cui abbassare le lettere maiuscole</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Funzione che si occupa, ricevuta in input una stringa, di rendere tutti i caratteri minuscoli. La funzione serve in quanto potremmo essere nel caso in cui ad una prima estrazione di un alimento(uova) esso sia sconosciuto, ed a seguito di una seconda estrazione(Uova) lo stesso alimento ma con la lettera iniziale maiuscola risulterebbe comunque sconosciuto.</p>
+<dl class="section pre"><dt>Precondizione</dt><dd>la stringa passata in input deve contenere almeno un carattere </dd></dl>
+<dl class="section post"><dt>Postcondizione</dt><dd>la stringa generata deve essere con i caratteri tutti minuscoli </dd></dl>
+
+</div>
+</div>
+<a id="aae5a3a70c8f5da92592d398e86eedb8d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae5a3a70c8f5da92592d398e86eedb8d">&#9670;&nbsp;</a></span>aggiorna_database()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int aggiorna_database </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>nome_alimento</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>unita_misura</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>La funzione aggiorna_database permette al programma(o al frigo se vogliamo avere una visione piú realistica del prodotto) di "imparare" gli alimenti che l'utente consuma. Una volta memorizzati i dati dell'alimento quali kcal e campione di riferimento sará piú semplice ed efficace gestire le abitudini dell'utente riguardo il consumo di kcal e la generazione di ricette con un valore nutrizionale reale. Ovviamente la funzione deve conoscere gli alimenti che abbiamo inserito nel frigo e il relativo numero. Una volta iniziato il confronto tra gli alimenti giá memorizzati e quelli recentemente aggiunti si decide, a seconda se un alimento é conosciuto o meno, di aggiungerlo al database </p><dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nome_alimento</td><td>Nome dell'alimento da inserire </td></tr>
+    <tr><td class="paramname">unita_misura</td><td>Unitá di misura dell'alimento che deve essere salvata insieme al nome </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Restituisce</dt><dd>1 se l'aggiornamento é terminato con successo</dd></dl>
+<p>Funzione che si occupa di inserire le informazioni riguardanti un alimento sconosciuto all'interno del database. In un primo momento viene fatto un check sul nome dell'alimento qualora sia giá presente nel database(viene richiamata la funzione ricerca_database). Se la ricerca non é andata a buon fine pertanto l'alimento non é presente nel database vengono memorizzate le informazioni passate come parametri ossia il nome e l'unitá di misura(la scelta di passare questo dato é per non richiedere all'utente di reinserirlo in quanto viene direttamente estratto altrove), ed in seguito le altre informazioni(richieste in input o calcolate dinamicamente) come le kcal, la soglia per fare la spesa e il campione kcal.</p>
+<dl class="section pre"><dt>Precondizione</dt><dd>il nome dell'alimento e l'unitá di misura devono possedere almeno un carattere </dd></dl>
+<dl class="section post"><dt>Postcondizione</dt><dd>Devono essere state memorizzate correttamente tutte le informazioni riguardanti un dato alimento </dd></dl>
+
+</div>
+</div>
+<a id="a837352026b4e0658a1c14a82a2576a3a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a837352026b4e0658a1c14a82a2576a3a">&#9670;&nbsp;</a></span>aggiorna_frigo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int aggiorna_frigo </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="alimenti_8h.html#a3b5bea5ca477b139eaa23e140a44b1ad">alimento_frigo</a>&#160;</td>
+          <td class="paramname"><em>alimento</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>La funzione aggiorna_frigo una volta conosciuti il numero di alimenti da caricare e i dati a riguardo effettua la memorizzazione dei nuovi alimenti comprati all'interno del file alimenti_frigo. La scrittura nel file in questo caso é ottimizzata in quanto si é previsto che, qualora ci siano righe inizializzate ottenute dalla cancellazione di alimenti che non sono piú presenti nel frigo, esse vengano riutilizzate per una nuova memorizzazione. In questa maniera evitiamo algoritmi di compattamento delle righe "piene" </p><dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">alimento</td><td>Alimento da salvare nel file del frigo </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Restituisce</dt><dd>1 se l'aggiornamento é terminato con successo</dd></dl>
+<p>Funzione che si occupa di inserire nel file contente gli alimenti presenti nel frigo l'alimento(struct) che passiamo come parametro alla funzione. L'aggiornamento é stato pensato come il salvataggio di un alimento per riga del file. Ogni alimento é diverso dagli altri per nome e data di scadenza. Qualora venga caricato un alimento omonimo ad uno presente nel frigo viene fatto un controllo sulle scadenze. Se le scadenze sono uguali allora nel complesso il prodotto é uguale quindi viene solo incrementata la quantitá di tale alimento presente nel frigo. Nel caso in cui siamo a che fare con un alimento con nome diverso o con stesso nome ma con data di scadenza diversa, esso verrá salvato nella prima riga libera presente nel file.</p>
+<dl class="section pre"><dt>Precondizione</dt><dd>L'alimento passato come parametro deve essere significativo </dd></dl>
+<dl class="section post"><dt>Postcondizione</dt><dd>Deve essere stato salvato correttamente l'alimento nel file </dd></dl>
+
+</div>
+</div>
+<a id="ac0b56a2c98063ce36213b0014ecf5a3e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac0b56a2c98063ce36213b0014ecf5a3e">&#9670;&nbsp;</a></span>alimento_casuale()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int alimento_casuale </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>nome_alimento</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>La funzione <a class="el" href="alimenti_8c.html#ac0b56a2c98063ce36213b0014ecf5a3e">alimento_casuale()</a> estrae casualmente il nome di un alimento dal database e ne restituisce la stringa corrispondete.</p>
+<dl class="section return"><dt>Restituisce</dt><dd>Nome di un alimento estratto casualmente dal database.</dd></dl>
+<p>Funzione che si occupa di estrarre dal file del database il nome di alimento in maniera casuale.</p>
+<p>Una volta aperto correttamente il file del database viene posizionato in maniera del tutto casuale il puntatore del file in base alla dimensione di ogni riga. In questa maniera é possibile accedere ad uno specifico alimento e popolare la struct alimento_database, per poi estrarre l'unica informazione a noi interessata quale il nome. Esso viene copiato nella stringa passata per riferimento e viene restituito 1</p>
+<dl class="section pre"><dt>Precondizione</dt><dd>Nessuna pre condizione particolare </dd></dl>
+<dl class="section post"><dt>Postcondizione</dt><dd>Deve essere termianta con successo la visualizzazione </dd></dl>
+
+</div>
+</div>
+<a id="afccdebc24ed8c54e73079305e3adbf61"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afccdebc24ed8c54e73079305e3adbf61">&#9670;&nbsp;</a></span>calcola_campione_kcal()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int calcola_campione_kcal </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>unita_misura</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>La funzione <a class="el" href="alimenti_8c.html#afccdebc24ed8c54e73079305e3adbf61">calcola_campione_kcal()</a> determina la quantita campione relativa alle calorie di un determinato elemento, in base all'unità di misura ad esso associata.</p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">unita_misura</td><td>Unità di misura dell'alimento inserito </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Restituisce</dt><dd>campione da utilizzare per il calcolo delle calorie</dd></dl>
+<p>Funzione che si occupa di restituire in maniera opportuna un campione valido in base alla unitá di misura che passiamo alla funzione. Qualora l'unitá di misura non sia valida viene restituito 0 per segnalare quindi un errore</p>
+<dl class="section pre"><dt>Precondizione</dt><dd>Deve essere passata una stringa con almeno un carattere </dd></dl>
+<dl class="section post"><dt>Postcondizione</dt><dd>Deve essere restituito un campione valido in base alla unitá di misura oppure 0 per segnalare una invaliditá nello stabilire il campione </dd></dl>
+
+</div>
+</div>
+<a id="a505c9890fb3657c8c6bd749fb0eacf2b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a505c9890fb3657c8c6bd749fb0eacf2b">&#9670;&nbsp;</a></span>carica_spesa()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int carica_spesa </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>La procedura lettura file si occupa principalmente di prelevare i dati da un file che chiameremo spesa_effettuata.csv per poi inserirli di volta in volta all'interno di una struct realizzata su misura. Ovviamente i dati verranno inseriti per ogni alimento(riga se vogliamo definirlo piú banalmente) che verrá estratto dal file.</p>
+<p>Funzione che si occupa di estrarre dal file, che contiene la spesa effettuata, gli alimenti comprati con le info di base che lo riguardano come nome,quantitá,unitá di misura,scadenza. In questo caso queste informazioni sono contenute all'interno di un file testuale che deve essere scansionato riga per riga. La riga di un file é da considerarsi tale fino al carattere terminatore e ad ogni estrazione occorre pulire lo stream in caso la riga presente nel file sia superiore a quella consentita. Inoltre per ogni riga é necessario l'intervento della sscanf per "tokenizzare" i vari valori della riga e memorizzarli opportunamente all'interno della struct. Qualora la sscanf abbia prodotto un numero di hit inferiore a quelli necessari per considerare l'alimento correttamente estratto, viene chiesto se si vuole correggere l'alimento oppure no. In caso affermativo viene avviata la fase di correzione che si occupa di correggere un dato alimento richiamando opportunatamente altre funzioni per l'inserimento fino a quando l'input non sia significativo.</p>
+<p>Al termine della fase di estrazione e correzione eventuale, viene richiamata la funzione che si occupa di aggiornare il database per far si che vengano memorizzate le informazioni riguardanti alimenti sconosciuti al frigo. Una volta terminata la fase di aggiornamento del database viene effettuato un check sulla validitá degli altri campi dell'alimento e in caso viene chiesto di effettuare una correzione su tali valori. Un esempio é il caso di un alimento scaduto che viene erroneamente caricato nel frigo. A tal proposito viene chiesto all'utente se vuole correggere tale data e proseguire con il caricamento. Una volta che la lista della spesa é stata completamente estratta viene avviata la fase di aggiornamento del frigo con il richiamo alla opportuna funzione.</p>
+<dl class="section pre"><dt>Precondizione</dt><dd>Nessuna pre condizione particolare </dd></dl>
+<dl class="section post"><dt>Postcondizione</dt><dd>Devono essere memorizzati in una struct gli alimenti con i relativi valori significativi. </dd></dl>
+
+</div>
+</div>
+<a id="a4a48140282564e569e63f28487280b22"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a48140282564e569e63f28487280b22">&#9670;&nbsp;</a></span>conta_alimenti_database()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int conta_alimenti_database </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>funzione che conta gli alimenti presenti nel database</p>
+<dl class="section return"><dt>Restituisce</dt><dd>righe ossia numero di alimenti presenti nel database</dd></dl>
+<p>Funzione che si occupa di contare gli alimenti presenti nel database.</p>
+<dl class="section pre"><dt>Precondizione</dt><dd>Nessuna pre condizione particolare </dd></dl>
+<dl class="section post"><dt>Postcondizione</dt><dd>Il valore restituito deve essere un intero significativo (&gt;=0) </dd></dl>
+
+</div>
+</div>
+<a id="ac82ac376565079ae0b252f68b2319141"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac82ac376565079ae0b252f68b2319141">&#9670;&nbsp;</a></span>conta_alimenti_frigo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int conta_alimenti_frigo </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>funzione che si occupa di contare gli alimenti presenti nel frigo e di restituire tale numero</p>
+<dl class="section return"><dt>Restituisce</dt><dd>righe numero di alimenti presenti nel frigo</dd></dl>
+<p>Funzione che conta gli alimenti presenti nel frigo e ne restituisce il valore. Il conteggio viene effettuato escludendo le righe vuote nel database</p>
+<dl class="section pre"><dt>Precondizione</dt><dd>Nessuna pre condizione particolare </dd></dl>
+<dl class="section post"><dt>Postcondizione</dt><dd>Il valore restituito deve essere un intero significativo (&gt;=0) </dd></dl>
+
+</div>
+</div>
+<a id="ac1e62614a40a976a0ad88d6d6f2a378a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac1e62614a40a976a0ad88d6d6f2a378a">&#9670;&nbsp;</a></span>conta_alimenti_scaduti()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int conta_alimenti_scaduti </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>funzione che si occupa di contare gli alimenti scaduti nel frigo e di restiuire tale numero.</p>
+<dl class="section return"><dt>Restituisce</dt><dd>contatore_alim_scad numero degli alimenti scaduti</dd></dl>
+<p>Dopo aver popolato un array di struct di tipo alimento frigo la funzione si occupa di confrontare la data di scadenza con la data odierna. Qualora la differenza tra date produca un valore negativo vuol, dire che l'alimento e' scaduto e pertanto occorre incrementare il contatore. Questa funzione serve principalmente nel menu principale per conteggiare il numero di notifiche che devono eesre viste dall'utente</p>
+<dl class="section pre"><dt>Precondizione</dt><dd>Nessuna pre condizione particolare </dd></dl>
+<dl class="section post"><dt>Postcondizione</dt><dd>Il valore restituito deve essere un intero significativo (&gt;=0) </dd></dl>
+
+</div>
+</div>
+<a id="ae26ffd217899b22dc2c6f852f39cd0ef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae26ffd217899b22dc2c6f852f39cd0ef">&#9670;&nbsp;</a></span>controlla_data_scadenza()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int controlla_data_scadenza </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="date_8h.html#a511ae0b1c13f95e5f08f1a0dd3da3d93">data</a>&#160;</td>
+          <td class="paramname"><em>scadenza</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>La funzione <a class="el" href="alimenti_8c.html#ae26ffd217899b22dc2c6f852f39cd0ef">controlla_data_scadenza()</a> determina se la data di scadenza inserita è significativa oppure no. Se è seignificativa stabilisce se l'alimento a cui si riferisce è scaduto oppure no.</p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">scadenza</td><td>Data con cui effettuare i controlli </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Restituisce</dt><dd>1 Se l'alimento non è scaduto </dd>
+<dd>
+0 Se l'alimento è scaduto </dd>
+<dd>
+-1 Se la data non è significativa</dd></dl>
+<p>Funzione che si occupa di controllare la data di scadenza rispetto la data odierna. Se la data di scadenza non e' valida viene restituito -1. In caso la data odierna sia antecedente viene restituito 1. Nel caso in cui la scadenza sia antecedente viene restituito 0</p>
+<dl class="section pre"><dt>Precondizione</dt><dd>la data di scadenza sia in un formato valido anche se viene effettuato il controllo </dd></dl>
+<dl class="section post"><dt>Postcondizione</dt><dd>Deve essere restituito un valore in base all'esito del controllo </dd></dl>
+
+</div>
+</div>
+<a id="a5179ebddb2472260a288b07b8cecd39d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5179ebddb2472260a288b07b8cecd39d">&#9670;&nbsp;</a></span>controlla_quantita()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int controlla_quantita </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>quantita</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>unita_misura</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>La funzione <a class="el" href="alimenti_8c.html#a5179ebddb2472260a288b07b8cecd39d">controlla_quantita()</a> determina se la quantità inserita rispetta i limiti stabiliti relativamente all'unità di misura corrispondente.</p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">quantita</td><td>Quantità su cui effettuare il controlo </td></tr>
+    <tr><td class="paramname">unita_misura</td><td>Unità di misura della quantita da controllare </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Restituisce</dt><dd>1 se la quantità è valida </dd>
+<dd>
+0 se la quantita non è valida</dd></dl>
+<p>Funzione che si occupa di controllare se la quantitá e' valida imponendone un limite massimo di accettabilitá in base alla unitá di misura corrispondente</p>
+<dl class="section pre"><dt>Precondizione</dt><dd>la quantitá deve essere un valore positivo &gt;=0 </dd></dl>
+<dl class="section post"><dt>Postcondizione</dt><dd>nessuna post condizione particolare </dd></dl>
+
+</div>
+</div>
+<a id="acc15d64ef9844ae6864d294e56083aae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc15d64ef9844ae6864d294e56083aae">&#9670;&nbsp;</a></span>controlla_unita_misura()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int controlla_unita_misura </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>unita_misura</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>La funzione <a class="el" href="alimenti_8c.html#acc15d64ef9844ae6864d294e56083aae">controlla_unita_misura()</a> determina se l'unità di misura ricevuta è significativa o no.</p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">unita_misura</td><td>Stringa contenente l'unità di misura da controllare </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Restituisce</dt><dd>1 se l'unita di misura è valida </dd>
+<dd>
+0 se l'unita di misura non è valida</dd></dl>
+<p>Funzione che si occupa di controllare se l'unitá di misura di un alimento e' valida o meno. Qualora lo sia viene restituito 1 in caso contrario 0.</p>
+<dl class="section pre"><dt>Precondizione</dt><dd>Nessuna pre condizione particolare </dd></dl>
+<dl class="section post"><dt>Postcondizione</dt><dd>nessuna post consizione particolare </dd></dl>
+
+</div>
+</div>
+<a id="a169b1d39154c4ed8c8a22a994bceafe6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a169b1d39154c4ed8c8a22a994bceafe6">&#9670;&nbsp;</a></span>converti_quantita()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int converti_quantita </td>
+          <td>(</td>
+          <td class="paramtype">float *&#160;</td>
+          <td class="paramname"><em>quantita</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>unita_misura</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>La funzione converti_unita_misura() permette di convertire una quantita dalla sua unità di misura in una compatibile con una del database</p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">unita_misura</td><td>unita da convertire </td></tr>
+    <tr><td class="paramname">quantita</td><td>è la quantita che deve essere convertita </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Restituisce</dt><dd>esito della funzione</dd></dl>
+<p>Funzione che riceve in ingresso la quantità e l'unitá di misura e si occupa di effettuare una equivalenza del valore nel caso in cui siamo in presenza di una sopra-unitá. Nel nostro caso le uniche unitá di misura che ci interessa convertire sono i kg e i lt. Qualora l'unitá di misura passata sia una di queste 2 viene moltiplicata la quantitá e viene restituito 1 nel caso in cui sia stata effettuata una equivalenza e 0 in caso contrario</p>
+<dl class="section pre"><dt>Precondizione</dt><dd>la quantitá sia diversa da 0 </dd></dl>
+<dl class="section post"><dt>Postcondizione</dt><dd>Sia stata effettuta l'equivalenza generando un valore valido </dd></dl>
+
+</div>
+</div>
+<a id="a4e58155378ed579f3a7522f5cb1c4c2b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e58155378ed579f3a7522f5cb1c4c2b">&#9670;&nbsp;</a></span>eliminazione_alimenti_scaduti()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int eliminazione_alimenti_scaduti </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>funzione che si occupa di eliminare gli alimenti scaduti presenti nel frigo e di inizializzare tali righe</p>
+<dl class="section return"><dt>Restituisce</dt><dd>1 in caso di successo</dd></dl>
+<p>Funzione che viene richiamata direttamente dal menu e dal gestore delle notifiche. Essa si occupa di scovare tutti gli alimenti scaduti(se la differenza tra data odierna e data di scadenza produce un valore negativo allora l'alimento e' scaduto) e di inizializzare la riga in maniera tale da poterla recuperare in una prossima scrittura. Ovviamente nella ricerca vengono sempre scartate le righe vuote </p><dl class="section pre"><dt>Precondizione</dt><dd>Nessuna pre condizione particolare </dd></dl>
+<dl class="section post"><dt>Postcondizione</dt><dd>Deve essere stata effettuata con successo la scrittura su file </dd></dl>
+
+</div>
+</div>
+<a id="aea7db82cac7bb7644fe45068440a3a0d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aea7db82cac7bb7644fe45068440a3a0d">&#9670;&nbsp;</a></span>gestore_riduzione_alimenti()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int gestore_riduzione_alimenti </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Funzione che si occupa di gestire l'operazione di riduzione di un alimento permettendo all'utente di registrare tale consumo.</p>
+<dl class="section return"><dt>Restituisce</dt><dd>1 se l'aggiornamento é terminato con successo</dd></dl>
+<p>Funzione che si occupa di gestire l'operazione di riduzione di un alimento permettendo all'utente di registrare tale consumo.</p>
+<p>Una volta effettuata la scelta da parte dell'utente se registrare il consumo ed effettuato un check su tale scelta, viene mostrato il contenuto del frigo per poter permettere all'utente di scegliere l'alimento da consumare. Qualora la riduzione(funzione riduci alimento) abbia avuto sucesso viene eventualmente registrato tale consumo e viene chiesto se si vuole rieffettuare l'inserimento.</p>
+<dl class="section pre"><dt>Precondizione</dt><dd>Nessuna pre condizione particolare </dd></dl>
+<dl class="section post"><dt>Postcondizione</dt><dd>Deve essere stata effettuata con successo la riduzione ed eventualmente registrato il consumo. </dd></dl>
+
+</div>
+</div>
+<a id="a2116d71c41eefee79559a9c546be6001"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2116d71c41eefee79559a9c546be6001">&#9670;&nbsp;</a></span>input_alimento_frigo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="alimenti_8h.html#a3b5bea5ca477b139eaa23e140a44b1ad">alimento_frigo</a> input_alimento_frigo </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>La funzione <a class="el" href="alimenti_8c.html#a2116d71c41eefee79559a9c546be6001">input_alimento_frigo()</a> permette la richiesta all'utente di inserire un alimento destinanto al frigo.</p>
+<dl class="section return"><dt>Restituisce</dt><dd>L'alimento inserito dall'utente</dd></dl>
+<p>Funzione che si occupa dell'inserimento da tastiera di un alimento nel formato valido per il caricamento. La funzione si basa principalmente su un ciclo che analizza l'input dell'utente controllando i vari valori inseriti. Qualora la scanf non produca errori e restituisca il numero massimo di "hit", l'alimento é da considerarsi valido e pertanto puó essere restituito dalla funzione</p>
+<dl class="section pre"><dt>Precondizione</dt><dd>Nessuna pre condizione particolare </dd></dl>
+<dl class="section post"><dt>Postcondizione</dt><dd>Deve essere restituito un alimento nel formato valido </dd></dl>
+
+</div>
+</div>
+<a id="a37711f116538cb8d2bb45055cc05cc03"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a37711f116538cb8d2bb45055cc05cc03">&#9670;&nbsp;</a></span>input_data_scadenza()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="date_8h.html#a511ae0b1c13f95e5f08f1a0dd3da3d93">data</a> input_data_scadenza </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>La funzione <a class="el" href="alimenti_8c.html#a37711f116538cb8d2bb45055cc05cc03">input_data_scadenza()</a> permette di richiedere l'inserimento all'utente di una data di scadenza valida.</p>
+<dl class="section return"><dt>Restituisce</dt><dd>Data di scadenza inserita dall'utente</dd></dl>
+<p>Funzione che si occupa dell'inserimento di una data di scadenza in un formato valido. Qualora la scadenza sia significativa viene richiamata la funzione controlla_data_scadenza per effettuare un ulteriore check sulla validitá di tale data. L'inserimento viene effettuato fino a quando il controllo sulla validitá non viene superato</p>
+<dl class="section pre"><dt>Precondizione</dt><dd>Nessuna pre condizione particolare </dd></dl>
+<dl class="section post"><dt>Postcondizione</dt><dd>Deve essere restituita una data di scadenza valida </dd></dl>
+
+</div>
+</div>
+<a id="a9cc3be659ace50533665db7d20c5d371"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9cc3be659ace50533665db7d20c5d371">&#9670;&nbsp;</a></span>input_id_alimento()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int input_id_alimento </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>num_alimenti_frigo</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>La funzione <a class="el" href="alimenti_8c.html#a9cc3be659ace50533665db7d20c5d371">input_id_alimento()</a> permette di richiedere l'inserimento all'utente di un numero n, corrispondente all'n-esimo alimento presente nel frigo, fino ad ottenere un valore valido.</p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">num_alimenti_frigo</td><td>Numero di alimenti presenti nel frigo </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Restituisce</dt><dd>id inserito dall'utente</dd></dl>
+<p>Funzione che si occupa dell'inserimento di un id valido e del controllo di tale valore in base al range in cui é possibile stabilirlo. Se l'id dell'alimento ha un valore compreso tra il minimo consentito ed il numero degli alimenti del frigo allora é valido e quindi puó essere restituito dalla funzione</p>
+<dl class="section pre"><dt>Precondizione</dt><dd>Deve essere passato un numero di alimenti maggiore o uguale di 0 </dd></dl>
+<dl class="section post"><dt>Postcondizione</dt><dd>Deve essere restituito un id valido </dd></dl>
+
+</div>
+</div>
+<a id="a492d6cd6c4c6b199c70c477c50c0341f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a492d6cd6c4c6b199c70c477c50c0341f">&#9670;&nbsp;</a></span>input_kcal()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int input_kcal </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>nome_alimento</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>campione_kcal</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>unita_misura</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>La funzione <a class="el" href="alimenti_8c.html#a492d6cd6c4c6b199c70c477c50c0341f">input_kcal()</a> permette la richiesta di inserimento all'utente dei valori di kcal relativi al corrispondente campione memorizzato nel database. </p><dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nome_alimento</td><td>Nome dell'alimento per cui inserire le kcal </td></tr>
+    <tr><td class="paramname">campione_kcal</td><td>Campione di alimento per cui inserire le kcal </td></tr>
+    <tr><td class="paramname">unita_misura</td><td>Unità di misura per il relativo alimento </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Restituisce</dt><dd>kcal inserite dall'utente</dd></dl>
+<p>Funzione che si occupa dell'inserimento delle kcal di un alimento in un formato valido. L'inserimento viene effettuato fino a quando il controllo sulla validitá non viene superato</p>
+<dl class="section pre"><dt>Precondizione</dt><dd>Nessuna pre condizione particolare </dd></dl>
+<dl class="section post"><dt>Postcondizione</dt><dd>Devono essere restituite delle kcal valide </dd></dl>
+
+</div>
+</div>
+<a id="a2d78e20b88829b25dd068ebb8c0af9e3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2d78e20b88829b25dd068ebb8c0af9e3">&#9670;&nbsp;</a></span>input_nome_alimento()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* input_nome_alimento </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Funzione che dopo aver allocato una stringa di una determinata lunghezza, si occupa di ricevere in input il nome della ricetta</p>
+<dl class="section return"><dt>Restituisce</dt><dd>nome_alimento</dd></dl>
+<p>Funzione che dopo aver allocato una stringa di una determinata lunghezza, si occupa di ricevere in input il nome dell'alimento. L'inserimento viene effettuato fino a quando non é stata inserita una stringa significativa e pertanto fino a quando l'esito dell'input non risulta positivo</p>
+<dl class="section pre"><dt>Precondizione</dt><dd>Nessuna pre condizione particolare </dd></dl>
+<dl class="section post"><dt>Postcondizione</dt><dd>Deve essere restituita una stringa con almeno un carattere </dd></dl>
+
+</div>
+</div>
+<a id="a30d59e411dff5377698b27e2023332b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a30d59e411dff5377698b27e2023332b2">&#9670;&nbsp;</a></span>input_quantita()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float input_quantita </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>unita_misura</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>La funzione <a class="el" href="alimenti_8c.html#a30d59e411dff5377698b27e2023332b2">input_quantita()</a> permette la richiesta all'untente di una quantita valida.</p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">unita_misura</td><td>Unità di misura per la quantità da richiedere </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Restituisce</dt><dd>Quantita inserita dall'utente</dd></dl>
+<p>Funzione che si occupa dell'inserimento di una quantitá in un formato valido. Qualora la quantitá sia composta da soli numeri(ricordiamo che la quantitá puó essere con la virgola per quelle quantitá che prevedono unitá di misura come kg ed lt), viene richiamata la funzione controlla_quantita per effettuare un ulteriore check sulla validitá di tale quantitá anche in base alla unitá di misura passata ( avere 1000g di un alimento equivale a 1kg). L'inserimento viene effettuato fino a quando non viene inserita una quantitá valida</p>
+<dl class="section pre"><dt>Precondizione</dt><dd>Nessuna pre condizione particolare </dd></dl>
+<dl class="section post"><dt>Postcondizione</dt><dd>Deve essere restituita una quantitá significativa </dd></dl>
+
+</div>
+</div>
+<a id="a27d247abb28988b7f59e457175a960f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a27d247abb28988b7f59e457175a960f0">&#9670;&nbsp;</a></span>input_soglia_spesa()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float input_soglia_spesa </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>nome_alimento</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>unita_misura</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>La funzione <a class="el" href="alimenti_8c.html#a27d247abb28988b7f59e457175a960f0">input_soglia_spesa()</a> permette la richiesta all'utente di una soglia di quantità al di sotto del quale un dato alimento deve essere inserito nella lista della spesa.</p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nome_alimento</td><td>Nome dell'alimento per cui richiedere la soglia </td></tr>
+    <tr><td class="paramname">unita_misura</td><td>Unità di misura dell'alimento per cui richiedere la soglia </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Restituisce</dt><dd>Valore della soglia inserita</dd></dl>
+<p>Funzione che si occupa dell'input da tastiera della soglia della spesa. La soglia ricordiamo che é una quantitá al di sotto della quale un alimento deve essere considerato come candidato per essere comprato. Alla funzione vengono passati il nome dell'alimento(deve essere mostrato in output per fornire ulteriori informazioni sull'inserimento da effettuare) e l'unitá di misura per effettuare un controllo sulla validitá del valore inserito come soglia. Qualora il valore sia significativo viene restituito dalla funzione altrimenti si continua a chiedere l'inserimento.</p>
+<dl class="section pre"><dt>Precondizione</dt><dd>Deve essere passato un nome di alimento con almeno un carattere e una unitá di misura significativa </dd></dl>
+<dl class="section post"><dt>Postcondizione</dt><dd>Deve essere restituita una soglia valida </dd></dl>
+
+</div>
+</div>
+<a id="a1ae2adf954807832704a0ac66fc3114e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ae2adf954807832704a0ac66fc3114e">&#9670;&nbsp;</a></span>input_unita_misura()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void input_unita_misura </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>unita_misura</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>La procedura <a class="el" href="alimenti_8c.html#a1ae2adf954807832704a0ac66fc3114e">input_unita_misura()</a> permette la richiesta all'untente di un unità di misura valida.</p>
+<p>Funzione che si occupa dell'inserimento di una unitá di misura in un formato valido. Qualora l'unitá di misura sia composta da sole lettere viene richiamata la funzione controlla_unita_misura per effettuare un ulteriore check sulla esistenza di tale unitá di misura tra quelle standard(g,lt,kg,ml). L'inserimento viene effettuato fino a quando non viene inserita una unitá di misura valida</p>
+<dl class="section pre"><dt>Precondizione</dt><dd>Nessuna pre condizione particolare </dd></dl>
+<dl class="section post"><dt>Postcondizione</dt><dd>Deve essere memorizzata nel puntatore una unitá di misura valida </dd></dl>
+
+</div>
+</div>
+<a id="a67bbe407f5fd6b977dcb6b79a7876706"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a67bbe407f5fd6b977dcb6b79a7876706">&#9670;&nbsp;</a></span>leggi_database_alimenti()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int leggi_database_alimenti </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="alimenti_8h.html#a1aedc7d578a0b290fdbbd4908eabf1a9">alimento_database</a> *&#160;</td>
+          <td class="paramname"><em>lista_alimenti</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>funione che si occupa di popolare un array di struct inizializzato con gli alimenti e i dati presenti nel database</p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lista_alimenti</td><td>array di struct che deve essere popolato </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Restituisce</dt><dd>indice_alimento elementi effettivamente caricati</dd></dl>
+<p>Funzione che avendo ricevuto in ingresso l'array di struct vuoto che conterrá gli alimenti del database, si occuperá di riempire tale array con i dati salvati all'interno del file e di restituire al termine il numero di tali alimenti salvati. Come per ogni altra funzione che conta gli elementi del file anche in questo caso si saltano le righe vuote</p>
+<dl class="section pre"><dt>Precondizione</dt><dd>Deve essere passato un array di struct della giusta dimensione </dd></dl>
+<dl class="section post"><dt>Postcondizione</dt><dd>Il valore restituito deve essere un intero significativo (&gt;=0) </dd></dl>
+
+</div>
+</div>
+<a id="ab492c9e27379bb529f377cb4ebea2c4f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab492c9e27379bb529f377cb4ebea2c4f">&#9670;&nbsp;</a></span>leggi_frigo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int leggi_frigo </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="alimenti_8h.html#a3b5bea5ca477b139eaa23e140a44b1ad">alimento_frigo</a> *&#160;</td>
+          <td class="paramname"><em>lista_frigo</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Funzione che serve a popolare un'array di struct( passato per riferimento ) con gli alimenti presenti nel frigo e le relative informazioni</p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lista_frigo</td><td>array di struct che deve essere popolato </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Restituisce</dt><dd>num_alimenti_letti elementi effettivamente caricati</dd></dl>
+<p>Funzione che serve a popolare un'array di struct( passato per riferimento ) con gli alimenti presenti nel frigo e le relative informazioni.</p>
+<p>Qualora sia possibile aprire il file contenente gli alimenti del frigo viene effettauto un ciclo, all'interno del quale, l'alimento estratto viene memorizzato in una opportuna posizione dell'array di struct. Al termine della estrazione viene restituito il numero di alimenti letti in quanto puó tonrare utile per altre funzioni</p>
+<dl class="section pre"><dt>Precondizione</dt><dd>L'array di struct passato abbia una lunghezza pari o superiore al numero di elementi presenti nel frigo </dd></dl>
+<dl class="section post"><dt>Postcondizione</dt><dd>Deve essere stati memorizzati tutti gli alimenti del file all'interno della struct </dd></dl>
+
+</div>
+</div>
+<a id="a8ac393ba9c4d8b07435125faec7e37ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ac393ba9c4d8b07435125faec7e37ce">&#9670;&nbsp;</a></span>modifica_kcal()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int modifica_kcal </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>La funzione <a class="el" href="alimenti_8c.html#a8ac393ba9c4d8b07435125faec7e37ce">modifica_kcal()</a> permette all'utente di modificare il valore di kcal per campione di un determinato alimento.</p>
+<dl class="section return"><dt>Restituisce</dt><dd>1 se la modifica avviene in modo corretto </dd>
+<dd>
+0 se il file database non presenta alimenti </dd>
+<dd>
+-1 se ilfile database non può essere aperto</dd></dl>
+<p>Funzione che si occupa di permettere la modifica della kcal di un alimento.</p>
+<p>Il funzionamento si basa su una iniziale visualizzazione del database al fine da poter permettere all'utente di capire quale id corrisponde all'alimento che vuole modificare. Una volta effettuata tale operazione(apertura del file permettendo), viene effettuato un ciclo per il posizionamento del puntatore all'interno del file, qualora venga inserito un id significativo e pertanto venga individuato tale alimento. Una volta fatto ció viene chiesto all'utente di inserire il nuovo valore che verrá poi inserito all'interno del file per poter permettere cosí l'aggiornamento delle kcal.</p>
+<dl class="section pre"><dt>Precondizione</dt><dd>Nessuna pre condizione particolare </dd></dl>
+<dl class="section post"><dt>Postcondizione</dt><dd>Deve essere stato aggiornato con successo il valore delle kcal qualora sia possibile modificare tale informazione </dd></dl>
+
+</div>
+</div>
+<a id="a816367a66baefe718e880eff78ba73d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a816367a66baefe718e880eff78ba73d4">&#9670;&nbsp;</a></span>modifica_soglia_spesa()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int modifica_soglia_spesa </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>La funzione <a class="el" href="alimenti_8c.html#a816367a66baefe718e880eff78ba73d4">modifica_soglia_spesa()</a> permette all'utente di modificare la quantità di un alimento al di sotto della quale, l'alimento deve essere inserito nella generazione della spesa.</p>
+<dl class="section return"><dt>Restituisce</dt><dd>1 se la modifica avviene in modo corretto </dd>
+<dd>
+0 se il file database non presenta alimenti </dd>
+<dd>
+-1 se il file database non può essere aperto</dd></dl>
+<p>Funzione che si occupa di permettere la modifica della soglia della spesa.</p>
+<p>Il funzionamento si basa su una iniziale visualizzazione del database al fine da poter permettere all'utente di capire quale id corrisponde all'alimento che vuole modificare. Una volta effettuata tale operazione(apertura del file permettendo), viene effettuato un ciclo per il posizionamento del puntatore all'interno del file qualora venga inserito un id significativo e pertanto venga individuato tale alimento. Una volta fatto ció viene chiesto all'utente di inserire il nuovo valore che verrá poi inserito all'interno del file per poter permettere cosí l'aggiornamento della soglia.</p>
+<dl class="section pre"><dt>Precondizione</dt><dd>Nessuna pre condizione particolare </dd></dl>
+<dl class="section post"><dt>Postcondizione</dt><dd>Deve essere stata aggiornata con successo la soglia della spesa qualora sia possibile modificare tale informazione </dd></dl>
+
+</div>
+</div>
+<a id="a76fba08fd840b7551099f78d86bdc2ba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a76fba08fd840b7551099f78d86bdc2ba">&#9670;&nbsp;</a></span>ordina_alimenti_scadenza()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ordina_alimenti_scadenza </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="alimenti_8h.html#a3b5bea5ca477b139eaa23e140a44b1ad">alimento_frigo</a> *&#160;</td>
+          <td class="paramname"><em>alimenti_frigo</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>num_alimenti</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>funzione che ordina gli alimenti del frigo in base alla scadenza.</p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">alimenti_frigo</td><td></td></tr>
+    <tr><td class="paramname">num_alimenti</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Restituisce</dt><dd>1</dd></dl>
+<p>La funzione, avendo in ingresso gli alimenti del frigo con il relativo numero, si occupa di riordinare tali alimenti, o meglio l'array di struct che li contiene, in base alla data di scadenza. L'ordinamento e' effettuato attraverso l'algoritmo shell sort in quanto risultava quello piú semplice ed efficace da implementare dato il quantitativo di dati(non e' eccessivo considerato che il frigo avrá al massimo un centinaio al massimo di alimenti). Inoltre in questa versione di shell sort si e' optato di non creare a parte un array contenente i gap (distanza per gli scambi), ma di sfruttare il numero di alimenti inizialmente e poi dividere per 2 di volta in volta la lunghezza.</p>
+<dl class="section pre"><dt>Precondizione</dt><dd>l'array di struct deve possedere almeno un alimento da ordinare e pertanto il numero di alimenti deve essere idoneo. </dd></dl>
+<dl class="section post"><dt>Postcondizione</dt><dd>L'ordinamento deve essere stato effettuato con successo. </dd></dl>
+
+</div>
+</div>
+<a id="ae2e2231830248242861a5076b7a7aa43"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae2e2231830248242861a5076b7a7aa43">&#9670;&nbsp;</a></span>quantita_alimento()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float quantita_alimento </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>nome_alimento</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Funzione che si occupa di estrarre la quantitá di un alimento presente nel frigo. </p><dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nome_alimento</td><td>Nome dell'alimento da inserire da cui estrarre la quantitá </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Restituisce</dt><dd>quantita_alimento quantitá dell'alimento presente nel frigo</dd></dl>
+<p>Funzione che si occupa di estrarre la quantitá di un alimento presente nel frigo. Qualora sia possibile accedere al file viene fatto controllo su tutto il file fino a quando non si trova l'alimento con il nome che abbiamo passato come parametro. Una volta trovato viene restituita tale quantitá.</p>
+<dl class="section pre"><dt>Precondizione</dt><dd>Che il nome passato come parametro sia di almeno un carattere </dd></dl>
+<dl class="section post"><dt>Postcondizione</dt><dd>nessuna post condizione particolare </dd></dl>
+
+</div>
+</div>
+<a id="a6f97038584db54035b56e78d47d59351"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f97038584db54035b56e78d47d59351">&#9670;&nbsp;</a></span>ricerca_alimento_database()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ricerca_alimento_database </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>nome_alimento</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="alimenti_8h.html#a1aedc7d578a0b290fdbbd4908eabf1a9">alimento_database</a> *&#160;</td>
+          <td class="paramname"><em>alimento_estratto</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>La funzione ricerca_database() permette di ricercare nel database la presenza di un alimento attraverso il suo nome e di estrarne le caratteristiche se viene individuato.</p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nome_alimento</td><td>Nome dell'alimento da ricercare </td></tr>
+    <tr><td class="paramname">alimento_estratto</td><td>Puntatore alla variabile che deve memorizzare l'alimento trovato </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Restituisce</dt><dd>1 se l'alimento viene trovato </dd>
+<dd>
+0 se l'alimento non viene trovato </dd>
+<dd>
+-1 se il file_database non può essere aperto</dd></dl>
+<p>Funzione che si occupa di ricercare un alimento all'interno del database alimenti. Vengono passati come parametri il nome dell'alimento su cui effettuare la ricerca e la struct che sará popolata con le informazioni dell'alimento qualora sia presemte nel database. Una volta effettuato il caricamento delle informazioni viene restituito 1 e in caso contrario viene restituito 0</p>
+<dl class="section pre"><dt>Precondizione</dt><dd>il nome dell'alimento passato deve essere composto da almeno un carattere </dd></dl>
+<dl class="section post"><dt>Postcondizione</dt><dd>In caso venga trovato l'alimento deve essere restituita la struct popolata da informazioni significative </dd></dl>
+
+</div>
+</div>
+<a id="a6049138f96dfd2b8a0c71fe63aa9db48"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6049138f96dfd2b8a0c71fe63aa9db48">&#9670;&nbsp;</a></span>riduci_alimento()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int riduci_alimento </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>nome_alimento</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>riduzione</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Funzione che si occupa di ridurre la quantità di un certo alimento presente nel frigo. </p><dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nome_alimento</td><td>Nome dell'alimento da inserire da cui ridurre la quantitá </td></tr>
+    <tr><td class="paramname">riduzione</td><td>quantita da ridurre </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Restituisce</dt><dd>1 se la quantitá dell'alimento presente nel frigo é stata correttamente ridotta</dd></dl>
+<p>Funzione che si occupa di ridurre la quantità di un certo alimento presente nel frigo.</p>
+<p>Il nome dell'alimento é specificato come parametro di ingresso assieme alla quantitá da ridurre. La funzione pertanto controlla in primo luogo se la quantitá presente nel frigo é maggiore o uguale di 0. Qualora la quantitá da ridurre sia superiore a quella effettivamente disponibile nel frigo o se la quantitá da ridurre é uguale a 0 viene restituito 0 per segnalare che non é stata effettuata la riduzione. Nel caso in cui la quantitá da ridurre e a quantitá disponibile siano significative viene aperto il file del frigo e viene effettuata la riduzione della quantitá. Inoltre viene richiamata la funzione che si occupa di memorizzare i consumi per registrare l'alimento ridotto.</p>
+<dl class="section pre"><dt>Precondizione</dt><dd>Sia passato come nome di alimento una stringa con almeno un carattere </dd></dl>
+<dl class="section post"><dt>Postcondizione</dt><dd>Deve essere restituito un valore per segnalare un errore o in alternativa deve essere stata effettuata con successo la riduzione </dd></dl>
+
+</div>
+</div>
+<a id="a4edc6c745b913cc49bebca4fbeb120a4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4edc6c745b913cc49bebca4fbeb120a4">&#9670;&nbsp;</a></span>soglia_alimento()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float soglia_alimento </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>nome_alimento</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Funzione che si occupa di estrarre la soglia di un alimento presente nel database. Qualora sia possibile accedere al file viene fatto controllo su tutto il database fino a quando non si trova l'alimento con il nome che abbiamo passato come parametro. Una volta trovato viene restituita tale soglia.</p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nome_alimento</td><td>da cercare nel database </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Restituisce</dt><dd>soglia_alimento</dd></dl>
+<p>Funzione che si occupa di estrarre la soglia di un alimento presente nel database. Qualora sia possibile accedere al file viene fatto controllo su tutto il database fino a quando non si trova l'alimento con il nome che abbiamo passato come parametro. Una volta trovato viene restituita tale soglia.</p>
+<p>A tal scopo, viene implemtntato un while per la ricerca dell'alimento nel database, trovato viene registrata la soglia dell'alimento in soglia_alimento e restituta</p>
+<dl class="section pre"><dt>Precondizione</dt><dd>il nome passato come parametro sia di almeno un carattere </dd></dl>
+<dl class="section post"><dt>Postcondizione</dt><dd>nessuna post condizione particolare </dd></dl>
+
+</div>
+</div>
+<a id="a111ccfa275bbf6900ff8be3a5bcbbf0e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a111ccfa275bbf6900ff8be3a5bcbbf0e">&#9670;&nbsp;</a></span>visualizza_alimenti_scaduti()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int visualizza_alimenti_scaduti </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>funzione che si occupa di visualizzare gli alimenti presenti nel frigo che sono scaduti (si controlla la data di scadenza rispetto quella odierna)</p>
+<dl class="section return"><dt>Restituisce</dt><dd>Il numero di alimenti scaduti visualizzati.</dd></dl>
+<p>Funzione che viene richiamata direttamente dal gestore delle notifiche e si occupa di visualizzare gli alimenti scaduti presenti nel frigo e di mostrare la relativa data di scadenza.</p>
+<dl class="section pre"><dt>Precondizione</dt><dd>Nessuna pre condizione particolare </dd></dl>
+<dl class="section post"><dt>Postcondizione</dt><dd>Deve essere termianta con successo la visualizzazione </dd></dl>
+
+</div>
+</div>
+<a id="a7c0fa2a8781ef98329c8ec90b786b32e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c0fa2a8781ef98329c8ec90b786b32e">&#9670;&nbsp;</a></span>visualizza_database_alimenti()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int visualizza_database_alimenti </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>La funzione visualizza_database apre in lettura il file database_alimenti e ne mostra il contenuto. Questa funzione puó tornare utile non solo all'utente ma anche al programmatore in fase di Debug </p><dl class="section return"><dt>Restituisce</dt><dd>1 se l'aggiornamento é terminato con successo</dd></dl>
+<p>Funzione che si occupa di visualizzare tutti gli alimenti presenti nel database, con le relative informazioni .</p>
+<p>Qualora sia possibile aprire il file viene effettato un ciclo per la stampa di tutti gli alimenti presenti nel file. Al termine viene restituito il numero di alimenti visualizzati in quanto tale dato potrebbe tornare utile in altre funzioni</p>
+<dl class="section pre"><dt>Precondizione</dt><dd>Nessuna pre condizione particolare </dd></dl>
+<dl class="section post"><dt>Postcondizione</dt><dd>Nessuna post condizione particolare </dd></dl>
+
+</div>
+</div>
+<a id="ae8e899f0e94ad5546a4deb9bb5ab7a5d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae8e899f0e94ad5546a4deb9bb5ab7a5d">&#9670;&nbsp;</a></span>visualizza_frigo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int visualizza_frigo </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>La funzione visualizza_frigo oltre ad essere una funzione a se stante che permette di visualizzare il contenuto del frigo(del file alimenti_frigo.csv) serve nella fase di riduzione della quantitá di un alimento. Avendo una lista a portata di mano con tanto di indice per ogni alimento permettiamo all'utente di risparmiare tempo e di avere un quadro semplificato del contenuto del frigo </p><dl class="section return"><dt>Restituisce</dt><dd>1 se l'aggiornamento é terminato con successo</dd></dl>
+<p>Funzione che si occupa di visualizzare tutti gli alimenti presenti nel frigo, con le relative informazioni .</p>
+<p>Qualora sia possibile aprire il file viene effettato un ciclo per la stampa di tutti gli alimenti presenti nel file. Al termine viene restituito il numero di alimenti visualizzati in quanto tale dato potrebbe tornare utile in altre funzioni</p>
+<dl class="section pre"><dt>Precondizione</dt><dd>Nessuna pre condizione particolare </dd></dl>
+<dl class="section post"><dt>Postcondizione</dt><dd>Nessuna post condizione particolare </dd></dl>
+<p>se la funzione e' andata a buon fine restituisci 1 </p>
 
 </div>
 </div>

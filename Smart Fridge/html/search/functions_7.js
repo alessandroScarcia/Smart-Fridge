@@ -11,9 +11,9 @@ var searchData=
   ['menu_5futenti',['menu_utenti',['../interfaccia_8h.html#a08855020533526ba029ac0e92b997e38',1,'interfaccia.h']]],
   ['modifica_5falimenti_5fpasto',['modifica_alimenti_pasto',['../menu__settimanale_8c.html#ab695abcc63bcb59c1d175f3d339e15e4',1,'modifica_alimenti_pasto(giorno *giornata, short int num_pasto):&#160;menu_settimanale.c'],['../menu__settimanale_8h.html#ab695abcc63bcb59c1d175f3d339e15e4',1,'modifica_alimenti_pasto(giorno *giornata, short int num_pasto):&#160;menu_settimanale.c']]],
   ['modifica_5fassunzione',['modifica_assunzione',['../calorie_8c.html#aacf26004c17e4042071db3f0bc51727c',1,'modifica_assunzione():&#160;calorie.c'],['../calorie_8h.html#aacf26004c17e4042071db3f0bc51727c',1,'modifica_assunzione():&#160;calorie.c']]],
-  ['modifica_5fkcal',['modifica_kcal',['../alimenti_8c.html#a8ac393ba9c4d8b07435125faec7e37ce',1,'alimenti.c']]],
+  ['modifica_5fkcal',['modifica_kcal',['../alimenti_8c.html#a8ac393ba9c4d8b07435125faec7e37ce',1,'modifica_kcal():&#160;alimenti.c'],['../alimenti_8h.html#a8ac393ba9c4d8b07435125faec7e37ce',1,'modifica_kcal():&#160;alimenti.c']]],
   ['modifica_5fmenu',['modifica_menu',['../menu__settimanale_8c.html#af8de95a0beb9c951ba8ce53ff397f3fd',1,'modifica_menu():&#160;menu_settimanale.c'],['../menu__settimanale_8h.html#af8de95a0beb9c951ba8ce53ff397f3fd',1,'modifica_menu():&#160;menu_settimanale.c']]],
   ['modifica_5fpreferenze',['modifica_preferenze',['../utenti_8c.html#a6427e961c8b4da62096f99b2fa7b051e',1,'modifica_preferenze(utente *u):&#160;utenti.c'],['../utenti_8h.html#a6427e961c8b4da62096f99b2fa7b051e',1,'modifica_preferenze(utente *u):&#160;utenti.c']]],
   ['modifica_5fricetta',['modifica_ricetta',['../ricette_8c.html#a54a0967bab4f2d4810dd4652f90dab0d',1,'modifica_ricetta():&#160;ricette.c'],['../ricette_8h.html#a54a0967bab4f2d4810dd4652f90dab0d',1,'modifica_ricetta():&#160;ricette.c']]],
-  ['modifica_5fsoglia_5fspesa',['modifica_soglia_spesa',['../alimenti_8c.html#a816367a66baefe718e880eff78ba73d4',1,'alimenti.c']]]
+  ['modifica_5fsoglia_5fspesa',['modifica_soglia_spesa',['../alimenti_8c.html#a816367a66baefe718e880eff78ba73d4',1,'modifica_soglia_spesa():&#160;alimenti.c'],['../alimenti_8h.html#a816367a66baefe718e880eff78ba73d4',1,'modifica_soglia_spesa():&#160;alimenti.c']]]
 ];

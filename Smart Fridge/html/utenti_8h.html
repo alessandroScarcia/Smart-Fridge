@@ -66,6 +66,7 @@ $(function() {
   <div class="summary">
 <a href="#nested-classes">Strutture dati</a> &#124;
 <a href="#define-members">Definizioni</a> &#124;
+<a href="#typedef-members">Ridefinizioni di tipo (typedef)</a> &#124;
 <a href="#func-members">Funzioni</a>  </div>
   <div class="headertitle">
 <div class="title">Riferimenti per il file utenti.h</div>  </div>
@@ -74,32 +75,44 @@ $(function() {
 
 <p>Libreria per la gestione degli utenti.  
 <a href="#details">Continua...</a></p>
-<div class="textblock"><code>#include &quot;<a class="el" href="menu__settimanale_8h_source.html">menu_settimanale.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="alimenti_8h_source.html">alimenti.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="pulizia__flussi_8h_source.html">pulizia_flussi.h</a>&quot;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="alimenti_8h_source.html">alimenti.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="menu__settimanale_8h_source.html">menu_settimanale.h</a>&quot;</code><br />
 <code>#include &lt;stdbool.h&gt;</code><br />
 <code>#include &lt;stdio.h&gt;</code><br />
 <code>#include &lt;stdlib.h&gt;</code><br />
 <code>#include &lt;time.h&gt;</code><br />
 <code>#include &lt;string.h&gt;</code><br />
 <code>#include &lt;ctype.h&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Grafo delle dipendenze di inclusione per utenti.h:</div>
+<div class="dyncontent">
+<div class="center"><img src="utenti_8h__incl.png" border="0" usemap="#src_2utenti_8h" alt=""/></div>
+<!-- MAP 0 -->
+</div>
+</div><div class="textblock"><div class="dynheader">
+Questo grafo mostra quali altri file includono direttamente o indirettamente questo file:</div>
+<div class="dyncontent">
+<div class="center"><img src="utenti_8h__dep__incl.png" border="0" usemap="#src_2utenti_8hdep" alt=""/></div>
+<!-- MAP 1 -->
+</div>
 </div>
 <p><a href="utenti_8h_source.html">Vai al codice sorgente di questo file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Strutture dati</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structutente.html">utente</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structstruct__utente.html">struct_utente</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Definizioni</h2></td></tr>
+<tr class="memitem:a35ccef9eff6efbd8187c83e45458040d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utenti_8h.html#a35ccef9eff6efbd8187c83e45458040d">STD_LIB</a></td></tr>
+<tr class="memdesc:a35ccef9eff6efbd8187c83e45458040d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inclusione delle librerie standard.  <a href="#a35ccef9eff6efbd8187c83e45458040d">Continua...</a><br /></td></tr>
+<tr class="separator:a35ccef9eff6efbd8187c83e45458040d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3f71b4ea87bcf3feda424bc285bcef6a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utenti_8h.html#a3f71b4ea87bcf3feda424bc285bcef6a">STRING_LIB</a></td></tr>
-<tr class="memdesc:a3f71b4ea87bcf3feda424bc285bcef6a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inclusione delle librerie standard.  <a href="#a3f71b4ea87bcf3feda424bc285bcef6a">Continua...</a><br /></td></tr>
+<tr class="memdesc:a3f71b4ea87bcf3feda424bc285bcef6a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inclusione delle librerie per la manipolazione di stringhe e caratteri.  <a href="#a3f71b4ea87bcf3feda424bc285bcef6a">Continua...</a><br /></td></tr>
 <tr class="separator:a3f71b4ea87bcf3feda424bc285bcef6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2df13304b7f365c9a36dd528bad30412"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utenti_8h.html#a2df13304b7f365c9a36dd528bad30412">UTENTI_LIB</a></td></tr>
-<tr class="separator:a2df13304b7f365c9a36dd528bad30412"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a54ac4d1eb25b89436da633fdc51e77c3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utenti_8h.html#a54ac4d1eb25b89436da633fdc51e77c3">MAX_UTENTI</a>&#160;&#160;&#160;6</td></tr>
-<tr class="memdesc:a54ac4d1eb25b89436da633fdc51e77c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inclusione della libreria per la gestione del menu_settimanale.  <a href="#a54ac4d1eb25b89436da633fdc51e77c3">Continua...</a><br /></td></tr>
+<tr class="memdesc:a54ac4d1eb25b89436da633fdc51e77c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Limiti e valori per determinati elementi:  <a href="#a54ac4d1eb25b89436da633fdc51e77c3">Continua...</a><br /></td></tr>
 <tr class="separator:a54ac4d1eb25b89436da633fdc51e77c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3d93581a285a9677267a4502ea1a033c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utenti_8h.html#a3d93581a285a9677267a4502ea1a033c">NUM_TIPI_CHAR</a>&#160;&#160;&#160;4</td></tr>
 <tr class="separator:a3d93581a285a9677267a4502ea1a033c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -152,6 +165,11 @@ Definizioni</h2></td></tr>
 <tr class="memdesc:a49cb5a152f4b513f7eebdbcc77b53b61"><td class="mdescLeft">&#160;</td><td class="mdescRight">Nome di file.  <a href="#a49cb5a152f4b513f7eebdbcc77b53b61">Continua...</a><br /></td></tr>
 <tr class="separator:a49cb5a152f4b513f7eebdbcc77b53b61"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Ridefinizioni di tipo (typedef)</h2></td></tr>
+<tr class="memitem:a098b3689b75e144d9294adc436d4f04f"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structstruct__utente.html">struct_utente</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utenti_8h.html#a098b3689b75e144d9294adc436d4f04f">utente</a></td></tr>
+<tr class="separator:a098b3689b75e144d9294adc436d4f04f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Funzioni</h2></td></tr>
 <tr class="memitem:ac82e073503af896a390a544bfd05d916"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utenti_8h.html#ac82e073503af896a390a544bfd05d916">esiste_nickname</a> (const char *nickname)</td></tr>
@@ -168,25 +186,25 @@ Funzioni</h2></td></tr>
 <tr class="separator:a3d24eee1e0857cdb3235dbb72de2e0fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4362675e19acd7b1e0bc1d064b285530"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utenti_8h.html#a4362675e19acd7b1e0bc1d064b285530">input_preferenza</a> (char *preferenza)</td></tr>
 <tr class="separator:a4362675e19acd7b1e0bc1d064b285530"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad6a35d2d36fe87744edc5a28e0727da3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structutente.html">utente</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utenti_8h.html#ad6a35d2d36fe87744edc5a28e0727da3">input_utente</a> ()</td></tr>
+<tr class="memitem:ad6a35d2d36fe87744edc5a28e0727da3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="utenti_8h.html#a098b3689b75e144d9294adc436d4f04f">utente</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utenti_8h.html#ad6a35d2d36fe87744edc5a28e0727da3">input_utente</a> ()</td></tr>
 <tr class="separator:ad6a35d2d36fe87744edc5a28e0727da3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac936c99ad1d8bb5c7d9b9d37147a0576"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structutente.html">utente</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utenti_8h.html#ac936c99ad1d8bb5c7d9b9d37147a0576">genera_utente</a> ()</td></tr>
+<tr class="memitem:ac936c99ad1d8bb5c7d9b9d37147a0576"><td class="memItemLeft" align="right" valign="top"><a class="el" href="utenti_8h.html#a098b3689b75e144d9294adc436d4f04f">utente</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utenti_8h.html#ac936c99ad1d8bb5c7d9b9d37147a0576">genera_utente</a> ()</td></tr>
 <tr class="separator:ac936c99ad1d8bb5c7d9b9d37147a0576"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2fd9f3ff6568853f6af346c28235db37"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structutente.html">utente</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utenti_8h.html#a2fd9f3ff6568853f6af346c28235db37">genera_n_utenti</a> (int n)</td></tr>
+<tr class="memitem:a2fd9f3ff6568853f6af346c28235db37"><td class="memItemLeft" align="right" valign="top"><a class="el" href="utenti_8h.html#a098b3689b75e144d9294adc436d4f04f">utente</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utenti_8h.html#a2fd9f3ff6568853f6af346c28235db37">genera_n_utenti</a> (int n)</td></tr>
 <tr class="separator:a2fd9f3ff6568853f6af346c28235db37"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad805a0034443857290327abf1b42e7e4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utenti_8h.html#ad805a0034443857290327abf1b42e7e4">salva_n_utenti</a> (<a class="el" href="structutente.html">utente</a> *utenti, int n)</td></tr>
+<tr class="memitem:ad805a0034443857290327abf1b42e7e4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utenti_8h.html#ad805a0034443857290327abf1b42e7e4">salva_n_utenti</a> (<a class="el" href="utenti_8h.html#a098b3689b75e144d9294adc436d4f04f">utente</a> *utenti, int n)</td></tr>
 <tr class="separator:ad805a0034443857290327abf1b42e7e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5175e2b07de5abb19aef4e0e1bd3635a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utenti_8h.html#a5175e2b07de5abb19aef4e0e1bd3635a">crea_utenti</a> ()</td></tr>
 <tr class="separator:a5175e2b07de5abb19aef4e0e1bd3635a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6427e961c8b4da62096f99b2fa7b051e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utenti_8h.html#a6427e961c8b4da62096f99b2fa7b051e">modifica_preferenze</a> (<a class="el" href="structutente.html">utente</a> *u)</td></tr>
+<tr class="memitem:a6427e961c8b4da62096f99b2fa7b051e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utenti_8h.html#a6427e961c8b4da62096f99b2fa7b051e">modifica_preferenze</a> (<a class="el" href="utenti_8h.html#a098b3689b75e144d9294adc436d4f04f">utente</a> *u)</td></tr>
 <tr class="separator:a6427e961c8b4da62096f99b2fa7b051e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad907371385837ca72c389ca32df39d80"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utenti_8h.html#ad907371385837ca72c389ca32df39d80">gestore_modifiche</a> ()</td></tr>
 <tr class="separator:ad907371385837ca72c389ca32df39d80"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a84eaff176b61eeb1ab0908897d4f3cc6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utenti_8h.html#a84eaff176b61eeb1ab0908897d4f3cc6">autenticazione</a> (<a class="el" href="structutente.html">utente</a> *u)</td></tr>
+<tr class="memitem:a84eaff176b61eeb1ab0908897d4f3cc6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utenti_8h.html#a84eaff176b61eeb1ab0908897d4f3cc6">autenticazione</a> (<a class="el" href="utenti_8h.html#a098b3689b75e144d9294adc436d4f04f">utente</a> *u)</td></tr>
 <tr class="separator:a84eaff176b61eeb1ab0908897d4f3cc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a87ee6c560888e42fdd61588cd98743b6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utenti_8h.html#a87ee6c560888e42fdd61588cd98743b6">output_utente</a> (const <a class="el" href="structutente.html">utente</a> u)</td></tr>
+<tr class="memitem:a87ee6c560888e42fdd61588cd98743b6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utenti_8h.html#a87ee6c560888e42fdd61588cd98743b6">output_utente</a> (const <a class="el" href="utenti_8h.html#a098b3689b75e144d9294adc436d4f04f">utente</a> u)</td></tr>
 <tr class="separator:a87ee6c560888e42fdd61588cd98743b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a32e8982b503c10da62802a604f044efa"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utenti_8h.html#a32e8982b503c10da62802a604f044efa">output_preferenze</a> (const <a class="el" href="structutente.html">utente</a> u)</td></tr>
+<tr class="memitem:a32e8982b503c10da62802a604f044efa"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utenti_8h.html#a32e8982b503c10da62802a604f044efa">output_preferenze</a> (const <a class="el" href="utenti_8h.html#a098b3689b75e144d9294adc436d4f04f">utente</a> u)</td></tr>
 <tr class="separator:a32e8982b503c10da62802a604f044efa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad1417dda78bb50d93809ae0a28b2a29d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utenti_8h.html#ad1417dda78bb50d93809ae0a28b2a29d">visualizza_database_utenti</a> ()</td></tr>
 <tr class="separator:ad1417dda78bb50d93809ae0a28b2a29d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -452,8 +470,7 @@ Funzioni</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Inclusione della libreria per la gestione del menu_settimanale. </p>
-<p>Inclusione della libreria per la gestione degli alimenti Inclusione della libreria per la pulizia dei flussi di input Limiti e valori per determinati elementi: </p>
+<p>Limiti e valori per determinati elementi: </p>
 
 </div>
 </div>
@@ -557,6 +574,22 @@ Funzioni</h2></td></tr>
 
 </div>
 </div>
+<a id="a35ccef9eff6efbd8187c83e45458040d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a35ccef9eff6efbd8187c83e45458040d">&#9670;&nbsp;</a></span>STD_LIB</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define STD_LIB</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Inclusione delle librerie standard. </p>
+
+</div>
+</div>
 <a id="a3f71b4ea87bcf3feda424bc285bcef6a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3f71b4ea87bcf3feda424bc285bcef6a">&#9670;&nbsp;</a></span>STRING_LIB</h2>
 
@@ -569,22 +602,23 @@ Funzioni</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Inclusione delle librerie standard. </p>
-<p>Inclusione delle librerie per la manipolazione di stringhe e caratteri </p>
+<p>Inclusione delle librerie per la manipolazione di stringhe e caratteri. </p>
 
 </div>
 </div>
-<a id="a2df13304b7f365c9a36dd528bad30412"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2df13304b7f365c9a36dd528bad30412">&#9670;&nbsp;</a></span>UTENTI_LIB</h2>
+<h2 class="groupheader">Documentazione delle ridefinizioni di tipo (typedef)</h2>
+<a id="a098b3689b75e144d9294adc436d4f04f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a098b3689b75e144d9294adc436d4f04f">&#9670;&nbsp;</a></span>utente</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define UTENTI_LIB</td>
+          <td class="memname"><a class="el" href="utenti_8h.html#a098b3689b75e144d9294adc436d4f04f">utente</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Tipo utilizzato per la memorizzazione delle informazioni degli utenti. Ogni utente è caratterizzato da un nickname, una password con cui autenticarsi e un numero prefissato di preferenze alimentari. </p>
 
 </div>
 </div>
@@ -598,7 +632,7 @@ Funzioni</h2></td></tr>
         <tr>
           <td class="memname">int autenticazione </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structutente.html">utente</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="utenti_8h.html#a098b3689b75e144d9294adc436d4f04f">utente</a> *&#160;</td>
           <td class="paramname"><em>u</em></td><td>)</td>
           <td></td>
         </tr>
@@ -607,7 +641,7 @@ Funzioni</h2></td></tr>
 <p>La funzione <a class="el" href="utenti_8c.html#a84eaff176b61eeb1ab0908897d4f3cc6">autenticazione()</a> permette di effettuare l'autenticazione di un utente.</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">password</td><td>Password dell'utente da identificare. </td></tr>
+    <tr><td class="paramname">u</td><td>struct dove vengono memorizzati i dati dell'utente auteticato </td></tr>
   </table>
   </dd>
 </dl>
@@ -736,7 +770,7 @@ Funzioni</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="structutente.html">utente</a>* genera_n_utenti </td>
+          <td class="memname"><a class="el" href="utenti_8h.html#a098b3689b75e144d9294adc436d4f04f">utente</a>* genera_n_utenti </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>n</em></td><td>)</td>
@@ -799,12 +833,6 @@ Funzioni</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>La funzione genera_password(int livello_sicurezza) permette la generazione di una password con livello di sicurezza pari a quello inserito.</p>
-<dl class="params"><dt>Parametri</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">livello_sicurezza</td><td>Livello di sicurezza della password da generare. </td></tr>
-  </table>
-  </dd>
-</dl>
 <dl class="section return"><dt>Restituisce</dt><dd>Stringa corrispondente alla password generata.</dd></dl>
 <p>Funzione genera_password ():</p>
 <p>La funzione permette la crezione randomica di una password.</p>
@@ -821,7 +849,7 @@ Funzioni</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="structutente.html">utente</a> genera_utente </td>
+          <td class="memname"><a class="el" href="utenti_8h.html#a098b3689b75e144d9294adc436d4f04f">utente</a> genera_utente </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -976,7 +1004,7 @@ Funzioni</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="structutente.html">utente</a> input_utente </td>
+          <td class="memname"><a class="el" href="utenti_8h.html#a098b3689b75e144d9294adc436d4f04f">utente</a> input_utente </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -1001,7 +1029,7 @@ Funzioni</h2></td></tr>
         <tr>
           <td class="memname">void modifica_preferenze </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structutente.html">utente</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="utenti_8h.html#a098b3689b75e144d9294adc436d4f04f">utente</a> *&#160;</td>
           <td class="paramname"><em>u</em></td><td>)</td>
           <td></td>
         </tr>
@@ -1030,7 +1058,7 @@ Funzioni</h2></td></tr>
         <tr>
           <td class="memname">int output_preferenze </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="structutente.html">utente</a>&#160;</td>
+          <td class="paramtype">const <a class="el" href="utenti_8h.html#a098b3689b75e144d9294adc436d4f04f">utente</a>&#160;</td>
           <td class="paramname"><em>u</em></td><td>)</td>
           <td></td>
         </tr>
@@ -1061,7 +1089,7 @@ Funzioni</h2></td></tr>
         <tr>
           <td class="memname">void output_utente </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="structutente.html">utente</a>&#160;</td>
+          <td class="paramtype">const <a class="el" href="utenti_8h.html#a098b3689b75e144d9294adc436d4f04f">utente</a>&#160;</td>
           <td class="paramname"><em>u</em></td><td>)</td>
           <td></td>
         </tr>
@@ -1089,7 +1117,7 @@ Funzioni</h2></td></tr>
         <tr>
           <td class="memname">int salva_n_utenti </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structutente.html">utente</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="utenti_8h.html#a098b3689b75e144d9294adc436d4f04f">utente</a> *&#160;</td>
           <td class="paramname"><em>utenti</em>, </td>
         </tr>
         <tr>

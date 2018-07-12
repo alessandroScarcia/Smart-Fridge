@@ -1,6 +1,8 @@
 \hypertarget{calorie_8c}{}\section{Riferimenti per il file src/calorie.c}
 \label{calorie_8c}\index{src/calorie.\+c@{src/calorie.\+c}}
 {\ttfamily \#include \char`\"{}calorie.\+h\char`\"{}}\newline
+Grafo delle dipendenze di inclusione per calorie.\+c\+:
+% FIG 0
 \subsection*{Funzioni}
 \begin{DoxyCompactItemize}
 \item 
@@ -22,9 +24,9 @@ unsigned short \hyperlink{calorie_8c_adb87f48dc857b9c2aa92873005814c7d}{calcolo\
 \item 
 int \hyperlink{calorie_8c_aacf26004c17e4042071db3f0bc51727c}{modifica\+\_\+assunzione} ()
 \item 
-short int \hyperlink{calorie_8c_aa9581b3482b7025bf2a7b2fbd15f60e2}{ricerca\+\_\+assunzione\+\_\+database} (\hyperlink{structassunzione}{assunzione} $\ast$nuova\+\_\+assunzione, char nickname\mbox{[}$\,$\mbox{]})
+short int \hyperlink{calorie_8c_aa9581b3482b7025bf2a7b2fbd15f60e2}{ricerca\+\_\+assunzione\+\_\+database} (\hyperlink{calorie_8h_a45f20846bb3b7744013fa0667f22d0c3}{assunzione} $\ast$nuova\+\_\+assunzione, char nickname\mbox{[}$\,$\mbox{]})
 \item 
-int \hyperlink{calorie_8c_a1d6ede62ed123e9bec97f4b7941bffb4}{scrittura\+\_\+diretta\+\_\+assunzione} (\hyperlink{structassunzione}{assunzione} $\ast$\hyperlink{structcibo}{cibo}, char nickname\mbox{[}$\,$\mbox{]})
+int \hyperlink{calorie_8c_a1d6ede62ed123e9bec97f4b7941bffb4}{scrittura\+\_\+diretta\+\_\+assunzione} (\hyperlink{calorie_8h_a45f20846bb3b7744013fa0667f22d0c3}{assunzione} $\ast$\hyperlink{menu__settimanale_8h_ad59bf52977c02589a75aeab3b2358b68}{cibo}, char nickname\mbox{[}$\,$\mbox{]})
 \item 
 void \hyperlink{calorie_8c_a5749b56f193b104db97c500a51f4eb10}{istogrami} ()
 \end{DoxyCompactItemize}
@@ -195,7 +197,7 @@ Il valore restituito indica l\textquotesingle{}esito della funzione.
 \index{calorie.\+c@{calorie.\+c}!ricerca\+\_\+assunzione\+\_\+database@{ricerca\+\_\+assunzione\+\_\+database}}
 \index{ricerca\+\_\+assunzione\+\_\+database@{ricerca\+\_\+assunzione\+\_\+database}!calorie.\+c@{calorie.\+c}}
 \subsubsection{\texorpdfstring{ricerca\+\_\+assunzione\+\_\+database()}{ricerca\_assunzione\_database()}}
-{\footnotesize\ttfamily short int ricerca\+\_\+assunzione\+\_\+database (\begin{DoxyParamCaption}\item[{\hyperlink{structassunzione}{assunzione} $\ast$}]{nuova\+\_\+assunzione,  }\item[{char}]{nickname\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily short int ricerca\+\_\+assunzione\+\_\+database (\begin{DoxyParamCaption}\item[{\hyperlink{calorie_8h_a45f20846bb3b7744013fa0667f22d0c3}{assunzione} $\ast$}]{nuova\+\_\+assunzione,  }\item[{char}]{nickname\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
 
 Funzione ricerca\+\_\+assunzione\+\_\+database ()\+:
 
@@ -213,7 +215,7 @@ Il valore restituito indica l\textquotesingle{}esito della funzione o la posizio
 \index{calorie.\+c@{calorie.\+c}!scrittura\+\_\+diretta\+\_\+assunzione@{scrittura\+\_\+diretta\+\_\+assunzione}}
 \index{scrittura\+\_\+diretta\+\_\+assunzione@{scrittura\+\_\+diretta\+\_\+assunzione}!calorie.\+c@{calorie.\+c}}
 \subsubsection{\texorpdfstring{scrittura\+\_\+diretta\+\_\+assunzione()}{scrittura\_diretta\_assunzione()}}
-{\footnotesize\ttfamily int scrittura\+\_\+diretta\+\_\+assunzione (\begin{DoxyParamCaption}\item[{\hyperlink{structassunzione}{assunzione} $\ast$}]{cibo,  }\item[{char}]{nickname\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int scrittura\+\_\+diretta\+\_\+assunzione (\begin{DoxyParamCaption}\item[{\hyperlink{calorie_8h_a45f20846bb3b7744013fa0667f22d0c3}{assunzione} $\ast$}]{cibo,  }\item[{char}]{nickname\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
 
 Funzione scrittura\+\_\+diretta\+\_\+assunzione ()\+:
 

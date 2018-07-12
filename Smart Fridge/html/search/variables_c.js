@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['unita_5fmisura',['unita_misura',['../structingrediente.html#ab434c5cb78713bf062a8729071d3bc0d',1,'ingrediente']]]
+  ['tempo_5fpreparazione',['tempo_preparazione',['../structstruct__ricette.html#a67b3a81721f0518ade94750d8ac88552',1,'struct_ricette']]]
 ];

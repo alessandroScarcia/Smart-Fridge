@@ -72,8 +72,7 @@
  *  se si tratta di un alimento singolo, ad 1 se si tratta di una ricetta) e quantità.
  *
  */
-
-typedef struct {
+typedef struct struct_cibo{
 	char nome_cibo[LUNG_CIBO];
 	char quantita[LUNG_QUANTITA]; //quantità
 	short flag;
@@ -86,8 +85,7 @@ typedef struct {
  * E' basato su di una struct i cui membri sono: nome_pasto e alimento.
  * Alimento è un dato strutturato di tipo "cibo".
  */
-
-typedef struct {
+typedef struct struct_pasto {
 	char nome_pasto[LUNG_PASTO];
 	cibo cibi[NUM_CIBI];
 } pasto;
@@ -101,8 +99,7 @@ typedef struct {
  * Pasto è un dato strutturato di tipo "pasto".
  * kcal indica le kcal della giornata.
  */
-
-typedef struct {
+typedef struct struct_giorno{
 	int kcal;
 	char nome_giorno[LUNG_GIORNO];
 	pasto pasti[NUM_PASTI];
@@ -134,10 +131,11 @@ int inizializzazione (const char* nome_utente);
  * scegliendo tale nome sulla base della sua posizione nel vettore di struct a cui appartire.
  * Inoltre, imposta a zero le kcal della giornata.
  *
- * @param menu varibile da modificare, indice variabile per la scelta della modifica da effetuare
+ * @param giornata varibile da modificare
+ * @param num_giorno variabile per la scelta della modifica da effetuare
  * @return 0 se l'operazione va a buon fine
  */
-int inizializzazione_giorno (giorno* giornata, int indice);
+int inizializzazione_giorno (giorno* giornata, int num_giorno);
 
 /**
  * La funzione inizializzazione_pasti() riceve in ingresso un puntatore
@@ -145,10 +143,10 @@ int inizializzazione_giorno (giorno* giornata, int indice);
  * La funzione scorre nel vettore pasto e assegna ai suoi elementi, in base alla loro posizione nel vettore,
  *  il nome di un pasto, chiamando poi una funzione per l'inizializzazione dei singoli elementi appartenenti al pasto.
  *
- * @param menu varibile da modificare, num_pasto variabile per la scelta della modifica da effetuare
+ * @param menu varibile da modificare
  * @return 0 se l'operazione va a buon fine
  */
-int inizializzazione_pasti (giorno* giornata);
+int inizializzazione_pasti (giorno* menu);
 
 /**
  * La funzione inizializzazione_alimenti() riceve in ingresso un puntatore
@@ -156,7 +154,8 @@ int inizializzazione_pasti (giorno* giornata);
  * La funzione assegnerà alla variabile alimento, appartenente alla struct pasto, una stringa vuota al
  * nome_cibo, un flag impostato a -1 e una quantità pari a 0.
  *
- * @param menu varibile da modificare, num_pasto variabile per impostare l'indice della varaibile pasto.
+ * @param giornata varibile da modificare
+ * @param num_pasto variabile per impostare l'indice della varaibile pasto.
  * @return 0 se l'operazione va a buon fine
  */
 int inizializzazione_alimenti (giorno* giornata, short int num_pasto);
@@ -166,7 +165,8 @@ int inizializzazione_alimenti (giorno* giornata, short int num_pasto);
  * di dato strutturato di tipo "menu".
  * La funzione scriverà su un file, il cui nome sarà il nickname dell'utente, il vettore ricevuto in ingresso.
  *
- * @param vettore menu da scrivere su file.
+ * @param nome_utente nome da cui ricavare il nome file del menu personale
+ * @param menu da scrivere su file
  * @return 0 se l'operazione va a buon fine
  */
 int inizializzazione_file_menu (const char* nome_utente, giorno* menu );
@@ -178,7 +178,7 @@ int inizializzazione_file_menu (const char* nome_utente, giorno* menu );
  * al nome file che andrà ad aprire/creare.
  * La funzione stamperà su schermo il contenuto del fine.
  *
- * @param vettore nomefile per aprire il file.
+ * @param nome_utente per generare il nome del file del menu personale
  * @return 0 se l'operazione va a buon fine
  */
 int visualizza_database_menu (char nome_utente[]);
@@ -187,15 +187,14 @@ int visualizza_database_menu (char nome_utente[]);
  * La funzione esiste_menu() riceve in ingresso il nome dell'utente
  * La funzione verificherà l'esistenza del menu dell'utente il cui nome è passato in ingrsso
  *
- * @param nicknae per la generazione del nome file da controllare
+ * @param nome_utente per la generazione del nome file da controllare
  * @return 0 se il file non esiste, 1 se esiste, -1 se il nickname non è idoneo
  */
-int esiste_menu(char* nickname);
+int esiste_menu(char* nome_utente);
 
 /**
  * La funzione input_kcal_giornata() permette l'input delle kcal di una giornata.
  *
- * @param no
  * @return le kcal inserite dall'utente
  */
 int input_kcal_giornata();
@@ -203,7 +202,6 @@ int input_kcal_giornata();
 /**
  * La funzione input_numero_pasto() permette la selezione del pasto, ritornando tale valore.
  *
- * @param no
  * @return la selezione effettuata
  */
 int input_numero_pasto();
@@ -211,7 +209,6 @@ int input_numero_pasto();
 /**
  * La funzione input_numero_giorno() permette la selezione del giorno che si intende modificare.
  *
- * @param no
  * @return la selezione effettuata
  */
 int input_numero_giorno();
@@ -219,7 +216,6 @@ int input_numero_giorno();
 /**
  * La funzione input_nome_cibo() permette l'input da tastiera del nome del cibo da parte dell'utente.
  *
- * @param no
  * @return la stringa inserita da tastiera
  */
 char* input_nome_cibo();
@@ -227,7 +223,6 @@ char* input_nome_cibo();
 /**
  * La funzione input_quantita_cibo() permette l'input da tastiera della quantità del cibo, ritornando quest'ultima.
  *
- * @param no
  * @return la stringa inserita da tastiera
  */
 char* input_quantita_cibo();
@@ -235,7 +230,6 @@ char* input_quantita_cibo();
 /**
  * La funzione input_flag_cibo() permette l'input da tastiera del flag corrispondente alla ricetto o all'alimento.
  *
- * @param no
  * @return la stringa inserita da tastiera
  */
 int input_flag_cibo();
@@ -251,7 +245,6 @@ int input_flag_cibo();
  * ha scelto e menu ad un'altra funzione per procedere ad un ulteriore modifica sulla base della scelta effettuata.
  * Scriverà il nuovo menu su file e visualizzerà il contenuto dell'intero file su schermo con le modifiche effettuate.
  *
- * @param no
  * @return 0 se l'operazione va a buon fine
  */
 void modifica_menu();
@@ -262,7 +255,8 @@ void modifica_menu();
  * La funzione chiederà all'utente di scegliere quale degli alimenti modificare, per poi procedere all'inserimento da tastiera dei nuovi
  * valori con cui sostituire i valori attuali.
  *
- * @param menu su cui effettuare le modifiche.
+ * @param giornata su cui effettuare le modifiche.
+ * @param num_pasto per selezionare il pasto da modificare
  * @return 0 se l'operazione va a buon fine
  */
 void modifica_alimenti_pasto (giorno* giornata, short int num_pasto);
@@ -272,19 +266,28 @@ void modifica_alimenti_pasto (giorno* giornata, short int num_pasto);
  * al giorno della settimana.
  * La funzione estrarrà n-esimo elemento dal file, lo memorizzerà nella variabile di tipo giorno ricevuta in ingresso e terminerà la sua funzione.
  *
- * @param giornata su cui memorizzare la struct da estrarre da file, nome_utente per aprire il menu corrispondente a tale utente, num_giorno per estrarre n-esimo
- * elemento del file.
+ * @param giornata su cui memorizzare la struct da estrarre da file
+ * @param nome_utente per aprire il menu corrispondente a tale utente
+ * @param num_giorno per estrarre n-esimo elemento del file.
  * @return 0 se l'operazione va a buon fine
  */
 int estrai_giorno (giorno* giornata, char* nome_utente, int num_giorno);
 
 
+/**
+ * La funzione estrai_kcal_menu() si occupa dell'estrazione delle kcal della giornata il cui numero corrispondente è passato in ingresso.
+ *
+ * @param kcal su cui memorizzare le kcal estratte
+ * @param nome_utente per aprire il menu corrispondente a tale utente
+ * @param num_giorno per estrarre n-esimo elemento del file
+ * @return 0 se l'operazione va a buon fine
+ */
 int estrai_kcal_menu(int* kcal, char* nome_utente, int num_giorno);
 
 
 /**
  * La funzione stampa_menu() riceve in ingresso un dato strutturato di tipo giorno e lo stampa su schermo.
- * @param menu da stampare su schermo.
+ * @param giornata da stampare su schermo.
  * @return 0 se l'operazione va a buon fine
  */
 void stampa_giorno (giorno* giornata);
@@ -293,15 +296,28 @@ void stampa_giorno (giorno* giornata);
  * La procedura scrivi_menu() riceve in ingresso un dato strutturato di tipo giorno, il nome del file da aprire, la posizione dove andare a sovrascrivere.
  * Effettua una serie di concanetazioni per generare il nome del file su cui andare a scrivere basandosi sul nome utente passatogli, apre il file,
  * posizione il puntatore all'i-esima posizione e scrive in tale posizione il menu ricevuto in ingresso.
- * @param menu da scrivere su file, nome_utente da cui generare il nome del file su cui scrivere, i corrispondente alla posizione su cui scrivere nel file.
- *
+ * @param giornata da scrivere su file
+ * @param nome_utente da cui generare il nome del file su cui scrivere
+ * @param num_giorno corrispondente alla posizione su cui scrivere nel file.
+ * @return esisto della funzione
  */
-int scrivi_giorno (giorno* giornata, char* nome_utente, int i);
+int scrivi_giorno (giorno* giornata, char* nome_utente, int num_giorno);
 
 
-
+/**
+ * La funzione scrivi_menu() si occupa dell'eliminazione del file corrispodente al nome_file passato in ingresso
+ *
+ * @param nome_file da scrivere su file
+ * @return esisto della funzione
+ */
 int elimina_file_menu(char nome_file[LUNG_NOME_FILE_MENU]);
 
+
+/**
+ * La funzione gestore_visualizzazione_menu() si occupa della visualizzazione del menu
+ *
+ * @return esisto della funzione
+ */
 int gestore_visualizzazione_menu ();
 
 /**

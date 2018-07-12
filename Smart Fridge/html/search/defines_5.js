@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['inferiore',['INFERIORE',['../interfaccia_8h.html#a4990440f894717d34582d67d7c3018ed',1,'interfaccia.h']]],
-  ['interfaccia_5flib',['INTERFACCIA_LIB',['../interfaccia_8h.html#a6ac30e0f8fd65f06c0a0ada1e1a05551',1,'interfaccia.h']]]
+  ['kcal_5fmedie_5fgiornaliere',['KCAL_MEDIE_GIORNALIERE',['../calorie_8h.html#a6dc22caac0814a91c4f374f1a0ae5392',1,'calorie.h']]],
+  ['kg_5fto_5fg',['KG_TO_G',['../alimenti_8h.html#a6d71a065a31669e5a98e2625a583d92b',1,'alimenti.h']]]
 ];

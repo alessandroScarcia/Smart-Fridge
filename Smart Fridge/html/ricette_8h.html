@@ -66,6 +66,7 @@ $(function() {
   <div class="summary">
 <a href="#nested-classes">Strutture dati</a> &#124;
 <a href="#define-members">Definizioni</a> &#124;
+<a href="#typedef-members">Ridefinizioni di tipo (typedef)</a> &#124;
 <a href="#func-members">Funzioni</a>  </div>
   <div class="headertitle">
 <div class="title">Riferimenti per il file ricette.h</div>  </div>
@@ -74,17 +75,28 @@ $(function() {
 
 <p>Libreria per la gestione delle ricette.  
 <a href="#details">Continua...</a></p>
-<div class="textblock"><code>#include &quot;<a class="el" href="alimenti_8h_source.html">alimenti.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="consumi_8h_source.html">consumi.h</a>&quot;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="consumi_8h_source.html">consumi.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="alimenti_8h_source.html">alimenti.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="calorie_8h_source.html">calorie.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="utenti_8h_source.html">utenti.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="date_8h_source.html">date.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="pulizia__flussi_8h_source.html">pulizia_flussi.h</a>&quot;</code><br />
 <code>#include &lt;stdbool.h&gt;</code><br />
 <code>#include &lt;stdio.h&gt;</code><br />
 <code>#include &lt;stdlib.h&gt;</code><br />
 <code>#include &lt;time.h&gt;</code><br />
 <code>#include &lt;string.h&gt;</code><br />
 <code>#include &lt;ctype.h&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Grafo delle dipendenze di inclusione per ricette.h:</div>
+<div class="dyncontent">
+<div class="center"><img src="ricette_8h__incl.png" border="0" usemap="#src_2ricette_8h" alt=""/></div>
+<!-- MAP 0 -->
+</div>
+</div><div class="textblock"><div class="dynheader">
+Questo grafo mostra quali altri file includono direttamente o indirettamente questo file:</div>
+<div class="dyncontent">
+<div class="center"><img src="ricette_8h__dep__incl.png" border="0" usemap="#src_2ricette_8hdep" alt=""/></div>
+<!-- MAP 1 -->
+</div>
 </div>
 <p><a href="ricette_8h_source.html">Vai al codice sorgente di questo file.</a></p>
 <table class="memberdecls">
@@ -92,21 +104,20 @@ $(function() {
 Strutture dati</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structingrediente.html">ingrediente</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structricetta.html">ricetta</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structstruct__ricette.html">struct_ricette</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Definizioni</h2></td></tr>
-<tr class="memitem:a6aee8782685ed63783ca8f71a372bd3e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ricette_8h.html#a6aee8782685ed63783ca8f71a372bd3e">RICETTE_LIB</a></td></tr>
-<tr class="memdesc:a6aee8782685ed63783ca8f71a372bd3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inclusione delle librerie standard.  <a href="#a6aee8782685ed63783ca8f71a372bd3e">Continua...</a><br /></td></tr>
-<tr class="separator:a6aee8782685ed63783ca8f71a372bd3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a35ccef9eff6efbd8187c83e45458040d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ricette_8h.html#a35ccef9eff6efbd8187c83e45458040d">STD_LIB</a></td></tr>
+<tr class="memdesc:a35ccef9eff6efbd8187c83e45458040d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inclusione delle librerie standard.  <a href="#a35ccef9eff6efbd8187c83e45458040d">Continua...</a><br /></td></tr>
+<tr class="separator:a35ccef9eff6efbd8187c83e45458040d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3f71b4ea87bcf3feda424bc285bcef6a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ricette_8h.html#a3f71b4ea87bcf3feda424bc285bcef6a">STRING_LIB</a></td></tr>
 <tr class="memdesc:a3f71b4ea87bcf3feda424bc285bcef6a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inclusione delle librerie per la manipolazione di stringhe e caratteri.  <a href="#a3f71b4ea87bcf3feda424bc285bcef6a">Continua...</a><br /></td></tr>
 <tr class="separator:a3f71b4ea87bcf3feda424bc285bcef6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aacd065596f33b6510fa58f8ba4dea542"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ricette_8h.html#aacd065596f33b6510fa58f8ba4dea542">LUNG_NOME_RICETTA</a>&#160;&#160;&#160;21</td></tr>
-<tr class="memdesc:aacd065596f33b6510fa58f8ba4dea542"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inlusione della libreria per la gestione degli alimenti.  <a href="#aacd065596f33b6510fa58f8ba4dea542">Continua...</a><br /></td></tr>
 <tr class="separator:aacd065596f33b6510fa58f8ba4dea542"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4cfbc12da1c68bf747428d14ce5b1a24"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ricette_8h.html#a4cfbc12da1c68bf747428d14ce5b1a24">LUNG_INGREDIENTE</a>&#160;&#160;&#160;20</td></tr>
+<tr class="memitem:a4cfbc12da1c68bf747428d14ce5b1a24"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ricette_8h.html#a4cfbc12da1c68bf747428d14ce5b1a24">LUNG_INGREDIENTE</a>&#160;&#160;&#160;21</td></tr>
 <tr class="separator:a4cfbc12da1c68bf747428d14ce5b1a24"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a711f3911a37877bbfa09796364e391ab"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ricette_8h.html#a711f3911a37877bbfa09796364e391ab">LUNG_TEMPO_PREPARAZIONE</a>&#160;&#160;&#160;21</td></tr>
 <tr class="separator:a711f3911a37877bbfa09796364e391ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -118,6 +129,10 @@ Definizioni</h2></td></tr>
 <tr class="separator:a9a6006a14749ff4dd74910c60f3c0efc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a410f8ef3927dcc7cab8d3b5b97b82e9c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ricette_8h.html#a410f8ef3927dcc7cab8d3b5b97b82e9c">LUNG_STR_LAVORO_RIC</a>&#160;&#160;&#160;100</td></tr>
 <tr class="separator:a410f8ef3927dcc7cab8d3b5b97b82e9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e785f2d1bf6a16d97c0c9c2393c8545"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ricette_8h.html#a4e785f2d1bf6a16d97c0c9c2393c8545">LUNG_UNITA_INGR</a>&#160;&#160;&#160;6</td></tr>
+<tr class="separator:a4e785f2d1bf6a16d97c0c9c2393c8545"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aefa375406bc4dbb4c5e19b52ea58a29a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ricette_8h.html#aefa375406bc4dbb4c5e19b52ea58a29a">MAX_INGRD_SUGG</a>&#160;&#160;&#160;5</td></tr>
+<tr class="separator:aefa375406bc4dbb4c5e19b52ea58a29a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3f37fa2abc5ee352f9a922ef72b80116"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ricette_8h.html#a3f37fa2abc5ee352f9a922ef72b80116">MAX_INGREDIENTI</a>&#160;&#160;&#160;20</td></tr>
 <tr class="separator:a3f37fa2abc5ee352f9a922ef72b80116"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a860b572992bbe8ce25f974e06722d050"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ricette_8h.html#a860b572992bbe8ce25f974e06722d050">MAX_NUM_FASI</a>&#160;&#160;&#160;20</td></tr>
@@ -155,6 +170,13 @@ Definizioni</h2></td></tr>
 <tr class="memitem:a6284d381291203cd6e1aa8d2d91b0fd3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ricette_8h.html#a6284d381291203cd6e1aa8d2d91b0fd3">VISTA_MINIMIZZATA</a>&#160;&#160;&#160;1</td></tr>
 <tr class="separator:a6284d381291203cd6e1aa8d2d91b0fd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Ridefinizioni di tipo (typedef)</h2></td></tr>
+<tr class="memitem:a93d5ac4a952b1105703cf633362516c2"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structingrediente.html">ingrediente</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ricette_8h.html#a93d5ac4a952b1105703cf633362516c2">ingrediente</a></td></tr>
+<tr class="separator:a93d5ac4a952b1105703cf633362516c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae194550536a3ed1a726f2b8668663eaf"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structstruct__ricette.html">struct_ricette</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ricette_8h.html#ae194550536a3ed1a726f2b8668663eaf">ricetta</a></td></tr>
+<tr class="separator:ae194550536a3ed1a726f2b8668663eaf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Funzioni</h2></td></tr>
 <tr class="memitem:a91f5743050906045b86995dd852235a7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ricette_8h.html#a91f5743050906045b86995dd852235a7">esiste_ricetta</a> (char *nome_ricetta)</td></tr>
@@ -173,30 +195,30 @@ Funzioni</h2></td></tr>
 <tr class="separator:a902276b9eb7a94494faa65a44d707afa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad39adfc2461f28e268847f9af8313451"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ricette_8h.html#ad39adfc2461f28e268847f9af8313451">lettura_nuove_ricette</a> ()</td></tr>
 <tr class="separator:ad39adfc2461f28e268847f9af8313451"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac2eb4afe048ff50a49392017c8e81d54"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ricette_8h.html#ac2eb4afe048ff50a49392017c8e81d54">visualizza_ricetta</a> (<a class="el" href="structricetta.html">ricetta</a> dati_ricetta, int vista_ricetta)</td></tr>
+<tr class="memitem:ac2eb4afe048ff50a49392017c8e81d54"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ricette_8h.html#ac2eb4afe048ff50a49392017c8e81d54">visualizza_ricetta</a> (<a class="el" href="ricette_8h.html#ae194550536a3ed1a726f2b8668663eaf">ricetta</a> dati_ricetta, int vista_ricetta)</td></tr>
 <tr class="separator:ac2eb4afe048ff50a49392017c8e81d54"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4149df822177a13133bab226be9711f9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ricette_8h.html#a4149df822177a13133bab226be9711f9">visualizza_database_ricette</a> (int vista)</td></tr>
 <tr class="separator:a4149df822177a13133bab226be9711f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab4d271ff37e418aca05689f552b9d164"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ricette_8h.html#ab4d271ff37e418aca05689f552b9d164">aggiorna_database_ricette</a> (<a class="el" href="structricetta.html">ricetta</a> nuova_ricetta)</td></tr>
+<tr class="memitem:ab4d271ff37e418aca05689f552b9d164"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ricette_8h.html#ab4d271ff37e418aca05689f552b9d164">aggiorna_database_ricette</a> (<a class="el" href="ricette_8h.html#ae194550536a3ed1a726f2b8668663eaf">ricetta</a> nuova_ricetta)</td></tr>
 <tr class="separator:ab4d271ff37e418aca05689f552b9d164"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a77953d2180ea32dc11b099d493bf46ff"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ricette_8h.html#a77953d2180ea32dc11b099d493bf46ff">elimina_ricetta</a> ()</td></tr>
 <tr class="separator:a77953d2180ea32dc11b099d493bf46ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:add2568bec3431612ac1f207b303f6be2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ricette_8h.html#add2568bec3431612ac1f207b303f6be2">suggerimento_ricetta_automatico</a> ()</td></tr>
 <tr class="separator:add2568bec3431612ac1f207b303f6be2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae148ce73d22fb04ab30a4ca18bd09458"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ricette_8h.html#ae148ce73d22fb04ab30a4ca18bd09458">suggerimento_ricetta_manuale</a> (int num_alimenti, char nome_alimenti[MAX_ALIM_SUGG][LUNG_NOME_ALIMENTO])</td></tr>
-<tr class="separator:ae148ce73d22fb04ab30a4ca18bd09458"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa33e65064c109879b58f97fcfb1bfe6a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ricette_8h.html#aa33e65064c109879b58f97fcfb1bfe6a">ordina_ricette_kcal</a> (<a class="el" href="structricetta.html">ricetta</a> *ricette_database, int num_ricette)</td></tr>
+<tr class="memitem:af12044ca527f78ceb9a1411ee5195ce8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ricette_8h.html#af12044ca527f78ceb9a1411ee5195ce8">suggerimento_ricetta_manuale</a> (int num_alimenti_sugg, char nome_ingredienti[<a class="el" href="ricette_8h.html#aefa375406bc4dbb4c5e19b52ea58a29a">MAX_INGRD_SUGG</a>][<a class="el" href="ricette_8h.html#a4cfbc12da1c68bf747428d14ce5b1a24">LUNG_INGREDIENTE</a>])</td></tr>
+<tr class="separator:af12044ca527f78ceb9a1411ee5195ce8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa33e65064c109879b58f97fcfb1bfe6a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ricette_8h.html#aa33e65064c109879b58f97fcfb1bfe6a">ordina_ricette_kcal</a> (<a class="el" href="ricette_8h.html#ae194550536a3ed1a726f2b8668663eaf">ricetta</a> *ricette_database, int num_ricette)</td></tr>
 <tr class="separator:aa33e65064c109879b58f97fcfb1bfe6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac421bea1de8d985331add3988824d1ef"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ricette_8h.html#ac421bea1de8d985331add3988824d1ef">inizializza_ricette_preparabili</a> (int num_ricette, char *ricette_preparabili[num_ricette])</td></tr>
 <tr class="separator:ac421bea1de8d985331add3988824d1ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a34b53ba22d2a49e5ef3f0a1ddb8e1fb2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ricette_8h.html#a34b53ba22d2a49e5ef3f0a1ddb8e1fb2">conta_ricette_database</a> ()</td></tr>
 <tr class="separator:a34b53ba22d2a49e5ef3f0a1ddb8e1fb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8e6cf451a1370431785a6f966e1ec7e0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ricette_8h.html#a8e6cf451a1370431785a6f966e1ec7e0">lettura_database_ricette</a> (<a class="el" href="structricetta.html">ricetta</a> *ricette_database)</td></tr>
+<tr class="memitem:a8e6cf451a1370431785a6f966e1ec7e0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ricette_8h.html#a8e6cf451a1370431785a6f966e1ec7e0">lettura_database_ricette</a> (<a class="el" href="ricette_8h.html#ae194550536a3ed1a726f2b8668663eaf">ricetta</a> *ricette_database)</td></tr>
 <tr class="separator:a8e6cf451a1370431785a6f966e1ec7e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a93fc79e3549c9535ce3f0552f76d60df"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ricette_8h.html#a93fc79e3549c9535ce3f0552f76d60df">ricette_alimenti_in_scadenza</a> (alimento_frigo *alimenti_frigo, int num_alimenti)</td></tr>
-<tr class="separator:a93fc79e3549c9535ce3f0552f76d60df"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6567248b014061541f063ea8efb0112e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ricette_8h.html#a6567248b014061541f063ea8efb0112e">inserimento_manuale_ingredienti</a> (char nome_alimenti[MAX_ALIM_SUGG][LUNG_NOME_ALIMENTO])</td></tr>
-<tr class="separator:a6567248b014061541f063ea8efb0112e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e95fa1024e80d5d83beb3d4c311b04c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ricette_8h.html#a1e95fa1024e80d5d83beb3d4c311b04c">ricette_alimenti_in_scadenza</a> ()</td></tr>
+<tr class="separator:a1e95fa1024e80d5d83beb3d4c311b04c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a816a2d62468ea9df6862d6dffa718f2c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ricette_8h.html#a816a2d62468ea9df6862d6dffa718f2c">inserimento_manuale_ingredienti</a> (char nome_ingredienti[<a class="el" href="ricette_8h.html#aefa375406bc4dbb4c5e19b52ea58a29a">MAX_INGRD_SUGG</a>][<a class="el" href="ricette_8h.html#a4cfbc12da1c68bf747428d14ce5b1a24">LUNG_INGREDIENTE</a>])</td></tr>
+<tr class="separator:a816a2d62468ea9df6862d6dffa718f2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a54a0967bab4f2d4810dd4652f90dab0d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ricette_8h.html#a54a0967bab4f2d4810dd4652f90dab0d">modifica_ricetta</a> ()</td></tr>
 <tr class="separator:a54a0967bab4f2d4810dd4652f90dab0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a11c21f5c5b20c4f40d3a6585c1c1d937"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ricette_8h.html#a11c21f5c5b20c4f40d3a6585c1c1d937">input_dosi_ricetta</a> ()</td></tr>
@@ -296,7 +318,7 @@ Funzioni</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define LUNG_INGREDIENTE&#160;&#160;&#160;20</td>
+          <td class="memname">#define LUNG_INGREDIENTE&#160;&#160;&#160;21</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -314,9 +336,6 @@ Funzioni</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Inlusione della libreria per la gestione degli alimenti. </p>
-<p>Inclusione della libreria per la gestione dei consumi Inclusione della libreria per la pulizia dei flussi di input. </p>
 
 </div>
 </div>
@@ -376,6 +395,20 @@ Funzioni</h2></td></tr>
 
 </div>
 </div>
+<a id="a4e785f2d1bf6a16d97c0c9c2393c8545"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e785f2d1bf6a16d97c0c9c2393c8545">&#9670;&nbsp;</a></span>LUNG_UNITA_INGR</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define LUNG_UNITA_INGR&#160;&#160;&#160;6</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a88eed168671edfd35b418e808d1c601a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a88eed168671edfd35b418e808d1c601a">&#9670;&nbsp;</a></span>MAX_DOSI</h2>
 
@@ -384,6 +417,20 @@ Funzioni</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">#define MAX_DOSI&#160;&#160;&#160;20</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aefa375406bc4dbb4c5e19b52ea58a29a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aefa375406bc4dbb4c5e19b52ea58a29a">&#9670;&nbsp;</a></span>MAX_INGRD_SUGG</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX_INGRD_SUGG&#160;&#160;&#160;5</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -530,22 +577,6 @@ Funzioni</h2></td></tr>
 
 </div>
 </div>
-<a id="a6aee8782685ed63783ca8f71a372bd3e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6aee8782685ed63783ca8f71a372bd3e">&#9670;&nbsp;</a></span>RICETTE_LIB</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define RICETTE_LIB</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Inclusione delle librerie standard. </p>
-
-</div>
-</div>
 <a id="a263f258d0a8cf5629f67a538c2783b26"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a263f258d0a8cf5629f67a538c2783b26">&#9670;&nbsp;</a></span>SEQUENZA_DELIMITATORI</h2>
 
@@ -557,6 +588,22 @@ Funzioni</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<a id="a35ccef9eff6efbd8187c83e45458040d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a35ccef9eff6efbd8187c83e45458040d">&#9670;&nbsp;</a></span>STD_LIB</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define STD_LIB</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Inclusione delle librerie standard. </p>
 
 </div>
 </div>
@@ -604,6 +651,37 @@ Funzioni</h2></td></tr>
 
 </div>
 </div>
+<h2 class="groupheader">Documentazione delle ridefinizioni di tipo (typedef)</h2>
+<a id="a93d5ac4a952b1105703cf633362516c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a93d5ac4a952b1105703cf633362516c2">&#9670;&nbsp;</a></span>ingrediente</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structingrediente.html">ingrediente</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Il tipo di dato "ingrediente" è stato definito per memorizzare le caratteristiche di un ingrediente E' basato su di una struct i cui membri sono: nome, quantita, unita_misura ; </p>
+
+</div>
+</div>
+<a id="ae194550536a3ed1a726f2b8668663eaf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae194550536a3ed1a726f2b8668663eaf">&#9670;&nbsp;</a></span>ricetta</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="ricette_8h.html#ae194550536a3ed1a726f2b8668663eaf">ricetta</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Il tipo di dato "ricette" è stato definito per memorizzare le caratteristiche di una ricetta E' basato su di una struct i cui membri sono: nome_ricetta, ingredienti, tempo_preparazione, preparazione, complessita, kcal_ricetta e dosi. </p>
+
+</div>
+</div>
 <h2 class="groupheader">Documentazione delle funzioni</h2>
 <a id="ab4d271ff37e418aca05689f552b9d164"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab4d271ff37e418aca05689f552b9d164">&#9670;&nbsp;</a></span>aggiorna_database_ricette()</h2>
@@ -614,7 +692,7 @@ Funzioni</h2></td></tr>
         <tr>
           <td class="memname">int aggiorna_database_ricette </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structricetta.html">ricetta</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="ricette_8h.html#ae194550536a3ed1a726f2b8668663eaf">ricetta</a>&#160;</td>
           <td class="paramname"><em>nuova_ricetta</em></td><td>)</td>
           <td></td>
         </tr>
@@ -668,6 +746,8 @@ Funzioni</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Funzione che si occupa di controllare quali delle ricette del database hanno gli ingredienti corrispondenti a il contenuto del frigo, calcolando perciò il numero delle ricette trovate.</p>
+<dl class="section return"><dt>Restituisce</dt><dd>num_ricette_preparabili ovvero il numero delle ricette preparabili</dd></dl>
 <p>Funzione che si occupa di contare le ricette salvate nel database che possono risultare preparabili.</p>
 <p>La funzione serve principalmente per creare una struct(utilizzata esternamente)su misura che conterrá le ricette che si possono preparare in base agli ingredienti a disposizione. Qualora siano presenti ricette all'interno del database viene effettuato un confronto tra gli ingredienti delle ricette e gli alimenti presenti nel frigo. Nel momento in cui gli ingredienti di una ricetta risultano presenti e disponibili all'interno del frigo, quella ricetta risulta candidata per essere preparata e pertanto viene incrementato il contatore delle ricette preparabili</p>
 <dl class="section pre"><dt>Precondizione</dt><dd>Nessuna particolare pre condizione </dd></dl>
@@ -749,6 +829,16 @@ Funzioni</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Funzione che si occupa di estrarre le kcal della ricetta con nome corrispondente passato in ingresso, scrivendo quest'ultime nella variabili a cui punta il puntatore kcal passato in ingresso insieme alle dosi a cui corrispondono le kcal, che verranno inserite nella variabili a cui punta il puntatore dosi.</p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nome_ricetta</td><td>nome della ricetta da cui verranno estratte kcal e dosi per tali kcal </td></tr>
+    <tr><td class="paramname">kcal</td><td>puntatore alla variabile dove verranno scritte le kcal estratte </td></tr>
+    <tr><td class="paramname">dosi</td><td>puntatore alla variabile dove verranno scritte le dosi per le kcal estratte </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Restituisce</dt><dd>0 se la ricetta e/o il file non esiste, 1 se è riuscito a reperire le informazioni richieste</dd></dl>
 <p>Funzione che si occupa di memorizzare le kcal e le dosi di una ricetta conosciuta.</p>
 <p>All'interno della funzione é stato previsto di scorrere il database delle ricette per trovare la ricetta da cui estrarre le informazioni richieste</p>
 <dl class="section pre"><dt>Precondizione</dt><dd>Il nome della ricetta deve possedere almeno un carattere </dd></dl>
@@ -784,8 +874,8 @@ Funzioni</h2></td></tr>
 <p>Funzione che si occupa di estrarre gli ingredienti di una determinata ricetta.</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">nome_ricetta</td><td></td></tr>
-    <tr><td class="paramname">ingredienti</td><td></td></tr>
+    <tr><td class="paramname">nome_ricetta</td><td>nome della ricetta da cui verranno estratti gli ingredienti </td></tr>
+    <tr><td class="paramname">ingredienti</td><td>puntatore al primo elemento del vettore che conterrà gli ingredienti estratti </td></tr>
   </table>
   </dd>
 </dl>
@@ -811,6 +901,7 @@ Funzioni</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Procedura che si occupa di verificare se l'utente vuole inserire il cosumo della ricetta nel proprio file assunzioni o se preferisce preparare la ricetta in anonimo. Inoltre, suggerite le ricerte preprabili, l'utente inserirà il nome della ricetta che vuole preprara, verificata la fattibilità di quest'ultima verrà registrata tra le assunzioni dell'autente auteticato, se quest'ultimo non avrà preferito il consumo in forma anonima.</p>
 <p>Funzione che si occupa della memorizzazione di una ricetta tra le assunzioni di uno specifico utente oppure della preparazione anonima di una ricetta</p>
 <p>Per gestione della preparazione di una ricetta si intende la possibilitá di permettere all'utente di memorizzare una ricetta che vuole preparare tra le assunzioni giornaliere. In questa maniera si permette di tenere traccia delle proprie calorie anche attraverso il consumo di un alimento piú complesso che in questo caso puó risultare come ricetta. Ovviamente per poter memorizzare tale assunzione(se possbile prepararla in base alla disponibilitá degli ingredienti) occorre effettuare l'operazione di autenticazione e richiedere le dosi da riservare per quella ricetta. Qualora sia possibile o meno preparare una ricetta viene richiesto se si vuole rieffettuare l'operazione di preparazione.</p>
 <p>Nell'ipotesi in cui l'utente non voglia memorizzare la ricetta tra le proprie assunzioni puó effettuare la preparazione della ricetta in maniera del tutto anonima</p>
@@ -916,6 +1007,8 @@ Funzioni</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>funzione che si occupa dell'inserimento di un id positivo di una ricetta</p>
+<dl class="section return"><dt>Restituisce</dt><dd>id preso in input</dd></dl>
 <p>Funzione che si occupa di ricevere in input il l'id della ricetta</p>
 <dl class="section pre"><dt>Precondizione</dt><dd>L'id massimo deve essere positivo </dd></dl>
 <dl class="section post"><dt>Postcondizione</dt><dd>Deve essere restituito un id &gt;=0 </dd></dl>
@@ -1011,8 +1104,8 @@ Funzioni</h2></td></tr>
 
 </div>
 </div>
-<a id="a6567248b014061541f063ea8efb0112e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6567248b014061541f063ea8efb0112e">&#9670;&nbsp;</a></span>inserimento_manuale_ingredienti()</h2>
+<a id="a816a2d62468ea9df6862d6dffa718f2c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a816a2d62468ea9df6862d6dffa718f2c">&#9670;&nbsp;</a></span>inserimento_manuale_ingredienti()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1021,7 +1114,7 @@ Funzioni</h2></td></tr>
           <td class="memname">int inserimento_manuale_ingredienti </td>
           <td>(</td>
           <td class="paramtype">char&#160;</td>
-          <td class="paramname"><em>nome_ingredienti</em>[MAX_ALIM_SUGG][LUNG_NOME_ALIMENTO]</td><td>)</td>
+          <td class="paramname"><em>nome_ingredienti</em>[MAX_INGRD_SUGG][LUNG_INGREDIENTE]</td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -1029,7 +1122,7 @@ Funzioni</h2></td></tr>
 <p>funzione che serve ad inserire manualmente gli ingredienti da usare come paroli chiave per la ricerca di ricette che possiedono tali ingredienti</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">nome_alimenti</td><td>matrice che conterrá i nomi degli ingredienti su cui effettuare la ricerca della ricetta </td></tr>
+    <tr><td class="paramname">nome_ingredienti</td><td>matrice che conterrá i nomi degli ingredienti su cui effettuare la ricerca della ricetta </td></tr>
   </table>
   </dd>
 </dl>
@@ -1100,7 +1193,7 @@ tok se l'estrazione ha avuto successo(il token sarebbe il valore)</dd></dl>
         <tr>
           <td class="memname">int lettura_database_ricette </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structricetta.html">ricetta</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="ricette_8h.html#ae194550536a3ed1a726f2b8668663eaf">ricetta</a> *&#160;</td>
           <td class="paramname"><em>ricette_database</em></td><td>)</td>
           <td></td>
         </tr>
@@ -1170,7 +1263,7 @@ tok se l'estrazione ha avuto successo(il token sarebbe il valore)</dd></dl>
         <tr>
           <td class="memname">int ordina_ricette_kcal </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structricetta.html">ricetta</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="ricette_8h.html#ae194550536a3ed1a726f2b8668663eaf">ricetta</a> *&#160;</td>
           <td class="paramname"><em>ricette_database</em>, </td>
         </tr>
         <tr>
@@ -1225,6 +1318,10 @@ tok se l'estrazione ha avuto successo(il token sarebbe il valore)</dd></dl>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Funzione che si occupa di ridurre le quantita degli alimenti prensenti nel frigo che vengono usati come ingredienti della ricetta il quale nome e dosi vengono passate in ingresso alla funzione.</p>
+<dl class="section return"><dt>Restituisce</dt><dd>0 se la ricetta non viene viene trovata, i file non viene trovato o gli ingredienti non bastano per la preparazione della ricetta </dd>
+<dd>
+1 se vengono registrati i consumi correttamente</dd></dl>
 <p>Funzione che effettua la riduzione automatica degli alimenti del frigo che risultano essere ingredienti di una ricetta.</p>
 <p>Tale funzione occupandosi della riduzione automatica degli alimenti in base al nome della ricetta che passiamo come parametro, si avvale di un'altra funzione(presente in alimenti ) chiamata riduci alimento, a cui viene passato il nome dell'ingrediente e la relativa quantitá da ridurre per la preparazione. Ovviamente la preparazione della ricetta viene fatta tenendo conto anche delle dosi che l'utente ha inserito per la preparazione (anche esso passato come parametro di ingresso alla funzione). Qualora sia possibile estrarre e di conseguenza effettuare la riduzione di tutti gli ingredienti la ricetta puó essere memorizzata tra i consumi globali.</p>
 <dl class="section pre"><dt>Precondizione</dt><dd>Il nome della ricetta (sebbene sia presente il controllo) non deve essere una stringa vuota e le dosi devono avere un valore significativo </dd></dl>
@@ -1232,8 +1329,8 @@ tok se l'estrazione ha avuto successo(il token sarebbe il valore)</dd></dl>
 
 </div>
 </div>
-<a id="a93fc79e3549c9535ce3f0552f76d60df"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a93fc79e3549c9535ce3f0552f76d60df">&#9670;&nbsp;</a></span>ricette_alimenti_in_scadenza()</h2>
+<a id="a1e95fa1024e80d5d83beb3d4c311b04c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e95fa1024e80d5d83beb3d4c311b04c">&#9670;&nbsp;</a></span>ricette_alimenti_in_scadenza()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1241,30 +1338,12 @@ tok se l'estrazione ha avuto successo(il token sarebbe il valore)</dd></dl>
         <tr>
           <td class="memname">int ricette_alimenti_in_scadenza </td>
           <td>(</td>
-          <td class="paramtype">alimento_frigo *&#160;</td>
-          <td class="paramname"><em>alimenti_frigo</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>num_alimenti</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 <p>funzione di ricerca ricette, ottimizzata per gli alimenti che stanno per scadere all'interno del frigo</p>
-<dl class="params"><dt>Parametri</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">alimenti_frigo</td><td>elenco degli alimenti del frigo(ordinati per scadenza) su cui effettuare la ricerca della ricetta </td></tr>
-    <tr><td class="paramname">num_alimenti</td><td>numero di alimenti presenti nel frigo </td></tr>
-  </table>
-  </dd>
-</dl>
 <dl class="section return"><dt>Restituisce</dt><dd>1 in caso di successo</dd></dl>
 <p>In questa funzione viene passata la lista degli alimenti attualmente nel frigo con il relativo numero e una matrice che rappresenta il nome degli alimenti che stanno per scadere. Una volta chiamata la funzione che si occupa del riordinamento degli alimenti in base alla scadenza vengono memorizzati i primi 2 alimenti che stanno per scadere all'interno di una matrice di tipo char. In seguito viene fatto un richiamo alla funzione che suggerisce le ricette in base agli alimenti che gli si passano. In questa maniera avremo la lista delle ricette che possiamo preparare con gli alimenti in scadenza </p><dl class="section pre"><dt>Precondizione</dt><dd>La listadegli alimenti deve possedere almeno un alimento e il numero di alimenti deve essere un valore significativo </dd></dl>
 <dl class="section post"><dt>Postcondizione</dt><dd>Deve essere terminata con successo la ricerca </dd></dl>
@@ -1286,21 +1365,14 @@ tok se l'estrazione ha avuto successo(il token sarebbe il valore)</dd></dl>
       </table>
 </div><div class="memdoc">
 <p>La funzione suggerirá le ricette che si possono effettuare con gli ingredienti a disposizione nel frigo</p>
-<dl class="params"><dt>Parametri</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">alimenti_frigo</td><td>Elenco degli alimenti del frigo su cui effettuare la ricerca della ricetta </td></tr>
-    <tr><td class="paramname">num_alimenti</td><td>numero degli alimenti presenti nel frigo </td></tr>
-  </table>
-  </dd>
-</dl>
 <dl class="section return"><dt>Restituisce</dt><dd>1 in caso di successo nella visualizzazione di un suggerimento</dd></dl>
 <p>La funzione suggerimento_ricetta_automatica avendo in ingresso gli alimenti del frigo e il numero di tali alimenti fornisce il nome delle ricette che si possono preparare con tali ingredienti. La funzione e' composta da un ciclo piú esterno che scandisce le vare ricette presenti ne database, e 2 cicli piú interni che si occupano di scandire di volta gli alimenti presenti nel frigo con quelli che possiede ogni ricetta. Nel caso in cui l'ingrediente di una ricetta sia presente bisogna controllare se la quatitá dell'alimento a disposizione sia sufficiente. Il controllo viene effettuato pertanto anche qualora vi sia piú di una occorrenza di uno stesso alimento. A tal proposito sappiamo che stessi alimenti con diversa scadenza sono memorizzati su record diversi. In questo caso devo sommare le quantitá degli alimenti con stesso nome ESEMPIO: ho 2 uova che scadono x/xx/xxxx e 2 uova che scadono yy/yy/yyyy. Voglio preparare la torta di mele che ne richiede 4. Posso prepararla perche' ho 4 uova a disposizione complessivamente. Al termine del controllo sulle ricette vengono stampate a schermo quelle preparabili passato qualora ce ne fossero o un messaggio di avvertenza che segnala che non esistono ricette con la combinazione di ingredienti fornita in input </p><dl class="section pre"><dt>Precondizione</dt><dd>Deve essere passato almeno un alimento e quindi il numero di alimenti deve essere anch'esso un valore significativo </dd></dl>
 <dl class="section post"><dt>Postcondizione</dt><dd>Deve essere stato mostrato un messaggio in base all'esito della ricerca </dd></dl>
 
 </div>
 </div>
-<a id="ae148ce73d22fb04ab30a4ca18bd09458"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae148ce73d22fb04ab30a4ca18bd09458">&#9670;&nbsp;</a></span>suggerimento_ricetta_manuale()</h2>
+<a id="af12044ca527f78ceb9a1411ee5195ce8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af12044ca527f78ceb9a1411ee5195ce8">&#9670;&nbsp;</a></span>suggerimento_ricetta_manuale()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1315,7 +1387,7 @@ tok se l'estrazione ha avuto successo(il token sarebbe il valore)</dd></dl>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">char&#160;</td>
-          <td class="paramname"><em>nome_ingredienti</em>[MAX_ALIM_SUGG][LUNG_NOME_ALIMENTO]&#160;</td>
+          <td class="paramname"><em>nome_ingredienti</em>[MAX_INGRD_SUGG][LUNG_INGREDIENTE]&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1327,8 +1399,8 @@ tok se l'estrazione ha avuto successo(il token sarebbe il valore)</dd></dl>
 <p>Suggerisce le ricette che si possono fare con gli alimenti inseriti manualmente dall'utente</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">num_alimenti</td><td>numero di ingredienti su cui effettuare la ricerca </td></tr>
-    <tr><td class="paramname">nome_alimenti</td><td>nome degli alimenti su cui effettuare a ricerca della ricetta </td></tr>
+    <tr><td class="paramname">num_alimenti_sugg</td><td>numero di ingredienti su cui effettuare la ricerca </td></tr>
+    <tr><td class="paramname">nome_ingredienti</td><td>nome degli alimenti su cui effettuare a ricerca della ricetta </td></tr>
   </table>
   </dd>
 </dl>
@@ -1357,9 +1429,7 @@ tok se l'estrazione ha avuto successo(il token sarebbe il valore)</dd></dl>
 <p>permette la visualizzazione del database o di una singola ricetta in base all'id che passiamo. Inoltre possiamo decidere in che modalitá vedere i dati(0&ndash;&gt;totale, 1&ndash;&gt;minimizzata)</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">nome_ricetta</td><td>nome della ricetta da visualizzare in caso possieda un valore. In caso sia una stringa vuota viene mostrato l'intero database </td></tr>
-    <tr><td class="paramname">id_ricetta_pers</td><td>id che viene mostrato a schermo a seguito di una ricerca o altre operazioni </td></tr>
-    <tr><td class="paramname">vista</td><td>flag che in base ad un controllo permette di visualizzare tutti i dati della ricetta o solo quelli principali </td></tr>
+    <tr><td class="paramname">vista</td><td>flag che indica se la visualizzazione delle ricette deve essere ridotta o meno </td></tr>
   </table>
   </dd>
 </dl>
@@ -1378,7 +1448,7 @@ tok se l'estrazione ha avuto successo(il token sarebbe il valore)</dd></dl>
         <tr>
           <td class="memname">int visualizza_ricetta </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structricetta.html">ricetta</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="ricette_8h.html#ae194550536a3ed1a726f2b8668663eaf">ricetta</a>&#160;</td>
           <td class="paramname"><em>dati_ricette</em>, </td>
         </tr>
         <tr>

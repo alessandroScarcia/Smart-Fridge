@@ -1,10 +1,12 @@
 \hypertarget{alimenti_8c}{}\section{Riferimenti per il file src/alimenti.c}
 \label{alimenti_8c}\index{src/alimenti.\+c@{src/alimenti.\+c}}
 {\ttfamily \#include \char`\"{}alimenti.\+h\char`\"{}}\newline
+Grafo delle dipendenze di inclusione per alimenti.\+c\+:
+% FIG 0
 \subsection*{Funzioni}
 \begin{DoxyCompactItemize}
 \item 
-int \hyperlink{alimenti_8c_a76fba08fd840b7551099f78d86bdc2ba}{ordina\+\_\+alimenti\+\_\+scadenza} (alimento\+\_\+frigo $\ast$alimenti\+\_\+frigo, int num\+\_\+alimenti)
+int \hyperlink{alimenti_8c_a76fba08fd840b7551099f78d86bdc2ba}{ordina\+\_\+alimenti\+\_\+scadenza} (\hyperlink{alimenti_8h_a3b5bea5ca477b139eaa23e140a44b1ad}{alimento\+\_\+frigo} $\ast$alimenti\+\_\+frigo, int num\+\_\+alimenti)
 \item 
 int \hyperlink{alimenti_8c_a4a48140282564e569e63f28487280b22}{conta\+\_\+alimenti\+\_\+database} ()
 \item 
@@ -12,7 +14,7 @@ int \hyperlink{alimenti_8c_ac82ac376565079ae0b252f68b2319141}{conta\+\_\+aliment
 \item 
 int \hyperlink{alimenti_8c_ac1e62614a40a976a0ad88d6d6f2a378a}{conta\+\_\+alimenti\+\_\+scaduti} ()
 \item 
-int \hyperlink{alimenti_8c_a67bbe407f5fd6b977dcb6b79a7876706}{leggi\+\_\+database\+\_\+alimenti} (alimento\+\_\+database $\ast$lista\+\_\+alimenti)
+int \hyperlink{alimenti_8c_a67bbe407f5fd6b977dcb6b79a7876706}{leggi\+\_\+database\+\_\+alimenti} (\hyperlink{alimenti_8h_a1aedc7d578a0b290fdbbd4908eabf1a9}{alimento\+\_\+database} $\ast$lista\+\_\+alimenti)
 \item 
 int \hyperlink{alimenti_8c_a4e58155378ed579f3a7522f5cb1c4c2b}{eliminazione\+\_\+alimenti\+\_\+scaduti} ()
 \item 
@@ -22,19 +24,19 @@ int \hyperlink{alimenti_8c_acc15d64ef9844ae6864d294e56083aae}{controlla\+\_\+uni
 \item 
 int \hyperlink{alimenti_8c_a5179ebddb2472260a288b07b8cecd39d}{controlla\+\_\+quantita} (float quantita, char $\ast$unita\+\_\+misura)
 \item 
-int \hyperlink{alimenti_8c_ae26ffd217899b22dc2c6f852f39cd0ef}{controlla\+\_\+data\+\_\+scadenza} (\hyperlink{structdata}{data} scadenza)
+int \hyperlink{alimenti_8c_ae26ffd217899b22dc2c6f852f39cd0ef}{controlla\+\_\+data\+\_\+scadenza} (\hyperlink{date_8h_a511ae0b1c13f95e5f08f1a0dd3da3d93}{data} scadenza)
 \item 
 int \hyperlink{alimenti_8c_a169b1d39154c4ed8c8a22a994bceafe6}{converti\+\_\+quantita} (float $\ast$quantita, char $\ast$unita\+\_\+misura)
 \item 
 void \hyperlink{alimenti_8c_a16a5fc5fce56b19f1b10d024031dd8ec}{abbassa\+\_\+maiuscole} (char $\ast$s)
 \item 
-alimento\+\_\+frigo \hyperlink{alimenti_8c_a2116d71c41eefee79559a9c546be6001}{input\+\_\+alimento\+\_\+frigo} ()
+\hyperlink{alimenti_8h_a3b5bea5ca477b139eaa23e140a44b1ad}{alimento\+\_\+frigo} \hyperlink{alimenti_8c_a2116d71c41eefee79559a9c546be6001}{input\+\_\+alimento\+\_\+frigo} ()
 \item 
 void \hyperlink{alimenti_8c_a1ae2adf954807832704a0ac66fc3114e}{input\+\_\+unita\+\_\+misura} (char $\ast$unita\+\_\+misura)
 \item 
 float \hyperlink{alimenti_8c_a30d59e411dff5377698b27e2023332b2}{input\+\_\+quantita} (char $\ast$unita\+\_\+misura)
 \item 
-\hyperlink{structdata}{data} \hyperlink{alimenti_8c_a37711f116538cb8d2bb45055cc05cc03}{input\+\_\+data\+\_\+scadenza} ()
+\hyperlink{date_8h_a511ae0b1c13f95e5f08f1a0dd3da3d93}{data} \hyperlink{alimenti_8c_a37711f116538cb8d2bb45055cc05cc03}{input\+\_\+data\+\_\+scadenza} ()
 \item 
 int \hyperlink{alimenti_8c_a492d6cd6c4c6b199c70c477c50c0341f}{input\+\_\+kcal} (char $\ast$nome\+\_\+alimento, int campione\+\_\+kcal, char $\ast$unita\+\_\+misura)
 \item 
@@ -44,17 +46,17 @@ int \hyperlink{alimenti_8c_afccdebc24ed8c54e73079305e3adbf61}{calcola\+\_\+campi
 \item 
 float \hyperlink{alimenti_8c_a27d247abb28988b7f59e457175a960f0}{input\+\_\+soglia\+\_\+spesa} (char $\ast$nome\+\_\+alimento, char $\ast$unita\+\_\+misura)
 \item 
-int \hyperlink{alimenti_8c_a6f97038584db54035b56e78d47d59351}{ricerca\+\_\+alimento\+\_\+database} (char $\ast$nome\+\_\+alimento, alimento\+\_\+database $\ast$alimento\+\_\+estratto)
+int \hyperlink{alimenti_8c_a6f97038584db54035b56e78d47d59351}{ricerca\+\_\+alimento\+\_\+database} (char $\ast$nome\+\_\+alimento, \hyperlink{alimenti_8h_a1aedc7d578a0b290fdbbd4908eabf1a9}{alimento\+\_\+database} $\ast$alimento\+\_\+estratto)
 \item 
 int \hyperlink{alimenti_8c_aae5a3a70c8f5da92592d398e86eedb8d}{aggiorna\+\_\+database} (char $\ast$nome\+\_\+alimento, char $\ast$unita\+\_\+misura)
 \item 
-int \hyperlink{alimenti_8c_a837352026b4e0658a1c14a82a2576a3a}{aggiorna\+\_\+frigo} (alimento\+\_\+frigo alimento)
+int \hyperlink{alimenti_8c_a837352026b4e0658a1c14a82a2576a3a}{aggiorna\+\_\+frigo} (\hyperlink{alimenti_8h_a3b5bea5ca477b139eaa23e140a44b1ad}{alimento\+\_\+frigo} alimento)
 \item 
 int \hyperlink{alimenti_8c_a7c0fa2a8781ef98329c8ec90b786b32e}{visualizza\+\_\+database\+\_\+alimenti} ()
 \item 
 int \hyperlink{alimenti_8c_ae8e899f0e94ad5546a4deb9bb5ab7a5d}{visualizza\+\_\+frigo} ()
 \item 
-int \hyperlink{alimenti_8c_ab492c9e27379bb529f377cb4ebea2c4f}{leggi\+\_\+frigo} (alimento\+\_\+frigo $\ast$lista\+\_\+frigo)
+int \hyperlink{alimenti_8c_ab492c9e27379bb529f377cb4ebea2c4f}{leggi\+\_\+frigo} (\hyperlink{alimenti_8h_a3b5bea5ca477b139eaa23e140a44b1ad}{alimento\+\_\+frigo} $\ast$lista\+\_\+frigo)
 \item 
 int \hyperlink{alimenti_8c_a505c9890fb3657c8c6bd749fb0eacf2b}{carica\+\_\+spesa} ()
 \item 
@@ -109,7 +111,7 @@ Devono essere state memorizzate correttamente tutte le informazioni riguardanti 
 \index{alimenti.\+c@{alimenti.\+c}!aggiorna\+\_\+frigo@{aggiorna\+\_\+frigo}}
 \index{aggiorna\+\_\+frigo@{aggiorna\+\_\+frigo}!alimenti.\+c@{alimenti.\+c}}
 \subsubsection{\texorpdfstring{aggiorna\+\_\+frigo()}{aggiorna\_frigo()}}
-{\footnotesize\ttfamily int aggiorna\+\_\+frigo (\begin{DoxyParamCaption}\item[{alimento\+\_\+frigo}]{alimento }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int aggiorna\+\_\+frigo (\begin{DoxyParamCaption}\item[{\hyperlink{alimenti_8h_a3b5bea5ca477b139eaa23e140a44b1ad}{alimento\+\_\+frigo}}]{alimento }\end{DoxyParamCaption})}
 
 Funzione che si occupa di inserire nel file contente gli alimenti presenti nel frigo l\textquotesingle{}alimento(struct) che passiamo come parametro alla funzione. L\textquotesingle{}aggiornamento é stato pensato come il salvataggio di un alimento per riga del file. Ogni alimento é diverso dagli altri per nome e data di scadenza. Qualora venga caricato un alimento omonimo ad uno presente nel frigo viene fatto un controllo sulle scadenze. Se le scadenze sono uguali allora nel complesso il prodotto é uguale quindi viene solo incrementata la quantitá di tale alimento presente nel frigo. Nel caso in cui siamo a che fare con un alimento con nome diverso o con stesso nome ma con data di scadenza diversa, esso verrá salvato nella prima riga libera presente nel file.
 
@@ -211,7 +213,7 @@ Il valore restituito deve essere un intero significativo ($>$=0)
 \index{alimenti.\+c@{alimenti.\+c}!controlla\+\_\+data\+\_\+scadenza@{controlla\+\_\+data\+\_\+scadenza}}
 \index{controlla\+\_\+data\+\_\+scadenza@{controlla\+\_\+data\+\_\+scadenza}!alimenti.\+c@{alimenti.\+c}}
 \subsubsection{\texorpdfstring{controlla\+\_\+data\+\_\+scadenza()}{controlla\_data\_scadenza()}}
-{\footnotesize\ttfamily int controlla\+\_\+data\+\_\+scadenza (\begin{DoxyParamCaption}\item[{\hyperlink{structdata}{data}}]{scadenza }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int controlla\+\_\+data\+\_\+scadenza (\begin{DoxyParamCaption}\item[{\hyperlink{date_8h_a511ae0b1c13f95e5f08f1a0dd3da3d93}{data}}]{scadenza }\end{DoxyParamCaption})}
 
 Funzione che si occupa di controllare la data di scadenza rispetto la data odierna. Se la data di scadenza non e\textquotesingle{} valida viene restituito -\/1. In caso la data odierna sia antecedente viene restituito 1. Nel caso in cui la scadenza sia antecedente viene restituito 0
 
@@ -295,7 +297,7 @@ Deve essere stata effettuata con successo la riduzione ed eventualmente registra
 \index{alimenti.\+c@{alimenti.\+c}!input\+\_\+alimento\+\_\+frigo@{input\+\_\+alimento\+\_\+frigo}}
 \index{input\+\_\+alimento\+\_\+frigo@{input\+\_\+alimento\+\_\+frigo}!alimenti.\+c@{alimenti.\+c}}
 \subsubsection{\texorpdfstring{input\+\_\+alimento\+\_\+frigo()}{input\_alimento\_frigo()}}
-{\footnotesize\ttfamily alimento\+\_\+frigo input\+\_\+alimento\+\_\+frigo (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \hyperlink{alimenti_8h_a3b5bea5ca477b139eaa23e140a44b1ad}{alimento\+\_\+frigo} input\+\_\+alimento\+\_\+frigo (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 Funzione che si occupa dell\textquotesingle{}inserimento da tastiera di un alimento nel formato valido per il caricamento. La funzione si basa principalmente su un ciclo che analizza l\textquotesingle{}input dell\textquotesingle{}utente controllando i vari valori inseriti. Qualora la scanf non produca errori e restituisca il numero massimo di \char`\"{}hit\char`\"{}, l\textquotesingle{}alimento é da considerarsi valido e pertanto puó essere restituito dalla funzione
 
@@ -309,7 +311,7 @@ Deve essere restituito un alimento nel formato valido
 \index{alimenti.\+c@{alimenti.\+c}!input\+\_\+data\+\_\+scadenza@{input\+\_\+data\+\_\+scadenza}}
 \index{input\+\_\+data\+\_\+scadenza@{input\+\_\+data\+\_\+scadenza}!alimenti.\+c@{alimenti.\+c}}
 \subsubsection{\texorpdfstring{input\+\_\+data\+\_\+scadenza()}{input\_data\_scadenza()}}
-{\footnotesize\ttfamily \hyperlink{structdata}{data} input\+\_\+data\+\_\+scadenza (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \hyperlink{date_8h_a511ae0b1c13f95e5f08f1a0dd3da3d93}{data} input\+\_\+data\+\_\+scadenza (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 Funzione che si occupa dell\textquotesingle{}inserimento di una data di scadenza in un formato valido. Qualora la scadenza sia significativa viene richiamata la funzione controlla\+\_\+data\+\_\+scadenza per effettuare un ulteriore check sulla validitá di tale data. L\textquotesingle{}inserimento viene effettuato fino a quando il controllo sulla validitá non viene superato
 
@@ -407,7 +409,7 @@ Deve essere memorizzata nel puntatore una unitá di misura valida
 \index{alimenti.\+c@{alimenti.\+c}!leggi\+\_\+database\+\_\+alimenti@{leggi\+\_\+database\+\_\+alimenti}}
 \index{leggi\+\_\+database\+\_\+alimenti@{leggi\+\_\+database\+\_\+alimenti}!alimenti.\+c@{alimenti.\+c}}
 \subsubsection{\texorpdfstring{leggi\+\_\+database\+\_\+alimenti()}{leggi\_database\_alimenti()}}
-{\footnotesize\ttfamily int leggi\+\_\+database\+\_\+alimenti (\begin{DoxyParamCaption}\item[{alimento\+\_\+database $\ast$}]{lista\+\_\+alimenti }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int leggi\+\_\+database\+\_\+alimenti (\begin{DoxyParamCaption}\item[{\hyperlink{alimenti_8h_a1aedc7d578a0b290fdbbd4908eabf1a9}{alimento\+\_\+database} $\ast$}]{lista\+\_\+alimenti }\end{DoxyParamCaption})}
 
 Funzione che avendo ricevuto in ingresso l\textquotesingle{}array di struct vuoto che conterrá gli alimenti del database, si occuperá di riempire tale array con i dati salvati all\textquotesingle{}interno del file e di restituire al termine il numero di tali alimenti salvati. Come per ogni altra funzione che conta gli elementi del file anche in questo caso si saltano le righe vuote
 
@@ -421,7 +423,7 @@ Il valore restituito deve essere un intero significativo ($>$=0)
 \index{alimenti.\+c@{alimenti.\+c}!leggi\+\_\+frigo@{leggi\+\_\+frigo}}
 \index{leggi\+\_\+frigo@{leggi\+\_\+frigo}!alimenti.\+c@{alimenti.\+c}}
 \subsubsection{\texorpdfstring{leggi\+\_\+frigo()}{leggi\_frigo()}}
-{\footnotesize\ttfamily int leggi\+\_\+frigo (\begin{DoxyParamCaption}\item[{alimento\+\_\+frigo $\ast$}]{lista\+\_\+frigo }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int leggi\+\_\+frigo (\begin{DoxyParamCaption}\item[{\hyperlink{alimenti_8h_a3b5bea5ca477b139eaa23e140a44b1ad}{alimento\+\_\+frigo} $\ast$}]{lista\+\_\+frigo }\end{DoxyParamCaption})}
 
 Funzione che serve a popolare un\textquotesingle{}array di struct( passato per riferimento ) con gli alimenti presenti nel frigo e le relative informazioni.
 
@@ -469,7 +471,7 @@ Deve essere stata aggiornata con successo la soglia della spesa qualora sia poss
 \index{alimenti.\+c@{alimenti.\+c}!ordina\+\_\+alimenti\+\_\+scadenza@{ordina\+\_\+alimenti\+\_\+scadenza}}
 \index{ordina\+\_\+alimenti\+\_\+scadenza@{ordina\+\_\+alimenti\+\_\+scadenza}!alimenti.\+c@{alimenti.\+c}}
 \subsubsection{\texorpdfstring{ordina\+\_\+alimenti\+\_\+scadenza()}{ordina\_alimenti\_scadenza()}}
-{\footnotesize\ttfamily int ordina\+\_\+alimenti\+\_\+scadenza (\begin{DoxyParamCaption}\item[{alimento\+\_\+frigo $\ast$}]{alimenti\+\_\+frigo,  }\item[{int}]{num\+\_\+alimenti }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int ordina\+\_\+alimenti\+\_\+scadenza (\begin{DoxyParamCaption}\item[{\hyperlink{alimenti_8h_a3b5bea5ca477b139eaa23e140a44b1ad}{alimento\+\_\+frigo} $\ast$}]{alimenti\+\_\+frigo,  }\item[{int}]{num\+\_\+alimenti }\end{DoxyParamCaption})}
 
 La funzione, avendo in ingresso gli alimenti del frigo con il relativo numero, si occupa di riordinare tali alimenti, o meglio l\textquotesingle{}array di struct che li contiene, in base alla data di scadenza. L\textquotesingle{}ordinamento e\textquotesingle{} effettuato attraverso l\textquotesingle{}algoritmo shell sort in quanto risultava quello piú semplice ed efficace da implementare dato il quantitativo di dati(non e\textquotesingle{} eccessivo considerato che il frigo avrá al massimo un centinaio al massimo di alimenti). Inoltre in questa versione di shell sort si e\textquotesingle{} optato di non creare a parte un array contenente i gap (distanza per gli scambi), ma di sfruttare il numero di alimenti inizialmente e poi dividere per 2 di volta in volta la lunghezza.
 
@@ -497,7 +499,7 @@ nessuna post condizione particolare
 \index{alimenti.\+c@{alimenti.\+c}!ricerca\+\_\+alimento\+\_\+database@{ricerca\+\_\+alimento\+\_\+database}}
 \index{ricerca\+\_\+alimento\+\_\+database@{ricerca\+\_\+alimento\+\_\+database}!alimenti.\+c@{alimenti.\+c}}
 \subsubsection{\texorpdfstring{ricerca\+\_\+alimento\+\_\+database()}{ricerca\_alimento\_database()}}
-{\footnotesize\ttfamily int ricerca\+\_\+alimento\+\_\+database (\begin{DoxyParamCaption}\item[{char $\ast$}]{nome\+\_\+alimento,  }\item[{alimento\+\_\+database $\ast$}]{alimento\+\_\+estratto }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int ricerca\+\_\+alimento\+\_\+database (\begin{DoxyParamCaption}\item[{char $\ast$}]{nome\+\_\+alimento,  }\item[{\hyperlink{alimenti_8h_a1aedc7d578a0b290fdbbd4908eabf1a9}{alimento\+\_\+database} $\ast$}]{alimento\+\_\+estratto }\end{DoxyParamCaption})}
 
 Funzione che si occupa di ricercare un alimento all\textquotesingle{}interno del database alimenti. Vengono passati come parametri il nome dell\textquotesingle{}alimento su cui effettuare la ricerca e la struct che sará popolata con le informazioni dell\textquotesingle{}alimento qualora sia presemte nel database. Una volta effettuato il caricamento delle informazioni viene restituito 1 e in caso contrario viene restituito 0
 
@@ -531,8 +533,10 @@ Deve essere restituito un valore per segnalare un errore o in alternativa deve e
 
 Funzione che si occupa di estrarre la soglia di un alimento presente nel database. Qualora sia possibile accedere al file viene fatto controllo su tutto il database fino a quando non si trova l\textquotesingle{}alimento con il nome che abbiamo passato come parametro. Una volta trovato viene restituita tale soglia.
 
+A tal scopo, viene implemtntato un while per la ricerca dell\textquotesingle{}alimento nel database, trovato viene registrata la soglia dell\textquotesingle{}alimento in soglia\+\_\+alimento e restituta
+
 \begin{DoxyPrecond}{Precondizione}
-Che il nome passato come parametro sia di almeno un carattere 
+il nome passato come parametro sia di almeno un carattere 
 \end{DoxyPrecond}
 \begin{DoxyPostcond}{Postcondizione}
 nessuna post condizione particolare 

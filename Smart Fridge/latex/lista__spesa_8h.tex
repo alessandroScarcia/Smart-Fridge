@@ -5,14 +5,29 @@
 Libreria per la gestione della lista della spesa.  
 
 
-{\ttfamily \#include \char`\"{}menu\+\_\+settimanale.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utenti.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}ricette.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}alimenti.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}menu\+\_\+settimanale.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$ctype.\+h$>$}\newline
+Grafo delle dipendenze di inclusione per lista\+\_\+spesa.\+h\+:
+% FIG 0
+Questo grafo mostra quali altri file includono direttamente o indirettamente questo file\+:
+% FIG 1
 \subsection*{Definizioni}
 \begin{DoxyCompactItemize}
 \item 
+\#define \hyperlink{lista__spesa_8h_a35ccef9eff6efbd8187c83e45458040d}{S\+T\+D\+\_\+\+L\+IB}
+\item 
+\#define \hyperlink{lista__spesa_8h_a3f71b4ea87bcf3feda424bc285bcef6a}{S\+T\+R\+I\+N\+G\+\_\+\+L\+IB}
+\begin{DoxyCompactList}\small\item\em Inclusione delle librerie per la manipolazione di stringhe e caratteri. \end{DoxyCompactList}\item 
 \#define \hyperlink{lista__spesa_8h_aadea0f62a54f7e16290d43e55bce1883}{L\+I\+S\+T\+A\+\_\+\+S\+P\+E\+S\+A\+\_\+\+G\+L\+O\+B\+A\+LE}~\char`\"{}../lista\+\_\+spesa.\+txt\char`\"{}
-\begin{DoxyCompactList}\small\item\em libreria che permette la gestione(modifica) del menu settimanale \end{DoxyCompactList}\item 
+\item 
 \#define \hyperlink{lista__spesa_8h_a0884003ceaf84f851fea4d5507dc88c3}{P\+R\+E\+F\+I\+X\+\_\+\+F\+I\+L\+E\+\_\+\+S\+P\+E\+SA}~\char`\"{}../spesa\+\_\+\char`\"{}
 \item 
 \#define \hyperlink{lista__spesa_8h_a3a20b5bf92e1f63aadd5ebd9860b8a67}{S\+U\+F\+F\+I\+X\+\_\+\+F\+I\+L\+E\+\_\+\+S\+P\+E\+SA}~\char`\"{}.txt\char`\"{}
@@ -22,11 +37,11 @@ Libreria per la gestione della lista della spesa.
 \subsection*{Funzioni}
 \begin{DoxyCompactItemize}
 \item 
-int \hyperlink{lista__spesa_8h_a481de1948e750e6ebbcd582866cdb673}{aggiorna\+\_\+lista\+\_\+spesa} (char nome\+\_\+alimento\mbox{[}L\+U\+N\+G\+\_\+\+N\+O\+M\+E\+\_\+\+A\+L\+I\+M\+E\+N\+TO\mbox{]}, char nome\+\_\+file\mbox{[}\hyperlink{lista__spesa_8h_ae5e17d2168d3d53cc80b24bb81bcd01d}{L\+U\+N\+G\+\_\+\+N\+O\+M\+E\+\_\+\+F\+I\+L\+E\+\_\+\+S\+P\+E\+SA}\mbox{]})
+int \hyperlink{lista__spesa_8h_a481de1948e750e6ebbcd582866cdb673}{aggiorna\+\_\+lista\+\_\+spesa} (char nome\+\_\+alimento\mbox{[}\hyperlink{alimenti_8h_af503a16b1a63b47d6a5b2edd94b5caf2}{L\+U\+N\+G\+\_\+\+N\+O\+M\+E\+\_\+\+A\+L\+I\+M\+E\+N\+TO}\mbox{]}, char nome\+\_\+file\mbox{[}\hyperlink{lista__spesa_8h_ae5e17d2168d3d53cc80b24bb81bcd01d}{L\+U\+N\+G\+\_\+\+N\+O\+M\+E\+\_\+\+F\+I\+L\+E\+\_\+\+S\+P\+E\+SA}\mbox{]})
 \item 
-int \hyperlink{lista__spesa_8h_ac971c93be56962be8e0ae52d9560c411}{elimina\+\_\+file\+\_\+spesa} (char nome\+\_\+alimento\mbox{[}L\+U\+N\+G\+\_\+\+N\+O\+M\+E\+\_\+\+A\+L\+I\+M\+E\+N\+TO\mbox{]})
+int \hyperlink{lista__spesa_8h_ac971c93be56962be8e0ae52d9560c411}{elimina\+\_\+file\+\_\+spesa} (char nome\+\_\+alimento\mbox{[}\hyperlink{alimenti_8h_af503a16b1a63b47d6a5b2edd94b5caf2}{L\+U\+N\+G\+\_\+\+N\+O\+M\+E\+\_\+\+A\+L\+I\+M\+E\+N\+TO}\mbox{]})
 \item 
-int \hyperlink{lista__spesa_8h_a9ffa3a13ed2681a8e5b8afff5ccc59b7}{controllo\+\_\+soglia} (float soglia\+\_\+spesa, char nome\+\_\+alimento\mbox{[}L\+U\+N\+G\+\_\+\+N\+O\+M\+E\+\_\+\+A\+L\+I\+M\+E\+N\+TO\mbox{]})
+int \hyperlink{lista__spesa_8h_a9ffa3a13ed2681a8e5b8afff5ccc59b7}{controllo\+\_\+soglia} (float soglia\+\_\+spesa, char nome\+\_\+alimento\mbox{[}\hyperlink{alimenti_8h_af503a16b1a63b47d6a5b2edd94b5caf2}{L\+U\+N\+G\+\_\+\+N\+O\+M\+E\+\_\+\+A\+L\+I\+M\+E\+N\+TO}\mbox{]})
 \item 
 int \hyperlink{lista__spesa_8h_a24759826dd9a345b7f1a4b594ca06e07}{generatore\+\_\+spesa\+\_\+globale} ()
 \item 
@@ -55,11 +70,7 @@ Alessandro Scarcia, Davide Quatela, Michela Salvemini
 \subsubsection{\texorpdfstring{L\+I\+S\+T\+A\+\_\+\+S\+P\+E\+S\+A\+\_\+\+G\+L\+O\+B\+A\+LE}{LISTA\_SPESA\_GLOBALE}}
 {\footnotesize\ttfamily \#define L\+I\+S\+T\+A\+\_\+\+S\+P\+E\+S\+A\+\_\+\+G\+L\+O\+B\+A\+LE~\char`\"{}../lista\+\_\+spesa.\+txt\char`\"{}}
 
-
-
-libreria che permette la gestione(modifica) del menu settimanale 
-
-libreria che permette la gestione(manipolazione,caricamento ecc) delle ricette libreria che permette la gestione(manipolazione,caricamento ecc) degli alimenti \mbox{\Hypertarget{lista__spesa_8h_ae5e17d2168d3d53cc80b24bb81bcd01d}\label{lista__spesa_8h_ae5e17d2168d3d53cc80b24bb81bcd01d}} 
+\mbox{\Hypertarget{lista__spesa_8h_ae5e17d2168d3d53cc80b24bb81bcd01d}\label{lista__spesa_8h_ae5e17d2168d3d53cc80b24bb81bcd01d}} 
 \index{lista\+\_\+spesa.\+h@{lista\+\_\+spesa.\+h}!L\+U\+N\+G\+\_\+\+N\+O\+M\+E\+\_\+\+F\+I\+L\+E\+\_\+\+S\+P\+E\+SA@{L\+U\+N\+G\+\_\+\+N\+O\+M\+E\+\_\+\+F\+I\+L\+E\+\_\+\+S\+P\+E\+SA}}
 \index{L\+U\+N\+G\+\_\+\+N\+O\+M\+E\+\_\+\+F\+I\+L\+E\+\_\+\+S\+P\+E\+SA@{L\+U\+N\+G\+\_\+\+N\+O\+M\+E\+\_\+\+F\+I\+L\+E\+\_\+\+S\+P\+E\+SA}!lista\+\_\+spesa.\+h@{lista\+\_\+spesa.\+h}}
 \subsubsection{\texorpdfstring{L\+U\+N\+G\+\_\+\+N\+O\+M\+E\+\_\+\+F\+I\+L\+E\+\_\+\+S\+P\+E\+SA}{LUNG\_NOME\_FILE\_SPESA}}
@@ -70,6 +81,22 @@ libreria che permette la gestione(manipolazione,caricamento ecc) delle ricette l
 \index{P\+R\+E\+F\+I\+X\+\_\+\+F\+I\+L\+E\+\_\+\+S\+P\+E\+SA@{P\+R\+E\+F\+I\+X\+\_\+\+F\+I\+L\+E\+\_\+\+S\+P\+E\+SA}!lista\+\_\+spesa.\+h@{lista\+\_\+spesa.\+h}}
 \subsubsection{\texorpdfstring{P\+R\+E\+F\+I\+X\+\_\+\+F\+I\+L\+E\+\_\+\+S\+P\+E\+SA}{PREFIX\_FILE\_SPESA}}
 {\footnotesize\ttfamily \#define P\+R\+E\+F\+I\+X\+\_\+\+F\+I\+L\+E\+\_\+\+S\+P\+E\+SA~\char`\"{}../spesa\+\_\+\char`\"{}}
+
+\mbox{\Hypertarget{lista__spesa_8h_a35ccef9eff6efbd8187c83e45458040d}\label{lista__spesa_8h_a35ccef9eff6efbd8187c83e45458040d}} 
+\index{lista\+\_\+spesa.\+h@{lista\+\_\+spesa.\+h}!S\+T\+D\+\_\+\+L\+IB@{S\+T\+D\+\_\+\+L\+IB}}
+\index{S\+T\+D\+\_\+\+L\+IB@{S\+T\+D\+\_\+\+L\+IB}!lista\+\_\+spesa.\+h@{lista\+\_\+spesa.\+h}}
+\subsubsection{\texorpdfstring{S\+T\+D\+\_\+\+L\+IB}{STD\_LIB}}
+{\footnotesize\ttfamily \#define S\+T\+D\+\_\+\+L\+IB}
+
+\mbox{\Hypertarget{lista__spesa_8h_a3f71b4ea87bcf3feda424bc285bcef6a}\label{lista__spesa_8h_a3f71b4ea87bcf3feda424bc285bcef6a}} 
+\index{lista\+\_\+spesa.\+h@{lista\+\_\+spesa.\+h}!S\+T\+R\+I\+N\+G\+\_\+\+L\+IB@{S\+T\+R\+I\+N\+G\+\_\+\+L\+IB}}
+\index{S\+T\+R\+I\+N\+G\+\_\+\+L\+IB@{S\+T\+R\+I\+N\+G\+\_\+\+L\+IB}!lista\+\_\+spesa.\+h@{lista\+\_\+spesa.\+h}}
+\subsubsection{\texorpdfstring{S\+T\+R\+I\+N\+G\+\_\+\+L\+IB}{STRING\_LIB}}
+{\footnotesize\ttfamily \#define S\+T\+R\+I\+N\+G\+\_\+\+L\+IB}
+
+
+
+Inclusione delle librerie per la manipolazione di stringhe e caratteri. 
 
 \mbox{\Hypertarget{lista__spesa_8h_a3a20b5bf92e1f63aadd5ebd9860b8a67}\label{lista__spesa_8h_a3a20b5bf92e1f63aadd5ebd9860b8a67}} 
 \index{lista\+\_\+spesa.\+h@{lista\+\_\+spesa.\+h}!S\+U\+F\+F\+I\+X\+\_\+\+F\+I\+L\+E\+\_\+\+S\+P\+E\+SA@{S\+U\+F\+F\+I\+X\+\_\+\+F\+I\+L\+E\+\_\+\+S\+P\+E\+SA}}

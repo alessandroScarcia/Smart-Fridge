@@ -1,0 +1,48 @@
+digraph "src/utenti.h"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node15 [label="src/utenti.h",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node15 -> Node16 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node16 [label="src/ricette.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ricette_8h.html",tooltip="Libreria per la gestione delle ricette. "];
+  Node16 -> Node17 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node17 [label="src/calorie.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$calorie_8h.html",tooltip="Libreria per la gestione delle calorie. "];
+  Node17 -> Node18 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node18 [label="src/alimenti.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$alimenti_8h.html",tooltip="Libreria per la gestione degli alimenti. "];
+  Node18 -> Node19 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node19 [label="src/alimenti.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$alimenti_8c.html"];
+  Node18 -> Node17 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node18 -> Node16 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node18 -> Node15 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node18 -> Node20 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node20 [label="src/interfaccia.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$interfaccia_8h.html",tooltip="Libreria per l&#39;interfaccia utente. "];
+  Node20 -> Node21 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node21 [label="src/interfaccia.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$interfaccia_8c.html"];
+  Node20 -> Node22 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node22 [label="src/main.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$main_8c.html",tooltip="Main del programma Smart Fridge. "];
+  Node18 -> Node23 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node23 [label="src/lista_spesa.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$lista__spesa_8h.html",tooltip="Libreria per la gestione della lista della spesa. "];
+  Node23 -> Node20 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node23 -> Node24 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node24 [label="src/lista_spesa.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$lista__spesa_8c.html"];
+  Node17 -> Node16 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node17 -> Node25 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node25 [label="src/calorie.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$calorie_8c.html"];
+  Node17 -> Node20 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node16 -> Node20 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node16 -> Node23 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node16 -> Node26 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node26 [label="src/ricette.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ricette_8c.html"];
+  Node15 -> Node27 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node27 [label="src/menu_settimanale.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$menu__settimanale_8h.html",tooltip="Libreria per la gestione e la creazione di un menu settimanale per ogni utente. "];
+  Node27 -> Node15 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node27 -> Node20 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node27 -> Node23 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node27 -> Node28 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node28 [label="src/menu_settimanale.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$menu__settimanale_8c.html"];
+  Node15 -> Node18 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node15 -> Node20 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node15 -> Node23 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node15 -> Node29 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node29 [label="src/utenti.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$utenti_8c.html"];
+}

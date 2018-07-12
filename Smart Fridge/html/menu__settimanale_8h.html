@@ -66,6 +66,7 @@ $(function() {
   <div class="summary">
 <a href="#nested-classes">Strutture dati</a> &#124;
 <a href="#define-members">Definizioni</a> &#124;
+<a href="#typedef-members">Ridefinizioni di tipo (typedef)</a> &#124;
 <a href="#func-members">Funzioni</a>  </div>
   <div class="headertitle">
 <div class="title">Riferimenti per il file menu_settimanale.h</div>  </div>
@@ -74,8 +75,7 @@ $(function() {
 
 <p>Libreria per la gestione e la creazione di un menu settimanale per ogni utente.  
 <a href="#details">Continua...</a></p>
-<div class="textblock"><code>#include &quot;<a class="el" href="pulizia__flussi_8h_source.html">pulizia_flussi.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="utenti_8h_source.html">utenti.h</a>&quot;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="utenti_8h_source.html">utenti.h</a>&quot;</code><br />
 <code>#include &lt;stdbool.h&gt;</code><br />
 <code>#include &lt;stdio.h&gt;</code><br />
 <code>#include &lt;stdlib.h&gt;</code><br />
@@ -83,30 +83,43 @@ $(function() {
 <code>#include &lt;math.h&gt;</code><br />
 <code>#include &lt;string.h&gt;</code><br />
 <code>#include &lt;ctype.h&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Grafo delle dipendenze di inclusione per menu_settimanale.h:</div>
+<div class="dyncontent">
+<div class="center"><img src="menu__settimanale_8h__incl.png" border="0" usemap="#src_2menu__settimanale_8h" alt=""/></div>
+<!-- MAP 0 -->
+</div>
+</div><div class="textblock"><div class="dynheader">
+Questo grafo mostra quali altri file includono direttamente o indirettamente questo file:</div>
+<div class="dyncontent">
+<div class="center"><img src="menu__settimanale_8h__dep__incl.png" border="0" usemap="#src_2menu__settimanale_8hdep" alt=""/></div>
+<!-- MAP 1 -->
+</div>
 </div>
 <p><a href="menu__settimanale_8h_source.html">Vai al codice sorgente di questo file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Strutture dati</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcibo.html">cibo</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structstruct__cibo.html">struct_cibo</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structpasto.html">pasto</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structstruct__pasto.html">struct_pasto</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structgiorno.html">giorno</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structstruct__giorno.html">struct_giorno</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Definizioni</h2></td></tr>
+<tr class="memitem:a35ccef9eff6efbd8187c83e45458040d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="menu__settimanale_8h.html#a35ccef9eff6efbd8187c83e45458040d">STD_LIB</a></td></tr>
+<tr class="memdesc:a35ccef9eff6efbd8187c83e45458040d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inclusione delle librerie standard.  <a href="#a35ccef9eff6efbd8187c83e45458040d">Continua...</a><br /></td></tr>
+<tr class="separator:a35ccef9eff6efbd8187c83e45458040d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af12cbc4b154eb2eefd852623d7806dc8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="menu__settimanale_8h.html#af12cbc4b154eb2eefd852623d7806dc8">MATH_LIB</a></td></tr>
-<tr class="memdesc:af12cbc4b154eb2eefd852623d7806dc8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inclusione delle librerie standard.  <a href="#af12cbc4b154eb2eefd852623d7806dc8">Continua...</a><br /></td></tr>
+<tr class="memdesc:af12cbc4b154eb2eefd852623d7806dc8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inclusione della libreria matematica.  <a href="#af12cbc4b154eb2eefd852623d7806dc8">Continua...</a><br /></td></tr>
 <tr class="separator:af12cbc4b154eb2eefd852623d7806dc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3f71b4ea87bcf3feda424bc285bcef6a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="menu__settimanale_8h.html#a3f71b4ea87bcf3feda424bc285bcef6a">STRING_LIB</a></td></tr>
 <tr class="memdesc:a3f71b4ea87bcf3feda424bc285bcef6a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inclusione delle librerie per la manipolazione di stringhe e caratteri.  <a href="#a3f71b4ea87bcf3feda424bc285bcef6a">Continua...</a><br /></td></tr>
 <tr class="separator:a3f71b4ea87bcf3feda424bc285bcef6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac66d69d8ae80491895724f3725438321"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="menu__settimanale_8h.html#ac66d69d8ae80491895724f3725438321">MENU_SETTIMANALE_LIB</a></td></tr>
-<tr class="separator:ac66d69d8ae80491895724f3725438321"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a70afbf8b7e7e8486fdec619990ec6073"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="menu__settimanale_8h.html#a70afbf8b7e7e8486fdec619990ec6073">NUM_CIBI</a>&#160;&#160;&#160;5</td></tr>
-<tr class="memdesc:a70afbf8b7e7e8486fdec619990ec6073"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inclusione della libreria per la pulizia dei flussi di input.  <a href="#a70afbf8b7e7e8486fdec619990ec6073">Continua...</a><br /></td></tr>
+<tr class="memdesc:a70afbf8b7e7e8486fdec619990ec6073"><td class="mdescLeft">&#160;</td><td class="mdescRight">DEFINIZIONE DELLE COSTANTI SIMBOLICHE.  <a href="#a70afbf8b7e7e8486fdec619990ec6073">Continua...</a><br /></td></tr>
 <tr class="separator:a70afbf8b7e7e8486fdec619990ec6073"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2000ebf33ae486fb0f53926d79ae1c7f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="menu__settimanale_8h.html#a2000ebf33ae486fb0f53926d79ae1c7f">NUM_PASTI</a>&#160;&#160;&#160;5</td></tr>
 <tr class="separator:a2000ebf33ae486fb0f53926d79ae1c7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -130,24 +143,33 @@ Definizioni</h2></td></tr>
 <tr class="memitem:a3e81a7e0d3fd9dcd89a6c9df63191851"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="menu__settimanale_8h.html#a3e81a7e0d3fd9dcd89a6c9df63191851">FILE_MENU</a>&#160;&#160;&#160;&quot;menu_&quot;</td></tr>
 <tr class="separator:a3e81a7e0d3fd9dcd89a6c9df63191851"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Ridefinizioni di tipo (typedef)</h2></td></tr>
+<tr class="memitem:ad59bf52977c02589a75aeab3b2358b68"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structstruct__cibo.html">struct_cibo</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="menu__settimanale_8h.html#ad59bf52977c02589a75aeab3b2358b68">cibo</a></td></tr>
+<tr class="separator:ad59bf52977c02589a75aeab3b2358b68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9bcb2afe3bf63e9bf406a2d1e7fa8644"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structstruct__pasto.html">struct_pasto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="menu__settimanale_8h.html#a9bcb2afe3bf63e9bf406a2d1e7fa8644">pasto</a></td></tr>
+<tr class="separator:a9bcb2afe3bf63e9bf406a2d1e7fa8644"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa16f54fedd90dabbd71b25791c01f6d4"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structstruct__giorno.html">struct_giorno</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="menu__settimanale_8h.html#aa16f54fedd90dabbd71b25791c01f6d4">giorno</a></td></tr>
+<tr class="separator:aa16f54fedd90dabbd71b25791c01f6d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Funzioni</h2></td></tr>
 <tr class="memitem:a96c2b3eee08e0f6e784462e1859f11f0"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="menu__settimanale_8h.html#a96c2b3eee08e0f6e784462e1859f11f0">crea_nome_file_menu</a> (const char *nickname)</td></tr>
 <tr class="separator:a96c2b3eee08e0f6e784462e1859f11f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8b4902288f5f6678196832d37810471f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="menu__settimanale_8h.html#a8b4902288f5f6678196832d37810471f">inizializzazione</a> (const char *nome_utente)</td></tr>
 <tr class="separator:a8b4902288f5f6678196832d37810471f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a31deefba456ab16411f9400cdce2c247"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="menu__settimanale_8h.html#a31deefba456ab16411f9400cdce2c247">inizializzazione_giorno</a> (<a class="el" href="structgiorno.html">giorno</a> *giornata, int indice)</td></tr>
-<tr class="separator:a31deefba456ab16411f9400cdce2c247"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a86f882696111b875b7d6fc4551097b49"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="menu__settimanale_8h.html#a86f882696111b875b7d6fc4551097b49">inizializzazione_pasti</a> (<a class="el" href="structgiorno.html">giorno</a> *giornata)</td></tr>
-<tr class="separator:a86f882696111b875b7d6fc4551097b49"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a32d3fc0148c715a94428146288965657"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="menu__settimanale_8h.html#a32d3fc0148c715a94428146288965657">inizializzazione_alimenti</a> (<a class="el" href="structgiorno.html">giorno</a> *giornata, short int num_pasto)</td></tr>
+<tr class="memitem:a0030695e2bd26480f4dbc85581715212"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="menu__settimanale_8h.html#a0030695e2bd26480f4dbc85581715212">inizializzazione_giorno</a> (<a class="el" href="menu__settimanale_8h.html#aa16f54fedd90dabbd71b25791c01f6d4">giorno</a> *giornata, int num_giorno)</td></tr>
+<tr class="separator:a0030695e2bd26480f4dbc85581715212"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6a312a53a2bba5ef70500eae5fbe223"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="menu__settimanale_8h.html#ae6a312a53a2bba5ef70500eae5fbe223">inizializzazione_pasti</a> (<a class="el" href="menu__settimanale_8h.html#aa16f54fedd90dabbd71b25791c01f6d4">giorno</a> *menu)</td></tr>
+<tr class="separator:ae6a312a53a2bba5ef70500eae5fbe223"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a32d3fc0148c715a94428146288965657"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="menu__settimanale_8h.html#a32d3fc0148c715a94428146288965657">inizializzazione_alimenti</a> (<a class="el" href="menu__settimanale_8h.html#aa16f54fedd90dabbd71b25791c01f6d4">giorno</a> *giornata, short int num_pasto)</td></tr>
 <tr class="separator:a32d3fc0148c715a94428146288965657"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa8f6a45c6ced4ee1d20f9b134c3df232"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="menu__settimanale_8h.html#aa8f6a45c6ced4ee1d20f9b134c3df232">inizializzazione_file_menu</a> (const char *nome_utente, <a class="el" href="structgiorno.html">giorno</a> *menu)</td></tr>
+<tr class="memitem:aa8f6a45c6ced4ee1d20f9b134c3df232"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="menu__settimanale_8h.html#aa8f6a45c6ced4ee1d20f9b134c3df232">inizializzazione_file_menu</a> (const char *nome_utente, <a class="el" href="menu__settimanale_8h.html#aa16f54fedd90dabbd71b25791c01f6d4">giorno</a> *menu)</td></tr>
 <tr class="separator:aa8f6a45c6ced4ee1d20f9b134c3df232"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac87b9a3be1141a92c93445fbc0d0d007"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="menu__settimanale_8h.html#ac87b9a3be1141a92c93445fbc0d0d007">visualizza_database_menu</a> (char nome_utente[])</td></tr>
 <tr class="separator:ac87b9a3be1141a92c93445fbc0d0d007"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa4066c8debe226409948f1140a955d7c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="menu__settimanale_8h.html#aa4066c8debe226409948f1140a955d7c">esiste_menu</a> (char *nickname)</td></tr>
-<tr class="separator:aa4066c8debe226409948f1140a955d7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae55cb351b09d018f639cbfc23c0472a4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="menu__settimanale_8h.html#ae55cb351b09d018f639cbfc23c0472a4">esiste_menu</a> (char *nome_utente)</td></tr>
+<tr class="separator:ae55cb351b09d018f639cbfc23c0472a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9e02f89d21bb57ff258b23d757d5912a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="menu__settimanale_8h.html#a9e02f89d21bb57ff258b23d757d5912a">input_kcal_giornata</a> ()</td></tr>
 <tr class="separator:a9e02f89d21bb57ff258b23d757d5912a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4a6156be8f9d8024c1fe1d456ac56dec"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="menu__settimanale_8h.html#a4a6156be8f9d8024c1fe1d456ac56dec">input_numero_pasto</a> ()</td></tr>
@@ -162,21 +184,21 @@ Funzioni</h2></td></tr>
 <tr class="separator:a546eb5450653d379584ad80e7f26c6f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af8de95a0beb9c951ba8ce53ff397f3fd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="menu__settimanale_8h.html#af8de95a0beb9c951ba8ce53ff397f3fd">modifica_menu</a> ()</td></tr>
 <tr class="separator:af8de95a0beb9c951ba8ce53ff397f3fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab695abcc63bcb59c1d175f3d339e15e4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="menu__settimanale_8h.html#ab695abcc63bcb59c1d175f3d339e15e4">modifica_alimenti_pasto</a> (<a class="el" href="structgiorno.html">giorno</a> *giornata, short int num_pasto)</td></tr>
+<tr class="memitem:ab695abcc63bcb59c1d175f3d339e15e4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="menu__settimanale_8h.html#ab695abcc63bcb59c1d175f3d339e15e4">modifica_alimenti_pasto</a> (<a class="el" href="menu__settimanale_8h.html#aa16f54fedd90dabbd71b25791c01f6d4">giorno</a> *giornata, short int num_pasto)</td></tr>
 <tr class="separator:ab695abcc63bcb59c1d175f3d339e15e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5107ef0178e2458422fa8b1eba8e0bd2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="menu__settimanale_8h.html#a5107ef0178e2458422fa8b1eba8e0bd2">estrai_giorno</a> (<a class="el" href="structgiorno.html">giorno</a> *giornata, char *nome_utente, int num_giorno)</td></tr>
+<tr class="memitem:a5107ef0178e2458422fa8b1eba8e0bd2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="menu__settimanale_8h.html#a5107ef0178e2458422fa8b1eba8e0bd2">estrai_giorno</a> (<a class="el" href="menu__settimanale_8h.html#aa16f54fedd90dabbd71b25791c01f6d4">giorno</a> *giornata, char *nome_utente, int num_giorno)</td></tr>
 <tr class="separator:a5107ef0178e2458422fa8b1eba8e0bd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adfd16498a0f8f48ef86962623463589e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="menu__settimanale_8h.html#adfd16498a0f8f48ef86962623463589e">estrai_kcal_menu</a> (int *kcal, char *nome_utente, int num_giorno)</td></tr>
 <tr class="separator:adfd16498a0f8f48ef86962623463589e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a139f0f490f4bd9860fc4253d84e88ce9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="menu__settimanale_8h.html#a139f0f490f4bd9860fc4253d84e88ce9">stampa_giorno</a> (<a class="el" href="structgiorno.html">giorno</a> *giornata)</td></tr>
+<tr class="memitem:a139f0f490f4bd9860fc4253d84e88ce9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="menu__settimanale_8h.html#a139f0f490f4bd9860fc4253d84e88ce9">stampa_giorno</a> (<a class="el" href="menu__settimanale_8h.html#aa16f54fedd90dabbd71b25791c01f6d4">giorno</a> *giornata)</td></tr>
 <tr class="separator:a139f0f490f4bd9860fc4253d84e88ce9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aed6f575ce380c9baffaf282d4b75f219"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="menu__settimanale_8h.html#aed6f575ce380c9baffaf282d4b75f219">scrivi_giorno</a> (<a class="el" href="structgiorno.html">giorno</a> *giornata, char *nome_utente, int i)</td></tr>
-<tr class="separator:aed6f575ce380c9baffaf282d4b75f219"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a51eeb7933598c940d7590eb6737108a0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="menu__settimanale_8h.html#a51eeb7933598c940d7590eb6737108a0">scrivi_giorno</a> (<a class="el" href="menu__settimanale_8h.html#aa16f54fedd90dabbd71b25791c01f6d4">giorno</a> *giornata, char *nome_utente, int num_giorno)</td></tr>
+<tr class="separator:a51eeb7933598c940d7590eb6737108a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a467dbcb128bae6708636bff1591039a9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="menu__settimanale_8h.html#a467dbcb128bae6708636bff1591039a9">elimina_file_menu</a> (char nome_file[<a class="el" href="menu__settimanale_8h.html#aa9597e715189c8812be227cf8d8bf956">LUNG_NOME_FILE_MENU</a>])</td></tr>
 <tr class="separator:a467dbcb128bae6708636bff1591039a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8a9c73c2d0c13b4b96a2550db2528d46"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="menu__settimanale_8h.html#a8a9c73c2d0c13b4b96a2550db2528d46">gestore_visualizzazione_menu</a> ()</td></tr>
 <tr class="separator:a8a9c73c2d0c13b4b96a2550db2528d46"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a477d22c681e4242bda51b532d3eb907c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="menu__settimanale_8h.html#a477d22c681e4242bda51b532d3eb907c">ordina_cibi_pasto</a> (<a class="el" href="structcibo.html">cibo</a> *cibi)</td></tr>
+<tr class="memitem:a477d22c681e4242bda51b532d3eb907c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="menu__settimanale_8h.html#a477d22c681e4242bda51b532d3eb907c">ordina_cibi_pasto</a> (<a class="el" href="menu__settimanale_8h.html#ad59bf52977c02589a75aeab3b2358b68">cibo</a> *cibi)</td></tr>
 <tr class="separator:a477d22c681e4242bda51b532d3eb907c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Descrizione dettagliata</h2>
@@ -282,8 +304,7 @@ Funzioni</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Inclusione delle librerie standard. </p>
-<p>Inclusione della libreria matematica </p>
+<p>Inclusione della libreria matematica. </p>
 
 </div>
 </div>
@@ -295,20 +316,6 @@ Funzioni</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">#define MAX_KCAL_GIORNATA&#160;&#160;&#160;5000</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="ac66d69d8ae80491895724f3725438321"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac66d69d8ae80491895724f3725438321">&#9670;&nbsp;</a></span>MENU_SETTIMANALE_LIB</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define MENU_SETTIMANALE_LIB</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -341,8 +348,8 @@ Funzioni</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Inclusione della libreria per la pulizia dei flussi di input. </p>
-<p>Inclusione della libreria per la gestione degli utenti DEFINIZIONE DELLE COSTANTI SIMBOLICHE. Numero di elementi di determinati oggetti: </p>
+<p>DEFINIZIONE DELLE COSTANTI SIMBOLICHE. </p>
+<p>Numero di elementi di determinati oggetti: </p>
 
 </div>
 </div>
@@ -374,6 +381,22 @@ Funzioni</h2></td></tr>
 
 </div>
 </div>
+<a id="a35ccef9eff6efbd8187c83e45458040d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a35ccef9eff6efbd8187c83e45458040d">&#9670;&nbsp;</a></span>STD_LIB</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define STD_LIB</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Inclusione delle librerie standard. </p>
+
+</div>
+</div>
 <a id="a3f71b4ea87bcf3feda424bc285bcef6a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3f71b4ea87bcf3feda424bc285bcef6a">&#9670;&nbsp;</a></span>STRING_LIB</h2>
 
@@ -387,6 +410,52 @@ Funzioni</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Inclusione delle librerie per la manipolazione di stringhe e caratteri. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Documentazione delle ridefinizioni di tipo (typedef)</h2>
+<a id="ad59bf52977c02589a75aeab3b2358b68"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad59bf52977c02589a75aeab3b2358b68">&#9670;&nbsp;</a></span>cibo</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="menu__settimanale_8h.html#ad59bf52977c02589a75aeab3b2358b68">cibo</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Il tipo di dato "cibo" serve a memorizzare una ricetta o un singolo alimento. E' basato su di una struct i cui membri sono: nome_cibo, flag (viene impostato a zero se si tratta di un alimento singolo, ad 1 se si tratta di una ricetta) e quantità. </p>
+
+</div>
+</div>
+<a id="aa16f54fedd90dabbd71b25791c01f6d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa16f54fedd90dabbd71b25791c01f6d4">&#9670;&nbsp;</a></span>giorno</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="menu__settimanale_8h.html#aa16f54fedd90dabbd71b25791c01f6d4">giorno</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Il tipo di dato "giorno" serve a memorizzare il cibo che l'utente si impegna a consumare durante un dato giorno della settimana. E' basato su di una struct i cui membri sono: giorno, pasto e kcal. Giorno indica il giorno della settimana. Pasto è un dato strutturato di tipo "pasto". kcal indica le kcal della giornata. </p>
+
+</div>
+</div>
+<a id="a9bcb2afe3bf63e9bf406a2d1e7fa8644"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9bcb2afe3bf63e9bf406a2d1e7fa8644">&#9670;&nbsp;</a></span>pasto</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="menu__settimanale_8h.html#a9bcb2afe3bf63e9bf406a2d1e7fa8644">pasto</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Il tipo di dato "pasto" serve a memorizzare il cibo che l'utente si impegna a cosumare durante un dato pasto (pranzo, cena, ...). E' basato su di una struct i cui membri sono: nome_pasto e alimento. Alimento è un dato strutturato di tipo "cibo". </p>
 
 </div>
 </div>
@@ -431,28 +500,22 @@ Funzioni</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>La funzione conta_ricette_menu() riceve in ingresso un nome utente ed il numero corrispondente al giorno da estrarre da file ed analizzate. Apre il file, estrare la struct nella posizione corrispondente al giorno_x, scorre tra gli alimenti contenuti nel menu di tale giorno analizzando il flag. Quando trova un flag corrispondente ad 1 aumenta un contatore. </p><dl class="params"><dt>Parametri</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">nome_utente</td><td>da cui ricare il nome del file, giorno_x da cui ricavare la posizione del giorno che si intende analizzare. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Restituisce</dt><dd>contatore corrispondente al numero di ricette presenti nel giorno. La funzione conta_ricette_menu() riceve in ingresso un nome utente ed il numero corrispondente al giorno da estrarre da file ed analizzate. Apre il file, estrare la struct nella posizione corrispondente al giorno_x, scorre tra gli alimenti contenuti nel menu di tale giorno analizzando il flag. Quando trova un flag corrispondente ad 1 aumenta un contatore. </dd></dl>
+<p>La funzione scrivi_menu() si occupa dell'eliminazione del file corrispodente al nome_file passato in ingresso</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">nome_utente</td><td>da cui ricare il nome del file, giorno_x da cui ricavare la posizione del giorno che si intende analizzare. </td></tr>
+    <tr><td class="paramname">nome_file</td><td>da scrivere su file </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Restituisce</dt><dd>contatore corrispondente al numero di ricette presenti nel giorno.</dd></dl>
+<dl class="section return"><dt>Restituisce</dt><dd>esisto della funzione</dd></dl>
 <p>Funzione che si occupa di eliminare il nome del file specificato e di restituire in caso di successo il valore -1</p>
 <dl class="section pre"><dt>Precondizione</dt><dd>Il nome del file deve essere significativo(il file deve esistere) </dd></dl>
 <dl class="section post"><dt>Postcondizione</dt><dd>In caso il file esista esso deve essere eliminato correttamente </dd></dl>
 
 </div>
 </div>
-<a id="aa4066c8debe226409948f1140a955d7c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa4066c8debe226409948f1140a955d7c">&#9670;&nbsp;</a></span>esiste_menu()</h2>
+<a id="ae55cb351b09d018f639cbfc23c0472a4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae55cb351b09d018f639cbfc23c0472a4">&#9670;&nbsp;</a></span>esiste_menu()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -469,7 +532,7 @@ Funzioni</h2></td></tr>
 <p>La funzione <a class="el" href="menu__settimanale_8c.html#ae55cb351b09d018f639cbfc23c0472a4">esiste_menu()</a> riceve in ingresso il nome dell'utente La funzione verificherà l'esistenza del menu dell'utente il cui nome è passato in ingrsso</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">nicknae</td><td>per la generazione del nome file da controllare </td></tr>
+    <tr><td class="paramname">nome_utente</td><td>per la generazione del nome file da controllare </td></tr>
   </table>
   </dd>
 </dl>
@@ -491,7 +554,7 @@ Funzioni</h2></td></tr>
         <tr>
           <td class="memname">int estrai_giorno </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structgiorno.html">giorno</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="menu__settimanale_8h.html#aa16f54fedd90dabbd71b25791c01f6d4">giorno</a> *&#160;</td>
           <td class="paramname"><em>giornata</em>, </td>
         </tr>
         <tr>
@@ -516,7 +579,9 @@ Funzioni</h2></td></tr>
 <p>La funzione estrazione_struct() riceve in ingresso un puntatore ad una struct di tipo giorno, il nome dell'utente e l'indice corrispondente al giorno della settimana. La funzione estrarrà n-esimo elemento dal file, lo memorizzerà nella variabile di tipo giorno ricevuta in ingresso e terminerà la sua funzione.</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">giornata</td><td>su cui memorizzare la struct da estrarre da file, nome_utente per aprire il menu corrispondente a tale utente, num_giorno per estrarre n-esimo elemento del file. </td></tr>
+    <tr><td class="paramname">giornata</td><td>su cui memorizzare la struct da estrarre da file </td></tr>
+    <tr><td class="paramname">nome_utente</td><td>per aprire il menu corrispondente a tale utente </td></tr>
+    <tr><td class="paramname">num_giorno</td><td>per estrarre n-esimo elemento del file. </td></tr>
   </table>
   </dd>
 </dl>
@@ -560,6 +625,16 @@ Funzioni</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>La funzione <a class="el" href="menu__settimanale_8c.html#adfd16498a0f8f48ef86962623463589e">estrai_kcal_menu()</a> si occupa dell'estrazione delle kcal della giornata il cui numero corrispondente è passato in ingresso.</p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">kcal</td><td>su cui memorizzare le kcal estratte </td></tr>
+    <tr><td class="paramname">nome_utente</td><td>per aprire il menu corrispondente a tale utente </td></tr>
+    <tr><td class="paramname">num_giorno</td><td>per estrarre n-esimo elemento del file </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Restituisce</dt><dd>0 se l'operazione va a buon fine</dd></dl>
 <p>Funzione estrai_kcal_menu ():</p>
 <p>La funzione ha il compito di estrarre dal file menu le kcal del giorno indicato da num_giorno.</p>
 <p>Al tal scopo viene riesco passata alla funzione il nome utente per la generazione del nome file, un puntatore a kcal dove verranno memorizzate le kcal estratte ed il num_giorno. Effettuato un controllo sul num_giorno, viene aperto il file dopo la creazione del suo nome e letta la struct corrispondente, momorizzando in kcal le kcal lette del giorno estratto.</p>
@@ -582,6 +657,8 @@ Funzioni</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>La funzione <a class="el" href="menu__settimanale_8c.html#a8a9c73c2d0c13b4b96a2550db2528d46">gestore_visualizzazione_menu()</a> si occupa della visualizzazione del menu</p>
+<dl class="section return"><dt>Restituisce</dt><dd>esisto della funzione</dd></dl>
 <p>Funzione gestore_visualizzazione_menu ():</p>
 <p>La funzione ha gestire la visualizzazione del menu.</p>
 <p>Al tal scopo vengono effettuato un controllo sulla possibilita dell'utente di accedere a tali informazioni, attraverso l'autenticazione. se l'autenticazione va a buon fini, i diritti di tale utente alla visualizzazione sono idenei, altrimenti non viene stampato.</p>
@@ -630,7 +707,7 @@ Funzioni</h2></td></tr>
         <tr>
           <td class="memname">int inizializzazione_alimenti </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structgiorno.html">giorno</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="menu__settimanale_8h.html#aa16f54fedd90dabbd71b25791c01f6d4">giorno</a> *&#160;</td>
           <td class="paramname"><em>giornata</em>, </td>
         </tr>
         <tr>
@@ -649,7 +726,8 @@ Funzioni</h2></td></tr>
 <p>La funzione <a class="el" href="menu__settimanale_8c.html#a32d3fc0148c715a94428146288965657">inizializzazione_alimenti()</a> riceve in ingresso un puntatore ad una variabile di tipo giorno e l'indice del vettore della variabile al suo interno "pasto". La funzione assegnerà alla variabile alimento, appartenente alla struct pasto, una stringa vuota al nome_cibo, un flag impostato a -1 e una quantità pari a 0.</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">menu</td><td>varibile da modificare, num_pasto variabile per impostare l'indice della varaibile pasto. </td></tr>
+    <tr><td class="paramname">giornata</td><td>varibile da modificare </td></tr>
+    <tr><td class="paramname">num_pasto</td><td>variabile per impostare l'indice della varaibile pasto. </td></tr>
   </table>
   </dd>
 </dl>
@@ -677,7 +755,7 @@ Funzioni</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structgiorno.html">giorno</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="menu__settimanale_8h.html#aa16f54fedd90dabbd71b25791c01f6d4">giorno</a> *&#160;</td>
           <td class="paramname"><em>menu</em>&#160;</td>
         </tr>
         <tr>
@@ -690,7 +768,8 @@ Funzioni</h2></td></tr>
 <p>La funzione <a class="el" href="menu__settimanale_8c.html#aa8f6a45c6ced4ee1d20f9b134c3df232">inizializzazione_file_menu()</a> riceve in ingresso un vettore di dato strutturato di tipo "menu". La funzione scriverà su un file, il cui nome sarà il nickname dell'utente, il vettore ricevuto in ingresso.</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">vettore</td><td>menu da scrivere su file. </td></tr>
+    <tr><td class="paramname">nome_utente</td><td>nome da cui ricavare il nome file del menu personale </td></tr>
+    <tr><td class="paramname">menu</td><td>da scrivere su file </td></tr>
   </table>
   </dd>
 </dl>
@@ -703,8 +782,8 @@ Funzioni</h2></td></tr>
 
 </div>
 </div>
-<a id="a31deefba456ab16411f9400cdce2c247"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a31deefba456ab16411f9400cdce2c247">&#9670;&nbsp;</a></span>inizializzazione_giorno()</h2>
+<a id="a0030695e2bd26480f4dbc85581715212"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0030695e2bd26480f4dbc85581715212">&#9670;&nbsp;</a></span>inizializzazione_giorno()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -712,7 +791,7 @@ Funzioni</h2></td></tr>
         <tr>
           <td class="memname">int inizializzazione_giorno </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structgiorno.html">giorno</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="menu__settimanale_8h.html#aa16f54fedd90dabbd71b25791c01f6d4">giorno</a> *&#160;</td>
           <td class="paramname"><em>giornata</em>, </td>
         </tr>
         <tr>
@@ -731,7 +810,8 @@ Funzioni</h2></td></tr>
 <p>La funzione <a class="el" href="menu__settimanale_8c.html#a0030695e2bd26480f4dbc85581715212">inizializzazione_giorno()</a> riceve in ingresso un puntatore ad una variabile di tipo giorno e la sua posizione nel vettore creato nella funzione inizializzazione (). La funzione assegnerà alla variabile giorno appartenente alla struct il nome di un giorno della settimana, scegliendo tale nome sulla base della sua posizione nel vettore di struct a cui appartire. Inoltre, imposta a zero le kcal della giornata.</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">menu</td><td>varibile da modificare, indice variabile per la scelta della modifica da effetuare </td></tr>
+    <tr><td class="paramname">giornata</td><td>varibile da modificare </td></tr>
+    <tr><td class="paramname">num_giorno</td><td>variabile per la scelta della modifica da effetuare </td></tr>
   </table>
   </dd>
 </dl>
@@ -744,8 +824,8 @@ Funzioni</h2></td></tr>
 
 </div>
 </div>
-<a id="a86f882696111b875b7d6fc4551097b49"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a86f882696111b875b7d6fc4551097b49">&#9670;&nbsp;</a></span>inizializzazione_pasti()</h2>
+<a id="ae6a312a53a2bba5ef70500eae5fbe223"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae6a312a53a2bba5ef70500eae5fbe223">&#9670;&nbsp;</a></span>inizializzazione_pasti()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -753,7 +833,7 @@ Funzioni</h2></td></tr>
         <tr>
           <td class="memname">int inizializzazione_pasti </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structgiorno.html">giorno</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="menu__settimanale_8h.html#aa16f54fedd90dabbd71b25791c01f6d4">giorno</a> *&#160;</td>
           <td class="paramname"><em>menu</em></td><td>)</td>
           <td></td>
         </tr>
@@ -762,7 +842,7 @@ Funzioni</h2></td></tr>
 <p>La funzione <a class="el" href="menu__settimanale_8c.html#ae6a312a53a2bba5ef70500eae5fbe223">inizializzazione_pasti()</a> riceve in ingresso un puntatore ad una variabile di tipo giorno . La funzione scorre nel vettore pasto e assegna ai suoi elementi, in base alla loro posizione nel vettore, il nome di un pasto, chiamando poi una funzione per l'inizializzazione dei singoli elementi appartenenti al pasto.</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">menu</td><td>varibile da modificare, num_pasto variabile per la scelta della modifica da effetuare </td></tr>
+    <tr><td class="paramname">menu</td><td>varibile da modificare </td></tr>
   </table>
   </dd>
 </dl>
@@ -790,12 +870,6 @@ Funzioni</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>La funzione <a class="el" href="menu__settimanale_8c.html#a546eb5450653d379584ad80e7f26c6f2">input_flag_cibo()</a> permette l'input da tastiera del flag corrispondente alla ricetto o all'alimento.</p>
-<dl class="params"><dt>Parametri</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">no</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
 <dl class="section return"><dt>Restituisce</dt><dd>la stringa inserita da tastiera</dd></dl>
 <p>Funzione input_flag_cibo ():</p>
 <p>La funzione ha il compito di permettere all'utente di inserire il flag corrispondente a ciò che sta inserendo: 0 per un alimento 1 per la ricetta</p>
@@ -820,12 +894,6 @@ Funzioni</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>La funzione <a class="el" href="menu__settimanale_8c.html#a9e02f89d21bb57ff258b23d757d5912a">input_kcal_giornata()</a> permette l'input delle kcal di una giornata.</p>
-<dl class="params"><dt>Parametri</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">no</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
 <dl class="section return"><dt>Restituisce</dt><dd>le kcal inserite dall'utente</dd></dl>
 <p>Funzione input_kcal_giornata ():</p>
 <p>La funzione ha il compito di permettere l'input da parte dell'utente delle calorie della gionata di riferimento.</p>
@@ -850,12 +918,6 @@ Funzioni</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>La funzione <a class="el" href="menu__settimanale_8c.html#ab2d0c0898a93c373550b3bf6b66f9c1d">input_nome_cibo()</a> permette l'input da tastiera del nome del cibo da parte dell'utente.</p>
-<dl class="params"><dt>Parametri</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">no</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
 <dl class="section return"><dt>Restituisce</dt><dd>la stringa inserita da tastiera</dd></dl>
 <p>Funzione input_nome_cibo ():</p>
 <p>La funzione ha il compito di permettere all'utente di inserire il nome di un cibo, ritornando quest'ultimo.</p>
@@ -880,12 +942,6 @@ Funzioni</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>La funzione <a class="el" href="menu__settimanale_8h.html#a1e972b18beb4a73f0033ebea99cb2320">input_numero_giorno()</a> permette la selezione del giorno che si intende modificare.</p>
-<dl class="params"><dt>Parametri</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">no</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
 <dl class="section return"><dt>Restituisce</dt><dd>la selezione effettuata </dd></dl>
 
 </div>
@@ -905,12 +961,6 @@ Funzioni</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>La funzione <a class="el" href="menu__settimanale_8c.html#a4a6156be8f9d8024c1fe1d456ac56dec">input_numero_pasto()</a> permette la selezione del pasto, ritornando tale valore.</p>
-<dl class="params"><dt>Parametri</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">no</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
 <dl class="section return"><dt>Restituisce</dt><dd>la selezione effettuata</dd></dl>
 <p>Funzione input_numero_pasto ():</p>
 <p>La funzione ha il compito di permettere la selezione di uno dei pasti della giornata presa in esame, restituiendo tale valore.</p>
@@ -935,12 +985,6 @@ Funzioni</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>La funzione <a class="el" href="menu__settimanale_8c.html#a02c79d97237e2e52af7d85c9853754ed">input_quantita_cibo()</a> permette l'input da tastiera della quantità del cibo, ritornando quest'ultima.</p>
-<dl class="params"><dt>Parametri</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">no</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
 <dl class="section return"><dt>Restituisce</dt><dd>la stringa inserita da tastiera</dd></dl>
 <p>Funzione input_quantita_cibo ():</p>
 <p>La funzione ha il compito di permettere all'utente di inserire la quantita del cibo,</p>
@@ -959,7 +1003,7 @@ Funzioni</h2></td></tr>
         <tr>
           <td class="memname">void modifica_alimenti_pasto </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structgiorno.html">giorno</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="menu__settimanale_8h.html#aa16f54fedd90dabbd71b25791c01f6d4">giorno</a> *&#160;</td>
           <td class="paramname"><em>giornata</em>, </td>
         </tr>
         <tr>
@@ -978,7 +1022,8 @@ Funzioni</h2></td></tr>
 <p>La funzione scelta_alimenti() riceve in ingresso un dato strutturato di tipo "giorno" ed un numero corrispondente all'indice del vettore pasto contenuto nel dato strutturato menu. La funzione chiederà all'utente di scegliere quale degli alimenti modificare, per poi procedere all'inserimento da tastiera dei nuovi valori con cui sostituire i valori attuali.</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">menu</td><td>su cui effettuare le modifiche. </td></tr>
+    <tr><td class="paramname">giornata</td><td>su cui effettuare le modifiche. </td></tr>
+    <tr><td class="paramname">num_pasto</td><td>per selezionare il pasto da modificare </td></tr>
   </table>
   </dd>
 </dl>
@@ -1006,12 +1051,6 @@ Funzioni</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>La funzione scelta_pasto() non riceve nulla in ingresso. La funzione si occuperà dell'autenticazione dell'utente e quindi dell'estrazione dei suoi dati dal database degli utenti. Fatto ciò, chiederà all'utente di scegliere il giorno della settimana su cui desidera effettuare le modifiche. Dopodiché chiederà all'utente di scegliere uno dei cinque pasti disponibili, sucessivamente passerà l'indice corrispondente al pasto che ha scelto e menu ad un'altra funzione per procedere ad un ulteriore modifica sulla base della scelta effettuata. Scriverà il nuovo menu su file e visualizzerà il contenuto dell'intero file su schermo con le modifiche effettuate.</p>
-<dl class="params"><dt>Parametri</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">no</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
 <dl class="section return"><dt>Restituisce</dt><dd>0 se l'operazione va a buon fine</dd></dl>
 <p>Funzione scelta_pasto ():</p>
 <p>La funzione ha il compito di permettere all'utente di scegliere il menu di quale giorno su cui effettuare l'aggiormento, per poi scegliere ulteriormente il pasto su cui effetturare le modifiche.</p>
@@ -1030,7 +1069,7 @@ Funzioni</h2></td></tr>
         <tr>
           <td class="memname">void ordina_cibi_pasto </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structcibo.html">cibo</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="menu__settimanale_8h.html#ad59bf52977c02589a75aeab3b2358b68">cibo</a> *&#160;</td>
           <td class="paramname"><em>cibi</em></td><td>)</td>
           <td></td>
         </tr>
@@ -1050,8 +1089,8 @@ Funzioni</h2></td></tr>
 
 </div>
 </div>
-<a id="aed6f575ce380c9baffaf282d4b75f219"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aed6f575ce380c9baffaf282d4b75f219">&#9670;&nbsp;</a></span>scrivi_giorno()</h2>
+<a id="a51eeb7933598c940d7590eb6737108a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a51eeb7933598c940d7590eb6737108a0">&#9670;&nbsp;</a></span>scrivi_giorno()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1059,7 +1098,7 @@ Funzioni</h2></td></tr>
         <tr>
           <td class="memname">int scrivi_giorno </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structgiorno.html">giorno</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="menu__settimanale_8h.html#aa16f54fedd90dabbd71b25791c01f6d4">giorno</a> *&#160;</td>
           <td class="paramname"><em>giornata</em>, </td>
         </tr>
         <tr>
@@ -1083,10 +1122,13 @@ Funzioni</h2></td></tr>
 </div><div class="memdoc">
 <p>La procedura scrivi_menu() riceve in ingresso un dato strutturato di tipo giorno, il nome del file da aprire, la posizione dove andare a sovrascrivere. Effettua una serie di concanetazioni per generare il nome del file su cui andare a scrivere basandosi sul nome utente passatogli, apre il file, posizione il puntatore all'i-esima posizione e scrive in tale posizione il menu ricevuto in ingresso. </p><dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">menu</td><td>da scrivere su file, nome_utente da cui generare il nome del file su cui scrivere, i corrispondente alla posizione su cui scrivere nel file.</td></tr>
+    <tr><td class="paramname">giornata</td><td>da scrivere su file </td></tr>
+    <tr><td class="paramname">nome_utente</td><td>da cui generare il nome del file su cui scrivere </td></tr>
+    <tr><td class="paramname">num_giorno</td><td>corrispondente alla posizione su cui scrivere nel file. </td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Restituisce</dt><dd>esisto della funzione</dd></dl>
 <p>Procedura scrivi_menu ():</p>
 <p>La procedura ha il compito di scrivere su file il dato strutturato menu passatogli in ingresso al num_esima-esima posizione.</p>
 <p>Al tal scopo viene generato il nome del file attraverso nome_utente passatogli in ingresso. fatto ciò viene aperto il file, posizionato il puntatore alla num_giorno-esima posizione e scritto menu in tale posizione.</p>
@@ -1104,7 +1146,7 @@ Funzioni</h2></td></tr>
         <tr>
           <td class="memname">void stampa_giorno </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structgiorno.html">giorno</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="menu__settimanale_8h.html#aa16f54fedd90dabbd71b25791c01f6d4">giorno</a> *&#160;</td>
           <td class="paramname"><em>giornata</em></td><td>)</td>
           <td></td>
         </tr>
@@ -1112,7 +1154,7 @@ Funzioni</h2></td></tr>
 </div><div class="memdoc">
 <p>La funzione stampa_menu() riceve in ingresso un dato strutturato di tipo giorno e lo stampa su schermo. </p><dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">menu</td><td>da stampare su schermo. </td></tr>
+    <tr><td class="paramname">giornata</td><td>da stampare su schermo. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1143,7 +1185,7 @@ Funzioni</h2></td></tr>
 <p>La funzione <a class="el" href="menu__settimanale_8c.html#ac87b9a3be1141a92c93445fbc0d0d007">visualizza_database_menu()</a> riceve in ingresso un vettore di carattere, corrispondente al nome file che andrà ad aprire/creare. La funzione stamperà su schermo il contenuto del fine.</p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">vettore</td><td>nomefile per aprire il file. </td></tr>
+    <tr><td class="paramname">nome_utente</td><td>per generare il nome del file del menu personale </td></tr>
   </table>
   </dd>
 </dl>

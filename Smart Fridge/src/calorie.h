@@ -62,7 +62,7 @@
  *  E' basato su di una struct i cui membri sono: nome, quantita, kcal, e flag (per identificare se si tratta di una ricetta o aliment).
  *
  */
-typedef struct{
+typedef struct struct_assunzione{
 	char nome[LUNG_NOME_ASSUNZIONE];   ///stringa che contiene il nome dell'assunzione
 	float quantita;						/// quantità assunta
 	unsigned short int kcal;			/// kcal per la quantita assunta
@@ -95,8 +95,6 @@ unsigned short int input_kcal_libere();
  * l'estrazione dal database del tipo di dato che si deve gestire, permettendo il popolamento della struct
  * passata in ingresso.
  *
- * @param cibo			    struct che conterrà il nome, la quantità e le calorie dell'alimento assunto dall'utente
- *
  * @return -1				se l'utente vuole smettere di inserire alimenti
  * @return 1				se tutto avviene in modo corretto
  *
@@ -111,6 +109,7 @@ int input_alimento_consumato ();
  *
  * @param kcal				numero intero corrispondente alle kcal per un dato campione
  * @param campione			numero intero che rappresenta la quantità corrispondente alle kcal
+ * @param q_consumata       numero corrispondente alla quantita consumata effettivamente
  *
  * @return 0 se i dati inseriti non sono validi
  * @return risultato_kcal	kcal per il quantitativo inserito
@@ -121,8 +120,10 @@ unsigned short int calcolo_kcal(unsigned short int kcal, int campione, float q_c
 /**La funzione aggiorno_database_calorie() ha il compito di scrive su file assunzioni relativo all'utente,
  * il quale nickname viene passato come parametro di ingresso alla fuzione, il cibo assunto.
  *
- * @param cibo			    struct da scrivere su file
+ * @param nome_consumo		nome dell'alimento consumato
  * @param nickname			nome con cui creare il nome del file su cui scrivere
+ * @param flag_consumo      flag che indica se si tratta di un alimento, una ricetta o un input libero
+ * @param quantita_consumo  quantita consumata
  *
  *@return -1 				se il file non esiste e non è possibile crearne uno
  *@return  1				se la funzione riesce a svolgere il suo compito
@@ -187,11 +188,11 @@ int creazione_assunzioni ();
 int modifica_assunzione ();
 
 /**La funzione ricerca_assunzione_database() ha il compito di aprire il file assunzioni legato all'utente il cui nome gli viene passato in
- * ingresso, cercare nel file una struct di tipo assunzione che abbia la stringa nome uguale  alla varibile nome passata in ingresso.
+ * ingresso grazie alla struct assunzione, cercare nel file una struct di tipo assunzione che abbia la stringa nome uguale  alla varibile nome passata in ingresso.
  * Se la trova, ritorna la sua posizioen nel file.
  *
  *
- *@param nome				variabile per la ricerca nel file
+ *@param nuova_assunzione	struct dove viene inserita la struct se trovata
  *@param nickname			variabile per aprire il file legato all'utente
  *
  *@return posizione 		se trova la struct con nome corrispondente al nome passato in ingresso

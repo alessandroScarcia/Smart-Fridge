@@ -1,6 +1,8 @@
 \hypertarget{utenti_8c}{}\section{Riferimenti per il file src/utenti.c}
 \label{utenti_8c}\index{src/utenti.\+c@{src/utenti.\+c}}
 {\ttfamily \#include \char`\"{}utenti.\+h\char`\"{}}\newline
+Grafo delle dipendenze di inclusione per utenti.\+c\+:
+% FIG 0
 \subsection*{Funzioni}
 \begin{DoxyCompactItemize}
 \item 
@@ -18,27 +20,27 @@ void \hyperlink{utenti_8c_a3d24eee1e0857cdb3235dbb72de2e0fd}{generatore\+\_\+pas
 \item 
 int \hyperlink{utenti_8c_a4362675e19acd7b1e0bc1d064b285530}{input\+\_\+preferenza} (char $\ast$preferenza)
 \item 
-\hyperlink{structutente}{utente} \hyperlink{utenti_8c_ad6a35d2d36fe87744edc5a28e0727da3}{input\+\_\+utente} ()
+\hyperlink{utenti_8h_a098b3689b75e144d9294adc436d4f04f}{utente} \hyperlink{utenti_8c_ad6a35d2d36fe87744edc5a28e0727da3}{input\+\_\+utente} ()
 \item 
-\hyperlink{structutente}{utente} \hyperlink{utenti_8c_ac936c99ad1d8bb5c7d9b9d37147a0576}{genera\+\_\+utente} ()
+\hyperlink{utenti_8h_a098b3689b75e144d9294adc436d4f04f}{utente} \hyperlink{utenti_8c_ac936c99ad1d8bb5c7d9b9d37147a0576}{genera\+\_\+utente} ()
 \item 
-\hyperlink{structutente}{utente} $\ast$ \hyperlink{utenti_8c_a2fd9f3ff6568853f6af346c28235db37}{genera\+\_\+n\+\_\+utenti} (int n)
+\hyperlink{utenti_8h_a098b3689b75e144d9294adc436d4f04f}{utente} $\ast$ \hyperlink{utenti_8c_a2fd9f3ff6568853f6af346c28235db37}{genera\+\_\+n\+\_\+utenti} (int n)
 \item 
-int \hyperlink{utenti_8c_ad805a0034443857290327abf1b42e7e4}{salva\+\_\+n\+\_\+utenti} (\hyperlink{structutente}{utente} $\ast$utenti, int n)
+int \hyperlink{utenti_8c_ad805a0034443857290327abf1b42e7e4}{salva\+\_\+n\+\_\+utenti} (\hyperlink{utenti_8h_a098b3689b75e144d9294adc436d4f04f}{utente} $\ast$utenti, int n)
 \item 
 int \hyperlink{utenti_8c_a5175e2b07de5abb19aef4e0e1bd3635a}{crea\+\_\+utenti} ()
 \item 
-void \hyperlink{utenti_8c_a6427e961c8b4da62096f99b2fa7b051e}{modifica\+\_\+preferenze} (\hyperlink{structutente}{utente} $\ast$u)
+void \hyperlink{utenti_8c_a6427e961c8b4da62096f99b2fa7b051e}{modifica\+\_\+preferenze} (\hyperlink{utenti_8h_a098b3689b75e144d9294adc436d4f04f}{utente} $\ast$u)
 \item 
 int \hyperlink{utenti_8c_ad907371385837ca72c389ca32df39d80}{gestore\+\_\+modifiche} ()
 \item 
 int \hyperlink{utenti_8c_ad1417dda78bb50d93809ae0a28b2a29d}{visualizza\+\_\+database\+\_\+utenti} ()
 \item 
-int \hyperlink{utenti_8c_a84eaff176b61eeb1ab0908897d4f3cc6}{autenticazione} (\hyperlink{structutente}{utente} $\ast$u)
+int \hyperlink{utenti_8c_a84eaff176b61eeb1ab0908897d4f3cc6}{autenticazione} (\hyperlink{utenti_8h_a098b3689b75e144d9294adc436d4f04f}{utente} $\ast$u)
 \item 
-int \hyperlink{utenti_8c_a32e8982b503c10da62802a604f044efa}{output\+\_\+preferenze} (const \hyperlink{structutente}{utente} u)
+int \hyperlink{utenti_8c_a32e8982b503c10da62802a604f044efa}{output\+\_\+preferenze} (const \hyperlink{utenti_8h_a098b3689b75e144d9294adc436d4f04f}{utente} u)
 \item 
-void \hyperlink{utenti_8c_a87ee6c560888e42fdd61588cd98743b6}{output\+\_\+utente} (const \hyperlink{structutente}{utente} u)
+void \hyperlink{utenti_8c_a87ee6c560888e42fdd61588cd98743b6}{output\+\_\+utente} (const \hyperlink{utenti_8h_a098b3689b75e144d9294adc436d4f04f}{utente} u)
 \item 
 int \hyperlink{utenti_8c_a501b188b76d88a30065fbfce37ed256d}{conta\+\_\+utenti} ()
 \item 
@@ -51,7 +53,7 @@ int \hyperlink{utenti_8c_ada1d8f087bdf0124e1ac0f85692caeb6}{elimina\+\_\+utente}
 \index{utenti.\+c@{utenti.\+c}!autenticazione@{autenticazione}}
 \index{autenticazione@{autenticazione}!utenti.\+c@{utenti.\+c}}
 \subsubsection{\texorpdfstring{autenticazione()}{autenticazione()}}
-{\footnotesize\ttfamily int autenticazione (\begin{DoxyParamCaption}\item[{\hyperlink{structutente}{utente} $\ast$}]{u }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int autenticazione (\begin{DoxyParamCaption}\item[{\hyperlink{utenti_8h_a098b3689b75e144d9294adc436d4f04f}{utente} $\ast$}]{u }\end{DoxyParamCaption})}
 
 Funzione autenticazione ()\+:
 
@@ -135,7 +137,7 @@ Il valore restituito rappresenta l\textquotesingle{}esito della funzione.
 \index{utenti.\+c@{utenti.\+c}!genera\+\_\+n\+\_\+utenti@{genera\+\_\+n\+\_\+utenti}}
 \index{genera\+\_\+n\+\_\+utenti@{genera\+\_\+n\+\_\+utenti}!utenti.\+c@{utenti.\+c}}
 \subsubsection{\texorpdfstring{genera\+\_\+n\+\_\+utenti()}{genera\_n\_utenti()}}
-{\footnotesize\ttfamily \hyperlink{structutente}{utente}$\ast$ genera\+\_\+n\+\_\+utenti (\begin{DoxyParamCaption}\item[{int}]{n }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \hyperlink{utenti_8h_a098b3689b75e144d9294adc436d4f04f}{utente}$\ast$ genera\+\_\+n\+\_\+utenti (\begin{DoxyParamCaption}\item[{int}]{n }\end{DoxyParamCaption})}
 
 Funzione genera\+\_\+n\+\_\+utenti ()\+:
 
@@ -189,7 +191,7 @@ Il valore restituito è un puntatore alla stringa contenente la password.
 \index{utenti.\+c@{utenti.\+c}!genera\+\_\+utente@{genera\+\_\+utente}}
 \index{genera\+\_\+utente@{genera\+\_\+utente}!utenti.\+c@{utenti.\+c}}
 \subsubsection{\texorpdfstring{genera\+\_\+utente()}{genera\_utente()}}
-{\footnotesize\ttfamily \hyperlink{structutente}{utente} genera\+\_\+utente (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \hyperlink{utenti_8h_a098b3689b75e144d9294adc436d4f04f}{utente} genera\+\_\+utente (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 Funzione genera\+\_\+utente ()\+:
 
@@ -297,7 +299,7 @@ Il valore restituito identifica l\textquotesingle{}esito della funzione.
 \index{utenti.\+c@{utenti.\+c}!input\+\_\+utente@{input\+\_\+utente}}
 \index{input\+\_\+utente@{input\+\_\+utente}!utenti.\+c@{utenti.\+c}}
 \subsubsection{\texorpdfstring{input\+\_\+utente()}{input\_utente()}}
-{\footnotesize\ttfamily \hyperlink{structutente}{utente} input\+\_\+utente (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \hyperlink{utenti_8h_a098b3689b75e144d9294adc436d4f04f}{utente} input\+\_\+utente (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 Funzione input\+\_\+utente ()\+:
 
@@ -313,7 +315,7 @@ Il valore restituito è una struct di tipo utente rimpita con dati significativi.
 \index{utenti.\+c@{utenti.\+c}!modifica\+\_\+preferenze@{modifica\+\_\+preferenze}}
 \index{modifica\+\_\+preferenze@{modifica\+\_\+preferenze}!utenti.\+c@{utenti.\+c}}
 \subsubsection{\texorpdfstring{modifica\+\_\+preferenze()}{modifica\_preferenze()}}
-{\footnotesize\ttfamily void modifica\+\_\+preferenze (\begin{DoxyParamCaption}\item[{\hyperlink{structutente}{utente} $\ast$}]{u }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void modifica\+\_\+preferenze (\begin{DoxyParamCaption}\item[{\hyperlink{utenti_8h_a098b3689b75e144d9294adc436d4f04f}{utente} $\ast$}]{u }\end{DoxyParamCaption})}
 
 Funzione modifica\+\_\+preferenze ()\+:
 
@@ -328,7 +330,7 @@ La struct in ingresso non può essere vuota.
 \index{utenti.\+c@{utenti.\+c}!output\+\_\+preferenze@{output\+\_\+preferenze}}
 \index{output\+\_\+preferenze@{output\+\_\+preferenze}!utenti.\+c@{utenti.\+c}}
 \subsubsection{\texorpdfstring{output\+\_\+preferenze()}{output\_preferenze()}}
-{\footnotesize\ttfamily int output\+\_\+preferenze (\begin{DoxyParamCaption}\item[{const \hyperlink{structutente}{utente}}]{u }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int output\+\_\+preferenze (\begin{DoxyParamCaption}\item[{const \hyperlink{utenti_8h_a098b3689b75e144d9294adc436d4f04f}{utente}}]{u }\end{DoxyParamCaption})}
 
 Funzione output\+\_\+preferenze ()\+:
 
@@ -346,7 +348,7 @@ Il valore di ritorno è il numero delle preferenze con valori significativi.
 \index{utenti.\+c@{utenti.\+c}!output\+\_\+utente@{output\+\_\+utente}}
 \index{output\+\_\+utente@{output\+\_\+utente}!utenti.\+c@{utenti.\+c}}
 \subsubsection{\texorpdfstring{output\+\_\+utente()}{output\_utente()}}
-{\footnotesize\ttfamily void output\+\_\+utente (\begin{DoxyParamCaption}\item[{const \hyperlink{structutente}{utente}}]{u }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void output\+\_\+utente (\begin{DoxyParamCaption}\item[{const \hyperlink{utenti_8h_a098b3689b75e144d9294adc436d4f04f}{utente}}]{u }\end{DoxyParamCaption})}
 
 Funzione output\+\_\+utente ()\+:
 
@@ -359,7 +361,7 @@ nla struct non deve essere vuota
 \index{utenti.\+c@{utenti.\+c}!salva\+\_\+n\+\_\+utenti@{salva\+\_\+n\+\_\+utenti}}
 \index{salva\+\_\+n\+\_\+utenti@{salva\+\_\+n\+\_\+utenti}!utenti.\+c@{utenti.\+c}}
 \subsubsection{\texorpdfstring{salva\+\_\+n\+\_\+utenti()}{salva\_n\_utenti()}}
-{\footnotesize\ttfamily int salva\+\_\+n\+\_\+utenti (\begin{DoxyParamCaption}\item[{\hyperlink{structutente}{utente} $\ast$}]{utenti,  }\item[{int}]{n }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int salva\+\_\+n\+\_\+utenti (\begin{DoxyParamCaption}\item[{\hyperlink{utenti_8h_a098b3689b75e144d9294adc436d4f04f}{utente} $\ast$}]{utenti,  }\item[{int}]{n }\end{DoxyParamCaption})}
 
 Funzione salva\+\_\+n\+\_\+utenti ()\+:
 

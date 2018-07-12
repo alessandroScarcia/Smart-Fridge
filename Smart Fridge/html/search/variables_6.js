@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['kcal',['kcal',['../structassunzione.html#a56d39916ab5ac20d4e6833d604a7a247',1,'assunzione::kcal()'],['../structgiorno.html#aa711a8aca060ca1639cdf94c4452b33d',1,'giorno::kcal()']]],
-  ['kcal_5fricetta',['kcal_ricetta',['../structricetta.html#abdd39d8054927daf2a648aef9aea1909',1,'ricetta']]]
+  ['kcal',['kcal',['../structstruct__alimento__database.html#a5b16934bbeeeecc32cc6a0b87b2d1776',1,'struct_alimento_database::kcal()'],['../structstruct__assunzione.html#a938acf941ed6d3f2005f89d46c322094',1,'struct_assunzione::kcal()'],['../structstruct__giorno.html#adfdaabe9560cb3dc440b1b2a03b6aa9f',1,'struct_giorno::kcal()']]],
+  ['kcal_5fricetta',['kcal_ricetta',['../structstruct__ricette.html#a3647b37933eb53f6c94f9a0971097d12',1,'struct_ricette']]]
 ];

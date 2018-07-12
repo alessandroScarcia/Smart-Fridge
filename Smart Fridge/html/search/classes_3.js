@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['giorno',['giorno',['../structgiorno.html',1,'']]]
+  ['ingrediente',['ingrediente',['../structingrediente.html',1,'']]]
 ];

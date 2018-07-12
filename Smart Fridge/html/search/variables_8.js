@@ -1,10 +1,10 @@
 var searchData=
 [
-  ['nickname',['nickname',['../structutente.html#ad515f795f0491b1ca59931a2f4a2cc59',1,'utente']]],
-  ['nome',['nome',['../structassunzione.html#aff7debc5c0b0bf1772b538eebc66c095',1,'assunzione::nome()'],['../structingrediente.html#abc3e24e6f64482d852f4911224236939',1,'ingrediente::nome()']]],
-  ['nome_5fcibo',['nome_cibo',['../structcibo.html#aa6fb1377070abf7a0e84d58931f8372a',1,'cibo']]],
-  ['nome_5fgiorno',['nome_giorno',['../structgiorno.html#a39d726518f3a70176c8bfca309c9720b',1,'giorno']]],
-  ['nome_5fpasto',['nome_pasto',['../structpasto.html#a64f639335ea116474fb622593a998e94',1,'pasto']]],
-  ['nome_5fprodotto',['nome_prodotto',['../structconsumo.html#a789a4460ab0162e2732058229c5a437f',1,'consumo']]],
-  ['nome_5fricetta',['nome_ricetta',['../structricetta.html#a40bb51c26dc338c485cc655bea2c2ca5',1,'ricetta']]]
+  ['nickname',['nickname',['../structstruct__utente.html#a17f7559563292428017c36c15a59f3e2',1,'struct_utente']]],
+  ['nome',['nome',['../structstruct__alimento__database.html#a4b03791d70fe6c71278da900ad39e1b9',1,'struct_alimento_database::nome()'],['../structstruct__alimento__frigo.html#a9143c91ccee04bad304a663484e710f7',1,'struct_alimento_frigo::nome()'],['../structstruct__assunzione.html#a2dd4ec69222a4b3bd0182c74ac85233e',1,'struct_assunzione::nome()'],['../structingrediente.html#abc3e24e6f64482d852f4911224236939',1,'ingrediente::nome()']]],
+  ['nome_5fcibo',['nome_cibo',['../structstruct__cibo.html#aa44460f9c88f17f237bf85ca968cfff6',1,'struct_cibo']]],
+  ['nome_5fgiorno',['nome_giorno',['../structstruct__giorno.html#a66562d54ebcd9adafc8bd6651d3cd4b3',1,'struct_giorno']]],
+  ['nome_5fpasto',['nome_pasto',['../structstruct__pasto.html#a49b887c2a9095d690e16e30dfc661b55',1,'struct_pasto']]],
+  ['nome_5fprodotto',['nome_prodotto',['../structstruct__consumo.html#a0969931ff405c4121a5d960044100245',1,'struct_consumo']]],
+  ['nome_5fricetta',['nome_ricetta',['../structstruct__ricette.html#a06df6576d7b23a0c6697a65ec89659f4',1,'struct_ricette']]]
 ];

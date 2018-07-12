@@ -71,7 +71,7 @@
  * Giuliano. E' basato su di una struct i cui membri sono: giorno, mese e anno.
  * Tutti i membri sono di tipo unsigned short.
  */
-typedef struct{
+typedef struct struct_data{
 	unsigned short giorno;
 	unsigned short mese;
 	unsigned short anno;
@@ -133,7 +133,7 @@ int confronta_date(data d1, data d2);
  * di tipo data, e ne assegna un valore generato nell'intervallo
  * rappresentato dalle altre due date ricevute in ingresso.
  *
- * @param dataGenerata Puntatore alla variabile da generare
+ * @param data_generata Puntatore alla variabile da generare
  * @param d1 Primo estremo dell'intervallo in cui generare la data
  * @param d2 Secondo estremo dell'intervallo in cui generare la data
  * @return DATA_NON_VALIDA se una delle due date, d1 o d2, o entrambe non sono valida
@@ -165,7 +165,7 @@ int giorno_odierno();
  * La funzione data_gregoriana() datermina la data in formato gregoriana
  * del giorno giuliano ricevuto in ingresso e la ritorna come dato di tipo data.
  *
- * @param dataGiuliana Giorno giuliano da convertire
+ * @param data_giuliana Giorno giuliano da convertire
  * @return Data in formato gregoriano corrispondente al giorno giuliano ricevuto
  */
 data data_gregoriana(double data_giuliana);
@@ -175,7 +175,7 @@ data data_gregoriana(double data_giuliana);
  * La funzione shift_data_odierna() genera una data sommando il valore indicato
  * da valoreShift alla data odierna al momento dell'esecuzione.
  *
- * @param valoreShift Giorni da sommare alla data di esecuzione
+ * @param valore_shift Giorni da sommare alla data di esecuzione
  * @return La data generata in formato gregoriano
  */
 data shift_data_odierna(short valore_shift);

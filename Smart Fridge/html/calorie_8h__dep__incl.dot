@@ -1,0 +1,48 @@
+digraph "src/calorie.h"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node15 [label="src/calorie.h",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node15 -> Node16 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node16 [label="src/alimenti.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$alimenti_8h.html",tooltip="Libreria per la gestione degli alimenti. "];
+  Node16 -> Node17 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node17 [label="src/alimenti.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$alimenti_8c.html"];
+  Node16 -> Node15 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node16 -> Node18 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node18 [label="src/ricette.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ricette_8h.html",tooltip="Libreria per la gestione delle ricette. "];
+  Node18 -> Node15 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node18 -> Node19 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node19 [label="src/interfaccia.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$interfaccia_8h.html",tooltip="Libreria per l&#39;interfaccia utente. "];
+  Node19 -> Node20 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node20 [label="src/interfaccia.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$interfaccia_8c.html"];
+  Node19 -> Node21 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node21 [label="src/main.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$main_8c.html",tooltip="Main del programma Smart Fridge. "];
+  Node18 -> Node22 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node22 [label="src/lista_spesa.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$lista__spesa_8h.html",tooltip="Libreria per la gestione della lista della spesa. "];
+  Node22 -> Node19 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node22 -> Node23 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node23 [label="src/lista_spesa.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$lista__spesa_8c.html"];
+  Node18 -> Node24 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node24 [label="src/ricette.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ricette_8c.html"];
+  Node16 -> Node25 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node25 [label="src/utenti.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$utenti_8h.html",tooltip="Libreria per la gestione degli utenti. "];
+  Node25 -> Node18 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node25 -> Node26 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node26 [label="src/menu_settimanale.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$menu__settimanale_8h.html",tooltip="Libreria per la gestione e la creazione di un menu settimanale per ogni utente. "];
+  Node26 -> Node25 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node26 -> Node19 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node26 -> Node22 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node26 -> Node27 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node27 [label="src/menu_settimanale.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$menu__settimanale_8c.html"];
+  Node25 -> Node16 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node25 -> Node19 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node25 -> Node22 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node25 -> Node28 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node28 [label="src/utenti.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$utenti_8c.html"];
+  Node16 -> Node19 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node16 -> Node22 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node15 -> Node18 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node15 -> Node29 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node29 [label="src/calorie.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$calorie_8c.html"];
+  Node15 -> Node19 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

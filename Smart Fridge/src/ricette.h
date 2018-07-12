@@ -99,21 +99,21 @@
  *  E' basato su di una struct i cui membri sono: nome, quantita, unita_misura ;
  *
  */
-typedef struct {
+typedef struct ingrediente  {
 	char nome[LUNG_INGREDIENTE];				  /// stringa per la memorizzazione del nome dell'ingrediente
 	float quantita;              				 /// quantitativo da utilizzare nella ricetta di cui fa parte
 	char unita_misura[LUNG_UNITA_INGR];			/// unita di misura dell'ingrediente (kg, litri, ...)
 }ingrediente;
 
 /**
- * @typedef ricette
+ * @typedef ricetta
  *
  * Il tipo di dato "ricette" è stato definito per memorizzare le caratteristiche di una ricetta
  *  E' basato su di una struct i cui membri sono: nome_ricetta, ingredienti, tempo_preparazione, preparazione, complessita, kcal_ricetta
  *  e dosi.
  *
  */
-typedef struct {
+typedef struct struct_ricette {
 	char nome_ricetta[LUNG_NOME_RICETTA];					/// stringa contenente il nome assegnato alla ricetta
 	ingrediente ingredienti[MAX_INGREDIENTI];				/// vettore di tipo ingredienti per la memorizzazione degli ingredienti utili alla preparzione della ricetta
 	char tempo_preparazione[LUNG_TEMPO_PREPARAZIONE];		/// vettore contenente il tempo di preparazione di una ricetta
@@ -224,9 +224,7 @@ int visualizza_ricetta(ricetta dati_ricetta, int vista_ricetta);
  * permette la visualizzazione del database o di una singola ricetta in base all'id che passiamo.
  * Inoltre possiamo decidere in che modalitá vedere i dati(0-->totale, 1-->minimizzata)
  *
- * @param nome_ricetta		nome della ricetta da visualizzare in caso possieda un valore. In caso sia una stringa vuota viene mostrato l'intero database
- * @param id_ricetta_pers	id che viene mostrato a schermo a seguito di una ricerca o altre operazioni
- * @param vista				flag che in base ad un controllo permette di visualizzare tutti i dati della ricetta o solo quelli principali
+ * @param vista				flag che indica se la visualizzazione delle ricette deve essere ridotta o meno
  * @return 1				in caso di successo nella visualizzazione
  */
 int visualizza_database_ricette(int vista);
@@ -258,8 +256,6 @@ int elimina_ricetta();
 /**
  * La funzione suggerirá le ricette che si possono effettuare con gli ingredienti a disposizione nel frigo
  *
- * @param alimenti_frigo	Elenco degli alimenti del frigo su cui effettuare la ricerca della ricetta
- * @param num_alimenti		numero degli alimenti presenti nel frigo
  * @return 1				in caso di successo nella visualizzazione di un suggerimento
  */
 int suggerimento_ricetta_automatico();
@@ -270,11 +266,11 @@ int suggerimento_ricetta_automatico();
 /**
  * Suggerisce le ricette che si possono fare con gli alimenti inseriti manualmente dall'utente
  *
- * @param num_alimenti		numero di ingredienti su cui effettuare la ricerca
- * @param nome_alimenti		nome degli alimenti su cui effettuare a ricerca della ricetta
+ * @param num_alimenti_sugg		numero di ingredienti su cui effettuare la ricerca
+ * @param nome_ingredienti	nome degli alimenti su cui effettuare a ricerca della ricetta
  * @return 1				in caso di successo nella visualizzazione di un suggerimento
  */
-int suggerimento_ricetta_manuale(int num_alimenti, char nome_ingredienti[MAX_INGRD_SUGG][LUNG_INGREDIENTE]);
+int suggerimento_ricetta_manuale(int num_alimenti_sugg, char nome_ingredienti[MAX_INGRD_SUGG][LUNG_INGREDIENTE]);
 
 
 
@@ -328,8 +324,6 @@ int lettura_database_ricette(ricetta* ricette_database);
 /**
  * funzione di ricerca ricette, ottimizzata per gli alimenti che stanno per scadere all'interno del frigo
  *
- * @param alimenti_frigo	elenco degli alimenti del frigo(ordinati per scadenza) su cui effettuare la ricerca della ricetta
- * @param num_alimenti		numero di alimenti presenti nel frigo
  * @return 1				in caso di successo
  */
 int ricette_alimenti_in_scadenza();
@@ -340,10 +334,10 @@ int ricette_alimenti_in_scadenza();
 /**
  * funzione che serve ad inserire manualmente gli ingredienti da usare come paroli chiave per la ricerca di ricette che possiedono tali ingredienti
  *
- * @param nome_alimenti				matrice che conterrá i nomi degli ingredienti su cui effettuare la ricerca della ricetta
+ * @param nome_ingredienti			matrice che conterrá i nomi degli ingredienti su cui effettuare la ricerca della ricetta
  * @return num_alimenti_inseriti++	indice incrementato che corrisponde al numero effettivo di ingredienti inseriti dall'utente
  */
-int inserimento_manuale_ingredienti(char nome_alimenti[MAX_INGRD_SUGG][LUNG_INGREDIENTE]);
+int inserimento_manuale_ingredienti(char nome_ingredienti[MAX_INGRD_SUGG][LUNG_INGREDIENTE]);
 
 
 

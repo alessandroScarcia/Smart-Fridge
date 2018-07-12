@@ -5,29 +5,32 @@
 Libreria per la gestione degli utenti.  
 
 
-{\ttfamily \#include \char`\"{}menu\+\_\+settimanale.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}alimenti.\+h\char`\"{}}\newline
-{\ttfamily \#include \char`\"{}pulizia\+\_\+flussi.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}menu\+\_\+settimanale.\+h\char`\"{}}\newline
 {\ttfamily \#include $<$stdbool.\+h$>$}\newline
 {\ttfamily \#include $<$stdio.\+h$>$}\newline
 {\ttfamily \#include $<$stdlib.\+h$>$}\newline
 {\ttfamily \#include $<$time.\+h$>$}\newline
 {\ttfamily \#include $<$string.\+h$>$}\newline
 {\ttfamily \#include $<$ctype.\+h$>$}\newline
+Grafo delle dipendenze di inclusione per utenti.\+h\+:
+% FIG 0
+Questo grafo mostra quali altri file includono direttamente o indirettamente questo file\+:
+% FIG 1
 \subsection*{Strutture dati}
 \begin{DoxyCompactItemize}
 \item 
-struct \hyperlink{structutente}{utente}
+struct \hyperlink{structstruct__utente}{struct\+\_\+utente}
 \end{DoxyCompactItemize}
 \subsection*{Definizioni}
 \begin{DoxyCompactItemize}
 \item 
-\#define \hyperlink{utenti_8h_a3f71b4ea87bcf3feda424bc285bcef6a}{S\+T\+R\+I\+N\+G\+\_\+\+L\+IB}
+\#define \hyperlink{utenti_8h_a35ccef9eff6efbd8187c83e45458040d}{S\+T\+D\+\_\+\+L\+IB}
 \begin{DoxyCompactList}\small\item\em Inclusione delle librerie standard. \end{DoxyCompactList}\item 
-\#define \hyperlink{utenti_8h_a2df13304b7f365c9a36dd528bad30412}{U\+T\+E\+N\+T\+I\+\_\+\+L\+IB}
-\item 
+\#define \hyperlink{utenti_8h_a3f71b4ea87bcf3feda424bc285bcef6a}{S\+T\+R\+I\+N\+G\+\_\+\+L\+IB}
+\begin{DoxyCompactList}\small\item\em Inclusione delle librerie per la manipolazione di stringhe e caratteri. \end{DoxyCompactList}\item 
 \#define \hyperlink{utenti_8h_a54ac4d1eb25b89436da633fdc51e77c3}{M\+A\+X\+\_\+\+U\+T\+E\+N\+TI}~6
-\begin{DoxyCompactList}\small\item\em Inclusione della libreria per la gestione del menu\+\_\+settimanale. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Limiti e valori per determinati elementi\+: \end{DoxyCompactList}\item 
 \#define \hyperlink{utenti_8h_a3d93581a285a9677267a4502ea1a033c}{N\+U\+M\+\_\+\+T\+I\+P\+I\+\_\+\+C\+H\+AR}~4
 \item 
 \#define \hyperlink{utenti_8h_a8bdcedbdfe34ab1a8a7fe6a7464ce97d}{C\+H\+A\+R\+\_\+\+S\+I\+M\+B\+O\+LO}~1
@@ -76,6 +79,11 @@ struct \hyperlink{structutente}{utente}
 \item 
 \#define \hyperlink{utenti_8h_a49cb5a152f4b513f7eebdbcc77b53b61}{F\+I\+L\+E\+\_\+\+D\+A\+T\+A\+B\+A\+S\+E\+\_\+\+U\+T\+E\+N\+TI}~\char`\"{}database\+\_\+utenti.\+dat\char`\"{}
 \begin{DoxyCompactList}\small\item\em Nome di file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Ridefinizioni di tipo (typedef)}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \hyperlink{structstruct__utente}{struct\+\_\+utente} \hyperlink{utenti_8h_a098b3689b75e144d9294adc436d4f04f}{utente}
+\end{DoxyCompactItemize}
 \subsection*{Funzioni}
 \begin{DoxyCompactItemize}
 \item 
@@ -93,25 +101,25 @@ void \hyperlink{utenti_8h_a3d24eee1e0857cdb3235dbb72de2e0fd}{generatore\+\_\+pas
 \item 
 int \hyperlink{utenti_8h_a4362675e19acd7b1e0bc1d064b285530}{input\+\_\+preferenza} (char $\ast$preferenza)
 \item 
-\hyperlink{structutente}{utente} \hyperlink{utenti_8h_ad6a35d2d36fe87744edc5a28e0727da3}{input\+\_\+utente} ()
+\hyperlink{utenti_8h_a098b3689b75e144d9294adc436d4f04f}{utente} \hyperlink{utenti_8h_ad6a35d2d36fe87744edc5a28e0727da3}{input\+\_\+utente} ()
 \item 
-\hyperlink{structutente}{utente} \hyperlink{utenti_8h_ac936c99ad1d8bb5c7d9b9d37147a0576}{genera\+\_\+utente} ()
+\hyperlink{utenti_8h_a098b3689b75e144d9294adc436d4f04f}{utente} \hyperlink{utenti_8h_ac936c99ad1d8bb5c7d9b9d37147a0576}{genera\+\_\+utente} ()
 \item 
-\hyperlink{structutente}{utente} $\ast$ \hyperlink{utenti_8h_a2fd9f3ff6568853f6af346c28235db37}{genera\+\_\+n\+\_\+utenti} (int n)
+\hyperlink{utenti_8h_a098b3689b75e144d9294adc436d4f04f}{utente} $\ast$ \hyperlink{utenti_8h_a2fd9f3ff6568853f6af346c28235db37}{genera\+\_\+n\+\_\+utenti} (int n)
 \item 
-int \hyperlink{utenti_8h_ad805a0034443857290327abf1b42e7e4}{salva\+\_\+n\+\_\+utenti} (\hyperlink{structutente}{utente} $\ast$utenti, int n)
+int \hyperlink{utenti_8h_ad805a0034443857290327abf1b42e7e4}{salva\+\_\+n\+\_\+utenti} (\hyperlink{utenti_8h_a098b3689b75e144d9294adc436d4f04f}{utente} $\ast$utenti, int n)
 \item 
 int \hyperlink{utenti_8h_a5175e2b07de5abb19aef4e0e1bd3635a}{crea\+\_\+utenti} ()
 \item 
-void \hyperlink{utenti_8h_a6427e961c8b4da62096f99b2fa7b051e}{modifica\+\_\+preferenze} (\hyperlink{structutente}{utente} $\ast$u)
+void \hyperlink{utenti_8h_a6427e961c8b4da62096f99b2fa7b051e}{modifica\+\_\+preferenze} (\hyperlink{utenti_8h_a098b3689b75e144d9294adc436d4f04f}{utente} $\ast$u)
 \item 
 int \hyperlink{utenti_8h_ad907371385837ca72c389ca32df39d80}{gestore\+\_\+modifiche} ()
 \item 
-int \hyperlink{utenti_8h_a84eaff176b61eeb1ab0908897d4f3cc6}{autenticazione} (\hyperlink{structutente}{utente} $\ast$u)
+int \hyperlink{utenti_8h_a84eaff176b61eeb1ab0908897d4f3cc6}{autenticazione} (\hyperlink{utenti_8h_a098b3689b75e144d9294adc436d4f04f}{utente} $\ast$u)
 \item 
-void \hyperlink{utenti_8h_a87ee6c560888e42fdd61588cd98743b6}{output\+\_\+utente} (const \hyperlink{structutente}{utente} u)
+void \hyperlink{utenti_8h_a87ee6c560888e42fdd61588cd98743b6}{output\+\_\+utente} (const \hyperlink{utenti_8h_a098b3689b75e144d9294adc436d4f04f}{utente} u)
 \item 
-int \hyperlink{utenti_8h_a32e8982b503c10da62802a604f044efa}{output\+\_\+preferenze} (const \hyperlink{structutente}{utente} u)
+int \hyperlink{utenti_8h_a32e8982b503c10da62802a604f044efa}{output\+\_\+preferenze} (const \hyperlink{utenti_8h_a098b3689b75e144d9294adc436d4f04f}{utente} u)
 \item 
 int \hyperlink{utenti_8h_ad1417dda78bb50d93809ae0a28b2a29d}{visualizza\+\_\+database\+\_\+utenti} ()
 \item 
@@ -246,9 +254,9 @@ Nome di file.
 
 
 
-Inclusione della libreria per la gestione del menu\+\_\+settimanale. 
+Limiti e valori per determinati elementi\+: 
 
-Inclusione della libreria per la gestione degli alimenti Inclusione della libreria per la pulizia dei flussi di input Limiti e valori per determinati elementi\+: \mbox{\Hypertarget{utenti_8h_a4663d9dd73baccac55cfa4aac2c72c22}\label{utenti_8h_a4663d9dd73baccac55cfa4aac2c72c22}} 
+\mbox{\Hypertarget{utenti_8h_a4663d9dd73baccac55cfa4aac2c72c22}\label{utenti_8h_a4663d9dd73baccac55cfa4aac2c72c22}} 
 \index{utenti.\+h@{utenti.\+h}!M\+I\+N\+\_\+\+A\+S\+C\+I\+I\+\_\+\+C\+I\+F\+RA@{M\+I\+N\+\_\+\+A\+S\+C\+I\+I\+\_\+\+C\+I\+F\+RA}}
 \index{M\+I\+N\+\_\+\+A\+S\+C\+I\+I\+\_\+\+C\+I\+F\+RA@{M\+I\+N\+\_\+\+A\+S\+C\+I\+I\+\_\+\+C\+I\+F\+RA}!utenti.\+h@{utenti.\+h}}
 \subsubsection{\texorpdfstring{M\+I\+N\+\_\+\+A\+S\+C\+I\+I\+\_\+\+C\+I\+F\+RA}{MIN\_ASCII\_CIFRA}}
@@ -294,6 +302,16 @@ Lunghezze di stringhe\+:
 \subsubsection{\texorpdfstring{N\+U\+M\+\_\+\+T\+I\+P\+I\+\_\+\+C\+H\+AR}{NUM\_TIPI\_CHAR}}
 {\footnotesize\ttfamily \#define N\+U\+M\+\_\+\+T\+I\+P\+I\+\_\+\+C\+H\+AR~4}
 
+\mbox{\Hypertarget{utenti_8h_a35ccef9eff6efbd8187c83e45458040d}\label{utenti_8h_a35ccef9eff6efbd8187c83e45458040d}} 
+\index{utenti.\+h@{utenti.\+h}!S\+T\+D\+\_\+\+L\+IB@{S\+T\+D\+\_\+\+L\+IB}}
+\index{S\+T\+D\+\_\+\+L\+IB@{S\+T\+D\+\_\+\+L\+IB}!utenti.\+h@{utenti.\+h}}
+\subsubsection{\texorpdfstring{S\+T\+D\+\_\+\+L\+IB}{STD\_LIB}}
+{\footnotesize\ttfamily \#define S\+T\+D\+\_\+\+L\+IB}
+
+
+
+Inclusione delle librerie standard. 
+
 \mbox{\Hypertarget{utenti_8h_a3f71b4ea87bcf3feda424bc285bcef6a}\label{utenti_8h_a3f71b4ea87bcf3feda424bc285bcef6a}} 
 \index{utenti.\+h@{utenti.\+h}!S\+T\+R\+I\+N\+G\+\_\+\+L\+IB@{S\+T\+R\+I\+N\+G\+\_\+\+L\+IB}}
 \index{S\+T\+R\+I\+N\+G\+\_\+\+L\+IB@{S\+T\+R\+I\+N\+G\+\_\+\+L\+IB}!utenti.\+h@{utenti.\+h}}
@@ -302,28 +320,31 @@ Lunghezze di stringhe\+:
 
 
 
-Inclusione delle librerie standard. 
-
-Inclusione delle librerie per la manipolazione di stringhe e caratteri \mbox{\Hypertarget{utenti_8h_a2df13304b7f365c9a36dd528bad30412}\label{utenti_8h_a2df13304b7f365c9a36dd528bad30412}} 
-\index{utenti.\+h@{utenti.\+h}!U\+T\+E\+N\+T\+I\+\_\+\+L\+IB@{U\+T\+E\+N\+T\+I\+\_\+\+L\+IB}}
-\index{U\+T\+E\+N\+T\+I\+\_\+\+L\+IB@{U\+T\+E\+N\+T\+I\+\_\+\+L\+IB}!utenti.\+h@{utenti.\+h}}
-\subsubsection{\texorpdfstring{U\+T\+E\+N\+T\+I\+\_\+\+L\+IB}{UTENTI\_LIB}}
-{\footnotesize\ttfamily \#define U\+T\+E\+N\+T\+I\+\_\+\+L\+IB}
+Inclusione delle librerie per la manipolazione di stringhe e caratteri. 
 
 
+
+\subsection{Documentazione delle ridefinizioni di tipo (typedef)}
+\mbox{\Hypertarget{utenti_8h_a098b3689b75e144d9294adc436d4f04f}\label{utenti_8h_a098b3689b75e144d9294adc436d4f04f}} 
+\index{utenti.\+h@{utenti.\+h}!utente@{utente}}
+\index{utente@{utente}!utenti.\+h@{utenti.\+h}}
+\subsubsection{\texorpdfstring{utente}{utente}}
+{\footnotesize\ttfamily \hyperlink{utenti_8h_a098b3689b75e144d9294adc436d4f04f}{utente}}
+
+Tipo utilizzato per la memorizzazione delle informazioni degli utenti. Ogni utente è caratterizzato da un nickname, una password con cui autenticarsi e un numero prefissato di preferenze alimentari. 
 
 \subsection{Documentazione delle funzioni}
 \mbox{\Hypertarget{utenti_8h_a84eaff176b61eeb1ab0908897d4f3cc6}\label{utenti_8h_a84eaff176b61eeb1ab0908897d4f3cc6}} 
 \index{utenti.\+h@{utenti.\+h}!autenticazione@{autenticazione}}
 \index{autenticazione@{autenticazione}!utenti.\+h@{utenti.\+h}}
 \subsubsection{\texorpdfstring{autenticazione()}{autenticazione()}}
-{\footnotesize\ttfamily int autenticazione (\begin{DoxyParamCaption}\item[{\hyperlink{structutente}{utente} $\ast$}]{u }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int autenticazione (\begin{DoxyParamCaption}\item[{\hyperlink{utenti_8h_a098b3689b75e144d9294adc436d4f04f}{utente} $\ast$}]{u }\end{DoxyParamCaption})}
 
 La funzione \hyperlink{utenti_8c_a84eaff176b61eeb1ab0908897d4f3cc6}{autenticazione()} permette di effettuare l\textquotesingle{}autenticazione di un utente.
 
 
 \begin{DoxyParams}{Parametri}
-{\em password} & Password dell\textquotesingle{}utente da identificare. \\
+{\em u} & struct dove vengono memorizzati i dati dell\textquotesingle{}utente auteticato \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Restituisce}
@@ -445,7 +466,7 @@ Il valore restituito rappresenta l\textquotesingle{}esito della funzione.
 \index{utenti.\+h@{utenti.\+h}!genera\+\_\+n\+\_\+utenti@{genera\+\_\+n\+\_\+utenti}}
 \index{genera\+\_\+n\+\_\+utenti@{genera\+\_\+n\+\_\+utenti}!utenti.\+h@{utenti.\+h}}
 \subsubsection{\texorpdfstring{genera\+\_\+n\+\_\+utenti()}{genera\_n\_utenti()}}
-{\footnotesize\ttfamily \hyperlink{structutente}{utente}$\ast$ genera\+\_\+n\+\_\+utenti (\begin{DoxyParamCaption}\item[{int}]{n }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \hyperlink{utenti_8h_a098b3689b75e144d9294adc436d4f04f}{utente}$\ast$ genera\+\_\+n\+\_\+utenti (\begin{DoxyParamCaption}\item[{int}]{n }\end{DoxyParamCaption})}
 
 La funzione \hyperlink{utenti_8c_a2fd9f3ff6568853f6af346c28235db37}{genera\+\_\+n\+\_\+utenti()} effettua la generazione di n utenti, restituendo il puntatore all\textquotesingle{}array che li contiene
 
@@ -500,11 +521,6 @@ Il valore restituito è un puntatore alla stringa contenente il nickname.
 
 La funzione genera\+\_\+password(int livello\+\_\+sicurezza) permette la generazione di una password con livello di sicurezza pari a quello inserito.
 
-
-\begin{DoxyParams}{Parametri}
-{\em livello\+\_\+sicurezza} & Livello di sicurezza della password da generare. \\
-\hline
-\end{DoxyParams}
 \begin{DoxyReturn}{Restituisce}
 Stringa corrispondente alla password generata.
 \end{DoxyReturn}
@@ -524,7 +540,7 @@ Il valore restituito è un puntatore alla stringa contenente la password.
 \index{utenti.\+h@{utenti.\+h}!genera\+\_\+utente@{genera\+\_\+utente}}
 \index{genera\+\_\+utente@{genera\+\_\+utente}!utenti.\+h@{utenti.\+h}}
 \subsubsection{\texorpdfstring{genera\+\_\+utente()}{genera\_utente()}}
-{\footnotesize\ttfamily \hyperlink{structutente}{utente} genera\+\_\+utente (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \hyperlink{utenti_8h_a098b3689b75e144d9294adc436d4f04f}{utente} genera\+\_\+utente (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 La funzione \hyperlink{utenti_8c_ac936c99ad1d8bb5c7d9b9d37147a0576}{genera\+\_\+utente()} effettua la generazione dei dati di un utente in modo casuale e restituisce l\textquotesingle{}utente creato.
 
@@ -668,7 +684,7 @@ Il valore restituito identifica l\textquotesingle{}esito della funzione.
 \index{utenti.\+h@{utenti.\+h}!input\+\_\+utente@{input\+\_\+utente}}
 \index{input\+\_\+utente@{input\+\_\+utente}!utenti.\+h@{utenti.\+h}}
 \subsubsection{\texorpdfstring{input\+\_\+utente()}{input\_utente()}}
-{\footnotesize\ttfamily \hyperlink{structutente}{utente} input\+\_\+utente (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \hyperlink{utenti_8h_a098b3689b75e144d9294adc436d4f04f}{utente} input\+\_\+utente (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 La funzione \hyperlink{utenti_8c_ad6a35d2d36fe87744edc5a28e0727da3}{input\+\_\+utente()} permette di richiedere l\textquotesingle{}inserimento dei dati relativi ad un nuovo utente.
 
@@ -689,7 +705,7 @@ Il valore restituito è una struct di tipo utente rimpita con dati significativi.
 \index{utenti.\+h@{utenti.\+h}!modifica\+\_\+preferenze@{modifica\+\_\+preferenze}}
 \index{modifica\+\_\+preferenze@{modifica\+\_\+preferenze}!utenti.\+h@{utenti.\+h}}
 \subsubsection{\texorpdfstring{modifica\+\_\+preferenze()}{modifica\_preferenze()}}
-{\footnotesize\ttfamily void modifica\+\_\+preferenze (\begin{DoxyParamCaption}\item[{\hyperlink{structutente}{utente} $\ast$}]{u }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void modifica\+\_\+preferenze (\begin{DoxyParamCaption}\item[{\hyperlink{utenti_8h_a098b3689b75e144d9294adc436d4f04f}{utente} $\ast$}]{u }\end{DoxyParamCaption})}
 
 Procedura utilizzata per modificare i valori delle preferenze alimentari di un utente.
 
@@ -711,7 +727,7 @@ La struct in ingresso non può essere vuota.
 \index{utenti.\+h@{utenti.\+h}!output\+\_\+preferenze@{output\+\_\+preferenze}}
 \index{output\+\_\+preferenze@{output\+\_\+preferenze}!utenti.\+h@{utenti.\+h}}
 \subsubsection{\texorpdfstring{output\+\_\+preferenze()}{output\_preferenze()}}
-{\footnotesize\ttfamily int output\+\_\+preferenze (\begin{DoxyParamCaption}\item[{const \hyperlink{structutente}{utente}}]{u }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int output\+\_\+preferenze (\begin{DoxyParamCaption}\item[{const \hyperlink{utenti_8h_a098b3689b75e144d9294adc436d4f04f}{utente}}]{u }\end{DoxyParamCaption})}
 
 La procedura \hyperlink{utenti_8c_a32e8982b503c10da62802a604f044efa}{output\+\_\+preferenze()} permette di visualizzare le preferenze di un utente.
 
@@ -739,7 +755,7 @@ Il valore di ritorno è il numero delle preferenze con valori significativi.
 \index{utenti.\+h@{utenti.\+h}!output\+\_\+utente@{output\+\_\+utente}}
 \index{output\+\_\+utente@{output\+\_\+utente}!utenti.\+h@{utenti.\+h}}
 \subsubsection{\texorpdfstring{output\+\_\+utente()}{output\_utente()}}
-{\footnotesize\ttfamily void output\+\_\+utente (\begin{DoxyParamCaption}\item[{const \hyperlink{structutente}{utente}}]{u }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void output\+\_\+utente (\begin{DoxyParamCaption}\item[{const \hyperlink{utenti_8h_a098b3689b75e144d9294adc436d4f04f}{utente}}]{u }\end{DoxyParamCaption})}
 
 La procedura \hyperlink{utenti_8c_a87ee6c560888e42fdd61588cd98743b6}{output\+\_\+utente()} permette di visualizzare i dati di un utente.
 
@@ -759,7 +775,7 @@ nla struct non deve essere vuota
 \index{utenti.\+h@{utenti.\+h}!salva\+\_\+n\+\_\+utenti@{salva\+\_\+n\+\_\+utenti}}
 \index{salva\+\_\+n\+\_\+utenti@{salva\+\_\+n\+\_\+utenti}!utenti.\+h@{utenti.\+h}}
 \subsubsection{\texorpdfstring{salva\+\_\+n\+\_\+utenti()}{salva\_n\_utenti()}}
-{\footnotesize\ttfamily int salva\+\_\+n\+\_\+utenti (\begin{DoxyParamCaption}\item[{\hyperlink{structutente}{utente} $\ast$}]{utenti,  }\item[{int}]{n }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int salva\+\_\+n\+\_\+utenti (\begin{DoxyParamCaption}\item[{\hyperlink{utenti_8h_a098b3689b75e144d9294adc436d4f04f}{utente} $\ast$}]{utenti,  }\item[{int}]{n }\end{DoxyParamCaption})}
 
 La funzione \hyperlink{utenti_8c_ad805a0034443857290327abf1b42e7e4}{salva\+\_\+n\+\_\+utenti()} permette di salvare n utenti sul file F\+I\+L\+E\+\_\+\+D\+A\+T\+A\+B\+A\+S\+E\+\_\+\+U\+T\+E\+N\+TI.
 

@@ -73,16 +73,39 @@ $(function() {
 
 <p>Libreria per la gestione della lista della spesa.  
 <a href="#details">Continua...</a></p>
-<div class="textblock"><code>#include &quot;<a class="el" href="menu__settimanale_8h_source.html">menu_settimanale.h</a>&quot;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="utenti_8h_source.html">utenti.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="ricette_8h_source.html">ricette.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="alimenti_8h_source.html">alimenti.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="menu__settimanale_8h_source.html">menu_settimanale.h</a>&quot;</code><br />
+<code>#include &lt;stdbool.h&gt;</code><br />
+<code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;stdlib.h&gt;</code><br />
+<code>#include &lt;time.h&gt;</code><br />
+<code>#include &lt;string.h&gt;</code><br />
+<code>#include &lt;ctype.h&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Grafo delle dipendenze di inclusione per lista_spesa.h:</div>
+<div class="dyncontent">
+<div class="center"><img src="lista__spesa_8h__incl.png" border="0" usemap="#src_2lista__spesa_8h" alt=""/></div>
+<!-- MAP 0 -->
+</div>
+</div><div class="textblock"><div class="dynheader">
+Questo grafo mostra quali altri file includono direttamente o indirettamente questo file:</div>
+<div class="dyncontent">
+<div class="center"><img src="lista__spesa_8h__dep__incl.png" border="0" usemap="#src_2lista__spesa_8hdep" alt=""/></div>
+<!-- MAP 1 -->
+</div>
 </div>
 <p><a href="lista__spesa_8h_source.html">Vai al codice sorgente di questo file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Definizioni</h2></td></tr>
+<tr class="memitem:a35ccef9eff6efbd8187c83e45458040d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lista__spesa_8h.html#a35ccef9eff6efbd8187c83e45458040d">STD_LIB</a></td></tr>
+<tr class="separator:a35ccef9eff6efbd8187c83e45458040d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f71b4ea87bcf3feda424bc285bcef6a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lista__spesa_8h.html#a3f71b4ea87bcf3feda424bc285bcef6a">STRING_LIB</a></td></tr>
+<tr class="memdesc:a3f71b4ea87bcf3feda424bc285bcef6a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inclusione delle librerie per la manipolazione di stringhe e caratteri.  <a href="#a3f71b4ea87bcf3feda424bc285bcef6a">Continua...</a><br /></td></tr>
+<tr class="separator:a3f71b4ea87bcf3feda424bc285bcef6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aadea0f62a54f7e16290d43e55bce1883"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lista__spesa_8h.html#aadea0f62a54f7e16290d43e55bce1883">LISTA_SPESA_GLOBALE</a>&#160;&#160;&#160;&quot;../lista_spesa.txt&quot;</td></tr>
-<tr class="memdesc:aadea0f62a54f7e16290d43e55bce1883"><td class="mdescLeft">&#160;</td><td class="mdescRight">libreria che permette la gestione(modifica) del menu settimanale  <a href="#aadea0f62a54f7e16290d43e55bce1883">Continua...</a><br /></td></tr>
 <tr class="separator:aadea0f62a54f7e16290d43e55bce1883"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0884003ceaf84f851fea4d5507dc88c3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lista__spesa_8h.html#a0884003ceaf84f851fea4d5507dc88c3">PREFIX_FILE_SPESA</a>&#160;&#160;&#160;&quot;../spesa_&quot;</td></tr>
 <tr class="separator:a0884003ceaf84f851fea4d5507dc88c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -93,11 +116,11 @@ Definizioni</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Funzioni</h2></td></tr>
-<tr class="memitem:a481de1948e750e6ebbcd582866cdb673"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lista__spesa_8h.html#a481de1948e750e6ebbcd582866cdb673">aggiorna_lista_spesa</a> (char nome_alimento[LUNG_NOME_ALIMENTO], char nome_file[<a class="el" href="lista__spesa_8h.html#ae5e17d2168d3d53cc80b24bb81bcd01d">LUNG_NOME_FILE_SPESA</a>])</td></tr>
+<tr class="memitem:a481de1948e750e6ebbcd582866cdb673"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lista__spesa_8h.html#a481de1948e750e6ebbcd582866cdb673">aggiorna_lista_spesa</a> (char nome_alimento[<a class="el" href="alimenti_8h.html#af503a16b1a63b47d6a5b2edd94b5caf2">LUNG_NOME_ALIMENTO</a>], char nome_file[<a class="el" href="lista__spesa_8h.html#ae5e17d2168d3d53cc80b24bb81bcd01d">LUNG_NOME_FILE_SPESA</a>])</td></tr>
 <tr class="separator:a481de1948e750e6ebbcd582866cdb673"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac971c93be56962be8e0ae52d9560c411"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lista__spesa_8h.html#ac971c93be56962be8e0ae52d9560c411">elimina_file_spesa</a> (char nome_alimento[LUNG_NOME_ALIMENTO])</td></tr>
+<tr class="memitem:ac971c93be56962be8e0ae52d9560c411"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lista__spesa_8h.html#ac971c93be56962be8e0ae52d9560c411">elimina_file_spesa</a> (char nome_alimento[<a class="el" href="alimenti_8h.html#af503a16b1a63b47d6a5b2edd94b5caf2">LUNG_NOME_ALIMENTO</a>])</td></tr>
 <tr class="separator:ac971c93be56962be8e0ae52d9560c411"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9ffa3a13ed2681a8e5b8afff5ccc59b7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lista__spesa_8h.html#a9ffa3a13ed2681a8e5b8afff5ccc59b7">controllo_soglia</a> (float soglia_spesa, char nome_alimento[LUNG_NOME_ALIMENTO])</td></tr>
+<tr class="memitem:a9ffa3a13ed2681a8e5b8afff5ccc59b7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lista__spesa_8h.html#a9ffa3a13ed2681a8e5b8afff5ccc59b7">controllo_soglia</a> (float soglia_spesa, char nome_alimento[<a class="el" href="alimenti_8h.html#af503a16b1a63b47d6a5b2edd94b5caf2">LUNG_NOME_ALIMENTO</a>])</td></tr>
 <tr class="separator:a9ffa3a13ed2681a8e5b8afff5ccc59b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a24759826dd9a345b7f1a4b594ca06e07"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lista__spesa_8h.html#a24759826dd9a345b7f1a4b594ca06e07">generatore_spesa_globale</a> ()</td></tr>
 <tr class="separator:a24759826dd9a345b7f1a4b594ca06e07"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -124,9 +147,6 @@ Funzioni</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>libreria che permette la gestione(modifica) del menu settimanale </p>
-<p>libreria che permette la gestione(manipolazione,caricamento ecc) delle ricette libreria che permette la gestione(manipolazione,caricamento ecc) degli alimenti </p>
 
 </div>
 </div>
@@ -155,6 +175,36 @@ Funzioni</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<a id="a35ccef9eff6efbd8187c83e45458040d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a35ccef9eff6efbd8187c83e45458040d">&#9670;&nbsp;</a></span>STD_LIB</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define STD_LIB</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3f71b4ea87bcf3feda424bc285bcef6a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3f71b4ea87bcf3feda424bc285bcef6a">&#9670;&nbsp;</a></span>STRING_LIB</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define STRING_LIB</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Inclusione delle librerie per la manipolazione di stringhe e caratteri. </p>
 
 </div>
 </div>

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['ingredienti',['ingredienti',['../structricetta.html#ac8567e615af6b01c27b2aea1fc81c50f',1,'ricetta']]]
+  ['ingredienti',['ingredienti',['../structstruct__ricette.html#aa1dd9d188e8974ea8af3dace306fcebb',1,'struct_ricette']]]
 ];

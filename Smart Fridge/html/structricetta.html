@@ -67,22 +67,34 @@ $(function() {
 <div class="contents">
 
 <p><code>#include &lt;<a class="el" href="ricette_8h_source.html">ricette.h</a>&gt;</code></p>
+<div class="dynheader">
+Diagramma di collaborazione per ricetta:</div>
+<div class="dyncontent">
+<div class="center"><img src="structricetta__coll__graph.png" border="0" usemap="#ricetta_coll__map" alt="Collaboration graph"/></div>
+<!-- MAP 0 -->
+<center><span class="legend">[<a href="graph_legend.html">legenda</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Campi</h2></td></tr>
 <tr class="memitem:a40bb51c26dc338c485cc655bea2c2ca5"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structricetta.html#a40bb51c26dc338c485cc655bea2c2ca5">nome_ricetta</a> [<a class="el" href="ricette_8h.html#aacd065596f33b6510fa58f8ba4dea542">LUNG_NOME_RICETTA</a>]</td></tr>
 <tr class="separator:a40bb51c26dc338c485cc655bea2c2ca5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac8567e615af6b01c27b2aea1fc81c50f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structingrediente.html">ingrediente</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structricetta.html#ac8567e615af6b01c27b2aea1fc81c50f">ingredienti</a> [<a class="el" href="ricette_8h.html#a3f37fa2abc5ee352f9a922ef72b80116">MAX_INGREDIENTI</a>]</td></tr>
+<tr class="memdesc:ac8567e615af6b01c27b2aea1fc81c50f"><td class="mdescLeft">&#160;</td><td class="mdescRight">stringa contenente il nome assegnato alla ricetta  <a href="#ac8567e615af6b01c27b2aea1fc81c50f">Continua...</a><br /></td></tr>
 <tr class="separator:ac8567e615af6b01c27b2aea1fc81c50f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa7c5427cccd26a39a8c7a34050eea6be"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structricetta.html#aa7c5427cccd26a39a8c7a34050eea6be">tempo_preparazione</a> [<a class="el" href="ricette_8h.html#a711f3911a37877bbfa09796364e391ab">LUNG_TEMPO_PREPARAZIONE</a>]</td></tr>
+<tr class="memdesc:aa7c5427cccd26a39a8c7a34050eea6be"><td class="mdescLeft">&#160;</td><td class="mdescRight">vettore di tipo ingredienti per la memorizzazione degli ingredienti utili alla preparzione della ricetta  <a href="#aa7c5427cccd26a39a8c7a34050eea6be">Continua...</a><br /></td></tr>
 <tr class="separator:aa7c5427cccd26a39a8c7a34050eea6be"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8c769fcee937b4b060b796a2ae2c1086"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structricetta.html#a8c769fcee937b4b060b796a2ae2c1086">preparazione</a> [<a class="el" href="ricette_8h.html#abdbfa8d79884434777eae730867d54cd">LUNG_PREPARAZIONE</a>]</td></tr>
+<tr class="memdesc:a8c769fcee937b4b060b796a2ae2c1086"><td class="mdescLeft">&#160;</td><td class="mdescRight">vettore contenente il tempo di preparazione di una ricetta  <a href="#a8c769fcee937b4b060b796a2ae2c1086">Continua...</a><br /></td></tr>
 <tr class="separator:a8c769fcee937b4b060b796a2ae2c1086"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad991258e93efcc820a11f9a1a2e0f079"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structricetta.html#ad991258e93efcc820a11f9a1a2e0f079">complessita</a> [<a class="el" href="ricette_8h.html#afdcfe3df8eca40e79c8d2854a52acbb0">LUNG_COMPLESSITA</a>]</td></tr>
+<tr class="memdesc:ad991258e93efcc820a11f9a1a2e0f079"><td class="mdescLeft">&#160;</td><td class="mdescRight">azioni da eseguire per preparare la ricetta  <a href="#ad991258e93efcc820a11f9a1a2e0f079">Continua...</a><br /></td></tr>
 <tr class="separator:ad991258e93efcc820a11f9a1a2e0f079"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abdd39d8054927daf2a648aef9aea1909"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structricetta.html#abdd39d8054927daf2a648aef9aea1909">kcal_ricetta</a></td></tr>
+<tr class="memdesc:abdd39d8054927daf2a648aef9aea1909"><td class="mdescLeft">&#160;</td><td class="mdescRight">complessità della ricetta (bassa, alta, ...)  <a href="#abdd39d8054927daf2a648aef9aea1909">Continua...</a><br /></td></tr>
 <tr class="separator:abdd39d8054927daf2a648aef9aea1909"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abbc9584ea1555c9642adbe72ffb2f9bd"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structricetta.html#abbc9584ea1555c9642adbe72ffb2f9bd">dosi</a></td></tr>
+<tr class="memdesc:abbc9584ea1555c9642adbe72ffb2f9bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">kcal totoali della ricetta in relazione agli ingredienti e alle loro quantità  <a href="#abbc9584ea1555c9642adbe72ffb2f9bd">Continua...</a><br /></td></tr>
 <tr class="separator:abbc9584ea1555c9642adbe72ffb2f9bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Documentazione dei campi</h2>
@@ -98,6 +110,8 @@ Campi</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>azioni da eseguire per preparare la ricetta </p>
+
 </div>
 </div>
 <a id="abbc9584ea1555c9642adbe72ffb2f9bd"></a>
@@ -111,6 +125,8 @@ Campi</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>kcal totoali della ricetta in relazione agli ingredienti e alle loro quantità </p>
 
 </div>
 </div>
@@ -126,6 +142,8 @@ Campi</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>stringa contenente il nome assegnato alla ricetta </p>
+
 </div>
 </div>
 <a id="abdd39d8054927daf2a648aef9aea1909"></a>
@@ -139,6 +157,8 @@ Campi</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>complessità della ricetta (bassa, alta, ...) </p>
 
 </div>
 </div>
@@ -168,6 +188,8 @@ Campi</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>vettore contenente il tempo di preparazione di una ricetta </p>
+
 </div>
 </div>
 <a id="aa7c5427cccd26a39a8c7a34050eea6be"></a>
@@ -181,6 +203,8 @@ Campi</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>vettore di tipo ingredienti per la memorizzazione degli ingredienti utili alla preparzione della ricetta </p>
 
 </div>
 </div>

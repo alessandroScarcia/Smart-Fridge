@@ -1,0 +1,590 @@
+\hypertarget{alimenti_8c}{}\section{Riferimenti per il file src/alimenti.c}
+\label{alimenti_8c}\index{src/alimenti.\+c@{src/alimenti.\+c}}
+{\ttfamily \#include \char`\"{}alimenti.\+h\char`\"{}}\newline
+Grafo delle dipendenze di inclusione per alimenti.\+c\+:
+% FIG 0
+\subsection*{Funzioni}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{alimenti_8c_a76fba08fd840b7551099f78d86bdc2ba}{ordina\+\_\+alimenti\+\_\+scadenza} (\hyperlink{structalimento__frigo}{alimento\+\_\+frigo} $\ast$alimenti\+\_\+frigo, int num\+\_\+alimenti)
+\item 
+int \hyperlink{alimenti_8c_a4a48140282564e569e63f28487280b22}{conta\+\_\+alimenti\+\_\+database} ()
+\item 
+int \hyperlink{alimenti_8c_ac82ac376565079ae0b252f68b2319141}{conta\+\_\+alimenti\+\_\+frigo} ()
+\item 
+int \hyperlink{alimenti_8c_ac1e62614a40a976a0ad88d6d6f2a378a}{conta\+\_\+alimenti\+\_\+scaduti} ()
+\item 
+int \hyperlink{alimenti_8c_a67bbe407f5fd6b977dcb6b79a7876706}{leggi\+\_\+database\+\_\+alimenti} (\hyperlink{structalimento__database}{alimento\+\_\+database} $\ast$lista\+\_\+alimenti)
+\item 
+int \hyperlink{alimenti_8c_a4e58155378ed579f3a7522f5cb1c4c2b}{eliminazione\+\_\+alimenti\+\_\+scaduti} ()
+\item 
+int \hyperlink{alimenti_8c_a111ccfa275bbf6900ff8be3a5bcbbf0e}{visualizza\+\_\+alimenti\+\_\+scaduti} ()
+\item 
+int \hyperlink{alimenti_8c_acc15d64ef9844ae6864d294e56083aae}{controlla\+\_\+unita\+\_\+misura} (char $\ast$unita\+\_\+misura)
+\item 
+int \hyperlink{alimenti_8c_a5179ebddb2472260a288b07b8cecd39d}{controlla\+\_\+quantita} (float quantita, char $\ast$unita\+\_\+misura)
+\item 
+int \hyperlink{alimenti_8c_ae26ffd217899b22dc2c6f852f39cd0ef}{controlla\+\_\+data\+\_\+scadenza} (\hyperlink{structdata}{data} scadenza)
+\item 
+int \hyperlink{alimenti_8c_a169b1d39154c4ed8c8a22a994bceafe6}{converti\+\_\+quantita} (float $\ast$quantita, char $\ast$unita\+\_\+misura)
+\item 
+void \hyperlink{alimenti_8c_a16a5fc5fce56b19f1b10d024031dd8ec}{abbassa\+\_\+maiuscole} (char $\ast$s)
+\item 
+\hyperlink{structalimento__frigo}{alimento\+\_\+frigo} \hyperlink{alimenti_8c_a2116d71c41eefee79559a9c546be6001}{input\+\_\+alimento\+\_\+frigo} ()
+\item 
+void \hyperlink{alimenti_8c_a1ae2adf954807832704a0ac66fc3114e}{input\+\_\+unita\+\_\+misura} (char $\ast$unita\+\_\+misura)
+\item 
+float \hyperlink{alimenti_8c_a30d59e411dff5377698b27e2023332b2}{input\+\_\+quantita} (char $\ast$unita\+\_\+misura)
+\item 
+\hyperlink{structdata}{data} \hyperlink{alimenti_8c_a37711f116538cb8d2bb45055cc05cc03}{input\+\_\+data\+\_\+scadenza} ()
+\item 
+int \hyperlink{alimenti_8c_a492d6cd6c4c6b199c70c477c50c0341f}{input\+\_\+kcal} (char $\ast$nome\+\_\+alimento, int campione\+\_\+kcal, char $\ast$unita\+\_\+misura)
+\item 
+int \hyperlink{alimenti_8c_a9cc3be659ace50533665db7d20c5d371}{input\+\_\+id\+\_\+alimento} (int num\+\_\+alimenti\+\_\+frigo)
+\item 
+int \hyperlink{alimenti_8c_afccdebc24ed8c54e73079305e3adbf61}{calcola\+\_\+campione\+\_\+kcal} (char $\ast$unita\+\_\+misura)
+\item 
+float \hyperlink{alimenti_8c_a27d247abb28988b7f59e457175a960f0}{input\+\_\+soglia\+\_\+spesa} (char $\ast$nome\+\_\+alimento, char $\ast$unita\+\_\+misura)
+\item 
+int \hyperlink{alimenti_8c_a6f97038584db54035b56e78d47d59351}{ricerca\+\_\+alimento\+\_\+database} (char $\ast$nome\+\_\+alimento, \hyperlink{structalimento__database}{alimento\+\_\+database} $\ast$alimento\+\_\+estratto)
+\item 
+int \hyperlink{alimenti_8c_aae5a3a70c8f5da92592d398e86eedb8d}{aggiorna\+\_\+database} (char $\ast$nome\+\_\+alimento, char $\ast$unita\+\_\+misura)
+\item 
+int \hyperlink{alimenti_8c_a837352026b4e0658a1c14a82a2576a3a}{aggiorna\+\_\+frigo} (\hyperlink{structalimento__frigo}{alimento\+\_\+frigo} alimento)
+\item 
+int \hyperlink{alimenti_8c_a7c0fa2a8781ef98329c8ec90b786b32e}{visualizza\+\_\+database\+\_\+alimenti} ()
+\item 
+int \hyperlink{alimenti_8c_ae8e899f0e94ad5546a4deb9bb5ab7a5d}{visualizza\+\_\+frigo} ()
+\item 
+int \hyperlink{alimenti_8c_ab492c9e27379bb529f377cb4ebea2c4f}{leggi\+\_\+frigo} (\hyperlink{structalimento__frigo}{alimento\+\_\+frigo} $\ast$lista\+\_\+frigo)
+\item 
+int \hyperlink{alimenti_8c_a505c9890fb3657c8c6bd749fb0eacf2b}{carica\+\_\+spesa} ()
+\item 
+float \hyperlink{alimenti_8c_a4edc6c745b913cc49bebca4fbeb120a4}{soglia\+\_\+alimento} (const char $\ast$nome\+\_\+alimento)
+\item 
+float \hyperlink{alimenti_8c_ae2e2231830248242861a5076b7a7aa43}{quantita\+\_\+alimento} (const char $\ast$nome\+\_\+alimento)
+\item 
+char $\ast$ \hyperlink{alimenti_8c_a2d78e20b88829b25dd068ebb8c0af9e3}{input\+\_\+nome\+\_\+alimento} ()
+\item 
+int \hyperlink{alimenti_8c_a6049138f96dfd2b8a0c71fe63aa9db48}{riduci\+\_\+alimento} (const char $\ast$nome\+\_\+alimento, float riduzione)
+\item 
+int \hyperlink{alimenti_8c_aea7db82cac7bb7644fe45068440a3a0d}{gestore\+\_\+riduzione\+\_\+alimenti} ()
+\item 
+int \hyperlink{alimenti_8c_a816367a66baefe718e880eff78ba73d4}{modifica\+\_\+soglia\+\_\+spesa} ()
+\item 
+int \hyperlink{alimenti_8c_a8ac393ba9c4d8b07435125faec7e37ce}{modifica\+\_\+kcal} ()
+\item 
+int \hyperlink{alimenti_8c_ac0b56a2c98063ce36213b0014ecf5a3e}{alimento\+\_\+casuale} (char $\ast$nome\+\_\+alimento)
+\end{DoxyCompactItemize}
+
+
+\subsection{Documentazione delle funzioni}
+\mbox{\Hypertarget{alimenti_8c_a16a5fc5fce56b19f1b10d024031dd8ec}\label{alimenti_8c_a16a5fc5fce56b19f1b10d024031dd8ec}} 
+\index{alimenti.\+c@{alimenti.\+c}!abbassa\+\_\+maiuscole@{abbassa\+\_\+maiuscole}}
+\index{abbassa\+\_\+maiuscole@{abbassa\+\_\+maiuscole}!alimenti.\+c@{alimenti.\+c}}
+\subsubsection{\texorpdfstring{abbassa\+\_\+maiuscole()}{abbassa\_maiuscole()}}
+{\footnotesize\ttfamily void abbassa\+\_\+maiuscole (\begin{DoxyParamCaption}\item[{char $\ast$}]{s }\end{DoxyParamCaption})}
+
+Funzione che si occupa, ricevuta in input una stringa, di rendere tutti i caratteri minuscoli. La funzione serve in quanto potremmo essere nel caso in cui ad una prima estrazione di un alimento(uova) esso sia sconosciuto, ed a seguito di una seconda estrazione(\+Uova) lo stesso alimento ma con la lettera iniziale maiuscola risulterebbe comunque sconosciuto.
+
+\begin{DoxyPrecond}{Precondizione}
+la stringa passata in input deve contenere almeno un carattere 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+la stringa generata deve essere con i caratteri tutti minuscoli 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{alimenti_8c_aae5a3a70c8f5da92592d398e86eedb8d}\label{alimenti_8c_aae5a3a70c8f5da92592d398e86eedb8d}} 
+\index{alimenti.\+c@{alimenti.\+c}!aggiorna\+\_\+database@{aggiorna\+\_\+database}}
+\index{aggiorna\+\_\+database@{aggiorna\+\_\+database}!alimenti.\+c@{alimenti.\+c}}
+\subsubsection{\texorpdfstring{aggiorna\+\_\+database()}{aggiorna\_database()}}
+{\footnotesize\ttfamily int aggiorna\+\_\+database (\begin{DoxyParamCaption}\item[{char $\ast$}]{nome\+\_\+alimento,  }\item[{char $\ast$}]{unita\+\_\+misura }\end{DoxyParamCaption})}
+
+Funzione che si occupa di inserire le informazioni riguardanti un alimento sconosciuto all\textquotesingle{}interno del database. In un primo momento viene fatto un check sul nome dell\textquotesingle{}alimento qualora sia giá presente nel database(viene richiamata la funzione ricerca\+\_\+database). Se la ricerca non é andata a buon fine pertanto l\textquotesingle{}alimento non é presente nel database vengono memorizzate le informazioni passate come parametri ossia il nome e l\textquotesingle{}unitá di misura(la scelta di passare questo dato é per non richiedere all\textquotesingle{}utente di reinserirlo in quanto viene direttamente estratto altrove), ed in seguito le altre informazioni(richieste in input o calcolate dinamicamente) come le kcal, la soglia per fare la spesa e il campione kcal.
+
+\begin{DoxyPrecond}{Precondizione}
+il nome dell\textquotesingle{}alimento e l\textquotesingle{}unitá di misura devono possedere almeno un carattere 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Devono essere state memorizzate correttamente tutte le informazioni riguardanti un dato alimento 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{alimenti_8c_a837352026b4e0658a1c14a82a2576a3a}\label{alimenti_8c_a837352026b4e0658a1c14a82a2576a3a}} 
+\index{alimenti.\+c@{alimenti.\+c}!aggiorna\+\_\+frigo@{aggiorna\+\_\+frigo}}
+\index{aggiorna\+\_\+frigo@{aggiorna\+\_\+frigo}!alimenti.\+c@{alimenti.\+c}}
+\subsubsection{\texorpdfstring{aggiorna\+\_\+frigo()}{aggiorna\_frigo()}}
+{\footnotesize\ttfamily int aggiorna\+\_\+frigo (\begin{DoxyParamCaption}\item[{\hyperlink{structalimento__frigo}{alimento\+\_\+frigo}}]{alimento }\end{DoxyParamCaption})}
+
+Funzione che si occupa di inserire nel file contente gli alimenti presenti nel frigo l\textquotesingle{}alimento(struct) che passiamo come parametro alla funzione. L\textquotesingle{}aggiornamento é stato pensato come il salvataggio di un alimento per riga del file. Ogni alimento é diverso dagli altri per nome e data di scadenza. Qualora venga caricato un alimento omonimo ad uno presente nel frigo viene fatto un controllo sulle scadenze. Se le scadenze sono uguali allora nel complesso il prodotto é uguale quindi viene solo incrementata la quantitá di tale alimento presente nel frigo. Nel caso in cui siamo a che fare con un alimento con nome diverso o con stesso nome ma con data di scadenza diversa, esso verrá salvato nella prima riga libera presente nel file.
+
+\begin{DoxyPrecond}{Precondizione}
+L\textquotesingle{}alimento passato come parametro deve essere significativo 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Deve essere stato salvato correttamente l\textquotesingle{}alimento nel file 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{alimenti_8c_ac0b56a2c98063ce36213b0014ecf5a3e}\label{alimenti_8c_ac0b56a2c98063ce36213b0014ecf5a3e}} 
+\index{alimenti.\+c@{alimenti.\+c}!alimento\+\_\+casuale@{alimento\+\_\+casuale}}
+\index{alimento\+\_\+casuale@{alimento\+\_\+casuale}!alimenti.\+c@{alimenti.\+c}}
+\subsubsection{\texorpdfstring{alimento\+\_\+casuale()}{alimento\_casuale()}}
+{\footnotesize\ttfamily int alimento\+\_\+casuale (\begin{DoxyParamCaption}\item[{char $\ast$}]{nome\+\_\+alimento }\end{DoxyParamCaption})}
+
+Funzione che si occupa di estrarre dal file del database il nome di alimento in maniera casuale.
+
+Una volta aperto correttamente il file del database viene posizionato in maniera del tutto casuale il puntatore del file in base alla dimensione di ogni riga. In questa maniera é possibile accedere ad uno specifico alimento e popolare la struct \hyperlink{structalimento__database}{alimento\+\_\+database}, per poi estrarre l\textquotesingle{}unica informazione a noi interessata quale il nome. Esso viene copiato nella stringa passata per riferimento e viene restituito 1
+
+\begin{DoxyPrecond}{Precondizione}
+Nessuna pre condizione particolare 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Deve essere termianta con successo la visualizzazione 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{alimenti_8c_afccdebc24ed8c54e73079305e3adbf61}\label{alimenti_8c_afccdebc24ed8c54e73079305e3adbf61}} 
+\index{alimenti.\+c@{alimenti.\+c}!calcola\+\_\+campione\+\_\+kcal@{calcola\+\_\+campione\+\_\+kcal}}
+\index{calcola\+\_\+campione\+\_\+kcal@{calcola\+\_\+campione\+\_\+kcal}!alimenti.\+c@{alimenti.\+c}}
+\subsubsection{\texorpdfstring{calcola\+\_\+campione\+\_\+kcal()}{calcola\_campione\_kcal()}}
+{\footnotesize\ttfamily int calcola\+\_\+campione\+\_\+kcal (\begin{DoxyParamCaption}\item[{char $\ast$}]{unita\+\_\+misura }\end{DoxyParamCaption})}
+
+Funzione che si occupa di restituire in maniera opportuna un campione valido in base alla unitá di misura che passiamo alla funzione. Qualora l\textquotesingle{}unitá di misura non sia valida viene restituito 0 per segnalare quindi un errore
+
+\begin{DoxyPrecond}{Precondizione}
+Deve essere passata una stringa con almeno un carattere 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Deve essere restituito un campione valido in base alla unitá di misura oppure 0 per segnalare una invaliditá nello stabilire il campione 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{alimenti_8c_a505c9890fb3657c8c6bd749fb0eacf2b}\label{alimenti_8c_a505c9890fb3657c8c6bd749fb0eacf2b}} 
+\index{alimenti.\+c@{alimenti.\+c}!carica\+\_\+spesa@{carica\+\_\+spesa}}
+\index{carica\+\_\+spesa@{carica\+\_\+spesa}!alimenti.\+c@{alimenti.\+c}}
+\subsubsection{\texorpdfstring{carica\+\_\+spesa()}{carica\_spesa()}}
+{\footnotesize\ttfamily int carica\+\_\+spesa (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Funzione che si occupa di estrarre dal file, che contiene la spesa effettuata, gli alimenti comprati con le info di base che lo riguardano come nome,quantitá,unitá di misura,scadenza. In questo caso queste informazioni sono contenute all\textquotesingle{}interno di un file testuale che deve essere scansionato riga per riga. La riga di un file é da considerarsi tale fino al carattere terminatore e ad ogni estrazione occorre pulire lo stream in caso la riga presente nel file sia superiore a quella consentita. Inoltre per ogni riga é necessario l\textquotesingle{}intervento della sscanf per \char`\"{}tokenizzare\char`\"{} i vari valori della riga e memorizzarli opportunamente all\textquotesingle{}interno della struct. Qualora la sscanf abbia prodotto un numero di hit inferiore a quelli necessari per considerare l\textquotesingle{}alimento correttamente estratto, viene chiesto se si vuole correggere l\textquotesingle{}alimento oppure no. In caso affermativo viene avviata la fase di correzione che si occupa di correggere un dato alimento richiamando opportunatamente altre funzioni per l\textquotesingle{}inserimento fino a quando l\textquotesingle{}input non sia significativo.
+
+Al termine della fase di estrazione e correzione eventuale, viene richiamata la funzione che si occupa di aggiornare il database per far si che vengano memorizzate le informazioni riguardanti alimenti sconosciuti al frigo. Una volta terminata la fase di aggiornamento del database viene effettuato un check sulla validitá degli altri campi dell\textquotesingle{}alimento e in caso viene chiesto di effettuare una correzione su tali valori. Un esempio é il caso di un alimento scaduto che viene erroneamente caricato nel frigo. A tal proposito viene chiesto all\textquotesingle{}utente se vuole correggere tale data e proseguire con il caricamento. Una volta che la lista della spesa é stata completamente estratta viene avviata la fase di aggiornamento del frigo con il richiamo alla opportuna funzione.
+
+\begin{DoxyPrecond}{Precondizione}
+Nessuna pre condizione particolare 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Devono essere memorizzati in una struct gli alimenti con i relativi valori significativi. 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{alimenti_8c_a4a48140282564e569e63f28487280b22}\label{alimenti_8c_a4a48140282564e569e63f28487280b22}} 
+\index{alimenti.\+c@{alimenti.\+c}!conta\+\_\+alimenti\+\_\+database@{conta\+\_\+alimenti\+\_\+database}}
+\index{conta\+\_\+alimenti\+\_\+database@{conta\+\_\+alimenti\+\_\+database}!alimenti.\+c@{alimenti.\+c}}
+\subsubsection{\texorpdfstring{conta\+\_\+alimenti\+\_\+database()}{conta\_alimenti\_database()}}
+{\footnotesize\ttfamily int conta\+\_\+alimenti\+\_\+database (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Funzione che si occupa di contare gli alimenti presenti nel database.
+
+\begin{DoxyPrecond}{Precondizione}
+Nessuna pre condizione particolare 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Il valore restituito deve essere un intero significativo ($>$=0) 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{alimenti_8c_ac82ac376565079ae0b252f68b2319141}\label{alimenti_8c_ac82ac376565079ae0b252f68b2319141}} 
+\index{alimenti.\+c@{alimenti.\+c}!conta\+\_\+alimenti\+\_\+frigo@{conta\+\_\+alimenti\+\_\+frigo}}
+\index{conta\+\_\+alimenti\+\_\+frigo@{conta\+\_\+alimenti\+\_\+frigo}!alimenti.\+c@{alimenti.\+c}}
+\subsubsection{\texorpdfstring{conta\+\_\+alimenti\+\_\+frigo()}{conta\_alimenti\_frigo()}}
+{\footnotesize\ttfamily int conta\+\_\+alimenti\+\_\+frigo (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Funzione che conta gli alimenti presenti nel frigo e ne restituisce il valore. Il conteggio viene effettuato escludendo le righe vuote nel database
+
+\begin{DoxyPrecond}{Precondizione}
+Nessuna pre condizione particolare 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Il valore restituito deve essere un intero significativo ($>$=0) 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{alimenti_8c_ac1e62614a40a976a0ad88d6d6f2a378a}\label{alimenti_8c_ac1e62614a40a976a0ad88d6d6f2a378a}} 
+\index{alimenti.\+c@{alimenti.\+c}!conta\+\_\+alimenti\+\_\+scaduti@{conta\+\_\+alimenti\+\_\+scaduti}}
+\index{conta\+\_\+alimenti\+\_\+scaduti@{conta\+\_\+alimenti\+\_\+scaduti}!alimenti.\+c@{alimenti.\+c}}
+\subsubsection{\texorpdfstring{conta\+\_\+alimenti\+\_\+scaduti()}{conta\_alimenti\_scaduti()}}
+{\footnotesize\ttfamily int conta\+\_\+alimenti\+\_\+scaduti (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Dopo aver popolato un array di struct di tipo alimento frigo la funzione si occupa di confrontare la data di scadenza con la data odierna. Qualora la differenza tra date produca un valore negativo vuol, dire che l\textquotesingle{}alimento e\textquotesingle{} scaduto e pertanto occorre incrementare il contatore. Questa funzione serve principalmente nel menu principale per conteggiare il numero di notifiche che devono eesre viste dall\textquotesingle{}utente
+
+\begin{DoxyPrecond}{Precondizione}
+Nessuna pre condizione particolare 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Il valore restituito deve essere un intero significativo ($>$=0) 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{alimenti_8c_ae26ffd217899b22dc2c6f852f39cd0ef}\label{alimenti_8c_ae26ffd217899b22dc2c6f852f39cd0ef}} 
+\index{alimenti.\+c@{alimenti.\+c}!controlla\+\_\+data\+\_\+scadenza@{controlla\+\_\+data\+\_\+scadenza}}
+\index{controlla\+\_\+data\+\_\+scadenza@{controlla\+\_\+data\+\_\+scadenza}!alimenti.\+c@{alimenti.\+c}}
+\subsubsection{\texorpdfstring{controlla\+\_\+data\+\_\+scadenza()}{controlla\_data\_scadenza()}}
+{\footnotesize\ttfamily int controlla\+\_\+data\+\_\+scadenza (\begin{DoxyParamCaption}\item[{\hyperlink{structdata}{data}}]{scadenza }\end{DoxyParamCaption})}
+
+Funzione che si occupa di controllare la data di scadenza rispetto la data odierna. Se la data di scadenza non e\textquotesingle{} valida viene restituito -\/1. In caso la data odierna sia antecedente viene restituito 1. Nel caso in cui la scadenza sia antecedente viene restituito 0
+
+\begin{DoxyPrecond}{Precondizione}
+la data di scadenza sia in un formato valido anche se viene effettuato il controllo 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Deve essere restituito un valore in base all\textquotesingle{}esito del controllo 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{alimenti_8c_a5179ebddb2472260a288b07b8cecd39d}\label{alimenti_8c_a5179ebddb2472260a288b07b8cecd39d}} 
+\index{alimenti.\+c@{alimenti.\+c}!controlla\+\_\+quantita@{controlla\+\_\+quantita}}
+\index{controlla\+\_\+quantita@{controlla\+\_\+quantita}!alimenti.\+c@{alimenti.\+c}}
+\subsubsection{\texorpdfstring{controlla\+\_\+quantita()}{controlla\_quantita()}}
+{\footnotesize\ttfamily int controlla\+\_\+quantita (\begin{DoxyParamCaption}\item[{float}]{quantita,  }\item[{char $\ast$}]{unita\+\_\+misura }\end{DoxyParamCaption})}
+
+Funzione che si occupa di controllare se la quantitá e\textquotesingle{} valida imponendone un limite massimo di accettabilitá in base alla unitá di misura corrispondente
+
+\begin{DoxyPrecond}{Precondizione}
+la quantitá deve essere un valore positivo $>$=0 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+nessuna post condizione particolare 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{alimenti_8c_acc15d64ef9844ae6864d294e56083aae}\label{alimenti_8c_acc15d64ef9844ae6864d294e56083aae}} 
+\index{alimenti.\+c@{alimenti.\+c}!controlla\+\_\+unita\+\_\+misura@{controlla\+\_\+unita\+\_\+misura}}
+\index{controlla\+\_\+unita\+\_\+misura@{controlla\+\_\+unita\+\_\+misura}!alimenti.\+c@{alimenti.\+c}}
+\subsubsection{\texorpdfstring{controlla\+\_\+unita\+\_\+misura()}{controlla\_unita\_misura()}}
+{\footnotesize\ttfamily int controlla\+\_\+unita\+\_\+misura (\begin{DoxyParamCaption}\item[{char $\ast$}]{unita\+\_\+misura }\end{DoxyParamCaption})}
+
+Funzione che si occupa di controllare se l\textquotesingle{}unitá di misura di un alimento e\textquotesingle{} valida o meno. Qualora lo sia viene restituito 1 in caso contrario 0.
+
+\begin{DoxyPrecond}{Precondizione}
+Nessuna pre condizione particolare 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+nessuna post consizione particolare 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{alimenti_8c_a169b1d39154c4ed8c8a22a994bceafe6}\label{alimenti_8c_a169b1d39154c4ed8c8a22a994bceafe6}} 
+\index{alimenti.\+c@{alimenti.\+c}!converti\+\_\+quantita@{converti\+\_\+quantita}}
+\index{converti\+\_\+quantita@{converti\+\_\+quantita}!alimenti.\+c@{alimenti.\+c}}
+\subsubsection{\texorpdfstring{converti\+\_\+quantita()}{converti\_quantita()}}
+{\footnotesize\ttfamily int converti\+\_\+quantita (\begin{DoxyParamCaption}\item[{float $\ast$}]{quantita,  }\item[{char $\ast$}]{unita\+\_\+misura }\end{DoxyParamCaption})}
+
+Funzione che riceve in ingresso la quantità e l\textquotesingle{}unitá di misura e si occupa di effettuare una equivalenza del valore nel caso in cui siamo in presenza di una sopra-\/unitá. Nel nostro caso le uniche unitá di misura che ci interessa convertire sono i kg e i lt. Qualora l\textquotesingle{}unitá di misura passata sia una di queste 2 viene moltiplicata la quantitá e viene restituito 1 nel caso in cui sia stata effettuata una equivalenza e 0 in caso contrario
+
+\begin{DoxyPrecond}{Precondizione}
+la quantitá sia diversa da 0 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Sia stata effettuta l\textquotesingle{}equivalenza generando un valore valido 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{alimenti_8c_a4e58155378ed579f3a7522f5cb1c4c2b}\label{alimenti_8c_a4e58155378ed579f3a7522f5cb1c4c2b}} 
+\index{alimenti.\+c@{alimenti.\+c}!eliminazione\+\_\+alimenti\+\_\+scaduti@{eliminazione\+\_\+alimenti\+\_\+scaduti}}
+\index{eliminazione\+\_\+alimenti\+\_\+scaduti@{eliminazione\+\_\+alimenti\+\_\+scaduti}!alimenti.\+c@{alimenti.\+c}}
+\subsubsection{\texorpdfstring{eliminazione\+\_\+alimenti\+\_\+scaduti()}{eliminazione\_alimenti\_scaduti()}}
+{\footnotesize\ttfamily int eliminazione\+\_\+alimenti\+\_\+scaduti (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Funzione che viene richiamata direttamente dal menu e dal gestore delle notifiche. Essa si occupa di scovare tutti gli alimenti scaduti(se la differenza tra data odierna e data di scadenza produce un valore negativo allora l\textquotesingle{}alimento e\textquotesingle{} scaduto) e di inizializzare la riga in maniera tale da poterla recuperare in una prossima scrittura. Ovviamente nella ricerca vengono sempre scartate le righe vuote \begin{DoxyPrecond}{Precondizione}
+Nessuna pre condizione particolare 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Deve essere stata effettuata con successo la scrittura su file 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{alimenti_8c_aea7db82cac7bb7644fe45068440a3a0d}\label{alimenti_8c_aea7db82cac7bb7644fe45068440a3a0d}} 
+\index{alimenti.\+c@{alimenti.\+c}!gestore\+\_\+riduzione\+\_\+alimenti@{gestore\+\_\+riduzione\+\_\+alimenti}}
+\index{gestore\+\_\+riduzione\+\_\+alimenti@{gestore\+\_\+riduzione\+\_\+alimenti}!alimenti.\+c@{alimenti.\+c}}
+\subsubsection{\texorpdfstring{gestore\+\_\+riduzione\+\_\+alimenti()}{gestore\_riduzione\_alimenti()}}
+{\footnotesize\ttfamily int gestore\+\_\+riduzione\+\_\+alimenti (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Funzione che si occupa di gestire l\textquotesingle{}operazione di riduzione di un alimento permettendo all\textquotesingle{}utente di registrare tale consumo.
+
+Una volta effettuata la scelta da parte dell\textquotesingle{}utente se registrare il consumo ed effettuato un check su tale scelta, viene mostrato il contenuto del frigo per poter permettere all\textquotesingle{}utente di scegliere l\textquotesingle{}alimento da consumare. Qualora la riduzione(funzione riduci alimento) abbia avuto sucesso viene eventualmente registrato tale consumo e viene chiesto se si vuole rieffettuare l\textquotesingle{}inserimento.
+
+\begin{DoxyPrecond}{Precondizione}
+Nessuna pre condizione particolare 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Deve essere stata effettuata con successo la riduzione ed eventualmente registrato il consumo. 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{alimenti_8c_a2116d71c41eefee79559a9c546be6001}\label{alimenti_8c_a2116d71c41eefee79559a9c546be6001}} 
+\index{alimenti.\+c@{alimenti.\+c}!input\+\_\+alimento\+\_\+frigo@{input\+\_\+alimento\+\_\+frigo}}
+\index{input\+\_\+alimento\+\_\+frigo@{input\+\_\+alimento\+\_\+frigo}!alimenti.\+c@{alimenti.\+c}}
+\subsubsection{\texorpdfstring{input\+\_\+alimento\+\_\+frigo()}{input\_alimento\_frigo()}}
+{\footnotesize\ttfamily \hyperlink{structalimento__frigo}{alimento\+\_\+frigo} input\+\_\+alimento\+\_\+frigo (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Funzione che si occupa dell\textquotesingle{}inserimento da tastiera di un alimento nel formato valido per il caricamento. La funzione si basa principalmente su un ciclo che analizza l\textquotesingle{}input dell\textquotesingle{}utente controllando i vari valori inseriti. Qualora la scanf non produca errori e restituisca il numero massimo di \char`\"{}hit\char`\"{}, l\textquotesingle{}alimento é da considerarsi valido e pertanto puó essere restituito dalla funzione
+
+\begin{DoxyPrecond}{Precondizione}
+Nessuna pre condizione particolare 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Deve essere restituito un alimento nel formato valido 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{alimenti_8c_a37711f116538cb8d2bb45055cc05cc03}\label{alimenti_8c_a37711f116538cb8d2bb45055cc05cc03}} 
+\index{alimenti.\+c@{alimenti.\+c}!input\+\_\+data\+\_\+scadenza@{input\+\_\+data\+\_\+scadenza}}
+\index{input\+\_\+data\+\_\+scadenza@{input\+\_\+data\+\_\+scadenza}!alimenti.\+c@{alimenti.\+c}}
+\subsubsection{\texorpdfstring{input\+\_\+data\+\_\+scadenza()}{input\_data\_scadenza()}}
+{\footnotesize\ttfamily \hyperlink{structdata}{data} input\+\_\+data\+\_\+scadenza (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Funzione che si occupa dell\textquotesingle{}inserimento di una data di scadenza in un formato valido. Qualora la scadenza sia significativa viene richiamata la funzione controlla\+\_\+data\+\_\+scadenza per effettuare un ulteriore check sulla validitá di tale data. L\textquotesingle{}inserimento viene effettuato fino a quando il controllo sulla validitá non viene superato
+
+\begin{DoxyPrecond}{Precondizione}
+Nessuna pre condizione particolare 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Deve essere restituita una data di scadenza valida 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{alimenti_8c_a9cc3be659ace50533665db7d20c5d371}\label{alimenti_8c_a9cc3be659ace50533665db7d20c5d371}} 
+\index{alimenti.\+c@{alimenti.\+c}!input\+\_\+id\+\_\+alimento@{input\+\_\+id\+\_\+alimento}}
+\index{input\+\_\+id\+\_\+alimento@{input\+\_\+id\+\_\+alimento}!alimenti.\+c@{alimenti.\+c}}
+\subsubsection{\texorpdfstring{input\+\_\+id\+\_\+alimento()}{input\_id\_alimento()}}
+{\footnotesize\ttfamily int input\+\_\+id\+\_\+alimento (\begin{DoxyParamCaption}\item[{int}]{num\+\_\+alimenti\+\_\+frigo }\end{DoxyParamCaption})}
+
+Funzione che si occupa dell\textquotesingle{}inserimento di un id valido e del controllo di tale valore in base al range in cui é possibile stabilirlo. Se l\textquotesingle{}id dell\textquotesingle{}alimento ha un valore compreso tra il minimo consentito ed il numero degli alimenti del frigo allora é valido e quindi puó essere restituito dalla funzione
+
+\begin{DoxyPrecond}{Precondizione}
+Deve essere passato un numero di alimenti maggiore o uguale di 0 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Deve essere restituito un id valido 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{alimenti_8c_a492d6cd6c4c6b199c70c477c50c0341f}\label{alimenti_8c_a492d6cd6c4c6b199c70c477c50c0341f}} 
+\index{alimenti.\+c@{alimenti.\+c}!input\+\_\+kcal@{input\+\_\+kcal}}
+\index{input\+\_\+kcal@{input\+\_\+kcal}!alimenti.\+c@{alimenti.\+c}}
+\subsubsection{\texorpdfstring{input\+\_\+kcal()}{input\_kcal()}}
+{\footnotesize\ttfamily int input\+\_\+kcal (\begin{DoxyParamCaption}\item[{char $\ast$}]{nome\+\_\+alimento,  }\item[{int}]{campione\+\_\+kcal,  }\item[{char $\ast$}]{unita\+\_\+misura }\end{DoxyParamCaption})}
+
+Funzione che si occupa dell\textquotesingle{}inserimento delle kcal di un alimento in un formato valido. L\textquotesingle{}inserimento viene effettuato fino a quando il controllo sulla validitá non viene superato
+
+\begin{DoxyPrecond}{Precondizione}
+Nessuna pre condizione particolare 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Devono essere restituite delle kcal valide 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{alimenti_8c_a2d78e20b88829b25dd068ebb8c0af9e3}\label{alimenti_8c_a2d78e20b88829b25dd068ebb8c0af9e3}} 
+\index{alimenti.\+c@{alimenti.\+c}!input\+\_\+nome\+\_\+alimento@{input\+\_\+nome\+\_\+alimento}}
+\index{input\+\_\+nome\+\_\+alimento@{input\+\_\+nome\+\_\+alimento}!alimenti.\+c@{alimenti.\+c}}
+\subsubsection{\texorpdfstring{input\+\_\+nome\+\_\+alimento()}{input\_nome\_alimento()}}
+{\footnotesize\ttfamily char$\ast$ input\+\_\+nome\+\_\+alimento (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Funzione che dopo aver allocato una stringa di una determinata lunghezza, si occupa di ricevere in input il nome dell\textquotesingle{}alimento. L\textquotesingle{}inserimento viene effettuato fino a quando non é stata inserita una stringa significativa e pertanto fino a quando l\textquotesingle{}esito dell\textquotesingle{}input non risulta positivo
+
+\begin{DoxyPrecond}{Precondizione}
+Nessuna pre condizione particolare 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Deve essere restituita una stringa con almeno un carattere 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{alimenti_8c_a30d59e411dff5377698b27e2023332b2}\label{alimenti_8c_a30d59e411dff5377698b27e2023332b2}} 
+\index{alimenti.\+c@{alimenti.\+c}!input\+\_\+quantita@{input\+\_\+quantita}}
+\index{input\+\_\+quantita@{input\+\_\+quantita}!alimenti.\+c@{alimenti.\+c}}
+\subsubsection{\texorpdfstring{input\+\_\+quantita()}{input\_quantita()}}
+{\footnotesize\ttfamily float input\+\_\+quantita (\begin{DoxyParamCaption}\item[{char $\ast$}]{unita\+\_\+misura }\end{DoxyParamCaption})}
+
+Funzione che si occupa dell\textquotesingle{}inserimento di una quantitá in un formato valido. Qualora la quantitá sia composta da soli numeri(ricordiamo che la quantitá puó essere con la virgola per quelle quantitá che prevedono unitá di misura come kg ed lt), viene richiamata la funzione controlla\+\_\+quantita per effettuare un ulteriore check sulla validitá di tale quantitá anche in base alla unitá di misura passata ( avere 1000g di un alimento equivale a 1kg). L\textquotesingle{}inserimento viene effettuato fino a quando non viene inserita una quantitá valida
+
+\begin{DoxyPrecond}{Precondizione}
+Nessuna pre condizione particolare 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Deve essere restituita una quantitá significativa 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{alimenti_8c_a27d247abb28988b7f59e457175a960f0}\label{alimenti_8c_a27d247abb28988b7f59e457175a960f0}} 
+\index{alimenti.\+c@{alimenti.\+c}!input\+\_\+soglia\+\_\+spesa@{input\+\_\+soglia\+\_\+spesa}}
+\index{input\+\_\+soglia\+\_\+spesa@{input\+\_\+soglia\+\_\+spesa}!alimenti.\+c@{alimenti.\+c}}
+\subsubsection{\texorpdfstring{input\+\_\+soglia\+\_\+spesa()}{input\_soglia\_spesa()}}
+{\footnotesize\ttfamily float input\+\_\+soglia\+\_\+spesa (\begin{DoxyParamCaption}\item[{char $\ast$}]{nome\+\_\+alimento,  }\item[{char $\ast$}]{unita\+\_\+misura }\end{DoxyParamCaption})}
+
+Funzione che si occupa dell\textquotesingle{}input da tastiera della soglia della spesa. La soglia ricordiamo che é una quantitá al di sotto della quale un alimento deve essere considerato come candidato per essere comprato. Alla funzione vengono passati il nome dell\textquotesingle{}alimento(deve essere mostrato in output per fornire ulteriori informazioni sull\textquotesingle{}inserimento da effettuare) e l\textquotesingle{}unitá di misura per effettuare un controllo sulla validitá del valore inserito come soglia. Qualora il valore sia significativo viene restituito dalla funzione altrimenti si continua a chiedere l\textquotesingle{}inserimento.
+
+\begin{DoxyPrecond}{Precondizione}
+Deve essere passato un nome di alimento con almeno un carattere e una unitá di misura significativa 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Deve essere restituita una soglia valida 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{alimenti_8c_a1ae2adf954807832704a0ac66fc3114e}\label{alimenti_8c_a1ae2adf954807832704a0ac66fc3114e}} 
+\index{alimenti.\+c@{alimenti.\+c}!input\+\_\+unita\+\_\+misura@{input\+\_\+unita\+\_\+misura}}
+\index{input\+\_\+unita\+\_\+misura@{input\+\_\+unita\+\_\+misura}!alimenti.\+c@{alimenti.\+c}}
+\subsubsection{\texorpdfstring{input\+\_\+unita\+\_\+misura()}{input\_unita\_misura()}}
+{\footnotesize\ttfamily void input\+\_\+unita\+\_\+misura (\begin{DoxyParamCaption}\item[{char $\ast$}]{unita\+\_\+misura }\end{DoxyParamCaption})}
+
+Funzione che si occupa dell\textquotesingle{}inserimento di una unitá di misura in un formato valido. Qualora l\textquotesingle{}unitá di misura sia composta da sole lettere viene richiamata la funzione controlla\+\_\+unita\+\_\+misura per effettuare un ulteriore check sulla esistenza di tale unitá di misura tra quelle standard(g,lt,kg,ml). L\textquotesingle{}inserimento viene effettuato fino a quando non viene inserita una unitá di misura valida
+
+\begin{DoxyPrecond}{Precondizione}
+Nessuna pre condizione particolare 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Deve essere memorizzata nel puntatore una unitá di misura valida 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{alimenti_8c_a67bbe407f5fd6b977dcb6b79a7876706}\label{alimenti_8c_a67bbe407f5fd6b977dcb6b79a7876706}} 
+\index{alimenti.\+c@{alimenti.\+c}!leggi\+\_\+database\+\_\+alimenti@{leggi\+\_\+database\+\_\+alimenti}}
+\index{leggi\+\_\+database\+\_\+alimenti@{leggi\+\_\+database\+\_\+alimenti}!alimenti.\+c@{alimenti.\+c}}
+\subsubsection{\texorpdfstring{leggi\+\_\+database\+\_\+alimenti()}{leggi\_database\_alimenti()}}
+{\footnotesize\ttfamily int leggi\+\_\+database\+\_\+alimenti (\begin{DoxyParamCaption}\item[{\hyperlink{structalimento__database}{alimento\+\_\+database} $\ast$}]{lista\+\_\+alimenti }\end{DoxyParamCaption})}
+
+Funzione che avendo ricevuto in ingresso l\textquotesingle{}array di struct vuoto che conterrá gli alimenti del database, si occuperá di riempire tale array con i dati salvati all\textquotesingle{}interno del file e di restituire al termine il numero di tali alimenti salvati. Come per ogni altra funzione che conta gli elementi del file anche in questo caso si saltano le righe vuote
+
+\begin{DoxyPrecond}{Precondizione}
+Deve essere passato un array di struct della giusta dimensione 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Il valore restituito deve essere un intero significativo ($>$=0) 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{alimenti_8c_ab492c9e27379bb529f377cb4ebea2c4f}\label{alimenti_8c_ab492c9e27379bb529f377cb4ebea2c4f}} 
+\index{alimenti.\+c@{alimenti.\+c}!leggi\+\_\+frigo@{leggi\+\_\+frigo}}
+\index{leggi\+\_\+frigo@{leggi\+\_\+frigo}!alimenti.\+c@{alimenti.\+c}}
+\subsubsection{\texorpdfstring{leggi\+\_\+frigo()}{leggi\_frigo()}}
+{\footnotesize\ttfamily int leggi\+\_\+frigo (\begin{DoxyParamCaption}\item[{\hyperlink{structalimento__frigo}{alimento\+\_\+frigo} $\ast$}]{lista\+\_\+frigo }\end{DoxyParamCaption})}
+
+Funzione che serve a popolare un\textquotesingle{}array di struct( passato per riferimento ) con gli alimenti presenti nel frigo e le relative informazioni.
+
+Qualora sia possibile aprire il file contenente gli alimenti del frigo viene effettauto un ciclo, all\textquotesingle{}interno del quale, l\textquotesingle{}alimento estratto viene memorizzato in una opportuna posizione dell\textquotesingle{}array di struct. Al termine della estrazione viene restituito il numero di alimenti letti in quanto puó tonrare utile per altre funzioni
+
+\begin{DoxyPrecond}{Precondizione}
+L\textquotesingle{}array di struct passato abbia una lunghezza pari o superiore al numero di elementi presenti nel frigo 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Deve essere stati memorizzati tutti gli alimenti del file all\textquotesingle{}interno della struct 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{alimenti_8c_a8ac393ba9c4d8b07435125faec7e37ce}\label{alimenti_8c_a8ac393ba9c4d8b07435125faec7e37ce}} 
+\index{alimenti.\+c@{alimenti.\+c}!modifica\+\_\+kcal@{modifica\+\_\+kcal}}
+\index{modifica\+\_\+kcal@{modifica\+\_\+kcal}!alimenti.\+c@{alimenti.\+c}}
+\subsubsection{\texorpdfstring{modifica\+\_\+kcal()}{modifica\_kcal()}}
+{\footnotesize\ttfamily int modifica\+\_\+kcal (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Funzione che si occupa di permettere la modifica della kcal di un alimento.
+
+Il funzionamento si basa su una iniziale visualizzazione del database al fine da poter permettere all\textquotesingle{}utente di capire quale id corrisponde all\textquotesingle{}alimento che vuole modificare. Una volta effettuata tale operazione(apertura del file permettendo), viene effettuato un ciclo per il posizionamento del puntatore all\textquotesingle{}interno del file, qualora venga inserito un id significativo e pertanto venga individuato tale alimento. Una volta fatto ció viene chiesto all\textquotesingle{}utente di inserire il nuovo valore che verrá poi inserito all\textquotesingle{}interno del file per poter permettere cosí l\textquotesingle{}aggiornamento delle kcal.
+
+\begin{DoxyPrecond}{Precondizione}
+Nessuna pre condizione particolare 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Deve essere stato aggiornato con successo il valore delle kcal qualora sia possibile modificare tale informazione 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{alimenti_8c_a816367a66baefe718e880eff78ba73d4}\label{alimenti_8c_a816367a66baefe718e880eff78ba73d4}} 
+\index{alimenti.\+c@{alimenti.\+c}!modifica\+\_\+soglia\+\_\+spesa@{modifica\+\_\+soglia\+\_\+spesa}}
+\index{modifica\+\_\+soglia\+\_\+spesa@{modifica\+\_\+soglia\+\_\+spesa}!alimenti.\+c@{alimenti.\+c}}
+\subsubsection{\texorpdfstring{modifica\+\_\+soglia\+\_\+spesa()}{modifica\_soglia\_spesa()}}
+{\footnotesize\ttfamily int modifica\+\_\+soglia\+\_\+spesa (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Funzione che si occupa di permettere la modifica della soglia della spesa.
+
+Il funzionamento si basa su una iniziale visualizzazione del database al fine da poter permettere all\textquotesingle{}utente di capire quale id corrisponde all\textquotesingle{}alimento che vuole modificare. Una volta effettuata tale operazione(apertura del file permettendo), viene effettuato un ciclo per il posizionamento del puntatore all\textquotesingle{}interno del file qualora venga inserito un id significativo e pertanto venga individuato tale alimento. Una volta fatto ció viene chiesto all\textquotesingle{}utente di inserire il nuovo valore che verrá poi inserito all\textquotesingle{}interno del file per poter permettere cosí l\textquotesingle{}aggiornamento della soglia.
+
+\begin{DoxyPrecond}{Precondizione}
+Nessuna pre condizione particolare 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Deve essere stata aggiornata con successo la soglia della spesa qualora sia possibile modificare tale informazione 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{alimenti_8c_a76fba08fd840b7551099f78d86bdc2ba}\label{alimenti_8c_a76fba08fd840b7551099f78d86bdc2ba}} 
+\index{alimenti.\+c@{alimenti.\+c}!ordina\+\_\+alimenti\+\_\+scadenza@{ordina\+\_\+alimenti\+\_\+scadenza}}
+\index{ordina\+\_\+alimenti\+\_\+scadenza@{ordina\+\_\+alimenti\+\_\+scadenza}!alimenti.\+c@{alimenti.\+c}}
+\subsubsection{\texorpdfstring{ordina\+\_\+alimenti\+\_\+scadenza()}{ordina\_alimenti\_scadenza()}}
+{\footnotesize\ttfamily int ordina\+\_\+alimenti\+\_\+scadenza (\begin{DoxyParamCaption}\item[{\hyperlink{structalimento__frigo}{alimento\+\_\+frigo} $\ast$}]{alimenti\+\_\+frigo,  }\item[{int}]{num\+\_\+alimenti }\end{DoxyParamCaption})}
+
+La funzione, avendo in ingresso gli alimenti del frigo con il relativo numero, si occupa di riordinare tali alimenti, o meglio l\textquotesingle{}array di struct che li contiene, in base alla data di scadenza. L\textquotesingle{}ordinamento e\textquotesingle{} effettuato attraverso l\textquotesingle{}algoritmo shell sort in quanto risultava quello piú semplice ed efficace da implementare dato il quantitativo di dati(non e\textquotesingle{} eccessivo considerato che il frigo avrá al massimo un centinaio al massimo di alimenti). Inoltre in questa versione di shell sort si e\textquotesingle{} optato di non creare a parte un array contenente i gap (distanza per gli scambi), ma di sfruttare il numero di alimenti inizialmente e poi dividere per 2 di volta in volta la lunghezza.
+
+\begin{DoxyPrecond}{Precondizione}
+l\textquotesingle{}array di struct deve possedere almeno un alimento da ordinare e pertanto il numero di alimenti deve essere idoneo. 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+L\textquotesingle{}ordinamento deve essere stato effettuato con successo. 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{alimenti_8c_ae2e2231830248242861a5076b7a7aa43}\label{alimenti_8c_ae2e2231830248242861a5076b7a7aa43}} 
+\index{alimenti.\+c@{alimenti.\+c}!quantita\+\_\+alimento@{quantita\+\_\+alimento}}
+\index{quantita\+\_\+alimento@{quantita\+\_\+alimento}!alimenti.\+c@{alimenti.\+c}}
+\subsubsection{\texorpdfstring{quantita\+\_\+alimento()}{quantita\_alimento()}}
+{\footnotesize\ttfamily float quantita\+\_\+alimento (\begin{DoxyParamCaption}\item[{const char $\ast$}]{nome\+\_\+alimento }\end{DoxyParamCaption})}
+
+Funzione che si occupa di estrarre la quantitá di un alimento presente nel frigo. Qualora sia possibile accedere al file viene fatto controllo su tutto il file fino a quando non si trova l\textquotesingle{}alimento con il nome che abbiamo passato come parametro. Una volta trovato viene restituita tale quantitá.
+
+\begin{DoxyPrecond}{Precondizione}
+Che il nome passato come parametro sia di almeno un carattere 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+nessuna post condizione particolare 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{alimenti_8c_a6f97038584db54035b56e78d47d59351}\label{alimenti_8c_a6f97038584db54035b56e78d47d59351}} 
+\index{alimenti.\+c@{alimenti.\+c}!ricerca\+\_\+alimento\+\_\+database@{ricerca\+\_\+alimento\+\_\+database}}
+\index{ricerca\+\_\+alimento\+\_\+database@{ricerca\+\_\+alimento\+\_\+database}!alimenti.\+c@{alimenti.\+c}}
+\subsubsection{\texorpdfstring{ricerca\+\_\+alimento\+\_\+database()}{ricerca\_alimento\_database()}}
+{\footnotesize\ttfamily int ricerca\+\_\+alimento\+\_\+database (\begin{DoxyParamCaption}\item[{char $\ast$}]{nome\+\_\+alimento,  }\item[{\hyperlink{structalimento__database}{alimento\+\_\+database} $\ast$}]{alimento\+\_\+estratto }\end{DoxyParamCaption})}
+
+Funzione che si occupa di ricercare un alimento all\textquotesingle{}interno del database alimenti. Vengono passati come parametri il nome dell\textquotesingle{}alimento su cui effettuare la ricerca e la struct che sará popolata con le informazioni dell\textquotesingle{}alimento qualora sia presemte nel database. Una volta effettuato il caricamento delle informazioni viene restituito 1 e in caso contrario viene restituito 0
+
+\begin{DoxyPrecond}{Precondizione}
+il nome dell\textquotesingle{}alimento passato deve essere composto da almeno un carattere 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+In caso venga trovato l\textquotesingle{}alimento deve essere restituita la struct popolata da informazioni significative 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{alimenti_8c_a6049138f96dfd2b8a0c71fe63aa9db48}\label{alimenti_8c_a6049138f96dfd2b8a0c71fe63aa9db48}} 
+\index{alimenti.\+c@{alimenti.\+c}!riduci\+\_\+alimento@{riduci\+\_\+alimento}}
+\index{riduci\+\_\+alimento@{riduci\+\_\+alimento}!alimenti.\+c@{alimenti.\+c}}
+\subsubsection{\texorpdfstring{riduci\+\_\+alimento()}{riduci\_alimento()}}
+{\footnotesize\ttfamily int riduci\+\_\+alimento (\begin{DoxyParamCaption}\item[{const char $\ast$}]{nome\+\_\+alimento,  }\item[{float}]{riduzione }\end{DoxyParamCaption})}
+
+Funzione che si occupa di ridurre la quantità di un certo alimento presente nel frigo.
+
+Il nome dell\textquotesingle{}alimento é specificato come parametro di ingresso assieme alla quantitá da ridurre. La funzione pertanto controlla in primo luogo se la quantitá presente nel frigo é maggiore o uguale di 0. Qualora la quantitá da ridurre sia superiore a quella effettivamente disponibile nel frigo o se la quantitá da ridurre é uguale a 0 viene restituito 0 per segnalare che non é stata effettuata la riduzione. Nel caso in cui la quantitá da ridurre e a quantitá disponibile siano significative viene aperto il file del frigo e viene effettuata la riduzione della quantitá. Inoltre viene richiamata la funzione che si occupa di memorizzare i consumi per registrare l\textquotesingle{}alimento ridotto.
+
+\begin{DoxyPrecond}{Precondizione}
+Sia passato come nome di alimento una stringa con almeno un carattere 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Deve essere restituito un valore per segnalare un errore o in alternativa deve essere stata effettuata con successo la riduzione 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{alimenti_8c_a4edc6c745b913cc49bebca4fbeb120a4}\label{alimenti_8c_a4edc6c745b913cc49bebca4fbeb120a4}} 
+\index{alimenti.\+c@{alimenti.\+c}!soglia\+\_\+alimento@{soglia\+\_\+alimento}}
+\index{soglia\+\_\+alimento@{soglia\+\_\+alimento}!alimenti.\+c@{alimenti.\+c}}
+\subsubsection{\texorpdfstring{soglia\+\_\+alimento()}{soglia\_alimento()}}
+{\footnotesize\ttfamily float soglia\+\_\+alimento (\begin{DoxyParamCaption}\item[{const char $\ast$}]{nome\+\_\+alimento }\end{DoxyParamCaption})}
+
+Funzione che si occupa di estrarre la soglia di un alimento presente nel database. Qualora sia possibile accedere al file viene fatto controllo su tutto il database fino a quando non si trova l\textquotesingle{}alimento con il nome che abbiamo passato come parametro. Una volta trovato viene restituita tale soglia.
+
+A tal scopo, viene implemtntato un while per la ricerca dell\textquotesingle{}alimento nel database, trovato viene registrata la soglia dell\textquotesingle{}alimento in soglia\+\_\+alimento e restituta
+
+\begin{DoxyPrecond}{Precondizione}
+il nome passato come parametro sia di almeno un carattere 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+nessuna post condizione particolare 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{alimenti_8c_a111ccfa275bbf6900ff8be3a5bcbbf0e}\label{alimenti_8c_a111ccfa275bbf6900ff8be3a5bcbbf0e}} 
+\index{alimenti.\+c@{alimenti.\+c}!visualizza\+\_\+alimenti\+\_\+scaduti@{visualizza\+\_\+alimenti\+\_\+scaduti}}
+\index{visualizza\+\_\+alimenti\+\_\+scaduti@{visualizza\+\_\+alimenti\+\_\+scaduti}!alimenti.\+c@{alimenti.\+c}}
+\subsubsection{\texorpdfstring{visualizza\+\_\+alimenti\+\_\+scaduti()}{visualizza\_alimenti\_scaduti()}}
+{\footnotesize\ttfamily int visualizza\+\_\+alimenti\+\_\+scaduti (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Funzione che viene richiamata direttamente dal gestore delle notifiche e si occupa di visualizzare gli alimenti scaduti presenti nel frigo e di mostrare la relativa data di scadenza.
+
+\begin{DoxyPrecond}{Precondizione}
+Nessuna pre condizione particolare 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Deve essere termianta con successo la visualizzazione 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{alimenti_8c_a7c0fa2a8781ef98329c8ec90b786b32e}\label{alimenti_8c_a7c0fa2a8781ef98329c8ec90b786b32e}} 
+\index{alimenti.\+c@{alimenti.\+c}!visualizza\+\_\+database\+\_\+alimenti@{visualizza\+\_\+database\+\_\+alimenti}}
+\index{visualizza\+\_\+database\+\_\+alimenti@{visualizza\+\_\+database\+\_\+alimenti}!alimenti.\+c@{alimenti.\+c}}
+\subsubsection{\texorpdfstring{visualizza\+\_\+database\+\_\+alimenti()}{visualizza\_database\_alimenti()}}
+{\footnotesize\ttfamily int visualizza\+\_\+database\+\_\+alimenti (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Funzione che si occupa di visualizzare tutti gli alimenti presenti nel database, con le relative informazioni .
+
+Qualora sia possibile aprire il file viene effettato un ciclo per la stampa di tutti gli alimenti presenti nel file. Al termine viene restituito il numero di alimenti visualizzati in quanto tale dato potrebbe tornare utile in altre funzioni
+
+\begin{DoxyPrecond}{Precondizione}
+Nessuna pre condizione particolare 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Nessuna post condizione particolare 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{alimenti_8c_ae8e899f0e94ad5546a4deb9bb5ab7a5d}\label{alimenti_8c_ae8e899f0e94ad5546a4deb9bb5ab7a5d}} 
+\index{alimenti.\+c@{alimenti.\+c}!visualizza\+\_\+frigo@{visualizza\+\_\+frigo}}
+\index{visualizza\+\_\+frigo@{visualizza\+\_\+frigo}!alimenti.\+c@{alimenti.\+c}}
+\subsubsection{\texorpdfstring{visualizza\+\_\+frigo()}{visualizza\_frigo()}}
+{\footnotesize\ttfamily int visualizza\+\_\+frigo (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Funzione che si occupa di visualizzare tutti gli alimenti presenti nel frigo, con le relative informazioni .
+
+Qualora sia possibile aprire il file viene effettato un ciclo per la stampa di tutti gli alimenti presenti nel file. Al termine viene restituito il numero di alimenti visualizzati in quanto tale dato potrebbe tornare utile in altre funzioni
+
+\begin{DoxyPrecond}{Precondizione}
+Nessuna pre condizione particolare 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Nessuna post condizione particolare 
+\end{DoxyPostcond}
+se la funzione e\textquotesingle{} andata a buon fine restituisci 1 

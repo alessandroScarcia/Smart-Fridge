@@ -1,6 +1,8 @@
 \hypertarget{ricette_8c}{}\section{Riferimenti per il file src/ricette.c}
 \label{ricette_8c}\index{src/ricette.\+c@{src/ricette.\+c}}
 {\ttfamily \#include \char`\"{}ricette.\+h\char`\"{}}\newline
+Grafo delle dipendenze di inclusione per ricette.\+c\+:
+% FIG 0
 \subsection*{Funzioni}
 \begin{DoxyCompactItemize}
 \item 
@@ -34,27 +36,27 @@ int \hyperlink{ricette_8c_a54a0967bab4f2d4810dd4652f90dab0d}{modifica\+\_\+ricet
 \item 
 int \hyperlink{ricette_8c_a77953d2180ea32dc11b099d493bf46ff}{elimina\+\_\+ricetta} ()
 \item 
-int \hyperlink{ricette_8c_a452437987d438940d6e7331f79340a60}{visualizza\+\_\+ricetta} (\hyperlink{structricetta}{ricetta} dati\+\_\+ricette, int vista\+\_\+ricetta)
+int \hyperlink{ricette_8c_a452437987d438940d6e7331f79340a60}{visualizza\+\_\+ricetta} (\hyperlink{ricette_8h_ae194550536a3ed1a726f2b8668663eaf}{ricetta} dati\+\_\+ricette, int vista\+\_\+ricetta)
 \item 
 int \hyperlink{ricette_8c_a4149df822177a13133bab226be9711f9}{visualizza\+\_\+database\+\_\+ricette} (int vista)
 \item 
-int \hyperlink{ricette_8c_a8e6cf451a1370431785a6f966e1ec7e0}{lettura\+\_\+database\+\_\+ricette} (\hyperlink{structricetta}{ricetta} $\ast$ricette\+\_\+database)
+int \hyperlink{ricette_8c_a8e6cf451a1370431785a6f966e1ec7e0}{lettura\+\_\+database\+\_\+ricette} (\hyperlink{ricette_8h_ae194550536a3ed1a726f2b8668663eaf}{ricetta} $\ast$ricette\+\_\+database)
 \item 
 int \hyperlink{ricette_8c_a34b53ba22d2a49e5ef3f0a1ddb8e1fb2}{conta\+\_\+ricette\+\_\+database} ()
 \item 
 int \hyperlink{ricette_8c_ac421bea1de8d985331add3988824d1ef}{inizializza\+\_\+ricette\+\_\+preparabili} (int num\+\_\+ricette, char $\ast$ricette\+\_\+preparabili\mbox{[}num\+\_\+ricette\mbox{]})
 \item 
-int \hyperlink{ricette_8c_aa33e65064c109879b58f97fcfb1bfe6a}{ordina\+\_\+ricette\+\_\+kcal} (\hyperlink{structricetta}{ricetta} $\ast$ricette\+\_\+database, int num\+\_\+ricette)
+int \hyperlink{ricette_8c_aa33e65064c109879b58f97fcfb1bfe6a}{ordina\+\_\+ricette\+\_\+kcal} (\hyperlink{ricette_8h_ae194550536a3ed1a726f2b8668663eaf}{ricetta} $\ast$ricette\+\_\+database, int num\+\_\+ricette)
 \item 
-int \hyperlink{ricette_8c_a93fc79e3549c9535ce3f0552f76d60df}{ricette\+\_\+alimenti\+\_\+in\+\_\+scadenza} (alimento\+\_\+frigo $\ast$alimenti\+\_\+frigo, int num\+\_\+alimenti)
+int \hyperlink{ricette_8c_a1e95fa1024e80d5d83beb3d4c311b04c}{ricette\+\_\+alimenti\+\_\+in\+\_\+scadenza} ()
 \item 
-int \hyperlink{ricette_8c_a185118c12ff263a114a9b841a065a35e}{inserimento\+\_\+manuale\+\_\+ingredienti} (char nome\+\_\+ingredienti\mbox{[}M\+A\+X\+\_\+\+A\+L\+I\+M\+\_\+\+S\+U\+GG\mbox{]}\mbox{[}L\+U\+N\+G\+\_\+\+N\+O\+M\+E\+\_\+\+A\+L\+I\+M\+E\+N\+TO\mbox{]})
+int \hyperlink{ricette_8c_a816a2d62468ea9df6862d6dffa718f2c}{inserimento\+\_\+manuale\+\_\+ingredienti} (char nome\+\_\+ingredienti\mbox{[}\hyperlink{ricette_8h_aefa375406bc4dbb4c5e19b52ea58a29a}{M\+A\+X\+\_\+\+I\+N\+G\+R\+D\+\_\+\+S\+U\+GG}\mbox{]}\mbox{[}\hyperlink{ricette_8h_a4cfbc12da1c68bf747428d14ce5b1a24}{L\+U\+N\+G\+\_\+\+I\+N\+G\+R\+E\+D\+I\+E\+N\+TE}\mbox{]})
 \item 
-int \hyperlink{ricette_8c_aa9f13f4c3eb31be36700dba66e1e23b6}{suggerimento\+\_\+ricetta\+\_\+manuale} (int num\+\_\+alimenti\+\_\+sugg, char nome\+\_\+ingredienti\mbox{[}M\+A\+X\+\_\+\+A\+L\+I\+M\+\_\+\+S\+U\+GG\mbox{]}\mbox{[}L\+U\+N\+G\+\_\+\+N\+O\+M\+E\+\_\+\+A\+L\+I\+M\+E\+N\+TO\mbox{]})
+int \hyperlink{ricette_8c_af12044ca527f78ceb9a1411ee5195ce8}{suggerimento\+\_\+ricetta\+\_\+manuale} (int num\+\_\+alimenti\+\_\+sugg, char nome\+\_\+ingredienti\mbox{[}\hyperlink{ricette_8h_aefa375406bc4dbb4c5e19b52ea58a29a}{M\+A\+X\+\_\+\+I\+N\+G\+R\+D\+\_\+\+S\+U\+GG}\mbox{]}\mbox{[}\hyperlink{ricette_8h_a4cfbc12da1c68bf747428d14ce5b1a24}{L\+U\+N\+G\+\_\+\+I\+N\+G\+R\+E\+D\+I\+E\+N\+TE}\mbox{]})
 \item 
 int \hyperlink{ricette_8c_add2568bec3431612ac1f207b303f6be2}{suggerimento\+\_\+ricetta\+\_\+automatico} ()
 \item 
-int \hyperlink{ricette_8c_ab4d271ff37e418aca05689f552b9d164}{aggiorna\+\_\+database\+\_\+ricette} (\hyperlink{structricetta}{ricetta} nuova\+\_\+ricetta)
+int \hyperlink{ricette_8c_ab4d271ff37e418aca05689f552b9d164}{aggiorna\+\_\+database\+\_\+ricette} (\hyperlink{ricette_8h_ae194550536a3ed1a726f2b8668663eaf}{ricetta} nuova\+\_\+ricetta)
 \item 
 int \hyperlink{ricette_8c_ad39adfc2461f28e268847f9af8313451}{lettura\+\_\+nuove\+\_\+ricette} ()
 \item 
@@ -67,7 +69,7 @@ int \hyperlink{ricette_8c_a29a6b70af1dc01b5538937b21d7484e0}{estrai\+\_\+kcal\+\
 \index{ricette.\+c@{ricette.\+c}!aggiorna\+\_\+database\+\_\+ricette@{aggiorna\+\_\+database\+\_\+ricette}}
 \index{aggiorna\+\_\+database\+\_\+ricette@{aggiorna\+\_\+database\+\_\+ricette}!ricette.\+c@{ricette.\+c}}
 \subsubsection{\texorpdfstring{aggiorna\+\_\+database\+\_\+ricette()}{aggiorna\_database\_ricette()}}
-{\footnotesize\ttfamily int aggiorna\+\_\+database\+\_\+ricette (\begin{DoxyParamCaption}\item[{\hyperlink{structricetta}{ricetta}}]{nuova\+\_\+ricetta }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int aggiorna\+\_\+database\+\_\+ricette (\begin{DoxyParamCaption}\item[{\hyperlink{ricette_8h_ae194550536a3ed1a726f2b8668663eaf}{ricetta}}]{nuova\+\_\+ricetta }\end{DoxyParamCaption})}
 
 La funzione riceve in input la struct contenente i dati inerenti ad una singola ricetta e procede con il controllo sull\textquotesingle{}esistenza e apertura del file databse\+\_\+ricette. Qualora non sia possibile aprire il file in lettura viene creato per scriverci sopra la prima volta. La prima operazione da compiere qualora il file esista e\textquotesingle{} controllare se la ricetta che vogliamo salvare non sia giá presente nel database. Per far ció leggiamo sequenzialmente il file e se troviamo una ricetta con lo stesso nome aggiorniamo il flag di presenza. Nel caso in cui la ricetta abbia superato il controllo e pertanto non sia presente nel database, essa viene salvata alla prima riga vuota presente nel file(ricordiamo che il progetto in generale si basa sul recupero delle righe all\textquotesingle{}interno di un file). \begin{DoxyPrecond}{Precondizione}
 Deve essere passata una struct contenente valori significativi 
@@ -291,11 +293,11 @@ Nessuna pre condizione particolare
 \begin{DoxyPostcond}{Postcondizione}
 Deve essere restituita una stringa con almeno un carattere 
 \end{DoxyPostcond}
-\mbox{\Hypertarget{ricette_8c_a185118c12ff263a114a9b841a065a35e}\label{ricette_8c_a185118c12ff263a114a9b841a065a35e}} 
+\mbox{\Hypertarget{ricette_8c_a816a2d62468ea9df6862d6dffa718f2c}\label{ricette_8c_a816a2d62468ea9df6862d6dffa718f2c}} 
 \index{ricette.\+c@{ricette.\+c}!inserimento\+\_\+manuale\+\_\+ingredienti@{inserimento\+\_\+manuale\+\_\+ingredienti}}
 \index{inserimento\+\_\+manuale\+\_\+ingredienti@{inserimento\+\_\+manuale\+\_\+ingredienti}!ricette.\+c@{ricette.\+c}}
 \subsubsection{\texorpdfstring{inserimento\+\_\+manuale\+\_\+ingredienti()}{inserimento\_manuale\_ingredienti()}}
-{\footnotesize\ttfamily int inserimento\+\_\+manuale\+\_\+ingredienti (\begin{DoxyParamCaption}\item[{char}]{nome\+\_\+ingredienti\mbox{[}\+M\+A\+X\+\_\+\+A\+L\+I\+M\+\_\+\+S\+U\+G\+G\mbox{]}\mbox{[}\+L\+U\+N\+G\+\_\+\+N\+O\+M\+E\+\_\+\+A\+L\+I\+M\+E\+N\+T\+O\mbox{]} }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int inserimento\+\_\+manuale\+\_\+ingredienti (\begin{DoxyParamCaption}\item[{char}]{nome\+\_\+ingredienti\mbox{[}\+M\+A\+X\+\_\+\+I\+N\+G\+R\+D\+\_\+\+S\+U\+G\+G\mbox{]}\mbox{[}\+L\+U\+N\+G\+\_\+\+I\+N\+G\+R\+E\+D\+I\+E\+N\+T\+E\mbox{]} }\end{DoxyParamCaption})}
 
 La funzione riceve in ingresso una matrice vuota che rappresenta i nomi degli ingredienti su cui svolgere la ricerca. Dopo aver pulito il buffer di input si passa all\textquotesingle{}inserimento degli alimenti chiave da parte dell\textquotesingle{}utente. Qualora sia stata inserita la sequenza pulito di escape si termina con l\textquotesingle{}inserimento altrimenti si continua fino al numero massimo di ingredienti consentito. \begin{DoxyPrecond}{Precondizione}
 Deve essere passata una matrice vuota 
@@ -323,7 +325,7 @@ Il valore restituito deve essere una stringa oppure un puntatore null
 \index{ricette.\+c@{ricette.\+c}!lettura\+\_\+database\+\_\+ricette@{lettura\+\_\+database\+\_\+ricette}}
 \index{lettura\+\_\+database\+\_\+ricette@{lettura\+\_\+database\+\_\+ricette}!ricette.\+c@{ricette.\+c}}
 \subsubsection{\texorpdfstring{lettura\+\_\+database\+\_\+ricette()}{lettura\_database\_ricette()}}
-{\footnotesize\ttfamily int lettura\+\_\+database\+\_\+ricette (\begin{DoxyParamCaption}\item[{\hyperlink{structricetta}{ricetta} $\ast$}]{ricette\+\_\+database }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int lettura\+\_\+database\+\_\+ricette (\begin{DoxyParamCaption}\item[{\hyperlink{ricette_8h_ae194550536a3ed1a726f2b8668663eaf}{ricetta} $\ast$}]{ricette\+\_\+database }\end{DoxyParamCaption})}
 
 La funzione riceve in ingresso un array di struct passato per riferimento e lo popola prendendo le varie informazioni delle ricette, memorizzate all\textquotesingle{}interno del database. Ovviamente vengono memorizzate solo le righe che non sono inizializzate ossia quelle che non vuote. Per far ció si confronta il nome. Qualora il nome della ricetta sia una stringa vuota vuol dire che siamo in presenza di una riga vuota e pertanto essa va ignorata. \begin{DoxyPrecond}{Precondizione}
 L\textquotesingle{}array di struct che passiamo deve essere vuoto 
@@ -359,7 +361,7 @@ Deve essere stato effettuata e salvata la modifica su file
 \index{ricette.\+c@{ricette.\+c}!ordina\+\_\+ricette\+\_\+kcal@{ordina\+\_\+ricette\+\_\+kcal}}
 \index{ordina\+\_\+ricette\+\_\+kcal@{ordina\+\_\+ricette\+\_\+kcal}!ricette.\+c@{ricette.\+c}}
 \subsubsection{\texorpdfstring{ordina\+\_\+ricette\+\_\+kcal()}{ordina\_ricette\_kcal()}}
-{\footnotesize\ttfamily int ordina\+\_\+ricette\+\_\+kcal (\begin{DoxyParamCaption}\item[{\hyperlink{structricetta}{ricetta} $\ast$}]{ricette\+\_\+database,  }\item[{int}]{num\+\_\+ricette }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int ordina\+\_\+ricette\+\_\+kcal (\begin{DoxyParamCaption}\item[{\hyperlink{ricette_8h_ae194550536a3ed1a726f2b8668663eaf}{ricetta} $\ast$}]{ricette\+\_\+database,  }\item[{int}]{num\+\_\+ricette }\end{DoxyParamCaption})}
 
 La funzione seguente si occupa,avendo in ingresso il num di ricette complessive e l\textquotesingle{}array di struct che costituisce la lista di tutte le ricette, di ordinare le ricette in base alle kcal prodotte, tramite l\textquotesingle{}algoritmo di ordinamento shell sort. A differenza del classico shell sort che sfrutta un array formato dai vari gap ossia dalle varie distanze con cui confrontare e scambiare gli elementi, qui si e\textquotesingle{} preferito sfruttare inizialmente il num di ricette diviso 2 come gap di partenza e successivamente dividere il gap fino a quando non risultasse minore di 0. Ovviamente lo scambio viene fatto in base al campo delle kcal. Al termine viene stampato l\textquotesingle{}ordinamento effettuato \begin{DoxyPrecond}{Precondizione}
 l\textquotesingle{}array di struct con le ricette deve possedere almeno 1 ricetta e il numero di ricette deve essere un valore significativo($>$0) 
@@ -383,11 +385,11 @@ Il nome della ricetta (sebbene sia presente il controllo) non deve essere una st
 \begin{DoxyPostcond}{Postcondizione}
 Qualora sia possibile preparare la ricette la riduzione degli alimenti deve essere stata effettuata con successo. 
 \end{DoxyPostcond}
-\mbox{\Hypertarget{ricette_8c_a93fc79e3549c9535ce3f0552f76d60df}\label{ricette_8c_a93fc79e3549c9535ce3f0552f76d60df}} 
+\mbox{\Hypertarget{ricette_8c_a1e95fa1024e80d5d83beb3d4c311b04c}\label{ricette_8c_a1e95fa1024e80d5d83beb3d4c311b04c}} 
 \index{ricette.\+c@{ricette.\+c}!ricette\+\_\+alimenti\+\_\+in\+\_\+scadenza@{ricette\+\_\+alimenti\+\_\+in\+\_\+scadenza}}
 \index{ricette\+\_\+alimenti\+\_\+in\+\_\+scadenza@{ricette\+\_\+alimenti\+\_\+in\+\_\+scadenza}!ricette.\+c@{ricette.\+c}}
 \subsubsection{\texorpdfstring{ricette\+\_\+alimenti\+\_\+in\+\_\+scadenza()}{ricette\_alimenti\_in\_scadenza()}}
-{\footnotesize\ttfamily int ricette\+\_\+alimenti\+\_\+in\+\_\+scadenza (\begin{DoxyParamCaption}\item[{alimento\+\_\+frigo $\ast$}]{alimenti\+\_\+frigo,  }\item[{int}]{num\+\_\+alimenti }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int ricette\+\_\+alimenti\+\_\+in\+\_\+scadenza (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 In questa funzione viene passata la lista degli alimenti attualmente nel frigo con il relativo numero e una matrice che rappresenta il nome degli alimenti che stanno per scadere. Una volta chiamata la funzione che si occupa del riordinamento degli alimenti in base alla scadenza vengono memorizzati i primi 2 alimenti che stanno per scadere all\textquotesingle{}interno di una matrice di tipo char. In seguito viene fatto un richiamo alla funzione che suggerisce le ricette in base agli alimenti che gli si passano. In questa maniera avremo la lista delle ricette che possiamo preparare con gli alimenti in scadenza \begin{DoxyPrecond}{Precondizione}
 La listadegli alimenti deve possedere almeno un alimento e il numero di alimenti deve essere un valore significativo 
@@ -407,11 +409,11 @@ Deve essere passato almeno un alimento e quindi il numero di alimenti deve esser
 \begin{DoxyPostcond}{Postcondizione}
 Deve essere stato mostrato un messaggio in base all\textquotesingle{}esito della ricerca 
 \end{DoxyPostcond}
-\mbox{\Hypertarget{ricette_8c_aa9f13f4c3eb31be36700dba66e1e23b6}\label{ricette_8c_aa9f13f4c3eb31be36700dba66e1e23b6}} 
+\mbox{\Hypertarget{ricette_8c_af12044ca527f78ceb9a1411ee5195ce8}\label{ricette_8c_af12044ca527f78ceb9a1411ee5195ce8}} 
 \index{ricette.\+c@{ricette.\+c}!suggerimento\+\_\+ricetta\+\_\+manuale@{suggerimento\+\_\+ricetta\+\_\+manuale}}
 \index{suggerimento\+\_\+ricetta\+\_\+manuale@{suggerimento\+\_\+ricetta\+\_\+manuale}!ricette.\+c@{ricette.\+c}}
 \subsubsection{\texorpdfstring{suggerimento\+\_\+ricetta\+\_\+manuale()}{suggerimento\_ricetta\_manuale()}}
-{\footnotesize\ttfamily int suggerimento\+\_\+ricetta\+\_\+manuale (\begin{DoxyParamCaption}\item[{int}]{num\+\_\+alimenti\+\_\+sugg,  }\item[{char}]{nome\+\_\+ingredienti\mbox{[}\+M\+A\+X\+\_\+\+A\+L\+I\+M\+\_\+\+S\+U\+G\+G\mbox{]}\mbox{[}\+L\+U\+N\+G\+\_\+\+N\+O\+M\+E\+\_\+\+A\+L\+I\+M\+E\+N\+T\+O\mbox{]} }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int suggerimento\+\_\+ricetta\+\_\+manuale (\begin{DoxyParamCaption}\item[{int}]{num\+\_\+alimenti\+\_\+sugg,  }\item[{char}]{nome\+\_\+ingredienti\mbox{[}\+M\+A\+X\+\_\+\+I\+N\+G\+R\+D\+\_\+\+S\+U\+G\+G\mbox{]}\mbox{[}\+L\+U\+N\+G\+\_\+\+I\+N\+G\+R\+E\+D\+I\+E\+N\+T\+E\mbox{]} }\end{DoxyParamCaption})}
 
 La funzione suggerimento\+\_\+ricetta\+\_\+manuale avendo in ingresso il numero(num\+\_\+alimenti\+\_\+sugg) e i nomi degli ingredienti(nome\+\_\+ingredienti) su cui effettuare la ricerca fornisce il nome delle ricette che si possono preparare con tali ingredienti. La funzione e\textquotesingle{} composta da un ciclo su piú esterno che scandisce le vare ricette presenti ne database, e 2 cicli piú interni che si occupano di scandire di volta gli ingredienti passati come parametro alla funzione con quelli che possiede ogni ricetta. Nel caso in cui una ricetta abbia gli ingredienti che abbiamo passato essa va memorizzata come ricetta preparabile. Al termine del controllo sulle ricette vengono stampate a schermo quelle preparabili passato qualora ce ne fossero o un messaggio di avvertenza che segnala che non esistono ricette con la combinazione di ingredienti fornita in input
 
@@ -437,7 +439,7 @@ Deve essere stata effettuata la visualizzazione opportuna
 \index{ricette.\+c@{ricette.\+c}!visualizza\+\_\+ricetta@{visualizza\+\_\+ricetta}}
 \index{visualizza\+\_\+ricetta@{visualizza\+\_\+ricetta}!ricette.\+c@{ricette.\+c}}
 \subsubsection{\texorpdfstring{visualizza\+\_\+ricetta()}{visualizza\_ricetta()}}
-{\footnotesize\ttfamily int visualizza\+\_\+ricetta (\begin{DoxyParamCaption}\item[{\hyperlink{structricetta}{ricetta}}]{dati\+\_\+ricette,  }\item[{int}]{vista\+\_\+ricetta }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int visualizza\+\_\+ricetta (\begin{DoxyParamCaption}\item[{\hyperlink{ricette_8h_ae194550536a3ed1a726f2b8668663eaf}{ricetta}}]{dati\+\_\+ricette,  }\item[{int}]{vista\+\_\+ricetta }\end{DoxyParamCaption})}
 
 La funzione visualizza\+\_\+ricette riceve come parametro di ingresso la struct dove sono memorizzate le info della ricetta da mostrare. La stampa dei campi composti da informazioni singole come il nome e il tempo di preparazione vengono mostrate tramite un\textquotesingle{}unica printf Nel caso degli ingredienti viene stampato di volta in volta il contenuto della matrice tramite un ciclo. Per quanto riguarda la preparazione (considerato che dal punto di vista progettuale si considerano le fasi come un unico testo) nella fase di visualizzazione le singole fasi, che sono separate nel testo con il carattere delimitatore (-\/), vengono opportunatamente divise tramite la funzione leggi\+\_\+campo\+\_\+ricetta. Una volta ricavata ogni fase essa viene stampata con il suo id di riferimento. \begin{DoxyPrecond}{Precondizione}
 Nessuna pre condizione particolare 
