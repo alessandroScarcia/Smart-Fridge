@@ -1,5 +1,5 @@
-#include "interfaccia.h"
 
+#include "interfaccia.h"
 
 /**
  * La funzione input scelta si occupa di ricevere in input il comando per accedere ad una determinata voce dei menu. Si e' pensato che la scelta
@@ -595,7 +595,7 @@ int menu_ricerca(){
 						break;
 					case 5:
 						num_alimenti=inserimento_manuale_ingredienti(nome_alimenti);
-						suggerimento_ricetta_manuale(num_alimenti,nome_alimenti);
+						suggerimento_ricetta_manuale(num_alimenti, nome_alimenti);
 						break;
 					case 6:
 						ricette_alimenti_in_scadenza(alimenti_frigo,num_alimenti);

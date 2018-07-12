@@ -16,6 +16,8 @@
  * @authors Davide Quatela, Alessandro Scarcia, Michela Salvemini
  */
 
+#pragma once
+
 /// Inclusione delle librerie standard
 #ifndef STD_LIB
 #define STD_LIB
@@ -38,28 +40,11 @@
 	#include <ctype.h>
 #endif
 
-#ifndef CALORIE_LIB
-#include "calorie.h"
-#endif
-
-#ifndef ALIMENTI_LIB
-#define ALIMENTI_LIB
-
-
-#ifndef UTENTI_LIB
-#include "utenti.h"
-#endif
-
-/// Inclusione della libreria per la gestione delle date
-#include "date.h"
-
-
-/// Inclusione della libreria per la gestione dei consumi
 #include "consumi.h"
 
+#include "date.h"
 
-/// Inclusione della libreria per la pulizia dei flussi di input
-#include "pulizia_flussi.h"
+#include "utenti.h"
 
 
 
@@ -129,8 +114,6 @@ typedef struct{
 	char unita_misura[LUNG_UNITA_MISURA];
 	data scadenza;
 }alimento_frigo;
-
-alimento_frigo alimento;
 
 
 float soglia_alimento(const char* nome_alimento);
@@ -454,4 +437,3 @@ int modifica_kcal();
  */
 int alimento_casuale(char* nome_alimento);
 
-#endif

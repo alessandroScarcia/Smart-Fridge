@@ -11,18 +11,30 @@
  * @authors Alessandro Scarcia, Davide Quatela, Michela Salvemini
  */
 
+#pragma once
 
-#ifndef LISTA_SPESA_LIB
-#define LISTA_SPESA_LIB
+#ifndef STD_LIB
+#define STD_LIB
+	#include <stdbool.h>
+	#include <stdio.h>
+	#include <stdlib.h>
+	#include <time.h>
+#endif
 
-#include "menu_settimanale.h" ///libreria che permette la gestione(modifica) del menu settimanale
+/// Inclusione delle librerie per la manipolazione di stringhe e caratteri
+#ifndef STRING_LIB
+#define STRING_LIB
+	#include <string.h>
+	#include <ctype.h>
+#endif
 
+#include "alimenti.h"
 
-#include "ricette.h"          ///libreria che permette la gestione(manipolazione,caricamento ecc) delle ricette
+#include "utenti.h"
 
+#include "menu_settimanale.h"
 
-#include "alimenti.h"		 ///libreria che permette la gestione(manipolazione,caricamento ecc) degli alimenti
-
+#include "ricette.h"
 
 #define LISTA_SPESA_GLOBALE "../lista_spesa.txt"   //directory in cui trovare il file della spesa globale
 
@@ -95,4 +107,3 @@ int visualizza_lista_spesa(char nome_file[LUNG_NOME_FILE_SPESA]);
  * @return -1
  */
 int visualizzazione_personale();
-#endif

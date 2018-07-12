@@ -11,6 +11,7 @@
  * @authors Alessandro Scarcia, Davide Quatela, Michela Salvemini
  */
 
+#pragma once
 
 /// Inclusione delle librerie standard
 #ifndef STD_LIB
@@ -28,17 +29,10 @@
 	#include <ctype.h>
 #endif
 
-
-#ifndef UTENTI_LIB
-#define UTENTI_LIB
-
-/// Inclusione della libreria per la gestione del menu_settimanale
-#include "menu_settimanale.h"
-
-/// Inclusione della libreria per la gestione degli alimenti
 #include "alimenti.h"
 
-/// Inclusione della libreria per la pulizia dei flussi di input
+#include "menu_settimanale.h"
+
 #include "pulizia_flussi.h"
 
 /// Limiti e valori per determinati elementi:
@@ -270,4 +264,3 @@ int conta_utenti();
  */
 int elimina_utente();
 
-#endif

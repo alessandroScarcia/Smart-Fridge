@@ -10,6 +10,8 @@
  * @authors Alessandro Scarcia, Davide Quatela, Michela Salvemini
  */
 
+#pragma once
+
 /// Inclusione delle librerie standard
 #ifndef STD_LIB
 #define STD_LIB
@@ -31,10 +33,6 @@
 	#include <string.h>
 	#include <ctype.h>
 #endif
-
-
-#ifndef CONSUMI_LIB
-#define CONSUMI_LIB
 
 /// Nomi di file:
 #define FILE_CONSUMI "../consumi.dat"		/// Nome del file contenente le frequenze di consumazione dei prodotti del frigo
@@ -85,4 +83,3 @@ int registra_consumo(char* nome_prodotto, short flag_prodotto);
  */
 int ricerca_prod_magg_cons(short flag_prodotto);
 
-#endif

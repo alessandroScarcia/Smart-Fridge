@@ -1,11 +1,6 @@
-/*
- * calorie.c
- *
- *  Created on: 20 giu 2018
- *      Author: ciaone
- */
 
 #include "calorie.h"
+
 
 /**
  * Funzione input_nome_assunzione()

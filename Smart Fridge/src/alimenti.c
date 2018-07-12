@@ -1203,7 +1203,7 @@ float soglia_alimento(const char* nome_alimento){
 	if((stream = fopen(FILE_DATABASE_ALIMENTI, "rb")) == NULL){
 		return soglia_alimento;
 	}else{
-		while(fread(&alimento_letto, sizeof(alimento), 1, stream) > 0){
+		while(fread(&alimento_letto, sizeof(alimento_database), 1, stream) > 0){
 
 			if(feof(stream)!=0){
 				break;
@@ -1240,7 +1240,7 @@ float quantita_alimento(const char* nome_alimento){
 	if((stream = fopen(FILE_FRIGO, "rb")) == NULL){
 		return quantita_alimento;
 	}else{
-		while(fread(&alimento_letto, sizeof(alimento), 1, stream) > 0){
+		while(fread(&alimento_letto, sizeof(alimento_database), 1, stream) > 0){
 
 			if(feof(stream)!=0){
 				break;

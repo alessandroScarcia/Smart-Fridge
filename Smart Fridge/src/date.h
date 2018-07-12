@@ -10,6 +10,7 @@
  *
  * @authors Alessandro Scarcia, Davide Quatela, Michela Salvemini
  */
+#pragma once
 
 /// Inclusione delle librerie standard
 #ifndef STD_LIB
@@ -26,10 +27,6 @@
 	#include <math.h>
 #endif
 
-#ifndef DATE_LIB
-#define DATE_LIB
-
-/// Inclusione della libreria per la pulizia dei flussi di input
 #include "pulizia_flussi.h"
 
 /// DEFINIZIONE DELLE COSTANTI SIMBOLICHE.
@@ -189,4 +186,4 @@ data shift_data_odierna(short valore_shift);
  */
 data input_data();
 
-#endif
+

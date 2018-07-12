@@ -3,6 +3,7 @@
  *
  * Implementazione delle funzioni di cosumi.h
  */
+
 #include "consumi.h"
 
 /**

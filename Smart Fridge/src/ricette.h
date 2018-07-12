@@ -15,8 +15,8 @@
  * @authors Alessandro Scarcia, Davide Quatela, Michela Salvemini
  */
 
+#pragma once
 
-	//**********************************LIBRERIE INCLUSE***********************************
 /// Inclusione delle librerie standard.
 #ifndef STD_LIB
 #define STD_LIB
@@ -26,11 +26,6 @@
 	#include <time.h>
 #endif
 
-
-
-#ifndef RICETTE_LIB
-#define RICETTE_LIB
-
 /// Inclusione delle librerie per la manipolazione di stringhe e caratteri.
 #ifndef STRING_LIB
 #define STRING_LIB
@@ -38,24 +33,10 @@
 	#include <ctype.h>
 #endif
 
+#include "calorie.h"
 
-/// Inlusione della libreria per la gestione degli alimenti.
 #include "alimenti.h"
 
-/// Inclusione della libreria per la gestione dei consumi
-
-#include "consumi.h"
-
-#ifndef CALORIE_LIB
-#include "calorie.h"
-#endif
-
-#include "utenti.h"
-
-#include "date.h"
-
-/// Inclusione della libreria per la pulizia dei flussi di input.
-#include "pulizia_flussi.h"
 
 	//***************************DEFINIZIONI DI COSTANTI***********************************
 
@@ -292,7 +273,7 @@ int lettura_database_ricette(ricetta* ricette_database);
  * @param num_alimenti		numero di alimenti presenti nel frigo
  * @return 1				in caso di successo
  */
-int ricette_alimenti_in_scadenza(alimento_frigo* alimenti_frigo,int num_alimenti);
+int ricette_alimenti_in_scadenza(alimento_frigo* alimenti_frigo, int num_alimenti);
 
 
 
@@ -371,4 +352,3 @@ char* input_nome_ricetta();
 
 int input_id_ricetta(int max_id);
 
-#endif

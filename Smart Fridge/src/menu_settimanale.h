@@ -12,6 +12,7 @@
  *
  * @authors Alessandro Scarcia, Davide Quatela, Michela Salvemini
  */
+#pragma once
 
 /// Inclusione delle librerie standard
 #ifndef STD_LIB
@@ -35,14 +36,6 @@
 	#include <ctype.h>
 #endif
 
-
-#ifndef MENU_SETTIMANALE_LIB
-#define MENU_SETTIMANALE_LIB
-
-/// Inclusione della libreria per la pulizia dei flussi di input
-#include "pulizia_flussi.h"
-
-///Inclusione della libreria per la gestione degli utenti
 #include "utenti.h"
 
 /// DEFINIZIONE DELLE COSTANTI SIMBOLICHE.
@@ -302,25 +295,7 @@ void stampa_giorno (giorno* giornata);
  *
  */
 int scrivi_giorno (giorno* giornata, char* nome_utente, int i);
-//
-///**
-// * La funzione conta_ricette_menu() riceve in ingresso un nome utente ed il numero corrispondente al giorno da estrarre da file ed analizzate.
-// * Apre il file, estrare la struct nella posizione corrispondente al giorno_x, scorre tra gli alimenti contenuti nel menu di tale giorno analizzando il flag.
-// * Quando trova un flag corrispondente ad 1 aumenta un contatore.
-// * @param nome_utente da cui ricare il nome del file, giorno_x da cui ricavare la posizione del giorno che si intende analizzare.
-// * @return contatore corrispondente al numero di ricette presenti nel giorno.
-// */
-//short int conta_ricette_menu(char nome_utente[], short int giorno_x);
-//
-//
-///**
-// * La funzione conta_ricette_menu() riceve in ingresso un nome utente ed il numero corrispondente al giorno da estrarre da file ed analizzate.
-// * Apre il file, estrare la struct nella posizione corrispondente al giorno_x, scorre tra gli alimenti contenuti nel menu di tale giorno analizzando il flag.
-// * Quando trova un flag corrispondente ad 1 aumenta un contatore.
-// * @param nome_utente da cui ricare il nome del file, giorno_x da cui ricavare la posizione del giorno che si intende analizzare.
-// * @return contatore corrispondente al numero di ricette presenti nel giorno.
-// */
-//void ricette_presenti (char vet_ricette[], char nome_utente[], short int giorno_x);
+
 
 
 int elimina_file_menu(char nome_file[LUNG_NOME_FILE_MENU]);
@@ -335,4 +310,4 @@ int gestore_visualizzazione_menu ();
  *
  */
 void ordina_cibi_pasto(cibo* cibi);
-#endif
+

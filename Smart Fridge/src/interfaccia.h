@@ -10,6 +10,8 @@
  * @authors Alessandro Scarcia, Davide Quatela, Michela Salvemini
  */
 
+#pragma once
+
 #ifndef STD_LIB
 #define STD_LIB
 	#include <stdbool.h>
@@ -31,23 +33,13 @@
 	#include <ctype.h>
 #endif
 
+#include "alimenti.h"
 
-#include "alimenti.h"      ///libreria che permette la gestione(manipolazione,caricamento ecc) degli alimenti
+#include "pulizia_flussi.h"
 
-#include "ricette.h"      ///libreria che permette la gestione(manipolazione,caricamento ecc) delle ricette
+#include "calorie.h"
 
-#include "lista_spesa.h" ///libreria che permette la gestione(creazione,modifica ecc) della lista della spesa
-
-#include "utenti.h"     ///libreria che permette la gestione(creazione,modifica ecc) dei profili utente
-
-#include "menu_settimanale.h"  ///libreria che permette la gestione(modifica) del menu settimanale
-
-#include "calorie.h"		///libreria che permette la gestione delle kcal di un utente
-
-
-
-#ifndef INTERFACCIA_LIB
-#define INTERFACCIA_LIB
+#include "lista_spesa.h"
 
 ///COSTANTI PER LA VISUALIZZAZIONE DELLE VOCI DEL MENU
 #define MENU_PRINCIPALE 0
@@ -236,4 +228,3 @@ void voci_menu_settimanale();
  */
 void voci_calorie();
 
-#endif

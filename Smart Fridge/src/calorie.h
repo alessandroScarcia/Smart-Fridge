@@ -9,6 +9,9 @@
  *
  * @authors Alessandro Scarcia, Davide Quatela, Michela Salvemini
  */
+
+#pragma once
+
 #ifndef STD_LIB
 #define STD_LIB
 	#include <stdbool.h>
@@ -30,8 +33,11 @@
 	#include <ctype.h>
 #endif
 
-#ifndef CALORIE_LIB
-#define CALORIE_LIB
+
+#include "alimenti.h"
+
+/// Inclusione della libreria per la gestione delle ricette
+#include "ricette.h"
 
 /// Inclusione della libreria per la gestione degli utenti
 #include "utenti.h"
@@ -45,11 +51,9 @@
 /// Inclusione della libreria per la pulizia dei flussi di input
 #include "pulizia_flussi.h"
 
-/// Inclusione della libreria per la gestione delle ricette
-#include "ricette.h"
 
 #define FLAG_INPUT_LIBERO  3
-#define  KCAL_MEDIE_GIORNALIERE 2000
+#define KCAL_MEDIE_GIORNALIERE 2000
 #define CAMPIONE_ISTOGRAMMI 200
 
 /// Costanti per i nome del file assunzione
@@ -223,4 +227,4 @@ int scrittura_diretta_assunzione (assunzione* cibo, char nickname[]);
  */
 void istogrami ();
 
-#endif
+

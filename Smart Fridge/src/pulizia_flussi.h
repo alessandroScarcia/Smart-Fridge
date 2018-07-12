@@ -8,6 +8,8 @@
  * alla presenza di input non consumato.
  */
 
+#pragma once
+
 // Inclusione delle librerie standard
 #ifndef STD_LIB
 #define STD_LIB
@@ -17,8 +19,6 @@
 	#include <time.h>
 #endif
 
-#ifndef PULIZIA_FLUSSI_LIB
-#define PULIZIA_FLUSSI_LIB
 
 /**
  * La funzione pulizia_stdin() permette di consumare l'input rimasto non consumato
@@ -34,5 +34,3 @@ int pulisci_stdin();
  * consumato da una riga di un file (fino al primo carattere di new line).
  */
 void pulisci_riga_flusso(FILE* stream);
-
-#endif
