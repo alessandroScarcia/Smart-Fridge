@@ -11,7 +11,7 @@
  */
 int input_scelta(int valore_minimo, int valore_massimo) {
 	// Controlli sui valori attuali
-	if(valore_minimo >= valore_massimo){
+	if(valore_minimo > valore_massimo){
 		return -1;
 	}
 
