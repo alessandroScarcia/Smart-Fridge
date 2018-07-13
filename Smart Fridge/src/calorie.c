@@ -316,6 +316,8 @@ int stampa_database_assunzioni() {
 		if((f = fopen(nome_file, "rb+"))==NULL){
 			if(inizializza_file_assunzione(persona.nickname) != 1) { //creazione e scrittura della data in caso il file non esistesse
 				return -1;
+			}else if((f = fopen(nome_file, "rb+"))==NULL){
+				return -1;
 			}
 		}
 
@@ -323,7 +325,7 @@ int stampa_database_assunzioni() {
 		fseek(f, 0, SEEK_SET);
 		fread(&data_letta, sizeof(data), 1, f);
 
-		printf("Assunzioni per %hu/%hu/%hu\n\n", data_letta.giorno,
+		printf("Assunzioni per %hu/%hu/%hu\n", data_letta.giorno,
 				data_letta.mese, data_letta.anno);
 
 		while (fread(&cibo, sizeof(assunzione), 1, f) > 0) {
@@ -376,6 +378,8 @@ unsigned short calcolo_kcal_totali(char* nomefile) {
 	// Apertura del file contenente le assunzioni di un utente
 	if((f = fopen(nomefile, "rb"))==NULL){
 		if(inizializza_file_assunzione (nomefile) == 1) {
+			return -1;
+		}else if((f = fopen(nomefile, "rb"))==NULL){
 			return -1;
 		}
 	}
@@ -586,7 +590,11 @@ int scrittura_diretta_assunzione (assunzione* cibo, char nickname[]){
 	data controllo_data;
 
 	if((stream = fopen(nome_file, "rb+"))==NULL){
-		inizializza_file_assunzione(nickname);
+		if(inizializza_file_assunzione(nickname) != 1){
+			return -1;
+		}else if((stream = fopen(nome_file, "rb+"))==NULL){
+			return -1;
+		}
 	}
 
 	fseek(stream, 0, SEEK_SET);
